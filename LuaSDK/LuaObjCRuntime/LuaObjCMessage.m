@@ -12,8 +12,8 @@
 #import "LuaObjCAccelerator.h"
 #import "LuaCGGeometry.h"
 #import "LuaObjCAuxiliary.h"
-#import <objc/objc-runtime.h>
-
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 //
 // From PyObjC and JSCocoa: when to call objc_msgSend_stret, for structure return
@@ -87,18 +87,18 @@ static void* ObjectSupport_GetObjcMsgSendCallAddress(NSString* return_value_objc
 	{
 		if(needs_stret)
 		{
-			call_address = objc_msgSendSuper_stret;
+			call_address = (void*)objc_msgSendSuper_stret;
 		}
 		else
 		{
-			call_address = objc_msgSendSuper;
+			call_address = (void*)objc_msgSendSuper;
 		}
 	}
 	else
 	{
 		if(needs_stret)
 		{	
-			call_address = objc_msgSend_stret;
+			call_address = (void*)objc_msgSend_stret;
 		}
 #if defined(__i386__)
 		else if(!strncmp([return_value_objc_encoding_type UTF8String], @encode(float), 1) || !strncmp([return_value_objc_encoding_type UTF8String], @encode(double), 1) || !strncmp([return_value_objc_encoding_type UTF8String], @encode(long double), 1))

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+struct lua_State;
+
 @interface LuaBridgeSupport : NSObject
+
++ (void)importFramework: (NSString *)frameworkName
+  withBridgeFileContent: (NSString *)bridgeFileContent;
+
++ (void)tryToResolveName: (NSString *)name
+            intoLuaState: (struct lua_State *)state;
 
 @end

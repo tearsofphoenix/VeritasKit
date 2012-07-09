@@ -14,7 +14,7 @@
     self = [super init];
     if (self)
     {
-        _rawDocument = xmlReadMemory([data bytes], [data length], "", NULL, XML_PARSE_RECOVER);
+        _rawDocument = xmlReadMemory([data bytes], [data length], "", NULL, XML_PARSE_RECOVER | XML_PARSE_NOBLANKS);
     }
     
     return self;

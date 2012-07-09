@@ -10,4 +10,6 @@
 
 @interface LuaBridgeSupportFileParser : NSObject
 
++ (NSDictionary *)parseFileContents: (NSString *)fileContents;
+
 @end

@@ -21,7 +21,7 @@
 #import "lua.h"
 
 #import "LuaObjCRecordTable.h"
-
+#import "LuaBridgeSupport.h"
 
 struct __LuaObjCClass
 {
@@ -128,16 +128,15 @@ static int _luaEngine_resolveName(lua_State *L)
         {
             LuaObjCClassRef classRef = LuaObjCClassInitialize(L, theClass, nil, false);
             luaObjCStrongTableInsertObjectInGlobalStrongTable(L, -1, classRef);
-            // FIXME: Consider supporting namespaces
-    //        lua_pushvalue(L, LUA_REGISTRYINDEX);		
-    //        lua_pushstring(L, name);  /* Add variable name. */
-    //        
-            // I don't think I need to retain because this is for class objects, not instances
             luaObjC_pushNSObject(L, theClass);        
-    //        lua_settable(L, -3);        
-    //        lua_pop(L, 1);
-        }
+        }else
+        {
+            //this maybe a function, such as glEnable(...)
+            [LuaBridgeSupport tryToResolveName: [NSString stringWithUTF8String: name]
+                                  intoLuaState: L];
+        }        
     }
+    
     return 1;
 }
 
