@@ -16,11 +16,6 @@ static int test(id obj)
 
 int main(int argc, char *argv[])
 {
-    id a = [[NSNumber alloc] init];
-    printf("xxx%@\n", a);
-    [a release];
-    //printf("%d\n", [a retainCount]);
-
     @autoreleasepool 
     {           
         NSString *sourceFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"Test.v"];

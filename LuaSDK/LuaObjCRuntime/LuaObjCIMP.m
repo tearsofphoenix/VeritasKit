@@ -461,7 +461,8 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
         object_setIvar(obj, ivar, newValue);
     }
     
-    free(propertyName);
+    //why this? will cause a crash
+    //free(propertyName);
 }
 
 #pragma mark - add default Ivar

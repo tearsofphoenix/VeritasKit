@@ -11,6 +11,24 @@
 		22350722159C380400D2CCF3 /* LuaObjCInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 22350720159C380300D2CCF3 /* LuaObjCInternal.m */; };
 		2235072A159C381D00D2CCF3 /* LuaEngineNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22350726159C381D00D2CCF3 /* LuaEngineNetworkManager.m */; };
 		22350742159C622A00D2CCF3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FF8C14D5508800180B63 /* OpenGLES.framework */; };
+		2240CCD415AAA35C00997375 /* libffi_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240CCB615AAA35C00997375 /* libffi_iphoneos.a */; };
+		2240CCDE15AAA35C00997375 /* libffi_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240CCC115AAA35C00997375 /* libffi_simulator.a */; };
+		2240CCE015AAA35C00997375 /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC415AAA35C00997375 /* ffi.h */; };
+		2240CCE115AAA35C00997375 /* ffi_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC515AAA35C00997375 /* ffi_common.h */; };
+		2240CCE215AAA35C00997375 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC615AAA35C00997375 /* ffi_i386.h */; };
+		2240CCE315AAA35C00997375 /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC715AAA35C00997375 /* ffi_x86_64.h */; };
+		2240CCE415AAA35C00997375 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC815AAA35C00997375 /* ffitarget.h */; };
+		2240CCE515AAA35C00997375 /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC915AAA35C00997375 /* ffitarget_i386.h */; };
+		2240CCE615AAA35C00997375 /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCCA15AAA35C00997375 /* ffitarget_x86_64.h */; };
+		2240CCE815AAA35C00997375 /* libffi_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240CCCB15AAA35C00997375 /* libffi_OSX.a */; };
+		2240CCF215AAA3BF00997375 /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCEA15AAA3BF00997375 /* ffi.h */; };
+		2240CCF315AAA3BF00997375 /* ffi_armv7.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCEB15AAA3BF00997375 /* ffi_armv7.h */; };
+		2240CCF415AAA3BF00997375 /* ffi_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCEC15AAA3BF00997375 /* ffi_common.h */; };
+		2240CCF515AAA3BF00997375 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCED15AAA3BF00997375 /* ffi_i386.h */; };
+		2240CCF615AAA3BF00997375 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCEE15AAA3BF00997375 /* ffitarget.h */; };
+		2240CCF715AAA3BF00997375 /* ffitarget_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCEF15AAA3BF00997375 /* ffitarget_arm.h */; };
+		2240CCF815AAA3BF00997375 /* ffitarget_armv7.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCF015AAA3BF00997375 /* ffitarget_armv7.h */; };
+		2240CCF915AAA3BF00997375 /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCF115AAA3BF00997375 /* ffitarget_i386.h */; };
 		2246849C15441F2B005A7E70 /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = 34EC2DBC153AFA3500A2FCE2 /* LuaObjCParser.lua */; };
 		224A3685152D8C7D00722A8D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224A3683152D8C7D00722A8D /* AddressBookUI.framework */; };
 		224A3973152D973300722A8D /* ObjectiveLua.v in Resources */ = {isa = PBXBuildFile; fileRef = 222B4C3F1530604F006FB7BF /* ObjectiveLua.v */; };
@@ -348,6 +366,24 @@
 		22350720159C380300D2CCF3 /* LuaObjCInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCInternal.m; sourceTree = "<group>"; };
 		22350725159C381D00D2CCF3 /* LuaEngineNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaEngineNetworkManager.h; path = LuaSDK/LuaEngine/LuaEngineNetworkManager.h; sourceTree = SOURCE_ROOT; };
 		22350726159C381D00D2CCF3 /* LuaEngineNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaEngineNetworkManager.m; path = LuaSDK/LuaEngine/LuaEngineNetworkManager.m; sourceTree = SOURCE_ROOT; };
+		2240CCB615AAA35C00997375 /* libffi_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_iphoneos.a; sourceTree = "<group>"; };
+		2240CCC115AAA35C00997375 /* libffi_simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_simulator.a; sourceTree = "<group>"; };
+		2240CCC415AAA35C00997375 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		2240CCC515AAA35C00997375 /* ffi_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_common.h; sourceTree = "<group>"; };
+		2240CCC615AAA35C00997375 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		2240CCC715AAA35C00997375 /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
+		2240CCC815AAA35C00997375 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		2240CCC915AAA35C00997375 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		2240CCCA15AAA35C00997375 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
+		2240CCCB15AAA35C00997375 /* libffi_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_OSX.a; sourceTree = "<group>"; };
+		2240CCEA15AAA3BF00997375 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		2240CCEB15AAA3BF00997375 /* ffi_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_armv7.h; sourceTree = "<group>"; };
+		2240CCEC15AAA3BF00997375 /* ffi_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_common.h; sourceTree = "<group>"; };
+		2240CCED15AAA3BF00997375 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		2240CCEE15AAA3BF00997375 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		2240CCEF15AAA3BF00997375 /* ffitarget_arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm.h; sourceTree = "<group>"; };
+		2240CCF015AAA3BF00997375 /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
+		2240CCF115AAA3BF00997375 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
 		224A3683152D8C7D00722A8D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		226873621521AB92009D6279 /* luasdk_utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luasdk_utilities.c; sourceTree = "<group>"; };
 		226873631521AB92009D6279 /* luasdk_utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luasdk_utilities.h; sourceTree = "<group>"; };
@@ -779,6 +815,8 @@
 				2268736E1521AD5D009D6279 /* UIKit.framework in Frameworks */,
 				2268736F1521AD5D009D6279 /* Foundation.framework in Frameworks */,
 				226873711521AD5D009D6279 /* CoreGraphics.framework in Frameworks */,
+				2240CCD415AAA35C00997375 /* libffi_iphoneos.a in Frameworks */,
+				2240CCDE15AAA35C00997375 /* libffi_simulator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +827,7 @@
 				E14908141595BEDC0088A170 /* QuartzCore.framework in Frameworks */,
 				E14907D51595BBC60088A170 /* libxml2.dylib in Frameworks */,
 				E14907D31595BBA50088A170 /* Cocoa.framework in Frameworks */,
+				2240CCE815AAA35C00997375 /* libffi_OSX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +839,79 @@
 			children = (
 			);
 			path = BoCPress;
+			sourceTree = "<group>";
+		};
+		2240CCAA15AAA35C00997375 /* libffi-3.0.11 */ = {
+			isa = PBXGroup;
+			children = (
+				2240CCAB15AAA35C00997375 /* iOS */,
+				2240CCC215AAA35C00997375 /* MacOSX */,
+			);
+			path = "libffi-3.0.11";
+			sourceTree = "<group>";
+		};
+		2240CCAB15AAA35C00997375 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2240CCE915AAA3BF00997375 /* include */,
+				2240CCAC15AAA35C00997375 /* iphoneos */,
+				2240CCB715AAA35C00997375 /* simulator */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		2240CCAC15AAA35C00997375 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				2240CCB615AAA35C00997375 /* libffi_iphoneos.a */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		2240CCB715AAA35C00997375 /* simulator */ = {
+			isa = PBXGroup;
+			children = (
+				2240CCC115AAA35C00997375 /* libffi_simulator.a */,
+			);
+			path = simulator;
+			sourceTree = "<group>";
+		};
+		2240CCC215AAA35C00997375 /* MacOSX */ = {
+			isa = PBXGroup;
+			children = (
+				2240CCC315AAA35C00997375 /* include */,
+				2240CCCB15AAA35C00997375 /* libffi_OSX.a */,
+			);
+			path = MacOSX;
+			sourceTree = "<group>";
+		};
+		2240CCC315AAA35C00997375 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				2240CCC415AAA35C00997375 /* ffi.h */,
+				2240CCC515AAA35C00997375 /* ffi_common.h */,
+				2240CCC615AAA35C00997375 /* ffi_i386.h */,
+				2240CCC715AAA35C00997375 /* ffi_x86_64.h */,
+				2240CCC815AAA35C00997375 /* ffitarget.h */,
+				2240CCC915AAA35C00997375 /* ffitarget_i386.h */,
+				2240CCCA15AAA35C00997375 /* ffitarget_x86_64.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		2240CCE915AAA3BF00997375 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				2240CCEA15AAA3BF00997375 /* ffi.h */,
+				2240CCEB15AAA3BF00997375 /* ffi_armv7.h */,
+				2240CCEC15AAA3BF00997375 /* ffi_common.h */,
+				2240CCED15AAA3BF00997375 /* ffi_i386.h */,
+				2240CCEE15AAA3BF00997375 /* ffitarget.h */,
+				2240CCEF15AAA3BF00997375 /* ffitarget_arm.h */,
+				2240CCF015AAA3BF00997375 /* ffitarget_armv7.h */,
+				2240CCF115AAA3BF00997375 /* ffitarget_i386.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		2268735B1521AB92009D6279 /* LuaEngine */ = {
@@ -1335,6 +1447,7 @@
 		34D9A68D153486E400A1E2E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				2240CCAA15AAA35C00997375 /* libffi-3.0.11 */,
 				E10053A81590C57700F49D98 /* XML */,
 				34D9A693153488D800A1E2E3 /* Objective-Lua */,
 				34D9A68E153486E400A1E2E3 /* lpeg */,
@@ -1451,6 +1564,21 @@
 				E1BC55B31595C5FF002255ED /* ERGeneralDataSource.h in Headers */,
 				E1BC55B51595C786002255ED /* LuaEngineCocoa.h in Headers */,
 				E14908441595C0940088A170 /* LuaEngineService.h in Headers */,
+				2240CCE015AAA35C00997375 /* ffi.h in Headers */,
+				2240CCE115AAA35C00997375 /* ffi_common.h in Headers */,
+				2240CCE215AAA35C00997375 /* ffi_i386.h in Headers */,
+				2240CCE315AAA35C00997375 /* ffi_x86_64.h in Headers */,
+				2240CCE415AAA35C00997375 /* ffitarget.h in Headers */,
+				2240CCE515AAA35C00997375 /* ffitarget_i386.h in Headers */,
+				2240CCE615AAA35C00997375 /* ffitarget_x86_64.h in Headers */,
+				2240CCF215AAA3BF00997375 /* ffi.h in Headers */,
+				2240CCF315AAA3BF00997375 /* ffi_armv7.h in Headers */,
+				2240CCF415AAA3BF00997375 /* ffi_common.h in Headers */,
+				2240CCF515AAA3BF00997375 /* ffi_i386.h in Headers */,
+				2240CCF615AAA3BF00997375 /* ffitarget.h in Headers */,
+				2240CCF715AAA3BF00997375 /* ffitarget_arm.h in Headers */,
+				2240CCF815AAA3BF00997375 /* ffitarget_armv7.h in Headers */,
+				2240CCF915AAA3BF00997375 /* ffitarget_i386.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1890,7 +2018,7 @@
 		2268737F1521AD5D009D6279 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YIBIN DONG (8V5Q9JANEH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LuaIOS/LuaIOS-Prefix.pch";
@@ -1898,8 +2026,14 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "LuaIOS/LuaIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/MacOSX\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CEF1BE16-B0E4-4BA8-9C70-3F9828B86459";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1908,7 +2042,7 @@
 		226873801521AD5D009D6279 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YIBIN DONG (8V5Q9JANEH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LuaIOS/LuaIOS-Prefix.pch";
@@ -1916,8 +2050,14 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "LuaIOS/LuaIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/MacOSX\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CEF1BE16-B0E4-4BA8-9C70-3F9828B86459";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1988,6 +2128,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "LuaEngineCocoa/LuaEngineCocoa-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/MacOSX\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2016,6 +2162,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "LuaEngineCocoa/LuaEngineCocoa-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/MacOSX\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
