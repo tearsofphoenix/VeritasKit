@@ -11,8 +11,6 @@
 		22350722159C380400D2CCF3 /* LuaObjCInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 22350720159C380300D2CCF3 /* LuaObjCInternal.m */; };
 		2235072A159C381D00D2CCF3 /* LuaEngineNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22350726159C381D00D2CCF3 /* LuaEngineNetworkManager.m */; };
 		22350742159C622A00D2CCF3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FF8C14D5508800180B63 /* OpenGLES.framework */; };
-		2240CCD415AAA35C00997375 /* libffi_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240CCB615AAA35C00997375 /* libffi_iphoneos.a */; };
-		2240CCDE15AAA35C00997375 /* libffi_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240CCC115AAA35C00997375 /* libffi_simulator.a */; };
 		2240CCE015AAA35C00997375 /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC415AAA35C00997375 /* ffi.h */; };
 		2240CCE215AAA35C00997375 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC615AAA35C00997375 /* ffi_i386.h */; };
 		2240CCE315AAA35C00997375 /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 2240CCC715AAA35C00997375 /* ffi_x86_64.h */; };
@@ -229,7 +227,6 @@
 		34D9A691153486E400A1E2E3 /* lpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 34D9A68F153486E400A1E2E3 /* lpeg.c */; };
 		34E682251550485000699925 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E682241550485000699925 /* Particle.png */; };
 		E10053A41590BE5F00F49D98 /* LuaFrameworkLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053A31590BE5E00F49D98 /* LuaFrameworkLoader.m */; };
-		E10053A71590C4D800F49D98 /* OpenGLES.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E10053A61590C4D800F49D98 /* OpenGLES.bridgesupport */; };
 		E10053AF1590C57800F49D98 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AA1590C57800F49D98 /* XMLDocument.m */; };
 		E10053B01590C57800F49D98 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AC1590C57800F49D98 /* XMLNode.m */; };
 		E10053B11590C57800F49D98 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AE1590C57800F49D98 /* XMLPathProcessor.m */; };
@@ -349,6 +346,28 @@
 		E14908441595C0940088A170 /* LuaEngineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EF547B1587919500F35BD2 /* LuaEngineService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E14908451595C0AC0088A170 /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = 34EC2DBC153AFA3500A2FCE2 /* LuaObjCParser.lua */; };
 		E14AA8201593647D00BD29E2 /* LuaObjCRecordTable.m in Sources */ = {isa = PBXBuildFile; fileRef = E14AA81E1593647D00BD29E2 /* LuaObjCRecordTable.m */; };
+		E19BA28515AB33AD00C870CA /* libffi_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E19BA28415AB33AD00C870CA /* libffi_ios.a */; };
+		E19BA2B715AB465100C870CA /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A215AB465100C870CA /* Accelerate.bridgesupport */; };
+		E19BA2B815AB465100C870CA /* AddressBook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A315AB465100C870CA /* AddressBook.bridgesupport */; };
+		E19BA2B915AB465100C870CA /* AudioToolbox.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A415AB465100C870CA /* AudioToolbox.bridgesupport */; };
+		E19BA2BA15AB465100C870CA /* AudioUnit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A515AB465100C870CA /* AudioUnit.bridgesupport */; };
+		E19BA2BB15AB465100C870CA /* AVFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A615AB465100C870CA /* AVFoundation.bridgesupport */; };
+		E19BA2BC15AB465100C870CA /* CoreAudio.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A715AB465100C870CA /* CoreAudio.bridgesupport */; };
+		E19BA2BD15AB465100C870CA /* CoreData.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A815AB465100C870CA /* CoreData.bridgesupport */; };
+		E19BA2BE15AB465100C870CA /* CoreFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A915AB465100C870CA /* CoreFoundation.bridgesupport */; };
+		E19BA2BF15AB465100C870CA /* CoreLocation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AA15AB465100C870CA /* CoreLocation.bridgesupport */; };
+		E19BA2C015AB465100C870CA /* CoreMedia.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AB15AB465100C870CA /* CoreMedia.bridgesupport */; };
+		E19BA2C115AB465100C870CA /* CoreMIDI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AC15AB465100C870CA /* CoreMIDI.bridgesupport */; };
+		E19BA2C215AB465100C870CA /* CoreVideo.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AD15AB465100C870CA /* CoreVideo.bridgesupport */; };
+		E19BA2C315AB465100C870CA /* Foundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AE15AB465100C870CA /* Foundation.bridgesupport */; };
+		E19BA2C415AB465100C870CA /* GSS.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AF15AB465100C870CA /* GSS.bridgesupport */; };
+		E19BA2C515AB465100C870CA /* OpenAL.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B015AB465100C870CA /* OpenAL.bridgesupport */; };
+		E19BA2C615AB465100C870CA /* OpenGLES.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B115AB465100C870CA /* OpenGLES.bridgesupport */; };
+		E19BA2C715AB465100C870CA /* QuartzCore.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B215AB465100C870CA /* QuartzCore.bridgesupport */; };
+		E19BA2C815AB465100C870CA /* QuickLook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B315AB465100C870CA /* QuickLook.bridgesupport */; };
+		E19BA2C915AB465100C870CA /* Security.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B415AB465100C870CA /* Security.bridgesupport */; };
+		E19BA2CA15AB465100C870CA /* StoreKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B515AB465100C870CA /* StoreKit.bridgesupport */; };
+		E19BA2CB15AB465100C870CA /* SystemConfiguration.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B615AB465100C870CA /* SystemConfiguration.bridgesupport */; };
 		E1BC55B31595C5FF002255ED /* ERGeneralDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EF54871587938C00F35BD2 /* ERGeneralDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1BC55B51595C786002255ED /* LuaEngineCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = E14907CB1595BB8B0088A170 /* LuaEngineCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1D7F7A51591A9AD0029193E /* lbuflib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1D7F7A41591A9AD0029193E /* lbuflib.c */; };
@@ -370,8 +389,6 @@
 		22350720159C380300D2CCF3 /* LuaObjCInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCInternal.m; sourceTree = "<group>"; };
 		22350725159C381D00D2CCF3 /* LuaEngineNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaEngineNetworkManager.h; path = LuaSDK/LuaEngine/LuaEngineNetworkManager.h; sourceTree = SOURCE_ROOT; };
 		22350726159C381D00D2CCF3 /* LuaEngineNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaEngineNetworkManager.m; path = LuaSDK/LuaEngine/LuaEngineNetworkManager.m; sourceTree = SOURCE_ROOT; };
-		2240CCB615AAA35C00997375 /* libffi_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_iphoneos.a; sourceTree = "<group>"; };
-		2240CCC115AAA35C00997375 /* libffi_simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_simulator.a; sourceTree = "<group>"; };
 		2240CCC415AAA35C00997375 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
 		2240CCC615AAA35C00997375 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
 		2240CCC715AAA35C00997375 /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
@@ -771,7 +788,6 @@
 		34EC2DBC153AFA3500A2FCE2 /* LuaObjCParser.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaObjCParser.lua; sourceTree = "<group>"; };
 		E10053A21590BE5E00F49D98 /* LuaFrameworkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaFrameworkLoader.h; path = LuaSDK/LuaEngine/LuaFrameworkLoader.h; sourceTree = SOURCE_ROOT; };
 		E10053A31590BE5E00F49D98 /* LuaFrameworkLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaFrameworkLoader.m; path = LuaSDK/LuaEngine/LuaFrameworkLoader.m; sourceTree = SOURCE_ROOT; };
-		E10053A61590C4D800F49D98 /* OpenGLES.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OpenGLES.bridgesupport; sourceTree = "<group>"; };
 		E10053A91590C57800F49D98 /* XMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDocument.h; sourceTree = "<group>"; };
 		E10053AA1590C57800F49D98 /* XMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDocument.m; sourceTree = "<group>"; };
 		E10053AB1590C57800F49D98 /* XMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLNode.h; sourceTree = "<group>"; };
@@ -797,6 +813,28 @@
 		E14AA81F1593647D00BD29E2 /* LuaObjCRecordTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCRecordTable.h; sourceTree = "<group>"; };
 		E19844BF159414A500FB051C /* Block_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block_private.h; sourceTree = "<group>"; };
 		E19844C0159414A500FB051C /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		E19BA28415AB33AD00C870CA /* libffi_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_ios.a; sourceTree = "<group>"; };
+		E19BA2A215AB465100C870CA /* Accelerate.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accelerate.bridgesupport; sourceTree = "<group>"; };
+		E19BA2A315AB465100C870CA /* AddressBook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AddressBook.bridgesupport; sourceTree = "<group>"; };
+		E19BA2A415AB465100C870CA /* AudioToolbox.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AudioToolbox.bridgesupport; sourceTree = "<group>"; };
+		E19BA2A515AB465100C870CA /* AudioUnit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AudioUnit.bridgesupport; sourceTree = "<group>"; };
+		E19BA2A615AB465100C870CA /* AVFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AVFoundation.bridgesupport; sourceTree = "<group>"; };
+		E19BA2A715AB465100C870CA /* CoreAudio.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreAudio.bridgesupport; sourceTree = "<group>"; };
+		E19BA2A815AB465100C870CA /* CoreData.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreData.bridgesupport; sourceTree = "<group>"; };
+		E19BA2A915AB465100C870CA /* CoreFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreFoundation.bridgesupport; sourceTree = "<group>"; };
+		E19BA2AA15AB465100C870CA /* CoreLocation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreLocation.bridgesupport; sourceTree = "<group>"; };
+		E19BA2AB15AB465100C870CA /* CoreMedia.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMedia.bridgesupport; sourceTree = "<group>"; };
+		E19BA2AC15AB465100C870CA /* CoreMIDI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMIDI.bridgesupport; sourceTree = "<group>"; };
+		E19BA2AD15AB465100C870CA /* CoreVideo.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreVideo.bridgesupport; sourceTree = "<group>"; };
+		E19BA2AE15AB465100C870CA /* Foundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Foundation.bridgesupport; sourceTree = "<group>"; };
+		E19BA2AF15AB465100C870CA /* GSS.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GSS.bridgesupport; sourceTree = "<group>"; };
+		E19BA2B015AB465100C870CA /* OpenAL.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OpenAL.bridgesupport; sourceTree = "<group>"; };
+		E19BA2B115AB465100C870CA /* OpenGLES.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OpenGLES.bridgesupport; sourceTree = "<group>"; };
+		E19BA2B215AB465100C870CA /* QuartzCore.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = QuartzCore.bridgesupport; sourceTree = "<group>"; };
+		E19BA2B315AB465100C870CA /* QuickLook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = QuickLook.bridgesupport; sourceTree = "<group>"; };
+		E19BA2B415AB465100C870CA /* Security.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Security.bridgesupport; sourceTree = "<group>"; };
+		E19BA2B515AB465100C870CA /* StoreKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = StoreKit.bridgesupport; sourceTree = "<group>"; };
+		E19BA2B615AB465100C870CA /* SystemConfiguration.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SystemConfiguration.bridgesupport; sourceTree = "<group>"; };
 		E1D7F7A41591A9AD0029193E /* lbuflib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbuflib.c; sourceTree = "<group>"; };
 		E1EF547A1587919500F35BD2 /* LuaEngineFunctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LuaEngineFunctions.c; path = LuaSDK/LuaEngine/LuaEngineFunctions.c; sourceTree = SOURCE_ROOT; };
 		E1EF547B1587919500F35BD2 /* LuaEngineService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaEngineService.h; path = LuaSDK/LuaEngine/LuaEngineService.h; sourceTree = SOURCE_ROOT; };
@@ -825,8 +863,7 @@
 				2268736E1521AD5D009D6279 /* UIKit.framework in Frameworks */,
 				2268736F1521AD5D009D6279 /* Foundation.framework in Frameworks */,
 				226873711521AD5D009D6279 /* CoreGraphics.framework in Frameworks */,
-				2240CCD415AAA35C00997375 /* libffi_iphoneos.a in Frameworks */,
-				2240CCDE15AAA35C00997375 /* libffi_simulator.a in Frameworks */,
+				E19BA28515AB33AD00C870CA /* libffi_ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,27 +893,10 @@
 		2240CCAB15AAA35C00997375 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E19BA28415AB33AD00C870CA /* libffi_ios.a */,
 				2240CCE915AAA3BF00997375 /* include */,
-				2240CCAC15AAA35C00997375 /* iphoneos */,
-				2240CCB715AAA35C00997375 /* simulator */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		2240CCAC15AAA35C00997375 /* iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				2240CCB615AAA35C00997375 /* libffi_iphoneos.a */,
-			);
-			path = iphoneos;
-			sourceTree = "<group>";
-		};
-		2240CCB715AAA35C00997375 /* simulator */ = {
-			isa = PBXGroup;
-			children = (
-				2240CCC115AAA35C00997375 /* libffi_simulator.a */,
-			);
-			path = simulator;
 			sourceTree = "<group>";
 		};
 		2240CCC215AAA35C00997375 /* MacOSX */ = {
@@ -1013,6 +1033,7 @@
 		22F7A67115A14AE900E2DED3 /* LuaObjCFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E19BA2A115AB465100C870CA /* BridgeSupportFiles */,
 				2270ACFE152D8BAC00135747 /* AddressBookUI */,
 				22F7A7E715A14AE900E2DED3 /* CoreGraphics */,
 				22F7A90515A14AE900E2DED3 /* Foundation */,
@@ -1225,7 +1246,6 @@
 		22F7AAB015A14AE900E2DED3 /* OpenGLES */ = {
 			isa = PBXGroup;
 			children = (
-				E10053A61590C4D800F49D98 /* OpenGLES.bridgesupport */,
 				22F7AAB115A14AE900E2DED3 /* LuaEAGL.h */,
 				22F7AAB215A14AE900E2DED3 /* LuaEAGL.m */,
 				E10053B41590CBF000F49D98 /* LuaOpenGLES.h */,
@@ -1560,6 +1580,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E19BA2A115AB465100C870CA /* BridgeSupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E19BA2A215AB465100C870CA /* Accelerate.bridgesupport */,
+				E19BA2A315AB465100C870CA /* AddressBook.bridgesupport */,
+				E19BA2A415AB465100C870CA /* AudioToolbox.bridgesupport */,
+				E19BA2A515AB465100C870CA /* AudioUnit.bridgesupport */,
+				E19BA2A615AB465100C870CA /* AVFoundation.bridgesupport */,
+				E19BA2A715AB465100C870CA /* CoreAudio.bridgesupport */,
+				E19BA2A815AB465100C870CA /* CoreData.bridgesupport */,
+				E19BA2A915AB465100C870CA /* CoreFoundation.bridgesupport */,
+				E19BA2AA15AB465100C870CA /* CoreLocation.bridgesupport */,
+				E19BA2AB15AB465100C870CA /* CoreMedia.bridgesupport */,
+				E19BA2AC15AB465100C870CA /* CoreMIDI.bridgesupport */,
+				E19BA2AD15AB465100C870CA /* CoreVideo.bridgesupport */,
+				E19BA2AE15AB465100C870CA /* Foundation.bridgesupport */,
+				E19BA2AF15AB465100C870CA /* GSS.bridgesupport */,
+				E19BA2B015AB465100C870CA /* OpenAL.bridgesupport */,
+				E19BA2B115AB465100C870CA /* OpenGLES.bridgesupport */,
+				E19BA2B215AB465100C870CA /* QuartzCore.bridgesupport */,
+				E19BA2B315AB465100C870CA /* QuickLook.bridgesupport */,
+				E19BA2B415AB465100C870CA /* Security.bridgesupport */,
+				E19BA2B515AB465100C870CA /* StoreKit.bridgesupport */,
+				E19BA2B615AB465100C870CA /* SystemConfiguration.bridgesupport */,
+			);
+			path = BridgeSupportFiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1666,7 +1714,27 @@
 				22EC440115243E1A00598F4F /* GLES.v in Resources */,
 				34E682251550485000699925 /* Particle.png in Resources */,
 				22B645721589EF81009C7A1C /* LuaCParser.lua in Resources */,
-				E10053A71590C4D800F49D98 /* OpenGLES.bridgesupport in Resources */,
+				E19BA2B715AB465100C870CA /* Accelerate.bridgesupport in Resources */,
+				E19BA2B815AB465100C870CA /* AddressBook.bridgesupport in Resources */,
+				E19BA2B915AB465100C870CA /* AudioToolbox.bridgesupport in Resources */,
+				E19BA2BA15AB465100C870CA /* AudioUnit.bridgesupport in Resources */,
+				E19BA2BB15AB465100C870CA /* AVFoundation.bridgesupport in Resources */,
+				E19BA2BC15AB465100C870CA /* CoreAudio.bridgesupport in Resources */,
+				E19BA2BD15AB465100C870CA /* CoreData.bridgesupport in Resources */,
+				E19BA2BE15AB465100C870CA /* CoreFoundation.bridgesupport in Resources */,
+				E19BA2BF15AB465100C870CA /* CoreLocation.bridgesupport in Resources */,
+				E19BA2C015AB465100C870CA /* CoreMedia.bridgesupport in Resources */,
+				E19BA2C115AB465100C870CA /* CoreMIDI.bridgesupport in Resources */,
+				E19BA2C215AB465100C870CA /* CoreVideo.bridgesupport in Resources */,
+				E19BA2C315AB465100C870CA /* Foundation.bridgesupport in Resources */,
+				E19BA2C415AB465100C870CA /* GSS.bridgesupport in Resources */,
+				E19BA2C515AB465100C870CA /* OpenAL.bridgesupport in Resources */,
+				E19BA2C615AB465100C870CA /* OpenGLES.bridgesupport in Resources */,
+				E19BA2C715AB465100C870CA /* QuartzCore.bridgesupport in Resources */,
+				E19BA2C815AB465100C870CA /* QuickLook.bridgesupport in Resources */,
+				E19BA2C915AB465100C870CA /* Security.bridgesupport in Resources */,
+				E19BA2CA15AB465100C870CA /* StoreKit.bridgesupport in Resources */,
+				E19BA2CB15AB465100C870CA /* SystemConfiguration.bridgesupport in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2040,8 +2108,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2063,8 +2130,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
+					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

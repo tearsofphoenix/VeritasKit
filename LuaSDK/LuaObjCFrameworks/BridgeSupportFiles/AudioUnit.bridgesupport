@@ -1,0 +1,1153 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<depends_on path='/System/Library/Frameworks/AudioToolbox.framework'/>
+<struct name='AUChannelInfo' type='{AUChannelInfo=&quot;inChannels&quot;s&quot;outChannels&quot;s}'/>
+<struct name='AUDependentParameter' type='{AUDependentParameter=&quot;mScope&quot;I&quot;mParameterID&quot;I}'/>
+<struct name='AUDistanceAttenuationData' type='{AUDistanceAttenuationData=&quot;inNumberOfPairs&quot;I&quot;pairs&quot;[1{?=&quot;inDistance&quot;f&quot;outGain&quot;f}]}'/>
+<struct name='AUHostIdentifier' type='{AUHostIdentifier=&quot;hostName&quot;^{__CFString}&quot;hostVersion&quot;{AUNumVersion=&quot;nonRelRev&quot;C&quot;stage&quot;C&quot;minorAndBugRev&quot;C&quot;majorRev&quot;C}}'/>
+<struct name='AUHostVersionIdentifier' type='{AUHostVersionIdentifier=&quot;hostName&quot;^{__CFString}&quot;hostVersion&quot;I}'/>
+<struct name='AUInputSamplesInOutputCallbackStruct' type='{AUInputSamplesInOutputCallbackStruct=&quot;inputToOutputCallback&quot;^?&quot;userData&quot;^v}'/>
+<struct name='AUMIDIOutputCallbackStruct' type='{AUMIDIOutputCallbackStruct=&quot;midiOutputCallback&quot;^?&quot;userData&quot;^v}'/>
+<struct name='AUNumVersion' type='{AUNumVersion=&quot;nonRelRev&quot;C&quot;stage&quot;C&quot;minorAndBugRev&quot;C&quot;majorRev&quot;C}'/>
+<struct name='AUParameterMIDIMapping' type='{AUParameterMIDIMapping=&quot;mScope&quot;I&quot;mElement&quot;I&quot;mParameterID&quot;I&quot;mFlags&quot;I&quot;mSubRangeMin&quot;f&quot;mSubRangeMax&quot;f&quot;mStatus&quot;C&quot;mData1&quot;C&quot;reserved1&quot;C&quot;reserved2&quot;C&quot;reserved3&quot;I}'/>
+<struct name='AUPreset' type='{AUPreset=&quot;presetNumber&quot;i&quot;presetName&quot;^{__CFString}}'/>
+<struct name='AURenderCallbackStruct' type='{AURenderCallbackStruct=&quot;inputProc&quot;^?&quot;inputProcRefCon&quot;^v}'/>
+<struct name='AUSamplerBankPresetData' type='{AUSamplerBankPresetData=&quot;bankURL&quot;^{__CFURL}&quot;bankMSB&quot;C&quot;bankLSB&quot;C&quot;presetID&quot;C&quot;reserved&quot;C}'/>
+<struct name='AudioCodecMagicCookieInfo' type='{AudioCodecMagicCookieInfo=&quot;mMagicCookieSize&quot;I&quot;mMagicCookie&quot;^v}'/>
+<struct name='AudioCodecPrimeInfo' type='{AudioCodecPrimeInfo=&quot;leadingFrames&quot;I&quot;trailingFrames&quot;I}'/>
+<struct name='AudioComponentDescription' type='{AudioComponentDescription=&quot;componentType&quot;I&quot;componentSubType&quot;I&quot;componentManufacturer&quot;I&quot;componentFlags&quot;I&quot;componentFlagsMask&quot;I}'/>
+<struct type64='{ComponentInstanceRecord=&quot;data&quot;[1q]}' name='AudioComponentInstance' type='{ComponentInstanceRecord=&quot;data&quot;[1l]}'/>
+<struct name='AudioComponentPlugInInterface' type='{AudioComponentPlugInInterface=&quot;Open&quot;^?&quot;Close&quot;^?&quot;Lookup&quot;^?&quot;reserved&quot;^v}'/>
+<struct name='AudioOutputUnitStartAtTimeParams' type='{AudioOutputUnitStartAtTimeParams=&quot;mTimestamp&quot;{AudioTimeStamp=&quot;mSampleTime&quot;d&quot;mHostTime&quot;Q&quot;mRateScalar&quot;d&quot;mWordClockTime&quot;Q&quot;mSMPTETime&quot;{SMPTETime=&quot;mSubframes&quot;s&quot;mSubframeDivisor&quot;s&quot;mCounter&quot;I&quot;mType&quot;I&quot;mFlags&quot;I&quot;mHours&quot;s&quot;mMinutes&quot;s&quot;mSeconds&quot;s&quot;mFrames&quot;s}&quot;mFlags&quot;I&quot;mReserved&quot;I}&quot;mFlags&quot;I}'/>
+<struct name='AudioUnitCocoaViewInfo' type='{AudioUnitCocoaViewInfo=&quot;mCocoaAUViewBundleLocation&quot;^{__CFURL}&quot;mCocoaAUViewClass&quot;[1^{__CFString}]}'/>
+<struct name='AudioUnitConnection' type='{AudioUnitConnection=&quot;sourceAudioUnit&quot;^{ComponentInstanceRecord}&quot;sourceOutputNumber&quot;I&quot;destInputNumber&quot;I}'/>
+<struct name='AudioUnitExternalBuffer' type='{AudioUnitExternalBuffer=&quot;buffer&quot;*&quot;size&quot;I}'/>
+<struct name='AudioUnitFrequencyResponseBin' type='{AudioUnitFrequencyResponseBin=&quot;mFrequency&quot;d&quot;mMagnitude&quot;d}'/>
+<struct name='AudioUnitMIDIControlMapping' type='{AudioUnitMIDIControlMapping=&quot;midiNRPN&quot;S&quot;midiControl&quot;C&quot;scope&quot;C&quot;element&quot;I&quot;parameter&quot;I}'/>
+<struct name='AudioUnitMeterClipping' type='{AudioUnitMeterClipping=&quot;peakValueSinceLastCall&quot;f&quot;sawInfinity&quot;B&quot;sawNotANumber&quot;B}'/>
+<struct name='AudioUnitOtherPluginDesc' type='{AudioUnitOtherPluginDesc=&quot;format&quot;I&quot;plugin&quot;{AudioClassDescription=&quot;mType&quot;I&quot;mSubType&quot;I&quot;mManufacturer&quot;I}}'/>
+<struct name='AudioUnitParameter' type='{AudioUnitParameter=&quot;mAudioUnit&quot;^{ComponentInstanceRecord}&quot;mParameterID&quot;I&quot;mScope&quot;I&quot;mElement&quot;I}'/>
+<struct name='AudioUnitParameterEvent' type='{AudioUnitParameterEvent=&quot;scope&quot;I&quot;element&quot;I&quot;parameter&quot;I&quot;eventType&quot;I&quot;eventValues&quot;(?=&quot;ramp&quot;{?=&quot;startBufferOffset&quot;i&quot;durationInFrames&quot;I&quot;startValue&quot;f&quot;endValue&quot;f}&quot;immediate&quot;{?=&quot;bufferOffset&quot;I&quot;value&quot;f})}'/>
+<struct name='AudioUnitParameterHistoryInfo' type='{AudioUnitParameterHistoryInfo=&quot;updatesPerSecond&quot;f&quot;historyDurationInSeconds&quot;f}'/>
+<struct name='AudioUnitParameterIDName' type='{AudioUnitParameterNameInfo=&quot;inID&quot;I&quot;inDesiredLength&quot;i&quot;outName&quot;^{__CFString}}'/>
+<struct name='AudioUnitParameterInfo' type='{AudioUnitParameterInfo=&quot;name&quot;[52c]&quot;unitName&quot;^{__CFString}&quot;clumpID&quot;I&quot;cfNameString&quot;^{__CFString}&quot;unit&quot;I&quot;minValue&quot;f&quot;maxValue&quot;f&quot;defaultValue&quot;f&quot;flags&quot;I}'/>
+<struct name='AudioUnitParameterNameInfo' type='{AudioUnitParameterNameInfo=&quot;inID&quot;I&quot;inDesiredLength&quot;i&quot;outName&quot;^{__CFString}}'/>
+<struct name='AudioUnitParameterStringFromValue' type='{AudioUnitParameterStringFromValue=&quot;inParamID&quot;I&quot;inValue&quot;^f&quot;outString&quot;^{__CFString}}'/>
+<struct name='AudioUnitParameterValueFromString' type='{AudioUnitParameterValueFromString=&quot;inParamID&quot;I&quot;inString&quot;^{__CFString}&quot;outValue&quot;f}'/>
+<struct name='AudioUnitParameterValueName' type='{AudioUnitParameterValueName=&quot;inParamID&quot;I&quot;inValue&quot;^f&quot;outName&quot;^{__CFString}}'/>
+<struct name='AudioUnitParameterValueTranslation' type='{AudioUnitParameterValueTranslation=&quot;otherDesc&quot;{AudioUnitOtherPluginDesc=&quot;format&quot;I&quot;plugin&quot;{AudioClassDescription=&quot;mType&quot;I&quot;mSubType&quot;I&quot;mManufacturer&quot;I}}&quot;otherParamID&quot;I&quot;otherValue&quot;f&quot;auParamID&quot;I&quot;auValue&quot;f}'/>
+<struct name='AudioUnitPresetMAS_SettingData' type='{AudioUnitPresetMAS_SettingData=&quot;isStockSetting&quot;I&quot;settingID&quot;I&quot;dataLen&quot;I&quot;data&quot;[1C]}'/>
+<struct name='AudioUnitPresetMAS_Settings' type='{AudioUnitPresetMAS_Settings=&quot;manufacturerID&quot;I&quot;effectID&quot;I&quot;variantID&quot;I&quot;settingsVersion&quot;I&quot;numberOfSettings&quot;I&quot;settings&quot;[1{AudioUnitPresetMAS_SettingData=&quot;isStockSetting&quot;I&quot;settingID&quot;I&quot;dataLen&quot;I&quot;data&quot;[1C]}]}'/>
+<struct name='AudioUnitProperty' type='{AudioUnitProperty=&quot;mAudioUnit&quot;^{ComponentInstanceRecord}&quot;mPropertyID&quot;I&quot;mScope&quot;I&quot;mElement&quot;I}'/>
+<struct name='HostCallbackInfo' type='{HostCallbackInfo=&quot;hostUserData&quot;^v&quot;beatAndTempoProc&quot;^?&quot;musicalTimeLocationProc&quot;^?&quot;transportStateProc&quot;^?}'/>
+<struct name='LogicAUNodePropertyDescription' type='{_LogicAUNodePropertyDescription=&quot;mPropertyID&quot;I&quot;mEndianMode&quot;I&quot;mFlags&quot;I}'/>
+<struct name='MagicCookieInfo' type='{AudioCodecMagicCookieInfo=&quot;mMagicCookieSize&quot;I&quot;mMagicCookie&quot;^v}'/>
+<struct name='MixerDistanceParams' type='{MixerDistanceParams=&quot;mReferenceDistance&quot;f&quot;mMaxDistance&quot;f&quot;mMaxAttenuation&quot;f}'/>
+<struct name='MusicDeviceNoteParams' type='{MusicDeviceNoteParams=&quot;argCount&quot;I&quot;mPitch&quot;f&quot;mVelocity&quot;f&quot;mControls&quot;[1{NoteParamsControlValue=&quot;mID&quot;I&quot;mValue&quot;f}]}'/>
+<struct name='MusicDeviceStdNoteParams' type='{MusicDeviceStdNoteParams=&quot;argCount&quot;I&quot;mPitch&quot;f&quot;mVelocity&quot;f}'/>
+<struct name='NoteParamsControlValue' type='{NoteParamsControlValue=&quot;mID&quot;I&quot;mValue&quot;f}'/>
+<struct name='ScheduledAudioFileRegion' type='{ScheduledAudioFileRegion=&quot;mTimeStamp&quot;{AudioTimeStamp=&quot;mSampleTime&quot;d&quot;mHostTime&quot;Q&quot;mRateScalar&quot;d&quot;mWordClockTime&quot;Q&quot;mSMPTETime&quot;{SMPTETime=&quot;mSubframes&quot;s&quot;mSubframeDivisor&quot;s&quot;mCounter&quot;I&quot;mType&quot;I&quot;mFlags&quot;I&quot;mHours&quot;s&quot;mMinutes&quot;s&quot;mSeconds&quot;s&quot;mFrames&quot;s}&quot;mFlags&quot;I&quot;mReserved&quot;I}&quot;mCompletionProc&quot;^?&quot;mCompletionProcUserData&quot;^v&quot;mAudioFile&quot;^{OpaqueAudioFileID}&quot;mLoopCount&quot;I&quot;mStartFrame&quot;q&quot;mFramesToPlay&quot;I}'/>
+<struct name='ScheduledAudioSlice' type='{ScheduledAudioSlice=&quot;mTimeStamp&quot;{AudioTimeStamp=&quot;mSampleTime&quot;d&quot;mHostTime&quot;Q&quot;mRateScalar&quot;d&quot;mWordClockTime&quot;Q&quot;mSMPTETime&quot;{SMPTETime=&quot;mSubframes&quot;s&quot;mSubframeDivisor&quot;s&quot;mCounter&quot;I&quot;mType&quot;I&quot;mFlags&quot;I&quot;mHours&quot;s&quot;mMinutes&quot;s&quot;mSeconds&quot;s&quot;mFrames&quot;s}&quot;mFlags&quot;I&quot;mReserved&quot;I}&quot;mCompletionProc&quot;^?&quot;mCompletionProcUserData&quot;^v&quot;mFlags&quot;I&quot;mReserved&quot;I&quot;mReserved2&quot;^v&quot;mNumberFrames&quot;I&quot;mBufferList&quot;^{AudioBufferList}}'/>
+<opaque name='AudioComponent' type='^{OpaqueAudioComponent=}'/>
+<string_constant name='kAUPresetCPULoadKey' value='cpu-load'/>
+<string_constant name='kAUPresetDataKey' value='data'/>
+<string_constant name='kAUPresetElementNameKey' value='element-name'/>
+<string_constant name='kAUPresetExternalFileRefs' value='file-references'/>
+<string_constant name='kAUPresetMASDataKey' value='masdata'/>
+<string_constant name='kAUPresetManufacturerKey' value='manufacturer'/>
+<string_constant name='kAUPresetNameKey' value='name'/>
+<string_constant name='kAUPresetPartKey' value='part'/>
+<string_constant name='kAUPresetRenderQualityKey' value='render-quality'/>
+<string_constant name='kAUPresetSubtypeKey' value='subtype'/>
+<string_constant name='kAUPresetTypeKey' value='type'/>
+<string_constant name='kAUPresetVSTDataKey' value='vstdata'/>
+<string_constant name='kAUPresetVSTPresetKey' value='vstpreset'/>
+<string_constant name='kAUPresetVersionKey' value='version'/>
+<string_constant name='kAudioSettings_AvailableValues' value='available values'/>
+<string_constant name='kAudioSettings_CurrentValue' value='current value'/>
+<string_constant name='kAudioSettings_Hint' value='hint'/>
+<string_constant name='kAudioSettings_LimitedValues' value='limited values'/>
+<string_constant name='kAudioSettings_Parameters' value='parameters'/>
+<string_constant name='kAudioSettings_SettingKey' value='key'/>
+<string_constant name='kAudioSettings_SettingName' value='name'/>
+<string_constant name='kAudioSettings_Summary' value='summary'/>
+<string_constant name='kAudioSettings_TopLevelKey' value='name'/>
+<string_constant name='kAudioSettings_Unit' value='unit'/>
+<string_constant name='kAudioSettings_ValueType' value='value type'/>
+<string_constant name='kAudioSettings_Version' value='version'/>
+<enum name='AUDIO_UNIT_VERSION' value='1070'/>
+<enum name='k3DMixerAttenuationCurve_Exponential' value='1'/>
+<enum name='k3DMixerAttenuationCurve_Inverse' value='2'/>
+<enum name='k3DMixerAttenuationCurve_Linear' value='3'/>
+<enum name='k3DMixerAttenuationCurve_Power' value='0'/>
+<enum name='k3DMixerParam_Azimuth' value='0'/>
+<enum name='k3DMixerParam_Distance' value='2'/>
+<enum name='k3DMixerParam_Elevation' value='1'/>
+<enum name='k3DMixerParam_Gain' value='3'/>
+<enum name='k3DMixerParam_GlobalReverbGain' value='6'/>
+<enum name='k3DMixerParam_MaxGain' value='10'/>
+<enum name='k3DMixerParam_MinGain' value='9'/>
+<enum name='k3DMixerParam_ObstructionAttenuation' value='8'/>
+<enum name='k3DMixerParam_OcclusionAttenuation' value='7'/>
+<enum name='k3DMixerParam_PlaybackRate' value='4'/>
+<enum name='k3DMixerParam_PostAveragePower' value='3000'/>
+<enum name='k3DMixerParam_PostPeakHoldLevel' value='4000'/>
+<enum name='k3DMixerParam_PreAveragePower' value='1000'/>
+<enum name='k3DMixerParam_PrePeakHoldLevel' value='2000'/>
+<enum name='k3DMixerParam_ReverbBlend' value='5'/>
+<enum name='k3DMixerRenderingFlags_ConstantReverbBlend' value='64'/>
+<enum name='k3DMixerRenderingFlags_DistanceAttenuation' value='4'/>
+<enum name='k3DMixerRenderingFlags_DistanceDiffusion' value='16'/>
+<enum name='k3DMixerRenderingFlags_DistanceFilter' value='8'/>
+<enum name='k3DMixerRenderingFlags_DopplerShift' value='2'/>
+<enum name='k3DMixerRenderingFlags_InterAuralDelay' value='1'/>
+<enum name='k3DMixerRenderingFlags_LinearDistanceAttenuation' value='32'/>
+<enum name='kAUCarbonViewSubType_Generic' value='1735291491'/>
+<enum name='kAUGroupParameterID_AllNotesOff' value='123'/>
+<enum name='kAUGroupParameterID_AllSoundOff' value='120'/>
+<enum name='kAUGroupParameterID_ChannelPressure' value='208'/>
+<enum name='kAUGroupParameterID_DataEntry' value='6'/>
+<enum name='kAUGroupParameterID_DataEntry_LSB' value='38'/>
+<enum name='kAUGroupParameterID_Expression' value='11'/>
+<enum name='kAUGroupParameterID_Expression_LSB' value='43'/>
+<enum name='kAUGroupParameterID_Foot' value='4'/>
+<enum name='kAUGroupParameterID_Foot_LSB' value='36'/>
+<enum name='kAUGroupParameterID_KeyPressure' value='160'/>
+<enum name='kAUGroupParameterID_KeyPressure_FirstKey' value='256'/>
+<enum name='kAUGroupParameterID_KeyPressure_LastKey' value='383'/>
+<enum name='kAUGroupParameterID_ModWheel' value='1'/>
+<enum name='kAUGroupParameterID_ModWheel_LSB' value='33'/>
+<enum name='kAUGroupParameterID_Pan' value='10'/>
+<enum name='kAUGroupParameterID_Pan_LSB' value='42'/>
+<enum name='kAUGroupParameterID_PitchBend' value='224'/>
+<enum name='kAUGroupParameterID_ResetAllControllers' value='121'/>
+<enum name='kAUGroupParameterID_Sostenuto' value='66'/>
+<enum name='kAUGroupParameterID_Sustain' value='64'/>
+<enum name='kAUGroupParameterID_Volume' value='7'/>
+<enum name='kAUGroupParameterID_Volume_LSB' value='39'/>
+<enum name='kAULowShelfParam_CutoffFrequency' value='0'/>
+<enum name='kAULowShelfParam_Gain' value='1'/>
+<enum name='kAUNetReceiveParam_NumParameters' value='1'/>
+<enum name='kAUNetReceiveParam_Status' value='0'/>
+<enum name='kAUNetReceiveProperty_Hostname' value='3511'/>
+<enum name='kAUNetReceiveProperty_Password' value='3512'/>
+<enum name='kAUNetSendNumPresetFormats' value='18'/>
+<enum name='kAUNetSendParam_NumParameters' value='1'/>
+<enum name='kAUNetSendParam_Status' value='0'/>
+<enum name='kAUNetSendPresetFormat_AAC_128kbpspc' value='7'/>
+<enum name='kAUNetSendPresetFormat_AAC_32kbpspc' value='13'/>
+<enum name='kAUNetSendPresetFormat_AAC_40kbpspc' value='12'/>
+<enum name='kAUNetSendPresetFormat_AAC_48kbpspc' value='11'/>
+<enum name='kAUNetSendPresetFormat_AAC_64kbpspc' value='10'/>
+<enum name='kAUNetSendPresetFormat_AAC_80kbpspc' value='9'/>
+<enum name='kAUNetSendPresetFormat_AAC_96kbpspc' value='8'/>
+<enum name='kAUNetSendPresetFormat_AAC_LD_32kbpspc' value='17'/>
+<enum name='kAUNetSendPresetFormat_AAC_LD_40kbpspc' value='16'/>
+<enum name='kAUNetSendPresetFormat_AAC_LD_48kbpspc' value='15'/>
+<enum name='kAUNetSendPresetFormat_AAC_LD_64kbpspc' value='14'/>
+<enum name='kAUNetSendPresetFormat_IMA4' value='6'/>
+<enum name='kAUNetSendPresetFormat_Lossless16' value='4'/>
+<enum name='kAUNetSendPresetFormat_Lossless24' value='3'/>
+<enum name='kAUNetSendPresetFormat_PCMFloat32' value='0'/>
+<enum name='kAUNetSendPresetFormat_PCMInt16' value='2'/>
+<enum name='kAUNetSendPresetFormat_PCMInt24' value='1'/>
+<enum name='kAUNetSendPresetFormat_ULaw' value='5'/>
+<enum name='kAUNetSendProperty_Disconnect' value='3517'/>
+<enum name='kAUNetSendProperty_Password' value='3518'/>
+<enum name='kAUNetSendProperty_PortNum' value='3513'/>
+<enum name='kAUNetSendProperty_ServiceName' value='3516'/>
+<enum name='kAUNetSendProperty_TransmissionFormat' value='3514'/>
+<enum name='kAUNetSendProperty_TransmissionFormatIndex' value='3515'/>
+<enum name='kAUNetStatus_Connected' value='1'/>
+<enum name='kAUNetStatus_Connecting' value='4'/>
+<enum name='kAUNetStatus_Listening' value='5'/>
+<enum name='kAUNetStatus_NotConnected' value='0'/>
+<enum name='kAUNetStatus_Overflow' value='2'/>
+<enum name='kAUNetStatus_Underflow' value='3'/>
+<enum name='kAUParameterMIDIMapping_AnyChannelFlag' value='1'/>
+<enum name='kAUParameterMIDIMapping_AnyNoteFlag' value='2'/>
+<enum name='kAUParameterMIDIMapping_Bipolar' value='16'/>
+<enum name='kAUParameterMIDIMapping_Bipolar_On' value='32'/>
+<enum name='kAUParameterMIDIMapping_SubRange' value='4'/>
+<enum name='kAUParameterMIDIMapping_Toggle' value='8'/>
+<enum name='kAUSamplerProperty_BankAndPreset' value='4100'/>
+<enum name='kAUSamplerProperty_LoadAudioFiles' value='4101'/>
+<enum name='kAUSamplerProperty_LoadPresetFromBank' value='4100'/>
+<enum name='kAUSampler_DefaultBankLSB' value='0'/>
+<enum name='kAUSampler_DefaultMelodicBankMSB' value='121'/>
+<enum name='kAUSampler_DefaultPercussionBankMSB' value='120'/>
+<enum name='kAUVoiceIOProperty_BypassVoiceProcessing' value='2100'/>
+<enum name='kAUVoiceIOProperty_DisableVP' value='2114'/>
+<enum name='kAUVoiceIOProperty_MaximumMetadataByteSize' value='2112'/>
+<enum name='kAUVoiceIOProperty_MaximumNumberPackets' value='2110'/>
+<enum name='kAUVoiceIOProperty_MaximumOutputPacketByteSize' value='2111'/>
+<enum name='kAUVoiceIOProperty_MaximumRenderFrameSize' value='2115'/>
+<enum name='kAUVoiceIOProperty_MuteOutput' value='2104'/>
+<enum name='kAUVoiceIOProperty_RequestMetadata' value='2113'/>
+<enum name='kAUVoiceIOProperty_VoiceProcessingEnableAGC' value='2101'/>
+<enum name='kAUVoiceIOProperty_VoiceProcessingQuality' value='2103'/>
+<enum name='kAudioCodecAppendInputBufferListSelect' value='9'/>
+<enum name='kAudioCodecAppendInputDataSelect' value='6'/>
+<enum name='kAudioCodecBadPropertySizeError' value='561211770'/>
+<enum name='kAudioCodecBitRateControlMode_Constant' value='0'/>
+<enum name='kAudioCodecBitRateControlMode_LongTermAverage' value='1'/>
+<enum name='kAudioCodecBitRateControlMode_Variable' value='3'/>
+<enum name='kAudioCodecBitRateControlMode_VariableConstrained' value='2'/>
+<enum name='kAudioCodecBitRateFormat' value='1633903206'/>
+<enum name='kAudioCodecBitRateFormat_ABR' value='1'/>
+<enum name='kAudioCodecBitRateFormat_CBR' value='0'/>
+<enum name='kAudioCodecBitRateFormat_VBR' value='2'/>
+<enum name='kAudioCodecDoesSampleRateConversion' value='1819112035'/>
+<enum name='kAudioCodecExtendFrequencies' value='1633903974'/>
+<enum name='kAudioCodecGetPropertyInfoSelect' value='1'/>
+<enum name='kAudioCodecGetPropertySelect' value='2'/>
+<enum name='kAudioCodecIllegalOperationError' value='1852797029'/>
+<enum name='kAudioCodecInitializeSelect' value='4'/>
+<enum name='kAudioCodecInputFormatsForOutputFormat' value='1768305775'/>
+<enum name='kAudioCodecNoError' value='0'/>
+<enum name='kAudioCodecNotEnoughBufferSpaceError' value='560100710'/>
+<enum name='kAudioCodecOutputFormatsForInputFormat' value='1868969065'/>
+<enum name='kAudioCodecOutputPrecedence' value='1869639794'/>
+<enum name='kAudioCodecOutputPrecedenceBitRate' value='1'/>
+<enum name='kAudioCodecOutputPrecedenceNone' value='0'/>
+<enum name='kAudioCodecOutputPrecedenceSampleRate' value='2'/>
+<enum name='kAudioCodecPrimeMethod_None' value='2'/>
+<enum name='kAudioCodecPrimeMethod_Normal' value='1'/>
+<enum name='kAudioCodecPrimeMethod_Pre' value='0'/>
+<enum name='kAudioCodecProduceOutputBufferListSelect' value='10'/>
+<enum name='kAudioCodecProduceOutputDataSelect' value='7'/>
+<enum name='kAudioCodecProduceOutputPacketAtEOF' value='5'/>
+<enum name='kAudioCodecProduceOutputPacketFailure' value='1'/>
+<enum name='kAudioCodecProduceOutputPacketNeedsMoreInputData' value='4'/>
+<enum name='kAudioCodecProduceOutputPacketSuccess' value='2'/>
+<enum name='kAudioCodecProduceOutputPacketSuccessHasMore' value='3'/>
+<enum name='kAudioCodecPropertyApplicableBitRateRange' value='1651668065'/>
+<enum name='kAudioCodecPropertyApplicableInputSampleRates' value='1769173601'/>
+<enum name='kAudioCodecPropertyApplicableOutputSampleRates' value='1869836897'/>
+<enum name='kAudioCodecPropertyAvailableBitRateRange' value='1633841780'/>
+<enum name='kAudioCodecPropertyAvailableBitRates' value='1651668003'/>
+<enum name='kAudioCodecPropertyAvailableInputChannelLayoutTags' value='1634296684'/>
+<enum name='kAudioCodecPropertyAvailableInputChannelLayouts' value='1634296684'/>
+<enum name='kAudioCodecPropertyAvailableInputSampleRates' value='1634300786'/>
+<enum name='kAudioCodecPropertyAvailableNumberChannels' value='1668116067'/>
+<enum name='kAudioCodecPropertyAvailableOutputChannelLayoutTags' value='1634689900'/>
+<enum name='kAudioCodecPropertyAvailableOutputChannelLayouts' value='1634689900'/>
+<enum name='kAudioCodecPropertyAvailableOutputSampleRates' value='1634694002'/>
+<enum name='kAudioCodecPropertyBitRateControlMode' value='1633903206'/>
+<enum name='kAudioCodecPropertyCurrentInputChannelLayout' value='1768123424'/>
+<enum name='kAudioCodecPropertyCurrentInputFormat' value='1768320372'/>
+<enum name='kAudioCodecPropertyCurrentInputSampleRate' value='1667855218'/>
+<enum name='kAudioCodecPropertyCurrentOutputChannelLayout' value='1868786720'/>
+<enum name='kAudioCodecPropertyCurrentOutputFormat' value='1868983668'/>
+<enum name='kAudioCodecPropertyCurrentOutputSampleRate' value='1668248434'/>
+<enum name='kAudioCodecPropertyCurrentTargetBitRate' value='1651663220'/>
+<enum name='kAudioCodecPropertyDoesSampleRateConversion' value='1819112035'/>
+<enum name='kAudioCodecPropertyFormatCFString' value='1818652530'/>
+<enum name='kAudioCodecPropertyFormatInfo' value='1633904233'/>
+<enum name='kAudioCodecPropertyFormatList' value='1633904236'/>
+<enum name='kAudioCodecPropertyHasVariablePacketByteSizes' value='1987078975'/>
+<enum name='kAudioCodecPropertyInputBufferSize' value='1952609638'/>
+<enum name='kAudioCodecPropertyInputChannelLayout' value='1768123424'/>
+<enum name='kAudioCodecPropertyInputFormatsForOutputFormat' value='1768305775'/>
+<enum name='kAudioCodecPropertyIsInitialized' value='1768843636'/>
+<enum name='kAudioCodecPropertyMagicCookie' value='1802857321'/>
+<enum name='kAudioCodecPropertyManufacturerCFString' value='1819107691'/>
+<enum name='kAudioCodecPropertyMaximumPacketByteSize' value='1885432674'/>
+<enum name='kAudioCodecPropertyMinimumDelayMode' value='1835296108'/>
+<enum name='kAudioCodecPropertyMinimumNumberInputPackets' value='1835952496'/>
+<enum name='kAudioCodecPropertyMinimumNumberOutputPackets' value='1835954032'/>
+<enum name='kAudioCodecPropertyNameCFString' value='1819173229'/>
+<enum name='kAudioCodecPropertyOutputChannelLayout' value='1868786720'/>
+<enum name='kAudioCodecPropertyOutputFormatsForInputFormat' value='1868969065'/>
+<enum name='kAudioCodecPropertyPacketFrameSize' value='1885432678'/>
+<enum name='kAudioCodecPropertyPaddedZeros' value='1885430832'/>
+<enum name='kAudioCodecPropertyPrimeInfo' value='1886546285'/>
+<enum name='kAudioCodecPropertyPrimeMethod' value='1886547309'/>
+<enum name='kAudioCodecPropertyQualitySetting' value='1936876401'/>
+<enum name='kAudioCodecPropertyRequiresPacketDescription' value='1885432676'/>
+<enum name='kAudioCodecPropertySettings' value='1633907488'/>
+<enum name='kAudioCodecPropertySoundQualityForVBR' value='1986163313'/>
+<enum name='kAudioCodecPropertySupportedInputFormats' value='1768320291'/>
+<enum name='kAudioCodecPropertySupportedOutputFormats' value='1868983587'/>
+<enum name='kAudioCodecPropertyUsedInputBufferSize' value='1969386854'/>
+<enum name='kAudioCodecPropertyZeroFramesPadded' value='1885430832'/>
+<enum name='kAudioCodecQuality_High' value='96'/>
+<enum name='kAudioCodecQuality_Low' value='32'/>
+<enum name='kAudioCodecQuality_Max' value='127'/>
+<enum name='kAudioCodecQuality_Medium' value='64'/>
+<enum name='kAudioCodecQuality_Min' value='0'/>
+<enum name='kAudioCodecResetSelect' value='8'/>
+<enum name='kAudioCodecSetPropertySelect' value='3'/>
+<enum name='kAudioCodecStateError' value='561214580'/>
+<enum name='kAudioCodecUninitializeSelect' value='5'/>
+<enum name='kAudioCodecUnknownPropertyError' value='2003332927'/>
+<enum name='kAudioCodecUnspecifiedError' value='2003329396'/>
+<enum name='kAudioCodecUnsupportedFormatError' value='560226676'/>
+<enum name='kAudioCodecUseRecommendedSampleRate' value='1970434930'/>
+<enum name='kAudioComponentFlag_Unsearchable' value='1'/>
+<enum name='kAudioDecoderComponentType' value='1633969507'/>
+<enum name='kAudioEncoderComponentType' value='1634037347'/>
+<enum name='kAudioOfflineUnitProperty_InputSize' value='3020'/>
+<enum name='kAudioOfflineUnitProperty_OutputSize' value='3021'/>
+<enum name='kAudioOfflineUnitRenderAction_Complete' value='128'/>
+<enum name='kAudioOfflineUnitRenderAction_Preflight' value='32'/>
+<enum name='kAudioOfflineUnitRenderAction_Render' value='64'/>
+<enum name='kAudioOutputUnitProperty_ChannelMap' value='2002'/>
+<enum name='kAudioOutputUnitProperty_CurrentDevice' value='2000'/>
+<enum name='kAudioOutputUnitProperty_EnableIO' value='2003'/>
+<enum name='kAudioOutputUnitProperty_HasIO' value='2006'/>
+<enum name='kAudioOutputUnitProperty_IsRunning' value='2001'/>
+<enum name='kAudioOutputUnitProperty_SetInputCallback' value='2005'/>
+<enum name='kAudioOutputUnitProperty_StartTime' value='2004'/>
+<enum name='kAudioOutputUnitProperty_StartTimestampsAtZero' value='2007'/>
+<enum name='kAudioOutputUnitRange' value='512'/>
+<enum name='kAudioOutputUnitStartSelect' value='513'/>
+<enum name='kAudioOutputUnitStopSelect' value='514'/>
+<enum name='kAudioSettingsFlags_ExpertParameter' value='1'/>
+<enum name='kAudioSettingsFlags_InvisibleParameter' value='2'/>
+<enum name='kAudioSettingsFlags_MetaParameter' value='4'/>
+<enum name='kAudioSettingsFlags_UserInterfaceParameter' value='8'/>
+<enum name='kAudioUnitAddPropertyListenerSelect' value='10'/>
+<enum name='kAudioUnitAddRenderNotifySelect' value='15'/>
+<enum name='kAudioUnitCarbonViewComponentType' value='1635087991'/>
+<enum name='kAudioUnitCarbonViewCreateSelect' value='769'/>
+<enum name='kAudioUnitCarbonViewEvent_MouseDownInControl' value='0'/>
+<enum name='kAudioUnitCarbonViewEvent_MouseUpInControl' value='1'/>
+<enum name='kAudioUnitCarbonViewRange' value='768'/>
+<enum name='kAudioUnitCarbonViewSetEventListenerSelect' value='770'/>
+<enum name='kAudioUnitClumpID_System' value='0'/>
+<enum name='kAudioUnitComplexRenderSelect' value='19'/>
+<enum name='kAudioUnitErr_CannotDoInCurrentContext' value='-10863'/>
+<enum name='kAudioUnitErr_FailedInitialization' value='-10875'/>
+<enum name='kAudioUnitErr_FileNotSpecified' value='-10869'/>
+<enum name='kAudioUnitErr_FormatNotSupported' value='-10868'/>
+<enum name='kAudioUnitErr_IllegalInstrument' value='-10873'/>
+<enum name='kAudioUnitErr_Initialized' value='-10849'/>
+<enum name='kAudioUnitErr_InstrumentTypeNotFound' value='-10872'/>
+<enum name='kAudioUnitErr_InvalidElement' value='-10877'/>
+<enum name='kAudioUnitErr_InvalidFile' value='-10871'/>
+<enum name='kAudioUnitErr_InvalidOfflineRender' value='-10848'/>
+<enum name='kAudioUnitErr_InvalidParameter' value='-10878'/>
+<enum name='kAudioUnitErr_InvalidProperty' value='-10879'/>
+<enum name='kAudioUnitErr_InvalidPropertyValue' value='-10851'/>
+<enum name='kAudioUnitErr_InvalidScope' value='-10866'/>
+<enum name='kAudioUnitErr_NoConnection' value='-10876'/>
+<enum name='kAudioUnitErr_PropertyNotInUse' value='-10850'/>
+<enum name='kAudioUnitErr_PropertyNotWritable' value='-10865'/>
+<enum name='kAudioUnitErr_TooManyFramesToProcess' value='-10874'/>
+<enum name='kAudioUnitErr_Unauthorized' value='-10847'/>
+<enum name='kAudioUnitErr_Uninitialized' value='-10867'/>
+<enum name='kAudioUnitErr_UnknownFileType' value='-10870'/>
+<enum name='kAudioUnitGetParameterSelect' value='6'/>
+<enum name='kAudioUnitGetPropertyInfoSelect' value='3'/>
+<enum name='kAudioUnitGetPropertySelect' value='4'/>
+<enum name='kAudioUnitInitializeSelect' value='1'/>
+<enum name='kAudioUnitManufacturer_Apple' value='1634758764'/>
+<enum name='kAudioUnitMigrateProperty_FromPlugin' value='4000'/>
+<enum name='kAudioUnitMigrateProperty_OldAutomation' value='4001'/>
+<enum name='kAudioUnitOfflineProperty_InputSize' value='3020'/>
+<enum name='kAudioUnitOfflineProperty_OutputSize' value='3021'/>
+<enum name='kAudioUnitOfflineProperty_PreflightName' value='3024'/>
+<enum name='kAudioUnitOfflineProperty_PreflightRequirements' value='3023'/>
+<enum name='kAudioUnitOfflineProperty_StartOffset' value='3022'/>
+<enum name='kAudioUnitParameterFlag_CFNameRelease' value='16'/>
+<enum name='kAudioUnitParameterFlag_CanRamp' value='33554432'/>
+<enum name='kAudioUnitParameterFlag_DisplayCubeRoot' value='262144'/>
+<enum name='kAudioUnitParameterFlag_DisplayCubed' value='196608'/>
+<enum name='kAudioUnitParameterFlag_DisplayExponential' value='327680'/>
+<enum name='kAudioUnitParameterFlag_DisplayLogarithmic' value='4194304'/>
+<enum name='kAudioUnitParameterFlag_DisplayMask' value='4653056'/>
+<enum name='kAudioUnitParameterFlag_DisplaySquareRoot' value='65536'/>
+<enum name='kAudioUnitParameterFlag_DisplaySquared' value='131072'/>
+<enum name='kAudioUnitParameterFlag_ExpertMode' value='67108864'/>
+<enum name='kAudioUnitParameterFlag_Global' value='1'/>
+<enum name='kAudioUnitParameterFlag_Group' value='8'/>
+<enum name='kAudioUnitParameterFlag_HasCFNameString' value='134217728'/>
+<enum name='kAudioUnitParameterFlag_HasClump' value='1048576'/>
+<enum name='kAudioUnitParameterFlag_HasName' value='2097152'/>
+<enum name='kAudioUnitParameterFlag_Input' value='2'/>
+<enum name='kAudioUnitParameterFlag_IsElementMeta' value='536870912'/>
+<enum name='kAudioUnitParameterFlag_IsGlobalMeta' value='268435456'/>
+<enum name='kAudioUnitParameterFlag_IsHighResolution' value='8388608'/>
+<enum name='kAudioUnitParameterFlag_IsReadable' value='1073741824'/>
+<enum value64='2147483648' name='kAudioUnitParameterFlag_IsWritable' value='-2147483648'/>
+<enum name='kAudioUnitParameterFlag_MeterReadOnly' value='32768'/>
+<enum name='kAudioUnitParameterFlag_NonRealTime' value='16777216'/>
+<enum name='kAudioUnitParameterFlag_Output' value='4'/>
+<enum name='kAudioUnitParameterFlag_PlotHistory' value='16384'/>
+<enum name='kAudioUnitParameterFlag_ValuesHaveStrings' value='2097152'/>
+<enum name='kAudioUnitParameterName_Full' value='-1'/>
+<enum name='kAudioUnitParameterUnit_AbsoluteCents' value='20'/>
+<enum name='kAudioUnitParameterUnit_BPM' value='22'/>
+<enum name='kAudioUnitParameterUnit_Beats' value='23'/>
+<enum name='kAudioUnitParameterUnit_Boolean' value='2'/>
+<enum name='kAudioUnitParameterUnit_Cents' value='9'/>
+<enum name='kAudioUnitParameterUnit_CustomUnit' value='26'/>
+<enum name='kAudioUnitParameterUnit_Decibels' value='13'/>
+<enum name='kAudioUnitParameterUnit_Degrees' value='15'/>
+<enum name='kAudioUnitParameterUnit_EqualPowerCrossfade' value='16'/>
+<enum name='kAudioUnitParameterUnit_Generic' value='0'/>
+<enum name='kAudioUnitParameterUnit_Hertz' value='8'/>
+<enum name='kAudioUnitParameterUnit_Indexed' value='1'/>
+<enum name='kAudioUnitParameterUnit_LinearGain' value='14'/>
+<enum name='kAudioUnitParameterUnit_MIDIController' value='12'/>
+<enum name='kAudioUnitParameterUnit_MIDINoteNumber' value='11'/>
+<enum name='kAudioUnitParameterUnit_Meters' value='19'/>
+<enum name='kAudioUnitParameterUnit_Milliseconds' value='24'/>
+<enum name='kAudioUnitParameterUnit_MixerFaderCurve1' value='17'/>
+<enum name='kAudioUnitParameterUnit_Octaves' value='21'/>
+<enum name='kAudioUnitParameterUnit_Pan' value='18'/>
+<enum name='kAudioUnitParameterUnit_Percent' value='3'/>
+<enum name='kAudioUnitParameterUnit_Phase' value='6'/>
+<enum name='kAudioUnitParameterUnit_Rate' value='7'/>
+<enum name='kAudioUnitParameterUnit_Ratio' value='25'/>
+<enum name='kAudioUnitParameterUnit_RelativeSemiTones' value='10'/>
+<enum name='kAudioUnitParameterUnit_SampleFrames' value='5'/>
+<enum name='kAudioUnitParameterUnit_Seconds' value='4'/>
+<enum name='kAudioUnitProcessMultipleSelect' value='21'/>
+<enum name='kAudioUnitProcessSelect' value='20'/>
+<enum name='kAudioUnitProperty_3DMixerAttenuationCurve' value='3013'/>
+<enum name='kAudioUnitProperty_3DMixerDistanceAtten' value='3004'/>
+<enum name='kAudioUnitProperty_3DMixerDistanceParams' value='3010'/>
+<enum name='kAudioUnitProperty_3DMixerRenderingFlags' value='3003'/>
+<enum name='kAudioUnitProperty_AUHostIdentifier' value='46'/>
+<enum name='kAudioUnitProperty_AddParameterMIDIMapping' value='42'/>
+<enum name='kAudioUnitProperty_AllParameterMIDIMappings' value='41'/>
+<enum name='kAudioUnitProperty_AudioChannelLayout' value='19'/>
+<enum name='kAudioUnitProperty_BusCount' value='11'/>
+<enum name='kAudioUnitProperty_BypassEffect' value='21'/>
+<enum name='kAudioUnitProperty_CPULoad' value='6'/>
+<enum name='kAudioUnitProperty_ClassInfo' value='0'/>
+<enum name='kAudioUnitProperty_ClassInfoFromDocument' value='50'/>
+<enum name='kAudioUnitProperty_CocoaUI' value='31'/>
+<enum name='kAudioUnitProperty_ContextName' value='25'/>
+<enum name='kAudioUnitProperty_CurrentPlayTime' value='3302'/>
+<enum name='kAudioUnitProperty_CurrentPreset' value='28'/>
+<enum name='kAudioUnitProperty_DeferredRendererExtraLatency' value='3321'/>
+<enum name='kAudioUnitProperty_DeferredRendererPullSize' value='3320'/>
+<enum name='kAudioUnitProperty_DeferredRendererWaitFrames' value='3322'/>
+<enum name='kAudioUnitProperty_DependentParameters' value='45'/>
+<enum name='kAudioUnitProperty_DistanceAttenuationData' value='3600'/>
+<enum name='kAudioUnitProperty_DopplerShift' value='3002'/>
+<enum name='kAudioUnitProperty_ElementCount' value='11'/>
+<enum name='kAudioUnitProperty_ElementName' value='30'/>
+<enum name='kAudioUnitProperty_FactoryPresets' value='24'/>
+<enum name='kAudioUnitProperty_FastDispatch' value='5'/>
+<enum name='kAudioUnitProperty_FrequencyResponse' value='52'/>
+<enum name='kAudioUnitProperty_GetUIComponentList' value='18'/>
+<enum name='kAudioUnitProperty_HostCallbacks' value='27'/>
+<enum name='kAudioUnitProperty_HotMapParameterMIDIMapping' value='44'/>
+<enum name='kAudioUnitProperty_IconLocation' value='39'/>
+<enum name='kAudioUnitProperty_InPlaceProcessing' value='29'/>
+<enum name='kAudioUnitProperty_InputSamplesInOutput' value='49'/>
+<enum name='kAudioUnitProperty_LastRenderError' value='22'/>
+<enum name='kAudioUnitProperty_Latency' value='12'/>
+<enum name='kAudioUnitProperty_MIDIControlMapping' value='17'/>
+<enum name='kAudioUnitProperty_MIDIOutputCallback' value='48'/>
+<enum name='kAudioUnitProperty_MIDIOutputCallbackInfo' value='47'/>
+<enum name='kAudioUnitProperty_MakeConnection' value='1'/>
+<enum name='kAudioUnitProperty_MatrixDimensions' value='3009'/>
+<enum name='kAudioUnitProperty_MatrixLevels' value='3006'/>
+<enum name='kAudioUnitProperty_MaximumFramesPerSlice' value='14'/>
+<enum name='kAudioUnitProperty_MeterClipping' value='3011'/>
+<enum name='kAudioUnitProperty_MeteringMode' value='3007'/>
+<enum name='kAudioUnitProperty_OfflineRender' value='37'/>
+<enum name='kAudioUnitProperty_PannerMode' value='3008'/>
+<enum name='kAudioUnitProperty_ParameterClumpName' value='35'/>
+<enum name='kAudioUnitProperty_ParameterHistoryInfo' value='53'/>
+<enum name='kAudioUnitProperty_ParameterIDName' value='34'/>
+<enum name='kAudioUnitProperty_ParameterInfo' value='4'/>
+<enum name='kAudioUnitProperty_ParameterList' value='3'/>
+<enum name='kAudioUnitProperty_ParameterStringFromValue' value='33'/>
+<enum name='kAudioUnitProperty_ParameterValueFromString' value='38'/>
+<enum name='kAudioUnitProperty_ParameterValueName' value='33'/>
+<enum name='kAudioUnitProperty_ParameterValueStrings' value='16'/>
+<enum name='kAudioUnitProperty_PresentPreset' value='36'/>
+<enum name='kAudioUnitProperty_PresentationLatency' value='40'/>
+<enum name='kAudioUnitProperty_RemoveParameterMIDIMapping' value='43'/>
+<enum name='kAudioUnitProperty_RenderQuality' value='26'/>
+<enum name='kAudioUnitProperty_ReverbPreset' value='3012'/>
+<enum name='kAudioUnitProperty_ReverbRoomType' value='10'/>
+<enum name='kAudioUnitProperty_SRCAlgorithm' value='9'/>
+<enum name='kAudioUnitProperty_SampleRate' value='2'/>
+<enum name='kAudioUnitProperty_SampleRateConverterComplexity' value='3014'/>
+<enum name='kAudioUnitProperty_ScheduleAudioSlice' value='3300'/>
+<enum name='kAudioUnitProperty_ScheduleStartTimeStamp' value='3301'/>
+<enum name='kAudioUnitProperty_ScheduledFileBufferSizeFrames' value='3313'/>
+<enum name='kAudioUnitProperty_ScheduledFileIDs' value='3310'/>
+<enum name='kAudioUnitProperty_ScheduledFileNumberBuffers' value='3314'/>
+<enum name='kAudioUnitProperty_ScheduledFilePrime' value='3312'/>
+<enum name='kAudioUnitProperty_ScheduledFileRegion' value='3311'/>
+<enum name='kAudioUnitProperty_SetExternalBuffer' value='15'/>
+<enum name='kAudioUnitProperty_SetRenderCallback' value='23'/>
+<enum name='kAudioUnitProperty_ShouldAllocateBuffer' value='51'/>
+<enum name='kAudioUnitProperty_SpatializationAlgorithm' value='3000'/>
+<enum name='kAudioUnitProperty_SpeakerConfiguration' value='3001'/>
+<enum name='kAudioUnitProperty_StreamFormat' value='8'/>
+<enum name='kAudioUnitProperty_SupportedChannelLayoutTags' value='32'/>
+<enum name='kAudioUnitProperty_SupportedNumChannels' value='13'/>
+<enum name='kAudioUnitProperty_TailTime' value='20'/>
+<enum name='kAudioUnitProperty_UsesInternalReverb' value='1005'/>
+<enum name='kAudioUnitRange' value='0'/>
+<enum name='kAudioUnitRemovePropertyListenerSelect' value='11'/>
+<enum name='kAudioUnitRemovePropertyListenerWithUserDataSelect' value='18'/>
+<enum name='kAudioUnitRemoveRenderNotifySelect' value='16'/>
+<enum name='kAudioUnitRenderAction_DoNotCheckRenderArgs' value='512'/>
+<enum name='kAudioUnitRenderAction_OutputIsSilence' value='16'/>
+<enum name='kAudioUnitRenderAction_PostRender' value='8'/>
+<enum name='kAudioUnitRenderAction_PostRenderError' value='256'/>
+<enum name='kAudioUnitRenderAction_PreRender' value='4'/>
+<enum name='kAudioUnitRenderSelect' value='14'/>
+<enum name='kAudioUnitResetSelect' value='9'/>
+<enum name='kAudioUnitSRCAlgorithm_MediumQuality' value='1668510307'/>
+<enum name='kAudioUnitSRCAlgorithm_Polyphase' value='1886350457'/>
+<enum name='kAudioUnitSampleRateConverterComplexity_Linear' value='1818848869'/>
+<enum name='kAudioUnitSampleRateConverterComplexity_Mastering' value='1650553971'/>
+<enum name='kAudioUnitSampleRateConverterComplexity_Normal' value='1852797549'/>
+<enum name='kAudioUnitScheduleParametersSelect' value='17'/>
+<enum name='kAudioUnitScope_Global' value='0'/>
+<enum name='kAudioUnitScope_Group' value='3'/>
+<enum name='kAudioUnitScope_Input' value='1'/>
+<enum name='kAudioUnitScope_Layer' value='6'/>
+<enum name='kAudioUnitScope_LayerItem' value='7'/>
+<enum name='kAudioUnitScope_Note' value='5'/>
+<enum name='kAudioUnitScope_Output' value='2'/>
+<enum name='kAudioUnitScope_Part' value='4'/>
+<enum name='kAudioUnitSetParameterSelect' value='7'/>
+<enum name='kAudioUnitSetPropertySelect' value='5'/>
+<enum name='kAudioUnitSubType_3DMixer' value='862219640'/>
+<enum name='kAudioUnitSubType_AUConverter' value='1668247158'/>
+<enum name='kAudioUnitSubType_AUFilter' value='1718185076'/>
+<enum name='kAudioUnitSubType_AudioFilePlayer' value='1634103404'/>
+<enum name='kAudioUnitSubType_BandPassFilter' value='1651532147'/>
+<enum name='kAudioUnitSubType_BoostClip' value='1885496172'/>
+<enum name='kAudioUnitSubType_DLSSynth' value='1684828960'/>
+<enum name='kAudioUnitSubType_DefaultOutput' value='1684366880'/>
+<enum name='kAudioUnitSubType_DeferredRenderer' value='1684366962'/>
+<enum name='kAudioUnitSubType_Delay' value='1684368505'/>
+<enum name='kAudioUnitSubType_Distortion' value='1684632436'/>
+<enum name='kAudioUnitSubType_DynamicsProcessor' value='1684237680'/>
+<enum name='kAudioUnitSubType_GenericOutput' value='1734700658'/>
+<enum name='kAudioUnitSubType_GraphicEQ' value='1735550321'/>
+<enum name='kAudioUnitSubType_HALOutput' value='1634230636'/>
+<enum name='kAudioUnitSubType_HRTFPanner' value='1752331366'/>
+<enum name='kAudioUnitSubType_HighPassFilter' value='1752195443'/>
+<enum name='kAudioUnitSubType_HighShelfFilter' value='1752393830'/>
+<enum name='kAudioUnitSubType_LowPassFilter' value='1819304307'/>
+<enum name='kAudioUnitSubType_LowShelfFilter' value='1819502694'/>
+<enum name='kAudioUnitSubType_MatrixMixer' value='1836608888'/>
+<enum name='kAudioUnitSubType_MatrixReverb' value='1836213622'/>
+<enum name='kAudioUnitSubType_Merger' value='1835364967'/>
+<enum name='kAudioUnitSubType_MultiBandCompressor' value='1835232624'/>
+<enum name='kAudioUnitSubType_MultiChannelMixer' value='1835232632'/>
+<enum name='kAudioUnitSubType_NetReceive' value='1852990326'/>
+<enum name='kAudioUnitSubType_NetSend' value='1853058660'/>
+<enum name='kAudioUnitSubType_NewTimePitch' value='1853191280'/>
+<enum name='kAudioUnitSubType_ParametricEQ' value='1886217585'/>
+<enum name='kAudioUnitSubType_PeakLimiter' value='1819112562'/>
+<enum name='kAudioUnitSubType_Pitch' value='1953329268'/>
+<enum name='kAudioUnitSubType_RogerBeep' value='1919903602'/>
+<enum name='kAudioUnitSubType_RoundTripAAC' value='1918984547'/>
+<enum name='kAudioUnitSubType_SampleDelay' value='1935961209'/>
+<enum name='kAudioUnitSubType_Sampler' value='1935764848'/>
+<enum name='kAudioUnitSubType_ScheduledSoundPlayer' value='1936945260'/>
+<enum name='kAudioUnitSubType_SoundFieldPanner' value='1634558569'/>
+<enum name='kAudioUnitSubType_SphericalHeadPanner' value='1936746610'/>
+<enum name='kAudioUnitSubType_Splitter' value='1936747636'/>
+<enum name='kAudioUnitSubType_StereoMixer' value='1936554098'/>
+<enum name='kAudioUnitSubType_SystemOutput' value='1937339168'/>
+<enum name='kAudioUnitSubType_TimePitch' value='1953329268'/>
+<enum name='kAudioUnitSubType_Varispeed' value='1986097769'/>
+<enum name='kAudioUnitSubType_VectorPanner' value='1986158963'/>
+<enum name='kAudioUnitSubType_VoiceProcessingIO' value='1987078511'/>
+<enum name='kAudioUnitSubType_Volume' value='1987013749'/>
+<enum name='kAudioUnitType_Effect' value='1635083896'/>
+<enum name='kAudioUnitType_FormatConverter' value='1635083875'/>
+<enum name='kAudioUnitType_Generator' value='1635084142'/>
+<enum name='kAudioUnitType_Mixer' value='1635085688'/>
+<enum name='kAudioUnitType_MusicDevice' value='1635085685'/>
+<enum name='kAudioUnitType_MusicEffect' value='1635085670'/>
+<enum name='kAudioUnitType_OfflineEffect' value='1635086188'/>
+<enum name='kAudioUnitType_Output' value='1635086197'/>
+<enum name='kAudioUnitType_Panner' value='1635086446'/>
+<enum name='kAudioUnitUninitializeSelect' value='2'/>
+<enum name='kAudioUnityCodecComponentType' value='1633903715'/>
+<enum name='kBandpassParam_Bandwidth' value='1'/>
+<enum name='kBandpassParam_CenterFrequency' value='0'/>
+<enum name='kDelayParam_DelayTime' value='1'/>
+<enum name='kDelayParam_Feedback' value='2'/>
+<enum name='kDelayParam_LopassCutoff' value='3'/>
+<enum name='kDelayParam_WetDryMix' value='0'/>
+<enum name='kDistortionParam_CubicTerm' value='8'/>
+<enum name='kDistortionParam_Decay' value='1'/>
+<enum name='kDistortionParam_Decimation' value='3'/>
+<enum name='kDistortionParam_DecimationMix' value='5'/>
+<enum name='kDistortionParam_Delay' value='0'/>
+<enum name='kDistortionParam_DelayMix' value='2'/>
+<enum name='kDistortionParam_FinalMix' value='15'/>
+<enum name='kDistortionParam_LinearTerm' value='6'/>
+<enum name='kDistortionParam_PolynomialMix' value='9'/>
+<enum name='kDistortionParam_RingModBalance' value='12'/>
+<enum name='kDistortionParam_RingModFreq1' value='10'/>
+<enum name='kDistortionParam_RingModFreq2' value='11'/>
+<enum name='kDistortionParam_RingModMix' value='13'/>
+<enum name='kDistortionParam_Rounding' value='4'/>
+<enum name='kDistortionParam_SoftClipGain' value='14'/>
+<enum name='kDistortionParam_SquaredTerm' value='7'/>
+<enum name='kDynamicsProcessorParam_AttackTime' value='4'/>
+<enum name='kDynamicsProcessorParam_CompressionAmount' value='1000'/>
+<enum name='kDynamicsProcessorParam_ExpansionRatio' value='2'/>
+<enum name='kDynamicsProcessorParam_ExpansionThreshold' value='3'/>
+<enum name='kDynamicsProcessorParam_HeadRoom' value='1'/>
+<enum name='kDynamicsProcessorParam_InputAmplitude' value='2000'/>
+<enum name='kDynamicsProcessorParam_MasterGain' value='6'/>
+<enum name='kDynamicsProcessorParam_OutputAmplitude' value='3000'/>
+<enum name='kDynamicsProcessorParam_ReleaseTime' value='5'/>
+<enum name='kDynamicsProcessorParam_Threshold' value='0'/>
+<enum name='kGraphicEQParam_NumberOfBands' value='10000'/>
+<enum name='kHALOutputParam_Volume' value='14'/>
+<enum name='kHighShelfParam_CutOffFrequency' value='0'/>
+<enum name='kHighShelfParam_Gain' value='1'/>
+<enum name='kHintAdvanced' value='1'/>
+<enum name='kHintBasic' value='0'/>
+<enum name='kHintHidden' value='2'/>
+<enum name='kHipassParam_CutoffFrequency' value='0'/>
+<enum name='kHipassParam_Resonance' value='1'/>
+<enum name='kLimiterParam_AttackTime' value='0'/>
+<enum name='kLimiterParam_DecayTime' value='1'/>
+<enum name='kLimiterParam_PreGain' value='2'/>
+<enum name='kLogicAUNodeOperationMode_EndianSwap' value='4'/>
+<enum name='kLogicAUNodeOperationMode_FullSupport' value='7'/>
+<enum name='kLogicAUNodeOperationMode_NodeEnabled' value='1'/>
+<enum name='kLogicAUNodeOperationMode_RemoteUI' value='2'/>
+<enum name='kLogicAUNodePropertyEndianMode_All32Bits' value='1'/>
+<enum name='kLogicAUNodePropertyEndianMode_All64Bits' value='2'/>
+<enum name='kLogicAUNodePropertyEndianMode_DontTouch' value='0'/>
+<enum name='kLogicAUNodePropertyEndianMode_SerializableCFType' value='3'/>
+<enum name='kLogicAUNodePropertyFlag_FullRoundTrip' value='4'/>
+<enum name='kLogicAUNodePropertyFlag_NeedsInitialization' value='2'/>
+<enum name='kLogicAUNodePropertyFlag_Synchronous' value='1'/>
+<enum name='kLogicAUProperty_NodeOperationMode' value='9000'/>
+<enum name='kLogicAUProperty_NodePropertyDescriptions' value='9001'/>
+<enum name='kLowPassParam_CutoffFrequency' value='0'/>
+<enum name='kLowPassParam_Resonance' value='1'/>
+<enum name='kMatrixMixerParam_Enable' value='1'/>
+<enum name='kMatrixMixerParam_PostAveragePower' value='3000'/>
+<enum name='kMatrixMixerParam_PostAveragePowerLinear' value='7000'/>
+<enum name='kMatrixMixerParam_PostPeakHoldLevel' value='4000'/>
+<enum name='kMatrixMixerParam_PostPeakHoldLevelLinear' value='8000'/>
+<enum name='kMatrixMixerParam_PreAveragePower' value='1000'/>
+<enum name='kMatrixMixerParam_PreAveragePowerLinear' value='5000'/>
+<enum name='kMatrixMixerParam_PrePeakHoldLevel' value='2000'/>
+<enum name='kMatrixMixerParam_PrePeakHoldLevelLinear' value='6000'/>
+<enum name='kMatrixMixerParam_Volume' value='0'/>
+<enum name='kMultiChannelMixerParam_Enable' value='1'/>
+<enum name='kMultiChannelMixerParam_Pan' value='2'/>
+<enum name='kMultiChannelMixerParam_PostAveragePower' value='3000'/>
+<enum name='kMultiChannelMixerParam_PostPeakHoldLevel' value='4000'/>
+<enum name='kMultiChannelMixerParam_PreAveragePower' value='1000'/>
+<enum name='kMultiChannelMixerParam_PrePeakHoldLevel' value='2000'/>
+<enum name='kMultiChannelMixerParam_Volume' value='0'/>
+<enum name='kMultibandCompressorParam_AttackTime' value='13'/>
+<enum name='kMultibandCompressorParam_CompressionAmount1' value='1000'/>
+<enum name='kMultibandCompressorParam_CompressionAmount2' value='2000'/>
+<enum name='kMultibandCompressorParam_CompressionAmount3' value='3000'/>
+<enum name='kMultibandCompressorParam_CompressionAmount4' value='4000'/>
+<enum name='kMultibandCompressorParam_Crossover1' value='2'/>
+<enum name='kMultibandCompressorParam_Crossover2' value='3'/>
+<enum name='kMultibandCompressorParam_Crossover3' value='4'/>
+<enum name='kMultibandCompressorParam_EQ1' value='15'/>
+<enum name='kMultibandCompressorParam_EQ2' value='16'/>
+<enum name='kMultibandCompressorParam_EQ3' value='17'/>
+<enum name='kMultibandCompressorParam_EQ4' value='18'/>
+<enum name='kMultibandCompressorParam_Headroom1' value='9'/>
+<enum name='kMultibandCompressorParam_Headroom2' value='10'/>
+<enum name='kMultibandCompressorParam_Headroom3' value='11'/>
+<enum name='kMultibandCompressorParam_Headroom4' value='12'/>
+<enum name='kMultibandCompressorParam_InputAmplitude1' value='5000'/>
+<enum name='kMultibandCompressorParam_InputAmplitude2' value='6000'/>
+<enum name='kMultibandCompressorParam_InputAmplitude3' value='7000'/>
+<enum name='kMultibandCompressorParam_InputAmplitude4' value='8000'/>
+<enum name='kMultibandCompressorParam_OutputAmplitude1' value='9000'/>
+<enum name='kMultibandCompressorParam_OutputAmplitude2' value='10000'/>
+<enum name='kMultibandCompressorParam_OutputAmplitude3' value='11000'/>
+<enum name='kMultibandCompressorParam_OutputAmplitude4' value='12000'/>
+<enum name='kMultibandCompressorParam_Postgain' value='1'/>
+<enum name='kMultibandCompressorParam_Pregain' value='0'/>
+<enum name='kMultibandCompressorParam_ReleaseTime' value='14'/>
+<enum name='kMultibandCompressorParam_Threshold1' value='5'/>
+<enum name='kMultibandCompressorParam_Threshold2' value='6'/>
+<enum name='kMultibandCompressorParam_Threshold3' value='7'/>
+<enum name='kMultibandCompressorParam_Threshold4' value='8'/>
+<enum name='kMultibandFilter_Bandwidth1' value='5'/>
+<enum name='kMultibandFilter_Bandwidth2' value='8'/>
+<enum name='kMultibandFilter_Bandwidth3' value='11'/>
+<enum name='kMultibandFilter_CenterFreq1' value='3'/>
+<enum name='kMultibandFilter_CenterFreq2' value='6'/>
+<enum name='kMultibandFilter_CenterFreq3' value='9'/>
+<enum name='kMultibandFilter_CenterGain1' value='4'/>
+<enum name='kMultibandFilter_CenterGain2' value='7'/>
+<enum name='kMultibandFilter_CenterGain3' value='10'/>
+<enum name='kMultibandFilter_HighFilterType' value='12'/>
+<enum name='kMultibandFilter_HighFrequency' value='13'/>
+<enum name='kMultibandFilter_HighGain' value='14'/>
+<enum name='kMultibandFilter_LowFilterType' value='0'/>
+<enum name='kMultibandFilter_LowFrequency' value='1'/>
+<enum name='kMultibandFilter_LowGain' value='2'/>
+<enum name='kMusicDeviceMIDIEventSelect' value='257'/>
+<enum name='kMusicDeviceParam_ReverbVolume' value='2'/>
+<enum name='kMusicDeviceParam_Tuning' value='0'/>
+<enum name='kMusicDeviceParam_Volume' value='1'/>
+<enum name='kMusicDevicePrepareInstrumentSelect' value='259'/>
+<enum name='kMusicDeviceProperty_BankName' value='1007'/>
+<enum name='kMusicDeviceProperty_DualSchedulingMode' value='1013'/>
+<enum name='kMusicDeviceProperty_GroupOutputBus' value='1002'/>
+<enum name='kMusicDeviceProperty_InstrumentCount' value='1000'/>
+<enum name='kMusicDeviceProperty_InstrumentName' value='1001'/>
+<enum name='kMusicDeviceProperty_InstrumentNumber' value='1004'/>
+<enum name='kMusicDeviceProperty_MIDIXMLNames' value='1006'/>
+<enum name='kMusicDeviceProperty_PartGroup' value='1010'/>
+<enum name='kMusicDeviceProperty_SoundBankData' value='1008'/>
+<enum name='kMusicDeviceProperty_SoundBankFSRef' value='1012'/>
+<enum name='kMusicDeviceProperty_SoundBankFSSpec' value='1003'/>
+<enum name='kMusicDeviceProperty_SoundBankURL' value='1100'/>
+<enum name='kMusicDeviceProperty_StreamFromDisk' value='1011'/>
+<enum name='kMusicDeviceProperty_SupportsStartStopNote' value='1014'/>
+<enum name='kMusicDeviceProperty_UsesInternalReverb' value='1005'/>
+<enum name='kMusicDeviceRange' value='256'/>
+<enum name='kMusicDeviceReleaseInstrumentSelect' value='260'/>
+<enum name='kMusicDeviceSampleFrameMask_IsScheduled' value='16777216'/>
+<enum name='kMusicDeviceSampleFrameMask_SampleOffset' value='16777215'/>
+<enum name='kMusicDeviceStartNoteSelect' value='261'/>
+<enum name='kMusicDeviceStopNoteSelect' value='262'/>
+<enum name='kMusicDeviceSysExSelect' value='258'/>
+<enum name='kMusicNoteEvent_Unused' value='4294967295'/>
+<enum name='kMusicNoteEvent_UseGroupInstrument' value='4294967295'/>
+<enum name='kNewTimePitchParam_EnablePeakLocking' value='6'/>
+<enum name='kNewTimePitchParam_Overlap' value='4'/>
+<enum name='kNewTimePitchParam_Pitch' value='1'/>
+<enum name='kNewTimePitchParam_Rate' value='0'/>
+<enum name='kNumberOfResponseFrequencies' value='1024'/>
+<enum name='kOfflinePreflight_NotRequired' value='0'/>
+<enum name='kOfflinePreflight_Optional' value='1'/>
+<enum name='kOfflinePreflight_Required' value='2'/>
+<enum name='kOtherPluginFormat_AU' value='3'/>
+<enum name='kOtherPluginFormat_Undefined' value='0'/>
+<enum name='kOtherPluginFormat_kMAS' value='1'/>
+<enum name='kOtherPluginFormat_kVST' value='2'/>
+<enum name='kPannerParam_Azimuth' value='1'/>
+<enum name='kPannerParam_CoordScale' value='4'/>
+<enum name='kPannerParam_Distance' value='3'/>
+<enum name='kPannerParam_Elevation' value='2'/>
+<enum name='kPannerParam_Gain' value='0'/>
+<enum name='kPannerParam_RefDistance' value='5'/>
+<enum name='kParameterEvent_Immediate' value='1'/>
+<enum name='kParameterEvent_Ramped' value='2'/>
+<enum name='kParametricEQParam_CenterFreq' value='0'/>
+<enum name='kParametricEQParam_Gain' value='2'/>
+<enum name='kParametricEQParam_Q' value='1'/>
+<enum name='kRenderQuality_High' value='96'/>
+<enum name='kRenderQuality_Low' value='32'/>
+<enum name='kRenderQuality_Max' value='127'/>
+<enum name='kRenderQuality_Medium' value='64'/>
+<enum name='kRenderQuality_Min' value='0'/>
+<enum name='kReverbParam_DryWetMix' value='0'/>
+<enum name='kReverbParam_FilterBandwidth' value='15'/>
+<enum name='kReverbParam_FilterFrequency' value='14'/>
+<enum name='kReverbParam_FilterGain' value='16'/>
+<enum name='kReverbParam_LargeBrightness' value='10'/>
+<enum name='kReverbParam_LargeDelay' value='5'/>
+<enum name='kReverbParam_LargeDelayRange' value='8'/>
+<enum name='kReverbParam_LargeDensity' value='7'/>
+<enum name='kReverbParam_LargeSize' value='3'/>
+<enum name='kReverbParam_ModulationDepth' value='13'/>
+<enum name='kReverbParam_ModulationRate' value='12'/>
+<enum name='kReverbParam_PreDelay' value='4'/>
+<enum name='kReverbParam_SmallBrightness' value='9'/>
+<enum name='kReverbParam_SmallDelayRange' value='11'/>
+<enum name='kReverbParam_SmallDensity' value='6'/>
+<enum name='kReverbParam_SmallLargeMix' value='1'/>
+<enum name='kReverbParam_SmallSize' value='2'/>
+<enum name='kReverbRoomType_Cathedral' value='8'/>
+<enum name='kReverbRoomType_LargeChamber' value='7'/>
+<enum name='kReverbRoomType_LargeHall' value='4'/>
+<enum name='kReverbRoomType_LargeHall2' value='12'/>
+<enum name='kReverbRoomType_LargeRoom' value='2'/>
+<enum name='kReverbRoomType_LargeRoom2' value='9'/>
+<enum name='kReverbRoomType_MediumChamber' value='6'/>
+<enum name='kReverbRoomType_MediumHall' value='3'/>
+<enum name='kReverbRoomType_MediumHall2' value='10'/>
+<enum name='kReverbRoomType_MediumHall3' value='11'/>
+<enum name='kReverbRoomType_MediumRoom' value='1'/>
+<enum name='kReverbRoomType_Plate' value='5'/>
+<enum name='kReverbRoomType_SmallRoom' value='0'/>
+<enum name='kRogerBeepParam_InGateThreshold' value='0'/>
+<enum name='kRogerBeepParam_InGateThresholdTime' value='1'/>
+<enum name='kRogerBeepParam_OutGateThreshold' value='2'/>
+<enum name='kRogerBeepParam_OutGateThresholdTime' value='3'/>
+<enum name='kRogerBeepParam_RogerGain' value='6'/>
+<enum name='kRogerBeepParam_RogerType' value='5'/>
+<enum name='kRogerBeepParam_Sensitivity' value='4'/>
+<enum name='kRoundTripAACParam_BitRate' value='1'/>
+<enum name='kRoundTripAACParam_CompressedFormatSampleRate' value='3'/>
+<enum name='kRoundTripAACParam_Format' value='0'/>
+<enum name='kRoundTripAACParam_Quality' value='2'/>
+<enum name='kScheduledAudioSliceFlag_BeganToRender' value='2'/>
+<enum name='kScheduledAudioSliceFlag_BeganToRenderLate' value='4'/>
+<enum name='kScheduledAudioSliceFlag_Complete' value='1'/>
+<enum name='kSpatializationAlgorithm_EqualPowerPanning' value='0'/>
+<enum name='kSpatializationAlgorithm_HRTF' value='2'/>
+<enum name='kSpatializationAlgorithm_SoundField' value='3'/>
+<enum name='kSpatializationAlgorithm_SphericalHead' value='1'/>
+<enum name='kSpatializationAlgorithm_StereoPassThrough' value='5'/>
+<enum name='kSpatializationAlgorithm_VectorBasedPanning' value='4'/>
+<enum name='kSpeakerConfiguration_5_0' value='3'/>
+<enum name='kSpeakerConfiguration_5_1' value='3'/>
+<enum name='kSpeakerConfiguration_HeadPhones' value='0'/>
+<enum name='kSpeakerConfiguration_Quad' value='2'/>
+<enum name='kSpeakerConfiguration_Stereo' value='1'/>
+<enum name='kStereoMixerParam_Pan' value='1'/>
+<enum name='kStereoMixerParam_PostAveragePower' value='3000'/>
+<enum name='kStereoMixerParam_PostPeakHoldLevel' value='4000'/>
+<enum name='kStereoMixerParam_PreAveragePower' value='1000'/>
+<enum name='kStereoMixerParam_PrePeakHoldLevel' value='2000'/>
+<enum name='kStereoMixerParam_Volume' value='0'/>
+<enum name='kTimePitchParam_EffectBlend' value='2'/>
+<enum name='kTimePitchParam_Pitch' value='1'/>
+<enum name='kTimePitchParam_Rate' value='0'/>
+<enum name='kVarispeedParam_PlaybackCents' value='1'/>
+<enum name='kVarispeedParam_PlaybackRate' value='0'/>
+<function name='AudioCodecAppendInputBufferList'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}'/>
+<arg type='^I'/>
+<arg type='^{AudioStreamPacketDescription=qII}'/>
+<arg type='^I'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecAppendInputData'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^v'/>
+<arg type='^I'/>
+<arg type='^I'/>
+<arg type='^{AudioStreamPacketDescription=qII}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecGetProperty'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type='^I'/>
+<arg type='^v'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecGetPropertyInfo'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type='^I'/>
+<arg type='^B'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecInitialize'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^{AudioStreamBasicDescription=dIIIIIIII}'/>
+<arg type='^{AudioStreamBasicDescription=dIIIIIIII}'/>
+<arg type='^v'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecProduceOutputBufferList'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}'/>
+<arg type='^I'/>
+<arg type='^{AudioStreamPacketDescription=qII}'/>
+<arg type='^I'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecProduceOutputPackets'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^v'/>
+<arg type='^I'/>
+<arg type='^I'/>
+<arg type='^{AudioStreamPacketDescription=qII}'/>
+<arg type='^I'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecReset'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecSetProperty'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^v'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioCodecUninitialize'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioComponentCopyName'>
+<arg type='^{OpaqueAudioComponent=}'/>
+<arg type='^^{__CFString}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioComponentCount'>
+<arg type='^{AudioComponentDescription=IIIII}'/>
+<retval type64='I' type='L'/>
+</function>
+<function name='AudioComponentFindNext'>
+<arg type='^{OpaqueAudioComponent=}'/>
+<arg type='^{AudioComponentDescription=IIIII}'/>
+<retval type='^{OpaqueAudioComponent=}'/>
+</function>
+<function name='AudioComponentGetDescription'>
+<arg type='^{OpaqueAudioComponent=}'/>
+<arg type='^{AudioComponentDescription=IIIII}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioComponentGetVersion'>
+<arg type='^{OpaqueAudioComponent=}'/>
+<arg type='^I'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioComponentInstanceCanDo'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='s'/>
+<retval type='B'/>
+</function>
+<function name='AudioComponentInstanceDispose'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioComponentInstanceGetComponent'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type='^{OpaqueAudioComponent=}'/>
+</function>
+<function name='AudioComponentInstanceNew'>
+<arg type='^{OpaqueAudioComponent=}'/>
+<arg type='^^{ComponentInstanceRecord}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioComponentRegister'>
+<arg type='^{AudioComponentDescription=IIIII}'/>
+<arg type='^{__CFString=}'/>
+<arg type64='I' type='L'/>
+<arg function_pointer='true' type='^?'>
+<arg type='^{AudioComponentDescription=IIIII}'/>
+<retval type='^{AudioComponentPlugInInterface=^?^?^?^v}'/>
+</arg>
+<retval type='^{OpaqueAudioComponent=}'/>
+</function>
+<function name='AudioOutputUnitStart'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioOutputUnitStop'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitAddPropertyListener'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg function_pointer='true' type='^?'>
+<arg type='^v'/>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<retval type='v'/>
+</arg>
+<arg type='^v'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitAddRenderNotify'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg function_pointer='true' type='^?'>
+<arg type='^v'/>
+<arg type='^I'/>
+<arg type='^{AudioTimeStamp=dQdQ{SMPTETime=ssIIIssss}II}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}'/>
+<retval type64='i' type='l'/>
+</arg>
+<arg type='^v'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitCarbonViewCreate'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^{OpaqueWindowPtr=}'/>
+<arg type='^{OpaqueControlRef=}'/>
+<arg type='^{Float32Point=ff}'/>
+<arg type='^{Float32Point=ff}'/>
+<arg type='^^{OpaqueControlRef}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitGetParameter'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^f'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitGetProperty'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^v'/>
+<arg type='^I'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitGetPropertyInfo'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^I'/>
+<arg type='^B'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitInitialize'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitProcess'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^I'/>
+<arg type='^{AudioTimeStamp=dQdQ{SMPTETime=ssIIIssss}II}'/>
+<arg type64='I' type='L'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitProcessMultiple'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^I'/>
+<arg type='^{AudioTimeStamp=dQdQ{SMPTETime=ssIIIssss}II}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^^{AudioBufferList}'/>
+<arg type64='I' type='L'/>
+<arg type='^^{AudioBufferList}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitRemovePropertyListenerWithUserData'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg function_pointer='true' type='^?'>
+<arg type='^v'/>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<retval type='v'/>
+</arg>
+<arg type='^v'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitRemoveRenderNotify'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg function_pointer='true' type='^?'>
+<arg type='^v'/>
+<arg type='^I'/>
+<arg type='^{AudioTimeStamp=dQdQ{SMPTETime=ssIIIssss}II}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}'/>
+<retval type64='i' type='l'/>
+</arg>
+<arg type='^v'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitRender'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^I'/>
+<arg type='^{AudioTimeStamp=dQdQ{SMPTETime=ssIIIssss}II}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitReset'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitScheduleParameters'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='^{AudioUnitParameterEvent=IIII(?={?=iIff}{?=If})}'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitSetParameter'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='f'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitSetProperty'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^v'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='AudioUnitUninitialize'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='MusicDeviceMIDIEvent'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='MusicDevicePrepareInstrument'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='MusicDeviceReleaseInstrument'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='MusicDeviceStartNote'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type='^I'/>
+<arg type64='I' type='L'/>
+<arg type='^{MusicDeviceNoteParams=Iff[1{NoteParamsControlValue=If}]}'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='MusicDeviceStopNote'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<function name='MusicDeviceSysEx'>
+<arg type64='^{ComponentInstanceRecord=[1q]}' type='^{ComponentInstanceRecord=[1l]}'/>
+<arg type='*'/>
+<arg type64='I' type='L'/>
+<retval type64='i' type='l'/>
+</function>
+<informal_protocol name='AUCocoaUIBase'>
+<method type64='I16@0:8' selector='interfaceVersion' type='I8@0:4'/>
+<method type64='@40@0:8^{ComponentInstanceRecord=[1q]}16{CGSize=dd}24' selector='uiViewForAudioUnit:withSize:' type='@20@0:4^{ComponentInstanceRecord=[1l]}8{_NSSize=ff}12'/>
+</informal_protocol>
+</signatures>
