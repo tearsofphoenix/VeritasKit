@@ -357,6 +357,9 @@
 		E1EF54811587919500F35BD2 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF547E1587919500F35BD2 /* LuaLibraryInformation.m */; };
 		E1EF548B1587938C00F35BD2 /* ERGeneralDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF54881587938C00F35BD2 /* ERGeneralDataSource.m */; };
 		E1EF548C1587938C00F35BD2 /* ERGeneralMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF548A1587938C00F35BD2 /* ERGeneralMetaService.m */; };
+		E1FAD81215AB0292004C504C /* LuaBridgeFunctor.h in Headers */ = {isa = PBXBuildFile; fileRef = E1FAD81015AB0292004C504C /* LuaBridgeFunctor.h */; };
+		E1FAD81315AB0292004C504C /* LuaBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD81115AB0292004C504C /* LuaBridgeFunctor.m */; };
+		E1FAD81415AB0292004C504C /* LuaBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD81115AB0292004C504C /* LuaBridgeFunctor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -805,6 +808,8 @@
 		E1EF54891587938C00F35BD2 /* ERGeneralMetaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ERGeneralMetaService.h; path = LuaSDK/LuaEngine/ERGeneralMetaService.h; sourceTree = SOURCE_ROOT; };
 		E1EF548A1587938C00F35BD2 /* ERGeneralMetaService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ERGeneralMetaService.m; path = LuaSDK/LuaEngine/ERGeneralMetaService.m; sourceTree = SOURCE_ROOT; };
 		E1EF548E158793AE00F35BD2 /* ERGeneralConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ERGeneralConstants.h; path = LuaSDK/LuaEngine/ERGeneralConstants.h; sourceTree = SOURCE_ROOT; };
+		E1FAD81015AB0292004C504C /* LuaBridgeFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridgeFunctor.h; sourceTree = "<group>"; };
+		E1FAD81115AB0292004C504C /* LuaBridgeFunctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeFunctor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1358,6 +1363,8 @@
 				22413DFE15AABF3900A70454 /* LuaBridgeSupportFileParser.m */,
 				22413E0015AABFFE00A70454 /* LuaBridgeInfo.h */,
 				22413E0115AABFFE00A70454 /* LuaBridgeInfo.m */,
+				E1FAD81015AB0292004C504C /* LuaBridgeFunctor.h */,
+				E1FAD81115AB0292004C504C /* LuaBridgeFunctor.m */,
 			);
 			name = LuaObjCExtensions;
 			path = LuaSDK/LuaObjCExtensions;
@@ -1578,6 +1585,7 @@
 				2240CCF715AAA3BF00997375 /* ffitarget_arm.h in Headers */,
 				2240CCF815AAA3BF00997375 /* ffitarget_armv7.h in Headers */,
 				2240CCF915AAA3BF00997375 /* ffitarget_i386.h in Headers */,
+				E1FAD81215AB0292004C504C /* LuaBridgeFunctor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1881,6 +1889,7 @@
 				22413DFC15AABE4700A70454 /* LuaBridgeSupport.m in Sources */,
 				22413DFF15AABF3900A70454 /* LuaBridgeSupportFileParser.m in Sources */,
 				22413E0215AABFFE00A70454 /* LuaBridgeInfo.m in Sources */,
+				E1FAD81315AB0292004C504C /* LuaBridgeFunctor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1992,6 +2001,7 @@
 				E14907D61595BBDC0088A170 /* XMLDocument.m in Sources */,
 				E14907D71595BBDC0088A170 /* XMLNode.m in Sources */,
 				E14907D81595BBDC0088A170 /* XMLPathProcessor.m in Sources */,
+				E1FAD81415AB0292004C504C /* LuaBridgeFunctor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

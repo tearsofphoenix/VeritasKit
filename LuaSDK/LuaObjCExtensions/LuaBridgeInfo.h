@@ -11,16 +11,7 @@
 struct lua_State;
 
 struct LuaBridgeFuncotr;
-typedef struct LuaBridgeFuncotr *LuaBridgeFuncotrRef;
-
-extern LuaBridgeFuncotrRef LuaBridgeFuncotrCreate(NSString * name, 
-                                           NSArray *argumentTypes, 
-                                           NSString *returnEncoding);
-
-extern void LuaBridgeFunctorInvoke(LuaBridgeFuncotrRef aFunctorRef);
-
-extern void LuaBridgeFunctorFinalize(LuaBridgeFuncotrRef aFunctorRef);
-                                           
+                                        
 enum 
 {
     LuaBridgeInvalidType = -1,

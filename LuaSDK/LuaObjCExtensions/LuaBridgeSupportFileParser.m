@@ -59,23 +59,40 @@ static LuaBridgeNodeParserBlock __LuaBridgeFunctionNodeParser = (^(XMLNode *node
                                                                      [info setType: LuaBridgeFunctionType];
                                                                      [info setName: name];
                                                                      
+                                                                     NSMutableDictionary *functionInfos = [[NSMutableDictionary alloc] init];
                                                                      NSMutableArray *arguments = [[NSMutableArray alloc] init];
                                                                                                    
                                                                      XMLNode *argNode = [node firstChild];
+                                                                     NSString *elementnameLooper = nil;
+                                                                     
                                                                      while(argNode)
                                                                      {
-                                                                         LuaBridgeArgumentInfo *argInfo = [[LuaBridgeArgumentInfo alloc] init];
-                                                                         [argInfo setType: [argNode attributeWithName: @"type"]];
-                                                                         [argInfo setType64: [argNode attributeWithName: @"type64"]];
+                                                                         elementnameLooper = [argNode elementName];
+                                                                         if ([elementnameLooper isEqualToString: @"arg"])
+                                                                         {
+                                                                             LuaBridgeArgumentInfo *argInfo = [[LuaBridgeArgumentInfo alloc] init];
+                                                                             [argInfo setType: [argNode attributeWithName: @"type"]];
+                                                                             [argInfo setType64: [argNode attributeWithName: @"type64"]];
+                                                                             
+                                                                             [arguments addObject: argInfo];
+                                                                             [argInfo release];
+                                                                         }
                                                                          
-                                                                         [arguments addObject: argInfo];
-                                                                         [argInfo release];
-                                                                         
+                                                                         if ([elementnameLooper isEqualToString: @"retval"])
+                                                                         {
+                                                                             [functionInfos setObject: [argNode attributeWithName: @"type"]
+                                                                                               forKey: elementnameLooper];
+                                                                         }
+                                                                             
                                                                          argNode = [argNode nextSibling];
                                                                      }
                                                                      
-                                                                     [info setInfo: arguments];
+                                                                     [functionInfos setObject: arguments
+                                                                                       forKey: @"arg"];
                                                                      [arguments release];
+                                                                     
+                                                                     [info setInfo: functionInfos];
+                                                                     [functionInfos release];
                                                                      
                                                                      [result setObject: info
                                                                                 forKey: name];

@@ -1,5 +1,6 @@
 NS = #import "NS"
 UI = #import("UI")
+GL = #import("OpenGLES")
 
 #import "BoCPressViewController"
 #import("os")
@@ -119,11 +120,7 @@ UI = #import("UI")
 
  
 main = function()
-         
-         local a = [[Test alloc] init];
-         [a release];
-         
-         
+            glEnable(1);
         ---[[             
         return UIApplicationMain(0, nil, nil, NSStringFromClass(AppDelegate))
         --]]

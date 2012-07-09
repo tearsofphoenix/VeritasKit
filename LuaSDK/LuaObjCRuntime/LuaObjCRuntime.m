@@ -38,6 +38,10 @@
 
 #import "LuaObjCLangExtensions.h"
 
+#import "LuaBridgeSupport.h"
+
+#import "LuaBridgeFunctor.h"
+
 static int luaObjC_NSStringFromClass(lua_State *L)
 {
     LuaObjCClassRef aClass = lua_touserdata(L, 1);    
@@ -140,19 +144,9 @@ static int luaObjC_NSLog(lua_State *L)
 int luaObjC_description(lua_State *L)
 {
     LuaObjCClassRef obj = lua_touserdata(L, 1);
-//    NSString *description = [NSString stringWithFormat: @"[%@ %p object address:%p]", [obj->_obj rawObject], obj, [obj->_obj rawObject]];
     NSString *description = [LuaObjCClassGetObject(obj) description];
     lua_pushstring(L, [description UTF8String]);
     return 1;
-}
-
-static void createmeta (lua_State *L, const char *name, const luaL_Reg methods[]) 
-{
-    luaL_newmetatable(L, name); 
-    lua_pushvalue(L, -1);  /* push metatable */
-    lua_setfield(L, -2, "__index");  /* metatable.__index = metatable */
-    luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
-    lua_pop(L, 1);  /* pop new metatable */
 }
 
 static int luaObjC_createClassWithSuperClass(lua_State *L)
@@ -377,6 +371,20 @@ static int luaObjc_classPredeclearation(lua_State *L)
     return 0;
 }
 
+static int luaObjC_import_file(lua_State *L)
+{
+    const char *name = lua_tostring(L, 1);
+    
+    [LuaBridgeSupport importFramework: [NSString stringWithUTF8String: name]];
+    
+    NSString *realPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat: @"/%s", name];
+    lua_pushstring(L, [realPath UTF8String]);
+    lua_getfield(L, LUA_REGISTRYINDEX, "require");
+    lua_pcall(L, 1, 1, 0);
+    
+    return 1;
+}
+
 static const luaL_Reg luaObjC_runtimeFunctions[] = 
 {
     //base feature
@@ -391,6 +399,8 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"objc_msgSendSuper", luaObjc_method_super_call},
     {"objc_msgSend", luaObjC_objc_messageSend},
     
+    {"objc_import_file", luaObjC_import_file},
+
     {"objc_retainBeforeReturnFromAutoreleasePool", luaObjC_retainBeforeReturnFromAutoreleasePool},
     {"objc_createBlockObject", luaObjC_createBlockObject},
     {"objc_classPredeclearation", luaObjc_classPredeclearation},
@@ -605,11 +615,11 @@ int luaopen_foundation(lua_State *L)
     luaObjC_loadGlobalFunctions(L, luaNS_functions);
     luaopen_objc_extensions(L);
     luaopen_objc_profile(L);
+    luaObjCInternal_openBridgeFunctor(L);
     
     luaL_newlib(L, luaNS_functions);  
-    
-    
-    createmeta(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
+
+    luaObjCInternal_createmeta(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
     
     LuaOpenFoundation(L);
     

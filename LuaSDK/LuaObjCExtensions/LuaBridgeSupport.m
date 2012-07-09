@@ -31,12 +31,23 @@ static NSMutableArray *__registeredFrameworkNames = nil;
 }
 
 + (void)importFramework: (NSString *)frameworkName
-  withBridgeFileContent: (NSString *)bridgeFileContent
 {
     if ([__registeredFrameworkNames indexOfObject: frameworkName] == NSNotFound)
     {
-        [__registeredFrameworkNames addObject: frameworkName];        
-        [__registeredFrameworks addEntriesFromDictionary: [LuaBridgeSupportFileParser parseFileContents: bridgeFileContent]];
+        NSString *bridgeFilePath = [[NSBundle mainBundle] pathForResource: frameworkName
+                                                                   ofType: @"bridgesupport"];
+        NSError *error = nil;
+        NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath
+                                                                encoding: NSUTF8StringEncoding
+                                                                   error: &error];
+        if (error)
+        {
+            //NSLog(@"error: %@", error);
+        }else 
+        {
+            [__registeredFrameworks addEntriesFromDictionary: [LuaBridgeSupportFileParser parseFileContents: bridgeFileContent]];
+            [__registeredFrameworkNames addObject: frameworkName];        
+        }
     }
 }
 
@@ -44,7 +55,7 @@ static NSMutableArray *__registeredFrameworkNames = nil;
             intoLuaState: (struct lua_State *)state
 {
     LuaBridgeInfo *info = [__registeredFrameworks objectForKey: name];
-    
+    [info resolveIntoLuaState: state];
 }
 
 @end

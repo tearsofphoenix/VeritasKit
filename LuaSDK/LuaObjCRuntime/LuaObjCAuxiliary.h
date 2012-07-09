@@ -25,3 +25,5 @@ extern void luaObjC_loadGlobalClasses(lua_State *L, const char* classList[]);
 extern const char* luaObjc_gotoStartOfSourceAtLine(const char *source, int lineNumber);
 
 extern void LuaObjectBridge_CreateUserData(lua_State* lua_state, id the_object, bool should_retain, bool is_instance);
+
+extern void luaObjCInternal_createmeta(lua_State *L, const char *name, const luaL_Reg methods[]);

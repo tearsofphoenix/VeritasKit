@@ -12,8 +12,7 @@ struct lua_State;
 
 @interface LuaBridgeSupport : NSObject
 
-+ (void)importFramework: (NSString *)frameworkName
-  withBridgeFileContent: (NSString *)bridgeFileContent;
++ (void)importFramework: (NSString *)frameworkName;
 
 + (void)tryToResolveName: (NSString *)name
             intoLuaState: (struct lua_State *)state;

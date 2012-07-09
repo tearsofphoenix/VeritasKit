@@ -126,17 +126,6 @@ void MyBlock_ReplaceInvokeFunction(void *block, void *newInvoke)
     closure->invoke = newInvoke;
 }
 
-static int luaObjC_import_file(lua_State *L)
-{
-    const char *name = lua_tostring(L, 1);
-    NSString *realPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat: @"/%s", name];
-    lua_pushstring(L, [realPath UTF8String]);
-    lua_getfield(L, LUA_REGISTRYINDEX, "require");
-    lua_pcall(L, 1, 1, 0);
-    
-    return 1;
-}
-
 static int luaObjC_convertTableToNSArray(lua_State *L)
 {
     int type = lua_type(L, 1);
@@ -435,7 +424,6 @@ static const luaL_Reg __luaObjCExtensions [] =
     {"luaObjC_convertTableToNSArray", luaObjC_convertTableToNSArray},
     {"luaObjC_convertTableToNSDictionary",luaObjC_convertTableToNSDictionary},
     {"luaObjC_convertNSObjectToTable", luaObjC_convertNSObjectToTable},
-    {"objc_import_file", luaObjC_import_file},
     {"objc_tryCatchFinally", luaObjC_objc_tryCatchFinally},
     {"objc_throw", luaObjC_objc_throw},
     {"objc_UUIDString", luaObjC_objc_UUIDString},
