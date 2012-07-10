@@ -7,11 +7,14 @@
 //
 
 #import "LuaEngineService.h"
+#import "LuaObjCInternal.h"
 
 int main(int argc, char *argv[])
 {    
     @autoreleasepool 
-    {           
+    {      
+        //objc_dumpClass(NSClassFromString(@"NSString"));
+        
         NSString *sourceFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"Test.v"];
         NSString *sourceCode = [NSString stringWithContentsOfFile: sourceFilePath
                                                          encoding: NSUTF8StringEncoding

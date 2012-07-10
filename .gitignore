@@ -1,6 +1,5 @@
 .DS_Store
-LuaIOS.xcodeproj/project.xcworkspace/xcuserdata/yibindong.xcuserdatad/UserInterfaceState.xcuserstate
 
-LuaIOS.xcodeproj/xcuserdata/yibindong.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
+*.xcodeproj/project.xcworkspace/xcuserdata
 
-LuaIOS.xcodeproj/project.xcworkspace/xcuserdata/tearsofphoenix.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcodeproj/xcuserdata

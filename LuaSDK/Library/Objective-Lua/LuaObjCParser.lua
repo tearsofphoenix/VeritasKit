@@ -2165,8 +2165,10 @@ local typetable =
                   local __ret__=__returnTable__[2]
                   objc_retainBeforeReturnFromAutoreleasePool(__ret__)
                   objc_msgSend(__pool__, 'release')
+                  collectgarbage("collect")
                   return __ret__
             else
+                  collectgarbage("collect")
                   objc_msgSend(__pool__, 'release')
             end
             end]==])

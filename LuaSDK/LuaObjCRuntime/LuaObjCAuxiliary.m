@@ -13,7 +13,8 @@
 #import "LuaObjCInternal.h"
 
 #import "LuaObjCRecordTable.h"
-
+#import "lstate.h"
+#import "luasdk_utilities.h"
 #import <objc/runtime.h>
 
 id luaObjC_checkNSObject(lua_State *L, int index)

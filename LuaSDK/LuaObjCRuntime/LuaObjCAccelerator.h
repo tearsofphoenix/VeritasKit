@@ -6,18 +6,18 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCAuxiliary.h"
-
 //the first argument is `id', the second is `SEL', 
 //so the arguments of the method starts from 3,
 #define LuaObjCArgumentStart (3)
 
-typedef int (* LuaObjCAcceleratorIMP)(id obj, SEL sel, lua_State *L);
+struct lua_State;
 
-extern int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char* returnType, 
+typedef int (* LuaObjCAcceleratorIMP)(id obj, SEL sel, struct lua_State *L);
+
+extern int luaObjC_callImplementation_specializeForNoArgument(struct lua_State *L, const char* returnType, 
                                                        IMP impRef, id obj, SEL selector);
 
-extern int luaObjC_callImplementation_specializeForOneArgument(lua_State *L, const char* argType,
+extern int luaObjC_callImplementation_specializeForOneArgument(struct lua_State *L, const char* argType,
                                                         const char* returnType, 
                                                         IMP impRef, id obj, SEL selector);
 

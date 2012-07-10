@@ -10,6 +10,7 @@
 
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCClass.h"
+#import "lstate.h"
 
 @implementation NSString (LuaObjCIndex)
 

@@ -22,6 +22,7 @@
 
 #import "LuaObjCRecordTable.h"
 #import "LuaBridgeSupport.h"
+#import "luasdk_utilities.h"
 
 struct __LuaObjCClass
 {
@@ -247,11 +248,13 @@ void LuaObjCClassFinalize(LuaObjCClassRef ref)
     FunctionDebugPrint();
     if (ref)
     {
-        [ref->_classMethods release];
-        ref->_objectObserver = nil;
-        luaObjCWeakTableGetObjectInGlobalWeakTable(ref->_luaState, ref->_obj);
-        lua_gettop(ref->_luaState);
-        lua_type(ref->_luaState, 1);
+        if ([ref->_objectObserver retainCount] > 1)
+        {
+            objc_removeAssociatedObjects(ref->_obj);
+        }
+        
+        [ref->_objectObserver dealloc];
+        //free(ref);
     }
 }
 

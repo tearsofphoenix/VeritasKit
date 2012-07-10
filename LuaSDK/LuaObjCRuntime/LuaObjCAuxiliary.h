@@ -6,24 +6,26 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "luasdk_utilities.h"
+struct luaL_Reg;
+struct lua_State;
+struct LuaSDKConst;
 
-extern id luaObjC_checkNSObject(lua_State *L, int index);
+extern id luaObjC_checkNSObject(struct lua_State *L, int index);
 
-extern const char* luaObjC_checkString(lua_State *L, int index);
+extern const char* luaObjC_checkString(struct lua_State *L, int index);
 
-extern int luaObjC_pushNSObject(lua_State *L, id nsObject);
+extern int luaObjC_pushNSObject(struct lua_State *L, id nsObject);
 
-extern int luaObjC_getEncodeOfType(lua_State *L);
+extern int luaObjC_getEncodeOfType(struct lua_State *L);
 
-extern void luaObjC_loadGlobalConstants(lua_State *L, const LuaSDKConst contants[]);
+extern void luaObjC_loadGlobalConstants(struct lua_State *L, const struct LuaSDKConst *contants);
 
-extern int luaObjC_checkInteger(lua_State *L, int index);
+extern int luaObjC_checkInteger(struct lua_State *L, int index);
 
-extern void luaObjC_loadGlobalClasses(lua_State *L, const char* classList[]);
+extern void luaObjC_loadGlobalClasses(struct lua_State *L, const char* classList[]);
 
 extern const char* luaObjc_gotoStartOfSourceAtLine(const char *source, int lineNumber);
 
-extern void LuaObjectBridge_CreateUserData(lua_State* lua_state, id the_object, bool should_retain, bool is_instance);
+extern void LuaObjectBridge_CreateUserData(struct lua_State* lua_state, id the_object, bool should_retain, bool is_instance);
 
-extern void luaObjCInternal_createmeta(lua_State *L, const char *name, const luaL_Reg methods[]);
+extern void luaObjCInternal_createmeta(struct lua_State *L, const char *name, const struct luaL_Reg *methods);

@@ -416,8 +416,7 @@ static int luaObjC_garbadgeCollection(lua_State *L)
     //stackDump(L);
     printf("[GC]name: %s count: %d\n", name, LuaObjCClassGetRetainCount(objRef));
 
-    LuaObjCClassPrint(objRef);
-    //LuaObjCClassFinalize(objRef);
+    LuaObjCClassFinalize(objRef);
 
     return 0;
 }

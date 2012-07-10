@@ -21,6 +21,7 @@
 int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char* returnType, 
                                                        IMP impRef, id obj, SEL selector)
 {
+    returnType = _luaObjCInternal_jumpoverEncodingDecorator(returnType);
     switch (*returnType) 
     {
         case 'c':
@@ -117,7 +118,9 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                                                         IMP impRef, 
                                                         id obj, 
                                                         SEL selector)
-{    
+{  
+    returnType = _luaObjCInternal_jumpoverEncodingDecorator(returnType);
+
     switch (*returnType) 
     {
             
@@ -133,6 +136,7 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         case 'Q':
         case 'B':
         {
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
             switch (*argType)
             {
                 case 'c':
@@ -217,6 +221,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         case 'f':
         case 'd':
         {
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
             switch (*argType)
             {
                 case 'c':
@@ -300,6 +306,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         }
         case '*':
         {
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
             switch (*argType)
             {
                 case 'c':
@@ -384,6 +392,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         case '#':
         case '@':
         {
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
             switch (*argType)
             {
                 case 'c':
@@ -467,6 +477,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         }
         case ':':
         {
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
             switch (*argType)
             {
                 case 'c':
@@ -516,7 +528,9 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         {
             
             if (!strcmp(returnType, @encode(CGRect)))
-            {                
+            {     
+                argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
                 switch (*argType)
                 {
                     case 'c':
@@ -600,6 +614,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                 
             }else if (!strcmp(returnType, @encode(CGPoint)))
             {
+                argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
                 switch (*argType)
                 {
                     case 'c':
@@ -683,6 +699,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                 
             }else if (!strcmp(returnType, @encode(CGSize)))
             {
+                argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
                 switch (*argType)
                 {
                     case 'c':
@@ -769,6 +787,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         case '^':
         case '[':
         {
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
             switch (*argType)
             {
                 case 'c':
@@ -852,6 +872,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
         }
         case 'v':
         {
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+
             switch (*argType)
             {
                 case 'c':

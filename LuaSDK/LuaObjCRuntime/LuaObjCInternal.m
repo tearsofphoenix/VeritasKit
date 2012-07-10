@@ -11,7 +11,8 @@
 #import "LuaObjCClass.h"
 
 #import "LuaObjCAuxiliary.h"
-
+#import "lstate.h"
+#import "lauxlib.h"
 #import <objc/runtime.h>
 
 static void luaObjC_loadClassList(lua_State *L, const char* classList[])
@@ -150,4 +151,29 @@ void stackDump (lua_State *L)
     
     
     printf("--------------- Stack Dump Finished ---------------\n" );
+}
+
+const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
+{
+    if (charLooper)
+    {
+        switch (*charLooper)
+        {
+            case 'r': //const
+            case 'n': //in
+            case 'N': //inout
+            case 'o': //out
+            case 'O': //bycopy
+            case 'R': //byref
+            case 'V': //oneway
+            {
+                return ++charLooper;
+            }   
+            default:
+            {
+                return charLooper;
+            }
+        } 
+    }
+    return charLooper;
 }

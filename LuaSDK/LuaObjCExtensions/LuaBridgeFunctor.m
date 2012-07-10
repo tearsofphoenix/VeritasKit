@@ -30,18 +30,121 @@ struct LuaBridgeFuncotr
     
 };
 
-//FFI_EXTERN ffi_type ffi_type_void;
-//FFI_EXTERN ffi_type ffi_type_uint8;
-//FFI_EXTERN ffi_type ffi_type_sint8;
-//FFI_EXTERN ffi_type ffi_type_uint16;
-//FFI_EXTERN ffi_type ffi_type_sint16;
-//FFI_EXTERN ffi_type ffi_type_uint32;
-//FFI_EXTERN ffi_type ffi_type_sint32;
-//FFI_EXTERN ffi_type ffi_type_uint64;
-//FFI_EXTERN ffi_type ffi_type_sint64;
-//FFI_EXTERN ffi_type ffi_type_float;
-//FFI_EXTERN ffi_type ffi_type_double;
-//FFI_EXTERN ffi_type ffi_type_pointer;
+static void _luaBridgeFunctor_parseStructEncoding(const char *encoding)
+{
+    const char* charLooper = encoding;
+    while (*charLooper != '=')
+    {
+        ++charLooper;
+    }
+    
+    ++charLooper;
+    
+    while (*charLooper)
+    {
+        switch (*charLooper)
+        {
+            case '\'':
+            {
+                while (*charLooper != '\'')
+                {
+                    ++charLooper;
+                }
+                
+                ++charLooper;
+                
+                break;
+            }
+            case 'c':
+            {
+
+                break;
+            }
+            case 'i':
+            {
+
+                break;
+            }
+            case 's':
+            {
+
+                break;
+            }
+            case 'l':
+            {
+
+                break;
+            }
+            case 'q':
+            {
+
+                break;
+            }
+            case 'C':
+            {
+
+                break;
+            }
+            case 'I':
+            {
+
+                break;
+            }
+            case 'S':
+            {
+
+                break;
+            }
+            case 'L':
+            {
+
+                break;
+            }
+            case 'Q':
+            {
+                //Notice here, but this will be rarely used
+                //
+                break;
+            }
+            case 'B':
+            {
+                break;
+            }
+            case 'f':
+            {
+                break;
+            }
+            case 'd':
+            {
+                break;
+            }
+            case '*':
+            case '#':
+            case '@':
+            case ':':
+            case '^':
+            case '[':
+            {
+                break;
+            }
+            case '{':
+            {
+                //TODO
+                //
+            }
+            case 'v':
+            case 'V': //"Vv"
+            {
+                break;
+            }
+            default:
+            {
+                ++charLooper;
+                break;
+            }
+        }
+    }
+}
 
 LuaBridgeFuncotrRef LuaBridgeFuncotrCreate(lua_State *L,
                                            NSString * name, 
@@ -160,15 +263,19 @@ LuaBridgeFuncotrRef LuaBridgeFuncotrCreate(lua_State *L,
                                                         argEncodings[idx] = *encodingLooper;
                                                     })];
         returnValue->_arguments = args;
-        returnValue->_argumentTypes = argumentTypes;        
+        returnValue->_argumentTypes = argumentTypes;   
+        returnValue->_argumentTypeEncodings = argEncodings;
     }else 
     {
+        returnValue->_arguments = NULL;
+        returnValue->_argumentTypes = NULL;   
         returnValue->_argumentTypes[0] = &ffi_type_void;
     }
     
     if (!returnEncoding)
     {
         returnValue->_returnType = &ffi_type_void;
+        returnValue->_returnValue = NULL;
     }else 
     {
         const char* returnTypeEncoding = [returnEncoding UTF8String];
@@ -507,6 +614,8 @@ static int LuaBridgeFunctorFinalize(lua_State *L)
     LuaBridgeFuncotrRef ref = luaL_checkudata(L, 1, LuaBridgeFuncotrMetaName);
     if (ref)
     {
+        printf("in function: %s line: %d\n", __func__, __LINE__);
+        
         if (ref->_argumentTypes)
         {
             free(ref->_argumentTypes);
@@ -523,12 +632,17 @@ static int LuaBridgeFunctorFinalize(lua_State *L)
             free(arguments);
         }
         
+        if (ref->_argumentTypeEncodings)
+        {
+            free(ref->_argumentTypeEncodings);
+        }
+        
         if (ref->_returnValue)
         {
             free(ref->_returnValue);
         }
         
-        free(ref);
+        //free(ref);
     }
     
     return 0;

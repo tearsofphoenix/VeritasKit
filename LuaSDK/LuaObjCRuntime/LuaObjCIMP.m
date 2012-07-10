@@ -16,6 +16,8 @@
 
 #import "LuaObjCAuxiliary.h"
 
+#import "lauxlib.h"
+
 #import <objc/runtime.h>
 
 typedef enum

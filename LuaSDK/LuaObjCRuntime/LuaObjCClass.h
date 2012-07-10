@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "lua.h"
+#import "luaconf.h"
 
 struct lua_State;
 

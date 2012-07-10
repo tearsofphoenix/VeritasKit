@@ -120,7 +120,17 @@ GL = #import("OpenGLES")
 
  
 main = function()
+    
             glEnable(1);
+            
+            @autoreleasepool
+            {
+                local a = [[NSString alloc] initWithUTF8String: "你好"];
+                local b = [a stringByAppendingString: @"xxxx"];
+                print(b, a);
+                [a release]
+            }
+            
         ---[[             
         return UIApplicationMain(0, nil, nil, NSStringFromClass(AppDelegate))
         --]]

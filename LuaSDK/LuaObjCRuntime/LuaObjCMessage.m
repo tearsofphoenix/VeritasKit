@@ -12,13 +12,17 @@
 #import "LuaObjCAccelerator.h"
 #import "LuaCGGeometry.h"
 #import "LuaObjCAuxiliary.h"
+
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-//
-// From PyObjC and JSCocoa: when to call objc_msgSend_stret, for structure return
-//		Depending on structure size & architecture, structures are returned as function first argument (done transparently by ffi) or via registers
-//
+
+static bool ObjectSupport_NeedsStret(NSString* return_value_objc_encoding_type)
+{
+    //
+    // From PyObjC and JSCocoa: when to call objc_msgSend_stret, for structure return
+    //		Depending on structure size & architecture, structures are returned as function first argument (done transparently by ffi) or via registers
+    //
 #if defined(__ppc__)
 #   define SMALL_STRUCT_LIMIT	4
 #elif defined(__ppc64__)
@@ -28,15 +32,12 @@
 #elif defined(__x86_64__) 
 #   define SMALL_STRUCT_LIMIT	16
 #elif TARGET_OS_IPHONE
-// TOCHECK
+    // TOCHECK
 #   define SMALL_STRUCT_LIMIT	4
 #else
 #   error "Unsupported MACOSX platform"
 #endif
-
-
-static bool ObjectSupport_NeedsStret(NSString* return_value_objc_encoding_type)
-{
+    
 	int resultSize = 0;
 	if(nil == return_value_objc_encoding_type)
 	{
@@ -72,7 +73,11 @@ static bool ObjectSupport_NeedsStret(NSString* return_value_objc_encoding_type)
     {
 		return true;
 	}
-	return false;				
+	
+    return false;	
+    
+#undef SMALL_STRUCT_LIMIT
+    
 }
 
 //
@@ -121,13 +126,7 @@ static void* ObjectSupport_GetObjcMsgSendCallAddress(NSString* return_value_objc
 }
 
 static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
-{
-    //    lua_Debug ar;
-    //    lua_getstack(L, 1, &ar);
-    //    const char * name = lua_getlocal(L, &ar, 1);
-    //    printf("name: %s\n", name);
-    //lua_pop(L, 1);
-    
+{    
     LuaObjCClassRef anObj = lua_touserdata(L, 1);   
     //optimize for nil object call
     //
@@ -203,6 +202,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         for (NSUInteger iLooper = 2; iLooper < numberOfArguments; ++iLooper)
         {
             const char* argType = [methodSignature getArgumentTypeAtIndex: iLooper];
+            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
             switch (*argType)
             {
                 case 'c':
