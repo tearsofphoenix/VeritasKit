@@ -10,5 +10,7 @@
 
 struct lua_State;
 
+extern NSTimeInterval _luaObjC_nano_timeInterval(void);
+
 LUAMOD_API int (luaopen_objc_profile)(struct lua_State *L);
 

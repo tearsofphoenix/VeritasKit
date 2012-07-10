@@ -320,11 +320,7 @@ typedef struct {
 void *ffi_closure_alloc (size_t size, void **code);
 void ffi_closure_free (void *);
 
-ffi_status
-ffi_prep_closure (ffi_closure*,
-		  ffi_cif *,
-		  void (*fun)(ffi_cif*,void*,void**,void*),
-		  void *user_data);
+
 
 ffi_status
 ffi_prep_closure_loc (ffi_closure*,

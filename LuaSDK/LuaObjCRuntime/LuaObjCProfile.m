@@ -14,6 +14,11 @@
 
 #import <mach/mach_time.h>
 
+NSTimeInterval _luaObjC_nano_timeInterval(void)
+{
+    return mach_absolute_time();
+}
+
 static int luaObjc_nano_timeinterval(lua_State *L)
 {
     lua_Number timeinterval = luaL_checknumber(L, 1);

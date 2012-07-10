@@ -181,7 +181,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         NSUInteger numberOfArguments = [methodSignature numberOfArguments];
         const char* returnType = [methodSignature methodReturnType];
         
-        printf("SEL: %s\n", (const char*)selector);
+        //printf("SEL: %s\n", (const char*)selector);
         
         if (numberOfArguments == 2)
         {

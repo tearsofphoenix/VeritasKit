@@ -59,7 +59,3 @@ extern void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block);
 extern int _luaObjC_getClouserIDOfBlock(void *block);
 
 LUAMOD_API int (luaopen_objc)(struct lua_State *L);
-
-@interface Test : NSObject
-
-@end

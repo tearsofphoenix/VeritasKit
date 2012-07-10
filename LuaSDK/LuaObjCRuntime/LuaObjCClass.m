@@ -254,6 +254,8 @@ void LuaObjCClassFinalize(LuaObjCClassRef ref)
         }
         
         [ref->_objectObserver dealloc];
+        //why crash here?
+        //
         //free(ref);
     }
 }
@@ -367,29 +369,5 @@ int LuaObjCInvalidClouserID = -1;
         [super release];    
     }
 }
-
-#ifdef DEBUG
-- (id)retain
-{
-#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-    printf("In func: %s retainCount: %d\n", __FUNCTION__, [self retainCount] + 1);
-    return [super retain];
-#else
-    printf("In func: %s retainCount: %lu\n", __FUNCTION__, [self retainCount] + 1);
-    return [super retain];
-#endif
-}
-#endif
-
-@end
-
-@implementation Test
-
-- (id)retain
-{
-    printf("in function:%s line: %d", __func__, __LINE__);
-    return [super retain];
-}
-
 
 @end

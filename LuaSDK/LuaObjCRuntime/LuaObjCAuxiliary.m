@@ -96,12 +96,8 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject)
         //if (!luaObjCWeakTableGetObjectInGlobalWeakTable(L, nsObject))
         {
             //lua_pop(L, 1);
-            printf("retainCount: %d\n", [nsObject retainCount]);
-
             LuaObjCClassInitialize(L, nsObject, nil, true);        
             //luaObjCWeakTableInsertObjectInGlobalWeakTable(L, -1, nsObject);
-            printf("retainCount: %d\n", [nsObject retainCount]);
-
         }
         
     }else 
