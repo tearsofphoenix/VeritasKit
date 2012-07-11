@@ -33,9 +33,14 @@ What we know
 2. Becnmark test result on iPod Touch 4, software version: 5.1.1 :
       run +[NSString stringWithUTF8String:] 100,000 times, average cost
 
-      NSInvocation: 2.621619s
-               ffi: 1.007282s
-          Lua-Call: 18.348168s
+      <table>
+         <tr>
+            <td>NSInvocation: 2.621619s</td>
+            <td>ffi: 1.007282s</td>
+            <td>Lua-Call: 18.348168s</td>
+         </tr>
+      </table>
+
       code:
          <pre><code>
                static const char \* _testString = "你好";
