@@ -31,38 +31,36 @@ What we know
 
 1. I have used this framework in one of my comercial project, it works well
 2. Becnmark test result on iPod Touch 4, software version: 5.1.1 :
-   run +[NSString stringWithUTF8String:] 100,000 times, average cost
-   NSInvocation: 2.621619s
-            ffi: 1.007282s
-       Lua-Call: 18.348168s
-   code:
-   <pre><code>
-   static const char * _testString = "你好";
-
-   static void testInvocation()
-   {
+      run +[NSString stringWithUTF8String:] 100,000 times, average cost
+      NSInvocation: 2.621619s
+               ffi: 1.007282s
+          Lua-Call: 18.348168s
+      code:
+         <pre><code>
+               static const char \* _testString = "你好";
+                                  
+               static void testInvocation()
+               {
+                  Method method = class_getClassMethod(objc_getMetaClass("NSString"), @selector(stringWithUTF8String:));
+                  const char *encoding = method_getTypeEncoding(method);
     
-    Method method = class_getClassMethod(objc_getMetaClass("NSString"), @selector(stringWithUTF8String:));
-
-    const char *encoding = method_getTypeEncoding(method);
+                  NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes: encoding];
+                  NSInvocation *invocation = [NSInvocation invocationWithMethodSignature: sig];
+                  [invocation setTarget: [NSString class]];
+                  [invocation setSelector: @selector(stringWithUTF8String:)];
+                  [invocation setArgument: (void*)&_testString
+                                  atIndex: 2];
+                  [invocation invoke];
+                  NSString *returnValue = nil;
+                  [invocation getReturnValue: &returnValue];
     
-    NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes: encoding];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature: sig];
-    [invocation setTarget: [NSString class]];
-    [invocation setSelector: @selector(stringWithUTF8String:)];
-    [invocation setArgument: (void*)&_testString
-                    atIndex: 2];
-    [invocation invoke];
-    NSString *returnValue = nil;
-    [invocation getReturnValue: &returnValue];
-    
-    //printf("returnValue: %s\n", [returnValue UTF8String]);
-}
+                  //printf("returnValue: %s\n", [returnValue UTF8String]);
+               }
 
-static id _testIMP(id obj, SEL selector, const char *aString)
-{
-    return [NSString stringWithUTF8String: aString];
-}
+               static id _testIMP(id obj, SEL selector, const char \*aString)
+               {
+                  return [NSString stringWithUTF8String: aString];
+               }
 
 static void testFFI(void)
 {
