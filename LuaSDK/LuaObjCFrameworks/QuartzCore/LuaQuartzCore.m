@@ -10,13 +10,11 @@
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "LuaCABase.h"
-#import "LuaCALayer.h"
 #import "LuaCATransform3D.h"
 
 int LuaOpenQuartzCore(lua_State *L)
 {
     LuaOpenCABase(L);
-    LuaOpenCALayer(L);
     LuaOpenCATransform3D(L);
     
     return 0;

@@ -12,7 +12,7 @@
 
 #import "luasdk_utilities.h"
 
-#import "lapi.h"
+#import "lauxlib.h"
 
 #import "LuaObjCClass.h"
 

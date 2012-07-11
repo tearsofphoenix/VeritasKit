@@ -12,15 +12,6 @@
 #import "luasdk_utilities.h"
 #import "LuaObjCAuxiliary.h"
 
-static const LuaSDKConst __luaNSBundleConstants[] = 
-{
-    {"NSBundleExecutableArchitectureI386", NSBundleExecutableArchitectureI386},
-    {"NSBundleExecutableArchitecturePPC", NSBundleExecutableArchitecturePPC},
-    {"NSBundleExecutableArchitectureX86_64", NSBundleExecutableArchitectureX86_64},
-    {"NSBundleExecutableArchitecturePPC64", NSBundleExecutableArchitecturePPC64},
-    {NULL, 0},
-};
-
 static int lua_NSLocalizedString(lua_State *L)
 {
     luaObjC_pushNSObject(L, NSLocalizedString(luaObjC_checkNSObject(L, 1), luaObjC_checkNSObject(L, 2)));
@@ -68,7 +59,6 @@ static const luaL_Reg __luaNSBundleAPIs[] =
 
 int LuaOpenNSBundle(lua_State *L)
 {
-    luaObjC_loadGlobalConstants(L, __luaNSBundleConstants);
     luaObjC_loadGlobalFunctions(L, __luaNSBundleAPIs);
     return 0;
 }

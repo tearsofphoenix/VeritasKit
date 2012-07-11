@@ -23,17 +23,6 @@ int lua_pushGLKMatrix2(lua_State *L, GLKMatrix2 matrix)
     return 1;
 }
 
-static int lua_GLKMathDegreesToRadians(lua_State *L)
-{
-    lua_pushnumber(L, GLKMathDegreesToRadians(lua_tonumber(L, 1)));
-    return 1;
-}
-static int lua_GLKMathRadiansToDegrees(lua_State *L)
-{
-    lua_pushnumber(L, GLKMathRadiansToDegrees(lua_tonumber(L, 1)));
-    return 1;
-}
-
 static int lua_GLKMathProject(lua_State *L)
 {
     GLKVector3 *object = lua_touserdata(L, 1);
@@ -107,10 +96,8 @@ static int lua_NSStringFromGLKQuaternion(lua_State *L)
 #endif
 
 
-static const luaL_Reg __luaGLKMathUtilsAPIs[] = {
-    {"GLKMathDegreesToRadians", lua_GLKMathDegreesToRadians},
-    {"GLKMathRadiansToDegrees", lua_GLKMathRadiansToDegrees},
-
+static const luaL_Reg __luaGLKMathUtilsAPIs[] = 
+{
     {"GLKMathProject", lua_GLKMathProject},
     {"GLKMathUnproject", lua_GLKMathUnproject},
 

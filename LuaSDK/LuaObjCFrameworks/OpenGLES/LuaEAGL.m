@@ -11,17 +11,6 @@
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
 #import "LuaObjCAuxiliary.h"
-#import "LuaOpenGLES.h"
-
-static const LuaSDKConst __luaEAGLConstants[] = 
-{
-    {"EAGL_MAJOR_VERSION", EAGL_MAJOR_VERSION},
-    {"EAGL_MINOR_VERSION", EAGL_MINOR_VERSION},
-    {"kEAGLRenderingAPIOpenGLES1", kEAGLRenderingAPIOpenGLES1},
-    {"kEAGLRenderingAPIOpenGLES2", kEAGLRenderingAPIOpenGLES2},
-    {NULL, 0},
-};
-
 
 static int _luaObjC_EAGLGetVersion(lua_State *L)
 {
@@ -42,9 +31,7 @@ static const luaL_Reg __luaObjC_EAGL_Functions[] =
 
 int LuaOpenEAGL(lua_State *L)
 {
-    luaObjC_loadGlobalConstants(L, __luaEAGLConstants);
     luaObjC_loadGlobalFunctions(L, __luaObjC_EAGL_Functions);
-    LuaOpenGLES(L);
     
     return 0;
 }

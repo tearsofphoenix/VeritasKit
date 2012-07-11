@@ -11,24 +11,6 @@
 #import "LuaObjCInternal.h"
 #import "LuaCGGeometry.h"
 
-static int lua_UIGraphicsGetCurrentContext(lua_State *L)
-{
-    lua_pushlightuserdata(L, UIGraphicsGetCurrentContext());
-    return 1;
-}
-
-static int lua_UIGraphicsPushContext(lua_State *L)
-{
-    UIGraphicsPushContext(lua_touserdata(L, 1));
-    return 0;
-}
-
-static int lua_UIGraphicsPopContext(lua_State *L)
-{
-    UIGraphicsPopContext();
-    return 0;
-}
-
 static int lua_UIGraphicsBeginImageContext(lua_State *L)
 {
     CGSize *size = lua_touserdata(L, 2);
@@ -43,18 +25,6 @@ static int lua_UIGraphicsBeginImageContextWithOptions(lua_State *L)
     CGFloat scale = lua_tonumber(L, 3);
     
     UIGraphicsBeginImageContextWithOptions(*size, opaque, scale);
-    return 0;
-}
-
-static int lua_UIGraphicsGetImageFromCurrentImageContext(lua_State *L)
-{
-    lua_pushlightuserdata(L, UIGraphicsGetImageFromCurrentImageContext());
-    return 1;
-}
-
-static int lua_UIGraphicsEndImageContext(lua_State *L)
-{
-    UIGraphicsEndImageContext();
     return 0;
 }
 
@@ -73,18 +43,6 @@ static int lua_UIGraphicsBeginPDFContextToData(lua_State *L)
     CGRect *bounds = lua_touserdata(L, 2);
     NSDictionary *documentInfo = lua_touserdata(L, 3);
     UIGraphicsBeginPDFContextToData(data, *bounds, documentInfo);
-    return 0;
-}
-
-static int lua_UIGraphicsEndPDFContext(lua_State *L)
-{
-    UIGraphicsEndPDFContext();
-    return 0;
-}
-
-static int lua_UIGraphicsBeginPDFPage(lua_State *L)
-{
-    UIGraphicsBeginPDFPage();
     return 0;
 }
 
@@ -166,17 +124,10 @@ static const luaL_Reg __LuaUIGraphicsAPIs[] =
     {"UIRectFrameUsingBlendMode", lua_UIRectFrameUsingBlendMode},
     {"UIRectFrame", lua_UIRectFrame},
     {"UIRectClip", lua_UIRectClip},
-    {"UIGraphicsGetCurrentContext", lua_UIGraphicsGetCurrentContext},
-    {"UIGraphicsPushContext", lua_UIGraphicsPushContext},
-    {"UIGraphicsPopContext", lua_UIGraphicsPopContext},
     {"UIGraphicsBeginImageContext", lua_UIGraphicsBeginImageContext},
     {"UIGraphicsBeginImageContextWithOptions", lua_UIGraphicsBeginImageContextWithOptions},
-    {"UIGraphicsGetImageFromCurrentImageContext", lua_UIGraphicsGetImageFromCurrentImageContext},
-    {"UIGraphicsEndImageContext", lua_UIGraphicsEndImageContext},
     {"UIGraphicsBeginPDFContextToFile", lua_UIGraphicsBeginPDFContextToFile},
     {"UIGraphicsBeginPDFContextToData", lua_UIGraphicsBeginPDFContextToData},
-    {"UIGraphicsEndPDFContext", lua_UIGraphicsEndPDFContext},
-    {"UIGraphicsBeginPDFPage", lua_UIGraphicsBeginPDFPage},
     {"UIGraphicsBeginPDFPageWithInfo", lua_UIGraphicsBeginPDFPageWithInfo},
     {"UIGraphicsGetPDFContextBounds", lua_UIGraphicsGetPDFContextBounds},
     {"UIGraphicsSetPDFContextURLForRect", lua_UIGraphicsSetPDFContextURLForRect},

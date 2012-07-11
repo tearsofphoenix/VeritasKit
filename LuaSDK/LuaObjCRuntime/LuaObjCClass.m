@@ -18,7 +18,7 @@
 
 #import <objc/runtime.h>
 
-#import "lua.h"
+#import "lauxlib.h"
 
 #import "LuaObjCRecordTable.h"
 #import "LuaBridgeSupport.h"
