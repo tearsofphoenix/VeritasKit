@@ -29,6 +29,7 @@
 
 #import "LuaObjCAuxiliary.h"
 #import "luasdk_utilities.h"
+#import "luajit.h"
 
 static LuaEngineService *g_engine = nil;
 
@@ -160,6 +161,8 @@ static void LuaEngine_initialize(LuaEngineService *self,
     //init parser state
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
+    luaJIT_setmode(parserStateRef, 0, LUAJIT_MODE_ENGINE);
+    
     LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
     //luaopen_foundation(parserStateRef);
     internal->parserState = parserStateRef;

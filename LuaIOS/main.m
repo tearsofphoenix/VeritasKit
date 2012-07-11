@@ -11,6 +11,7 @@
 #import "LuaObjCProfile.h"
 #import "ffi.h"
 #import <objc/runtime.h>
+#import "luajit.h"
 
 static const char * _testString = "你好";
 
