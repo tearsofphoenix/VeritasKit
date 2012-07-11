@@ -62,41 +62,40 @@ What we know
                   return [NSString stringWithUTF8String: aString];
                }
 
-static void testFFI(void)
-{
-    Class metaClass = objc_getClass("NSString");
-    SEL selector = @selector(stringWithUTF8String:);
+               static void testFFI(void)
+               {
+                  Class metaClass = objc_getClass("NSString");
+                  SEL selector = @selector(stringWithUTF8String:);
 
-    IMP impRef = class_getMethodImplementation(objc_getMetaClass("NSString"), selector);
+                  IMP impRef = class_getMethodImplementation(objc_getMetaClass("NSString"), selector);
      
-    ffi_cif cif;
-    ffi_type *argTypes[3];
-    void *args[3];
+                  ffi_cif cif;
+                  ffi_type *argTypes[3];
+                  void *args[3];
 
+                  /* Initialize the argument info vectors */
+                  argTypes[0] = &ffi_type_pointer;
+                  argTypes[1] = &ffi_type_pointer;
+                  argTypes[2] = &ffi_type_pointer;
     
-    /* Initialize the argument info vectors */
-    argTypes[0] = &ffi_type_pointer;
-    argTypes[1] = &ffi_type_pointer;
-    argTypes[2] = &ffi_type_pointer;
-    
-    args[0] = &metaClass;
-    args[1] = &selector;
-    args[2] = &_testString;
+                  args[0] = &metaClass;
+                  args[1] = &selector;
+                  args[2] = &_testString;
       
-    /* Initialize the cif */
-    if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, 3,
-                     &ffi_type_pointer, argTypes) == FFI_OK)
-    {
-        NSString *returnValue = nil;
-        ffi_call(&cif, FFI_FN(impRef), &returnValue, args);
-        //printf("returnValue: %s\n", [returnValue UTF8String]);
-    }
-}
+                  /* Initialize the cif */
+                  if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, 3, &ffi_type_pointer, argTypes) == FFI_OK)
+                  {
+                        NSString *returnValue = nil;
+                        ffi_call(&cif, FFI_FN(impRef), &returnValue, args);
+                        //printf("returnValue: %s\n", [returnValue UTF8String]);
+                  }
+               }
 
-static void testLuaCall(void)
-{
-    static NSString * const sourceCode = @"local invoke = function() local a = [NSString stringWithUTF8String:\"你好\"] [a release] end\n"
+               static void testLuaCall(void)
+               {
+                     static NSString * const sourceCode = @"local invoke = function() local a = [NSString stringWithUTF8String:\"你好\"] [a release] end\n"
                                          "testLuaCall = function() for i=1, 100000 do invoke() end end";
     
-    LuaCall(sourceCode, @"testLuaCall", nil, 0, 0, nil);
-}</code></pre>
+                     LuaCall(sourceCode, @"testLuaCall", nil, 0, 0, nil);
+               }
+   </code></pre>
