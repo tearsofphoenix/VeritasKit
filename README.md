@@ -32,6 +32,7 @@ What we know
 1. I have used this framework in one of my comercial project, it works well
 2. Becnmark test result on iPod Touch 4, software version: 5.1.1 :
       run +[NSString stringWithUTF8String:] 100,000 times, average cost
+
       NSInvocation: 2.621619s
                ffi: 1.007282s
           Lua-Call: 18.348168s
