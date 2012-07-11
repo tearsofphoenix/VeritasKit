@@ -19,7 +19,6 @@ static void luaObjC_loadClassList(lua_State *L, const char* classList[])
 {
     if (classList)
     {
-
         NSUInteger iLooper = 0;
         const char* classNameLooper = classList[iLooper];
         Class classLooper = objc_getClass(classNameLooper);
@@ -126,7 +125,7 @@ void stackDump (lua_State *L)
             }
             case LUA_TBOOLEAN:
             {
-                printf("%d: %s\n",i,lua_toboolean(L, i) ? "true" : "false");
+                printf("%d: %s\n", i, lua_toboolean(L, i) ? "true" : "false");
                 break;
             }
             case LUA_TNUMBER:
