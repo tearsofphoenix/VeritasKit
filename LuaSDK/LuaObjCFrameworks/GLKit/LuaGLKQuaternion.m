@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaGLKQuaternion.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -41,6 +41,7 @@ static int lua_GLKQuaternionMakeWithVector3(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_GLKQuaternionMakeWithArray(lua_State *L)
 {
     float *array = NULL;
@@ -48,6 +49,7 @@ static int lua_GLKQuaternionMakeWithArray(lua_State *L)
     lua_pushGLKQuaternion(L, GLKQuaternionMakeWithArray(array));
     return 1;
 }
+#endif
 
 static int lua_GLKQuaternionMakeWithAngleAndAxis(lua_State *L)
 {
@@ -187,7 +189,9 @@ static int lua_GLKQuaternionRotateVector4Array(lua_State *L)
 static const luaL_Reg __LuaGLKQuaternionAPIs[] = {
     {"GLKQuaternionMake", lua_GLKQuaternionMake},
     {"GLKQuaternionMakeWithVector3", lua_GLKQuaternionMakeWithVector3},
+#if 0
     {"GLKQuaternionMakeWithArray", lua_GLKQuaternionMakeWithArray},
+#endif
     {"GLKQuaternionMakeWithAngleAndAxis", lua_GLKQuaternionMakeWithAngleAndAxis},
     {"GLKQuaternionMakeWithAngleAndVector3Axis", lua_GLKQuaternionMakeWithAngleAndVector3Axis},
     {"GLKQuaternionMakeWithMatrix3", lua_GLKQuaternionMakeWithMatrix3},

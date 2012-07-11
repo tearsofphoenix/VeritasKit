@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSAttributedString_METANAME	"NSAttributedString"
 LUAMOD_API int (LuaOpenNSAttributedString)(lua_State *L);
 #include <Foundation/NSAttributedString.h>

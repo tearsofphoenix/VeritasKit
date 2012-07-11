@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIStringDrawing_METANAME	"UIStringDrawing"
 LUAMOD_API int (LuaOpenUIStringDrawing)(lua_State *L);
 #include <UIKit/UIStringDrawing.h>

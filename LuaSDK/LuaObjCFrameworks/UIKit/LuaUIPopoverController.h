@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIPopoverController_METANAME	"UIPopoverController"
 LUAMOD_API int (LuaOpenUIPopoverController)(lua_State *L);
 #include <UIKit/UIPopoverController.h>

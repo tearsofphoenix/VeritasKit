@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSTimeZone_METANAME	"NSTimeZone"
 LUAMOD_API int (LuaOpenNSTimeZone)(lua_State *L);
 #include <Foundation/NSTimeZone.h>

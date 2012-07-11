@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSURLCache_METANAME	"NSURLCache"
 LUAMOD_API int (LuaOpenNSURLCache)(lua_State *L);
 #include <Foundation/NSURLCache.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIViewController_METANAME	"UIViewController"
 LUAMOD_API int (LuaOpenUIViewController)(lua_State *L);
 #include <UIKit/UIViewController.h>

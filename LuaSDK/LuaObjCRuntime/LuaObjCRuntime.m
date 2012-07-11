@@ -12,7 +12,7 @@
 
 #import "luasdk_utilities.h"
 
-#import "lapi.h"
+#import "lauxlib.h"
 
 #import "LuaObjCClass.h"
 
@@ -552,7 +552,7 @@ static int luaObjC_callBlockObject(lua_State *L)
             }
         }
 
-        if(lua_pcall(L, argCount - 1, returnCount, 0) != LUA_OK)
+        if(lua_pcall(L, argCount - 1, returnCount, 0) != LUA_NOREF)
         {
             luaObjC_throwExceptionIfError(L);
         }

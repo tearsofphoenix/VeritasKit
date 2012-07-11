@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSNumberFormatter_METANAME	"NSNumberFormatter"
 LUAMOD_API int (LuaOpenNSNumberFormatter)(lua_State *L);
 #include <Foundation/NSNumberFormatter.h>

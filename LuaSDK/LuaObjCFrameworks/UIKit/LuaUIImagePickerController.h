@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIImagePickerController_METANAME	"UIImagePickerController"
 LUAMOD_API int (LuaOpenUIImagePickerController)(lua_State *L);
 #include <UIKit/UIImagePickerController.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIWebView_METANAME	"UIWebView"
 LUAMOD_API int (LuaOpenUIWebView)(lua_State *L);
 #include <UIKit/UIWebView.h>

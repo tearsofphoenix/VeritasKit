@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaGLKEffectPropertyFog.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"

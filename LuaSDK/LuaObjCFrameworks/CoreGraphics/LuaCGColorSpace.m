@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGColorSpace.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -50,6 +50,7 @@ static int lua_CGColorSpaceCreateDeviceCMYK(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_CGColorSpaceCreateCalibratedGray(lua_State *L)
 {
     CGFloat *whitePoint = NULL;
@@ -88,12 +89,6 @@ static int lua_CGColorSpaceCreateLab(lua_State *L)
     return 1;
 }
 
-static int lua_CGColorSpaceCreateWithICCProfile(lua_State *L)
-{
-    lua_pushlightuserdata(L, CGColorSpaceCreateWithICCProfile(lua_touserdata(L, 1)));
-    return 1;
-}
-
 static int lua_CGColorSpaceCreateICCBased(lua_State *L)
 {
     size_t nComponents = lua_tointeger(L, 1);
@@ -102,6 +97,14 @@ static int lua_CGColorSpaceCreateICCBased(lua_State *L)
     CGDataProviderRef profile = lua_touserdata(L, 3);
     CGColorSpaceRef alternate = lua_touserdata(L, 4);
     lua_pushlightuserdata(L, CGColorSpaceCreateICCBased(nComponents, range, profile, alternate));
+    return 1;
+}
+
+#endif
+
+static int lua_CGColorSpaceCreateWithICCProfile(lua_State *L)
+{
+    lua_pushlightuserdata(L, CGColorSpaceCreateWithICCProfile(lua_touserdata(L, 1)));
     return 1;
 }
 
@@ -184,11 +187,13 @@ static const luaL_Reg __LuaCGColorSpaceAPIs[] =
     {"CGColorSpaceCreateDeviceGray", lua_CGColorSpaceCreateDeviceGray},
     {"CGColorSpaceCreateDeviceRGB", lua_CGColorSpaceCreateDeviceRGB},
     {"CGColorSpaceCreateDeviceCMYK", lua_CGColorSpaceCreateDeviceCMYK},
+#if 0
     {"CGColorSpaceCreateCalibratedGray", lua_CGColorSpaceCreateCalibratedGray},
     {"CGColorSpaceCreateCalibratedRGB", lua_CGColorSpaceCreateCalibratedRGB},
     {"CGColorSpaceCreateLab", lua_CGColorSpaceCreateLab},
-    {"CGColorSpaceCreateWithICCProfile", lua_CGColorSpaceCreateWithICCProfile},
     {"CGColorSpaceCreateICCBased", lua_CGColorSpaceCreateICCBased},
+#endif
+    {"CGColorSpaceCreateWithICCProfile", lua_CGColorSpaceCreateWithICCProfile},
     {"CGColorSpaceCreateIndexed", lua_CGColorSpaceCreateIndexed},
     {"CGColorSpaceCreatePattern", lua_CGColorSpaceCreatePattern},
     {"CGColorSpaceCreateWithName", lua_CGColorSpaceCreateWithName},

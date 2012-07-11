@@ -111,7 +111,7 @@ static LuaStateRef _luaEngine_createLuaState(void)
         exit(EXIT_FAILURE);
     }    
     
-    luaL_checkversion(luaStateRef);
+    //luaL_checkversion(luaStateRef);
     lua_gc(luaStateRef, LUA_GCSTOP, 0);  /* stop collector during initialization */
     
     luaL_openlibs(luaStateRef);  

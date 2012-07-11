@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIImage_METANAME	"UIImage"
 LUAMOD_API int (LuaOpenUIImage)(lua_State *L);
 #include <UIKit/UIImage.h>

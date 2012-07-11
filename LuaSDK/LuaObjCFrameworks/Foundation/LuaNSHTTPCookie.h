@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSHTTPCookie_METANAME	"NSHTTPCookie"
 LUAMOD_API int (LuaOpenNSHTTPCookie)(lua_State *L);
 #include <Foundation/NSHTTPCookie.h>

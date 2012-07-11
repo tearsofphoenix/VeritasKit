@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIProgressView_METANAME	"UIProgressView"
 LUAMOD_API int (LuaOpenUIProgressView)(lua_State *L);
 #include <UIKit/UIProgressView.h>

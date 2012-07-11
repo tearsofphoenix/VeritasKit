@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_GLKEffectPropertyTexture_METANAME	"GLKEffectPropertyTexture"
 LUAMOD_API int (LuaOpenGLKEffectPropertyTexture)(lua_State *L);
 #include <GLKit/GLKEffectPropertyTexture.h>

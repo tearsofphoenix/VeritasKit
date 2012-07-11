@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSPort_METANAME	"NSPort"
 LUAMOD_API int (LuaOpenNSPort)(lua_State *L);
 #include <Foundation/NSPort.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_GLKEffects_METANAME	"GLKEffects"
 LUAMOD_API int (LuaOpenGLKEffects)(lua_State *L);
 #include <GLKit/GLKEffects.h>

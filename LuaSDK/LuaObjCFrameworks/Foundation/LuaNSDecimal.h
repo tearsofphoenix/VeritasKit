@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSDecimal_METANAME	"NSDecimal"
 LUAMOD_API int (LuaOpenNSDecimal)(lua_State *L);
 #include <Foundation/NSDecimal.h>

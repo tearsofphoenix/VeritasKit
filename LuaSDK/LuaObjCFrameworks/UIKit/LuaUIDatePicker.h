@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIDatePicker_METANAME	"UIDatePicker"
 LUAMOD_API int (LuaOpenUIDatePicker)(lua_State *L);
 #include <UIKit/UIDatePicker.h>

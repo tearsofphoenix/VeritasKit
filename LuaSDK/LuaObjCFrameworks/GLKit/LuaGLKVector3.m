@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaGLKVector3.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -29,6 +29,7 @@ static int lua_GLKVector3Make(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_GLKVector3MakeWithArray(lua_State *L)
 {
     float *array = NULL;
@@ -37,6 +38,7 @@ static int lua_GLKVector3MakeWithArray(lua_State *L)
     lua_pushGLKVector3(L, GLKVector3MakeWithArray(array));
     return 1;
 }
+#endif
 
 static int lua_GLKVector3Negate(lua_State *L)
 {
@@ -226,9 +228,12 @@ static int lua_GLKVector3Project(lua_State *L)
     return 1;
 }
 
-static const luaL_Reg __LuaGLKVector3APIs[] = {
+static const luaL_Reg __LuaGLKVector3APIs[] = 
+{
     {"GLKVector3Make", lua_GLKVector3Make},
+#if 0
     {"GLKVector3MakeWithArray", lua_GLKVector3MakeWithArray},
+#endif
     {"GLKVector3Negate", lua_GLKVector3Negate},
     {"GLKVector3Add", lua_GLKVector3Add},
     {"GLKVector3Subtract", lua_GLKVector3Subtract},

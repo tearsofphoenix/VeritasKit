@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGGradient_METANAME	"CGGradient"
 LUAMOD_API int (LuaOpenCGGradient)(lua_State *L);
 #include <CoreGraphics/CGGradient.h>

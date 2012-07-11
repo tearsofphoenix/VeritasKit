@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIActivityIndicatorView_METANAME	"UIActivityIndicatorView"
 LUAMOD_API int (LuaOpenUIActivityIndicatorView)(lua_State *L);
 #include <UIKit/UIActivityIndicatorView.h>

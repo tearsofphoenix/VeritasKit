@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGDataProvider_METANAME	"CGDataProvider"
 LUAMOD_API int (LuaOpenCGDataProvider)(lua_State *L);
 #include <CoreGraphics/CGDataProvider.h>

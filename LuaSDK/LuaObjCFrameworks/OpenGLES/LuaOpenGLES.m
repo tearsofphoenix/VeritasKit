@@ -9,6 +9,7 @@
 #import "LuaOpenGLES.h"
 #import "luasdk_utilities.h"
 #import "LuaObjCAuxiliary.h"
+#import "lauxlib.h"
 
 static const LuaSDKConst __luaObjCOpenGLESConstants[] = 
 {

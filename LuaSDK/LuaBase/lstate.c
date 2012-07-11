@@ -229,26 +229,6 @@ static void close_state (lua_State *L) {
   (*g->frealloc)(g->ud, fromstate(L), sizeof(LG), 0);  /* free main block */
 }
 
-
-LUA_API lua_State *lua_newthread (lua_State *L) {
-  lua_State *L1;
-  lua_lock(L);
-  luaC_checkGC(L);
-  L1 = &luaC_newobj(L, LUA_TTHREAD, sizeof(LX), NULL, offsetof(LX, l))->th;
-  setthvalue(L, L->top, L1);
-  api_incr_top(L);
-  preinit_state(L1, G(L));
-  L1->hookmask = L->hookmask;
-  L1->basehookcount = L->basehookcount;
-  L1->hook = L->hook;
-  resethookcount(L1);
-  luai_userstatethread(L, L1);
-  stack_init(L1, L);  /* init stack */
-  lua_unlock(L);
-  return L1;
-}
-
-
 void luaE_freethread (lua_State *L, lua_State *L1) {
   LX *l = fromstate(L1);
   luaF_close(L1, L1->stack);  /* close all upvalues for this thread */
@@ -258,65 +238,5 @@ void luaE_freethread (lua_State *L, lua_State *L1) {
   luaM_free(L, l);
 }
 
-
-LUA_API lua_State *lua_newstate (lua_Alloc f, void *ud) {
-  int i;
-  lua_State *L;
-  global_State *g;
-  LG *l = cast(LG *, (*f)(ud, NULL, LUA_TTHREAD, sizeof(LG)));
-  if (l == NULL) return NULL;
-  L = &l->l.l;
-  g = &l->g;
-  L->next = NULL;
-  L->tt = LUA_TTHREAD;
-  g->currentwhite = bit2mask(WHITE0BIT, FIXEDBIT);
-  L->marked = luaC_white(g);
-  g->gckind = KGC_NORMAL;
-  preinit_state(L, g);
-  g->frealloc = f;
-  g->ud = ud;
-  g->mainthread = L;
-  g->seed = makeseed(L);
-  g->uvhead.u.l.prev = &g->uvhead;
-  g->uvhead.u.l.next = &g->uvhead;
-  g->gcrunning = 0;  /* no GC while building state */
-  g->GCestimate = 0;
-  g->strt.size = 0;
-  g->strt.nuse = 0;
-  g->strt.hash = NULL;
-  setnilvalue(&g->l_registry);
-  luaZ_initbuffer(L, &g->buff);
-  g->panic = NULL;
-  g->version = lua_version(NULL);
-  g->gcstate = GCSpause;
-  g->allgc = NULL;
-  g->finobj = NULL;
-  g->tobefnz = NULL;
-  g->sweepgc = g->sweepfin = NULL;
-  g->gray = g->grayagain = NULL;
-  g->weak = g->ephemeron = g->allweak = NULL;
-  g->totalbytes = sizeof(LG);
-  g->GCdebt = 0;
-  g->gcpause = LUAI_GCPAUSE;
-  g->gcmajorinc = LUAI_GCMAJOR;
-  g->gcstepmul = LUAI_GCMUL;
-  for (i=0; i < LUA_NUMTAGS; i++) g->mt[i] = NULL;
-  if (luaD_rawrunprotected(L, f_luaopen, NULL) != LUA_OK) {
-    /* memory allocation error: free partial state */
-    close_state(L);
-    L = NULL;
-  }
-  else
-    luai_userstateopen(L);
-  return L;
-}
-
-
-LUA_API void lua_close (lua_State *L) {
-  L = G(L)->mainthread;  /* only the main thread can be closed */
-  lua_lock(L);
-  luai_userstateclose(L);
-  close_state(L);
-}
 
 

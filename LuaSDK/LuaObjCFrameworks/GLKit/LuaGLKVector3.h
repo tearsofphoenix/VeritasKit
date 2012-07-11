@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #include <GLKit/GLKVector3.h>
 
     #define LUA_GLKVector3_METANAME	"GLKVector3"

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSKeyValueObserving_METANAME	"NSKeyValueObserving"
 LUAMOD_API int (LuaOpenNSKeyValueObserving)(lua_State *L);
 #include <Foundation/NSKeyValueObserving.h>

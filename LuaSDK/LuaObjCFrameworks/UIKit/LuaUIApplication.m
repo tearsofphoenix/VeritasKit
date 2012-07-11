@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIApplication.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -44,7 +44,7 @@ static int lua_UIApplicationMain(lua_State *L)
 {
     int argc = luaL_checkinteger(L, 1);
     const char **argv =  NULL;
-    luasdk_get_string_array(L, 2, &argv, NULL);
+
     NSString * principalClassName = luaObjC_checkNSObject(L, 3);
     NSString * delegateClassName = luaObjC_checkNSObject(L, 4);
     

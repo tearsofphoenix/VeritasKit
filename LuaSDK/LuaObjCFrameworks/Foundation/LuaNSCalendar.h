@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSCalendar_METANAME	"NSCalendar"
 LUAMOD_API int (LuaOpenNSCalendar)(lua_State *L);
 #include <Foundation/NSCalendar.h>

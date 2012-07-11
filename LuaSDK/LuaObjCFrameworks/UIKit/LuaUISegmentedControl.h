@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UISegmentedControl_METANAME	"UISegmentedControl"
 LUAMOD_API int (LuaOpenUISegmentedControl)(lua_State *L);
 #include <UIKit/UISegmentedControl.h>

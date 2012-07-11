@@ -20,6 +20,8 @@
 
 #import "lua.h"
 
+#import "lauxlib.h"
+
 #import "LuaObjCRecordTable.h"
 #import "LuaBridgeSupport.h"
 #import "luasdk_utilities.h"

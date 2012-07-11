@@ -312,12 +312,4 @@ static const luaL_Reg syslib[] = {
   {NULL, NULL}
 };
 
-/* }====================================================== */
-
-
-
-LUAMOD_API int luaopen_os (lua_State *L) {
-  luaL_newlib(L, syslib);
-  return 1;
-}
 

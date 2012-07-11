@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #include <QuartzCore/CATransform3D.h>
 
 #define LUA_CATransform3D_METANAME	"CATransform3D"

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIButton_METANAME	"UIButton"
 LUAMOD_API int (LuaOpenUIButton)(lua_State *L);
 #include <UIKit/UIButton.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIMenuController_METANAME	"UIMenuController"
 LUAMOD_API int (LuaOpenUIMenuController)(lua_State *L);
 #include <UIKit/UIMenuController.h>

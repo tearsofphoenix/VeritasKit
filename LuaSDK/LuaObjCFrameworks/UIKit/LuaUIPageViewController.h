@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIPageViewController_METANAME	"UIPageViewController"
 LUAMOD_API int (LuaOpenUIPageViewController)(lua_State *L);
 #include <UIKit/UIPageViewController.h>

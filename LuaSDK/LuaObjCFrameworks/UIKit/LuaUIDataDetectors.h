@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIDataDetectors_METANAME	"UIDataDetectors"
 LUAMOD_API int (LuaOpenUIDataDetectors)(lua_State *L);
 #include <UIKit/UIDataDetectors.h>

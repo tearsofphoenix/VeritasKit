@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGPattern_METANAME	"CGPattern"
 LUAMOD_API int (LuaOpenCGPattern)(lua_State *L);
 #include <CoreGraphics/CGPattern.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIPrintInfo_METANAME	"UIPrintInfo"
 LUAMOD_API int (LuaOpenUIPrintInfo)(lua_State *L);
 #include <UIKit/UIPrintInfo.h>

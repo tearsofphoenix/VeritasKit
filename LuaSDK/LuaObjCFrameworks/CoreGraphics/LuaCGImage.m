@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGImage.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -46,6 +46,7 @@ static int lua_CGImageGetTypeID(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_CGImageCreate(lua_State *L)
 {
     CGFloat *decode = NULL;
@@ -72,12 +73,6 @@ static int lua_CGImageMaskCreate(lua_State *L)
     return 1;
 }
 
-static int lua_CGImageCreateCopy(lua_State *L)
-{
-    lua_pushlightuserdata(L, CGImageCreateCopy(lua_touserdata(L, 1)));
-    return 1;
-}
-
 static int lua_CGImageCreateWithJPEGDataProvider(lua_State *L)
 {
     CGFloat *decode = NULL;
@@ -96,6 +91,14 @@ static int lua_CGImageCreateWithPNGDataProvider(lua_State *L)
     bool shouldInterpolate = lua_toboolean(L, 2);
     CGColorRenderingIntent intent = lua_tointeger(L, 3);
     lua_pushlightuserdata(L, CGImageCreateWithPNGDataProvider(lua_touserdata(L, 1), decode, shouldInterpolate, intent));
+    return 1;
+}
+
+#endif
+
+static int lua_CGImageCreateCopy(lua_State *L)
+{
+    lua_pushlightuserdata(L, CGImageCreateCopy(lua_touserdata(L, 1)));
     return 1;
 }
 
@@ -216,11 +219,13 @@ static int lua_CGImageGetBitmapInfo(lua_State *L)
 
 static const luaL_Reg __LuaCGImageAPIs[] = {
     {"CGImageGetTypeID", lua_CGImageGetTypeID},
+#if 0 
     {"CGImageCreate", lua_CGImageCreate},
     {"CGImageMaskCreate", lua_CGImageMaskCreate},
-    {"CGImageCreateCopy", lua_CGImageCreateCopy},
     {"CGImageCreateWithJPEGDataProvider", lua_CGImageCreateWithJPEGDataProvider},
     {"CGImageCreateWithPNGDataProvider", lua_CGImageCreateWithPNGDataProvider},
+#endif
+    {"CGImageCreateCopy", lua_CGImageCreateCopy},
     {"CGImageCreateWithImageInRect", lua_CGImageCreateWithImageInRect},
     {"CGImageCreateWithMask", lua_CGImageCreateWithMask},
     {"CGImageCreateWithMaskingColors", lua_CGImageCreateWithMaskingColors},

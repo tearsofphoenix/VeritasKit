@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIGestureRecognizer_METANAME	"UIGestureRecognizer"
 LUAMOD_API int (LuaOpenUIGestureRecognizer)(lua_State *L);
 #include <UIKit/UIGestureRecognizer.h>

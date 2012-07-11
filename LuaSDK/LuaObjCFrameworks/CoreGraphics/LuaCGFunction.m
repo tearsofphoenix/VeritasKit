@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGFunction.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -17,6 +17,7 @@ static int lua_CGFunctionGetTypeID(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_CGFunctionCreate(lua_State *L)
 {
     CGFloat *domain = NULL; 
@@ -30,6 +31,8 @@ static int lua_CGFunctionCreate(lua_State *L)
     return 1;
 }
 
+#endif
+
 static int lua_CGFunctionRetain(lua_State *L)
 {
     lua_pushlightuserdata(L, CGFunctionRetain(lua_touserdata(L, 1)));
@@ -42,9 +45,12 @@ static int lua_CGFunctionRelease(lua_State *L)
     return 0;
 }
 
-static const luaL_Reg __LuaCGFunctionAPIs[] = {
+static const luaL_Reg __LuaCGFunctionAPIs[] = 
+{
     {"CGFunctionGetTypeID", lua_CGFunctionGetTypeID},
+#if 0
     {"CGFunctionCreate", lua_CGFunctionCreate},
+#endif
     {"CGFunctionRetain", lua_CGFunctionRetain},
     {"CGFunctionRelease", lua_CGFunctionRelease},
     {NULL, 0},

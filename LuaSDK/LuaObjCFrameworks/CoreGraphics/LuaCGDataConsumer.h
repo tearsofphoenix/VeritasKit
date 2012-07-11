@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGDataConsumer_METANAME	"CGDataConsumer"
 LUAMOD_API int (LuaOpenCGDataConsumer)(lua_State *L);
 #include <CoreGraphics/CGDataConsumer.h>

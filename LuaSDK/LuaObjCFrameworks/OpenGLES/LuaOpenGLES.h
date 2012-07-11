@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
     LUAMOD_API int (LuaOpenGLES)(lua_State *L);
     
 #include <OpenGLES/ES2/gl.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_GLKView_METANAME	"GLKView"
 LUAMOD_API int (LuaOpenGLKView)(lua_State *L);
 #include <GLKit/GLKView.h>

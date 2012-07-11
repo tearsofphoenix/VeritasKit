@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UITextInputTraits_METANAME	"UITextInputTraits"
 LUAMOD_API int (LuaOpenUITextInputTraits)(lua_State *L);
 #include <UIKit/UITextInputTraits.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIControl_METANAME	"UIControl"
 LUAMOD_API int (LuaOpenUIControl)(lua_State *L);
 #include <UIKit/UIControl.h>

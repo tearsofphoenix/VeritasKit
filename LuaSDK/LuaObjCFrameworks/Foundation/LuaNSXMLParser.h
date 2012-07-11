@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSXMLParser_METANAME	"NSXMLParser"
 LUAMOD_API int (LuaOpenNSXMLParser)(lua_State *L);
 #include <Foundation/NSXMLParser.h>

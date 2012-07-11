@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGPDFDocument_METANAME	"CGPDFDocument"
 LUAMOD_API int (LuaOpenCGPDFDocument)(lua_State *L);
 #include <CoreGraphics/CGPDFDocument.h>

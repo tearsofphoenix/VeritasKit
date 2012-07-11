@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSUbiquitousKeyValueStore_METANAME	"NSUbiquitousKeyValueStore"
 LUAMOD_API int (LuaOpenNSUbiquitousKeyValueStore)(lua_State *L);
 #include <Foundation/NSUbiquitousKeyValueStore.h>

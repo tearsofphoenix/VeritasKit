@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSMetadata_METANAME	"NSMetadata"
 LUAMOD_API int (LuaOpenNSMetadata)(lua_State *L);
 #include <Foundation/NSMetadata.h>

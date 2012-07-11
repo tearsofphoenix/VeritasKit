@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGBitmapContext_METANAME	"CGBitmapContext"
 LUAMOD_API int (LuaOpenCGBitmapContext)(lua_State *L);
 #include <CoreGraphics/CGBitmapContext.h>

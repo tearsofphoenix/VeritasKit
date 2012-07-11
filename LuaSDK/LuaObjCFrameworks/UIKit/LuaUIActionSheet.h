@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIActionSheet_METANAME	"UIActionSheet"
 LUAMOD_API int (LuaOpenUIActionSheet)(lua_State *L);
 #include <UIKit/UIActionSheet.h>

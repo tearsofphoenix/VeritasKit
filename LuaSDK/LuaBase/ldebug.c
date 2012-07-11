@@ -47,56 +47,6 @@ static int currentline (CallInfo *ci) {
 }
 
 
-/*
-** this function can be called asynchronous (e.g. during a signal)
-*/
-LUA_API int lua_sethook (lua_State *L, lua_Hook func, int mask, int count) {
-  if (func == NULL || mask == 0) {  /* turn off hooks? */
-    mask = 0;
-    func = NULL;
-  }
-  if (isLua(L->ci))
-    L->oldpc = L->ci->u.l.savedpc;
-  L->hook = func;
-  L->basehookcount = count;
-  resethookcount(L);
-  L->hookmask = cast_byte(mask);
-  return 1;
-}
-
-
-LUA_API lua_Hook lua_gethook (lua_State *L) {
-  return L->hook;
-}
-
-
-LUA_API int lua_gethookmask (lua_State *L) {
-  return L->hookmask;
-}
-
-
-LUA_API int lua_gethookcount (lua_State *L) {
-  return L->basehookcount;
-}
-
-
-LUA_API int lua_getstack (lua_State *L, int level, lua_Debug *ar) {
-  int status;
-  CallInfo *ci;
-  if (level < 0) return 0;  /* invalid (negative) level */
-  lua_lock(L);
-  for (ci = L->ci; level > 0 && ci != &L->base_ci; ci = ci->previous)
-    level--;
-  if (level == 0 && ci != &L->base_ci) {  /* level found? */
-    status = 1;
-    ar->i_ci = ci;
-  }
-  else status = 0;  /* no such level */
-  lua_unlock(L);
-  return status;
-}
-
-
 static const char *upvalname (Proto *p, int uv) {
   TString *s = check_exp(uv < p->sizeupvalues, p->upvalues[uv].name);
   if (s == NULL) return "?";
@@ -139,41 +89,6 @@ static const char *findlocal (lua_State *L, CallInfo *ci, int n,
   *pos = base + (n - 1);
   return name;
 }
-
-
-LUA_API const char *lua_getlocal (lua_State *L, const lua_Debug *ar, int n) {
-  const char *name;
-  lua_lock(L);
-  if (ar == NULL) {  /* information about non-active function? */
-    if (!isLfunction(L->top - 1))  /* not a Lua function? */
-      name = NULL;
-    else  /* consider live variables at function start (parameters) */
-      name = luaF_getlocalname(clLvalue(L->top - 1)->p, n, 0);
-  }
-  else {  /* active function; get information through 'ar' */
-    StkId pos = 0;  /* to avoid warnings */
-    name = findlocal(L, ar->i_ci, n, &pos);
-    if (name) {
-      setobj2s(L, L->top, pos);
-      api_incr_top(L);
-    }
-  }
-  lua_unlock(L);
-  return name;
-}
-
-
-LUA_API const char *lua_setlocal (lua_State *L, const lua_Debug *ar, int n) {
-  StkId pos = 0;  /* to avoid warnings */
-  const char *name = findlocal(L, ar->i_ci, n, &pos);
-  lua_lock(L);
-  if (name)
-    setobjs2s(L, pos, L->top - 1);
-  L->top--;  /* pop value */
-  lua_unlock(L);
-  return name;
-}
-
 
 static void funcinfo (lua_Debug *ar, Closure *cl) {
   if (noLuaClosure(cl)) {
@@ -261,38 +176,6 @@ static int auxgetinfo (lua_State *L, const char *what, lua_Debug *ar,
   }
   return status;
 }
-
-
-LUA_API int lua_getinfo (lua_State *L, const char *what, lua_Debug *ar) {
-  int status;
-  Closure *cl;
-  CallInfo *ci;
-  StkId func;
-  lua_lock(L);
-  if (*what == '>') {
-    ci = NULL;
-    func = L->top - 1;
-    api_check(L, ttisfunction(func), "function expected");
-    what++;  /* skip the '>' */
-    L->top--;  /* pop function */
-  }
-  else {
-    ci = ar->i_ci;
-    func = ci->func;
-    lua_assert(ttisfunction(ci->func));
-  }
-  cl = ttisclosure(func) ? clvalue(func) : NULL;
-  status = auxgetinfo(L, what, ar, cl, ci);
-  if (strchr(what, 'f')) {
-    setobjs2s(L, L->top, func);
-    incr_top(L);
-  }
-  if (strchr(what, 'L'))
-    collectvalidlines(L, cl);
-  lua_unlock(L);
-  return status;
-}
-
 
 /*
 ** {======================================================

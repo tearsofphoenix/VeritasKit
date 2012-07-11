@@ -6,11 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGColor.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
 
+#if 0
 static int lua_CGColorCreate(lua_State *L)
 {
     CGColorSpaceRef space = lua_touserdata(L, 1);
@@ -29,6 +30,7 @@ static int lua_CGColorCreateWithPattern(lua_State *L)
     lua_pushlightuserdata(L, CGColorCreateWithPattern(space, pattern, components));
     return 1;
 }
+#endif
 
 static int lua_CGColorCreateCopy(lua_State *L)
 {
@@ -106,8 +108,10 @@ static int lua_CGColorGetTypeID(lua_State *L)
 
 static const luaL_Reg __luaCGColorAPIs[] = 
 {
+#if 0
     {"CGColorCreate", lua_CGColorCreate},
     {"CGColorCreateWithPattern",lua_CGColorCreateWithPattern},
+#endif
     {"CGColorCreateCopy", lua_CGColorCreateCopy},
     {"CGColorCreateCopyWithAlpha", lua_CGColorCreateCopyWithAlpha},
     {"CGColorRetain", lua_CGColorRetain},

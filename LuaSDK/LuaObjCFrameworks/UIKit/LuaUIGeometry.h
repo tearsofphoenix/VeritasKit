@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #include <UIKit/UIGeometry.h>
 
     #define LUA_UIEdgeInsets_METANAME "UIEdgeInsets"

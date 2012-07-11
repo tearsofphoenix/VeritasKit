@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGShading_METANAME	"CGShading"
 LUAMOD_API int (LuaOpenCGShading)(lua_State *L);
 #include <CoreGraphics/CGShading.h>

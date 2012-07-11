@@ -11,7 +11,7 @@
 #import "LuaObjCClass.h"
 
 #import "LuaObjCAuxiliary.h"
-#import "lstate.h"
+#import "lua.h"
 #import "lauxlib.h"
 #import <objc/runtime.h>
 

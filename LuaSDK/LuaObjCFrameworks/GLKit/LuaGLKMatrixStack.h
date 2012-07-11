@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_GLKMatrixStack_METANAME	"GLKMatrixStack"
 LUAMOD_API int (LuaOpenGLKMatrixStack)(lua_State *L);
 #include <GLKit/GLKMatrixStack.h>

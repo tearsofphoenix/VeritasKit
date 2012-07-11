@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSLinguisticTagger_METANAME	"NSLinguisticTagger"
 LUAMOD_API int (LuaOpenNSLinguisticTagger)(lua_State *L);
 #include <Foundation/NSLinguisticTagger.h>

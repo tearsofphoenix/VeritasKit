@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_GLKTextureLoader_METANAME	"GLKTextureLoader"
 LUAMOD_API int (LuaOpenGLKTextureLoader)(lua_State *L);
 #include <GLKit/GLKTextureLoader.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIKITLIBNAME	"UIKit"
 LUAMOD_API int (LuaOpenUIKit)(lua_State *L);
 #include <UIKit/UIKit.h>

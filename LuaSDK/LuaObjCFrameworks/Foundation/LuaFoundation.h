@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_Foundation_METANAME	"Foundation"
 LUAMOD_API int (LuaOpenFoundation)(lua_State *L);
 #include <Foundation/Foundation.h>

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGFont.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "LuaCGGeometry.h"
@@ -132,6 +132,7 @@ static int lua_CGFontCopyVariations(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_CGFontGetGlyphAdvances(lua_State *L)
 {
     CGGlyph *glyphs = NULL;
@@ -148,6 +149,7 @@ static int lua_CGFontGetGlyphBBoxes(lua_State *L)
 //    lua_pushlightuserdata(L, CGFontGetGlyphBBoxes(lua_touserdata(L, 1)));
     return 1;
 }
+#endif
 
 static int lua_CGFontGetGlyphWithGlyphName(lua_State *L)
 {
@@ -167,6 +169,7 @@ static int lua_CGFontCanCreatePostScriptSubset(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_CGFontCreatePostScriptSubset(lua_State *L)
 {
     CFStringRef subsetName = lua_touserdata(L, 2);
@@ -188,6 +191,7 @@ static int lua_CGFontCreatePostScriptEncoding(lua_State *L)
     lua_pushlightuserdata(L, (void*)CGFontCreatePostScriptEncoding(lua_touserdata(L, 1), glyphs));
     return 1;
 }
+#endif
 
 static int lua_CGFontCopyTableTags(lua_State *L)
 {
@@ -223,13 +227,15 @@ static const luaL_Reg __LuaCGFontAPIs[] =
     {"CGFontGetStemV", lua_CGFontGetStemV},
     {"CGFontCopyVariationAxes", lua_CGFontCopyVariationAxes},
     {"CGFontCopyVariations", lua_CGFontCopyVariations},
+#if 0
     {"CGFontGetGlyphAdvances", lua_CGFontGetGlyphAdvances},
     {"CGFontGetGlyphBBoxes", lua_CGFontGetGlyphBBoxes},
+    {"CGFontCreatePostScriptSubset", lua_CGFontCreatePostScriptSubset},
+    {"CGFontCreatePostScriptEncoding", lua_CGFontCreatePostScriptEncoding},
+#endif
     {"CGFontGetGlyphWithGlyphName", lua_CGFontGetGlyphWithGlyphName},
     {"CGFontCopyGlyphNameForGlyph", lua_CGFontCopyGlyphNameForGlyph},
     {"CGFontCanCreatePostScriptSubset", lua_CGFontCanCreatePostScriptSubset},
-    {"CGFontCreatePostScriptSubset", lua_CGFontCreatePostScriptSubset},
-    {"CGFontCreatePostScriptEncoding", lua_CGFontCreatePostScriptEncoding},
     {"CGFontCopyTableTags", lua_CGFontCopyTableTags},
     {"CGFontCopyTableForTag", lua_CGFontCopyTableForTag},
     {NULL, 0},

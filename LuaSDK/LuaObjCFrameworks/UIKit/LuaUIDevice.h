@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIDevice_METANAME	"UIDevice"
 LUAMOD_API int (LuaOpenUIDevice)(lua_State *L);
 #include <UIKit/UIDevice.h>

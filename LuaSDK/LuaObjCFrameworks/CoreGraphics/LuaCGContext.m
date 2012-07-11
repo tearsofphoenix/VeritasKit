@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGContext.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -143,6 +143,7 @@ static int lua_CGContextSetMiterLimit(lua_State *L)
     return 0;
 }
 
+#if 0
 static int lua_CGContextSetLineDash(lua_State *L)
 {
     CGFloat phase = lua_tonumber(L, 2);
@@ -153,6 +154,7 @@ static int lua_CGContextSetLineDash(lua_State *L)
     CGContextSetLineDash(lua_touserdata(L, 1), phase, lengths, count);
     return 0;
 }
+#endif
 
 static int lua_CGContextSetFlatness(lua_State *L)
 {
@@ -456,6 +458,7 @@ static int lua_CGContextSetStrokeColor(lua_State *L)
     return 0;
 }
 
+#if 0 
 static int lua_CGContextSetFillPattern(lua_State *L)
 {
     CGFloat *components = NULL;
@@ -471,6 +474,9 @@ static int lua_CGContextSetStrokePattern(lua_State *L)
     CGContextSetStrokePattern(lua_touserdata(L, 1), lua_touserdata(L, 2), components);
     return 0;
 }
+
+#endif
+
 
 static int lua_CGContextSetPatternPhase(lua_State *L)
 {
@@ -675,6 +681,7 @@ static int lua_CGContextShowTextAtPoint(lua_State *L)
     return 0;
 }
 
+#if 0
 static int lua_CGContextShowGlyphs(lua_State *L)
 {
     CGGlyph *g = NULL;
@@ -692,6 +699,8 @@ static int lua_CGContextShowGlyphsAtPoint(lua_State *L)
                                lua_tonumber(L, 3), g, count);
     return 0;
 }
+
+#endif
 
 static int lua_CGContextShowGlyphsWithAdvances(lua_State *L)
 {
@@ -869,7 +878,9 @@ static const luaL_Reg __LuaCGContextAPIs[] = {
     {"CGContextSetLineCap", lua_CGContextSetLineCap},
     {"CGContextSetLineJoin", lua_CGContextSetLineJoin},
     {"CGContextSetMiterLimit", lua_CGContextSetMiterLimit},
+#if 0
     {"CGContextSetLineDash", lua_CGContextSetLineDash},
+#endif
     {"CGContextSetFlatness", lua_CGContextSetFlatness},
     {"CGContextSetAlpha", lua_CGContextSetAlpha},
     {"CGContextSetBlendMode", lua_CGContextSetBlendMode},
@@ -916,8 +927,10 @@ static const luaL_Reg __LuaCGContextAPIs[] = {
     {"CGContextSetStrokeColorSpace", lua_CGContextSetStrokeColorSpace},
     {"CGContextSetFillColor", lua_CGContextSetFillColor},
     {"CGContextSetStrokeColor", lua_CGContextSetStrokeColor},
+#if 0
     {"CGContextSetFillPattern", lua_CGContextSetFillPattern},
     {"CGContextSetStrokePattern", lua_CGContextSetStrokePattern},
+#endif
     {"CGContextSetPatternPhase", lua_CGContextSetPatternPhase},
     {"CGContextSetGrayFillColor", lua_CGContextSetGrayFillColor},
     {"CGContextSetGrayStrokeColor", lua_CGContextSetGrayStrokeColor},
@@ -947,8 +960,10 @@ static const luaL_Reg __LuaCGContextAPIs[] = {
     {"CGContextShowGlyphsAtPositions", lua_CGContextShowGlyphsAtPositions},
     {"CGContextShowText", lua_CGContextShowText},
     {"CGContextShowTextAtPoint", lua_CGContextShowTextAtPoint},
+#if 0
     {"CGContextShowGlyphs", lua_CGContextShowGlyphs},
     {"CGContextShowGlyphsAtPoint", lua_CGContextShowGlyphsAtPoint},
+#endif
     {"CGContextShowGlyphsWithAdvances", lua_CGContextShowGlyphsWithAdvances},
     {"CGContextDrawPDFPage", lua_CGContextDrawPDFPage},
     {"CGContextBeginPage", lua_CGContextBeginPage},

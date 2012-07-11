@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIToolbar_METANAME	"UIToolbar"
 LUAMOD_API int (LuaOpenUIToolbar)(lua_State *L);
 #include <UIKit/UIToolbar.h>

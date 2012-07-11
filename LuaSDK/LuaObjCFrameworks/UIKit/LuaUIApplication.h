@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #include <UIKit/UIApplication.h>
 
 #define LUA_UIApplication_METANAME	"UIApplication"

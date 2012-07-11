@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIPrintError_METANAME	"UIPrintError"
 LUAMOD_API int (LuaOpenUIPrintError)(lua_State *L);
 #include <UIKit/UIPrintError.h>

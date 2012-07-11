@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGColorSpace_METANAME	"CGColorSpace"
 LUAMOD_API int (LuaOpenCGColorSpace)(lua_State *L);
 #include <CoreGraphics/CGColorSpace.h>

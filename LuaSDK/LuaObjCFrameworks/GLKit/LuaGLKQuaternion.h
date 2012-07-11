@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #include <GLKit/GLKQuaternion.h>
 
     #define LUA_GLKQuaternion_METANAME	"GLKQuaternion"

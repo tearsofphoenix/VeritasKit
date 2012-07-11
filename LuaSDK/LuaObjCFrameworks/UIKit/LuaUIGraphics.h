@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIGraphics_METANAME	"UIGraphics"
 LUAMOD_API int (LuaOpenUIGraphics)(lua_State *L);
 #include <UIKit/UIGraphics.h>

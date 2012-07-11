@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIBarButtonItem_METANAME	"UIBarButtonItem"
 LUAMOD_API int (LuaOpenUIBarButtonItem)(lua_State *L);
 #include <UIKit/UIBarButtonItem.h>

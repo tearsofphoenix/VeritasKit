@@ -203,3 +203,133 @@ void luaD_call (lua_State *L, StkId func, int nResults, int allowyield) {
     L->nCcalls--;
     luaC_checkGC(L);
 }
+
+LUA_API void lua_getuservalue (lua_State *L, int idx) {
+    StkId o;
+    lua_lock(L);
+    o = index2addr(L, idx);
+    api_checkvalidindex(L, o);
+    api_check(L, ttisuserdata(o), "userdata expected");
+    if (uvalue(o)->env) {
+        sethvalue(L, L->top, uvalue(o)->env);
+    } else
+        setnilvalue(L->top);
+    api_incr_top(L);
+    lua_unlock(L);
+}
+
+LUA_API size_t lua_rawlen (lua_State *L, int idx) {
+    StkId o = index2addr(L, idx);
+    switch (ttypenv(o)) {
+        case LUA_TSTRING: return tsvalue(o)->len;
+        case LUA_TUSERDATA: return uvalue(o)->len;
+        case LUA_TTABLE: return luaH_getn(hvalue(o));
+        default: return 0;
+    }
+}
+
+LUA_API int lua_compare (lua_State *L, int index1, int index2, int op) {
+    StkId o1, o2;
+    int i = 0;
+    lua_lock(L);  /* may call tag method */
+    o1 = index2addr(L, index1);
+    o2 = index2addr(L, index2);
+    if (isvalid(o1) && isvalid(o2)) {
+        switch (op) {
+            case LUA_OPEQ: i = equalobj(L, o1, o2); break;
+            case LUA_OPLT: i = luaV_lessthan(L, o1, o2); break;
+            case LUA_OPLE: i = luaV_lessequal(L, o1, o2); break;
+            default: api_check(L, 0, "invalid option");
+        }
+    }
+    lua_unlock(L);
+    return i;
+}
+
+LUA_API void lua_callk (lua_State *L, int nargs, int nresults, int ctx,
+                        lua_CFunction k) {
+    StkId func;
+    lua_lock(L);
+    api_check(L, k == NULL || !isLua(L->ci),
+              "cannot use continuations inside hooks");
+    api_checknelems(L, nargs+1);
+    api_check(L, L->status == LUA_OK, "cannot do calls on non-normal thread");
+    checkresults(L, nargs, nresults);
+    func = L->top - (nargs+1);
+    if (k != NULL && L->nny == 0) {  /* need to prepare continuation? */
+        L->ci->u.c.k = k;  /* save continuation */
+        L->ci->u.c.ctx = ctx;  /* save context */
+        luaD_call(L, func, nresults, 1);  /* do the call */
+    }
+    else  /* no continuation or no yieldable */
+        luaD_call(L, func, nresults, 0);  /* just do the call */
+    adjustresults(L, nresults);
+    lua_unlock(L);
+}
+
+LUA_API void lua_setglobal (lua_State *L, const char *var) {
+    Table *reg = hvalue(&G(L)->l_registry);
+    const TValue *gt;  /* global table */
+    lua_lock(L);
+    api_checknelems(L, 1);
+    gt = luaH_getint(reg, LUA_RIDX_GLOBALS);
+    setsvalue2s(L, L->top++, luaS_new(L, var));
+    luaV_settable(L, gt, L->top - 1, L->top - 2);
+    L->top -= 2;  /* pop value and key */
+    lua_unlock(L);
+}
+
+LUA_API void lua_getglobal (lua_State *L, const char *var) {
+    Table *reg = hvalue(&G(L)->l_registry);
+    const TValue *gt;  /* global table */
+    lua_lock(L);
+    gt = luaH_getint(reg, LUA_RIDX_GLOBALS);
+    setsvalue2s(L, L->top++, luaS_new(L, var));
+    luaV_gettable(L, gt, L->top - 1, L->top - 1);
+    lua_unlock(L);
+}
+
+LUA_API lua_Unsigned lua_tounsignedx (lua_State *L, int idx, int *isnum) {
+    TValue n;
+    const TValue *o = index2addr(L, idx);
+    if (tonumber(o, &n)) {
+        lua_Unsigned res;
+        lua_Number num = nvalue(o);
+        lua_number2unsigned(res, num);
+        if (isnum) *isnum = 1;
+        return res;
+    }
+    else {
+        if (isnum) *isnum = 0;
+        return 0;
+    }
+}
+
+LUA_API void lua_len (lua_State *L, int idx) {
+    StkId t;
+    lua_lock(L);
+    t = index2addr(L, idx);
+    luaV_objlen(L, L->top, t);
+    api_incr_top(L);
+    lua_unlock(L);
+}
+
+static void moveto (lua_State *L, TValue *fr, int idx) {
+    TValue *to = index2addr(L, idx);
+    api_checkvalidindex(L, to);
+    setobj(L, to, fr);
+    if (idx < LUA_REGISTRYINDEX)  /* function upvalue? */
+        luaC_barrier(L, clCvalue(L->ci->func), fr);
+    /* LUA_REGISTRYINDEX does not need gc barrier
+     (collector revisits it before finishing collection) */
+}
+
+LUA_API void lua_copy (lua_State *L, int fromidx, int toidx) {
+    TValue *fr;
+    lua_lock(L);
+    fr = index2addr(L, fromidx);
+    api_checkvalidindex(L, fr);
+    moveto(L, fr, toidx);
+    lua_unlock(L);
+}
+

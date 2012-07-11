@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSRange_METANAME	"NSRange"
     extern int lua_pushNSRange(lua_State *L, NSRange range);
     

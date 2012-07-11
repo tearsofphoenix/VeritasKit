@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UITableView_METANAME	"UITableView"
 LUAMOD_API int (LuaOpenUITableView)(lua_State *L);
 #include <UIKit/UITableView.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #include <GLKit/GLKMatrix4.h>
     
     extern int lua_pushGLKMatrix4(lua_State *L, GLKMatrix4 matrix);

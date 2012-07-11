@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSExpression_METANAME	"NSExpression"
 LUAMOD_API int (LuaOpenNSExpression)(lua_State *L);
 #include <Foundation/NSExpression.h>

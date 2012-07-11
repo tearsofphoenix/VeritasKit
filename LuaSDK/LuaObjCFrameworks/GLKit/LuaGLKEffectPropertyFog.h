@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_GLKEffectPropertyFog_METANAME	"GLKEffectPropertyFog"
 LUAMOD_API int (LuaOpenGLKEffectPropertyFog)(lua_State *L);
 #include <GLKit/GLKEffectPropertyFog.h>

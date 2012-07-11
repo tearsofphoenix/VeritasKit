@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSComparisonPredicate_METANAME	"NSComparisonPredicate"
 LUAMOD_API int (LuaOpenNSComparisonPredicate)(lua_State *L);
 #include <Foundation/NSComparisonPredicate.h>

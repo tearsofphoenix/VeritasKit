@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaGLKMatrix3.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -44,6 +44,7 @@ static int lua_GLKMatrix3MakeAndTranspose(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_GLKMatrix3MakeWithArray(lua_State *L)
 {
     float *array = NULL;
@@ -59,6 +60,7 @@ static int lua_GLKMatrix3MakeWithArrayAndTranspose(lua_State *L)
     lua_pushGLKMatrix3(L, GLKMatrix3MakeWithArrayAndTranspose(array));
     return 1;
 }
+#endif
 
 static int lua_GLKMatrix3MakeWithRows(lua_State *L)
 {
@@ -306,8 +308,10 @@ static int lua_GLKMatrix3MultiplyVector3Array(lua_State *L)
 static const luaL_Reg __LuaGLKMatrix3APIs[] = {
     {"GLKMatrix3Make", lua_GLKMatrix3Make},
     {"GLKMatrix3MakeAndTranspose", lua_GLKMatrix3MakeAndTranspose},
+#if 0
     {"GLKMatrix3MakeWithArray", lua_GLKMatrix3MakeWithArray},
     {"GLKMatrix3MakeWithArrayAndTranspose", lua_GLKMatrix3MakeWithArrayAndTranspose},
+#endif
     {"GLKMatrix3MakeWithRows", lua_GLKMatrix3MakeWithRows},
     {"GLKMatrix3MakeWithColumns", lua_GLKMatrix3MakeWithColumns},
     {"GLKMatrix3MakeWithQuaternion", lua_GLKMatrix3MakeWithQuaternion},

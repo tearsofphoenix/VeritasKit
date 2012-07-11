@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSURLRequest_METANAME	"NSURLRequest"
 LUAMOD_API int (LuaOpenNSURLRequest)(lua_State *L);
 #include <Foundation/NSURLRequest.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSFileVersion_METANAME	"NSFileVersion"
 LUAMOD_API int (LuaOpenNSFileVersion)(lua_State *L);
 #include <Foundation/NSFileVersion.h>

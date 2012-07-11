@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIAccessibilityConstants_METANAME	"UIAccessibilityConstants"
 LUAMOD_API int (LuaOpenUIAccessibilityConstants)(lua_State *L);
 #include <UIKit/UIAccessibilityConstants.h>

@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CALayer_METANAME	"CALayer"
 LUAMOD_API int (LuaOpenCALayer)(lua_State *L);
 #include <QuartzCore/CALayer.h>

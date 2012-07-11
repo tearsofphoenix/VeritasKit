@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #include <GLKit/GLKMathUtils.h>
    
     #define LUA_GLKMatrix2_METANAME "GLKMatrix2"

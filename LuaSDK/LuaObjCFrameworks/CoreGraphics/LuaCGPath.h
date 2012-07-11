@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGPath_METANAME	"CGPath"
 LUAMOD_API int (LuaOpenCGPath)(lua_State *L);
 #include <CoreGraphics/CGPath.h>

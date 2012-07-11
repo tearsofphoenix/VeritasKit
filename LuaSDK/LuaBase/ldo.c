@@ -375,28 +375,6 @@ int luaD_poscall (lua_State *L, StkId firstResult) {
 }
 
 
-/*
-** Call a function (C or Lua). The function to be called is at *func.
-** The arguments are on the stack, right after the function.
-** When returns, all the results are on the stack, starting at the original
-** function position.
-*/
-void luaD_call (lua_State *L, StkId func, int nResults, int allowyield) {
-  if (++L->nCcalls >= LUAI_MAXCCALLS) {
-    if (L->nCcalls == LUAI_MAXCCALLS)
-      luaG_runerror(L, "C stack overflow");
-    else if (L->nCcalls >= (LUAI_MAXCCALLS + (LUAI_MAXCCALLS>>3)))
-      luaD_throw(L, LUA_ERRERR);  /* error while handing stack error */
-  }
-  if (!allowyield) L->nny++;
-  if (!luaD_precall(L, func, nResults))  /* is a Lua function? */
-    luaV_execute(L);  /* call it */
-  if (!allowyield) L->nny--;
-  L->nCcalls--;
-  luaC_checkGC(L);
-}
-
-
 static void finishCcall (lua_State *L) {
   CallInfo *ci = L->ci;
   int n;
@@ -518,38 +496,6 @@ static void resume (lua_State *L, void *ud) {
   }
   lua_assert(nCcalls == L->nCcalls);
 }
-
-
-LUA_API int lua_resume (lua_State *L, lua_State *from, int nargs) {
-  int status;
-  lua_lock(L);
-  luai_userstateresume(L, nargs);
-  L->nCcalls = (from) ? from->nCcalls + 1 : 1;
-  L->nny = 0;  /* allow yields */
-  api_checknelems(L, (L->status == LUA_OK) ? nargs + 1 : nargs);
-  status = luaD_rawrunprotected(L, resume, L->top - nargs);
-  if (status == -1)  /* error calling 'lua_resume'? */
-    status = LUA_ERRRUN;
-  else {  /* yield or regular error */
-    while (status != LUA_OK && status != LUA_YIELD) {  /* error? */
-      if (recover(L, status))  /* recover point? */
-        status = luaD_rawrunprotected(L, unroll, NULL);  /* run continuation */
-      else {  /* unrecoverable error */
-        L->status = cast_byte(status);  /* mark thread as `dead' */
-        seterrorobj(L, status, L->top);
-        L->ci->top = L->top;
-        break;
-      }
-    }
-    lua_assert(status == L->status);
-  }
-  L->nny = 1;  /* do not allow yields */
-  L->nCcalls--;
-  lua_assert(L->nCcalls == ((from) ? from->nCcalls : 0));
-  lua_unlock(L);
-  return status;
-}
-
 
 LUA_API int lua_yieldk (lua_State *L, int nresults, int ctx, lua_CFunction k) {
   CallInfo *ci = L->ci;

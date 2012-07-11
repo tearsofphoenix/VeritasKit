@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSDateFormatter_METANAME	"NSDateFormatter"
 LUAMOD_API int (LuaOpenNSDateFormatter)(lua_State *L);
 #include <Foundation/NSDateFormatter.h>

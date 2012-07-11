@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSURLCredential_METANAME	"NSURLCredential"
 LUAMOD_API int (LuaOpenNSURLCredential)(lua_State *L);
 #include <Foundation/NSURLCredential.h>

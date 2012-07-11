@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIAccessibilityZoom_METANAME	"UIAccessibilityZoom"
 LUAMOD_API int (LuaOpenUIAccessibilityZoom)(lua_State *L);
 #include <UIKit/UIAccessibilityZoom.h>

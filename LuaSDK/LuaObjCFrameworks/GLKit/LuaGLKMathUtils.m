@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaGLKMathUtils.h"
-#import "lapi.h"
+
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
@@ -34,6 +34,7 @@ static int lua_GLKMathRadiansToDegrees(lua_State *L)
     return 1;
 }
 
+#if 0
 static int lua_GLKMathProject(lua_State *L)
 {
     GLKVector3 *object = lua_touserdata(L, 1);
@@ -58,6 +59,8 @@ static int lua_GLKMathUnproject(lua_State *L)
     return 2;
 
 }
+
+#endif
 
 #ifdef __OBJC__
 static int lua_NSStringFromGLKMatrix2(lua_State *L)
@@ -110,10 +113,11 @@ static int lua_NSStringFromGLKQuaternion(lua_State *L)
 static const luaL_Reg __luaGLKMathUtilsAPIs[] = {
     {"GLKMathDegreesToRadians", lua_GLKMathDegreesToRadians},
     {"GLKMathRadiansToDegrees", lua_GLKMathRadiansToDegrees},
-
+#if 0
     {"GLKMathProject", lua_GLKMathProject},
     {"GLKMathUnproject", lua_GLKMathUnproject},
-
+#endif
+    
 #ifdef __OBJC__
     {"NSStringFromGLKMatrix2", lua_NSStringFromGLKMatrix2},
     {"NSStringFromGLKMatrix2", lua_NSStringFromGLKMatrix2},

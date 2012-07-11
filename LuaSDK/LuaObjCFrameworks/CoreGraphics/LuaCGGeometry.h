@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 
 #if TARGET_OS_IPHONE || TARGET_OS_EMBEDDED
 #include <CoreGraphics/CGGeometry.h>

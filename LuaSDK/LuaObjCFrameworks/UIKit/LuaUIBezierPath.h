@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_UIBezierPath_METANAME	"UIBezierPath"
 LUAMOD_API int (LuaOpenUIBezierPath)(lua_State *L);
 #include <UIKit/UIBezierPath.h>

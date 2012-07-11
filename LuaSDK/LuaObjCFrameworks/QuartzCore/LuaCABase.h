@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CABase_METANAME	"CABase"
 LUAMOD_API int (LuaOpenCABase)(lua_State *L);
 #include <QuartzCore/CABase.h>

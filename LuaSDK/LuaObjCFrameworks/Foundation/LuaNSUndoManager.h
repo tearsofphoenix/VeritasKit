@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_NSUndoManager_METANAME	"NSUndoManager"
 LUAMOD_API int (LuaOpenNSUndoManager)(lua_State *L);
 #include <Foundation/NSUndoManager.h>
