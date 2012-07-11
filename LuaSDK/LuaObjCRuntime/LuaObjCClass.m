@@ -120,15 +120,16 @@ static const LuaSDKConst luaObjCConstants[] =
 static int _luaEngine_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
-    printf("revolve: %s\n", name);
+    //printf("revolve: %s\n", name);
 
-    if (!luaObjCStrongTableGetObjectInGlobalStrongTable(L, (void*)name))
+    if (!luaObjCStrongTableGetObjectForKey(L, (void*)name))
     {            
+        printf("not got, in function: %s line: %d\n", __func__, __LINE__);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
             LuaObjCClassRef classRef = LuaObjCClassInitialize(L, theClass, nil, false);
-            luaObjCStrongTableInsertObjectInGlobalStrongTable(L, -1, classRef);
+            luaObjCStrongTableInsertObjectForKey(L, classRef, name);
             luaObjC_pushNSObject(L, theClass);        
         }else
         {
@@ -171,8 +172,8 @@ int luaopen_objc(lua_State *L)
         __LuaObjC_clouserBlockDictionary = [[NSMutableDictionary alloc] init];
     }
     
-    luaObjCWeakTableCreateGlobalWeakObjectTable(L);
-    luaObjCStrongTableCreateGlobalStrongObjectTable(L);
+    luaObjCWeakTableCreate(L);
+    luaObjCStrongTableCreate(L);
     
     luaObjC_loadGlobalConstants(L, luaObjCConstants);
     
@@ -185,33 +186,6 @@ int luaopen_objc(lua_State *L)
     
     return 1;
     
-}
-
-
-static void LuaObjectBridge_PushOrCreateUserData(lua_State* lua_state, id the_object, bool should_retain, bool is_instance)
-{
-	if(nil == the_object)
-	{
-		lua_pushnil(lua_state);
-		return;
-	}    
-    
-    // First check to see if we already have the object in our global weak table.
-    // This will leave the userdata or nil on top of the stack
-    void* return_userdata = luaObjCWeakTableGetObjectInGlobalWeakTable(lua_state, the_object);
-    
-    // If it is not there, we need to create the new userdata container
-    if(!return_userdata)
-    {
-        lua_pop(lua_state, 1); // pop the nil value left from LuaCocoaWeakTable_GetObjectInGlobalWeakTable
-        
-        // Will create the new userdata and leave it on the stack
-        LuaObjectBridge_CreateUserData(lua_state, the_object, should_retain, is_instance);
-        
-        // finally, add this container and object to the global weak table
-        luaObjCWeakTableInsertObjectInGlobalWeakTable(lua_state, -1, the_object);
-        
-    }
 }
 
 static char __LuaObjCAssociatedObjectKey;
@@ -245,7 +219,7 @@ LuaObjCClassRef LuaObjCClassInitialize(struct lua_State *L,
 
 void LuaObjCClassFinalize(LuaObjCClassRef ref)
 {
-    FunctionDebugPrint();
+    //FunctionDebugPrint();
     if (ref)
     {
         if ([ref->_objectObserver retainCount] > 1)

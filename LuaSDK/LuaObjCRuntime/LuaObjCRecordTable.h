@@ -17,24 +17,19 @@ extern "C" {
     
 #pragma mark - weak table
     
-    void luaObjCWeakTableCreateGlobalWeakObjectTable(struct lua_State* lua_state);
+    void luaObjCWeakTableCreate(struct lua_State* lua_state);
     
-    void luaObjCWeakTableInsertObjectInGlobalWeakTable(struct lua_State* lua_state, int stack_position_of_userdata, void* the_object);
+    void luaObjCWeakTableInsertObjectWithKey(struct lua_State* lua_state, void * object, const char *key);
     
-    void* luaObjCWeakTableGetObjectInGlobalWeakTable(struct lua_State* lua_state, void* the_object);
+    void *luaObjCWeakTableGetObjectForKey(struct lua_State* lua_state, const char* key);
     
 #pragma mark - strong table	
     
-	void luaObjCStrongTableCreateGlobalStrongObjectTable(struct lua_State* lua_state);
+	void luaObjCStrongTableCreate(struct lua_State* lua_state);
 	
-	void luaObjCStrongTableInsertObjectInGlobalStrongTable(struct lua_State* lua_state, int stack_position_of_userdata, void* the_object);
+	void luaObjCStrongTableInsertObjectForKey(struct lua_State* lua_state, void* the_object, const char *key);
 	
-	void* luaObjCStrongTableGetObjectInGlobalStrongTable(struct lua_State* lua_state, void* the_object);
-	
-	
-	void luaObjCStrongTableInsertLuaSubclassEnvironmentTableInGlobalStrongTable(struct lua_State* lua_state, int stack_position_of_table, void* the_object);
-	_Bool luaObjCStrongTableGetLuaSubclassEnvironmentTableInGlobalStrongTable(struct lua_State* lua_state, void* the_object);
-	void luaObjCStrongTableRemoveLuaSubclassEnvironmentTableInGlobalStrongTable(struct lua_State* lua_state, void* the_object);
+	void *luaObjCStrongTableGetObjectForKey(struct lua_State* lua_state, const char* key);
     
 #ifdef __cplusplus
 }

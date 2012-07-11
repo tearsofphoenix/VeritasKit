@@ -22,17 +22,10 @@ extern void luaObjC_throwExceptionIfError(struct lua_State *L);
 
 extern void objc_dumpClass(Class theClass);
 
-<<<<<<< HEAD
 extern void stackDump (struct lua_State *L);
 
 #define FunctionDebugPrint() printf("In func: %s line: %d\n", __FUNCTION__, __LINE__)
 
 extern const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
-
-=======
-extern void stackDump (lua_State *L);
-
-#define FunctionDebugPrint() printf("In func: %s\n", __FUNCTION__)
->>>>>>> beautify
 
 #endif
