@@ -410,15 +410,10 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
 static int luaObjC_garbadgeCollection(lua_State *L)
 {
     LuaObjCClassRef objRef = lua_touserdata(L, 1);
-<<<<<<< HEAD
+
 //    lua_Debug ar;
 //    lua_getstack(L, 1, &ar);
 //    const char * name = lua_getlocal(L, &ar, 1);
-=======
-    lua_Debug ar;
-    lua_getstack(L, 1, &ar);
-    //const char * name = lua_getlocal(L, &ar, 1);
->>>>>>> prepare to sync
     //stackDump(L);
     //printf("[GC]name: %s count: %d\n", name, LuaObjCClassGetRetainCount(objRef));
 
