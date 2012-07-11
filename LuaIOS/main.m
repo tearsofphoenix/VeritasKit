@@ -72,9 +72,20 @@ static void testFFI(void)
 
 static void testLuaCall(void)
 {
+<<<<<<< HEAD
     static NSString * const sourceCode = @"local invoke = function() local a = [NSString stringWithUTF8String:\"你好\"] [a release] end\n"
                                          "testLuaCall = function() for i=1, 100000 do invoke() end end";
     
+=======
+    static NSString * const sourceCode = @"local invocation = function()"
+                                                                " local a = [NSString stringWithUTF8String: \"你好\"]"
+                                                                " [a release]"
+                                                              "end;\n"
+                                          "testLuaCall = function()"
+                                                            " for i = 1, 10000 do"
+                                                            " invocation()"
+                                                            " end end";
+>>>>>>> prepare to sync
     LuaCall(sourceCode, @"testLuaCall", nil, 0, 0, nil);
 }
 
@@ -82,9 +93,11 @@ int main(int argc, char *argv[])
 {    
     @autoreleasepool 
     {      
+        
         NSTimeInterval start_time = [NSDate timeIntervalSinceReferenceDate];
         printf("start-time: %f\n", start_time);
         
+<<<<<<< HEAD
         /*
         for (NSInteger iLooper = 0; iLooper < 100000; ++iLooper)
         {
@@ -93,6 +106,14 @@ int main(int argc, char *argv[])
         }
         */
         testLuaCall();
+=======
+        testLuaCall();
+//        for (NSInteger iLooper = 0; iLooper < 10000; ++iLooper)
+//        {
+//            testInvocation();
+//            //testFFI();
+//        }
+>>>>>>> prepare to sync
         
         NSTimeInterval end_time = [NSDate timeIntervalSinceReferenceDate];
         
