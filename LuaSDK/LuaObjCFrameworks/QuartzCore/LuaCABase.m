@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCABase.h"
-#import "lapi.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
+#import <QuartzCore/CABase.h>
 
 static int lua_CACurrentMediaTime(lua_State *L)
 {

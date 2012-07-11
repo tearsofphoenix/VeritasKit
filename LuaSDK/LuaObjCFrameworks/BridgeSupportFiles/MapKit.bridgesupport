@@ -1,0 +1,89 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<depends_on path='/System/Library/Frameworks/IOKit.framework'/>
+<struct name='MKCoordinateRegion' type='{_MKCoordinateRegion=&quot;center&quot;{?=&quot;latitude&quot;d&quot;longitude&quot;d}&quot;span&quot;{_MKCoordinateSpan=&quot;latitudeDelta&quot;d&quot;longitudeDelta&quot;d}}'/>
+<struct name='MKCoordinateSpan' type='{_MKCoordinateSpan=&quot;latitudeDelta&quot;d&quot;longitudeDelta&quot;d}'/>
+<constant name='MKAnnotationCalloutInfoDidChangeNotification' type='@'/>
+<constant name='MKErrorDomain' type='@'/>
+<constant name='MKMapRectNull' type='i'/>
+<constant name='MKMapRectWorld' type='i'/>
+<constant name='MKMapSizeWorld' type='i'/>
+<enum name='MKErrorLoadingThrottled' value='3'/>
+<enum name='MKErrorPlacemarkNotFound' value='4'/>
+<enum name='MKErrorServerFailure' value='2'/>
+<enum name='MKErrorUnknown' value='1'/>
+<enum name='MKMapTypeHybrid' value='2'/>
+<enum name='MKMapTypeSatellite' value='1'/>
+<enum name='MKMapTypeStandard' value='0'/>
+<enum name='MKPinAnnotationColorGreen' value='1'/>
+<enum name='MKPinAnnotationColorPurple' value='2'/>
+<enum name='MKPinAnnotationColorRed' value='0'/>
+<function name='MKCoordinateRegionMake' inline='true'>
+<arg type='{_CLLocationCoordinate2D=dd}'/>
+<arg type='{_MKCoordinateSpan=dd}'/>
+<retval type='{_MKCoordinateRegion={?=dd}{_MKCoordinateSpan=dd}}'/>
+</function>
+<function name='MKCoordinateRegionMakeWithDistance'>
+<arg type='{_CLLocationCoordinate2D=dd}'/>
+<arg type='d'/>
+<arg type='d'/>
+<retval type='{_MKCoordinateRegion={?=dd}{_MKCoordinateSpan=dd}}'/>
+</function>
+<function name='MKCoordinateSpanMake' inline='true'>
+<arg type='d'/>
+<arg type='d'/>
+<retval type='{_MKCoordinateSpan=dd}'/>
+</function>
+<class name='NSObject'>
+<method selector='coordinate'>
+<retval type='{_CLLocationCoordinate2D=dd}'/>
+</method>
+<method selector='intersectsMapRect:'>
+<retval type='B'/>
+</method>
+<method selector='mapView:didChangeUserTrackingMode:animated:'>
+<arg index='2' type='B'/>
+</method>
+<method selector='mapView:regionDidChangeAnimated:'>
+<arg index='1' type='B'/>
+</method>
+<method selector='mapView:regionWillChangeAnimated:'>
+<arg index='1' type='B'/>
+</method>
+<method selector='setCoordinate:'>
+<arg index='0' type='{_CLLocationCoordinate2D=dd}'/>
+</method>
+</class>
+<informal_protocol name='MKAnnotation'>
+<method type64='{?=dd}16@0:8' selector='coordinate' type='{?=dd}8@0:4'/>
+<method type64='v32@0:8{?=dd}16' selector='setCoordinate:' type='v24@0:4{?=dd}8'/>
+<method type64='@16@0:8' selector='subtitle' type='@8@0:4'/>
+<method type64='@16@0:8' selector='title' type='@8@0:4'/>
+</informal_protocol>
+<informal_protocol name='MKMapViewDelegate'>
+<method type64='v40@0:8@16@24@32' selector='mapView:annotationView:calloutAccessoryControlTapped:' type='v20@0:4@8@12@16'/>
+<method type64='v48@0:8@16@24@32@40' selector='mapView:annotationView:didChangeDragState:fromOldState:' type='v24@0:4@8@12@16@20'/>
+<method type64='v32@0:8@16@24' selector='mapView:didAddAnnotationViews:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='mapView:didAddOverlayViews:' type='v16@0:4@8@12'/>
+<method type64='v36@0:8@16q24B32' selector='mapView:didChangeUserTrackingMode:animated:' type='v20@0:4@8i12B16'/>
+<method type64='v32@0:8@16@24' selector='mapView:didDeselectAnnotationView:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='mapView:didFailToLocateUserWithError:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='mapView:didSelectAnnotationView:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='mapView:didUpdateUserLocation:' type='v16@0:4@8@12'/>
+<method type64='v28@0:8@16B24' selector='mapView:regionDidChangeAnimated:' type='v16@0:4@8B12'/>
+<method type64='v28@0:8@16B24' selector='mapView:regionWillChangeAnimated:' type='v16@0:4@8B12'/>
+<method type64='@32@0:8@16@24' selector='mapView:viewForAnnotation:' type='@16@0:4@8@12'/>
+<method type64='@32@0:8@16@24' selector='mapView:viewForOverlay:' type='@16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='mapViewDidFailLoadingMap:withError:' type='v16@0:4@8@12'/>
+<method type64='v24@0:8@16' selector='mapViewDidFinishLoadingMap:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='mapViewDidStopLocatingUser:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='mapViewWillStartLoadingMap:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='mapViewWillStartLocatingUser:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='MKOverlay'>
+<method type64='i16@0:8' selector='boundingMapRect' type='i8@0:4'/>
+<method type64='{?=dd}16@0:8' selector='coordinate' type='{?=dd}8@0:4'/>
+<method type64='B24@0:8@16' selector='intersectsMapRect:' type='B12@0:4@8'/>
+</informal_protocol>
+</signatures>

@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<depends_on path='/System/Library/Frameworks/IOKit.framework'/>
+<struct type='{_CMAcceleration=&quot;x&quot;d&quot;y&quot;d&quot;z&quot;d}' name='CMAcceleration'/>
+<struct type='{_CMCalibratedMagneticField=&quot;field&quot;{_CMMagneticField=&quot;x&quot;d&quot;y&quot;d&quot;z&quot;d}&quot;accuracy&quot;i}' name='CMCalibratedMagneticField'/>
+<struct type='{_CMMagneticField=&quot;x&quot;d&quot;y&quot;d&quot;z&quot;d}' name='CMMagneticField'/>
+<struct type='{_CMQuaternion=&quot;x&quot;d&quot;y&quot;d&quot;z&quot;d&quot;w&quot;d}' name='CMQuaternion'/>
+<struct type='{_CMRotationMatrix=&quot;m11&quot;d&quot;m12&quot;d&quot;m13&quot;d&quot;m21&quot;d&quot;m22&quot;d&quot;m23&quot;d&quot;m31&quot;d&quot;m32&quot;d&quot;m33&quot;d}' name='CMRotationMatrix'/>
+<struct type='{_CMRotationRate=&quot;x&quot;d&quot;y&quot;d&quot;z&quot;d}' name='CMRotationRate'/>
+<constant type='@' name='CMErrorDomain'/>
+<enum name='CMAttitudeReferenceFrameXArbitraryCorrectedZVertical' value='2'/>
+<enum name='CMAttitudeReferenceFrameXArbitraryZVertical' value='1'/>
+<enum name='CMAttitudeReferenceFrameXMagneticNorthZVertical' value='4'/>
+<enum name='CMAttitudeReferenceFrameXTrueNorthZVertical' value='8'/>
+<enum name='CMErrorDeviceRequiresMovement' value='101'/>
+<enum name='CMErrorNULL' value='100'/>
+<enum name='CMErrorTrueNorthNotAvailable' value='102'/>
+<enum name='CMMagneticFieldCalibrationAccuracyHigh' value='2'/>
+<enum name='CMMagneticFieldCalibrationAccuracyLow' value='0'/>
+<enum name='CMMagneticFieldCalibrationAccuracyMedium' value='1'/>
+<enum name='CMMagneticFieldCalibrationAccuracyUncalibrated' value='-1'/>
+</signatures>

@@ -77,7 +77,7 @@ static void testLuaCall(void)
                                                                 " [a release]"
                                                               "end;\n"
                                           "testLuaCall = function()"
-                                                            " for i = 1, 10000 do"
+                                                            " for i = 1, 100000 do"
                                                             " invocation()"
                                                             " end end";
     LuaCall(sourceCode, @"testLuaCall", nil, 0, 0, nil);

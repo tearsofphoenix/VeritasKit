@@ -11,7 +11,7 @@ extern "C"
 {
 #endif
     #include "luaconf.h"
-    #include "lstate.h"
+    #include "lua.h"
 
     LUAMOD_API int (LuaOpenNSColletion)(lua_State *L);
 #ifdef __cplusplus

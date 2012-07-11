@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CGAffineTransform_METANAME	"CGAffineTransform"
     
     extern int lua_pushCGAffineTransform(lua_State *L, CGAffineTransform t);

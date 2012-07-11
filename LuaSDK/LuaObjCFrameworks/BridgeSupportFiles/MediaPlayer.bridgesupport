@@ -1,0 +1,148 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<constant type='@' name='MPMediaItemPropertyAlbumArtist'/>
+<constant type='@' name='MPMediaItemPropertyAlbumTitle'/>
+<constant type='@' name='MPMediaItemPropertyAlbumTrackCount'/>
+<constant type='@' name='MPMediaItemPropertyAlbumTrackNumber'/>
+<constant type='@' name='MPMediaItemPropertyArtist'/>
+<constant type='@' name='MPMediaItemPropertyArtwork'/>
+<constant type='@' name='MPMediaItemPropertyComposer'/>
+<constant type='@' name='MPMediaItemPropertyDiscCount'/>
+<constant type='@' name='MPMediaItemPropertyDiscNumber'/>
+<constant type='@' name='MPMediaItemPropertyGenre'/>
+<constant type='@' name='MPMediaItemPropertyIsCompilation'/>
+<constant type='@' name='MPMediaItemPropertyLastPlayedDate'/>
+<constant type='@' name='MPMediaItemPropertyLyrics'/>
+<constant type='@' name='MPMediaItemPropertyMediaType'/>
+<constant type='@' name='MPMediaItemPropertyPersistentID'/>
+<constant type='@' name='MPMediaItemPropertyPlayCount'/>
+<constant type='@' name='MPMediaItemPropertyPlaybackDuration'/>
+<constant type='@' name='MPMediaItemPropertyPodcastTitle'/>
+<constant type='@' name='MPMediaItemPropertyRating'/>
+<constant type='@' name='MPMediaItemPropertySkipCount'/>
+<constant type='@' name='MPMediaItemPropertyTitle'/>
+<constant type='@' name='MPMediaLibraryDidChangeNotification'/>
+<constant type='@' name='MPMediaPlaylistPropertyName'/>
+<constant type='@' name='MPMediaPlaylistPropertyPersistentID'/>
+<constant type='@' name='MPMediaPlaylistPropertyPlaylistAttributes'/>
+<constant type='@' name='MPMediaPlaylistPropertySeedItems'/>
+<constant type='@' name='MPMoviePlayerPlaybackDidFinishNotification'/>
+<constant type='@' name='MPMoviePlayerScalingModeDidChangeNotification'/>
+<constant type='@' name='MPMusicPlayerControllerNowPlayingItemDidChangeNotification'/>
+<constant type='@' name='MPMusicPlayerControllerPlaybackStateDidChangeNotification'/>
+<constant type='@' name='MPMusicPlayerControllerVolumeDidChangeNotification'/>
+<enum name='MPMediaGroupingAlbum' value='1'/>
+<enum name='MPMediaGroupingAlbumArtist' value='3'/>
+<enum name='MPMediaGroupingArtist' value='2'/>
+<enum name='MPMediaGroupingComposer' value='4'/>
+<enum name='MPMediaGroupingGenre' value='5'/>
+<enum name='MPMediaGroupingPlaylist' value='6'/>
+<enum name='MPMediaGroupingPodcastTitle' value='7'/>
+<enum name='MPMediaGroupingTitle' value='0'/>
+<enum name='MPMediaPlaylistAttributeGenius' value='4'/>
+<enum name='MPMediaPlaylistAttributeNone' value='0'/>
+<enum name='MPMediaPlaylistAttributeOnTheGo' value='1'/>
+<enum name='MPMediaPlaylistAttributeSmart' value='2'/>
+<enum name='MPMediaPredicateComparisonContains' value='1'/>
+<enum name='MPMediaPredicateComparisonEqualTo' value='0'/>
+<enum name='MPMediaTypeAny' value='-1'/>
+<enum name='MPMediaTypeAnyAudio' value='255'/>
+<enum name='MPMediaTypeAnyVideo' value='65280'/>
+<enum name='MPMediaTypeAudioBook' value='4'/>
+<enum name='MPMediaTypeAudioITunesU' value='8'/>
+<enum name='MPMediaTypeMovie' value='256'/>
+<enum name='MPMediaTypeMusic' value='1'/>
+<enum name='MPMediaTypeMusicVideo' value='2048'/>
+<enum name='MPMediaTypePodcast' value='2'/>
+<enum name='MPMediaTypeTVShow' value='512'/>
+<enum name='MPMediaTypeVideoITunesU' value='4096'/>
+<enum name='MPMediaTypeVideoPodcast' value='1024'/>
+<enum name='MPMovieControlModeDefault' value='0'/>
+<enum name='MPMovieControlModeHidden' value='2'/>
+<enum name='MPMovieControlModeVolumeOnly' value='1'/>
+<enum name='MPMovieControlStyleDefault' value='1'/>
+<enum name='MPMovieControlStyleEmbedded' value='1'/>
+<enum name='MPMovieControlStyleFullscreen' value='2'/>
+<enum name='MPMovieControlStyleNone' value='0'/>
+<enum name='MPMovieFinishReasonPlaybackEnded' value='0'/>
+<enum name='MPMovieFinishReasonPlaybackError' value='1'/>
+<enum name='MPMovieFinishReasonUserExited' value='2'/>
+<enum name='MPMovieLoadStatePlayable' value='1'/>
+<enum name='MPMovieLoadStatePlaythroughOK' value='2'/>
+<enum name='MPMovieLoadStateStalled' value='4'/>
+<enum name='MPMovieLoadStateUnknown' value='0'/>
+<enum name='MPMovieMediaTypeMaskAudio' value='2'/>
+<enum name='MPMovieMediaTypeMaskNone' value='0'/>
+<enum name='MPMovieMediaTypeMaskVideo' value='1'/>
+<enum name='MPMoviePlaybackStateInterrupted' value='3'/>
+<enum name='MPMoviePlaybackStatePaused' value='2'/>
+<enum name='MPMoviePlaybackStatePlaying' value='1'/>
+<enum name='MPMoviePlaybackStateSeekingBackward' value='5'/>
+<enum name='MPMoviePlaybackStateSeekingForward' value='4'/>
+<enum name='MPMoviePlaybackStateStopped' value='0'/>
+<enum name='MPMovieRepeatModeNone' value='0'/>
+<enum name='MPMovieRepeatModeOne' value='1'/>
+<enum name='MPMovieScalingModeAspectFill' value='2'/>
+<enum name='MPMovieScalingModeAspectFit' value='1'/>
+<enum name='MPMovieScalingModeFill' value='3'/>
+<enum name='MPMovieScalingModeNone' value='0'/>
+<enum name='MPMovieSourceTypeFile' value='1'/>
+<enum name='MPMovieSourceTypeStreaming' value='2'/>
+<enum name='MPMovieSourceTypeUnknown' value='0'/>
+<enum name='MPMovieTimeOptionExact' value='1'/>
+<enum name='MPMovieTimeOptionNearestKeyFrame' value='0'/>
+<enum name='MPMusicPlaybackStateInterrupted' value='3'/>
+<enum name='MPMusicPlaybackStatePaused' value='2'/>
+<enum name='MPMusicPlaybackStatePlaying' value='1'/>
+<enum name='MPMusicPlaybackStateSeekingBackward' value='5'/>
+<enum name='MPMusicPlaybackStateSeekingForward' value='4'/>
+<enum name='MPMusicPlaybackStateStopped' value='0'/>
+<enum name='MPMusicRepeatModeAll' value='3'/>
+<enum name='MPMusicRepeatModeDefault' value='0'/>
+<enum name='MPMusicRepeatModeNone' value='1'/>
+<enum name='MPMusicRepeatModeOne' value='2'/>
+<enum name='MPMusicShuffleModeAlbums' value='3'/>
+<enum name='MPMusicShuffleModeDefault' value='0'/>
+<enum name='MPMusicShuffleModeOff' value='1'/>
+<enum name='MPMusicShuffleModeSongs' value='2'/>
+<function name='MPVolumeSettingsAlertHide'/>
+<function name='MPVolumeSettingsAlertIsVisible'>
+<retval type='B'/>
+</function>
+<function name='MPVolumeSettingsAlertShow'/>
+<class name='MPMoviePlayerController'>
+<method selector='allowsAirPlay'>
+<retval type='B'/>
+</method>
+<method selector='isAirPlayVideoActive'>
+<retval type='B'/>
+</method>
+<method selector='setAllowsAirPlay:'>
+<arg index='0' type='B'/>
+</method>
+</class>
+<class name='NSObject'>
+<method selector='isPreparedToPlay'>
+<retval type='B'/>
+</method>
+</class>
+<informal_protocol name='MPMediaPickerControllerDelegate'>
+<method selector='mediaPicker:didPickMediaItems:' type='v16@0:4@8@12' type64='v32@0:8@16@24'/>
+<method selector='mediaPickerDidCancel:' type='v12@0:4@8' type64='v24@0:8@16'/>
+</informal_protocol>
+<informal_protocol name='MPMediaPlayback'>
+<method selector='beginSeekingBackward' type='v8@0:4' type64='v16@0:8'/>
+<method selector='beginSeekingForward' type='v8@0:4' type64='v16@0:8'/>
+<method selector='currentPlaybackRate' type='f8@0:4' type64='f16@0:8'/>
+<method selector='currentPlaybackTime' type='d8@0:4' type64='d16@0:8'/>
+<method selector='endSeeking' type='v8@0:4' type64='v16@0:8'/>
+<method selector='isPreparedToPlay' type='B8@0:4' type64='B16@0:8'/>
+<method selector='pause' type='v8@0:4' type64='v16@0:8'/>
+<method selector='play' type='v8@0:4' type64='v16@0:8'/>
+<method selector='prepareToPlay' type='v8@0:4' type64='v16@0:8'/>
+<method selector='setCurrentPlaybackRate:' type='v12@0:4f8' type64='v20@0:8f16'/>
+<method selector='setCurrentPlaybackTime:' type='v16@0:4d8' type64='v24@0:8d16'/>
+<method selector='stop' type='v8@0:4' type64='v16@0:8'/>
+</informal_protocol>
+</signatures>

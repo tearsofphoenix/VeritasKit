@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaEAGL.h"
-#import "lapi.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "luasdk_utilities.h"
 #import "LuaObjCAuxiliary.h"
+#include <OpenGLES/EAGL.h>
 
 static int _luaObjC_EAGLGetVersion(lua_State *L)
 {

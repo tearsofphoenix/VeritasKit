@@ -6,11 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIView.h"
-#import "lapi.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
-#import "luasdk_utilities.h"
-#import "LuaObjCAuxiliary.h"
+
 #import "LuaObjCAccelerator.h"
 
 static int _luaObjC_UIView_animateWithDuration_animations(id obj, SEL selector, lua_State *luaState)
@@ -96,65 +94,8 @@ static int _luaObjC_UIView_animateWithDuration_delay_options_animations_completi
     return 0;
 }
 
-static const LuaSDKConst __luaUIViewConstants[] = 
-{
-    {"UIViewAnimationCurveEaseInOut", UIViewAnimationCurveEaseInOut},
-    {"UIViewAnimationCurveEaseIn", UIViewAnimationCurveEaseIn},
-    {"UIViewAnimationCurveEaseOut", UIViewAnimationCurveEaseOut},
-    {"UIViewAnimationCurveLinear", UIViewAnimationCurveLinear},
-    {"UIViewContentModeScaleToFill", UIViewContentModeScaleToFill},
-    {"UIViewContentModeScaleAspectFit", UIViewContentModeScaleAspectFit},
-    {"UIViewContentModeScaleAspectFill", UIViewContentModeScaleAspectFill},
-    {"UIViewContentModeRedraw", UIViewContentModeRedraw},
-    {"UIViewContentModeCenter", UIViewContentModeCenter},
-    {"UIViewContentModeTop", UIViewContentModeTop},
-    {"UIViewContentModeBottom", UIViewContentModeBottom},
-    {"UIViewContentModeLeft", UIViewContentModeLeft},
-    {"UIViewContentModeRight", UIViewContentModeRight},
-    {"UIViewContentModeTopLeft", UIViewContentModeTopLeft},
-    {"UIViewContentModeTopRight", UIViewContentModeTopRight},
-    {"UIViewContentModeBottomLeft", UIViewContentModeBottomLeft},
-    {"UIViewContentModeBottomRight", UIViewContentModeBottomRight},
-    {"UIViewAnimationTransitionNone", UIViewAnimationTransitionNone},
-    {"UIViewAnimationTransitionFlipFromLeft", UIViewAnimationTransitionFlipFromLeft},
-    {"UIViewAnimationTransitionFlipFromRight", UIViewAnimationTransitionFlipFromRight},
-    {"UIViewAnimationTransitionCurlUp", UIViewAnimationTransitionCurlUp},
-    {"UIViewAnimationTransitionCurlDown", UIViewAnimationTransitionCurlDown},
-    {"UIViewAutoresizingNone", UIViewAutoresizingNone},
-    {"UIViewAutoresizingFlexibleLeftMargin", UIViewAutoresizingFlexibleLeftMargin},
-    {"UIViewAutoresizingFlexibleWidth", UIViewAutoresizingFlexibleWidth},
-    {"UIViewAutoresizingFlexibleRightMargin", UIViewAutoresizingFlexibleRightMargin},
-    {"UIViewAutoresizingFlexibleTopMargin", UIViewAutoresizingFlexibleTopMargin},
-    {"UIViewAutoresizingFlexibleHeight", UIViewAutoresizingFlexibleHeight},
-    {"UIViewAutoresizingFlexibleBottomMargin", UIViewAutoresizingFlexibleBottomMargin},
-    {"UIViewAnimationOptionLayoutSubviews", UIViewAnimationOptionLayoutSubviews},
-    {"UIViewAnimationOptionAllowUserInteraction", UIViewAnimationOptionAllowUserInteraction},
-    {"UIViewAnimationOptionBeginFromCurrentState", UIViewAnimationOptionBeginFromCurrentState},
-    {"UIViewAnimationOptionRepeat", UIViewAnimationOptionRepeat},
-    {"UIViewAnimationOptionAutoreverse", UIViewAnimationOptionAutoreverse},
-    {"UIViewAnimationOptionOverrideInheritedDuration", UIViewAnimationOptionOverrideInheritedDuration},
-    {"UIViewAnimationOptionOverrideInheritedCurve", UIViewAnimationOptionOverrideInheritedCurve},
-    {"UIViewAnimationOptionAllowAnimatedContent", UIViewAnimationOptionAllowAnimatedContent},
-    {"UIViewAnimationOptionShowHideTransitionViews", UIViewAnimationOptionShowHideTransitionViews},
-    {"UIViewAnimationOptionCurveEaseInOut", UIViewAnimationOptionCurveEaseInOut},
-    {"UIViewAnimationOptionCurveEaseIn", UIViewAnimationOptionCurveEaseIn},
-    {"UIViewAnimationOptionCurveEaseOut", UIViewAnimationOptionCurveEaseOut},
-    {"UIViewAnimationOptionCurveLinear", UIViewAnimationOptionCurveLinear},
-    {"UIViewAnimationOptionTransitionNone", UIViewAnimationOptionTransitionNone},
-    {"UIViewAnimationOptionTransitionFlipFromLeft", UIViewAnimationOptionTransitionFlipFromLeft},
-    {"UIViewAnimationOptionTransitionFlipFromRight", UIViewAnimationOptionTransitionFlipFromRight},
-    {"UIViewAnimationOptionTransitionCurlUp", UIViewAnimationOptionTransitionCurlUp},
-    {"UIViewAnimationOptionTransitionCurlDown", UIViewAnimationOptionTransitionCurlDown},
-    {"UIViewAnimationOptionTransitionCrossDissolve", UIViewAnimationOptionTransitionCrossDissolve},
-    {"UIViewAnimationOptionTransitionFlipFromTop", UIViewAnimationOptionTransitionFlipFromTop},
-    {"UIViewAnimationOptionTransitionFlipFromBottom", UIViewAnimationOptionTransitionFlipFromBottom},
-    {NULL, 0},
-};
-
 int LuaOpenUIView(lua_State *L)
-{
-    luaObjC_loadGlobalConstants(L, __luaUIViewConstants);
-    
+{    
     //UIView animation accelerators
     //
     luaObjC_registerAccelerator(@selector(animateWithDuration:animations:), _luaObjC_UIView_animateWithDuration_animations);

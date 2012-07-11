@@ -1,0 +1,85 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<enum name='EKCalendarEventAvailabilityBusy' value='1'/>
+<enum name='EKCalendarEventAvailabilityFree' value='2'/>
+<enum name='EKCalendarEventAvailabilityNone' value='0'/>
+<enum name='EKCalendarEventAvailabilityTentative' value='4'/>
+<enum name='EKCalendarEventAvailabilityUnavailable' value='8'/>
+<enum name='EKCalendarTypeBirthday' value='4'/>
+<enum name='EKCalendarTypeCalDAV' value='1'/>
+<enum name='EKCalendarTypeExchange' value='2'/>
+<enum name='EKCalendarTypeLocal' value='0'/>
+<enum name='EKCalendarTypeSubscription' value='3'/>
+<enum name='EKEventAvailabilityBusy' value='0'/>
+<enum name='EKEventAvailabilityFree' value='1'/>
+<enum name='EKEventAvailabilityNotSupported' value='-1'/>
+<enum name='EKEventAvailabilityTentative' value='2'/>
+<enum name='EKEventAvailabilityUnavailable' value='3'/>
+<enum name='EKEventStatusCanceled' value='3'/>
+<enum name='EKEventStatusConfirmed' value='1'/>
+<enum name='EKEventStatusNone' value='0'/>
+<enum name='EKEventStatusTentative' value='2'/>
+<enum name='EKFriday' value='6'/>
+<enum name='EKMonday' value='2'/>
+<enum name='EKParticipantRoleChair' value='3'/>
+<enum name='EKParticipantRoleNonParticipant' value='4'/>
+<enum name='EKParticipantRoleOptional' value='2'/>
+<enum name='EKParticipantRoleRequired' value='1'/>
+<enum name='EKParticipantRoleUnknown' value='0'/>
+<enum name='EKParticipantStatusAccepted' value='2'/>
+<enum name='EKParticipantStatusCompleted' value='6'/>
+<enum name='EKParticipantStatusDeclined' value='3'/>
+<enum name='EKParticipantStatusDelegated' value='5'/>
+<enum name='EKParticipantStatusInProcess' value='7'/>
+<enum name='EKParticipantStatusPending' value='1'/>
+<enum name='EKParticipantStatusTentative' value='4'/>
+<enum name='EKParticipantStatusUnknown' value='0'/>
+<enum name='EKParticipantTypeGroup' value='4'/>
+<enum name='EKParticipantTypePerson' value='1'/>
+<enum name='EKParticipantTypeResource' value='3'/>
+<enum name='EKParticipantTypeRoom' value='2'/>
+<enum name='EKParticipantTypeUnknown' value='0'/>
+<enum name='EKRecurrenceFrequencyDaily' value='0'/>
+<enum name='EKRecurrenceFrequencyMonthly' value='2'/>
+<enum name='EKRecurrenceFrequencyWeekly' value='1'/>
+<enum name='EKRecurrenceFrequencyYearly' value='3'/>
+<enum name='EKSaturday' value='7'/>
+<enum name='EKSourceTypeBirthdays' value='5'/>
+<enum name='EKSourceTypeCalDAV' value='2'/>
+<enum name='EKSourceTypeExchange' value='1'/>
+<enum name='EKSourceTypeLocal' value='0'/>
+<enum name='EKSourceTypeMobileMe' value='3'/>
+<enum name='EKSourceTypeSubscribed' value='4'/>
+<enum name='EKSpanFutureEvents' value='1'/>
+<enum name='EKSpanThisEvent' value='0'/>
+<enum name='EKSunday' value='1'/>
+<enum name='EKThursday' value='5'/>
+<enum name='EKTuesday' value='3'/>
+<enum name='EKWednesday' value='4'/>
+<class name='EKCalendarItem'>
+<method selector='hasAlarms'>
+<retval type='B'/>
+</method>
+<method selector='hasAttendees'>
+<retval type='B'/>
+</method>
+<method selector='hasNotes'>
+<retval type='B'/>
+</method>
+<method selector='hasRecurrenceRules'>
+<retval type='B'/>
+</method>
+</class>
+<class name='EKObject'>
+<method selector='hasChanges'>
+<retval type='B'/>
+</method>
+<method selector='isNew'>
+<retval type='B'/>
+</method>
+<method selector='refresh'>
+<retval type='B'/>
+</method>
+</class>
+</signatures>

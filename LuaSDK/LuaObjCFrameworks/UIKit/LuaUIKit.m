@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIKit.h"
-#import "lapi.h"
-#import "lauxlib.h"
-#import "LuaObjCInternal.h"
 
 #import "LuaCoreGraphics.h"
 

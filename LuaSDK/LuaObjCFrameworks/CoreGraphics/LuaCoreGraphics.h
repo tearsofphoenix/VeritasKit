@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lstate.h"
+#include "lua.h"
 #define LUA_CoreGraphics_METANAME	"CoreGraphics"
 LUAMOD_API int (LuaOpenCoreGraphics)(lua_State *L);
 #include <CoreGraphics/CoreGraphics.h>
