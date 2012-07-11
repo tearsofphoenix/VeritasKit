@@ -20,10 +20,11 @@ Features
    syntax of literal NSDictionary is not the same as in Objective-C, consider the lua syntax;
 4. support enumerate syntax of collections (the for-in syntax);
 5. add some extensions, such as @array, @dictionary, @table to convert value between Objective-C and lua;
+6. speed up by store global value in a strong table in lua state, so updated the benchmark table below;
 
 Known Bugs
 
-1. memory can not be collected yet;
+1. memory can not be collected yet, but middle-vars can be gc now, so memory will not be a big problem
 2. no try-catch-final, @throw implemented, but not that good, recommanded not to use this feature;
 3. will not support dot-operator (.) on instance, which is my decision;
 
@@ -45,7 +46,7 @@ What we know
          </tr>
          <tr>
             <td>Lua-Call</td> 
-            <td>18.348168s</td>
+            <td>about 12s</td>
          </tr>
       </table>
 
