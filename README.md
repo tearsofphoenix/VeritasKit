@@ -36,7 +36,7 @@ What we know
             ffi: 1.007282s
        Lua-Call: 18.348168s
    code:
-   <code>
+   <pre><code>
    static const char * _testString = "你好";
 
    static void testInvocation()
@@ -101,4 +101,4 @@ static void testLuaCall(void)
                                          "testLuaCall = function() for i=1, 100000 do invoke() end end";
     
     LuaCall(sourceCode, @"testLuaCall", nil, 0, 0, nil);
-}</code>
+}</code></pre>
