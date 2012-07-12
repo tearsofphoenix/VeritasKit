@@ -14,7 +14,7 @@
 
 #import "LuaObjCRecordTable.h"
 #import "lauxlib.h"
-#import "luasdk_utilities.h"
+
 #import <objc/runtime.h>
 
 id luaObjC_checkNSObject(lua_State *L, int index)

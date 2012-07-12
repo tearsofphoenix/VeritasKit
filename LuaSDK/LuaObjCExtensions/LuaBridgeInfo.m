@@ -58,10 +58,10 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         }
         case LuaBridgeFunctionType:
         {
-            LuaBridgeFuncotrCreate(state, 
+            LuaBridgeFunctorCreate(state,
                                    _name, 
                                    [_info objectForKey: @"arg"],
-                                   [(LuaBridgeArgumentInfo *)[_info objectForKey: @"retval"] type]);
+                                   [[(LuaBridgeArgumentInfo *)[_info objectForKey: @"retval"] type] UTF8String]);
             break;
         }
         default:

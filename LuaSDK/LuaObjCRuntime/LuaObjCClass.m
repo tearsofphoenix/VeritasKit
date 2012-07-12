@@ -22,7 +22,7 @@
 
 #import "LuaObjCRecordTable.h"
 #import "LuaBridgeSupport.h"
-#import "luasdk_utilities.h"
+
 
 struct __LuaObjCClass
 {

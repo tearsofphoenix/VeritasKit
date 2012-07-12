@@ -27,6 +27,9 @@
 		226873A71521B2B8009D6279 /* Test.v in Resources */ = {isa = PBXBuildFile; fileRef = 226873A61521B2B8009D6279 /* Test.v */; };
 		2280FAED15A2BCAB00B67118 /* LuaCABase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2280FAEC15A2BCAB00B67118 /* LuaCABase.m */; };
 		2290F9C615A1AE1000BCA42D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2290F9C515A1AE0B00BCA42D /* GLKit.framework */; };
+		229F6EA115AED079001DE368 /* NSMethodSignature+argumentsEncodings.h in Headers */ = {isa = PBXBuildFile; fileRef = 229F6E9F15AED079001DE368 /* NSMethodSignature+argumentsEncodings.h */; };
+		229F6EA215AED079001DE368 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F6EA015AED079001DE368 /* NSMethodSignature+argumentsEncodings.m */; };
+		229F6EA315AED079001DE368 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F6EA015AED079001DE368 /* NSMethodSignature+argumentsEncodings.m */; };
 		22A06013159BF00400391F52 /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A0600A159BF00400391F52 /* LuaObjCRuntime.m */; };
 		22A06015159BF00400391F52 /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A0600E159BF00400391F52 /* LuaObjCClass.m */; };
 		22A06016159BF00400391F52 /* LuaObjCIMP.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A06010159BF00400391F52 /* LuaObjCIMP.m */; };
@@ -276,7 +279,6 @@
 		22413E0015AABFFE00A70454 /* LuaBridgeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridgeInfo.h; sourceTree = "<group>"; };
 		22413E0115AABFFE00A70454 /* LuaBridgeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeInfo.m; sourceTree = "<group>"; };
 		224A3683152D8C7D00722A8D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		226873631521AB92009D6279 /* luasdk_utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luasdk_utilities.h; sourceTree = "<group>"; };
 		2268736C1521AD5D009D6279 /* LuaIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuaIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		226873701521AD5D009D6279 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		226873741521AD5D009D6279 /* LuaIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LuaIOS-Info.plist"; sourceTree = "<group>"; };
@@ -287,6 +289,8 @@
 		2280FAEC15A2BCAB00B67118 /* LuaCABase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCABase.m; sourceTree = "<group>"; };
 		2290F9C515A1AE0B00BCA42D /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		229D91D91527D09A009780FE /* LuaIOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LuaIOS-Prefix.pch"; sourceTree = "<group>"; };
+		229F6E9F15AED079001DE368 /* NSMethodSignature+argumentsEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+argumentsEncodings.h"; sourceTree = "<group>"; };
+		229F6EA015AED079001DE368 /* NSMethodSignature+argumentsEncodings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+argumentsEncodings.m"; sourceTree = "<group>"; };
 		22A06009159BF00400391F52 /* LuaObjCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCRuntime.h; sourceTree = "<group>"; };
 		22A0600A159BF00400391F52 /* LuaObjCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCRuntime.m; sourceTree = "<group>"; };
 		22A0600D159BF00400391F52 /* LuaObjCClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCClass.h; sourceTree = "<group>"; };
@@ -589,7 +593,6 @@
 		226873611521AB92009D6279 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				226873631521AB92009D6279 /* luasdk_utilities.h */,
 				22D000AD15AE63C00034442D /* VeritasKit-LICENSE */,
 			);
 			name = Shared;
@@ -767,6 +770,8 @@
 		344433CD15680371009D0D3A /* LuaObjCExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				229F6E9F15AED079001DE368 /* NSMethodSignature+argumentsEncodings.h */,
+				229F6EA015AED079001DE368 /* NSMethodSignature+argumentsEncodings.m */,
 				344433D11568038B009D0D3A /* LuaObjCIndexing.h */,
 				344433CE15680371009D0D3A /* NSArray+LuaObjCIndex.h */,
 				344433CF15680371009D0D3A /* NSArray+LuaObjCIndex.m */,
@@ -1067,6 +1072,7 @@
 				E1163B0615ADD732004768C9 /* lundump.h in Headers */,
 				E1163B0915ADD732004768C9 /* lvm.h in Headers */,
 				E1163B0C15ADD732004768C9 /* lzio.h in Headers */,
+				229F6EA115AED079001DE368 /* NSMethodSignature+argumentsEncodings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1290,6 +1296,7 @@
 				E1163B0415ADD732004768C9 /* lundump.c in Sources */,
 				E1163B0715ADD732004768C9 /* lvm.c in Sources */,
 				E1163B0A15ADD732004768C9 /* lzio.c in Sources */,
+				229F6EA215AED079001DE368 /* NSMethodSignature+argumentsEncodings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,6 +1371,7 @@
 				E1163B0515ADD732004768C9 /* lundump.c in Sources */,
 				E1163B0815ADD732004768C9 /* lvm.c in Sources */,
 				E1163B0B15ADD732004768C9 /* lzio.c in Sources */,
+				229F6EA315AED079001DE368 /* NSMethodSignature+argumentsEncodings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

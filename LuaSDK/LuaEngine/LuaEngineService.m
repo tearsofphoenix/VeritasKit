@@ -28,11 +28,13 @@
 #import "LuaLibraryInformation.h"
 
 #import "LuaObjCAuxiliary.h"
-#import "luasdk_utilities.h"
+
 
 static LuaEngineService *g_engine = nil;
 
 extern FILE *g_luaOutputFilePointer;
+
+typedef struct lua_State *LuaStateRef;
 
 typedef struct 
 {

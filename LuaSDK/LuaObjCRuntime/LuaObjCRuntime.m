@@ -10,8 +10,6 @@
 
 #import <objc/runtime.h>
 
-#import "luasdk_utilities.h"
-
 #import "lauxlib.h"
 
 #import "LuaObjCClass.h"
