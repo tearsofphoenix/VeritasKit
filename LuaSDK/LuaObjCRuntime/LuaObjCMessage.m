@@ -127,7 +127,6 @@ static void* ObjectSupport_GetObjcMsgSendCallAddress(NSString* return_value_objc
 	return call_address;
 }
 
-#if 0
 static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
 {    
     LuaObjCClassRef anObj = lua_touserdata(L, 1);   
@@ -389,98 +388,6 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     }
     return 1;
 }
-
-#endif
-
-static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
-{
-    LuaObjCClassRef anObj = lua_touserdata(L, 1);
-    //optimize for nil object call
-    //
-    if (!anObj)
-    {
-        lua_pushnil(L);
-        return 0;
-    }
-    
-    const char *selectorName = lua_tostring(L, 2);
-    //printf("SEL: %s\n", selectorName);
-    SEL selector = sel_registerName(selectorName);
-    
-    //deside object
-    //
-    
-    id obj = LuaObjCClassGetObject(anObj);
-    
-    //optimize for nil object call
-    //
-    if (!obj)
-    {
-        lua_pushnil(L);
-        return 0;
-    }
-    
-    //deside IMP
-    //
-    IMP impRef = (IMP)luaObjC_getAcceleratorIMPBySelector(selector);
-    if (impRef)
-    {
-        return ((LuaObjCAcceleratorIMP)impRef)(obj, selector, L);
-    }else
-    {
-        if (isToSelfClass)
-        {
-            impRef = [obj methodForSelector: selector];
-            
-        }else
-        {
-            impRef = class_getMethodImplementation([obj superclass], selector);
-            
-        }
-        
-        NSMethodSignature *methodSignature = [obj methodSignatureForSelector: selector];
-        
-        if (!methodSignature)
-        {
-            printf("[#ERROR#] line: %d nil method signature for SEL:%s\n", __LINE__, selectorName);
-        }
-        
-        NSUInteger numberOfArguments = [methodSignature numberOfArguments];
-        const char* returnType = [methodSignature methodReturnType];
-        
-        //printf("SEL: %s\n", (const char*)selector);
-        
-        if (numberOfArguments == 2)
-        {
-            return luaObjC_callImplementation_specializeForNoArgument(L, returnType, impRef, obj, selector);
-        }
-        
-        if (numberOfArguments == 3)
-        {
-            const char* firstArgType = [methodSignature getArgumentTypeAtIndex: 2];
-            return luaObjC_callImplementation_specializeForOneArgument(L, firstArgType, returnType, impRef, obj, selector);
-        }
-        
-        LuaBridgeFuncotrRef invocation = LuaObjCInvocationCreate(impRef);
-        LuaBridgeFunctorInitialize(invocation, [methodSignature argumentsEncodings], returnType);
-        
-        LuaObjCInvocationSetArgumentAtInex(invocation, 0, obj);
-        LuaObjCInvocationSetArgumentAtInex(invocation, 1, selector);
-        stackDump(L);
-        for (NSUInteger iLooper = 2; iLooper < numberOfArguments; ++iLooper)
-        {
-            const char* argType = [methodSignature getArgumentTypeAtIndex: iLooper];
-            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
-            
-            LuaObjCInvocationSetArgumentFromLuaStateAtInex(invocation, L, iLooper, argType, iLooper + 1);
-        }
-        
-        LuaObjCInvoke(L, invocation);
-        
-    }
-    return 1;
-}
-
 
 int luaObjC_objc_messageSend(lua_State *L)
 {    
