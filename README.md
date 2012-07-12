@@ -31,22 +31,22 @@ Known Bugs
 What we know
 -
 1. I have used this framework in one of my comercial project, it works well
-2. Benchmark test result on iPod Touch 4, software version: 5.1.1 (The previous benchmark result is for 1000,000):
+2. Benchmark test result on iPod Touch 4, software version: 5.1.1 :
 
       <p>run +[NSString stringWithUTF8String:] 100,000 times, average cost</p>
 
       <table>
          <tr>
             <td>NSInvocation</td>
-            <td>0.562792s</td>
+            <td>2.621619s</td>
          </tr>
          <tr>
             <td>libffi</td>
-            <td>0.115195s</td>
+            <td>1.007282s</td>
          </tr>
          <tr>
             <td>Lua-Call</td> 
-            <td>1.773416s</td>
+            <td>12.943947s</td>
          </tr>
       </table>
 
