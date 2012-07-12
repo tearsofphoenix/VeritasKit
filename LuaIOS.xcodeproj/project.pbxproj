@@ -44,6 +44,10 @@
 		22BC376615AD0AE000F9A067 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC376015AD0AE000F9A067 /* ffitarget.h */; };
 		22BC376715AD0AE000F9A067 /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC376115AD0AE000F9A067 /* ffitarget_i386.h */; };
 		22BC376815AD0AE000F9A067 /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC376215AD0AE000F9A067 /* ffitarget_x86_64.h */; };
+		22D000AA15AE63750034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000A915AE63750034442D /* LICENSE */; };
+		22D000AB15AE63750034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000A915AE63750034442D /* LICENSE */; };
+		22D000AE15AE63C00034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000AD15AE63C00034442D /* LICENSE */; };
+		22D000AF15AE63C00034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000AD15AE63C00034442D /* LICENSE */; };
 		22EC440115243E1A00598F4F /* GLES.v in Resources */ = {isa = PBXBuildFile; fileRef = 22EC440015243E1A00598F4F /* GLES.v */; };
 		22F5B9E6152852F7000F9756 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FFA914D56C4F00180B63 /* QuartzCore.framework */; };
 		22F7ACB615A14AEA00E2DED3 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7A7E915A14AE900E2DED3 /* LuaCGAffineTransform.m */; };
@@ -315,6 +319,8 @@
 		22BC376E15AD0B7600F9A067 /* ffitarget_arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm.h; sourceTree = "<group>"; };
 		22BC376F15AD0B7600F9A067 /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
 		22BC377015AD0B7600F9A067 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		22D000A915AE63750034442D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		22D000AD15AE63C00034442D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		22EC440015243E1A00598F4F /* GLES.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GLES.v; sourceTree = "<group>"; };
 		22F7A7E815A14AE900E2DED3 /* LuaCGAffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCGAffineTransform.h; sourceTree = "<group>"; };
 		22F7A7E915A14AE900E2DED3 /* LuaCGAffineTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCGAffineTransform.m; sourceTree = "<group>"; };
@@ -539,6 +545,7 @@
 		2240CCAA15AAA35C00997375 /* libffi-3.0.11 */ = {
 			isa = PBXGroup;
 			children = (
+				22D000A915AE63750034442D /* LICENSE */,
 				2240CCAB15AAA35C00997375 /* iOS */,
 				2240CCC215AAA35C00997375 /* MacOSX */,
 			);
@@ -589,6 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				226873631521AB92009D6279 /* luasdk_utilities.h */,
+				22D000AD15AE63C00034442D /* LICENSE */,
 			);
 			name = Shared;
 			path = LuaSDK/Shared;
@@ -1168,6 +1176,7 @@
 				E19BA2C915AB465100C870CA /* Security.bridgesupport in Resources */,
 				E19BA2CA15AB465100C870CA /* StoreKit.bridgesupport in Resources */,
 				E19BA2CB15AB465100C870CA /* SystemConfiguration.bridgesupport in Resources */,
+<<<<<<< HEAD
 				E1163B0E15ADE238004768C9 /* UIKit.bridgesupport in Resources */,
 				E1163B2215ADE54B004768C9 /* Accounts.bridgesupport in Resources */,
 				E1163B2315ADE54B004768C9 /* AddressBookUI.bridgesupport in Resources */,
@@ -1187,6 +1196,10 @@
 				E1163B3115ADE54B004768C9 /* MobileCoreServices.bridgesupport in Resources */,
 				E1163B3215ADE54B004768C9 /* NewsstandKit.bridgesupport in Resources */,
 				E1163B3315ADE54B004768C9 /* Twitter.bridgesupport in Resources */,
+=======
+				22D000AA15AE63750034442D /* LICENSE in Resources */,
+				22D000AE15AE63C00034442D /* LICENSE in Resources */,
+>>>>>>> add license file
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E14908451595C0AC0088A170 /* LuaObjCParser.lua in Resources */,
+				22D000AB15AE63750034442D /* LICENSE in Resources */,
+				22D000AF15AE63C00034442D /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
