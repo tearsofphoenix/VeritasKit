@@ -46,7 +46,7 @@ What we know
          </tr>
          <tr>
             <td>Lua-Call</td> 
-            <td>about 12s</td>
+            <td>12.943947s</td>
          </tr>
       </table>
 
