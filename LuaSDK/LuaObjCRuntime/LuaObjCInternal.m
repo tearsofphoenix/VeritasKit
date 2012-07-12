@@ -11,8 +11,8 @@
 #import "LuaObjCClass.h"
 
 #import "LuaObjCAuxiliary.h"
-#import "lstate.h"
 #import "lauxlib.h"
+#import "LuaBridgeSupport.h"
 #import <objc/runtime.h>
 
 static void luaObjC_loadClassList(lua_State *L, const char* classList[])
@@ -177,6 +177,27 @@ const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
     return charLooper;
 }
 
+static const char *_luaObjCInternal_jumpOverToChar(const char *charLooper, char targetChar)
+{
+    if (charLooper)
+    {
+        while (*charLooper != targetChar)
+        {
+            ++charLooper;
+        }
+        
+        //jumpover the '=' char
+        //
+        if (*charLooper)
+        {
+            ++charLooper;
+        }
+        return charLooper;
+    }
+    return NULL;
+}
+
+
 size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
 {
     if (!encoding)
@@ -189,18 +210,7 @@ size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
     int fieldLooper = 0;
     //jumpover the name of the struct
     //
-    while (*charLooper != '\0'
-           && *charLooper != '=')
-    {
-        ++charLooper;
-    }
-    
-    //jumpover the '=' char
-    //
-    if (*charLooper)
-    {
-        ++charLooper;
-    }
+    charLooper = _luaObjCInternal_jumpOverToChar(charLooper, '=');
     
     while (*charLooper) 
     {
@@ -208,59 +218,70 @@ size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
         {
             case '\'':
             {
-                while (*charLooper != '\'')
-                {
-                    ++charLooper;
-                }
-                
-                ++charLooper;
-                
+                charLooper = _luaObjCInternal_jumpOverToChar(charLooper, '\'');
                 break;
             }
             case 'c':
             {
                 structFieldSizes[fieldLooper] = sizeof(char);
                 ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'i':
             {
                 structFieldSizes[fieldLooper] = sizeof(int);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 's':
             {
                 structFieldSizes[fieldLooper] = sizeof(short);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'l':
             {
                 structFieldSizes[fieldLooper] = sizeof(long);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'q':
             {
                 structFieldSizes[fieldLooper] = sizeof(long double);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'C':
             {
                 structFieldSizes[fieldLooper] = sizeof(unsigned char);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'I':
             {
                 structFieldSizes[fieldLooper] = sizeof(unsigned int);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'S':
             {
                 structFieldSizes[fieldLooper] = sizeof(unsigned short);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'L':
             {
                 structFieldSizes[fieldLooper] = sizeof(unsigned long);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'Q':
@@ -268,21 +289,29 @@ size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
                 //Notice here, but this will be rarely used
                 //
                 structFieldSizes[fieldLooper] = sizeof(long double);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'B':
             {
                 structFieldSizes[fieldLooper] = sizeof(char);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'f':
             {
                 structFieldSizes[fieldLooper] = sizeof(float);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case 'd':
             {
                 structFieldSizes[fieldLooper] = sizeof(double);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case '*':
@@ -293,18 +322,15 @@ size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
             case '[':
             {
                 structFieldSizes[fieldLooper] = sizeof(void *);
+                ++fieldLooper;
+                ++charLooper;
                 break;
             }
             case '{':
             {
                 //TODO
                 //
-            }
-            case 'v':
-            case 'V': //"Vv"
-            {
-                //not possible
-                //
+                charLooper = _luaObjCInternal_jumpOverToChar(charLooper, '=');                
                 break;
             }
             default:
@@ -314,4 +340,30 @@ size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
             }
         }
     }
+    
+    size_t structSize = 0;
+    size_t currentSlotSize = 0;
+    for (int iLooper = 0; iLooper < fieldLooper; ++iLooper)
+    {
+        currentSlotSize += structFieldSizes[iLooper];
+        if (currentSlotSize > LUAOBJC_TARGET_ALIGMENT)
+        {
+            currentSlotSize -= structFieldSizes[iLooper];
+            structSize += LUAOBJC_TARGET_ALIGMENT;
+            currentSlotSize = structFieldSizes[iLooper];
+            if (iLooper == fieldLooper - 1)
+            {
+                structSize += MAX(structSize, LUAOBJC_TARGET_ALIGMENT);
+            }
+        }else if (currentSlotSize < LUAOBJC_TARGET_ALIGMENT)
+        {
+            
+        }else
+        {
+            structSize += currentSlotSize;
+            currentSlotSize = 0;
+        }
+    }
+    
+    return structSize;
 }

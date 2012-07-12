@@ -8,7 +8,6 @@
 
 struct luaL_Reg;
 struct lua_State;
-struct LuaSDKConst;
 
 extern id luaObjC_checkNSObject(struct lua_State *L, int index);
 
@@ -17,8 +16,6 @@ extern const char* luaObjC_checkString(struct lua_State *L, int index);
 extern int luaObjC_pushNSObject(struct lua_State *L, id nsObject);
 
 extern int luaObjC_getEncodeOfType(struct lua_State *L);
-
-extern void luaObjC_loadGlobalConstants(struct lua_State *L, const struct LuaSDKConst *contants);
 
 extern int luaObjC_checkInteger(struct lua_State *L, int index);
 

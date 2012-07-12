@@ -108,15 +108,6 @@ LuaObjCClassRef luaObjC_getRegisteredClassByName(NSString *className)
     return [[__LuaObjC_ClassDictionary objectForKey: className] pointerValue];
 }
 
-
-
-static const LuaSDKConst luaObjCConstants[] =
-{
-    {"YES", YES},
-    {"NO", NO},
-    {NULL, 0}
-};
-
 static int _luaEngine_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
@@ -174,9 +165,7 @@ int luaopen_objc(lua_State *L)
     
     luaObjCWeakTableCreate(L);
     luaObjCStrongTableCreate(L);
-    
-    luaObjC_loadGlobalConstants(L, luaObjCConstants);
-    
+        
     luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
     
     static const char* s_ResolveNameMetaTable = 

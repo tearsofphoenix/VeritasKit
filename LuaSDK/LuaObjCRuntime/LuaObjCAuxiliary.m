@@ -176,21 +176,6 @@ int luaObjC_getEncodeOfType(lua_State *L)
     return luaObjC_pushNSObject(L, [NSString stringWithFormat: @"%s", objCType]);
 }
 
-void luaObjC_loadGlobalConstants(lua_State *L, const LuaSDKConst contants[])
-{
-    NSInteger iLooper = 0;
-    LuaSDKConst constLooper = contants[iLooper];
-    while (constLooper.str)
-    {
-        lua_pushinteger(L, constLooper.value);
-        lua_setglobal(L, constLooper.str);
-        
-        ++iLooper;
-        constLooper = contants[iLooper];
-    }
-    
-}
-
 void luaObjC_loadGlobalClasses(lua_State *L, const char* classList[])
 {
     NSInteger iLooper = 0;

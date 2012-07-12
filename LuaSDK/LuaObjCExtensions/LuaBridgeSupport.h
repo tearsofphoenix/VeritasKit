@@ -16,3 +16,13 @@ struct lua_State;
             intoLuaState: (struct lua_State *)state;
 
 @end
+
+#ifdef __arm__
+
+#define LUAOBJC_TARGET_ALIGMENT (4)
+
+#else
+
+#define LUAOBJC_TARGET_ALIGMENT (4)
+
+#endif

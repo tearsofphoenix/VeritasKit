@@ -98,13 +98,11 @@ int main(int argc, char *argv[])
             testFFI();
         }
         */
-        testLuaCall();
+        //testLuaCall();
         
         NSTimeInterval end_time = [NSDate timeIntervalSinceReferenceDate];
         
-        printf("end-time: %f interval: %f\n", end_time, end_time - start_time);
-
-        
+        printf("end-time: %f interval: %f\n", end_time, end_time - start_time);        
         
         NSString *sourceFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"Test.v"];
         NSString *sourceCode = [NSString stringWithContentsOfFile: sourceFilePath

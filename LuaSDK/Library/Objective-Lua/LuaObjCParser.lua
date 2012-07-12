@@ -60,7 +60,7 @@ local olua_keywords = P '@implementation' + P '@property' + P '@end'
                     + P '@array' + P '@dictionary' + P '@table' + P '@try'
                     + P '@catch' + P '@throw' + P '@finally'
                     + P '#import' + P'@enumerate' + P'@typedef' + P '@class'
-                    + P '@[' + P '@{'
+                    + P '@[' + P '@{' + P'YES' + P'NO'
                     
 
 local keyword = token('keyword', (P 'and' + P 'break' + P 'do' + P 'elseif' +
@@ -176,6 +176,14 @@ function gettokens( input)
                                         t.type = "number"
                                         t.text = rawtoken[3]
                                     end
+                                    if (t.type == "keyword") then
+                                        if (t.text == "YES") then
+                                            t.text = "true"
+                                        elseif (t.text == "NO") then
+                                            t.text = "NO"
+                                        end
+                                    end
+
                                     if rawtoken and rawtoken[2]:find('\n') then
                                         t.nlafter = true
                                     end
