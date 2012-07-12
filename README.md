@@ -114,3 +114,38 @@ What we know
                      LuaCall(sourceCode, @"testLuaCall", nil, 0, 0, nil);
                }
    </code></pre>
+   
+Example Code
+-
+1.Used in projects
+      <pre><code>
+             function initialize(self)
+				               local animationViews = [self animationViews];
+				               local resourcePath = [[self resourceBasePath] stringByAppendingPathComponent: @"/1/"];
+				               local sharedResourcePath = [[self resourceBasePath] stringByAppendingPathComponent: @"/Shared/"];
+				               local imageFilePath = [resourcePath stringByAppendingPathComponent: @"textContent.png"];
+				               local textContentImageView = [[UIImageView alloc] initWithImage: [UIImage imageWithContentsOfFile: imageFilePath]];
+				               [textContentImageView setFrame: CGRectMake(40, 150, 397, 250)];
+				               [self addSubview: textContentImageView];
+				               [textContentImageView release];
+				
+				               [animationViews setObject: textContentImageView 
+								                      forKey: @"textContentImageView"];
+    	         end
+        					
+               function slideAnimationFunction(self)
+			                  local animationViews = [self animationViews];
+                  			local titleView = [animationViews objectForKey: @"titleView"];
+			                  local contentView = [animationViews objectForKey: @"contentImageView"];
+			
+			                  [UIView animateWithDuration: 0.5
+							                       animations: (^()
+										                           {
+												                           [titleView setAlpha: 1];
+										                           })
+							                       completion: (^(BOOL finished)
+										                           {
+												                           [contentView setAlpha: 1];
+										                           })];
+                        end 
+      </code></pre>
