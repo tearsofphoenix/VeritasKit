@@ -5,7 +5,7 @@ Lua wrapper for Objective-C, implemented most Objective-C features
 
 
 TODOs
-
+-
 1. memory management, gc of lua;
 2. support for `@property', it has been implemented, but not tested yet;
 3. support for class-ivar, you can not access to ivar by name (for example, _ivarName) in 
@@ -13,7 +13,7 @@ TODOs
 4. full support of block, block is almost fully supported excepted some wired condition
 
 Features
-
+-
 1. support most Objective-C syntax features, which is simillar to Objective-C progammers(such as @autoreleasepool);
 2. support lua syntax, so we may call this Objective-Lua;
 3. support new Objective-C syntax, such as literal NSDictionary, literal NSArray, literal NSNumber,
@@ -23,30 +23,30 @@ Features
 6. speed up by store global value in a strong table in lua state, so updated the benchmark table below;
 
 Known Bugs
-
+-
 1. memory can not be collected yet, but middle-vars can be gc now, so memory will not be a big problem
 2. no try-catch-final, @throw implemented, but not that good, recommanded not to use this feature;
 3. will not support dot-operator (.) on instance, which is my decision;
 
 What we know
-
+-
 1. I have used this framework in one of my comercial project, it works well
-2. Becnmark test result on iPod Touch 4, software version: 5.1.1 :
+2. Benchmark test result on iPod Touch 4, software version: 5.1.1 (The previous benchmark result is for 1000,000):
 
       <p>run +[NSString stringWithUTF8String:] 100,000 times, average cost</p>
 
       <table>
          <tr>
             <td>NSInvocation</td>
-            <td>2.621619s</td>
+            <td>0.562792s</td>
          </tr>
          <tr>
             <td>libffi</td>
-            <td>1.007282s</td>
+            <td>0.115195s</td>
          </tr>
          <tr>
             <td>Lua-Call</td> 
-            <td>12.943947s</td>
+            <td>1.773416s</td>
          </tr>
       </table>
 
