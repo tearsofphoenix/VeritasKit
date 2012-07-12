@@ -214,11 +214,14 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
         {
             returnValue->_returnValueEncoding = strdup(returnEncoding);
             returnValue->_returnType = _luaBridgeInternal_typeOfEncoding(returnEncoding);
-            returnValue->_returnValue = malloc(returnValue->_returnType->size);
-            returnValue->_returnCount = 1;
             if (returnValue->_returnType == &ffi_type_void)
             {
                 returnValue->_returnCount = 0;
+                returnValue->_returnValue = NULL;
+            }else 
+            {
+                returnValue->_returnValue = malloc(returnValue->_returnType->size);
+                returnValue->_returnCount = 1;
             }
         }
         
@@ -227,11 +230,28 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
                                          argumentCount,
                                          returnValue->_returnType,
                                          returnValue->_argumentTypes);
-        if (status == FFI_OK)
+        switch (status)
         {
-            NSLog(@"ok");
+            case FFI_OK:
+            {
+                printf("\t\t\t--------------ok-------------\n");
+                break;
+            }   
+            case FFI_BAD_ABI:
+            {
+                printf("\t\t\t----------bad-abi-------------\n");
+                break;
+            }
+            case FFI_BAD_TYPEDEF:
+            {
+                printf("\t\t\t----------bad-typedef-------------\n");
+                break;
+            }
+            default:
+            {
+                break;
+            }
         }
-
     }
 }
 
@@ -325,19 +345,28 @@ void LuaObjCInvoke(struct lua_State *L,
                 break;
             }
             case '*':
+            case ':':
+            {
+                lua_pushstring(L, *(const char **)ref->_returnValue);
+                break;
+            }
             case '#':
             case '@':
-            case ':':
+            {
+                luaObjC_pushNSObject(L, *(id*)ref->_returnValue);
+                break;
+            }
             case '^':
             case '[':
             {
-                lua_pushlightuserdata(L, ref->_returnValue);
+                lua_pushlightuserdata(L, *(void **)ref->_returnValue);
                 break;
             }
             case '{':
             {
                 //TODO
                 //
+                break;
             }
             case 'v':
             case 'V': //"Vv"
@@ -390,7 +419,7 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
 
 void LuaObjCInvocationSetArgumentAtInex(LuaBridgeFuncotrRef ref, int index, void *value)
 {
-    ref->_arguments[index] = value;
+    *(void **)ref->_arguments[index] = value;
 }
 
 void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
@@ -470,26 +499,35 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
             break;
         }
         case '*':
+        {
+            const char *str = lua_tostring(L, index);
+            printf("in function: %s line: %d string: %s\n", __FUNCTION__, __LINE__, str);
+            *(const char **)arguments[iLooper] = strdup(str);
+            break;
+        }
         case ':':
         {
-            *(const char **)arguments[iLooper] = lua_tostring(L, index);
+            const char *str = lua_tostring(L, index);
+            printf("in function: %s line: %d string: %s\n", __FUNCTION__, __LINE__, str);
+            *(SEL *)arguments[iLooper] = sel_getUid(str);
             break;
         }
         case '#':
         {
-            arguments[iLooper] = luaObjC_checkNSObject(L, index);
+            *(id*)(arguments[iLooper]) = luaObjC_checkNSObject(L, index);
             break;
         }
         case '@':
         {
             id obj = luaObjC_checkNSObject(L, index);
-            arguments[iLooper] = [obj retain];
+            *(id *)(arguments[iLooper]) = obj;
+            NSLog(@"value: %@", *(id *)arguments[iLooper]);
             break;
         }
         case '^':
         case '[':
         {
-            arguments[iLooper] = lua_touserdata(L, index);
+            *(void**)(arguments[iLooper]) = lua_touserdata(L, index);
             break;
         }
         case '{':

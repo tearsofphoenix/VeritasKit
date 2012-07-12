@@ -10,6 +10,7 @@
 #import "LuaObjCInternal.h"
 #import "LuaObjCProfile.h"
 #import "ffi.h"
+#import <dlfcn.h>
 #import <objc/runtime.h>
 
 static const char * _testString = "你好";
@@ -70,16 +71,19 @@ static void testFFI(void)
     }
 }
 
+static NSString * const sourceCode = @"local invocation = function() "
+                                                           "    local a = [UITapGesuter stringWithUTF8String: \"你好\"] "
+                                                           "    print(a)    "
+                                                           "    [a release] "
+                                                           "end "
+                                          " testLuaCall = function() "
+                                                          "   for i = 1, 1 do "
+                                                          "        invocation() "
+                                                          "   end "
+                                                          "end";
+
 static void testLuaCall(void)
 {
-    static NSString * const sourceCode = @"local invocation = function()"
-                                                                " local a = [NSString stringWithUTF8String: \"你好\"]"
-                                                                " [a release]"
-                                                              "end;\n"
-                                          "testLuaCall = function()"
-                                                            " for i = 1, 100000 do"
-                                                            " invocation()"
-                                                            " end end";
     LuaCall(sourceCode, @"testLuaCall", nil, 0, 0, nil);
 }
 
@@ -103,12 +107,13 @@ int main(int argc, char *argv[])
         NSTimeInterval end_time = [NSDate timeIntervalSinceReferenceDate];
         
         printf("end-time: %f interval: %f\n", end_time, end_time - start_time);        
-        
+#if 1
         NSString *sourceFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"Test.v"];
         NSString *sourceCode = [NSString stringWithContentsOfFile: sourceFilePath
                                                          encoding: NSUTF8StringEncoding
                                                             error: NULL];        
         
         LuaCall(sourceCode, @"main", nil, 0, 1, nil);
+#endif
     }
 }
