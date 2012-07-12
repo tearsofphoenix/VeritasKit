@@ -46,8 +46,8 @@
 		22BC376815AD0AE000F9A067 /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC376215AD0AE000F9A067 /* ffitarget_x86_64.h */; };
 		22D000AA15AE63750034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000A915AE63750034442D /* LICENSE */; };
 		22D000AB15AE63750034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000A915AE63750034442D /* LICENSE */; };
-		22D000AE15AE63C00034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000AD15AE63C00034442D /* LICENSE */; };
-		22D000AF15AE63C00034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000AD15AE63C00034442D /* LICENSE */; };
+		22D000AE15AE63C00034442D /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000AD15AE63C00034442D /* VeritasKit-LICENSE */; };
+		22D000AF15AE63C00034442D /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000AD15AE63C00034442D /* VeritasKit-LICENSE */; };
 		22EC440115243E1A00598F4F /* GLES.v in Resources */ = {isa = PBXBuildFile; fileRef = 22EC440015243E1A00598F4F /* GLES.v */; };
 		22F5B9E6152852F7000F9756 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FFA914D56C4F00180B63 /* QuartzCore.framework */; };
 		22F7ACB615A14AEA00E2DED3 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7A7E915A14AE900E2DED3 /* LuaCGAffineTransform.m */; };
@@ -155,12 +155,8 @@
 		E1163AF915ADD732004768C9 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AA015ADD732004768C9 /* ltm.c */; };
 		E1163AFA15ADD732004768C9 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AA015ADD732004768C9 /* ltm.c */; };
 		E1163AFB15ADD732004768C9 /* ltm.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163AA115ADD732004768C9 /* ltm.h */; };
-		E1163AFC15ADD732004768C9 /* lua.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AA215ADD732004768C9 /* lua.c */; };
-		E1163AFD15ADD732004768C9 /* lua.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AA215ADD732004768C9 /* lua.c */; };
 		E1163AFE15ADD732004768C9 /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163AA315ADD732004768C9 /* lua.h */; };
 		E1163AFF15ADD732004768C9 /* lua.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E1163AA415ADD732004768C9 /* lua.hpp */; };
-		E1163B0015ADD732004768C9 /* luac.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AA515ADD732004768C9 /* luac.c */; };
-		E1163B0115ADD732004768C9 /* luac.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AA515ADD732004768C9 /* luac.c */; };
 		E1163B0215ADD732004768C9 /* luaconf.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163AA615ADD732004768C9 /* luaconf.h */; };
 		E1163B0315ADD732004768C9 /* lualib.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163AA715ADD732004768C9 /* lualib.h */; };
 		E1163B0415ADD732004768C9 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AA815ADD732004768C9 /* lundump.c */; };
@@ -320,7 +316,7 @@
 		22BC376F15AD0B7600F9A067 /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
 		22BC377015AD0B7600F9A067 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
 		22D000A915AE63750034442D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		22D000AD15AE63C00034442D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		22D000AD15AE63C00034442D /* VeritasKit-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VeritasKit-LICENSE"; sourceTree = "<group>"; };
 		22EC440015243E1A00598F4F /* GLES.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GLES.v; sourceTree = "<group>"; };
 		22F7A7E815A14AE900E2DED3 /* LuaCGAffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCGAffineTransform.h; sourceTree = "<group>"; };
 		22F7A7E915A14AE900E2DED3 /* LuaCGAffineTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCGAffineTransform.m; sourceTree = "<group>"; };
@@ -430,10 +426,8 @@
 		E1163A9F15ADD732004768C9 /* ltablib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltablib.c; sourceTree = "<group>"; };
 		E1163AA015ADD732004768C9 /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltm.c; sourceTree = "<group>"; };
 		E1163AA115ADD732004768C9 /* ltm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltm.h; sourceTree = "<group>"; };
-		E1163AA215ADD732004768C9 /* lua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua.c; sourceTree = "<group>"; };
 		E1163AA315ADD732004768C9 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
 		E1163AA415ADD732004768C9 /* lua.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua.hpp; sourceTree = "<group>"; };
-		E1163AA515ADD732004768C9 /* luac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luac.c; sourceTree = "<group>"; };
 		E1163AA615ADD732004768C9 /* luaconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luaconf.h; sourceTree = "<group>"; };
 		E1163AA715ADD732004768C9 /* lualib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lualib.h; sourceTree = "<group>"; };
 		E1163AA815ADD732004768C9 /* lundump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lundump.c; sourceTree = "<group>"; };
@@ -596,7 +590,7 @@
 			isa = PBXGroup;
 			children = (
 				226873631521AB92009D6279 /* luasdk_utilities.h */,
-				22D000AD15AE63C00034442D /* LICENSE */,
+				22D000AD15AE63C00034442D /* VeritasKit-LICENSE */,
 			);
 			name = Shared;
 			path = LuaSDK/Shared;
@@ -845,10 +839,8 @@
 				E1163A9F15ADD732004768C9 /* ltablib.c */,
 				E1163AA015ADD732004768C9 /* ltm.c */,
 				E1163AA115ADD732004768C9 /* ltm.h */,
-				E1163AA215ADD732004768C9 /* lua.c */,
 				E1163AA315ADD732004768C9 /* lua.h */,
 				E1163AA415ADD732004768C9 /* lua.hpp */,
-				E1163AA515ADD732004768C9 /* luac.c */,
 				E1163AA615ADD732004768C9 /* luaconf.h */,
 				E1163AA715ADD732004768C9 /* lualib.h */,
 				E1163AA815ADD732004768C9 /* lundump.c */,
@@ -1176,7 +1168,6 @@
 				E19BA2C915AB465100C870CA /* Security.bridgesupport in Resources */,
 				E19BA2CA15AB465100C870CA /* StoreKit.bridgesupport in Resources */,
 				E19BA2CB15AB465100C870CA /* SystemConfiguration.bridgesupport in Resources */,
-<<<<<<< HEAD
 				E1163B0E15ADE238004768C9 /* UIKit.bridgesupport in Resources */,
 				E1163B2215ADE54B004768C9 /* Accounts.bridgesupport in Resources */,
 				E1163B2315ADE54B004768C9 /* AddressBookUI.bridgesupport in Resources */,
@@ -1196,10 +1187,8 @@
 				E1163B3115ADE54B004768C9 /* MobileCoreServices.bridgesupport in Resources */,
 				E1163B3215ADE54B004768C9 /* NewsstandKit.bridgesupport in Resources */,
 				E1163B3315ADE54B004768C9 /* Twitter.bridgesupport in Resources */,
-=======
 				22D000AA15AE63750034442D /* LICENSE in Resources */,
-				22D000AE15AE63C00034442D /* LICENSE in Resources */,
->>>>>>> add license file
+				22D000AE15AE63C00034442D /* VeritasKit-LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,7 +1198,7 @@
 			files = (
 				E14908451595C0AC0088A170 /* LuaObjCParser.lua in Resources */,
 				22D000AB15AE63750034442D /* LICENSE in Resources */,
-				22D000AF15AE63C00034442D /* LICENSE in Resources */,
+				22D000AF15AE63C00034442D /* VeritasKit-LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1298,8 +1287,6 @@
 				E1163AF415ADD732004768C9 /* ltable.c in Sources */,
 				E1163AF715ADD732004768C9 /* ltablib.c in Sources */,
 				E1163AF915ADD732004768C9 /* ltm.c in Sources */,
-				E1163AFC15ADD732004768C9 /* lua.c in Sources */,
-				E1163B0015ADD732004768C9 /* luac.c in Sources */,
 				E1163B0415ADD732004768C9 /* lundump.c in Sources */,
 				E1163B0715ADD732004768C9 /* lvm.c in Sources */,
 				E1163B0A15ADD732004768C9 /* lzio.c in Sources */,
@@ -1374,8 +1361,6 @@
 				E1163AF515ADD732004768C9 /* ltable.c in Sources */,
 				E1163AF815ADD732004768C9 /* ltablib.c in Sources */,
 				E1163AFA15ADD732004768C9 /* ltm.c in Sources */,
-				E1163AFD15ADD732004768C9 /* lua.c in Sources */,
-				E1163B0115ADD732004768C9 /* luac.c in Sources */,
 				E1163B0515ADD732004768C9 /* lundump.c in Sources */,
 				E1163B0815ADD732004768C9 /* lvm.c in Sources */,
 				E1163B0B15ADD732004768C9 /* lzio.c in Sources */,

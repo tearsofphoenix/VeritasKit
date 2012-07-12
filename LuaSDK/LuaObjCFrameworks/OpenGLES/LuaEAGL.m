@@ -8,7 +8,6 @@
 #import "LuaEAGL.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
-#import "luasdk_utilities.h"
 #import "LuaObjCAuxiliary.h"
 #include <OpenGLES/EAGL.h>
 

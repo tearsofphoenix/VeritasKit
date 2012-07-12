@@ -176,3 +176,142 @@ const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
     }
     return charLooper;
 }
+
+size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
+{
+    if (!encoding)
+    {
+        return 0;
+    }
+    const char *charLooper = encoding;
+    
+    size_t structFieldSizes[1024];
+    int fieldLooper = 0;
+    //jumpover the name of the struct
+    //
+    while (*charLooper != '\0'
+           && *charLooper != '=')
+    {
+        ++charLooper;
+    }
+    
+    //jumpover the '=' char
+    //
+    if (*charLooper)
+    {
+        ++charLooper;
+    }
+    
+    while (*charLooper) 
+    {
+       switch (*charLooper)
+        {
+            case '\'':
+            {
+                while (*charLooper != '\'')
+                {
+                    ++charLooper;
+                }
+                
+                ++charLooper;
+                
+                break;
+            }
+            case 'c':
+            {
+                structFieldSizes[fieldLooper] = sizeof(char);
+                ++fieldLooper;
+                break;
+            }
+            case 'i':
+            {
+                structFieldSizes[fieldLooper] = sizeof(int);
+                break;
+            }
+            case 's':
+            {
+                structFieldSizes[fieldLooper] = sizeof(short);
+                break;
+            }
+            case 'l':
+            {
+                structFieldSizes[fieldLooper] = sizeof(long);
+                break;
+            }
+            case 'q':
+            {
+                structFieldSizes[fieldLooper] = sizeof(long double);
+                break;
+            }
+            case 'C':
+            {
+                structFieldSizes[fieldLooper] = sizeof(unsigned char);
+                break;
+            }
+            case 'I':
+            {
+                structFieldSizes[fieldLooper] = sizeof(unsigned int);
+                break;
+            }
+            case 'S':
+            {
+                structFieldSizes[fieldLooper] = sizeof(unsigned short);
+                break;
+            }
+            case 'L':
+            {
+                structFieldSizes[fieldLooper] = sizeof(unsigned long);
+                break;
+            }
+            case 'Q':
+            {
+                //Notice here, but this will be rarely used
+                //
+                structFieldSizes[fieldLooper] = sizeof(long double);
+                break;
+            }
+            case 'B':
+            {
+                structFieldSizes[fieldLooper] = sizeof(char);
+                break;
+            }
+            case 'f':
+            {
+                structFieldSizes[fieldLooper] = sizeof(float);
+                break;
+            }
+            case 'd':
+            {
+                structFieldSizes[fieldLooper] = sizeof(double);
+                break;
+            }
+            case '*':
+            case '#':
+            case '@':
+            case ':':
+            case '^':
+            case '[':
+            {
+                structFieldSizes[fieldLooper] = sizeof(void *);
+                break;
+            }
+            case '{':
+            {
+                //TODO
+                //
+            }
+            case 'v':
+            case 'V': //"Vv"
+            {
+                //not possible
+                //
+                break;
+            }
+            default:
+            {
+                ++charLooper;
+                break;
+            }
+        }
+    }
+}

@@ -9,7 +9,6 @@
 #import "lapi.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
-#import "luasdk_utilities.h"
 #import "LuaObjCAuxiliary.h"
 
 static int lua_NSLocalizedString(lua_State *L)

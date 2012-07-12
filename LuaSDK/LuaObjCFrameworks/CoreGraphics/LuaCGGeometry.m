@@ -9,7 +9,6 @@
 #import "lapi.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
-#import "luasdk_utilities.h"
 #import "LuaObjCAuxiliary.h"
 
 int lua_pushCGPoint(lua_State *L, CGPoint p)
@@ -337,15 +336,6 @@ static int lua_CGRectIntersectsRect(lua_State *L)
     return 1;
 }
 
-static const LuaSDKConst __luaCGGeometryConstants[] = 
-{
-    {"CGRectMinXEdge", CGRectMinXEdge},
-    {"CGRectMinYEdge", CGRectMinYEdge}, 
-    {"CGRectMaxXEdge", CGRectMaxXEdge}, 
-    {"CGRectMaxYEdge", CGRectMaxYEdge},
-    {NULL, 0}
-};
-
 static const luaL_Reg __luaCGGeometryAPIs[] = 
 {
     
@@ -381,7 +371,6 @@ static const luaL_Reg __luaCGGeometryAPIs[] =
 
 int LuaOpenCGGeometry(lua_State *L)
 {
-    luaObjC_loadGlobalConstants(L, __luaCGGeometryConstants);
     luaObjC_loadGlobalFunctions(L, __luaCGGeometryAPIs);
     return 0;
 }

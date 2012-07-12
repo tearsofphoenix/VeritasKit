@@ -28,4 +28,6 @@ extern void stackDump (struct lua_State *L);
 
 extern const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
 
+extern size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding);
+
 #endif
