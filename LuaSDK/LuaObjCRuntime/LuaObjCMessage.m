@@ -466,7 +466,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         
         LuaObjCInvocationSetArgumentAtInex(invocation, 0, obj);
         LuaObjCInvocationSetArgumentAtInex(invocation, 1, selector);
-        
+        stackDump(L);
         for (NSUInteger iLooper = 2; iLooper < numberOfArguments; ++iLooper)
         {
             const char* argType = [methodSignature getArgumentTypeAtIndex: iLooper];

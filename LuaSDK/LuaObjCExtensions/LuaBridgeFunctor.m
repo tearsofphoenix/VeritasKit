@@ -140,7 +140,7 @@ static int LuaBridgeFunctorInvoke(lua_State *L)
     
     [ref->_argumentTypeEncodings enumerateObjectsUsingBlock: (^(NSString *encoding, NSUInteger idx, BOOL *stop)
                                                               {
-                                                                  LuaObjCInvocationSetArgumentFromLuaStateAtInex(ref, L, idx, [encoding UTF8String], idx + 1 + 1);
+                                                                  LuaObjCInvocationSetArgumentFromLuaStateAtInex(ref, L, idx + 1 + 1, [encoding UTF8String], idx);
                                                               })];
     
     LuaObjCInvoke(L, ref);
@@ -188,9 +188,9 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
             ffi_type ** argumentTypes = malloc(sizeof(ffi_type *) * argumentCount);
             void **args = malloc(sizeof(void *) * argumentCount);
             
-            [argumentTypeEncodings enumerateObjectsUsingBlock: (^(LuaBridgeArgumentInfo *encoding, NSUInteger idx, BOOL *stop)
+            [argumentTypeEncodings enumerateObjectsUsingBlock: (^(NSString *encoding, NSUInteger idx, BOOL *stop)
                                                                 {
-                                                                    const char *encodingLooper = [[encoding type] UTF8String];
+                                                                    const char *encodingLooper = [encoding UTF8String];
                                                                     argumentTypes[idx] = _luaBridgeInternal_typeOfEncoding(encodingLooper);
                                                                     args[idx] = malloc(argumentTypes[idx]->size);
                                                                 })];
@@ -209,6 +209,7 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
             returnValue->_returnType = &ffi_type_void;
             returnValue->_returnValue = NULL;
             returnValue->_returnCount = 0;
+            returnValue->_returnValueEncoding = NULL;
         }else
         {
             returnValue->_returnValueEncoding = strdup(returnEncoding);
@@ -249,6 +250,11 @@ void LuaObjCInvoke(struct lua_State *L,
         ffi_call(&(ref->_cif), ref->_functionPointer, ref->_returnValue, ref->_arguments);
         
         const char *returnValueEncoding = ref->_returnValueEncoding;
+        if (!returnValueEncoding)
+        {
+            return;
+        }
+        
         switch (*returnValueEncoding)
         {
             case 'c':
@@ -370,7 +376,7 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
         
         if (ref->_argumentTypeEncodings)
         {
-            free(ref->_argumentTypeEncodings);
+            [ref->_argumentTypeEncodings release];
         }
         
         if (ref->_returnValue)

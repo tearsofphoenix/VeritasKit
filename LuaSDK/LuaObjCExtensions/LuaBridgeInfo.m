@@ -50,7 +50,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             Class theClass = objc_getClass([_name UTF8String]);
             luaObjC_pushNSObject(state, theClass);
             break;
-        }   
+        }
         case LuaBridgeEnumType:
         {
             lua_pushinteger(state, [[_info objectForKey: @"value"] intValue]);
@@ -58,10 +58,19 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         }
         case LuaBridgeFunctionType:
         {
+            NSArray *args = [_info objectForKey: @"arg"];
+            NSMutableArray *encodings = [[NSMutableArray alloc] init];
+            
+            [args enumerateObjectsUsingBlock: (^(LuaBridgeArgumentInfo *obj, NSUInteger idx, BOOL *stop)
+                                               {
+                                                   [encodings addObject: [obj type]];
+                                               })];
+            
             LuaBridgeFunctorCreate(state,
-                                   _name, 
-                                   [_info objectForKey: @"arg"],
+                                   _name,
+                                   encodings,
                                    [[(LuaBridgeArgumentInfo *)[_info objectForKey: @"retval"] type] UTF8String]);
+            [encodings release];
             break;
         }
         default:
