@@ -501,14 +501,14 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
         case '*':
         {
             const char *str = lua_tostring(L, index);
-            printf("in function: %s line: %d string: %s\n", __FUNCTION__, __LINE__, str);
+            //printf("in function: %s line: %d string: %s\n", __FUNCTION__, __LINE__, str);
             *(const char **)arguments[iLooper] = strdup(str);
             break;
         }
         case ':':
         {
             const char *str = lua_tostring(L, index);
-            printf("in function: %s line: %d string: %s\n", __FUNCTION__, __LINE__, str);
+            //printf("in function: %s line: %d string: %s\n", __FUNCTION__, __LINE__, str);
             *(SEL *)arguments[iLooper] = sel_getUid(str);
             break;
         }

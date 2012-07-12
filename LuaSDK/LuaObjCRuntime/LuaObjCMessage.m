@@ -183,7 +183,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         NSUInteger numberOfArguments = [methodSignature numberOfArguments];
         const char* returnType = [methodSignature methodReturnType];
         
-        printf("SEL: %s\n", (const char*)selector);
+        //printf("SEL: %s\n", (const char*)selector);
         
         if (numberOfArguments == 2)
         {
@@ -201,7 +201,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         
         LuaObjCInvocationSetArgumentAtInex(invocation, 0, obj);
         LuaObjCInvocationSetArgumentAtInex(invocation, 1, selector);
-        stackDump(L);
+        //stackDump(L);
         for (NSUInteger iLooper = 2; iLooper < numberOfArguments; ++iLooper)
         {
             const char* argType = [methodSignature getArgumentTypeAtIndex: iLooper];

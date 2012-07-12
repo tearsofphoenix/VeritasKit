@@ -72,12 +72,12 @@ static void testFFI(void)
 }
 
 static NSString * const sourceCode = @"local invocation = function() "
-                                                           "    local a = [UITapGesuter stringWithUTF8String: \"你好\"] "
-                                                           "    print(a)    "
+                                                           "    local a = [NSString stringWithUTF8String: \"你好\"] "
+                                                           "    --print(a)\n    "
                                                            "    [a release] "
                                                            "end "
                                           " testLuaCall = function() "
-                                                          "   for i = 1, 1 do "
+                                                          "   for i = 1, 100000 do "
                                                           "        invocation() "
                                                           "   end "
                                                           "end";
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
             testFFI();
         }
         */
-        //testLuaCall();
+        testLuaCall();
         
         NSTimeInterval end_time = [NSDate timeIntervalSinceReferenceDate];
         

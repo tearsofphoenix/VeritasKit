@@ -115,7 +115,7 @@ static int _luaEngine_resolveName(lua_State *L)
 
     if (!luaObjCStrongTableGetObjectForKey(L, (void*)name))
     {            
-        printf("not got, in function: %s line: %d\n", __func__, __LINE__);
+        //printf("not got, in function: %s line: %d\n", __func__, __LINE__);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
