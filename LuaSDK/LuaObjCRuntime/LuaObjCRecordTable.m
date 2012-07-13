@@ -77,17 +77,17 @@ void* luaObjCWeakTableGetObjectForKey(lua_State* lua_state, const char* key)
 
 #define LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID "LuaCocoa.GlobalStrongTable"
 
-void luaObjCStrongTableCreate(lua_State* lua_state)
+void _luaObjCCacheTableCreate(lua_State* lua_state)
 {
     _luaObjC_createTableWithID(lua_state, LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID, false);
 }
 
-void luaObjCStrongTableInsertObjectForKey(lua_State* lua_state, void* object, const char *key)
+void _luaObjCCacheTableInsertObjectForKey(lua_State* lua_state, void* object, const char *key)
 {
     _luaObjC_insertObjectInTableWithID(lua_state, LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID, object, key);
 }
 
-void* luaObjCStrongTableGetObjectForKey(lua_State* lua_state, const char* key)
+void* _luaObjCCacheTableGetObjectForKey(lua_State* lua_state, const char* key)
 {
     return _luaObjC_getObjectInTableWithID(lua_state, LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID, key);
 }

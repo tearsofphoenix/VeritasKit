@@ -161,7 +161,9 @@ static const luaL_Reg __LuaObjCBridgeSupportFunctions[] =
 
 static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
 {
-    {"__gc", LuaBridgeFunctorFinalize},
+    //not gc bridge functor yet
+    //
+    //{"__gc", LuaBridgeFunctorFinalize},
     {"__call", LuaBridgeFunctorInvoke},
     {NULL, NULL}
 };
@@ -390,7 +392,7 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
 
 void LuaObjCInvocationSetArgumentAtInex(LuaBridgeFuncotrRef ref, int index, void *value)
 {
-    ref->_arguments[index] = value;
+    *(void **)ref->_arguments[index] = value;
 }
 
 void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
@@ -477,19 +479,19 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
         }
         case '#':
         {
-            arguments[iLooper] = luaObjC_checkNSObject(L, index);
+            *(id *)arguments[iLooper] = luaObjC_checkNSObject(L, index);
             break;
         }
         case '@':
         {
             id obj = luaObjC_checkNSObject(L, index);
-            arguments[iLooper] = [obj retain];
+            *(id *)arguments[iLooper] = [obj retain];
             break;
         }
         case '^':
         case '[':
         {
-            arguments[iLooper] = lua_touserdata(L, index);
+            *(void **)arguments[iLooper] = lua_touserdata(L, index);
             break;
         }
         case '{':

@@ -113,14 +113,14 @@ static int _luaEngine_resolveName(lua_State *L)
     const char* name = lua_tostring(L, 2);
     //printf("revolve: %s\n", name);
 
-    if (!luaObjCStrongTableGetObjectForKey(L, (void*)name))
+    if (!_luaObjCCacheTableGetObjectForKey(L, (void*)name))
     {            
         printf("not got, in function: %s line: %d\n", __func__, __LINE__);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
             LuaObjCClassRef classRef = LuaObjCClassInitialize(L, theClass, nil, false);
-            luaObjCStrongTableInsertObjectForKey(L, classRef, name);
+            _luaObjCCacheTableInsertObjectForKey(L, classRef, name);
             luaObjC_pushNSObject(L, theClass);        
         }else
         {
@@ -164,7 +164,7 @@ int luaopen_objc(lua_State *L)
     }
     
     luaObjCWeakTableCreate(L);
-    luaObjCStrongTableCreate(L);
+    _luaObjCCacheTableCreate(L);
         
     luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
     

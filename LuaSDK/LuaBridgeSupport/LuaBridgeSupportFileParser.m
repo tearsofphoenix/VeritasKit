@@ -9,27 +9,28 @@
 #import "LuaBridgeSupportFileParser.h"
 #import "XMLDocument.h"
 #import "LuaBridgeInfo.h"
+#import "AATree.h"
 
 typedef void (^LuaBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
 
 static LuaBridgeNodeParserBlock __LuaBridgeConstantNodeParser = (^(XMLNode *node, NSMutableDictionary *result)
-                                                                {
-                                                                    NSString *name = [node attributeWithName: @"name"];
-                                                                    LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
-                                                                    
-                                                                    [info setType: LuaBridgeConstantType];
-                                                                    [info setName: name];
-                                                                    
-                                                                    NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys: 
-                                                                                                  [node attributeWithName: @"type"], @"type", nil];
-                                                                    [info setInfo: constantInfo];
-                                                                    [constantInfo release];
-                                                                    
-                                                                    [result setObject: info
-                                                                               forKey: name];
-                                                                    
-                                                                    [info release];
-                                                                });
+                                                                 {
+                                                                     NSString *name = [node attributeWithName: @"name"];
+                                                                     LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
+                                                                     
+                                                                     [info setType: LuaBridgeConstantType];
+                                                                     [info setName: name];
+                                                                     
+                                                                     NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                                                   [node attributeWithName: @"type"], @"type", nil];
+                                                                     [info setInfo: constantInfo];
+                                                                     [constantInfo release];
+                                                                     
+                                                                     [result setObject: info
+                                                                                forKey: name];
+                                                                     
+                                                                     [info release];
+                                                                 });
 
 static LuaBridgeNodeParserBlock __LuaBridgeEnumNodeParser = (^(XMLNode *node, NSMutableDictionary *result)
                                                              {
@@ -39,7 +40,7 @@ static LuaBridgeNodeParserBlock __LuaBridgeEnumNodeParser = (^(XMLNode *node, NS
                                                                  [info setType: LuaBridgeEnumType];
                                                                  [info setName: name];
                                                                  
-                                                                 NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys: 
+                                                                 NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
                                                                                                [node attributeWithName: @"value"], @"value", nil];
                                                                  [info setInfo: constantInfo];
                                                                  [constantInfo release];
@@ -61,7 +62,7 @@ static LuaBridgeNodeParserBlock __LuaBridgeFunctionNodeParser = (^(XMLNode *node
                                                                      
                                                                      NSMutableDictionary *functionInfos = [[NSMutableDictionary alloc] init];
                                                                      NSMutableArray *arguments = [[NSMutableArray alloc] init];
-                                                                                                   
+                                                                     
                                                                      XMLNode *argNode = [node firstChild];
                                                                      NSString *elementnameLooper = nil;
                                                                      
@@ -83,7 +84,7 @@ static LuaBridgeNodeParserBlock __LuaBridgeFunctionNodeParser = (^(XMLNode *node
                                                                              [functionInfos setObject: [argNode attributeWithName: @"type"]
                                                                                                forKey: elementnameLooper];
                                                                          }
-                                                                             
+                                                                         
                                                                          argNode = [argNode nextSibling];
                                                                      }
                                                                      
@@ -122,7 +123,7 @@ static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
 + (NSDictionary *)parseFileContents: (NSString *)fileContents
 {
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
-    @autoreleasepool 
+    @autoreleasepool
     {
         XMLDocument *document = [[XMLDocument alloc] initWithData: [fileContents dataUsingEncoding: NSUTF8StringEncoding]];
         NSArray *signaturesNodes = [document evaluateXPathExpression: @"/signatures"
@@ -138,7 +139,7 @@ static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
                 if (block)
                 {
                     block(nodeLooper, result);
-                }                
+                }
                 
                 nodeLooper = [nodeLooper nextSibling];
             }
