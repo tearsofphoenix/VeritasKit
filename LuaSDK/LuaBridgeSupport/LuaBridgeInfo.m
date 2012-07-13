@@ -10,6 +10,9 @@
 #import "lstate.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaBridgeFunctor.h"
+#import "LuaObjCClass.h"
+#import "LuaObjCRecordTable.h"
+
 #import <objc/runtime.h>
 
 
@@ -47,13 +50,25 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
     {
         case LuaBridgeClassType:
         {
-            Class theClass = objc_getClass([_name UTF8String]);
+            const char *className = [_name UTF8String];
+            Class theClass = objc_getClass(className);
+            LuaObjCClassRef classRef = LuaObjCClassInitialize(state, theClass, nil, false);
+            _luaObjCCacheTableInsertObjectForKey(state, classRef, className);
             luaObjC_pushNSObject(state, theClass);
             break;
         }
         case LuaBridgeEnumType:
         {
             lua_pushinteger(state, [[_info objectForKey: @"value"] intValue]);
+            break;
+        }
+        case LuaBridgeConstantType:
+        {
+            const char *className = [_name UTF8String];
+            id value = [_info objectForKey: @"value"];
+            LuaObjCClassRef classRef = LuaObjCClassInitialize(state, value, nil, true);
+            _luaObjCCacheTableInsertObjectForKey(state, classRef, className);
+            luaObjC_pushNSObject(state, value);
             break;
         }
         case LuaBridgeFunctionType:
@@ -66,10 +81,11 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
                                                    [encodings addObject: [obj type]];
                                                })];
             
-            LuaBridgeFunctorCreate(state,
-                                   _name,
-                                   encodings,
-                                   [[(LuaBridgeArgumentInfo *)[_info objectForKey: @"retval"] type] UTF8String]);
+            const char *returnTypeEncoding = [[(LuaBridgeArgumentInfo *)[_info objectForKey: @"retval"] type] UTF8String];
+            
+            LuaBridgeFuncotrRef functorRef = LuaBridgeFunctorCreate(state, _name, encodings, returnTypeEncoding);
+            _luaObjCCacheTableInsertObjectForKey(state, functorRef, [_name UTF8String]);
+            
             [encodings release];
             break;
         }

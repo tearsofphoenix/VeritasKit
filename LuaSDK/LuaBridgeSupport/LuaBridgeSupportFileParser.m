@@ -9,6 +9,7 @@
 #import "LuaBridgeSupportFileParser.h"
 #import "XMLDocument.h"
 #import "LuaBridgeInfo.h"
+#import <dlfcn.h>
 
 typedef void (^LuaBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
 
@@ -20,8 +21,12 @@ static LuaBridgeNodeParserBlock __LuaBridgeConstantNodeParser = (^(XMLNode *node
                                                                      [info setType: LuaBridgeConstantType];
                                                                      [info setName: name];
                                                                      
+                                                                     id value = *(id *)dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                     
                                                                      NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                                                                                   [node attributeWithName: @"type"], @"type", nil];
+                                                                                                   [node attributeWithName: @"type"], @"type",
+                                                                                                   value, @"value",
+                                                                                                   nil];
                                                                      [info setInfo: constantInfo];
                                                                      [constantInfo release];
                                                                      
