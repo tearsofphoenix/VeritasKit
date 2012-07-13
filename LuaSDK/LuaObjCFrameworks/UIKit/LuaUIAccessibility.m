@@ -19,11 +19,7 @@ static int luaUIKit_UIAccessibilityZoomFocusChanged(lua_State *L)
 
 static const luaL_Reg __LuaUIAccessibilityAPIs[] = 
 {
-    //accessbility
-    //
-    
-    {"UIAccessibilityZoomFocusChanged", luaUIKit_UIAccessibilityZoomFocusChanged},
-        
+    {"UIAccessibilityZoomFocusChanged", luaUIKit_UIAccessibilityZoomFocusChanged},        
     {NULL, NULL},
 };
 

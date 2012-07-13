@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIGeometry.h"
-#import "lapi.h"
+#import "lua.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "LuaObjCAuxiliary.h"

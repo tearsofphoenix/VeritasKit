@@ -21,7 +21,6 @@
 		2215D8EE15AFBFAF001056C3 /* LuaBridgeSupportFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2215D8E215AFBFAF001056C3 /* LuaBridgeSupportFileParser.m */; };
 		22350721159C380400D2CCF3 /* LuaObjCAccelerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235071E159C380300D2CCF3 /* LuaObjCAccelerator.m */; };
 		22350722159C380400D2CCF3 /* LuaObjCInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 22350720159C380300D2CCF3 /* LuaObjCInternal.m */; };
-		2235072A159C381D00D2CCF3 /* LuaEngineNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22350726159C381D00D2CCF3 /* LuaEngineNetworkManager.m */; };
 		22350742159C622A00D2CCF3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FF8C14D5508800180B63 /* OpenGLES.framework */; };
 		2240CCE815AAA35C00997375 /* libffi_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240CCCB15AAA35C00997375 /* libffi_OSX.a */; };
 		2246849C15441F2B005A7E70 /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = 34EC2DBC153AFA3500A2FCE2 /* LuaObjCParser.lua */; };
@@ -82,7 +81,6 @@
 		E10053B01590C57800F49D98 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AC1590C57800F49D98 /* XMLNode.m */; };
 		E10053B11590C57800F49D98 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AE1590C57800F49D98 /* XMLPathProcessor.m */; };
 		E10053B31590C58800F49D98 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E10053B21590C58700F49D98 /* libxml2.dylib */; };
-		E1095AAA1590E29000E1BBD3 /* LuaNSCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E1095AA91590E29000E1BBD3 /* LuaNSCoder.m */; };
 		E1163AAE15ADD732004768C9 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7215ADD732004768C9 /* lapi.c */; };
 		E1163AAF15ADD732004768C9 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7215ADD732004768C9 /* lapi.c */; };
 		E1163AB015ADD732004768C9 /* lapi.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163A7315ADD732004768C9 /* lapi.h */; };
@@ -174,25 +172,6 @@
 		E1163B0A15ADD732004768C9 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AAC15ADD732004768C9 /* lzio.c */; };
 		E1163B0B15ADD732004768C9 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163AAC15ADD732004768C9 /* lzio.c */; };
 		E1163B0C15ADD732004768C9 /* lzio.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163AAD15ADD732004768C9 /* lzio.h */; };
-		E1163B0E15ADE238004768C9 /* UIKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B0D15ADE238004768C9 /* UIKit.bridgesupport */; };
-		E1163B2215ADE54B004768C9 /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1015ADE54B004768C9 /* Accounts.bridgesupport */; };
-		E1163B2315ADE54B004768C9 /* AddressBookUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1115ADE54B004768C9 /* AddressBookUI.bridgesupport */; };
-		E1163B2415ADE54B004768C9 /* AssetsLibrary.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1215ADE54B004768C9 /* AssetsLibrary.bridgesupport */; };
-		E1163B2515ADE54B004768C9 /* CoreBluetooth.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1315ADE54B004768C9 /* CoreBluetooth.bridgesupport */; };
-		E1163B2615ADE54B004768C9 /* CoreImage.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1415ADE54B004768C9 /* CoreImage.bridgesupport */; };
-		E1163B2715ADE54B004768C9 /* CoreMotion.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1515ADE54B004768C9 /* CoreMotion.bridgesupport */; };
-		E1163B2815ADE54B004768C9 /* CoreTelephony.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1615ADE54B004768C9 /* CoreTelephony.bridgesupport */; };
-		E1163B2915ADE54B004768C9 /* EventKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1715ADE54B004768C9 /* EventKit.bridgesupport */; };
-		E1163B2A15ADE54B004768C9 /* EventKitUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1815ADE54B004768C9 /* EventKitUI.bridgesupport */; };
-		E1163B2B15ADE54B004768C9 /* ExternalAccessory.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1915ADE54B004768C9 /* ExternalAccessory.bridgesupport */; };
-		E1163B2C15ADE54B004768C9 /* GameKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1A15ADE54B004768C9 /* GameKit.bridgesupport */; };
-		E1163B2D15ADE54B004768C9 /* iAd.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1B15ADE54B004768C9 /* iAd.bridgesupport */; };
-		E1163B2E15ADE54B004768C9 /* MapKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1C15ADE54B004768C9 /* MapKit.bridgesupport */; };
-		E1163B2F15ADE54B004768C9 /* MediaPlayer.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1D15ADE54B004768C9 /* MediaPlayer.bridgesupport */; };
-		E1163B3015ADE54B004768C9 /* MessageUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1E15ADE54B004768C9 /* MessageUI.bridgesupport */; };
-		E1163B3115ADE54B004768C9 /* MobileCoreServices.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B1F15ADE54B004768C9 /* MobileCoreServices.bridgesupport */; };
-		E1163B3215ADE54B004768C9 /* NewsstandKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B2015ADE54B004768C9 /* NewsstandKit.bridgesupport */; };
-		E1163B3315ADE54B004768C9 /* Twitter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1163B2115ADE54B004768C9 /* Twitter.bridgesupport */; };
 		E124EE1C15903D3A00C889E1 /* LuaNSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E124EE1B15903D3A00C889E1 /* LuaNSCollection.m */; };
 		E14907D31595BBA50088A170 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14907D21595BBA50088A170 /* Cocoa.framework */; };
 		E14907D51595BBC60088A170 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E14907D41595BBC60088A170 /* libxml2.dylib */; };
@@ -206,7 +185,7 @@
 		E14907DF1595BC020088A170 /* NSArray+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433CF15680371009D0D3A /* NSArray+LuaObjCIndex.m */; };
 		E14907E01595BC020088A170 /* NSDictionary+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433D4156805B3009D0D3A /* NSDictionary+LuaObjCIndex.m */; };
 		E14907E11595BC020088A170 /* NSString+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433D71568061D009D0D3A /* NSString+LuaObjCIndex.m */; };
-		E14907E31595BC020088A170 /* LuaObjCRecordTable.m in Sources */ = {isa = PBXBuildFile; fileRef = E14AA81E1593647D00BD29E2 /* LuaObjCRecordTable.m */; };
+		E14907E31595BC020088A170 /* LuaObjCCacheTable.c in Sources */ = {isa = PBXBuildFile; fileRef = E14AA81E1593647D00BD29E2 /* LuaObjCCacheTable.c */; };
 		E14907E41595BC020088A170 /* LuaObjCAccelerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235071E159C380300D2CCF3 /* LuaObjCAccelerator.m */; };
 		E14907E51595BC020088A170 /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A06025159BF84D00391F52 /* LuaObjCAuxiliary.m */; };
 		E14907E61595BC020088A170 /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A0600E159BF00400391F52 /* LuaObjCClass.m */; };
@@ -225,7 +204,6 @@
 		E14908321595C0000088A170 /* LuaNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7A97F15A14AE900E2DED3 /* LuaNSRange.m */; };
 		E14908351595C0000088A170 /* LuaNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7A98D15A14AE900E2DED3 /* LuaNSString.m */; };
 		E14908401595C0000088A170 /* LuaNSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E124EE1B15903D3A00C889E1 /* LuaNSCollection.m */; };
-		E14908411595C0000088A170 /* LuaNSCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E1095AA91590E29000E1BBD3 /* LuaNSCoder.m */; };
 		E14908421595C0940088A170 /* ERGeneralConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EF548E158793AE00F35BD2 /* ERGeneralConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E14908431595C0940088A170 /* ERGeneralMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EF54891587938C00F35BD2 /* ERGeneralMetaService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E14908441595C0940088A170 /* LuaEngineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EF547B1587919500F35BD2 /* LuaEngineService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -233,29 +211,49 @@
 		E14A5FDD15B041B4006D9228 /* LuaObjCFrameworkFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = E14A5FDB15B041B4006D9228 /* LuaObjCFrameworkFunctions.h */; };
 		E14A5FDE15B041B4006D9228 /* LuaObjCFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E14A5FDC15B041B4006D9228 /* LuaObjCFrameworkFunctions.m */; };
 		E14A5FDF15B041B4006D9228 /* LuaObjCFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E14A5FDC15B041B4006D9228 /* LuaObjCFrameworkFunctions.m */; };
-		E14AA8201593647D00BD29E2 /* LuaObjCRecordTable.m in Sources */ = {isa = PBXBuildFile; fileRef = E14AA81E1593647D00BD29E2 /* LuaObjCRecordTable.m */; };
+		E14AA8201593647D00BD29E2 /* LuaObjCCacheTable.c in Sources */ = {isa = PBXBuildFile; fileRef = E14AA81E1593647D00BD29E2 /* LuaObjCCacheTable.c */; };
 		E19BA28515AB33AD00C870CA /* libffi_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E19BA28415AB33AD00C870CA /* libffi_ios.a */; };
-		E19BA2B715AB465100C870CA /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A215AB465100C870CA /* Accelerate.bridgesupport */; };
-		E19BA2B815AB465100C870CA /* AddressBook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A315AB465100C870CA /* AddressBook.bridgesupport */; };
-		E19BA2B915AB465100C870CA /* AudioToolbox.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A415AB465100C870CA /* AudioToolbox.bridgesupport */; };
-		E19BA2BA15AB465100C870CA /* AudioUnit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A515AB465100C870CA /* AudioUnit.bridgesupport */; };
-		E19BA2BB15AB465100C870CA /* AVFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A615AB465100C870CA /* AVFoundation.bridgesupport */; };
-		E19BA2BC15AB465100C870CA /* CoreAudio.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A715AB465100C870CA /* CoreAudio.bridgesupport */; };
-		E19BA2BD15AB465100C870CA /* CoreData.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A815AB465100C870CA /* CoreData.bridgesupport */; };
-		E19BA2BE15AB465100C870CA /* CoreFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2A915AB465100C870CA /* CoreFoundation.bridgesupport */; };
-		E19BA2BF15AB465100C870CA /* CoreLocation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AA15AB465100C870CA /* CoreLocation.bridgesupport */; };
-		E19BA2C015AB465100C870CA /* CoreMedia.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AB15AB465100C870CA /* CoreMedia.bridgesupport */; };
-		E19BA2C115AB465100C870CA /* CoreMIDI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AC15AB465100C870CA /* CoreMIDI.bridgesupport */; };
-		E19BA2C215AB465100C870CA /* CoreVideo.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AD15AB465100C870CA /* CoreVideo.bridgesupport */; };
-		E19BA2C315AB465100C870CA /* Foundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AE15AB465100C870CA /* Foundation.bridgesupport */; };
-		E19BA2C415AB465100C870CA /* GSS.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2AF15AB465100C870CA /* GSS.bridgesupport */; };
-		E19BA2C515AB465100C870CA /* OpenAL.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B015AB465100C870CA /* OpenAL.bridgesupport */; };
-		E19BA2C615AB465100C870CA /* OpenGLES.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B115AB465100C870CA /* OpenGLES.bridgesupport */; };
-		E19BA2C715AB465100C870CA /* QuartzCore.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B215AB465100C870CA /* QuartzCore.bridgesupport */; };
-		E19BA2C815AB465100C870CA /* QuickLook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B315AB465100C870CA /* QuickLook.bridgesupport */; };
-		E19BA2C915AB465100C870CA /* Security.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B415AB465100C870CA /* Security.bridgesupport */; };
-		E19BA2CA15AB465100C870CA /* StoreKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B515AB465100C870CA /* StoreKit.bridgesupport */; };
-		E19BA2CB15AB465100C870CA /* SystemConfiguration.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E19BA2B615AB465100C870CA /* SystemConfiguration.bridgesupport */; };
+		E1A1CFDB15B0850200C410B1 /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB315B0850200C410B1 /* Accelerate.bridgesupport */; };
+		E1A1CFDC15B0850200C410B1 /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB415B0850200C410B1 /* Accounts.bridgesupport */; };
+		E1A1CFDD15B0850200C410B1 /* AddressBook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB515B0850200C410B1 /* AddressBook.bridgesupport */; };
+		E1A1CFDE15B0850200C410B1 /* AddressBookUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB615B0850200C410B1 /* AddressBookUI.bridgesupport */; };
+		E1A1CFDF15B0850200C410B1 /* AssetsLibrary.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB715B0850200C410B1 /* AssetsLibrary.bridgesupport */; };
+		E1A1CFE015B0850200C410B1 /* AudioToolbox.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB815B0850200C410B1 /* AudioToolbox.bridgesupport */; };
+		E1A1CFE115B0850200C410B1 /* AudioUnit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB915B0850200C410B1 /* AudioUnit.bridgesupport */; };
+		E1A1CFE215B0850200C410B1 /* AVFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFBA15B0850200C410B1 /* AVFoundation.bridgesupport */; };
+		E1A1CFE315B0850200C410B1 /* CoreAudio.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFBB15B0850200C410B1 /* CoreAudio.bridgesupport */; };
+		E1A1CFE415B0850200C410B1 /* CoreBluetooth.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFBC15B0850200C410B1 /* CoreBluetooth.bridgesupport */; };
+		E1A1CFE515B0850200C410B1 /* CoreData.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFBD15B0850200C410B1 /* CoreData.bridgesupport */; };
+		E1A1CFE615B0850200C410B1 /* CoreFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFBE15B0850200C410B1 /* CoreFoundation.bridgesupport */; };
+		E1A1CFE715B0850200C410B1 /* CoreImage.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFBF15B0850200C410B1 /* CoreImage.bridgesupport */; };
+		E1A1CFE815B0850200C410B1 /* CoreLocation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC015B0850200C410B1 /* CoreLocation.bridgesupport */; };
+		E1A1CFE915B0850200C410B1 /* CoreMedia.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC115B0850200C410B1 /* CoreMedia.bridgesupport */; };
+		E1A1CFEA15B0850200C410B1 /* CoreMIDI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC215B0850200C410B1 /* CoreMIDI.bridgesupport */; };
+		E1A1CFEB15B0850200C410B1 /* CoreMotion.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC315B0850200C410B1 /* CoreMotion.bridgesupport */; };
+		E1A1CFEC15B0850200C410B1 /* CoreTelephony.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC415B0850200C410B1 /* CoreTelephony.bridgesupport */; };
+		E1A1CFED15B0850200C410B1 /* CoreVideo.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC515B0850200C410B1 /* CoreVideo.bridgesupport */; };
+		E1A1CFEE15B0850200C410B1 /* EventKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC615B0850200C410B1 /* EventKit.bridgesupport */; };
+		E1A1CFEF15B0850200C410B1 /* EventKitUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC715B0850200C410B1 /* EventKitUI.bridgesupport */; };
+		E1A1CFF015B0850200C410B1 /* ExternalAccessory.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC815B0850200C410B1 /* ExternalAccessory.bridgesupport */; };
+		E1A1CFF115B0850200C410B1 /* Foundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFC915B0850200C410B1 /* Foundation.bridgesupport */; };
+		E1A1CFF215B0850200C410B1 /* GameKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFCA15B0850200C410B1 /* GameKit.bridgesupport */; };
+		E1A1CFF315B0850200C410B1 /* GSS.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFCB15B0850200C410B1 /* GSS.bridgesupport */; };
+		E1A1CFF415B0850200C410B1 /* iAd.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFCC15B0850200C410B1 /* iAd.bridgesupport */; };
+		E1A1CFF515B0850200C410B1 /* MapKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFCD15B0850200C410B1 /* MapKit.bridgesupport */; };
+		E1A1CFF615B0850200C410B1 /* MediaPlayer.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFCE15B0850200C410B1 /* MediaPlayer.bridgesupport */; };
+		E1A1CFF715B0850200C410B1 /* MessageUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFCF15B0850200C410B1 /* MessageUI.bridgesupport */; };
+		E1A1CFF815B0850200C410B1 /* MobileCoreServices.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD015B0850200C410B1 /* MobileCoreServices.bridgesupport */; };
+		E1A1CFF915B0850200C410B1 /* NewsstandKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD115B0850200C410B1 /* NewsstandKit.bridgesupport */; };
+		E1A1CFFA15B0850200C410B1 /* OpenAL.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD215B0850200C410B1 /* OpenAL.bridgesupport */; };
+		E1A1CFFB15B0850200C410B1 /* OpenGLES.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD315B0850200C410B1 /* OpenGLES.bridgesupport */; };
+		E1A1CFFC15B0850200C410B1 /* QuartzCore.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD415B0850200C410B1 /* QuartzCore.bridgesupport */; };
+		E1A1CFFD15B0850200C410B1 /* QuickLook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD515B0850200C410B1 /* QuickLook.bridgesupport */; };
+		E1A1CFFE15B0850200C410B1 /* Security.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD615B0850200C410B1 /* Security.bridgesupport */; };
+		E1A1CFFF15B0850200C410B1 /* StoreKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD715B0850200C410B1 /* StoreKit.bridgesupport */; };
+		E1A1D00015B0850200C410B1 /* SystemConfiguration.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD815B0850200C410B1 /* SystemConfiguration.bridgesupport */; };
+		E1A1D00115B0850200C410B1 /* Twitter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFD915B0850200C410B1 /* Twitter.bridgesupport */; };
+		E1A1D00215B0850200C410B1 /* UIKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFDA15B0850200C410B1 /* UIKit.bridgesupport */; };
+		E1A1D00415B0855600C410B1 /* LuaObjCStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A1D00315B0855600C410B1 /* LuaObjCStructs.h */; };
 		E1BC55B31595C5FF002255ED /* ERGeneralDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EF54871587938C00F35BD2 /* ERGeneralDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1BC55B51595C786002255ED /* LuaEngineCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = E14907CB1595BB8B0088A170 /* LuaEngineCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1EF547F1587919500F35BD2 /* LuaEngineFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = E1EF547A1587919500F35BD2 /* LuaEngineFunctions.c */; };
@@ -279,8 +277,6 @@
 		2235071E159C380300D2CCF3 /* LuaObjCAccelerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCAccelerator.m; sourceTree = "<group>"; };
 		2235071F159C380300D2CCF3 /* LuaObjCInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCInternal.h; sourceTree = "<group>"; };
 		22350720159C380300D2CCF3 /* LuaObjCInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCInternal.m; sourceTree = "<group>"; };
-		22350725159C381D00D2CCF3 /* LuaEngineNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaEngineNetworkManager.h; path = LuaSDK/LuaEngine/LuaEngineNetworkManager.h; sourceTree = SOURCE_ROOT; };
-		22350726159C381D00D2CCF3 /* LuaEngineNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaEngineNetworkManager.m; path = LuaSDK/LuaEngine/LuaEngineNetworkManager.m; sourceTree = SOURCE_ROOT; };
 		2240CCCB15AAA35C00997375 /* libffi_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_OSX.a; sourceTree = "<group>"; };
 		224A3683152D8C7D00722A8D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		2268736C1521AD5D009D6279 /* LuaIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuaIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,8 +374,6 @@
 		E10053AD1590C57800F49D98 /* XMLPathProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLPathProcessor.h; sourceTree = "<group>"; };
 		E10053AE1590C57800F49D98 /* XMLPathProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLPathProcessor.m; sourceTree = "<group>"; };
 		E10053B21590C58700F49D98 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		E1095AA81590E29000E1BBD3 /* LuaNSCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaNSCoder.h; sourceTree = "<group>"; };
-		E1095AA91590E29000E1BBD3 /* LuaNSCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaNSCoder.m; sourceTree = "<group>"; };
 		E1163A7215ADD732004768C9 /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
 		E1163A7315ADD732004768C9 /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
 		E1163A7415ADD732004768C9 /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
@@ -438,25 +432,6 @@
 		E1163AAB15ADD732004768C9 /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lvm.h; sourceTree = "<group>"; };
 		E1163AAC15ADD732004768C9 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
 		E1163AAD15ADD732004768C9 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
-		E1163B0D15ADE238004768C9 /* UIKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UIKit.bridgesupport; sourceTree = "<group>"; };
-		E1163B1015ADE54B004768C9 /* Accounts.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accounts.bridgesupport; sourceTree = "<group>"; };
-		E1163B1115ADE54B004768C9 /* AddressBookUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AddressBookUI.bridgesupport; sourceTree = "<group>"; };
-		E1163B1215ADE54B004768C9 /* AssetsLibrary.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AssetsLibrary.bridgesupport; sourceTree = "<group>"; };
-		E1163B1315ADE54B004768C9 /* CoreBluetooth.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreBluetooth.bridgesupport; sourceTree = "<group>"; };
-		E1163B1415ADE54B004768C9 /* CoreImage.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreImage.bridgesupport; sourceTree = "<group>"; };
-		E1163B1515ADE54B004768C9 /* CoreMotion.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMotion.bridgesupport; sourceTree = "<group>"; };
-		E1163B1615ADE54B004768C9 /* CoreTelephony.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreTelephony.bridgesupport; sourceTree = "<group>"; };
-		E1163B1715ADE54B004768C9 /* EventKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EventKit.bridgesupport; sourceTree = "<group>"; };
-		E1163B1815ADE54B004768C9 /* EventKitUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EventKitUI.bridgesupport; sourceTree = "<group>"; };
-		E1163B1915ADE54B004768C9 /* ExternalAccessory.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ExternalAccessory.bridgesupport; sourceTree = "<group>"; };
-		E1163B1A15ADE54B004768C9 /* GameKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameKit.bridgesupport; sourceTree = "<group>"; };
-		E1163B1B15ADE54B004768C9 /* iAd.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iAd.bridgesupport; sourceTree = "<group>"; };
-		E1163B1C15ADE54B004768C9 /* MapKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MapKit.bridgesupport; sourceTree = "<group>"; };
-		E1163B1D15ADE54B004768C9 /* MediaPlayer.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MediaPlayer.bridgesupport; sourceTree = "<group>"; };
-		E1163B1E15ADE54B004768C9 /* MessageUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MessageUI.bridgesupport; sourceTree = "<group>"; };
-		E1163B1F15ADE54B004768C9 /* MobileCoreServices.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MobileCoreServices.bridgesupport; sourceTree = "<group>"; };
-		E1163B2015ADE54B004768C9 /* NewsstandKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NewsstandKit.bridgesupport; sourceTree = "<group>"; };
-		E1163B2115ADE54B004768C9 /* Twitter.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Twitter.bridgesupport; sourceTree = "<group>"; };
 		E124EE1A15903D3A00C889E1 /* LuaNSCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaNSCollection.h; sourceTree = "<group>"; };
 		E124EE1B15903D3A00C889E1 /* LuaNSCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaNSCollection.m; sourceTree = "<group>"; };
 		E14907BD1595BB8B0088A170 /* LuaEngineCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LuaEngineCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -469,32 +444,52 @@
 		E14908131595BEDC0088A170 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		E14A5FDB15B041B4006D9228 /* LuaObjCFrameworkFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCFrameworkFunctions.h; sourceTree = "<group>"; };
 		E14A5FDC15B041B4006D9228 /* LuaObjCFrameworkFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCFrameworkFunctions.m; sourceTree = "<group>"; };
-		E14AA81E1593647D00BD29E2 /* LuaObjCRecordTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCRecordTable.m; sourceTree = "<group>"; };
-		E14AA81F1593647D00BD29E2 /* LuaObjCRecordTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCRecordTable.h; sourceTree = "<group>"; };
+		E14AA81E1593647D00BD29E2 /* LuaObjCCacheTable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LuaObjCCacheTable.c; sourceTree = "<group>"; };
+		E14AA81F1593647D00BD29E2 /* LuaObjCCacheTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCCacheTable.h; sourceTree = "<group>"; };
 		E19844BF159414A500FB051C /* Block_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block_private.h; sourceTree = "<group>"; };
 		E19844C0159414A500FB051C /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		E19BA28415AB33AD00C870CA /* libffi_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_ios.a; sourceTree = "<group>"; };
-		E19BA2A215AB465100C870CA /* Accelerate.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accelerate.bridgesupport; sourceTree = "<group>"; };
-		E19BA2A315AB465100C870CA /* AddressBook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AddressBook.bridgesupport; sourceTree = "<group>"; };
-		E19BA2A415AB465100C870CA /* AudioToolbox.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AudioToolbox.bridgesupport; sourceTree = "<group>"; };
-		E19BA2A515AB465100C870CA /* AudioUnit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AudioUnit.bridgesupport; sourceTree = "<group>"; };
-		E19BA2A615AB465100C870CA /* AVFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AVFoundation.bridgesupport; sourceTree = "<group>"; };
-		E19BA2A715AB465100C870CA /* CoreAudio.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreAudio.bridgesupport; sourceTree = "<group>"; };
-		E19BA2A815AB465100C870CA /* CoreData.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreData.bridgesupport; sourceTree = "<group>"; };
-		E19BA2A915AB465100C870CA /* CoreFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreFoundation.bridgesupport; sourceTree = "<group>"; };
-		E19BA2AA15AB465100C870CA /* CoreLocation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreLocation.bridgesupport; sourceTree = "<group>"; };
-		E19BA2AB15AB465100C870CA /* CoreMedia.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMedia.bridgesupport; sourceTree = "<group>"; };
-		E19BA2AC15AB465100C870CA /* CoreMIDI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMIDI.bridgesupport; sourceTree = "<group>"; };
-		E19BA2AD15AB465100C870CA /* CoreVideo.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreVideo.bridgesupport; sourceTree = "<group>"; };
-		E19BA2AE15AB465100C870CA /* Foundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Foundation.bridgesupport; sourceTree = "<group>"; };
-		E19BA2AF15AB465100C870CA /* GSS.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GSS.bridgesupport; sourceTree = "<group>"; };
-		E19BA2B015AB465100C870CA /* OpenAL.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OpenAL.bridgesupport; sourceTree = "<group>"; };
-		E19BA2B115AB465100C870CA /* OpenGLES.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OpenGLES.bridgesupport; sourceTree = "<group>"; };
-		E19BA2B215AB465100C870CA /* QuartzCore.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = QuartzCore.bridgesupport; sourceTree = "<group>"; };
-		E19BA2B315AB465100C870CA /* QuickLook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = QuickLook.bridgesupport; sourceTree = "<group>"; };
-		E19BA2B415AB465100C870CA /* Security.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Security.bridgesupport; sourceTree = "<group>"; };
-		E19BA2B515AB465100C870CA /* StoreKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = StoreKit.bridgesupport; sourceTree = "<group>"; };
-		E19BA2B615AB465100C870CA /* SystemConfiguration.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SystemConfiguration.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFB315B0850200C410B1 /* Accelerate.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accelerate.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFB415B0850200C410B1 /* Accounts.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accounts.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFB515B0850200C410B1 /* AddressBook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AddressBook.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFB615B0850200C410B1 /* AddressBookUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AddressBookUI.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFB715B0850200C410B1 /* AssetsLibrary.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AssetsLibrary.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFB815B0850200C410B1 /* AudioToolbox.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AudioToolbox.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFB915B0850200C410B1 /* AudioUnit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AudioUnit.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFBA15B0850200C410B1 /* AVFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AVFoundation.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFBB15B0850200C410B1 /* CoreAudio.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreAudio.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFBC15B0850200C410B1 /* CoreBluetooth.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreBluetooth.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFBD15B0850200C410B1 /* CoreData.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreData.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFBE15B0850200C410B1 /* CoreFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreFoundation.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFBF15B0850200C410B1 /* CoreImage.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreImage.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC015B0850200C410B1 /* CoreLocation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreLocation.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC115B0850200C410B1 /* CoreMedia.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMedia.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC215B0850200C410B1 /* CoreMIDI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMIDI.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC315B0850200C410B1 /* CoreMotion.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreMotion.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC415B0850200C410B1 /* CoreTelephony.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreTelephony.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC515B0850200C410B1 /* CoreVideo.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CoreVideo.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC615B0850200C410B1 /* EventKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EventKit.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC715B0850200C410B1 /* EventKitUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EventKitUI.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC815B0850200C410B1 /* ExternalAccessory.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ExternalAccessory.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFC915B0850200C410B1 /* Foundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Foundation.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFCA15B0850200C410B1 /* GameKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GameKit.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFCB15B0850200C410B1 /* GSS.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GSS.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFCC15B0850200C410B1 /* iAd.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iAd.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFCD15B0850200C410B1 /* MapKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MapKit.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFCE15B0850200C410B1 /* MediaPlayer.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MediaPlayer.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFCF15B0850200C410B1 /* MessageUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MessageUI.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD015B0850200C410B1 /* MobileCoreServices.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MobileCoreServices.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD115B0850200C410B1 /* NewsstandKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NewsstandKit.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD215B0850200C410B1 /* OpenAL.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OpenAL.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD315B0850200C410B1 /* OpenGLES.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OpenGLES.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD415B0850200C410B1 /* QuartzCore.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = QuartzCore.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD515B0850200C410B1 /* QuickLook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = QuickLook.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD615B0850200C410B1 /* Security.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Security.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD715B0850200C410B1 /* StoreKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = StoreKit.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD815B0850200C410B1 /* SystemConfiguration.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SystemConfiguration.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFD915B0850200C410B1 /* Twitter.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Twitter.bridgesupport; sourceTree = "<group>"; };
+		E1A1CFDA15B0850200C410B1 /* UIKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = UIKit.bridgesupport; sourceTree = "<group>"; };
+		E1A1D00315B0855600C410B1 /* LuaObjCStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCStructs.h; sourceTree = "<group>"; };
 		E1EF547A1587919500F35BD2 /* LuaEngineFunctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LuaEngineFunctions.c; path = LuaSDK/LuaEngine/LuaEngineFunctions.c; sourceTree = SOURCE_ROOT; };
 		E1EF547B1587919500F35BD2 /* LuaEngineService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaEngineService.h; path = LuaSDK/LuaEngine/LuaEngineService.h; sourceTree = SOURCE_ROOT; };
 		E1EF547C1587919500F35BD2 /* LuaEngineService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LuaEngineService.m; path = LuaSDK/LuaEngine/LuaEngineService.m; sourceTree = SOURCE_ROOT; };
@@ -541,6 +536,7 @@
 		2215D8DA15AFBFAF001056C3 /* LuaBridgeSupport */ = {
 			isa = PBXGroup;
 			children = (
+				E1A1CFB215B0850200C410B1 /* BridgeSupportFiles */,
 				2215D8DB15AFBFAF001056C3 /* LuaBridgeFunctor.h */,
 				2215D8DC15AFBFAF001056C3 /* LuaBridgeFunctor.m */,
 				2215D8DD15AFBFAF001056C3 /* LuaBridgeInfo.h */,
@@ -595,8 +591,6 @@
 				E1EF547C1587919500F35BD2 /* LuaEngineService.m */,
 				E1EF547D1587919500F35BD2 /* LuaLibraryInformation.h */,
 				E1EF547E1587919500F35BD2 /* LuaLibraryInformation.m */,
-				22350725159C381D00D2CCF3 /* LuaEngineNetworkManager.h */,
-				22350726159C381D00D2CCF3 /* LuaEngineNetworkManager.m */,
 			);
 			name = LuaEngine;
 			path = LuaSDK/LuaObjC;
@@ -640,12 +634,12 @@
 		22A06008159BF00400391F52 /* LuaObjCRuntime */ = {
 			isa = PBXGroup;
 			children = (
-				E14AA81F1593647D00BD29E2 /* LuaObjCRecordTable.h */,
-				E14AA81E1593647D00BD29E2 /* LuaObjCRecordTable.m */,
 				2235071D159C380300D2CCF3 /* LuaObjCAccelerator.h */,
 				2235071E159C380300D2CCF3 /* LuaObjCAccelerator.m */,
 				22A06024159BF84C00391F52 /* LuaObjCAuxiliary.h */,
 				22A06025159BF84D00391F52 /* LuaObjCAuxiliary.m */,
+				E14AA81E1593647D00BD29E2 /* LuaObjCCacheTable.c */,
+				E14AA81F1593647D00BD29E2 /* LuaObjCCacheTable.h */,
 				22A0600D159BF00400391F52 /* LuaObjCClass.h */,
 				22A0600E159BF00400391F52 /* LuaObjCClass.m */,
 				22A06021159BF3D100391F52 /* LuaObjCExtensions.h */,
@@ -695,7 +689,6 @@
 		22F7A67115A14AE900E2DED3 /* LuaObjCFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E19BA2A115AB465100C870CA /* BridgeSupportFiles */,
 				E14A5FDA15B04191006D9228 /* Shared */,
 				22F7A7E715A14AE900E2DED3 /* CoreGraphics */,
 				22F7A90515A14AE900E2DED3 /* Foundation */,
@@ -733,8 +726,6 @@
 				22F7A98D15A14AE900E2DED3 /* LuaNSString.m */,
 				E124EE1A15903D3A00C889E1 /* LuaNSCollection.h */,
 				E124EE1B15903D3A00C889E1 /* LuaNSCollection.m */,
-				E1095AA81590E29000E1BBD3 /* LuaNSCoder.h */,
-				E1095AA91590E29000E1BBD3 /* LuaNSCoder.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -988,53 +979,54 @@
 			children = (
 				E14A5FDB15B041B4006D9228 /* LuaObjCFrameworkFunctions.h */,
 				E14A5FDC15B041B4006D9228 /* LuaObjCFrameworkFunctions.m */,
+				E1A1D00315B0855600C410B1 /* LuaObjCStructs.h */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		E19BA2A115AB465100C870CA /* BridgeSupportFiles */ = {
+		E1A1CFB215B0850200C410B1 /* BridgeSupportFiles */ = {
 			isa = PBXGroup;
 			children = (
-				E19BA2A215AB465100C870CA /* Accelerate.bridgesupport */,
-				E1163B1015ADE54B004768C9 /* Accounts.bridgesupport */,
-				E19BA2A315AB465100C870CA /* AddressBook.bridgesupport */,
-				E1163B1115ADE54B004768C9 /* AddressBookUI.bridgesupport */,
-				E1163B1215ADE54B004768C9 /* AssetsLibrary.bridgesupport */,
-				E19BA2A415AB465100C870CA /* AudioToolbox.bridgesupport */,
-				E19BA2A515AB465100C870CA /* AudioUnit.bridgesupport */,
-				E19BA2A615AB465100C870CA /* AVFoundation.bridgesupport */,
-				E19BA2A715AB465100C870CA /* CoreAudio.bridgesupport */,
-				E1163B1315ADE54B004768C9 /* CoreBluetooth.bridgesupport */,
-				E19BA2A815AB465100C870CA /* CoreData.bridgesupport */,
-				E19BA2A915AB465100C870CA /* CoreFoundation.bridgesupport */,
-				E1163B1415ADE54B004768C9 /* CoreImage.bridgesupport */,
-				E19BA2AA15AB465100C870CA /* CoreLocation.bridgesupport */,
-				E19BA2AB15AB465100C870CA /* CoreMedia.bridgesupport */,
-				E19BA2AC15AB465100C870CA /* CoreMIDI.bridgesupport */,
-				E1163B1515ADE54B004768C9 /* CoreMotion.bridgesupport */,
-				E1163B1615ADE54B004768C9 /* CoreTelephony.bridgesupport */,
-				E19BA2AD15AB465100C870CA /* CoreVideo.bridgesupport */,
-				E1163B1715ADE54B004768C9 /* EventKit.bridgesupport */,
-				E1163B1815ADE54B004768C9 /* EventKitUI.bridgesupport */,
-				E1163B1915ADE54B004768C9 /* ExternalAccessory.bridgesupport */,
-				E19BA2AE15AB465100C870CA /* Foundation.bridgesupport */,
-				E1163B1A15ADE54B004768C9 /* GameKit.bridgesupport */,
-				E19BA2AF15AB465100C870CA /* GSS.bridgesupport */,
-				E1163B1B15ADE54B004768C9 /* iAd.bridgesupport */,
-				E1163B1C15ADE54B004768C9 /* MapKit.bridgesupport */,
-				E1163B1D15ADE54B004768C9 /* MediaPlayer.bridgesupport */,
-				E1163B1E15ADE54B004768C9 /* MessageUI.bridgesupport */,
-				E1163B1F15ADE54B004768C9 /* MobileCoreServices.bridgesupport */,
-				E1163B2015ADE54B004768C9 /* NewsstandKit.bridgesupport */,
-				E19BA2B015AB465100C870CA /* OpenAL.bridgesupport */,
-				E19BA2B115AB465100C870CA /* OpenGLES.bridgesupport */,
-				E19BA2B215AB465100C870CA /* QuartzCore.bridgesupport */,
-				E19BA2B315AB465100C870CA /* QuickLook.bridgesupport */,
-				E19BA2B415AB465100C870CA /* Security.bridgesupport */,
-				E19BA2B515AB465100C870CA /* StoreKit.bridgesupport */,
-				E19BA2B615AB465100C870CA /* SystemConfiguration.bridgesupport */,
-				E1163B2115ADE54B004768C9 /* Twitter.bridgesupport */,
-				E1163B0D15ADE238004768C9 /* UIKit.bridgesupport */,
+				E1A1CFB315B0850200C410B1 /* Accelerate.bridgesupport */,
+				E1A1CFB415B0850200C410B1 /* Accounts.bridgesupport */,
+				E1A1CFB515B0850200C410B1 /* AddressBook.bridgesupport */,
+				E1A1CFB615B0850200C410B1 /* AddressBookUI.bridgesupport */,
+				E1A1CFB715B0850200C410B1 /* AssetsLibrary.bridgesupport */,
+				E1A1CFB815B0850200C410B1 /* AudioToolbox.bridgesupport */,
+				E1A1CFB915B0850200C410B1 /* AudioUnit.bridgesupport */,
+				E1A1CFBA15B0850200C410B1 /* AVFoundation.bridgesupport */,
+				E1A1CFBB15B0850200C410B1 /* CoreAudio.bridgesupport */,
+				E1A1CFBC15B0850200C410B1 /* CoreBluetooth.bridgesupport */,
+				E1A1CFBD15B0850200C410B1 /* CoreData.bridgesupport */,
+				E1A1CFBE15B0850200C410B1 /* CoreFoundation.bridgesupport */,
+				E1A1CFBF15B0850200C410B1 /* CoreImage.bridgesupport */,
+				E1A1CFC015B0850200C410B1 /* CoreLocation.bridgesupport */,
+				E1A1CFC115B0850200C410B1 /* CoreMedia.bridgesupport */,
+				E1A1CFC215B0850200C410B1 /* CoreMIDI.bridgesupport */,
+				E1A1CFC315B0850200C410B1 /* CoreMotion.bridgesupport */,
+				E1A1CFC415B0850200C410B1 /* CoreTelephony.bridgesupport */,
+				E1A1CFC515B0850200C410B1 /* CoreVideo.bridgesupport */,
+				E1A1CFC615B0850200C410B1 /* EventKit.bridgesupport */,
+				E1A1CFC715B0850200C410B1 /* EventKitUI.bridgesupport */,
+				E1A1CFC815B0850200C410B1 /* ExternalAccessory.bridgesupport */,
+				E1A1CFC915B0850200C410B1 /* Foundation.bridgesupport */,
+				E1A1CFCA15B0850200C410B1 /* GameKit.bridgesupport */,
+				E1A1CFCB15B0850200C410B1 /* GSS.bridgesupport */,
+				E1A1CFCC15B0850200C410B1 /* iAd.bridgesupport */,
+				E1A1CFCD15B0850200C410B1 /* MapKit.bridgesupport */,
+				E1A1CFCE15B0850200C410B1 /* MediaPlayer.bridgesupport */,
+				E1A1CFCF15B0850200C410B1 /* MessageUI.bridgesupport */,
+				E1A1CFD015B0850200C410B1 /* MobileCoreServices.bridgesupport */,
+				E1A1CFD115B0850200C410B1 /* NewsstandKit.bridgesupport */,
+				E1A1CFD215B0850200C410B1 /* OpenAL.bridgesupport */,
+				E1A1CFD315B0850200C410B1 /* OpenGLES.bridgesupport */,
+				E1A1CFD415B0850200C410B1 /* QuartzCore.bridgesupport */,
+				E1A1CFD515B0850200C410B1 /* QuickLook.bridgesupport */,
+				E1A1CFD615B0850200C410B1 /* Security.bridgesupport */,
+				E1A1CFD715B0850200C410B1 /* StoreKit.bridgesupport */,
+				E1A1CFD815B0850200C410B1 /* SystemConfiguration.bridgesupport */,
+				E1A1CFD915B0850200C410B1 /* Twitter.bridgesupport */,
+				E1A1CFDA15B0850200C410B1 /* UIKit.bridgesupport */,
 			);
 			path = BridgeSupportFiles;
 			sourceTree = "<group>";
@@ -1088,6 +1080,7 @@
 				2215D8E915AFBFAF001056C3 /* LuaBridgeSupport.h in Headers */,
 				2215D8EC15AFBFAF001056C3 /* LuaBridgeSupportFileParser.h in Headers */,
 				E14A5FDD15B041B4006D9228 /* LuaObjCFrameworkFunctions.h in Headers */,
+				E1A1D00415B0855600C410B1 /* LuaObjCStructs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,48 +1161,48 @@
 				22EC440115243E1A00598F4F /* GLES.v in Resources */,
 				34E682251550485000699925 /* Particle.png in Resources */,
 				22B645721589EF81009C7A1C /* LuaCParser.lua in Resources */,
-				E19BA2B715AB465100C870CA /* Accelerate.bridgesupport in Resources */,
-				E19BA2B815AB465100C870CA /* AddressBook.bridgesupport in Resources */,
-				E19BA2B915AB465100C870CA /* AudioToolbox.bridgesupport in Resources */,
-				E19BA2BA15AB465100C870CA /* AudioUnit.bridgesupport in Resources */,
-				E19BA2BB15AB465100C870CA /* AVFoundation.bridgesupport in Resources */,
-				E19BA2BC15AB465100C870CA /* CoreAudio.bridgesupport in Resources */,
-				E19BA2BD15AB465100C870CA /* CoreData.bridgesupport in Resources */,
-				E19BA2BE15AB465100C870CA /* CoreFoundation.bridgesupport in Resources */,
-				E19BA2BF15AB465100C870CA /* CoreLocation.bridgesupport in Resources */,
-				E19BA2C015AB465100C870CA /* CoreMedia.bridgesupport in Resources */,
-				E19BA2C115AB465100C870CA /* CoreMIDI.bridgesupport in Resources */,
-				E19BA2C215AB465100C870CA /* CoreVideo.bridgesupport in Resources */,
-				E19BA2C315AB465100C870CA /* Foundation.bridgesupport in Resources */,
-				E19BA2C415AB465100C870CA /* GSS.bridgesupport in Resources */,
-				E19BA2C515AB465100C870CA /* OpenAL.bridgesupport in Resources */,
-				E19BA2C615AB465100C870CA /* OpenGLES.bridgesupport in Resources */,
-				E19BA2C715AB465100C870CA /* QuartzCore.bridgesupport in Resources */,
-				E19BA2C815AB465100C870CA /* QuickLook.bridgesupport in Resources */,
-				E19BA2C915AB465100C870CA /* Security.bridgesupport in Resources */,
-				E19BA2CA15AB465100C870CA /* StoreKit.bridgesupport in Resources */,
-				E19BA2CB15AB465100C870CA /* SystemConfiguration.bridgesupport in Resources */,
-				E1163B0E15ADE238004768C9 /* UIKit.bridgesupport in Resources */,
-				E1163B2215ADE54B004768C9 /* Accounts.bridgesupport in Resources */,
-				E1163B2315ADE54B004768C9 /* AddressBookUI.bridgesupport in Resources */,
-				E1163B2415ADE54B004768C9 /* AssetsLibrary.bridgesupport in Resources */,
-				E1163B2515ADE54B004768C9 /* CoreBluetooth.bridgesupport in Resources */,
-				E1163B2615ADE54B004768C9 /* CoreImage.bridgesupport in Resources */,
-				E1163B2715ADE54B004768C9 /* CoreMotion.bridgesupport in Resources */,
-				E1163B2815ADE54B004768C9 /* CoreTelephony.bridgesupport in Resources */,
-				E1163B2915ADE54B004768C9 /* EventKit.bridgesupport in Resources */,
-				E1163B2A15ADE54B004768C9 /* EventKitUI.bridgesupport in Resources */,
-				E1163B2B15ADE54B004768C9 /* ExternalAccessory.bridgesupport in Resources */,
-				E1163B2C15ADE54B004768C9 /* GameKit.bridgesupport in Resources */,
-				E1163B2D15ADE54B004768C9 /* iAd.bridgesupport in Resources */,
-				E1163B2E15ADE54B004768C9 /* MapKit.bridgesupport in Resources */,
-				E1163B2F15ADE54B004768C9 /* MediaPlayer.bridgesupport in Resources */,
-				E1163B3015ADE54B004768C9 /* MessageUI.bridgesupport in Resources */,
-				E1163B3115ADE54B004768C9 /* MobileCoreServices.bridgesupport in Resources */,
-				E1163B3215ADE54B004768C9 /* NewsstandKit.bridgesupport in Resources */,
-				E1163B3315ADE54B004768C9 /* Twitter.bridgesupport in Resources */,
 				22D000AA15AE63750034442D /* LICENSE in Resources */,
 				22D000AE15AE63C00034442D /* VeritasKit-LICENSE in Resources */,
+				E1A1CFDB15B0850200C410B1 /* Accelerate.bridgesupport in Resources */,
+				E1A1CFDC15B0850200C410B1 /* Accounts.bridgesupport in Resources */,
+				E1A1CFDD15B0850200C410B1 /* AddressBook.bridgesupport in Resources */,
+				E1A1CFDE15B0850200C410B1 /* AddressBookUI.bridgesupport in Resources */,
+				E1A1CFDF15B0850200C410B1 /* AssetsLibrary.bridgesupport in Resources */,
+				E1A1CFE015B0850200C410B1 /* AudioToolbox.bridgesupport in Resources */,
+				E1A1CFE115B0850200C410B1 /* AudioUnit.bridgesupport in Resources */,
+				E1A1CFE215B0850200C410B1 /* AVFoundation.bridgesupport in Resources */,
+				E1A1CFE315B0850200C410B1 /* CoreAudio.bridgesupport in Resources */,
+				E1A1CFE415B0850200C410B1 /* CoreBluetooth.bridgesupport in Resources */,
+				E1A1CFE515B0850200C410B1 /* CoreData.bridgesupport in Resources */,
+				E1A1CFE615B0850200C410B1 /* CoreFoundation.bridgesupport in Resources */,
+				E1A1CFE715B0850200C410B1 /* CoreImage.bridgesupport in Resources */,
+				E1A1CFE815B0850200C410B1 /* CoreLocation.bridgesupport in Resources */,
+				E1A1CFE915B0850200C410B1 /* CoreMedia.bridgesupport in Resources */,
+				E1A1CFEA15B0850200C410B1 /* CoreMIDI.bridgesupport in Resources */,
+				E1A1CFEB15B0850200C410B1 /* CoreMotion.bridgesupport in Resources */,
+				E1A1CFEC15B0850200C410B1 /* CoreTelephony.bridgesupport in Resources */,
+				E1A1CFED15B0850200C410B1 /* CoreVideo.bridgesupport in Resources */,
+				E1A1CFEE15B0850200C410B1 /* EventKit.bridgesupport in Resources */,
+				E1A1CFEF15B0850200C410B1 /* EventKitUI.bridgesupport in Resources */,
+				E1A1CFF015B0850200C410B1 /* ExternalAccessory.bridgesupport in Resources */,
+				E1A1CFF115B0850200C410B1 /* Foundation.bridgesupport in Resources */,
+				E1A1CFF215B0850200C410B1 /* GameKit.bridgesupport in Resources */,
+				E1A1CFF315B0850200C410B1 /* GSS.bridgesupport in Resources */,
+				E1A1CFF415B0850200C410B1 /* iAd.bridgesupport in Resources */,
+				E1A1CFF515B0850200C410B1 /* MapKit.bridgesupport in Resources */,
+				E1A1CFF615B0850200C410B1 /* MediaPlayer.bridgesupport in Resources */,
+				E1A1CFF715B0850200C410B1 /* MessageUI.bridgesupport in Resources */,
+				E1A1CFF815B0850200C410B1 /* MobileCoreServices.bridgesupport in Resources */,
+				E1A1CFF915B0850200C410B1 /* NewsstandKit.bridgesupport in Resources */,
+				E1A1CFFA15B0850200C410B1 /* OpenAL.bridgesupport in Resources */,
+				E1A1CFFB15B0850200C410B1 /* OpenGLES.bridgesupport in Resources */,
+				E1A1CFFC15B0850200C410B1 /* QuartzCore.bridgesupport in Resources */,
+				E1A1CFFD15B0850200C410B1 /* QuickLook.bridgesupport in Resources */,
+				E1A1CFFE15B0850200C410B1 /* Security.bridgesupport in Resources */,
+				E1A1CFFF15B0850200C410B1 /* StoreKit.bridgesupport in Resources */,
+				E1A1D00015B0850200C410B1 /* SystemConfiguration.bridgesupport in Resources */,
+				E1A1D00115B0850200C410B1 /* Twitter.bridgesupport in Resources */,
+				E1A1D00215B0850200C410B1 /* UIKit.bridgesupport in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,7 +1234,6 @@
 				22A06029159BFB2100391F52 /* LuaObjCProfile.m in Sources */,
 				22350721159C380400D2CCF3 /* LuaObjCAccelerator.m in Sources */,
 				22350722159C380400D2CCF3 /* LuaObjCInternal.m in Sources */,
-				2235072A159C381D00D2CCF3 /* LuaEngineNetworkManager.m in Sources */,
 				22F7ACB615A14AEA00E2DED3 /* LuaCGAffineTransform.m in Sources */,
 				22F7ACC115A14AEA00E2DED3 /* LuaCGGeometry.m in Sources */,
 				22F7ACD315A14AEA00E2DED3 /* LuaCoreGraphics.m in Sources */,
@@ -1269,8 +1261,7 @@
 				E10053AF1590C57800F49D98 /* XMLDocument.m in Sources */,
 				E10053B01590C57800F49D98 /* XMLNode.m in Sources */,
 				E10053B11590C57800F49D98 /* XMLPathProcessor.m in Sources */,
-				E1095AAA1590E29000E1BBD3 /* LuaNSCoder.m in Sources */,
-				E14AA8201593647D00BD29E2 /* LuaObjCRecordTable.m in Sources */,
+				E14AA8201593647D00BD29E2 /* LuaObjCCacheTable.c in Sources */,
 				E1163AAE15ADD732004768C9 /* lapi.c in Sources */,
 				E1163AB115ADD732004768C9 /* lauxlib.c in Sources */,
 				E1163AB415ADD732004768C9 /* lbaselib.c in Sources */,
@@ -1322,7 +1313,6 @@
 				E14908321595C0000088A170 /* LuaNSRange.m in Sources */,
 				E14908351595C0000088A170 /* LuaNSString.m in Sources */,
 				E14908401595C0000088A170 /* LuaNSCollection.m in Sources */,
-				E14908411595C0000088A170 /* LuaNSCoder.m in Sources */,
 				E14908151595BFC10088A170 /* LuaCGGeometry.m in Sources */,
 				E14907ED1595BC190088A170 /* lpeg.c in Sources */,
 				E14908121595BC190088A170 /* LuaEngineFunctions.c in Sources */,
@@ -1333,7 +1323,7 @@
 				E14907DF1595BC020088A170 /* NSArray+LuaObjCIndex.m in Sources */,
 				E14907E01595BC020088A170 /* NSDictionary+LuaObjCIndex.m in Sources */,
 				E14907E11595BC020088A170 /* NSString+LuaObjCIndex.m in Sources */,
-				E14907E31595BC020088A170 /* LuaObjCRecordTable.m in Sources */,
+				E14907E31595BC020088A170 /* LuaObjCCacheTable.c in Sources */,
 				E14907E41595BC020088A170 /* LuaObjCAccelerator.m in Sources */,
 				E14907E51595BC020088A170 /* LuaObjCAuxiliary.m in Sources */,
 				E14907E61595BC020088A170 /* LuaObjCClass.m in Sources */,

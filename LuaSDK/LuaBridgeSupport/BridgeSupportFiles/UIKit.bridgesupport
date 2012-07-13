@@ -1,0 +1,1192 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<depends_on path='/System/Library/Frameworks/IOKit.framework'/>
+<struct name='UIEdgeInsets' type64='{UIEdgeInsets=&quot;top&quot;d&quot;left&quot;d&quot;bottom&quot;d&quot;right&quot;d}' type='{UIEdgeInsets=&quot;top&quot;f&quot;left&quot;f&quot;bottom&quot;f&quot;right&quot;f}'/>
+<struct name='UIOffset' type64='{UIOffset=&quot;horizontal&quot;d&quot;vertical&quot;d}' type='{UIOffset=&quot;horizontal&quot;f&quot;vertical&quot;f}'/>
+<constant name='UIAccessibilityLayoutChangedNotification' type='I'/>
+<constant name='UIAccessibilityScreenChangedNotification' type='I'/>
+<constant name='UIAccessibilityTraitButton' type='Q'/>
+<constant name='UIAccessibilityTraitImage' type='Q'/>
+<constant name='UIAccessibilityTraitKeyboardKey' type='Q'/>
+<constant name='UIAccessibilityTraitLink' type='Q'/>
+<constant name='UIAccessibilityTraitNone' type='Q'/>
+<constant name='UIAccessibilityTraitNotEnabled' type='Q'/>
+<constant name='UIAccessibilityTraitPlaysSound' type='Q'/>
+<constant name='UIAccessibilityTraitSearchField' type='Q'/>
+<constant name='UIAccessibilityTraitSelected' type='Q'/>
+<constant name='UIAccessibilityTraitStaticText' type='Q'/>
+<constant name='UIAccessibilityTraitSummaryElement' type='Q'/>
+<constant name='UIAccessibilityTraitUpdatesFrequently' type='Q'/>
+<constant name='UIApplicationDidBecomeActiveNotification' type='@'/>
+<constant name='UIApplicationDidChangeStatusBarFrameNotification' type='@'/>
+<constant name='UIApplicationDidChangeStatusBarOrientationNotification' type='@'/>
+<constant name='UIApplicationDidFinishLaunchingNotification' type='@'/>
+<constant name='UIApplicationDidReceiveMemoryWarningNotification' type='@'/>
+<constant name='UIApplicationSignificantTimeChangeNotification' type='@'/>
+<constant name='UIApplicationStatusBarFrameUserInfoKey' type='@'/>
+<constant name='UIApplicationStatusBarOrientationUserInfoKey' type='@'/>
+<constant name='UIApplicationWillChangeStatusBarFrameNotification' type='@'/>
+<constant name='UIApplicationWillChangeStatusBarOrientationNotification' type='@'/>
+<constant name='UIApplicationWillResignActiveNotification' type='@'/>
+<constant name='UIApplicationWillTerminateNotification' type='@'/>
+<constant name='UIDeviceOrientationDidChangeNotification' type='@'/>
+<constant name='UIEdgeInsetsZero' type64='{UIEdgeInsets=dddd}' type='{UIEdgeInsets=ffff}'/>
+<constant name='UIImagePickerControllerCropRect' type='@'/>
+<constant name='UIImagePickerControllerEditedImage' type='@'/>
+<constant name='UIImagePickerControllerMediaType' type='@'/>
+<constant name='UIImagePickerControllerMediaURL' type='@'/>
+<constant name='UIImagePickerControllerOriginalImage' type='@'/>
+<constant name='UIKeyboardDidHideNotification' type='@'/>
+<constant name='UIKeyboardDidShowNotification' type='@'/>
+<constant name='UIKeyboardWillHideNotification' type='@'/>
+<constant name='UIKeyboardWillShowNotification' type='@'/>
+<constant name='UIMenuControllerDidHideMenuNotification' type='@'/>
+<constant name='UIMenuControllerDidShowMenuNotification' type='@'/>
+<constant name='UIMenuControllerMenuFrameDidChangeNotification' type='@'/>
+<constant name='UIMenuControllerWillHideMenuNotification' type='@'/>
+<constant name='UIMenuControllerWillShowMenuNotification' type='@'/>
+<constant name='UINavigationControllerHideShowBarDuration' type64='d' type='f'/>
+<constant name='UIOffsetZero' type64='{UIOffset=dd}' type='{UIOffset=ff}'/>
+<constant name='UIPageViewControllerOptionSpineLocationKey' type='@'/>
+<constant name='UIPasteboardChangedNotification' type='@'/>
+<constant name='UIPasteboardChangedTypesAddedKey' type='@'/>
+<constant name='UIPasteboardChangedTypesRemovedKey' type='@'/>
+<constant name='UIPasteboardNameFind' type='@'/>
+<constant name='UIPasteboardNameGeneral' type='@'/>
+<constant name='UIPasteboardRemovedNotification' type='@'/>
+<constant name='UIPasteboardTypeListColor' type='@'/>
+<constant name='UIPasteboardTypeListImage' type='@'/>
+<constant name='UIPasteboardTypeListString' type='@'/>
+<constant name='UIPasteboardTypeListURL' type='@'/>
+<constant name='UIPrintErrorDomain' type='@'/>
+<constant name='UITableViewSelectionDidChangeNotification' type='@'/>
+<constant name='UITextFieldTextDidBeginEditingNotification' type='@'/>
+<constant name='UITextFieldTextDidChangeNotification' type='@'/>
+<constant name='UITextFieldTextDidEndEditingNotification' type='@'/>
+<constant name='UITextInputTextBackgroundColorKey' type='@'/>
+<constant name='UITextInputTextColorKey' type='@'/>
+<constant name='UITextInputTextFontKey' type='@'/>
+<constant name='UITextViewTextDidBeginEditingNotification' type='@'/>
+<constant name='UITextViewTextDidChangeNotification' type='@'/>
+<constant name='UITextViewTextDidEndEditingNotification' type='@'/>
+<constant name='UITrackingRunLoopMode' type='@'/>
+<constant name='UIWindowDidBecomeHiddenNotification' type='@'/>
+<constant name='UIWindowDidBecomeKeyNotification' type='@'/>
+<constant name='UIWindowDidBecomeVisibleNotification' type='@'/>
+<constant name='UIWindowDidResignKeyNotification' type='@'/>
+<constant name='UIWindowLevelAlert' type64='d' type='f'/>
+<constant name='UIWindowLevelNormal' type64='d' type='f'/>
+<constant name='UIWindowLevelStatusBar' type64='d' type='f'/>
+<enum value='4' name='UIAccessibilityScrollDirectionDown'/>
+<enum value='2' name='UIAccessibilityScrollDirectionLeft'/>
+<enum value='1' name='UIAccessibilityScrollDirectionRight'/>
+<enum value='3' name='UIAccessibilityScrollDirectionUp'/>
+<enum value='-1' name='UIActionSheetStyleAutomatic'/>
+<enum value='1' name='UIActionSheetStyleBlackOpaque'/>
+<enum value='2' name='UIActionSheetStyleBlackTranslucent'/>
+<enum value='0' name='UIActionSheetStyleDefault'/>
+<enum value='2' name='UIActivityIndicatorViewStyleGray'/>
+<enum value='1' name='UIActivityIndicatorViewStyleWhite'/>
+<enum value='0' name='UIActivityIndicatorViewStyleWhiteLarge'/>
+<enum value='0' name='UIAlertViewStyleDefault'/>
+<enum value='3' name='UIAlertViewStyleLoginAndPasswordInput'/>
+<enum value='2' name='UIAlertViewStylePlainTextInput'/>
+<enum value='1' name='UIAlertViewStyleSecureTextInput'/>
+<enum value='1' name='UIBarButtonItemStyleBordered'/>
+<enum value='2' name='UIBarButtonItemStyleDone'/>
+<enum value='0' name='UIBarButtonItemStylePlain'/>
+<enum value='9' name='UIBarButtonSystemItemAction'/>
+<enum value='4' name='UIBarButtonSystemItemAdd'/>
+<enum value='11' name='UIBarButtonSystemItemBookmarks'/>
+<enum value='15' name='UIBarButtonSystemItemCamera'/>
+<enum value='1' name='UIBarButtonSystemItemCancel'/>
+<enum value='7' name='UIBarButtonSystemItemCompose'/>
+<enum value='0' name='UIBarButtonSystemItemDone'/>
+<enum value='2' name='UIBarButtonSystemItemEdit'/>
+<enum value='20' name='UIBarButtonSystemItemFastForward'/>
+<enum value='6' name='UIBarButtonSystemItemFixedSpace'/>
+<enum value='5' name='UIBarButtonSystemItemFlexibleSpace'/>
+<enum value='10' name='UIBarButtonSystemItemOrganize'/>
+<enum value='18' name='UIBarButtonSystemItemPause'/>
+<enum value='17' name='UIBarButtonSystemItemPlay'/>
+<enum value='13' name='UIBarButtonSystemItemRefresh'/>
+<enum value='8' name='UIBarButtonSystemItemReply'/>
+<enum value='19' name='UIBarButtonSystemItemRewind'/>
+<enum value='3' name='UIBarButtonSystemItemSave'/>
+<enum value='12' name='UIBarButtonSystemItemSearch'/>
+<enum value='14' name='UIBarButtonSystemItemStop'/>
+<enum value='16' name='UIBarButtonSystemItemTrash'/>
+<enum value='0' name='UIBarMetricsDefault'/>
+<enum value='1' name='UIBarMetricsLandscapePhone'/>
+<enum value='1' name='UIBarStyleBlack'/>
+<enum value='1' name='UIBarStyleBlackOpaque'/>
+<enum value='2' name='UIBarStyleBlackTranslucent'/>
+<enum value='0' name='UIBarStyleDefault'/>
+<enum value='0' name='UIBaselineAdjustmentAlignBaselines'/>
+<enum value='1' name='UIBaselineAdjustmentAlignCenters'/>
+<enum value='2' name='UIBaselineAdjustmentNone'/>
+<enum value='5' name='UIButtonTypeContactAdd'/>
+<enum value='0' name='UIButtonTypeCustom'/>
+<enum value='2' name='UIButtonTypeDetailDisclosure'/>
+<enum value='4' name='UIButtonTypeInfoDark'/>
+<enum value='3' name='UIButtonTypeInfoLight'/>
+<enum value='1' name='UIButtonTypeRoundedRect'/>
+<enum value='0' name='UIControlContentHorizontalAlignmentCenter'/>
+<enum value='3' name='UIControlContentHorizontalAlignmentFill'/>
+<enum value='1' name='UIControlContentHorizontalAlignmentLeft'/>
+<enum value='2' name='UIControlContentHorizontalAlignmentRight'/>
+<enum value='2' name='UIControlContentVerticalAlignmentBottom'/>
+<enum value='0' name='UIControlContentVerticalAlignmentCenter'/>
+<enum value='3' name='UIControlContentVerticalAlignmentFill'/>
+<enum value='1' name='UIControlContentVerticalAlignmentTop'/>
+<enum value='983040' name='UIControlEventAllEditingEvents'/>
+<enum value='4294967295' name='UIControlEventAllEvents'/>
+<enum value='4095' name='UIControlEventAllTouchEvents'/>
+<enum value='251658240' name='UIControlEventApplicationReserved'/>
+<enum value='131072' name='UIControlEventEditingChanged'/>
+<enum value='65536' name='UIControlEventEditingDidBegin'/>
+<enum value='262144' name='UIControlEventEditingDidEnd'/>
+<enum value='524288' name='UIControlEventEditingDidEndOnExit'/>
+<enum value='4026531840' name='UIControlEventSystemReserved'/>
+<enum value='256' name='UIControlEventTouchCancel'/>
+<enum value='1' name='UIControlEventTouchDown'/>
+<enum value='2' name='UIControlEventTouchDownRepeat'/>
+<enum value='16' name='UIControlEventTouchDragEnter'/>
+<enum value='32' name='UIControlEventTouchDragExit'/>
+<enum value='4' name='UIControlEventTouchDragInside'/>
+<enum value='8' name='UIControlEventTouchDragOutside'/>
+<enum value='64' name='UIControlEventTouchUpInside'/>
+<enum value='128' name='UIControlEventTouchUpOutside'/>
+<enum value='4096' name='UIControlEventValueChanged'/>
+<enum value='16711680' name='UIControlStateApplication'/>
+<enum value='2' name='UIControlStateDisabled'/>
+<enum value='1' name='UIControlStateHighlighted'/>
+<enum value='0' name='UIControlStateNormal'/>
+<enum value='4278190080' name='UIControlStateReserved'/>
+<enum value='4' name='UIControlStateSelected'/>
+<enum value='4294967295' name='UIDataDetectorTypeAll' value64='18446744073709551615'/>
+<enum value='2' name='UIDataDetectorTypeLink'/>
+<enum value='0' name='UIDataDetectorTypeNone'/>
+<enum value='1' name='UIDataDetectorTypePhoneNumber'/>
+<enum value='3' name='UIDatePickerModeCountDownTimer'/>
+<enum value='1' name='UIDatePickerModeDate'/>
+<enum value='2' name='UIDatePickerModeDateAndTime'/>
+<enum value='0' name='UIDatePickerModeTime'/>
+<enum value='2' name='UIDeviceBatteryStateCharging'/>
+<enum value='3' name='UIDeviceBatteryStateFull'/>
+<enum value='0' name='UIDeviceBatteryStateUnknown'/>
+<enum value='1' name='UIDeviceBatteryStateUnplugged'/>
+<enum value='6' name='UIDeviceOrientationFaceDown'/>
+<enum value='5' name='UIDeviceOrientationFaceUp'/>
+<enum value='3' name='UIDeviceOrientationLandscapeLeft'/>
+<enum value='4' name='UIDeviceOrientationLandscapeRight'/>
+<enum value='1' name='UIDeviceOrientationPortrait'/>
+<enum value='2' name='UIDeviceOrientationPortraitUpsideDown'/>
+<enum value='0' name='UIDeviceOrientationUnknown'/>
+<enum value='3' name='UIDocumentChangeCleared'/>
+<enum value='0' name='UIDocumentChangeDone'/>
+<enum value='2' name='UIDocumentChangeRedone'/>
+<enum value='1' name='UIDocumentChangeUndone'/>
+<enum value='0' name='UIDocumentSaveForCreating'/>
+<enum value='1' name='UIDocumentSaveForOverwriting'/>
+<enum value='1' name='UIDocumentStateClosed'/>
+<enum value='8' name='UIDocumentStateEditingDisabled'/>
+<enum value='2' name='UIDocumentStateInConflict'/>
+<enum value='0' name='UIDocumentStateNormal'/>
+<enum value='4' name='UIDocumentStateSavingError'/>
+<enum value='1' name='UIEventSubtypeMotionShake'/>
+<enum value='0' name='UIEventSubtypeNone'/>
+<enum value='106' name='UIEventSubtypeRemoteControlBeginSeekingBackward'/>
+<enum value='108' name='UIEventSubtypeRemoteControlBeginSeekingForward'/>
+<enum value='107' name='UIEventSubtypeRemoteControlEndSeekingBackward'/>
+<enum value='109' name='UIEventSubtypeRemoteControlEndSeekingForward'/>
+<enum value='104' name='UIEventSubtypeRemoteControlNextTrack'/>
+<enum value='101' name='UIEventSubtypeRemoteControlPause'/>
+<enum value='100' name='UIEventSubtypeRemoteControlPlay'/>
+<enum value='105' name='UIEventSubtypeRemoteControlPreviousTrack'/>
+<enum value='102' name='UIEventSubtypeRemoteControlStop'/>
+<enum value='103' name='UIEventSubtypeRemoteControlTogglePlayPause'/>
+<enum value='1' name='UIEventTypeMotion'/>
+<enum value='2' name='UIEventTypeRemoteControl'/>
+<enum value='0' name='UIEventTypeTouches'/>
+<enum value='1' name='UIGestureRecognizerStateBegan'/>
+<enum value='4' name='UIGestureRecognizerStateCancelled'/>
+<enum value='2' name='UIGestureRecognizerStateChanged'/>
+<enum value='3' name='UIGestureRecognizerStateEnded'/>
+<enum value='5' name='UIGestureRecognizerStateFailed'/>
+<enum value='0' name='UIGestureRecognizerStatePossible'/>
+<enum value='3' name='UIGestureRecognizerStateRecognized'/>
+<enum value='1' name='UIImageOrientationDown'/>
+<enum value='5' name='UIImageOrientationDownMirrored'/>
+<enum value='2' name='UIImageOrientationLeft'/>
+<enum value='6' name='UIImageOrientationLeftMirrored'/>
+<enum value='3' name='UIImageOrientationRight'/>
+<enum value='7' name='UIImageOrientationRightMirrored'/>
+<enum value='0' name='UIImageOrientationUp'/>
+<enum value='4' name='UIImageOrientationUpMirrored'/>
+<enum value='0' name='UIImagePickerControllerCameraCaptureModePhoto'/>
+<enum value='1' name='UIImagePickerControllerCameraCaptureModeVideo'/>
+<enum value='1' name='UIImagePickerControllerCameraDeviceFront'/>
+<enum value='0' name='UIImagePickerControllerCameraDeviceRear'/>
+<enum value='0' name='UIImagePickerControllerCameraFlashModeAuto'/>
+<enum value='-1' name='UIImagePickerControllerCameraFlashModeOff'/>
+<enum value='1' name='UIImagePickerControllerCameraFlashModeOn'/>
+<enum value='0' name='UIImagePickerControllerQualityTypeHigh'/>
+<enum value='2' name='UIImagePickerControllerQualityTypeLow'/>
+<enum value='1' name='UIImagePickerControllerQualityTypeMedium'/>
+<enum value='1' name='UIImagePickerControllerSourceTypeCamera'/>
+<enum value='0' name='UIImagePickerControllerSourceTypePhotoLibrary'/>
+<enum value='2' name='UIImagePickerControllerSourceTypeSavedPhotosAlbum'/>
+<enum value='4' name='UIInterfaceOrientationLandscapeLeft'/>
+<enum value='3' name='UIInterfaceOrientationLandscapeRight'/>
+<enum value='1' name='UIInterfaceOrientationPortrait'/>
+<enum value='2' name='UIInterfaceOrientationPortraitUpsideDown'/>
+<enum value='1' name='UIKeyboardAppearanceAlert'/>
+<enum value='0' name='UIKeyboardAppearanceDefault'/>
+<enum value='1' name='UIKeyboardTypeASCIICapable'/>
+<enum value='1' name='UIKeyboardTypeAlphabet'/>
+<enum value='0' name='UIKeyboardTypeDefault'/>
+<enum value='7' name='UIKeyboardTypeEmailAddress'/>
+<enum value='6' name='UIKeyboardTypeNamePhonePad'/>
+<enum value='4' name='UIKeyboardTypeNumberPad'/>
+<enum value='2' name='UIKeyboardTypeNumbersAndPunctuation'/>
+<enum value='5' name='UIKeyboardTypePhonePad'/>
+<enum value='3' name='UIKeyboardTypeURL'/>
+<enum value='1' name='UILineBreakModeCharacterWrap'/>
+<enum value='2' name='UILineBreakModeClip'/>
+<enum value='3' name='UILineBreakModeHeadTruncation'/>
+<enum value='5' name='UILineBreakModeMiddleTruncation'/>
+<enum value='4' name='UILineBreakModeTailTruncation'/>
+<enum value='0' name='UILineBreakModeWordWrap'/>
+<enum value='0' name='UIMenuControllerArrowDefault'/>
+<enum value='0' name='UIModalPresentationFullScreen'/>
+<enum value='0' name='UIModalTransitionStyleCoverVertical'/>
+<enum value='2' name='UIModalTransitionStyleCrossDissolve'/>
+<enum value='1' name='UIModalTransitionStyleFlipHorizontal'/>
+<enum value='0' name='UIPageViewControllerNavigationDirectionForward'/>
+<enum value='1' name='UIPageViewControllerNavigationDirectionReverse'/>
+<enum value='0' name='UIPageViewControllerNavigationOrientationHorizontal'/>
+<enum value='1' name='UIPageViewControllerNavigationOrientationVertical'/>
+<enum value='3' name='UIPageViewControllerSpineLocationMax'/>
+<enum value='2' name='UIPageViewControllerSpineLocationMid'/>
+<enum value='1' name='UIPageViewControllerSpineLocationMin'/>
+<enum value='0' name='UIPageViewControllerSpineLocationNone'/>
+<enum value='0' name='UIPageViewControllerTransitionStylePageCurl'/>
+<enum value='15' name='UIPopoverArrowDirectionAny'/>
+<enum value='2' name='UIPopoverArrowDirectionDown'/>
+<enum value='4' name='UIPopoverArrowDirectionLeft'/>
+<enum value='8' name='UIPopoverArrowDirectionRight'/>
+<enum value='4294967295' name='UIPopoverArrowDirectionUnknown' value64='18446744073709551615'/>
+<enum value='1' name='UIPopoverArrowDirectionUp'/>
+<enum value='1' name='UIPrintInfoDuplexLongEdge'/>
+<enum value='0' name='UIPrintInfoDuplexNone'/>
+<enum value='2' name='UIPrintInfoDuplexShortEdge'/>
+<enum value='1' name='UIPrintInfoOrientationLandscape'/>
+<enum value='0' name='UIPrintInfoOrientationPortrait'/>
+<enum value='0' name='UIPrintInfoOutputGeneral'/>
+<enum value='2' name='UIPrintInfoOutputGrayscale'/>
+<enum value='1' name='UIPrintInfoOutputPhoto'/>
+<enum value='4' name='UIPrintJobFailedError'/>
+<enum value='2' name='UIPrintNoContentError'/>
+<enum value='3' name='UIPrintUnknownImageFormatError'/>
+<enum value='1' name='UIPrintingNotAvailableError'/>
+<enum value='1' name='UIProgressViewStyleBar'/>
+<enum value='0' name='UIProgressViewStyleDefault'/>
+<enum value='-1' name='UIRectCornerAllCorners'/>
+<enum value='4' name='UIRectCornerBottomLeft'/>
+<enum value='8' name='UIRectCornerBottomRight'/>
+<enum value='1' name='UIRectCornerTopLeft'/>
+<enum value='2' name='UIRectCornerTopRight'/>
+<enum value='0' name='UIReturnKeyDefault'/>
+<enum value='9' name='UIReturnKeyDone'/>
+<enum value='10' name='UIReturnKeyEmergencyCall'/>
+<enum value='1' name='UIReturnKeyGo'/>
+<enum value='2' name='UIReturnKeyGoogle'/>
+<enum value='3' name='UIReturnKeyJoin'/>
+<enum value='4' name='UIReturnKeyNext'/>
+<enum value='5' name='UIReturnKeyRoute'/>
+<enum value='6' name='UIReturnKeySearch'/>
+<enum value='7' name='UIReturnKeySend'/>
+<enum value='8' name='UIReturnKeyYahoo'/>
+<enum value='2' name='UIScreenOverscanCompensationInsetApplicationFrame'/>
+<enum value='1' name='UIScreenOverscanCompensationInsetBounds'/>
+<enum value='0' name='UIScreenOverscanCompensationScale'/>
+<enum value='1' name='UIScrollViewIndicatorStyleBlack'/>
+<enum value='0' name='UIScrollViewIndicatorStyleDefault'/>
+<enum value='2' name='UIScrollViewIndicatorStyleWhite'/>
+<enum value='2' name='UISearchBarIconBookmark'/>
+<enum value='1' name='UISearchBarIconClear'/>
+<enum value='3' name='UISearchBarIconResultsList'/>
+<enum value='0' name='UISearchBarIconSearch'/>
+<enum value='-1' name='UISegmentedControlNoSegment'/>
+<enum value='4' name='UISegmentedControlSegmentAlone'/>
+<enum value='0' name='UISegmentedControlSegmentAny'/>
+<enum value='2' name='UISegmentedControlSegmentCenter'/>
+<enum value='1' name='UISegmentedControlSegmentLeft'/>
+<enum value='3' name='UISegmentedControlSegmentRight'/>
+<enum value='2' name='UISegmentedControlStyleBar'/>
+<enum value='3' name='UISegmentedControlStyleBezeled'/>
+<enum value='1' name='UISegmentedControlStyleBordered'/>
+<enum value='0' name='UISegmentedControlStylePlain'/>
+<enum value='0' name='UIStatusBarAnimationNone'/>
+<enum value='2' name='UIStatusBarStyleBlackOpaque'/>
+<enum value='1' name='UIStatusBarStyleBlackTranslucent'/>
+<enum value='0' name='UIStatusBarStyleDefault'/>
+<enum value='8' name='UISwipeGestureRecognizerDirectionDown'/>
+<enum value='2' name='UISwipeGestureRecognizerDirectionLeft'/>
+<enum value='1' name='UISwipeGestureRecognizerDirectionRight'/>
+<enum value='4' name='UISwipeGestureRecognizerDirectionUp'/>
+<enum value='7' name='UITabBarSystemItemBookmarks'/>
+<enum value='5' name='UITabBarSystemItemContacts'/>
+<enum value='9' name='UITabBarSystemItemDownloads'/>
+<enum value='1' name='UITabBarSystemItemFavorites'/>
+<enum value='2' name='UITabBarSystemItemFeatured'/>
+<enum value='6' name='UITabBarSystemItemHistory'/>
+<enum value='0' name='UITabBarSystemItemMore'/>
+<enum value='10' name='UITabBarSystemItemMostRecent'/>
+<enum value='11' name='UITabBarSystemItemMostViewed'/>
+<enum value='4' name='UITabBarSystemItemRecents'/>
+<enum value='8' name='UITabBarSystemItemSearch'/>
+<enum value='3' name='UITabBarSystemItemTopRated'/>
+<enum value='3' name='UITableViewCellAccessoryCheckmark'/>
+<enum value='2' name='UITableViewCellAccessoryDetailDisclosureButton'/>
+<enum value='1' name='UITableViewCellAccessoryDisclosureIndicator'/>
+<enum value='0' name='UITableViewCellAccessoryNone'/>
+<enum value='1' name='UITableViewCellEditingStyleDelete'/>
+<enum value='2' name='UITableViewCellEditingStyleInsert'/>
+<enum value='0' name='UITableViewCellEditingStyleNone'/>
+<enum value='1' name='UITableViewCellSelectionStyleBlue'/>
+<enum value='2' name='UITableViewCellSelectionStyleGray'/>
+<enum value='0' name='UITableViewCellSelectionStyleNone'/>
+<enum value='0' name='UITableViewCellSeparatorStyleNone'/>
+<enum value='1' name='UITableViewCellSeparatorStyleSingleLine'/>
+<enum value='2' name='UITableViewCellSeparatorStyleSingleLineEtched'/>
+<enum value='0' name='UITableViewCellStateDefaultMask'/>
+<enum value='1' name='UITableViewCellStateEditingMask'/>
+<enum value='2' name='UITableViewCellStateShowingDeleteConfirmationMask'/>
+<enum value='1' name='UITableViewCellStateShowingEditControlMask'/>
+<enum value='0' name='UITableViewCellStyleDefault'/>
+<enum value='3' name='UITableViewCellStyleSubtitle'/>
+<enum value='1' name='UITableViewCellStyleValue1'/>
+<enum value='2' name='UITableViewCellStyleValue2'/>
+<enum value='100' name='UITableViewRowAnimationAutomatic'/>
+<enum value='4' name='UITableViewRowAnimationBottom'/>
+<enum value='0' name='UITableViewRowAnimationFade'/>
+<enum value='2' name='UITableViewRowAnimationLeft'/>
+<enum value='6' name='UITableViewRowAnimationMiddle'/>
+<enum value='5' name='UITableViewRowAnimationNone'/>
+<enum value='1' name='UITableViewRowAnimationRight'/>
+<enum value='3' name='UITableViewRowAnimationTop'/>
+<enum value='3' name='UITableViewScrollPositionBottom'/>
+<enum value='2' name='UITableViewScrollPositionMiddle'/>
+<enum value='0' name='UITableViewScrollPositionNone'/>
+<enum value='1' name='UITableViewScrollPositionTop'/>
+<enum value='1' name='UITableViewStyleGrouped'/>
+<enum value='0' name='UITableViewStylePlain'/>
+<enum value='1' name='UITextAlignmentCenter'/>
+<enum value='0' name='UITextAlignmentLeft'/>
+<enum value='2' name='UITextAlignmentRight'/>
+<enum value='3' name='UITextAutocapitalizationTypeAllCharacters'/>
+<enum value='0' name='UITextAutocapitalizationTypeNone'/>
+<enum value='2' name='UITextAutocapitalizationTypeSentences'/>
+<enum value='1' name='UITextAutocapitalizationTypeWords'/>
+<enum value='0' name='UITextAutocorrectionTypeDefault'/>
+<enum value='1' name='UITextAutocorrectionTypeNo'/>
+<enum value='2' name='UITextAutocorrectionTypeYes'/>
+<enum value='2' name='UITextBorderStyleBezel'/>
+<enum value='1' name='UITextBorderStyleLine'/>
+<enum value='0' name='UITextBorderStyleNone'/>
+<enum value='3' name='UITextBorderStyleRoundedRect'/>
+<enum value='3' name='UITextFieldViewModeAlways'/>
+<enum value='0' name='UITextFieldViewModeNever'/>
+<enum value='2' name='UITextFieldViewModeUnlessEditing'/>
+<enum value='1' name='UITextFieldViewModeWhileEditing'/>
+<enum value='0' name='UITextGranularityCharacter'/>
+<enum value='5' name='UITextGranularityDocument'/>
+<enum value='4' name='UITextGranularityLine'/>
+<enum value='3' name='UITextGranularityParagraph'/>
+<enum value='2' name='UITextGranularitySentence'/>
+<enum value='1' name='UITextGranularityWord'/>
+<enum value='5' name='UITextLayoutDirectionDown'/>
+<enum value='3' name='UITextLayoutDirectionLeft'/>
+<enum value='2' name='UITextLayoutDirectionRight'/>
+<enum value='4' name='UITextLayoutDirectionUp'/>
+<enum value='1' name='UITextStorageDirectionBackward'/>
+<enum value='0' name='UITextStorageDirectionForward'/>
+<enum value='0' name='UITextWritingDirectionLeftToRight'/>
+<enum value='-1' name='UITextWritingDirectionNatural'/>
+<enum value='1' name='UITextWritingDirectionRightToLeft'/>
+<enum value='0' name='UIToolbarPositionAny'/>
+<enum value='1' name='UIToolbarPositionBottom'/>
+<enum value='2' name='UIToolbarPositionTop'/>
+<enum value='0' name='UITouchPhaseBegan'/>
+<enum value='4' name='UITouchPhaseCancelled'/>
+<enum value='3' name='UITouchPhaseEnded'/>
+<enum value='1' name='UITouchPhaseMoved'/>
+<enum value='2' name='UITouchPhaseStationary'/>
+<enum value='1' name='UIViewAnimationCurveEaseIn'/>
+<enum value='0' name='UIViewAnimationCurveEaseInOut'/>
+<enum value='2' name='UIViewAnimationCurveEaseOut'/>
+<enum value='3' name='UIViewAnimationCurveLinear'/>
+<enum value='4' name='UIViewAnimationTransitionCurlDown'/>
+<enum value='3' name='UIViewAnimationTransitionCurlUp'/>
+<enum value='1' name='UIViewAnimationTransitionFlipFromLeft'/>
+<enum value='2' name='UIViewAnimationTransitionFlipFromRight'/>
+<enum value='0' name='UIViewAnimationTransitionNone'/>
+<enum value='32' name='UIViewAutoresizingFlexibleBottomMargin'/>
+<enum value='16' name='UIViewAutoresizingFlexibleHeight'/>
+<enum value='1' name='UIViewAutoresizingFlexibleLeftMargin'/>
+<enum value='4' name='UIViewAutoresizingFlexibleRightMargin'/>
+<enum value='8' name='UIViewAutoresizingFlexibleTopMargin'/>
+<enum value='2' name='UIViewAutoresizingFlexibleWidth'/>
+<enum value='0' name='UIViewAutoresizingNone'/>
+<enum value='6' name='UIViewContentModeBottom'/>
+<enum value='11' name='UIViewContentModeBottomLeft'/>
+<enum value='12' name='UIViewContentModeBottomRight'/>
+<enum value='4' name='UIViewContentModeCenter'/>
+<enum value='7' name='UIViewContentModeLeft'/>
+<enum value='3' name='UIViewContentModeRedraw'/>
+<enum value='8' name='UIViewContentModeRight'/>
+<enum value='2' name='UIViewContentModeScaleAspectFill'/>
+<enum value='1' name='UIViewContentModeScaleAspectFit'/>
+<enum value='0' name='UIViewContentModeScaleToFill'/>
+<enum value='5' name='UIViewContentModeTop'/>
+<enum value='9' name='UIViewContentModeTopLeft'/>
+<enum value='10' name='UIViewContentModeTopRight'/>
+<enum value='2' name='UIWebViewNavigationTypeBackForward'/>
+<enum value='4' name='UIWebViewNavigationTypeFormResubmitted'/>
+<enum value='1' name='UIWebViewNavigationTypeFormSubmitted'/>
+<enum value='0' name='UIWebViewNavigationTypeLinkClicked'/>
+<enum value='5' name='UIWebViewNavigationTypeOther'/>
+<enum value='3' name='UIWebViewNavigationTypeReload'/>
+<function name='CGAffineTransformFromString'>
+<arg type='@'/>
+<retval type64='{CGAffineTransform=dddddd}' type='{CGAffineTransform=ffffff}'/>
+</function>
+<function name='CGPointFromString'>
+<arg type='@'/>
+<retval type64='{CGPoint=dd}' type='{CGPoint=ff}'/>
+</function>
+<function name='CGRectFromString'>
+<arg type='@'/>
+<retval type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+</function>
+<function name='CGSizeFromString'>
+<arg type='@'/>
+<retval type64='{CGSize=dd}' type='{CGSize=ff}'/>
+</function>
+<function name='NSStringFromCGAffineTransform'>
+<arg type64='{CGAffineTransform=dddddd}' type='{CGAffineTransform=ffffff}'/>
+<retval type='@'/>
+</function>
+<function name='NSStringFromCGPoint'>
+<arg type64='{CGPoint=dd}' type='{CGPoint=ff}'/>
+<retval type='@'/>
+</function>
+<function name='NSStringFromCGRect'>
+<arg type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+<retval type='@'/>
+</function>
+<function name='NSStringFromCGSize'>
+<arg type64='{CGSize=dd}' type='{CGSize=ff}'/>
+<retval type='@'/>
+</function>
+<function name='NSStringFromUIEdgeInsets'>
+<arg type64='{UIEdgeInsets=dddd}' type='{UIEdgeInsets=ffff}'/>
+<retval type='@'/>
+</function>
+<function name='NSStringFromUIOffset'>
+<arg type64='{UIOffset=dd}' type='{UIOffset=ff}'/>
+<retval type='@'/>
+</function>
+<function name='UIAccessibilityPostNotification'>
+<arg type='I'/>
+<arg type='@'/>
+</function>
+<function name='UIApplicationMain'>
+<arg type='i'/>
+<arg type='^*'/>
+<arg type='@'/>
+<arg type='@'/>
+<retval type='i'/>
+</function>
+<function inline='true' name='UIEdgeInsetsEqualToEdgeInsets'>
+<arg type64='{UIEdgeInsets=dddd}' type='{UIEdgeInsets=ffff}'/>
+<arg type64='{UIEdgeInsets=dddd}' type='{UIEdgeInsets=ffff}'/>
+<retval type='B'/>
+</function>
+<function name='UIEdgeInsetsFromString'>
+<arg type='@'/>
+<retval type64='{UIEdgeInsets=dddd}' type='{UIEdgeInsets=ffff}'/>
+</function>
+<function inline='true' name='UIEdgeInsetsInsetRect'>
+<arg type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+<arg type64='{UIEdgeInsets=dddd}' type='{UIEdgeInsets=ffff}'/>
+<retval type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+</function>
+<function inline='true' name='UIEdgeInsetsMake'>
+<arg type64='d' type='f'/>
+<arg type64='d' type='f'/>
+<arg type64='d' type='f'/>
+<arg type64='d' type='f'/>
+<retval type64='{UIEdgeInsets=dddd}' type='{UIEdgeInsets=ffff}'/>
+</function>
+<function name='UIGraphicsBeginImageContext'>
+<arg type64='{CGSize=dd}' type='{CGSize=ff}'/>
+</function>
+<function name='UIGraphicsEndImageContext'/>
+<function name='UIGraphicsGetCurrentContext'>
+<retval type='^{CGContext=}'/>
+</function>
+<function name='UIGraphicsGetImageFromCurrentImageContext'>
+<retval type='@'/>
+</function>
+<function name='UIGraphicsPopContext'/>
+<function name='UIGraphicsPushContext'>
+<arg type='^{CGContext=}'/>
+</function>
+<function name='UIImageJPEGRepresentation'>
+<arg type='@'/>
+<arg type64='d' type='f'/>
+<retval type='@'/>
+</function>
+<function name='UIImagePNGRepresentation'>
+<arg type='@'/>
+<retval type='@'/>
+</function>
+<function name='UIImageWriteToSavedPhotosAlbum'>
+<arg type='@'/>
+<arg type='@'/>
+<arg type=':'/>
+<arg type='^v'/>
+</function>
+<function inline='true' name='UIOffsetEqualToOffset'>
+<arg type64='{UIOffset=dd}' type='{UIOffset=ff}'/>
+<arg type64='{UIOffset=dd}' type='{UIOffset=ff}'/>
+<retval type='B'/>
+</function>
+<function name='UIOffsetFromString'>
+<arg type='@'/>
+<retval type64='{UIOffset=dd}' type='{UIOffset=ff}'/>
+</function>
+<function inline='true' name='UIOffsetMake'>
+<arg type64='d' type='f'/>
+<arg type64='d' type='f'/>
+<retval type64='{UIOffset=dd}' type='{UIOffset=ff}'/>
+</function>
+<function name='UIRectClip'>
+<arg type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+</function>
+<function name='UIRectFill'>
+<arg type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+</function>
+<function name='UIRectFillUsingBlendMode'>
+<arg type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+<arg type='i'/>
+</function>
+<function name='UIRectFrame'>
+<arg type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+</function>
+<function name='UIRectFrameUsingBlendMode'>
+<arg type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+<arg type='i'/>
+</function>
+<class name='NSObject'>
+<method selector='accessibilityElementsHidden'>
+<retval type='B'/>
+</method>
+<method selector='accessibilityViewIsModal'>
+<retval type='B'/>
+</method>
+<method selector='alertViewShouldEnableFirstOtherButton:'>
+<retval type='B'/>
+</method>
+<method variadic='true' sentinel='0' class_method='true' selector='appearanceWhenContainedIn:'/>
+<method selector='application:handleOpenURL:'>
+<retval type='B'/>
+</method>
+<method selector='documentInteractionController:canPerformAction:'>
+<retval type='B'/>
+</method>
+<method selector='documentInteractionController:performAction:'>
+<retval type='B'/>
+</method>
+<method selector='enableInputClicksWhenVisible'>
+<retval type='B'/>
+</method>
+<method selector='enablesReturnKeyAutomatically'>
+<retval type='B'/>
+</method>
+<method selector='gestureRecognizer:shouldReceiveTouch:'>
+<retval type='B'/>
+</method>
+<method selector='gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:'>
+<retval type='B'/>
+</method>
+<method selector='gestureRecognizerShouldBegin:'>
+<retval type='B'/>
+</method>
+<method selector='hasText'>
+<retval type='B'/>
+</method>
+<method selector='isAccessibilityElement'>
+<retval type='B'/>
+</method>
+<method selector='isPosition:atBoundary:inDirection:'>
+<retval type='B'/>
+</method>
+<method selector='isPosition:withinTextUnit:inDirection:'>
+<retval type='B'/>
+</method>
+<method selector='isSecureTextEntry'>
+<retval type='B'/>
+</method>
+<method selector='navigationBar:shouldPopItem:'>
+<retval type='B'/>
+</method>
+<method selector='navigationBar:shouldPushItem:'>
+<retval type='B'/>
+</method>
+<method selector='navigationController:didShowViewController:animated:'>
+<arg index='2' type='B'/>
+</method>
+<method selector='navigationController:willShowViewController:animated:'>
+<arg index='2' type='B'/>
+</method>
+<method selector='pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:'>
+<arg index='1' type='B'/>
+<arg index='3' type='B'/>
+</method>
+<method selector='popoverControllerShouldDismissPopover:'>
+<retval type='B'/>
+</method>
+<method selector='scrollViewDidEndDragging:willDecelerate:'>
+<arg index='1' type='B'/>
+</method>
+<method selector='scrollViewShouldScrollToTop:'>
+<retval type='B'/>
+</method>
+<method selector='searchBarShouldBeginEditing:'>
+<retval type='B'/>
+</method>
+<method selector='searchBarShouldEndEditing:'>
+<retval type='B'/>
+</method>
+<method selector='searchDisplayController:shouldReloadTableForSearchScope:'>
+<retval type='B'/>
+</method>
+<method selector='searchDisplayController:shouldReloadTableForSearchString:'>
+<retval type='B'/>
+</method>
+<method selector='setAccessibilityElementsHidden:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setAccessibilityViewIsModal:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setEnablesReturnKeyAutomatically:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setIsAccessibilityElement:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setSecureTextEntry:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='tabBar:didEndCustomizingItems:changed:'>
+<arg index='2' type='B'/>
+</method>
+<method selector='tabBar:willEndCustomizingItems:changed:'>
+<arg index='2' type='B'/>
+</method>
+<method selector='tabBarController:didEndCustomizingViewControllers:changed:'>
+<arg index='2' type='B'/>
+</method>
+<method selector='tableView:canEditRowAtIndexPath:'>
+<retval type='B'/>
+</method>
+<method selector='tableView:canMoveRowAtIndexPath:'>
+<retval type='B'/>
+</method>
+<method selector='tableView:shouldIndentWhileEditingRowAtIndexPath:'>
+<retval type='B'/>
+</method>
+<method selector='textField:shouldChangeCharactersInRange:replacementString:'>
+<retval type='B'/>
+</method>
+<method selector='textFieldShouldBeginEditing:'>
+<retval type='B'/>
+</method>
+<method selector='textFieldShouldClear:'>
+<retval type='B'/>
+</method>
+<method selector='textFieldShouldEndEditing:'>
+<retval type='B'/>
+</method>
+<method selector='textFieldShouldReturn:'>
+<retval type='B'/>
+</method>
+<method selector='textView:shouldChangeTextInRange:replacementText:'>
+<retval type='B'/>
+</method>
+<method selector='textViewShouldBeginEditing:'>
+<retval type='B'/>
+</method>
+<method selector='textViewShouldEndEditing:'>
+<retval type='B'/>
+</method>
+<method selector='webView:shouldStartLoadWithRequest:navigationType:'>
+<retval type='B'/>
+</method>
+</class>
+<class name='UIApplication'>
+<method selector='isProximitySensingEnabled'>
+<retval type='B'/>
+</method>
+<method selector='setProximitySensingEnabled:'>
+<arg index='0' type='B'/>
+</method>
+</class>
+<class name='UIGestureRecognizer'>
+<method selector='canBePreventedByGestureRecognizer:'>
+<retval type='B'/>
+</method>
+<method selector='canPreventGestureRecognizer:'>
+<retval type='B'/>
+</method>
+</class>
+<class name='UITableViewCell'>
+<method selector='hidesAccessoryWhenEditing'>
+<retval type='B'/>
+</method>
+<method selector='setHidesAccessoryWhenEditing:'>
+<arg index='0' type='B'/>
+</method>
+</class>
+<class name='UIView'>
+<method class_method='true' selector='areAnimationsEnabled'>
+<retval type='B'/>
+</method>
+<method selector='autoresizesSubviews'>
+<retval type='B'/>
+</method>
+<method selector='clearsContextBeforeDrawing'>
+<retval type='B'/>
+</method>
+<method selector='clipsToBounds'>
+<retval type='B'/>
+</method>
+<method selector='endEditing:'>
+<arg index='0' type='B'/>
+<retval type='B'/>
+</method>
+<method selector='isDescendantOfView:'>
+<retval type='B'/>
+</method>
+<method selector='isExclusiveTouch'>
+<retval type='B'/>
+</method>
+<method selector='isHidden'>
+<retval type='B'/>
+</method>
+<method selector='isMultipleTouchEnabled'>
+<retval type='B'/>
+</method>
+<method selector='isOpaque'>
+<retval type='B'/>
+</method>
+<method selector='pointInside:withEvent:'>
+<retval type='B'/>
+</method>
+<method class_method='true' selector='setAnimationBeginsFromCurrentState:'>
+<arg index='0' type='B'/>
+</method>
+<method class_method='true' selector='setAnimationRepeatAutoreverses:'>
+<arg index='0' type='B'/>
+</method>
+<method class_method='true' selector='setAnimationTransition:forView:cache:'>
+<arg index='2' type='B'/>
+</method>
+<method class_method='true' selector='setAnimationsEnabled:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setAutoresizesSubviews:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setClearsContextBeforeDrawing:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setClipsToBounds:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setExclusiveTouch:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setHidden:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setMultipleTouchEnabled:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setOpaque:'>
+<arg index='0' type='B'/>
+</method>
+</class>
+<class name='UIViewController'>
+<method selector='hidesBottomBarWhenPushed'>
+<retval type='B'/>
+</method>
+<method selector='isEditing'>
+<retval type='B'/>
+</method>
+<method selector='isModalInPopover'>
+<retval type='B'/>
+</method>
+<method selector='setEditing:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setEditing:animated:'>
+<arg index='0' type='B'/>
+<arg index='1' type='B'/>
+</method>
+<method selector='setHidesBottomBarWhenPushed:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='setModalInPopover:'>
+<arg index='0' type='B'/>
+</method>
+<method selector='shouldAutorotateToInterfaceOrientation:'>
+<retval type='B'/>
+</method>
+</class>
+<informal_protocol name='UIAccessibility'>
+<method type64='{CGPoint=dd}16@0:8' selector='accessibilityActivationPoint' type='{CGPoint=ff}8@0:4'/>
+<method type64='B16@0:8' selector='accessibilityElementsHidden' type='B8@0:4'/>
+<method type64='{CGRect={CGPoint=dd}{CGSize=dd}}16@0:8' selector='accessibilityFrame' type='{CGRect={CGPoint=ff}{CGSize=ff}}8@0:4'/>
+<method type64='@16@0:8' selector='accessibilityHint' type='@8@0:4'/>
+<method type64='@16@0:8' selector='accessibilityLabel' type='@8@0:4'/>
+<method type64='@16@0:8' selector='accessibilityLanguage' type='@8@0:4'/>
+<method type64='Q16@0:8' selector='accessibilityTraits' type='Q8@0:4'/>
+<method type64='@16@0:8' selector='accessibilityValue' type='@8@0:4'/>
+<method type64='B16@0:8' selector='accessibilityViewIsModal' type='B8@0:4'/>
+<method type64='B16@0:8' selector='isAccessibilityElement' type='B8@0:4'/>
+<method type64='v32@0:8{CGPoint=dd}16' selector='setAccessibilityActivationPoint:' type='v16@0:4{CGPoint=ff}8'/>
+<method type64='v20@0:8B16' selector='setAccessibilityElementsHidden:' type='v12@0:4B8'/>
+<method type64='v48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16' selector='setAccessibilityFrame:' type='v24@0:4{CGRect={CGPoint=ff}{CGSize=ff}}8'/>
+<method type64='v24@0:8@16' selector='setAccessibilityHint:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='setAccessibilityLabel:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='setAccessibilityLanguage:' type='v12@0:4@8'/>
+<method type64='v24@0:8Q16' selector='setAccessibilityTraits:' type='v16@0:4Q8'/>
+<method type64='v24@0:8@16' selector='setAccessibilityValue:' type='v12@0:4@8'/>
+<method type64='v20@0:8B16' selector='setAccessibilityViewIsModal:' type='v12@0:4B8'/>
+<method type64='v20@0:8B16' selector='setIsAccessibilityElement:' type='v12@0:4B8'/>
+</informal_protocol>
+<informal_protocol name='UIAccessibilityContainer'>
+<method type64='@24@0:8q16' selector='accessibilityElementAtIndex:' type='@12@0:4i8'/>
+<method type64='q16@0:8' selector='accessibilityElementCount' type='i8@0:4'/>
+<method type64='q24@0:8@16' selector='indexOfAccessibilityElement:' type='i12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIAccessibilityIdentification'>
+<method type64='@16@0:8' selector='accessibilityIdentifier' type='@8@0:4'/>
+<method type64='v24@0:8@16' selector='setAccessibilityIdentifier:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIActionSheetDelegate'>
+<method type64='v32@0:8@16q24' selector='actionSheet:clickedButtonAtIndex:' type='v16@0:4@8i12'/>
+<method type64='v32@0:8@16q24' selector='actionSheet:didDismissWithButtonIndex:' type='v16@0:4@8i12'/>
+<method type64='v32@0:8@16q24' selector='actionSheet:willDismissWithButtonIndex:' type='v16@0:4@8i12'/>
+<method type64='v24@0:8@16' selector='actionSheetCancel:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='didPresentActionSheet:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='willPresentActionSheet:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIAlertViewDelegate'>
+<method type64='v32@0:8@16q24' selector='alertView:clickedButtonAtIndex:' type='v16@0:4@8i12'/>
+<method type64='v32@0:8@16q24' selector='alertView:didDismissWithButtonIndex:' type='v16@0:4@8i12'/>
+<method type64='v32@0:8@16q24' selector='alertView:willDismissWithButtonIndex:' type='v16@0:4@8i12'/>
+<method type64='v24@0:8@16' selector='alertViewCancel:' type='v12@0:4@8'/>
+<method type64='B24@0:8@16' selector='alertViewShouldEnableFirstOtherButton:' type='B12@0:4@8'/>
+<method type64='v24@0:8@16' selector='didPresentAlertView:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='willPresentAlertView:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIAppearance'>
+<method class_method='true' type64='@16@0:8' selector='appearance' type='@8@0:4'/>
+<method variadic='true' sentinel='0' class_method='true' type64='@24@0:8#16' selector='appearanceWhenContainedIn:' type='@12@0:4#8'/>
+</informal_protocol>
+<informal_protocol name='UIApplicationDelegate'>
+<method type64='v56@0:8@16{CGRect={CGPoint=dd}{CGSize=dd}}24' selector='application:didChangeStatusBarFrame:' type='v28@0:4@8{CGRect={CGPoint=ff}{CGSize=ff}}12'/>
+<method type64='v28@0:8@16i24' selector='application:didChangeStatusBarOrientation:' type='v16@0:4@8i12'/>
+<method type64='B32@0:8@16@24' selector='application:handleOpenURL:' type='B16@0:4@8@12'/>
+<method type64='v56@0:8@16{CGRect={CGPoint=dd}{CGSize=dd}}24' selector='application:willChangeStatusBarFrame:' type='v28@0:4@8{CGRect={CGPoint=ff}{CGSize=ff}}12'/>
+<method type64='v36@0:8@16i24d28' selector='application:willChangeStatusBarOrientation:duration:' type='v24@0:4@8i12d16'/>
+<method type64='v24@0:8@16' selector='applicationDidBecomeActive:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='applicationDidFinishLaunching:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='applicationDidReceiveMemoryWarning:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='applicationSignificantTimeChange:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='applicationWillResignActive:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='applicationWillTerminate:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='setWindow:' type='v12@0:4@8'/>
+<method type64='@16@0:8' selector='window' type='@8@0:4'/>
+</informal_protocol>
+<informal_protocol name='UIDocumentInteractionControllerDelegate'>
+<method type64='B32@0:8@16:24' selector='documentInteractionController:canPerformAction:' type='B16@0:4@8:12'/>
+<method type64='v32@0:8@16@24' selector='documentInteractionController:didEndSendingToApplication:' type='v16@0:4@8@12'/>
+<method type64='B32@0:8@16:24' selector='documentInteractionController:performAction:' type='B16@0:4@8:12'/>
+<method type64='v32@0:8@16@24' selector='documentInteractionController:willBeginSendingToApplication:' type='v16@0:4@8@12'/>
+<method type64='v24@0:8@16' selector='documentInteractionControllerDidDismissOpenInMenu:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='documentInteractionControllerDidDismissOptionsMenu:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='documentInteractionControllerDidEndPreview:' type='v12@0:4@8'/>
+<method type64='{CGRect={CGPoint=dd}{CGSize=dd}}24@0:8@16' selector='documentInteractionControllerRectForPreview:' type='{CGRect={CGPoint=ff}{CGSize=ff}}12@0:4@8'/>
+<method type64='@24@0:8@16' selector='documentInteractionControllerViewControllerForPreview:' type='@12@0:4@8'/>
+<method type64='@24@0:8@16' selector='documentInteractionControllerViewForPreview:' type='@12@0:4@8'/>
+<method type64='v24@0:8@16' selector='documentInteractionControllerWillBeginPreview:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='documentInteractionControllerWillPresentOpenInMenu:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='documentInteractionControllerWillPresentOptionsMenu:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIGestureRecognizerDelegate'>
+<method type64='B32@0:8@16@24' selector='gestureRecognizer:shouldReceiveTouch:' type='B16@0:4@8@12'/>
+<method type64='B32@0:8@16@24' selector='gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:' type='B16@0:4@8@12'/>
+<method type64='B24@0:8@16' selector='gestureRecognizerShouldBegin:' type='B12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIImagePickerControllerDelegate'>
+<method type64='v32@0:8@16@24' selector='imagePickerController:didFinishPickingMediaWithInfo:' type='v16@0:4@8@12'/>
+<method type64='v24@0:8@16' selector='imagePickerControllerDidCancel:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIInputViewAudioFeedback'>
+<method type64='B16@0:8' selector='enableInputClicksWhenVisible' type='B8@0:4'/>
+</informal_protocol>
+<informal_protocol name='UIKeyInput'>
+<method type64='v16@0:8' selector='deleteBackward' type='v8@0:4'/>
+<method type64='B16@0:8' selector='hasText' type='B8@0:4'/>
+<method type64='v24@0:8@16' selector='insertText:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UINavigationBarDelegate'>
+<method type64='v32@0:8@16@24' selector='navigationBar:didPopItem:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='navigationBar:didPushItem:' type='v16@0:4@8@12'/>
+<method type64='B32@0:8@16@24' selector='navigationBar:shouldPopItem:' type='B16@0:4@8@12'/>
+<method type64='B32@0:8@16@24' selector='navigationBar:shouldPushItem:' type='B16@0:4@8@12'/>
+</informal_protocol>
+<informal_protocol name='UINavigationControllerDelegate'>
+<method type64='v36@0:8@16@24B32' selector='navigationController:didShowViewController:animated:' type='v20@0:4@8@12B16'/>
+<method type64='v36@0:8@16@24B32' selector='navigationController:willShowViewController:animated:' type='v20@0:4@8@12B16'/>
+</informal_protocol>
+<informal_protocol name='UINibLoadingAdditions'>
+<method type64='v16@0:8' selector='awakeFromNib' type='v8@0:4'/>
+</informal_protocol>
+<informal_protocol name='UIPageViewControllerDataSource'>
+<method type64='@32@0:8@16@24' selector='pageViewController:viewControllerAfterViewController:' type='@16@0:4@8@12'/>
+<method type64='@32@0:8@16@24' selector='pageViewController:viewControllerBeforeViewController:' type='@16@0:4@8@12'/>
+</informal_protocol>
+<informal_protocol name='UIPageViewControllerDelegate'>
+<method type64='v40@0:8@16B24@28B36' selector='pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:' type='v24@0:4@8B12@16B20'/>
+<method type64='q28@0:8@16i24' selector='pageViewController:spineLocationForInterfaceOrientation:' type='i16@0:4@8i12'/>
+</informal_protocol>
+<informal_protocol name='UIPickerViewAccessibilityDelegate'>
+<method type64='@32@0:8@16q24' selector='pickerView:accessibilityHintForComponent:' type='@16@0:4@8i12'/>
+<method type64='@32@0:8@16q24' selector='pickerView:accessibilityLabelForComponent:' type='@16@0:4@8i12'/>
+</informal_protocol>
+<informal_protocol name='UIPickerViewDataSource'>
+<method type64='q24@0:8@16' selector='numberOfComponentsInPickerView:' type='i12@0:4@8'/>
+<method type64='q32@0:8@16q24' selector='pickerView:numberOfRowsInComponent:' type='i16@0:4@8i12'/>
+</informal_protocol>
+<informal_protocol name='UIPickerViewDelegate'>
+<method type64='v40@0:8@16q24q32' selector='pickerView:didSelectRow:inComponent:' type='v20@0:4@8i12i16'/>
+<method type64='d32@0:8@16q24' selector='pickerView:rowHeightForComponent:' type='f16@0:4@8i12'/>
+<method type64='@40@0:8@16q24q32' selector='pickerView:titleForRow:forComponent:' type='@20@0:4@8i12i16'/>
+<method type64='@48@0:8@16q24q32@40' selector='pickerView:viewForRow:forComponent:reusingView:' type='@24@0:4@8i12i16@20'/>
+<method type64='d32@0:8@16q24' selector='pickerView:widthForComponent:' type='f16@0:4@8i12'/>
+</informal_protocol>
+<informal_protocol name='UIPopoverControllerDelegate'>
+<method type64='v24@0:8@16' selector='popoverControllerDidDismissPopover:' type='v12@0:4@8'/>
+<method type64='B24@0:8@16' selector='popoverControllerShouldDismissPopover:' type='B12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIPrintInteractionControllerDelegate'>
+<method type64='@32@0:8@16@24' selector='printInteractionController:choosePaper:' type='@16@0:4@8@12'/>
+<method type64='v24@0:8@16' selector='printInteractionControllerDidDismissPrinterOptions:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='printInteractionControllerDidFinishJob:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='printInteractionControllerDidPresentPrinterOptions:' type='v12@0:4@8'/>
+<method type64='@24@0:8@16' selector='printInteractionControllerParentViewController:' type='@12@0:4@8'/>
+<method type64='v24@0:8@16' selector='printInteractionControllerWillDismissPrinterOptions:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='printInteractionControllerWillPresentPrinterOptions:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='printInteractionControllerWillStartJob:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIScrollViewDelegate'>
+<method type64='v24@0:8@16' selector='scrollViewDidEndDecelerating:' type='v12@0:4@8'/>
+<method type64='v28@0:8@16B24' selector='scrollViewDidEndDragging:willDecelerate:' type='v16@0:4@8B12'/>
+<method type64='v24@0:8@16' selector='scrollViewDidEndScrollingAnimation:' type='v12@0:4@8'/>
+<method type64='v36@0:8@16@24f32' selector='scrollViewDidEndZooming:withView:atScale:' type='v20@0:4@8@12f16'/>
+<method type64='v24@0:8@16' selector='scrollViewDidScroll:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='scrollViewDidScrollToTop:' type='v12@0:4@8'/>
+<method type64='B24@0:8@16' selector='scrollViewShouldScrollToTop:' type='B12@0:4@8'/>
+<method type64='v24@0:8@16' selector='scrollViewWillBeginDecelerating:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='scrollViewWillBeginDragging:' type='v12@0:4@8'/>
+<method type64='@24@0:8@16' selector='viewForZoomingInScrollView:' type='@12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UISearchBarDelegate'>
+<method type64='v32@0:8@16@24' selector='searchBar:textDidChange:' type='v16@0:4@8@12'/>
+<method type64='v24@0:8@16' selector='searchBarBookmarkButtonClicked:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='searchBarCancelButtonClicked:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='searchBarSearchButtonClicked:' type='v12@0:4@8'/>
+<method type64='B24@0:8@16' selector='searchBarShouldBeginEditing:' type='B12@0:4@8'/>
+<method type64='B24@0:8@16' selector='searchBarShouldEndEditing:' type='B12@0:4@8'/>
+<method type64='v24@0:8@16' selector='searchBarTextDidBeginEditing:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='searchBarTextDidEndEditing:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UISearchDisplayDelegate'>
+<method type64='v32@0:8@16@24' selector='searchDisplayController:didHideSearchResultsTableView:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='searchDisplayController:didLoadSearchResultsTableView:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='searchDisplayController:didShowSearchResultsTableView:' type='v16@0:4@8@12'/>
+<method type64='B32@0:8@16q24' selector='searchDisplayController:shouldReloadTableForSearchScope:' type='B16@0:4@8i12'/>
+<method type64='B32@0:8@16@24' selector='searchDisplayController:shouldReloadTableForSearchString:' type='B16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='searchDisplayController:willHideSearchResultsTableView:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='searchDisplayController:willShowSearchResultsTableView:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='searchDisplayController:willUnloadSearchResultsTableView:' type='v16@0:4@8@12'/>
+<method type64='v24@0:8@16' selector='searchDisplayControllerDidBeginSearch:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='searchDisplayControllerDidEndSearch:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='searchDisplayControllerWillBeginSearch:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='searchDisplayControllerWillEndSearch:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UISplitViewControllerDelegate'>
+<method type64='v40@0:8@16@24@32' selector='splitViewController:popoverController:willPresentViewController:' type='v20@0:4@8@12@16'/>
+<method type64='v48@0:8@16@24@32@40' selector='splitViewController:willHideViewController:withBarButtonItem:forPopoverController:' type='v24@0:4@8@12@16@20'/>
+<method type64='v40@0:8@16@24@32' selector='splitViewController:willShowViewController:invalidatingBarButtonItem:' type='v20@0:4@8@12@16'/>
+</informal_protocol>
+<informal_protocol name='UITabBarControllerDelegate'>
+<method type64='v36@0:8@16@24B32' selector='tabBarController:didEndCustomizingViewControllers:changed:' type='v20@0:4@8@12B16'/>
+<method type64='v32@0:8@16@24' selector='tabBarController:didSelectViewController:' type='v16@0:4@8@12'/>
+</informal_protocol>
+<informal_protocol name='UITabBarDelegate'>
+<method type64='v32@0:8@16@24' selector='tabBar:didBeginCustomizingItems:' type='v16@0:4@8@12'/>
+<method type64='v36@0:8@16@24B32' selector='tabBar:didEndCustomizingItems:changed:' type='v20@0:4@8@12B16'/>
+<method type64='v32@0:8@16@24' selector='tabBar:didSelectItem:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='tabBar:willBeginCustomizingItems:' type='v16@0:4@8@12'/>
+<method type64='v36@0:8@16@24B32' selector='tabBar:willEndCustomizingItems:changed:' type='v20@0:4@8@12B16'/>
+</informal_protocol>
+<informal_protocol name='UITableViewDataSource'>
+<method type64='q24@0:8@16' selector='numberOfSectionsInTableView:' type='i12@0:4@8'/>
+<method type64='@24@0:8@16' selector='sectionIndexTitlesForTableView:' type='@12@0:4@8'/>
+<method type64='B32@0:8@16@24' selector='tableView:canEditRowAtIndexPath:' type='B16@0:4@8@12'/>
+<method type64='B32@0:8@16@24' selector='tableView:canMoveRowAtIndexPath:' type='B16@0:4@8@12'/>
+<method type64='@32@0:8@16@24' selector='tableView:cellForRowAtIndexPath:' type='@16@0:4@8@12'/>
+<method type64='v36@0:8@16i24@28' selector='tableView:commitEditingStyle:forRowAtIndexPath:' type='v20@0:4@8i12@16'/>
+<method type64='v40@0:8@16@24@32' selector='tableView:moveRowAtIndexPath:toIndexPath:' type='v20@0:4@8@12@16'/>
+<method type64='q32@0:8@16q24' selector='tableView:numberOfRowsInSection:' type='i16@0:4@8i12'/>
+<method type64='q40@0:8@16@24q32' selector='tableView:sectionForSectionIndexTitle:atIndex:' type='i20@0:4@8@12i16'/>
+<method type64='@32@0:8@16q24' selector='tableView:titleForFooterInSection:' type='@16@0:4@8i12'/>
+<method type64='@32@0:8@16q24' selector='tableView:titleForHeaderInSection:' type='@16@0:4@8i12'/>
+</informal_protocol>
+<informal_protocol name='UITableViewDelegate'>
+<method type64='v32@0:8@16@24' selector='tableView:accessoryButtonTappedForRowWithIndexPath:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='tableView:didEndEditingRowAtIndexPath:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='tableView:didSelectRowAtIndexPath:' type='v16@0:4@8@12'/>
+<method type64='i32@0:8@16@24' selector='tableView:editingStyleForRowAtIndexPath:' type='i16@0:4@8@12'/>
+<method type64='d32@0:8@16q24' selector='tableView:heightForFooterInSection:' type='f16@0:4@8i12'/>
+<method type64='d32@0:8@16q24' selector='tableView:heightForHeaderInSection:' type='f16@0:4@8i12'/>
+<method type64='d32@0:8@16@24' selector='tableView:heightForRowAtIndexPath:' type='f16@0:4@8@12'/>
+<method type64='q32@0:8@16@24' selector='tableView:indentationLevelForRowAtIndexPath:' type='i16@0:4@8@12'/>
+<method type64='B32@0:8@16@24' selector='tableView:shouldIndentWhileEditingRowAtIndexPath:' type='B16@0:4@8@12'/>
+<method type64='@40@0:8@16@24@32' selector='tableView:targetIndexPathForMoveFromRowAtIndexPath:toProposedIndexPath:' type='@20@0:4@8@12@16'/>
+<method type64='@32@0:8@16q24' selector='tableView:viewForFooterInSection:' type='@16@0:4@8i12'/>
+<method type64='@32@0:8@16q24' selector='tableView:viewForHeaderInSection:' type='@16@0:4@8i12'/>
+<method type64='v32@0:8@16@24' selector='tableView:willBeginEditingRowAtIndexPath:' type='v16@0:4@8@12'/>
+<method type64='v40@0:8@16@24@32' selector='tableView:willDisplayCell:forRowAtIndexPath:' type='v20@0:4@8@12@16'/>
+<method type64='@32@0:8@16@24' selector='tableView:willSelectRowAtIndexPath:' type='@16@0:4@8@12'/>
+</informal_protocol>
+<informal_protocol name='UITextFieldDelegate'>
+<method type64='B48@0:8@16{_NSRange=QQ}24@40' selector='textField:shouldChangeCharactersInRange:replacementString:' type='B24@0:4@8{_NSRange=II}12@20'/>
+<method type64='v24@0:8@16' selector='textFieldDidBeginEditing:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='textFieldDidEndEditing:' type='v12@0:4@8'/>
+<method type64='B24@0:8@16' selector='textFieldShouldBeginEditing:' type='B12@0:4@8'/>
+<method type64='B24@0:8@16' selector='textFieldShouldClear:' type='B12@0:4@8'/>
+<method type64='B24@0:8@16' selector='textFieldShouldEndEditing:' type='B12@0:4@8'/>
+<method type64='B24@0:8@16' selector='textFieldShouldReturn:' type='B12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UITextInput'>
+<method type64='i28@0:8@16i24' selector='baseWritingDirectionForPosition:inDirection:' type='i16@0:4@8i12'/>
+<method type64='@16@0:8' selector='beginningOfDocument' type='@8@0:4'/>
+<method type64='{CGRect={CGPoint=dd}{CGSize=dd}}24@0:8@16' selector='caretRectForPosition:' type='{CGRect={CGPoint=ff}{CGSize=ff}}12@0:4@8'/>
+<method type64='q32@0:8@16@24' selector='characterOffsetOfPosition:withinRange:' type='i16@0:4@8@12'/>
+<method type64='@32@0:8{CGPoint=dd}16' selector='characterRangeAtPoint:' type='@16@0:4{CGPoint=ff}8'/>
+<method type64='@28@0:8@16i24' selector='characterRangeByExtendingPosition:inDirection:' type='@16@0:4@8i12'/>
+<method type64='@32@0:8{CGPoint=dd}16' selector='closestPositionToPoint:' type='@16@0:4{CGPoint=ff}8'/>
+<method type64='@40@0:8{CGPoint=dd}16@32' selector='closestPositionToPoint:withinRange:' type='@20@0:4{CGPoint=ff}8@16'/>
+<method type64='q32@0:8@16@24' selector='comparePosition:toPosition:' type='i16@0:4@8@12'/>
+<method type64='v16@0:8' selector='dictationRecognitionFailed' type='v8@0:4'/>
+<method type64='v16@0:8' selector='dictationRecordingDidEnd' type='v8@0:4'/>
+<method type64='@16@0:8' selector='endOfDocument' type='@8@0:4'/>
+<method type64='{CGRect={CGPoint=dd}{CGSize=dd}}24@0:8@16' selector='firstRectForRange:' type='{CGRect={CGPoint=ff}{CGSize=ff}}12@0:4@8'/>
+<method type64='@16@0:8' selector='inputDelegate' type='@8@0:4'/>
+<method type64='v24@0:8@16' selector='insertDictationResult:' type='v12@0:4@8'/>
+<method type64='@16@0:8' selector='markedTextRange' type='@8@0:4'/>
+<method type64='@16@0:8' selector='markedTextStyle' type='@8@0:4'/>
+<method type64='q32@0:8@16@24' selector='offsetFromPosition:toPosition:' type='i16@0:4@8@12'/>
+<method type64='@36@0:8@16i24q28' selector='positionFromPosition:inDirection:offset:' type='@20@0:4@8i12i16'/>
+<method type64='@32@0:8@16q24' selector='positionFromPosition:offset:' type='@16@0:4@8i12'/>
+<method type64='@32@0:8@16q24' selector='positionWithinRange:atCharacterOffset:' type='@16@0:4@8i12'/>
+<method type64='@28@0:8@16i24' selector='positionWithinRange:farthestInDirection:' type='@16@0:4@8i12'/>
+<method type64='v32@0:8@16@24' selector='replaceRange:withText:' type='v16@0:4@8@12'/>
+<method type64='@16@0:8' selector='selectedTextRange' type='@8@0:4'/>
+<method type64='i16@0:8' selector='selectionAffinity' type='i8@0:4'/>
+<method type64='v28@0:8i16@20' selector='setBaseWritingDirection:forRange:' type='v16@0:4i8@12'/>
+<method type64='v24@0:8@16' selector='setInputDelegate:' type='v12@0:4@8'/>
+<method type64='v40@0:8@16{_NSRange=QQ}24' selector='setMarkedText:selectedRange:' type='v20@0:4@8{_NSRange=II}12'/>
+<method type64='v24@0:8@16' selector='setMarkedTextStyle:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='setSelectedTextRange:' type='v12@0:4@8'/>
+<method type64='v20@0:8i16' selector='setSelectionAffinity:' type='v12@0:4i8'/>
+<method type64='@24@0:8@16' selector='textInRange:' type='@12@0:4@8'/>
+<method type64='@16@0:8' selector='textInputView' type='@8@0:4'/>
+<method type64='@32@0:8@16@24' selector='textRangeFromPosition:toPosition:' type='@16@0:4@8@12'/>
+<method type64='@28@0:8@16i24' selector='textStylingAtPosition:inDirection:' type='@16@0:4@8i12'/>
+<method type64='@16@0:8' selector='tokenizer' type='@8@0:4'/>
+<method type64='v16@0:8' selector='unmarkText' type='v8@0:4'/>
+</informal_protocol>
+<informal_protocol name='UITextInputDelegate'>
+<method type64='v24@0:8@16' selector='selectionDidChange:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='selectionWillChange:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='textDidChange:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='textWillChange:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UITextInputTokenizer'>
+<method type64='B36@0:8@16i24q28' selector='isPosition:atBoundary:inDirection:' type='B20@0:4@8i12i16'/>
+<method type64='B36@0:8@16i24q28' selector='isPosition:withinTextUnit:inDirection:' type='B20@0:4@8i12i16'/>
+<method type64='@36@0:8@16i24q28' selector='positionFromPosition:toBoundary:inDirection:' type='@20@0:4@8i12i16'/>
+<method type64='@36@0:8@16i24q28' selector='rangeEnclosingPosition:withGranularity:inDirection:' type='@20@0:4@8i12i16'/>
+</informal_protocol>
+<informal_protocol name='UITextInputTraits'>
+<method type64='i16@0:8' selector='autocapitalizationType' type='i8@0:4'/>
+<method type64='i16@0:8' selector='autocorrectionType' type='i8@0:4'/>
+<method type64='B16@0:8' selector='enablesReturnKeyAutomatically' type='B8@0:4'/>
+<method type64='B16@0:8' selector='isSecureTextEntry' type='B8@0:4'/>
+<method type64='i16@0:8' selector='keyboardAppearance' type='i8@0:4'/>
+<method type64='i16@0:8' selector='keyboardType' type='i8@0:4'/>
+<method type64='i16@0:8' selector='returnKeyType' type='i8@0:4'/>
+<method type64='v20@0:8i16' selector='setAutocapitalizationType:' type='v12@0:4i8'/>
+<method type64='v20@0:8i16' selector='setAutocorrectionType:' type='v12@0:4i8'/>
+<method type64='v20@0:8B16' selector='setEnablesReturnKeyAutomatically:' type='v12@0:4B8'/>
+<method type64='v20@0:8i16' selector='setKeyboardAppearance:' type='v12@0:4i8'/>
+<method type64='v20@0:8i16' selector='setKeyboardType:' type='v12@0:4i8'/>
+<method type64='v20@0:8i16' selector='setReturnKeyType:' type='v12@0:4i8'/>
+<method type64='v20@0:8B16' selector='setSecureTextEntry:' type='v12@0:4B8'/>
+<method type64='v20@0:8i16' selector='setSpellCheckingType:' type='v12@0:4i8'/>
+<method type64='i16@0:8' selector='spellCheckingType' type='i8@0:4'/>
+</informal_protocol>
+<informal_protocol name='UITextViewDelegate'>
+<method type64='B48@0:8@16{_NSRange=QQ}24@40' selector='textView:shouldChangeTextInRange:replacementText:' type='B24@0:4@8{_NSRange=II}12@20'/>
+<method type64='v24@0:8@16' selector='textViewDidBeginEditing:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='textViewDidChange:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='textViewDidChangeSelection:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='textViewDidEndEditing:' type='v12@0:4@8'/>
+<method type64='B24@0:8@16' selector='textViewShouldBeginEditing:' type='B12@0:4@8'/>
+<method type64='B24@0:8@16' selector='textViewShouldEndEditing:' type='B12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIVideoEditorControllerDelegate'>
+<method type64='v32@0:8@16@24' selector='videoEditorController:didFailWithError:' type='v16@0:4@8@12'/>
+<method type64='v32@0:8@16@24' selector='videoEditorController:didSaveEditedVideoToPath:' type='v16@0:4@8@12'/>
+<method type64='v24@0:8@16' selector='videoEditorControllerDidCancel:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='UIWebViewDelegate'>
+<method type64='v32@0:8@16@24' selector='webView:didFailLoadWithError:' type='v16@0:4@8@12'/>
+<method type64='B36@0:8@16@24i32' selector='webView:shouldStartLoadWithRequest:navigationType:' type='B20@0:4@8@12i16'/>
+<method type64='v24@0:8@16' selector='webViewDidFinishLoad:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='webViewDidStartLoad:' type='v12@0:4@8'/>
+</informal_protocol>
+</signatures>

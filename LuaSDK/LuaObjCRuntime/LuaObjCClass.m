@@ -20,7 +20,7 @@
 #import <dlfcn.h>
 #import "lauxlib.h"
 
-#import "LuaObjCRecordTable.h"
+#import "LuaObjCCacheTable.h"
 #import "LuaBridgeSupport.h"
 
 
@@ -163,7 +163,6 @@ int luaopen_objc(lua_State *L)
         __LuaObjC_clouserBlockDictionary = [[NSMutableDictionary alloc] init];
     }
     
-    luaObjCWeakTableCreate(L);
     _luaObjCCacheTableCreate(L);
         
     luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);

@@ -12,6 +12,7 @@
 #import "lauxlib.h"
 #import "LuaBridgeInfo.h"
 #import "LuaObjCAuxiliary.h"
+#import "LuaObjCInternal.h"
 #import <dlfcn.h>
 
 static ffi_type * _luaBridgeInternal_typeOfEncoding(const char *encoding)

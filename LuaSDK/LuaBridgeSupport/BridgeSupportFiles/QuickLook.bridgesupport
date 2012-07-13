@@ -1,0 +1,226 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<depends_on path='/System/Library/Frameworks/CoreFoundation.framework'/>
+<depends_on path='/System/Library/Frameworks/ApplicationServices.framework'/>
+<depends_on path='/System/Library/Frameworks/IOKit.framework'/>
+<depends_on path='/System/Library/Frameworks/Foundation.framework'/>
+<depends_on path='/System/Library/Frameworks/CoreServices.framework'/>
+<cftype gettypeid_func='QLPreviewRequestGetTypeID' tollfree='__NSCFType' name='QLPreviewRequestRef' type='^{__QLPreviewRequest=}'/>
+<cftype gettypeid_func='QLThumbnailGetTypeID' tollfree='__NSCFType' name='QLThumbnailRef' type='^{__QLThumbnail=}'/>
+<cftype gettypeid_func='QLThumbnailRequestGetTypeID' tollfree='__NSCFType' name='QLThumbnailRequestRef' type='^{__QLThumbnailRequest=}'/>
+<constant name='kQLPreviewContentIDScheme' type='^{__CFString=}'/>
+<constant name='kQLPreviewOptionCursorKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyAttachmentDataKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyAttachmentsKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyBaseBundlePathKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyCursorKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyDisplayNameKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyHeightKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyMIMETypeKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyPDFStyleKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyStringEncodingKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyTextEncodingNameKey' type='^{__CFString=}'/>
+<constant name='kQLPreviewPropertyWidthKey' type='^{__CFString=}'/>
+<constant name='kQLThumbnailOptionIconModeKey' type='^{__CFString=}'/>
+<constant name='kQLThumbnailOptionScaleFactorKey' type='^{__CFString=}'/>
+<constant name='kQLThumbnailPropertyBadgeImageKey' type='^{__CFString=}'/>
+<constant name='kQLThumbnailPropertyBaseBundlePathKey' type='^{__CFString=}'/>
+<constant name='kQLThumbnailPropertyExtensionKey' type='^{__CFString=}'/>
+<enum name='QUICKLOOK_VERSION' value='5000'/>
+<enum name='kQLPreviewPDFPagesWithThumbnailsOnLeftStyle' value='4'/>
+<enum name='kQLPreviewPDFPagesWithThumbnailsOnRightStyle' value='3'/>
+<enum name='kQLPreviewPDFStandardStyle' value='0'/>
+<enum name='kQLReturnHasMore' value='44810'/>
+<enum name='kQLReturnMask' value='44800'/>
+<enum name='kQLReturnNoError' value='0'/>
+<function name='QLPreviewRequestCopyContentUTI'>
+<arg type='^{__QLPreviewRequest=}'/>
+<retval already_retained='true' type='^{__CFString=}'/>
+</function>
+<function name='QLPreviewRequestCopyOptions'>
+<arg type='^{__QLPreviewRequest=}'/>
+<retval already_retained='true' type='^{__CFDictionary=}'/>
+</function>
+<function name='QLPreviewRequestCopyURL'>
+<arg type='^{__QLPreviewRequest=}'/>
+<retval already_retained='true' type='^{__CFURL=}'/>
+</function>
+<function name='QLPreviewRequestCreateContext'>
+<arg type='^{__QLPreviewRequest=}'/>
+<arg type64='{CGSize=dd}' type='{CGSize=ff}'/>
+<arg type='B'/>
+<arg type='^{__CFDictionary=}'/>
+<retval already_retained='true' type='^{CGContext=}'/>
+</function>
+<function name='QLPreviewRequestCreatePDFContext'>
+<arg type='^{__QLPreviewRequest=}'/>
+<arg type64='^{CGRect={CGPoint=dd}{CGSize=dd}}' type='^{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+<arg type='^{__CFDictionary=}'/>
+<arg type='^{__CFDictionary=}'/>
+<retval already_retained='true' type='^{CGContext=}'/>
+</function>
+<function name='QLPreviewRequestFlushContext'>
+<arg type='^{__QLPreviewRequest=}'/>
+<arg type='^{CGContext=}'/>
+</function>
+<function name='QLPreviewRequestGetDocumentObject'>
+<arg type='^{__QLPreviewRequest=}'/>
+<retval type='^v'/>
+</function>
+<function name='QLPreviewRequestGetGeneratorBundle'>
+<arg type='^{__QLPreviewRequest=}'/>
+<retval type='^{__CFBundle=}'/>
+</function>
+<function name='QLPreviewRequestGetTypeID'>
+<retval type64='Q' type='L'/>
+</function>
+<function name='QLPreviewRequestIsCancelled'>
+<arg type='^{__QLPreviewRequest=}'/>
+<retval type='B'/>
+</function>
+<function name='QLPreviewRequestSetDataRepresentation'>
+<arg type='^{__QLPreviewRequest=}'/>
+<arg type='^{__CFData=}'/>
+<arg type='^{__CFString=}'/>
+<arg type='^{__CFDictionary=}'/>
+</function>
+<function name='QLPreviewRequestSetDocumentObject'>
+<arg type='^{__QLPreviewRequest=}'/>
+<arg type='^v'/>
+<arg type64='^{_CFArrayCallBacks=q^?^?^?^?}' type='^{_CFArrayCallBacks=i^?^?^?^?}'/>
+</function>
+<function name='QLPreviewRequestSetURLRepresentation'>
+<arg type='^{__QLPreviewRequest=}'/>
+<arg type='^{__CFURL=}'/>
+<arg type='^{__CFString=}'/>
+<arg type='^{__CFDictionary=}'/>
+</function>
+<function name='QLThumbnailCancel'>
+<arg type='^{__QLThumbnail=}'/>
+</function>
+<function name='QLThumbnailCopyDocumentURL'>
+<arg type='^{__QLThumbnail=}'/>
+<retval already_retained='true' type='^{__CFURL=}'/>
+</function>
+<function name='QLThumbnailCopyImage'>
+<arg type='^{__QLThumbnail=}'/>
+<retval already_retained='true' type='^{CGImage=}'/>
+</function>
+<function name='QLThumbnailCopyOptions'>
+<arg type='^{__QLThumbnail=}'/>
+<retval already_retained='true' type='^{__CFDictionary=}'/>
+</function>
+<function name='QLThumbnailCreate'>
+<arg type='^{__CFAllocator=}'/>
+<arg type='^{__CFURL=}'/>
+<arg type64='{CGSize=dd}' type='{CGSize=ff}'/>
+<arg type='^{__CFDictionary=}'/>
+<retval already_retained='true' type='^{__QLThumbnail=}'/>
+</function>
+<function name='QLThumbnailDispatchAsync'>
+<arg type='^{__QLThumbnail=}'/>
+<arg type='^{dispatch_queue_s=}'/>
+<arg function_pointer='true' type='@?'>
+<retval type='v'/>
+</arg>
+</function>
+<function name='QLThumbnailGetContentRect'>
+<arg type='^{__QLThumbnail=}'/>
+<retval type64='{CGRect={CGPoint=dd}{CGSize=dd}}' type='{CGRect={CGPoint=ff}{CGSize=ff}}'/>
+</function>
+<function name='QLThumbnailGetMaximumSize'>
+<arg type='^{__QLThumbnail=}'/>
+<retval type64='{CGSize=dd}' type='{CGSize=ff}'/>
+</function>
+<function name='QLThumbnailGetTypeID'>
+<retval type64='Q' type='L'/>
+</function>
+<function name='QLThumbnailImageCreate'>
+<arg type='^{__CFAllocator=}'/>
+<arg type='^{__CFURL=}'/>
+<arg type64='{CGSize=dd}' type='{CGSize=ff}'/>
+<arg type='^{__CFDictionary=}'/>
+<retval already_retained='true' type='^{CGImage=}'/>
+</function>
+<function name='QLThumbnailIsCancelled'>
+<arg type='^{__QLThumbnail=}'/>
+<retval type='B'/>
+</function>
+<function name='QLThumbnailRequestCopyContentUTI'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<retval already_retained='true' type='^{__CFString=}'/>
+</function>
+<function name='QLThumbnailRequestCopyOptions'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<retval already_retained='true' type='^{__CFDictionary=}'/>
+</function>
+<function name='QLThumbnailRequestCopyURL'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<retval already_retained='true' type='^{__CFURL=}'/>
+</function>
+<function name='QLThumbnailRequestCreateContext'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type64='{CGSize=dd}' type='{CGSize=ff}'/>
+<arg type='B'/>
+<arg type='^{__CFDictionary=}'/>
+<retval already_retained='true' type='^{CGContext=}'/>
+</function>
+<function name='QLThumbnailRequestFlushContext'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type='^{CGContext=}'/>
+</function>
+<function name='QLThumbnailRequestGetDocumentObject'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<retval type='^v'/>
+</function>
+<function name='QLThumbnailRequestGetGeneratorBundle'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<retval type='^{__CFBundle=}'/>
+</function>
+<function name='QLThumbnailRequestGetMaximumSize'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<retval type64='{CGSize=dd}' type='{CGSize=ff}'/>
+</function>
+<function name='QLThumbnailRequestGetTypeID'>
+<retval type64='Q' type='L'/>
+</function>
+<function name='QLThumbnailRequestIsCancelled'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<retval type='B'/>
+</function>
+<function name='QLThumbnailRequestSetDocumentObject'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type='^v'/>
+<arg type64='^{_CFArrayCallBacks=q^?^?^?^?}' type='^{_CFArrayCallBacks=i^?^?^?^?}'/>
+</function>
+<function name='QLThumbnailRequestSetImage'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type='^{CGImage=}'/>
+<arg type='^{__CFDictionary=}'/>
+</function>
+<function name='QLThumbnailRequestSetImageAtURL'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type='^{__CFURL=}'/>
+<arg type='^{__CFDictionary=}'/>
+</function>
+<function name='QLThumbnailRequestSetImageWithData'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type='^{__CFData=}'/>
+<arg type='^{__CFDictionary=}'/>
+</function>
+<function name='QLThumbnailRequestSetThumbnailWithDataRepresentation'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type='^{__CFData=}'/>
+<arg type='^{__CFString=}'/>
+<arg type='^{__CFDictionary=}'/>
+<arg type='^{__CFDictionary=}'/>
+</function>
+<function name='QLThumbnailRequestSetThumbnailWithURLRepresentation'>
+<arg type='^{__QLThumbnailRequest=}'/>
+<arg type='^{__CFURL=}'/>
+<arg type='^{__CFString=}'/>
+<arg type='^{__CFDictionary=}'/>
+<arg type='^{__CFDictionary=}'/>
+</function>
+</signatures>

@@ -6,19 +6,16 @@
 //  Copyright 2009 PlayControl Software, LLC. All rights reserved.
 //
 
-#include "LuaObjCRecordTable.h"
+#include "LuaObjCCacheTable.h"
 #include "lua.h"
+#include <stdbool.h>
 
 #define LUACOCOA_OBJECT_GLOBAL_WEAK_TABLE_ID "Veritas.GlobalWeakTable"
 
-// Maps lightuserdata to (weak) container objects holding NSObjects, selectors, 
-// and anything that has userdata containers around pointers.
-// Allows for having unique containers (i.e. for the same NSObject, reuse the same containers)
 static void _luaObjC_createTableWithID(lua_State *lua_state, const char *tableID, bool isWeakTable)
 {
 	lua_pushstring(lua_state, tableID);
 	
-	// Now create (push) our weak table
 	lua_newtable(lua_state);
 	lua_pushvalue(lua_state, -1);  // table is its own metatable
 	lua_setmetatable(lua_state, -2);
@@ -58,21 +55,6 @@ static void* _luaObjC_getObjectInTableWithID(lua_State *lua_state, const char* t
 	{
 		return lua_touserdata(lua_state, -1);
 	}
-}
-
-void luaObjCWeakTableCreate(lua_State* lua_state)
-{
-    _luaObjC_createTableWithID(lua_state, LUACOCOA_OBJECT_GLOBAL_WEAK_TABLE_ID, true);    
-}
-
-void luaObjCWeakTableInsertObjectWithKey(struct lua_State* lua_state, void * object, const char *key)
-{
-    _luaObjC_insertObjectInTableWithID(lua_state, LUACOCOA_OBJECT_GLOBAL_WEAK_TABLE_ID, object, key);
-}
-
-void* luaObjCWeakTableGetObjectForKey(lua_State* lua_state, const char* key)
-{
-    return _luaObjC_getObjectInTableWithID(lua_state, LUACOCOA_OBJECT_GLOBAL_WEAK_TABLE_ID, key);
 }
 
 #define LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID "LuaCocoa.GlobalStrongTable"

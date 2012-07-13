@@ -1,0 +1,34 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<function name='ABCreateStringWithAddressDictionary'>
+<arg type='@'/>
+<arg type='B'/>
+<retval type='@'/>
+</function>
+<class name='NSObject'>
+<method selector='peoplePickerNavigationController:shouldContinueAfterSelectingPerson:'>
+<retval type='B'/>
+</method>
+<method selector='peoplePickerNavigationController:shouldContinueAfterSelectingPerson:property:identifier:'>
+<retval type='B'/>
+</method>
+<method selector='personViewController:shouldPerformDefaultActionForPerson:property:identifier:'>
+<retval type='B'/>
+</method>
+</class>
+<informal_protocol name='ABNewPersonViewControllerDelegate'>
+<method type64='v32@0:8@16^v24' selector='newPersonViewController:didCompleteWithNewPerson:' type='v16@0:4@8^v12'/>
+</informal_protocol>
+<informal_protocol name='ABPeoplePickerNavigationControllerDelegate'>
+<method type64='B32@0:8@16^v24' selector='peoplePickerNavigationController:shouldContinueAfterSelectingPerson:' type='B16@0:4@8^v12'/>
+<method type64='B40@0:8@16^v24i32i36' selector='peoplePickerNavigationController:shouldContinueAfterSelectingPerson:property:identifier:' type='B24@0:4@8^v12i16i20'/>
+<method type64='v24@0:8@16' selector='peoplePickerNavigationControllerDidCancel:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='ABPersonViewControllerDelegate'>
+<method type64='B40@0:8@16^v24i32i36' selector='personViewController:shouldPerformDefaultActionForPerson:property:identifier:' type='B24@0:4@8^v12i16i20'/>
+</informal_protocol>
+<informal_protocol name='ABUnknownPersonViewControllerDelegate'>
+<method type64='v32@0:8@16^v24' selector='unknownPersonViewController:didResolveToPerson:' type='v16@0:4@8^v12'/>
+</informal_protocol>
+</signatures>

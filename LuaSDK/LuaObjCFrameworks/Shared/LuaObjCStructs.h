@@ -6,8 +6,7 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-
-@protocol LuaObjCStructs <NSObject>
-
-@end
+#import "LuaCGAffineTransform.h"
+#import "LuaCGGeometry.h"
+#import "LuaNSRange.h"
+#import "LuaCATransform3D.h"

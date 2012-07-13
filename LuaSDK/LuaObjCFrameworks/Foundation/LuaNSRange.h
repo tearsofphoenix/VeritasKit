@@ -9,12 +9,15 @@
 extern "C" {
 #endif
 #include "luaconf.h"
-#include "lua.h"
+
 #define LUA_NSRange_METANAME	"NSRange"
-    extern int lua_pushNSRange(lua_State *L, NSRange range);
     
-LUAMOD_API int (LuaOpenNSRange)(lua_State *L);
-#include <Foundation/NSRange.h>
+    struct lua_State;
+    
+    extern int lua_pushNSRange(struct lua_State *L, NSRange range);
+    
+LUAMOD_API int (LuaOpenNSRange)(struct lua_State *L);
+
 #ifdef __cplusplus
 }
 #endif

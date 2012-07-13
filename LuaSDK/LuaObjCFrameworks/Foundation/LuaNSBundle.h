@@ -8,11 +8,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include "luaconf.h"
-#include "lua.h"
-#define LUA_NSBundle_METANAME	"NSBundle"
-LUAMOD_API int (LuaOpenNSBundle)(lua_State *L);
-#include <Foundation/NSBundle.h>
+    
+    struct lua_State;
+    
+    LUAMOD_API int (LuaOpenNSBundle)(struct lua_State *L);
+
 #ifdef __cplusplus
 }
 #endif

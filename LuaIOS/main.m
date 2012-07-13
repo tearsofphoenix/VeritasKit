@@ -90,13 +90,13 @@ int main(int argc, char *argv[])
         
         NSTimeInterval start_time = [NSDate timeIntervalSinceReferenceDate];
         printf("start-time: %f\n", start_time);
-        /*
+        
         for (NSInteger iLooper = 0; iLooper < 100000; ++iLooper)
         {
             //testInvocation();
-            testFFI();
+            //testFFI();
         }
-        */
+        
         //testLuaCall();
         
         NSTimeInterval end_time = [NSDate timeIntervalSinceReferenceDate];

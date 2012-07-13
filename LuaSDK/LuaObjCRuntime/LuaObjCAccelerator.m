@@ -8,7 +8,7 @@
 
 #import "LuaObjCAccelerator.h"
 
-#import "LuaCGGeometry.h"
+#import "LuaOBjCStructs.h"
 
 #import "LuaObjCClass.h"
 
@@ -82,6 +82,21 @@ int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char*
             {
                 typedef CGSize (* _IMP_T)(id, SEL);
                 lua_pushCGSize(L, ((_IMP_T)impRef)(obj, selector));
+                
+            }else if (!strcmp(returnType, @encode(NSRange)))
+            {
+                typedef NSRange (* _IMP_T)(id, SEL);
+                lua_pushNSRange(L, ((_IMP_T)impRef)(obj, selector));
+                
+            }else if (!strcmp(returnType, @encode(CATransform3D)))
+            {
+                typedef CATransform3D (* _IMP_T)(id, SEL);
+                lua_pushCATransform3D(L, ((_IMP_T)impRef)(obj, selector));
+                
+            }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+            {
+                typedef CGAffineTransform (* _IMP_T)(id, SEL);
+                lua_pushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector));
             }
             return 1;
         }
@@ -202,7 +217,26 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                         CGSize *size = lua_touserdata(L, LuaObjCArgumentStart);
                         typedef NSInteger (* _IMP_T)(id, SEL, CGSize);
                         lua_pushinteger(L, ((_IMP_T)impRef)(obj, selector, *size));
+                        
+                    }else if (!strcmp(returnType, @encode(NSRange)))
+                    {
+                        NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef NSInteger (* _IMP_T)(id, SEL, NSRange);
+                        lua_pushinteger(L, ((_IMP_T)impRef)(obj, selector, *r));
+                        
+                    }else if (!strcmp(returnType, @encode(CATransform3D)))
+                    {
+                        CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef NSInteger (* _IMP_T)(id, SEL, CATransform3D);
+                        lua_pushinteger(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        
+                    }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                    {
+                        CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef NSInteger (* _IMP_T)(id, SEL, CGAffineTransform);
+                        lua_pushinteger(L, ((_IMP_T)impRef)(obj, selector, *t));
                     }
+                    
                     return 1;
                 }
                 case '^':
@@ -288,6 +322,24 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                         CGSize *size = lua_touserdata(L, LuaObjCArgumentStart);
                         typedef CGFloat (* _IMP_T)(id, SEL, CGSize);
                         lua_pushnumber(L, ((_IMP_T)impRef)(obj, selector, *size));
+                        
+                    }else if (!strcmp(returnType, @encode(NSRange)))
+                    {
+                        NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef CGFloat (* _IMP_T)(id, SEL, NSRange);
+                        lua_pushnumber(L, ((_IMP_T)impRef)(obj, selector, *r));
+                        
+                    }else if (!strcmp(returnType, @encode(CATransform3D)))
+                    {
+                        CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef CGFloat (* _IMP_T)(id, SEL, CATransform3D);
+                        lua_pushnumber(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        
+                    }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                    {
+                        CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef CGFloat (* _IMP_T)(id, SEL, CGAffineTransform);
+                        lua_pushnumber(L, ((_IMP_T)impRef)(obj, selector, *t));
                     }
                     return 1;
                 }
@@ -373,6 +425,23 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                         CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
                         typedef const char* (* _IMP_T)(id, SEL, CGSize);
                         lua_pushstring(L, ((_IMP_T)impRef)(obj, selector, *rect));
+                    }else if (!strcmp(returnType, @encode(NSRange)))
+                    {
+                        NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef const char * (* _IMP_T)(id, SEL, NSRange);
+                        lua_pushstring(L, ((_IMP_T)impRef)(obj, selector, *r));
+                        
+                    }else if (!strcmp(returnType, @encode(CATransform3D)))
+                    {
+                        CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef const char * (* _IMP_T)(id, SEL, CATransform3D);
+                        lua_pushstring(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        
+                    }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                    {
+                        CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef const char * (* _IMP_T)(id, SEL, CGAffineTransform);
+                        lua_pushstring(L, ((_IMP_T)impRef)(obj, selector, *t));
                     }
                     return 1;
                 }
@@ -459,6 +528,23 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                         CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
                         typedef id (* _IMP_T)(id, SEL, CGSize);
                         luaObjC_pushNSObject(L, ((_IMP_T)impRef)(obj, selector, *rect));
+                    }else if (!strcmp(returnType, @encode(NSRange)))
+                    {
+                        NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef id (* _IMP_T)(id, SEL, NSRange);
+                        luaObjC_pushNSObject(L, ((_IMP_T)impRef)(obj, selector, *r));
+                        
+                    }else if (!strcmp(returnType, @encode(CATransform3D)))
+                    {
+                        CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef id (* _IMP_T)(id, SEL, CATransform3D);
+                        luaObjC_pushNSObject(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        
+                    }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                    {
+                        CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef id (* _IMP_T)(id, SEL, CGAffineTransform);
+                        luaObjC_pushNSObject(L, ((_IMP_T)impRef)(obj, selector, *t));
                     }
                     return 1;
                 }
@@ -596,6 +682,24 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                             CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
                             typedef CGRect (* _IMP_T)(id, SEL, CGSize);
                             lua_pushCGRect(L, ((_IMP_T)impRef)(obj, selector, *rect));
+                            
+                        }else if (!strcmp(returnType, @encode(NSRange)))
+                        {
+                            NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGRect (* _IMP_T)(id, SEL, NSRange);
+                            lua_pushCGRect(L, ((_IMP_T)impRef)(obj, selector, *r));
+                            
+                        }else if (!strcmp(returnType, @encode(CATransform3D)))
+                        {
+                            CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGRect (* _IMP_T)(id, SEL, CATransform3D);
+                            lua_pushCGRect(L, ((_IMP_T)impRef)(obj, selector, *t));
+                            
+                        }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                        {
+                            CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGRect (* _IMP_T)(id, SEL, CGAffineTransform);
+                            lua_pushCGRect(L, ((_IMP_T)impRef)(obj, selector, *t));
                         }
                         return 1;
                     }
@@ -681,6 +785,24 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                             CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
                             typedef CGPoint (* _IMP_T)(id, SEL, CGSize);
                             lua_pushCGPoint(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(returnType, @encode(NSRange)))
+                        {
+                            NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGPoint (* _IMP_T)(id, SEL, NSRange);
+                            lua_pushCGPoint(L, ((_IMP_T)impRef)(obj, selector, *r));
+                            
+                        }else if (!strcmp(returnType, @encode(CATransform3D)))
+                        {
+                            CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGPoint (* _IMP_T)(id, SEL, CATransform3D);
+                            lua_pushCGPoint(L, ((_IMP_T)impRef)(obj, selector, *t));
+                            
+                        }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                        {
+                            CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGPoint (* _IMP_T)(id, SEL, CGAffineTransform);
+                            lua_pushCGPoint(L, ((_IMP_T)impRef)(obj, selector, *t));
                         }
                         return 1;
                     }
@@ -766,6 +888,24 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                             CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
                             typedef CGSize (* _IMP_T)(id, SEL, CGSize);
                             lua_pushCGSize(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(returnType, @encode(NSRange)))
+                        {
+                            NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGSize (* _IMP_T)(id, SEL, NSRange);
+                            lua_pushCGSize(L, ((_IMP_T)impRef)(obj, selector, *r));
+                            
+                        }else if (!strcmp(returnType, @encode(CATransform3D)))
+                        {
+                            CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGSize (* _IMP_T)(id, SEL, CATransform3D);
+                            lua_pushCGSize(L, ((_IMP_T)impRef)(obj, selector, *t));
+                            
+                        }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                        {
+                            CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGSize (* _IMP_T)(id, SEL, CGAffineTransform);
+                            lua_pushCGSize(L, ((_IMP_T)impRef)(obj, selector, *t));
                         }
                         return 1;
                     }
@@ -774,6 +914,313 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                     {
                         typedef CGSize (* _IMP_T)(id, SEL, void*);
                         lua_pushCGSize(L,  ((_IMP_T)impRef)(obj, selector, lua_touserdata(L, LuaObjCArgumentStart)) );
+                        return 1;
+                    }
+                    default:
+                    {
+                        return 0;
+                    }
+                }
+            }
+            else if (!strcmp(returnType, @encode(NSRange)))
+            {
+                argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+                
+                switch (*argType)
+                {
+                    case 'c':
+                    case 'i':
+                    case 's':
+                    case 'l':
+                    case 'q':
+                    case 'C':
+                    case 'I':
+                    case 'S':
+                    case 'L':
+                    case 'Q':
+                    case 'B':
+                    {
+                        typedef NSRange (* _IMP_T)(id, SEL, NSInteger);
+                        lua_pushNSRange(L, ((_IMP_T)impRef)(obj, selector, luaObjC_checkInteger(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case 'f':
+                    case 'd':
+                    {
+                        typedef NSRange (* _IMP_T)(id, SEL, CGFloat);
+                        lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, lua_tonumber(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case '*':
+                    {
+                        typedef NSRange (* _IMP_T)(id, SEL, const char*);
+                        lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, lua_tostring(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case '#':
+                    case '@':
+                    {
+                        typedef NSRange (* _IMP_T)(id, SEL, id);
+                        lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, luaObjC_checkNSObject(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case ':':
+                    {
+                        typedef NSRange (* _IMP_T)(id, SEL, SEL);
+                        SEL sel = NSSelectorFromString([NSString stringWithCString: luaObjC_checkString(L, LuaObjCArgumentStart)
+                                                                          encoding: NSUTF8StringEncoding]);
+                        lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, sel));
+                        return 1;
+                    }
+                    case '{':
+                    {
+                        if (!strcmp(argType, @encode(CGRect)))
+                        {
+                            CGRect *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef NSRange (* _IMP_T)(id, SEL, CGRect);
+                            lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(argType, @encode(CGPoint)))
+                        {
+                            CGPoint *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef NSRange (* _IMP_T)(id, SEL, CGPoint);
+                            lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(argType, @encode(CGSize)))
+                        {
+                            CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef NSRange (* _IMP_T)(id, SEL, CGSize);
+                            lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(returnType, @encode(NSRange)))
+                        {
+                            NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef NSRange (* _IMP_T)(id, SEL, NSRange);
+                            lua_pushNSRange(L, ((_IMP_T)impRef)(obj, selector, *r));
+                            
+                        }else if (!strcmp(returnType, @encode(CATransform3D)))
+                        {
+                            CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef NSRange (* _IMP_T)(id, SEL, CATransform3D);
+                            lua_pushNSRange(L, ((_IMP_T)impRef)(obj, selector, *t));
+                            
+                        }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                        {
+                            CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef NSRange (* _IMP_T)(id, SEL, CGAffineTransform);
+                            lua_pushNSRange(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        }
+                        return 1;
+                    }
+                    case '^':
+                    case '[':
+                    {
+                        typedef NSRange (* _IMP_T)(id, SEL, void*);
+                        lua_pushNSRange(L,  ((_IMP_T)impRef)(obj, selector, lua_touserdata(L, LuaObjCArgumentStart)) );
+                        return 1;
+                    }
+                    default:
+                    {
+                        return 0;
+                    }
+                }
+            }else if (!strcmp(returnType, @encode(CATransform3D)))
+            {
+                argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+                
+                switch (*argType)
+                {
+                    case 'c':
+                    case 'i':
+                    case 's':
+                    case 'l':
+                    case 'q':
+                    case 'C':
+                    case 'I':
+                    case 'S':
+                    case 'L':
+                    case 'Q':
+                    case 'B':
+                    {
+                        typedef CATransform3D (* _IMP_T)(id, SEL, NSInteger);
+                        lua_pushCATransform3D(L, ((_IMP_T)impRef)(obj, selector, luaObjC_checkInteger(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case 'f':
+                    case 'd':
+                    {
+                        typedef CATransform3D (* _IMP_T)(id, SEL, CGFloat);
+                        lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, lua_tonumber(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case '*':
+                    {
+                        typedef CATransform3D (* _IMP_T)(id, SEL, const char*);
+                        lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, lua_tostring(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case '#':
+                    case '@':
+                    {
+                        typedef CATransform3D (* _IMP_T)(id, SEL, id);
+                        lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, luaObjC_checkNSObject(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case ':':
+                    {
+                        typedef CATransform3D (* _IMP_T)(id, SEL, SEL);
+                        SEL sel = NSSelectorFromString([NSString stringWithCString: luaObjC_checkString(L, LuaObjCArgumentStart)
+                                                                          encoding: NSUTF8StringEncoding]);
+                        lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, sel));
+                        return 1;
+                    }
+                    case '{':
+                    {
+                        if (!strcmp(argType, @encode(CGRect)))
+                        {
+                            CGRect *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CATransform3D (* _IMP_T)(id, SEL, CGRect);
+                            lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(argType, @encode(CGPoint)))
+                        {
+                            CGPoint *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CATransform3D (* _IMP_T)(id, SEL, CGPoint);
+                            lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(argType, @encode(CGSize)))
+                        {
+                            CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CATransform3D (* _IMP_T)(id, SEL, CGSize);
+                            lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(returnType, @encode(NSRange)))
+                        {
+                            NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CATransform3D (* _IMP_T)(id, SEL, NSRange);
+                            lua_pushCATransform3D(L, ((_IMP_T)impRef)(obj, selector, *r));
+                            
+                        }else if (!strcmp(returnType, @encode(CATransform3D)))
+                        {
+                            CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CATransform3D (* _IMP_T)(id, SEL, CATransform3D);
+                            lua_pushCATransform3D(L, ((_IMP_T)impRef)(obj, selector, *t));
+                            
+                        }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                        {
+                            CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CATransform3D (* _IMP_T)(id, SEL, CGAffineTransform);
+                            lua_pushCATransform3D(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        }
+                        return 1;
+                    }
+                    case '^':
+                    case '[':
+                    {
+                        typedef CATransform3D (* _IMP_T)(id, SEL, void*);
+                        lua_pushCATransform3D(L,  ((_IMP_T)impRef)(obj, selector, lua_touserdata(L, LuaObjCArgumentStart)) );
+                        return 1;
+                    }
+                    default:
+                    {
+                        return 0;
+                    }
+                }
+            }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+            {
+                argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+                
+                switch (*argType)
+                {
+                    case 'c':
+                    case 'i':
+                    case 's':
+                    case 'l':
+                    case 'q':
+                    case 'C':
+                    case 'I':
+                    case 'S':
+                    case 'L':
+                    case 'Q':
+                    case 'B':
+                    {
+                        typedef CGAffineTransform (* _IMP_T)(id, SEL, NSInteger);
+                        lua_pushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector, luaObjC_checkInteger(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case 'f':
+                    case 'd':
+                    {
+                        typedef CGAffineTransform (* _IMP_T)(id, SEL, CGFloat);
+                        lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, lua_tonumber(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case '*':
+                    {
+                        typedef CGAffineTransform (* _IMP_T)(id, SEL, const char*);
+                        lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, lua_tostring(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case '#':
+                    case '@':
+                    {
+                        typedef CGAffineTransform (* _IMP_T)(id, SEL, id);
+                        lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, luaObjC_checkNSObject(L, LuaObjCArgumentStart)));
+                        return 1;
+                    }
+                    case ':':
+                    {
+                        typedef CGAffineTransform (* _IMP_T)(id, SEL, SEL);
+                        SEL sel = NSSelectorFromString([NSString stringWithCString: luaObjC_checkString(L, LuaObjCArgumentStart)
+                                                                          encoding: NSUTF8StringEncoding]);
+                        lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, sel));
+                        return 1;
+                    }
+                    case '{':
+                    {
+                        if (!strcmp(argType, @encode(CGRect)))
+                        {
+                            CGRect *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGAffineTransform (* _IMP_T)(id, SEL, CGRect);
+                            lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(argType, @encode(CGPoint)))
+                        {
+                            CGPoint *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGAffineTransform (* _IMP_T)(id, SEL, CGPoint);
+                            lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(argType, @encode(CGSize)))
+                        {
+                            CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGAffineTransform (* _IMP_T)(id, SEL, CGSize);
+                            lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, *rect) );
+                            
+                        }else if (!strcmp(returnType, @encode(NSRange)))
+                        {
+                            NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGAffineTransform (* _IMP_T)(id, SEL, NSRange);
+                            lua_pushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector, *r));
+                            
+                        }else if (!strcmp(returnType, @encode(CATransform3D)))
+                        {
+                            CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGAffineTransform (* _IMP_T)(id, SEL, CATransform3D);
+                            lua_pushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector, *t));
+                            
+                        }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                        {
+                            CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                            typedef CGAffineTransform (* _IMP_T)(id, SEL, CGAffineTransform);
+                            lua_pushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        }
+                        return 1;
+                    }
+                    case '^':
+                    case '[':
+                    {
+                        typedef CGAffineTransform (* _IMP_T)(id, SEL, void*);
+                        lua_pushCGAffineTransform(L,  ((_IMP_T)impRef)(obj, selector, lua_touserdata(L, LuaObjCArgumentStart)) );
                         return 1;
                     }
                     default:
@@ -854,6 +1301,23 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                         CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
                         typedef void* (* _IMP_T)(id, SEL, CGSize);
                         lua_pushlightuserdata(L, ((_IMP_T)impRef)(obj, selector, *rect));
+                    }else if (!strcmp(returnType, @encode(NSRange)))
+                    {
+                        NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef void* (* _IMP_T)(id, SEL, NSRange);
+                        lua_pushlightuserdata(L, ((_IMP_T)impRef)(obj, selector, *r));
+                        
+                    }else if (!strcmp(returnType, @encode(CATransform3D)))
+                    {
+                        CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef void * (* _IMP_T)(id, SEL, CATransform3D);
+                        lua_pushlightuserdata(L, ((_IMP_T)impRef)(obj, selector, *t));
+                        
+                    }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                    {
+                        CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef void * (* _IMP_T)(id, SEL, CGAffineTransform);
+                        lua_pushlightuserdata(L, ((_IMP_T)impRef)(obj, selector, *t));
                     }
                     return 1;
                 }
@@ -941,6 +1405,23 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                         CGSize *rect = lua_touserdata(L, LuaObjCArgumentStart);
                         typedef void (* _IMP_T)(id, SEL, CGSize);
                         ((_IMP_T)impRef)(obj, selector, *rect);
+                    }else if (!strcmp(returnType, @encode(NSRange)))
+                    {
+                        NSRange *r = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef void (* _IMP_T)(id, SEL, NSRange);
+                        ((_IMP_T)impRef)(obj, selector, *r);
+                        
+                    }else if (!strcmp(returnType, @encode(CATransform3D)))
+                    {
+                        CATransform3D *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef void (* _IMP_T)(id, SEL, CATransform3D);
+                        ((_IMP_T)impRef)(obj, selector, *t);
+                        
+                    }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+                    {
+                        CGAffineTransform *t = lua_touserdata(L, LuaObjCArgumentStart);
+                        typedef void (* _IMP_T)(id, SEL, CGAffineTransform);
+                        ((_IMP_T)impRef)(obj, selector, *t);
                     }
                     return 0;
                 }

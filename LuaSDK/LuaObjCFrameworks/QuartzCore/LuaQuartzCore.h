@@ -8,11 +8,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+    
 #include "luaconf.h"
-#include "lua.h"
-#define LUA_QuartzCore_METANAME	"QuartzCore"
-LUAMOD_API int (LuaOpenQuartzCore)(lua_State *L);
-#include <QuartzCore/QuartzCore.h>
+    
+    struct lua_State;
+    
+    LUAMOD_API int (LuaOpenQuartzCore)(struct lua_State *L);
+
+
 #ifdef __cplusplus
 }
 #endif

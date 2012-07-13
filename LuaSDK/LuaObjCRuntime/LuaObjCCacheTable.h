@@ -1,5 +1,5 @@
 //
-//  LuaObjCRecordTable.h
+//  LuaObjCCacheTable.h
 //  LuaCocoa
 //
 //  Created by Eric Wing on 11/11/09.
@@ -14,15 +14,7 @@ extern "C" {
 #endif
     
     struct lua_State;
-    
-#pragma mark - weak table
-    
-    void luaObjCWeakTableCreate(struct lua_State* lua_state);
-    
-    void luaObjCWeakTableInsertObjectWithKey(struct lua_State* lua_state, void * object, const char *key);
-    
-    void *luaObjCWeakTableGetObjectForKey(struct lua_State* lua_state, const char* key);
-    
+
 #pragma mark - strong table	
     
 	void _luaObjCCacheTableCreate(struct lua_State* lua_state);

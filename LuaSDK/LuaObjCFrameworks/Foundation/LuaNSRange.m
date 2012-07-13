@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaNSRange.h"
-#import "lapi.h"
+#import "lua.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "LuaObjCAuxiliary.h"
+#import "LuaObjCFrameworkFunctions.h"
 
 int lua_pushNSRange(lua_State *L, NSRange r)
 {
@@ -91,6 +92,45 @@ static int lua_NSRangeFromString(lua_State *L)
     return 1;
 }
 
+static int lua_NSRangeIndex(lua_State *L)
+{
+    NSRange *r = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "location"))
+    {
+        lua_pushnumber(L, r->location);
+        return 1;
+        
+    }else if (!strcmp(fieldName, "length"))
+    {
+        lua_pushnumber(L, r->length);
+        return 1;
+    }
+    return 0;
+}
+
+static int lua_NSRangeNewIndex(lua_State *L)
+{
+    NSRange *r = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "location"))
+    {
+        r->location = lua_tointeger(L, 3);
+        
+    }else if (!strcmp(fieldName, "length"))
+    {
+        r->length = lua_tointeger(L, 3);
+    }
+    return 0;
+}
+
+static const luaL_Reg __luaNSRangeMetaMethods[] =
+{
+    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__index", lua_NSRangeIndex},
+    {"__newindex", lua_NSRangeNewIndex},
+    {NULL, NULL},
+};
 
 static const luaL_Reg __luaNSRangeAPIs[] = {
     {"NSMakeRange", lua_NSMakeRange},
@@ -106,6 +146,8 @@ static const luaL_Reg __luaNSRangeAPIs[] = {
 
 int LuaOpenNSRange(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __luaNSRangeAPIs);
+    luaL_newlib(L, __luaNSRangeAPIs);
+    luaObjCInternal_createmeta(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
+    
     return 0;
 }
