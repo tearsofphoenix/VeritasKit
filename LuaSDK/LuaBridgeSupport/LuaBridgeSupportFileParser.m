@@ -21,12 +21,59 @@ static LuaBridgeNodeParserBlock __LuaBridgeConstantNodeParser = (^(XMLNode *node
                                                                      [info setType: LuaBridgeConstantType];
                                                                      [info setName: name];
                                                                      
-                                                                     id value = *(id *)dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                     NSMutableDictionary *constantInfo = [[NSMutableDictionary alloc] init];
+                                                                     NSString *type = [node attributeWithName: @"type"];
+                                                                     [constantInfo setObject: type
+                                                                                      forKey: @"type"];
                                                                      
-                                                                     NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                                                                                   [node attributeWithName: @"type"], @"type",
-                                                                                                   value, @"value",
-                                                                                                   nil];
+                                                                     switch(*[type UTF8String])
+                                                                     {
+                                                                         case 'c':
+                                                                         case 'i':
+                                                                         case 's':
+                                                                         case 'l':
+                                                                         case 'q':
+                                                                         case 'C':
+                                                                         case 'I':
+                                                                         case 'S':
+                                                                         case 'L':
+                                                                         case 'Q':
+                                                                         case 'B':
+                                                                         {
+                                                                             NSInteger value = *(NSInteger *)dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                             [constantInfo setObject: [NSNumber numberWithInteger: value]
+                                                                                              forKey: @"value"];
+                                                                             break;
+                                                                         }
+                                                                         case 'f':
+                                                                         case 'd':
+                                                                         {
+                                                                             CGFloat value = *(CGFloat *)dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                             [constantInfo setObject: [NSNumber numberWithDouble: value]
+                                                                                              forKey: @"value"];
+                                                                             break;
+                                                                         }
+                                                                         case '@':
+                                                                         {
+                                                                             id value = *(id *)dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                             if (value)
+                                                                             {
+                                                                                 [constantInfo setObject: value
+                                                                                                  forKey: @"value"];
+                                                                             }
+                                                                             break;
+                                                                         }
+                                                                         case '{':
+                                                                         {
+                                                                             //TODO
+                                                                             //
+                                                                         }
+                                                                         default:
+                                                                         {
+                                                                             break;
+                                                                         }
+                                                                     }
+
                                                                      [info setInfo: constantInfo];
                                                                      [constantInfo release];
                                                                      

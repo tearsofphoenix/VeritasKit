@@ -1,5 +1,5 @@
 NS = #import "NS"
-UI = #import("UI")
+UI = #import("UIKit")
 GL = #import("OpenGLES")
 
 #import "BoCPressViewController"

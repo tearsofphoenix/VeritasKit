@@ -28,7 +28,7 @@
 #import "LuaLibraryInformation.h"
 
 #import "LuaObjCAuxiliary.h"
-
+#import "LuaBridgeSupport.h"
 
 static LuaEngineService *g_engine = nil;
 
@@ -90,17 +90,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     infoLooper = LuaLibraryInformationMakeC(LuaEngineParserSupport, LUA_LPEGLIBNAME, luaopen_lpeg, 1, 
                                             nil);
     [_libs setObject: infoLooper
-              forKey: [infoLooper featureID]];
-    
-    //`opengles' lib
-    //
-    /*
-     infoLooper = _LuaLibInfoMakeC(LuaEngineOpenGLESSupport, LUA_OPENGLESLIBNAME, luaopen_opengles, 1, 
-     nil);
-     [_libs setObject: infoLooper
-     forKey: [infoLooper featureID]];
-     */
-    
+              forKey: [infoLooper featureID]];    
 }
 
 static LuaStateRef _luaEngine_createLuaState(void)
@@ -116,12 +106,30 @@ static LuaStateRef _luaEngine_createLuaState(void)
     lua_gc(luaStateRef, LUA_GCSTOP, 0);  /* stop collector during initialization */
     
     luaL_openlibs(luaStateRef);  
-    
     //TODO, forbide gc first
     lua_gc(luaStateRef, LUA_GCRESTART, 0);
     
     return luaStateRef;
 }
+
+static int _luaEngine_compileTimeInteraction(lua_State *L)
+{
+    //LuaEngineService *service = luaObjC_checkNSObject(L, 1);
+    const char *message = lua_tostring(L, 2);
+    if (!strcmp(message, "import"))
+    {
+        NSString *frameworkName = [NSString stringWithUTF8String: lua_tostring(L, 3)];
+        [LuaBridgeSupport importFramework: [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)]];
+    }
+        
+    return 0;
+}
+
+static const luaL_Reg __compileTimeFunctions [] =
+{
+    {"compileTimeInteraction", _luaEngine_compileTimeInteraction},
+    {NULL, NULL},
+};
 
 static void LuaEngine_initialize(LuaEngineService *self,
                                  LuaEngineAttributesRef *_internal,
@@ -150,7 +158,14 @@ static void LuaEngine_initialize(LuaEngineService *self,
     //    g_luaOutputFilePointer = fopen([path cStringUsingEncoding: NSUTF8StringEncoding], "w");
     
     internal->path = path;
-    
+
+    //init parser state
+    //
+    LuaStateRef parserStateRef = _luaEngine_createLuaState();
+    luaObjC_loadGlobalFunctions(parserStateRef, __compileTimeFunctions);
+    LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
+    internal->parserState = parserStateRef;
+
     //init runtime state
     //
     LuaStateRef luaStateRef = _luaEngine_createLuaState();
@@ -158,15 +173,6 @@ static void LuaEngine_initialize(LuaEngineService *self,
     LuaLibraryInformationRegisterToState(libs, LuaEngineUIKitSupport, luaStateRef);
     
     internal->luaState = luaStateRef;    
-    
-    //init parser state
-    //
-    LuaStateRef parserStateRef = _luaEngine_createLuaState();
-    LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
-    //luaopen_foundation(parserStateRef);
-    internal->parserState = parserStateRef;
-    
-    
     
     internal->supportedFetures = [[NSMutableArray alloc] init];    
     

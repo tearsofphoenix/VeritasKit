@@ -10,7 +10,6 @@
 #import "LuaCoreGraphics.h"
 
 #import "LuaUIAccessibility.h"
-#import "LuaUIApplication.h"
 #import "LuaUIGeometry.h"
 #import "LuaUIGraphics.h"
 #import "LuaUIView.h"
@@ -22,7 +21,6 @@ int LuaOpenUIKit(lua_State *L)
     LuaOpenCoreGraphics(L);
         
     LuaOpenUIAccessibility(L);
-    LuaOpenUIApplication(L);
     LuaOpenUIGeometry(L);
     LuaOpenUIGraphics(L);
 

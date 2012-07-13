@@ -70,7 +70,6 @@
 		22F7AE2015A14AEA00E2DED3 /* LuaCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7AAD715A14AE900E2DED3 /* LuaCATransform3D.m */; };
 		22F7AE2415A14AEA00E2DED3 /* LuaQuartzCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7AADF15A14AE900E2DED3 /* LuaQuartzCore.m */; };
 		22F7AE5115A14AEA00E2DED3 /* LuaUIAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7AB3F15A14AE900E2DED3 /* LuaUIAccessibility.m */; };
-		22F7AE5C15A14AEA00E2DED3 /* LuaUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7AB5515A14AE900E2DED3 /* LuaUIApplication.m */; };
 		22F7AE6A15A14AEA00E2DED3 /* LuaUIGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7AB7115A14AE900E2DED3 /* LuaUIGeometry.m */; };
 		22F7AE6D15A14AEA00E2DED3 /* LuaUIGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7AB7715A14AE900E2DED3 /* LuaUIGraphics.m */; };
 		22F7AE7215A14AEA00E2DED3 /* LuaUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7AB8115A14AE900E2DED3 /* LuaUIKit.m */; };
@@ -349,8 +348,6 @@
 		22F7AADF15A14AE900E2DED3 /* LuaQuartzCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaQuartzCore.m; sourceTree = "<group>"; };
 		22F7AB3E15A14AE900E2DED3 /* LuaUIAccessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUIAccessibility.h; sourceTree = "<group>"; };
 		22F7AB3F15A14AE900E2DED3 /* LuaUIAccessibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaUIAccessibility.m; sourceTree = "<group>"; };
-		22F7AB5415A14AE900E2DED3 /* LuaUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUIApplication.h; sourceTree = "<group>"; };
-		22F7AB5515A14AE900E2DED3 /* LuaUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaUIApplication.m; sourceTree = "<group>"; };
 		22F7AB7015A14AE900E2DED3 /* LuaUIGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUIGeometry.h; sourceTree = "<group>"; };
 		22F7AB7115A14AE900E2DED3 /* LuaUIGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaUIGeometry.m; sourceTree = "<group>"; };
 		22F7AB7615A14AE900E2DED3 /* LuaUIGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUIGraphics.h; sourceTree = "<group>"; };
@@ -772,8 +769,6 @@
 			children = (
 				22F7AB3E15A14AE900E2DED3 /* LuaUIAccessibility.h */,
 				22F7AB3F15A14AE900E2DED3 /* LuaUIAccessibility.m */,
-				22F7AB5415A14AE900E2DED3 /* LuaUIApplication.h */,
-				22F7AB5515A14AE900E2DED3 /* LuaUIApplication.m */,
 				22F7AB7015A14AE900E2DED3 /* LuaUIGeometry.h */,
 				22F7AB7115A14AE900E2DED3 /* LuaUIGeometry.m */,
 				22F7AB7615A14AE900E2DED3 /* LuaUIGraphics.h */,
@@ -1253,7 +1248,6 @@
 				22F7AE2015A14AEA00E2DED3 /* LuaCATransform3D.m in Sources */,
 				22F7AE2415A14AEA00E2DED3 /* LuaQuartzCore.m in Sources */,
 				22F7AE5115A14AEA00E2DED3 /* LuaUIAccessibility.m in Sources */,
-				22F7AE5C15A14AEA00E2DED3 /* LuaUIApplication.m in Sources */,
 				22F7AE6A15A14AEA00E2DED3 /* LuaUIGeometry.m in Sources */,
 				22F7AE6D15A14AEA00E2DED3 /* LuaUIGraphics.m in Sources */,
 				22F7AE7215A14AEA00E2DED3 /* LuaUIKit.m in Sources */,

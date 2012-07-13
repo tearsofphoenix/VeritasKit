@@ -1,3 +1,5 @@
+--
+local g_Engine
 
 -- written for LPeg .5, by the way
 local lpeg = require 'lpeg'
@@ -1408,6 +1410,7 @@ olua_import_file = function()
                         local fileName
                         if optionalexpect("operator", "(") then
                             fileName = expect("string").text
+                            compileTimeInteraction(g_Engine, "import", fileName)
                             expect("operator", ")")
                         else
                             fileName = expect("string").text
@@ -2348,6 +2351,7 @@ local unparser = function(ast)
                 end
 
 
-translate = function(intext, source)
-                return unparser(parser(intext, source))
+translate = function(intext, engine)
+                g_Engine = engine
+                return unparser(parser(intext, nil))
             end	

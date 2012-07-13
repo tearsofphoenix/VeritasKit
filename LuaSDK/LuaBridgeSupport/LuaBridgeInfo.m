@@ -81,7 +81,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
                                                    [encodings addObject: [obj type]];
                                                })];
             
-            const char *returnTypeEncoding = [[(LuaBridgeArgumentInfo *)[_info objectForKey: @"retval"] type] UTF8String];
+            const char *returnTypeEncoding = [[_info objectForKey: @"retval"] UTF8String];
             
             LuaBridgeFuncotrRef functorRef = LuaBridgeFunctorCreate(state, _name, encodings, returnTypeEncoding);
             _luaObjCCacheTableInsertObjectForKey(state, functorRef, [_name UTF8String]);

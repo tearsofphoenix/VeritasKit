@@ -186,8 +186,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
 
 static int luaObjC_createNSSelector(lua_State *L)
 {
-    //TODO
-    //deal SEL as c-string here
+    //deal SEL as c-string
     //
     const char *selectorName = lua_tostring(L, 1);
     lua_pushstring(L, selectorName);

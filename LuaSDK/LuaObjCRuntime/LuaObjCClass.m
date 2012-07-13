@@ -17,7 +17,7 @@
 #import "LuaObjCAuxiliary.h"
 
 #import <objc/runtime.h>
-
+#import <dlfcn.h>
 #import "lauxlib.h"
 
 #import "LuaObjCRecordTable.h"
@@ -113,9 +113,9 @@ static int _luaEngine_resolveName(lua_State *L)
     const char* name = lua_tostring(L, 2);
     //printf("revolve: %s\n", name);
 
-    if (!_luaObjCCacheTableGetObjectForKey(L, (void*)name))
+    if (!_luaObjCCacheTableGetObjectForKey(L, name))
     {            
-        printf("not got, in function: %s line: %d\n", __func__, __LINE__);
+        printf("not got, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
