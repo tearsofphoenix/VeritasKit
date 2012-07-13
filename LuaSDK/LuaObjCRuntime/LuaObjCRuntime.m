@@ -40,14 +40,6 @@
 
 #import "LuaBridgeFunctor.h"
 
-static int luaObjC_NSStringFromClass(lua_State *L)
-{
-    LuaObjCClassRef aClass = lua_touserdata(L, 1);    
-    luaObjC_pushNSObject(L, NSStringFromClass([LuaObjCClassGetObject(aClass) class]));
-    
-    return 1;
-}
-
 static int luaObjC_NSLog(lua_State *L)
 {    
     const char* charLooper = luaObjC_checkString(L, 1);
@@ -584,7 +576,6 @@ static const luaL_Reg LuaNS_ObjectMethods[] =
 
 static const luaL_Reg luaNS_functions[] = 
 {
-    {"NSStringFromClass", luaObjC_NSStringFromClass},
     {"NSLog", luaObjC_NSLog},
     {NULL, NULL}  
 };

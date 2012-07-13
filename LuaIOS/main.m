@@ -90,7 +90,6 @@ int main(int argc, char *argv[])
         
         NSTimeInterval start_time = [NSDate timeIntervalSinceReferenceDate];
         printf("start-time: %f\n", start_time);
-        NSLog(@"UIPasteboardTypeListColor: %@", UIPasteboardTypeListColor);
         /*
         for (NSInteger iLooper = 0; iLooper < 100000; ++iLooper)
         {

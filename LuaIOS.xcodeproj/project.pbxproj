@@ -34,7 +34,6 @@
 		226873771521AD5D009D6279 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 226873751521AD5D009D6279 /* InfoPlist.strings */; };
 		226873791521AD5D009D6279 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 226873781521AD5D009D6279 /* main.m */; };
 		226873A71521B2B8009D6279 /* Test.v in Resources */ = {isa = PBXBuildFile; fileRef = 226873A61521B2B8009D6279 /* Test.v */; };
-		2280FAED15A2BCAB00B67118 /* LuaCABase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2280FAEC15A2BCAB00B67118 /* LuaCABase.m */; };
 		2290F9C615A1AE1000BCA42D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2290F9C515A1AE0B00BCA42D /* GLKit.framework */; };
 		229F6EA115AED079001DE368 /* NSMethodSignature+argumentsEncodings.h in Headers */ = {isa = PBXBuildFile; fileRef = 229F6E9F15AED079001DE368 /* NSMethodSignature+argumentsEncodings.h */; };
 		229F6EA215AED079001DE368 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F6EA015AED079001DE368 /* NSMethodSignature+argumentsEncodings.m */; };
@@ -289,8 +288,6 @@
 		226873761521AD5D009D6279 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		226873781521AD5D009D6279 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		226873A61521B2B8009D6279 /* Test.v */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = Test.v; sourceTree = "<group>"; };
-		2280FAEB15A2BCAB00B67118 /* LuaCABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCABase.h; sourceTree = "<group>"; };
-		2280FAEC15A2BCAB00B67118 /* LuaCABase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCABase.m; sourceTree = "<group>"; };
 		2290F9C515A1AE0B00BCA42D /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		229D91D91527D09A009780FE /* LuaIOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LuaIOS-Prefix.pch"; sourceTree = "<group>"; };
 		229F6E9F15AED079001DE368 /* NSMethodSignature+argumentsEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+argumentsEncodings.h"; sourceTree = "<group>"; };
@@ -754,8 +751,6 @@
 		22F7AAB515A14AE900E2DED3 /* QuartzCore */ = {
 			isa = PBXGroup;
 			children = (
-				2280FAEB15A2BCAB00B67118 /* LuaCABase.h */,
-				2280FAEC15A2BCAB00B67118 /* LuaCABase.m */,
 				22F7AAD615A14AE900E2DED3 /* LuaCATransform3D.h */,
 				22F7AAD715A14AE900E2DED3 /* LuaCATransform3D.m */,
 				22F7AADE15A14AE900E2DED3 /* LuaQuartzCore.h */,
@@ -1252,7 +1247,6 @@
 				22F7AE6D15A14AEA00E2DED3 /* LuaUIGraphics.m in Sources */,
 				22F7AE7215A14AEA00E2DED3 /* LuaUIKit.m in Sources */,
 				22F7AEAF15A14AEA00E2DED3 /* LuaUIView.m in Sources */,
-				2280FAED15A2BCAB00B67118 /* LuaCABase.m in Sources */,
 				344433D015680371009D0D3A /* NSArray+LuaObjCIndex.m in Sources */,
 				344433D5156805B4009D0D3A /* NSDictionary+LuaObjCIndex.m in Sources */,
 				344433D81568061D009D0D3A /* NSString+LuaObjCIndex.m in Sources */,

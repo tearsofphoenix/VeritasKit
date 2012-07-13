@@ -9,6 +9,7 @@
 #import "lapi.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
+#import "LuaObjCAuxiliary.h"
 #import "LuaCGGeometry.h"
 
 int lua_pushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
@@ -73,14 +74,134 @@ static const luaL_Reg __LuaUIGeometryAPIs[] =
 {
     {"UIEdgeInsetsMake", lua_UIEdgeInsetsMake},
     {"UIEdgeInsetsInsetRect", lua_UIEdgeInsetsInsetRect},
-    {"UIOffsetMake", lua_UIOffsetMake},
     {"UIEdgeInsetsEqualToEdgeInsets", lua_UIEdgeInsetsEqualToEdgeInsets},
+    {NULL, NULL},
+};
+
+static const luaL_Reg __LuaUIOffsetAPIs [] =
+{
+    {"UIOffsetMake", lua_UIOffsetMake},
     {"UIOffsetEqualToOffset", lua_UIOffsetEqualToOffset},
+    {NULL, NULL},
+};
+
+static int _luaUIGeometryGarbageCollection(lua_State *L)
+{
+    void *obj = lua_touserdata(L, 1);
+    if (obj)
+    {
+        free(obj);
+    }
+    return 0;
+}
+
+static int _luaUIEdgeInsetIndex(lua_State *L)
+{
+    UIEdgeInsets *obj = luaL_checkudata(L, 1, LUA_UIEdgeInsets_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "top"))
+    {
+        lua_pushnumber(L, obj->top);
+        return 1;
+    }else if (!strcmp(fieldName, "bottom"))
+    {
+        lua_pushnumber(L, obj->bottom);
+        return 1;
+    }else if (!strcmp(fieldName, "left"))
+    {
+        lua_pushnumber(L, obj->left);
+        return 1;
+    }else if (!strcmp(fieldName, "right"))
+    {
+        lua_pushnumber(L, obj->right);
+        return 1;
+    }
+    
+    return 0;
+}
+
+static int _luaUIEdgeInsetNewIndex(lua_State *L)
+{
+    UIEdgeInsets *obj = luaL_checkudata(L, 1, LUA_UIEdgeInsets_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "top"))
+    {
+        obj->top = lua_tonumber(L, 3);
+
+    }else if (!strcmp(fieldName, "bottom"))
+    {
+        obj->bottom = lua_tonumber(L, 3);
+
+    }else if (!strcmp(fieldName, "left"))
+    {
+        obj->left = lua_tonumber(L, 3);
+
+    }else if (!strcmp(fieldName, "right"))
+    {
+        obj->right = lua_tonumber(L, 3);
+    }
+    
+    return 0;
+}
+
+static const luaL_Reg __LuaUIEdgeInsetMetaMethods[] =
+{
+    {"__gc", _luaUIGeometryGarbageCollection},
+    {"__index", _luaUIEdgeInsetIndex},
+    {"__newindex", _luaUIEdgeInsetNewIndex},
+    {NULL, NULL},
+};
+
+
+static int _luaUIGeometryUIOffsetIndex(lua_State *L)
+{
+    UIOffset *o = luaL_checkudata(L, 1, LUA_UIOffset_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "vertical"))
+    {
+        lua_pushnumber(L, o->vertical);
+        return 1;
+        
+    }else if (!strcmp(fieldName, "horizontal"))
+    {
+        lua_pushnumber(L, o->horizontal);
+        return 1;
+    }
+    
+    return 0;
+}
+
+static int _luaUIGeometryUIOffsetNewIndex(lua_State *L)
+{
+    UIOffset *o = luaL_checkudata(L, 1, LUA_UIOffset_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "vertical"))
+    {
+        o->vertical = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "horizontal"))
+    {
+        o->horizontal = lua_tonumber(L, 3);
+    }
+    
+    return 0;
+}
+
+static const luaL_Reg __LuaUIOffsetMetaMethods[] =
+{
+    {"__gc", _luaUIGeometryGarbageCollection},
+    {"__index", _luaUIGeometryUIOffsetIndex},
+    {"__newindex", _luaUIGeometryUIOffsetNewIndex},
     {NULL, NULL},
 };
 
 int LuaOpenUIGeometry(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __LuaUIGeometryAPIs);
+    luaL_newlib(L, __LuaUIGeometryAPIs);
+    luaObjCInternal_createmeta(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
+    
+    luaL_newlib(L, __LuaUIOffsetAPIs);
+    luaObjCInternal_createmeta(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
+    
     return 0;
 }

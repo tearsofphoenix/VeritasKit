@@ -119,7 +119,10 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
     if (!strcmp(message, "import"))
     {
         NSString *frameworkName = [NSString stringWithUTF8String: lua_tostring(L, 3)];
-        [LuaBridgeSupport importFramework: [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)]];
+        frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
+        [NSThread detachNewThreadSelector: @selector(importFramework:)
+                                 toTarget: [LuaBridgeSupport class]
+                               withObject: frameworkName];
     }
         
     return 0;
