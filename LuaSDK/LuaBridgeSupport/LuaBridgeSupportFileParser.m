@@ -9,7 +9,6 @@
 #import "LuaBridgeSupportFileParser.h"
 #import "XMLDocument.h"
 #import "LuaBridgeInfo.h"
-#import "AATree.h"
 
 typedef void (^LuaBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
 
