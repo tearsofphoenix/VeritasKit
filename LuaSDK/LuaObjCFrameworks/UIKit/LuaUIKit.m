@@ -14,7 +14,7 @@
 #import "LuaUIGraphics.h"
 #import "LuaUIView.h"
 
-int LuaOpenUIKit(lua_State *L)
+int LuaOpenUIKit(struct lua_State *L)
 {
     //load CoreGraphics
     //

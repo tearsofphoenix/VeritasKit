@@ -8,11 +8,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+    
 #include "luaconf.h"
-#include "lua.h"
-#define LUA_CoreGraphics_METANAME	"CoreGraphics"
-LUAMOD_API int (LuaOpenCoreGraphics)(lua_State *L);
-#include <CoreGraphics/CoreGraphics.h>
+    struct lua_State;
+        
+    LUAMOD_API int (LuaOpenCoreGraphics)(struct lua_State *L);
+
 #ifdef __cplusplus
 }
 #endif

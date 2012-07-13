@@ -15,7 +15,7 @@
 #import "LuaObjCAuxiliary.h"
 
 #import "LuaObjCInternal.h"
-
+#import "lua.h"
 #import <objc/message.h>
 
 int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char* returnType, 

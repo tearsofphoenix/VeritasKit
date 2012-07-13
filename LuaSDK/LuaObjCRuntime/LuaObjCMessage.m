@@ -12,6 +12,7 @@
 #import "LuaObjCAccelerator.h"
 #import "LuaCGGeometry.h"
 #import "LuaObjCAuxiliary.h"
+#import "lua.h"
 #import "ffi.h"
 #import "LuaBridgeFunctor.h"
 #import "NSMethodSignature+argumentsEncodings.h"

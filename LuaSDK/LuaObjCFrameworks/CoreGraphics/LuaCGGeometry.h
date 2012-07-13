@@ -8,8 +8,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include "luaconf.h"
-#include "lua.h"
 
 #if TARGET_OS_IPHONE || TARGET_OS_EMBEDDED
 #include <CoreGraphics/CGGeometry.h>
@@ -21,13 +21,15 @@ extern "C" {
 
 #define LUA_CGRect_METANAME	"CGRect"
 
-    extern int lua_pushCGPoint(lua_State *L, CGPoint p);
+    struct lua_State;
     
-    extern int lua_pushCGSize(lua_State *L, CGSize s);
+    extern int lua_pushCGPoint(struct lua_State *L, CGPoint p);
     
-    extern int lua_pushCGRect(lua_State *L, CGRect r);
+    extern int lua_pushCGSize(struct lua_State *L, CGSize s);
     
-    LUAMOD_API int (LuaOpenCGGeometry)(lua_State *L);
+    extern int lua_pushCGRect(struct lua_State *L, CGRect r);
+    
+    LUAMOD_API int (LuaOpenCGGeometry)(struct lua_State *L);
     
     
 #ifdef __cplusplus
