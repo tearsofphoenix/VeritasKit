@@ -327,13 +327,26 @@ void LuaObjCInvoke(struct lua_State *L,
                 break;
             }
             case '*':
+            {
+                lua_pushstring(L, *(const char**)ref->_returnValue);
+                break;
+            }
+            case ':':
+            {
+                SEL selector = *(SEL *)ref->_returnValue;
+                lua_pushstring(L, sel_getName(selector));
+                break;
+            }
             case '#':
             case '@':
-            case ':':
+            {
+                luaObjC_pushNSObject(L, *(id *)ref->_returnValue);
+                break;
+            }
             case '^':
             case '[':
             {
-                lua_pushlightuserdata(L, ref->_returnValue);
+                lua_pushlightuserdata(L,  *(void* *)ref->_returnValue);
                 break;
             }
             case '{':

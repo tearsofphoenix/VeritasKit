@@ -1,4 +1,4 @@
-NS = #import "NS"
+NS = #import "Foundation"
 UI = #import("UIKit")
 GL = #import("OpenGLES")
 

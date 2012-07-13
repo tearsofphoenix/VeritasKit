@@ -40,25 +40,31 @@ static LuaBridgeNodeParserBlock __LuaBridgeConstantNodeParser = (^(XMLNode *node
                                                                          case 'Q':
                                                                          case 'B':
                                                                          {
-                                                                             NSInteger value = *(NSInteger *)dlsym(RTLD_DEFAULT, [name UTF8String]);
-                                                                             [constantInfo setObject: [NSNumber numberWithInteger: value]
-                                                                                              forKey: @"value"];
+                                                                             NSInteger *address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                             if (address)
+                                                                             {
+                                                                                 [constantInfo setObject: [NSNumber numberWithInteger: *address]
+                                                                                                  forKey: @"value"];
+                                                                             }
                                                                              break;
                                                                          }
                                                                          case 'f':
                                                                          case 'd':
                                                                          {
-                                                                             CGFloat value = *(CGFloat *)dlsym(RTLD_DEFAULT, [name UTF8String]);
-                                                                             [constantInfo setObject: [NSNumber numberWithDouble: value]
-                                                                                              forKey: @"value"];
+                                                                             CGFloat * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                             if (address)
+                                                                             {
+                                                                                 [constantInfo setObject: [NSNumber numberWithDouble: *address]
+                                                                                                  forKey: @"value"];
+                                                                             }
                                                                              break;
                                                                          }
                                                                          case '@':
                                                                          {
-                                                                             id value = *(id *)dlsym(RTLD_DEFAULT, [name UTF8String]);
-                                                                             if (value)
+                                                                             id * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                                             if (address && *address)
                                                                              {
-                                                                                 [constantInfo setObject: value
+                                                                                 [constantInfo setObject: *address
                                                                                                   forKey: @"value"];
                                                                              }
                                                                              break;
