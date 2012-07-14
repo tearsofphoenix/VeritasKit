@@ -164,7 +164,7 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
 {
     //not gc bridge functor yet
     //
-    //{"__gc", LuaBridgeFunctorFinalize},
+    {"__gc", LuaBridgeFunctorFinalize},
     {"__call", LuaBridgeFunctorInvoke},
     {NULL, NULL}
 };
@@ -215,7 +215,9 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
             returnValue->_returnValueEncoding = NULL;
         }else
         {
-            returnValue->_returnValueEncoding = strdup(returnEncoding);
+            char *dupString = malloc(sizeof(char) * strlen(returnEncoding));
+            strcpy(dupString, returnEncoding);
+            returnValue->_returnValueEncoding = dupString;
             returnValue->_returnType = _luaBridgeInternal_typeOfEncoding(returnEncoding);
             returnValue->_returnValue = malloc(returnValue->_returnType->size);
             returnValue->_returnCount = 1;
@@ -374,10 +376,7 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
     {
         printf("in function: %s line: %d\n", __func__, __LINE__);
         
-        if (ref->_argumentTypes)
-        {
-            free(ref->_argumentTypes);
-        }
+        free(ref->_argumentTypes);
         
         void **arguments = ref->_arguments;
         if (arguments)
@@ -390,16 +389,12 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
             free(arguments);
         }
         
-        if (ref->_argumentTypeEncodings)
-        {
-            [ref->_argumentTypeEncodings release];
-        }
+        [ref->_argumentTypeEncodings release];
         
-        if (ref->_returnValue)
-        {
-            free(ref->_returnValue);
-        }
-        
+        free(ref->_returnValue);
+
+        free((void *)ref->_returnValueEncoding);
+
         //free(ref);
     }
 }

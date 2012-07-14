@@ -10,4 +10,4 @@ struct lua_State;
 
 extern int luaObjC_objc_messageSend(struct lua_State *L);
 
-extern int luaObjc_method_super_call(struct lua_State *L);
+extern int luaObjC_objc_messageSend_Super(struct lua_State *L);

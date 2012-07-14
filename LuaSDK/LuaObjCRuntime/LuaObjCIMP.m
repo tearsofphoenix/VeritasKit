@@ -452,8 +452,10 @@ static id __luaObjc_PropertyGetter(id obj, SEL selector)
 static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
 {
     const char *selectorString = (const char*)selector;
-    char* propertyName = strndup(selectorString + strlen("set"), strlen(selectorString) - strlen("set") - strlen(":"));
-    
+    int length = strlen(selectorString) - strlen("set") - strlen(":");
+    char *propertyName = malloc(sizeof(char) * (length + 1));
+    propertyName[length] = 0;
+    strncpy(propertyName, selectorString + strlen("set"), length);
     propertyName[0] = tolower(propertyName[0]);
     
     Ivar ivar = class_getInstanceVariable([obj class], propertyName);
@@ -464,7 +466,7 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
     }
     
     //why this? will cause a crash
-    //free(propertyName);
+    free(propertyName);
 }
 
 #pragma mark - add default Ivar

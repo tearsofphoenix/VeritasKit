@@ -212,6 +212,9 @@ static const luaL_Reg __luaCGAffineTransformAPIs[] =
     {"CGAffineTransformInvert", lua_CGAffineTransformInvert},
     {"CGAffineTransformConcat", lua_CGAffineTransformConcat},
     {"CGAffineTransformEqualToTransform", lua_CGAffineTransformEqualToTransform},
+    {"CGPointApplyAffineTransform", lua_CGPointApplyAffineTransform},
+    {"CGSizeApplyAffineTransform", lua_CGSizeApplyAffineTransform},
+    {"CGRectApplyAffineTransform", lua_CGRectApplyAffineTransform},
     {NULL, NULL},
 };
 

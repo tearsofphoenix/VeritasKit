@@ -351,19 +351,6 @@ static void printpatt (Instruction *p) {
   }
 }
 
-
-#if 1
-static void printcap (Capture *cap) {
-  //printcapkind(cap->kind);
-    printf(" (idx: %d - size: %d) -> %p\n", cap->idx, cap->siz, cap->s);
-}
-
-
-static void printcaplist (Capture *cap) {
-  for (; cap->s; cap++) printcap(cap);
-}
-#endif
-
 /* }====================================================== */
 
 

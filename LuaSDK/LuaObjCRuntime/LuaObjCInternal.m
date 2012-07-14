@@ -15,27 +15,6 @@
 #import "LuaBridgeSupport.h"
 #import <objc/runtime.h>
 
-static void luaObjC_loadClassList(lua_State *L, const char* classList[])
-{
-    if (classList)
-    {
-        NSUInteger iLooper = 0;
-        const char* classNameLooper = classList[iLooper];
-        Class classLooper = objc_getClass(classNameLooper);
-        while (classNameLooper)
-        {
-            if (classLooper)
-            {
-                luaObjC_pushNSObject(L, classLooper);
-                lua_setglobal(L, classNameLooper);
-            }
-            ++iLooper;
-            classNameLooper = classList[iLooper];
-            classLooper = objc_getClass(classNameLooper);
-        }
-    }
-}
-
 int luaObjC_preloadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)
 {
     NSUInteger iLooper = 0;

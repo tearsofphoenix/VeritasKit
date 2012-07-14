@@ -407,6 +407,9 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjects: values 
                                                                      forKeys: keys];
+    [keys release];
+    [values release];
+    
     luaObjC_pushNSObject(L, dict);
     return 1;
 }
