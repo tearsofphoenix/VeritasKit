@@ -23,6 +23,7 @@
 #import "LuaObjCCacheTable.h"
 #import "LuaBridgeSupport.h"
 
+@class LuaObjectObserver;
 
 struct __LuaObjCClass
 {
@@ -112,22 +113,22 @@ static int _luaEngine_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
     //printf("revolve: %s\n", name);
-
+    
     if (!_luaObjCCacheTableGetObjectForKey(L, name))
-    {            
+    {
         printf("not got, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
             LuaObjCClassRef classRef = LuaObjCClassInitialize(L, theClass, nil, false);
             _luaObjCCacheTableInsertObjectForKey(L, classRef, name);
-            luaObjC_pushNSObject(L, theClass);        
+            luaObjC_pushNSObject(L, theClass);
         }else
         {
             //this maybe a function, such as glEnable(...)
             [LuaBridgeSupport tryToResolveName: [NSString stringWithUTF8String: name]
                                   intoLuaState: L];
-        }        
+        }
     }
     
     return 1;
@@ -136,7 +137,7 @@ static int _luaEngine_resolveName(lua_State *L)
 static const luaL_Reg __luaObjC_Functions[] =
 {
     {"resolveName", _luaEngine_resolveName},
-    {NULL, NULL},  
+    {NULL, NULL},
 };
 
 static int _luaObjC_openIndexSupport(lua_State *L)
@@ -164,10 +165,10 @@ int luaopen_objc(lua_State *L)
     }
     
     _luaObjCCacheTableCreate(L);
-        
+    
     luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
     
-    static const char* s_ResolveNameMetaTable = 
+    static const char* s_ResolveNameMetaTable =
     "setmetatable(_G, { __index = ObjC.resolveName })";
 	luaL_loadstring(L, s_ResolveNameMetaTable);
 	lua_pcall(L, 0, 0, 0);
@@ -176,46 +177,99 @@ int luaopen_objc(lua_State *L)
     
 }
 
+#pragma mark - Object observer
+
 static char __LuaObjCAssociatedObjectKey;
 
-LuaObjCClassRef LuaObjCClassInitialize(struct lua_State *L, 
-                                       id rawObject, 
+static IMP _deallocIMPOfRootClass = NULL;
+
+
+
+@interface LuaObjectObserver : NSObject
+{
+@private
+    LuaObjCClassRef _ref;
+}
+
+- (id)initWithClassRef: (LuaObjCClassRef)ref;
+
+- (void)_clearUp;
+
+@end
+
+
+static void _luaObjC_runtimeDeallocMethod(id obj, SEL selector)
+{
+    LuaObjectObserver *observer = objc_getAssociatedObject(obj, &__LuaObjCAssociatedObjectKey);
+    if (observer)
+    {
+        objc_removeAssociatedObjects(obj);
+        [observer _clearUp];
+    }
+    
+    _deallocIMPOfRootClass(obj, selector);
+}
+
+void luaObjC_modifyRootClass(void)
+{
+    _deallocIMPOfRootClass = class_replaceMethod(objc_getClass("NSObject"), @selector(dealloc), (IMP)_luaObjC_runtimeDeallocMethod, "v@:");
+}
+
+@implementation LuaObjectObserver
+
+- (id)initWithClassRef: (LuaObjCClassRef)ref
+{
+    if ((self = [super init]))
+    {
+        _ref = ref;
+    }
+    return self;
+}
+
+- (void)_clearUp
+{
+    LuaObjCClassFinalize(_ref);
+    _deallocIMPOfRootClass(self, _cmd);
+}
+
+@end
+
+#pragma mark - Object wrapper lift cycle
+
+LuaObjCClassRef LuaObjCClassInitialize(struct lua_State *L,
+                                       id rawObject,
                                        NSString *className,
                                        bool isInstance)
 {
     LuaObjCClassRef obj = lua_newuserdata(L, sizeof(struct __LuaObjCClass));
+
     obj->className = [className retain];
-    obj->_luaState = L;    
+    obj->_luaState = L;
+    
     if (isInstance)
     {
         obj->_classMethods = nil;
-    }else 
+    }else
     {
         obj->_classMethods = [[NSMutableDictionary alloc] init];
     }
     obj->_objectObserver = [[LuaObjectObserver alloc] initWithClassRef: obj];
     objc_setAssociatedObject(rawObject, &__LuaObjCAssociatedObjectKey, obj->_objectObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    obj->isInstance = isInstance;        
+    obj->isInstance = isInstance;
     obj->_obj = rawObject;
     
     luaL_getmetatable(L, LUA_NSOBJECT_METATABLENAME);
     lua_setmetatable(L, -2);
-
+    
     return obj;
 }
 
 void LuaObjCClassFinalize(LuaObjCClassRef ref)
 {
-    //FunctionDebugPrint();
     if (ref)
     {
-        if ([ref->_objectObserver retainCount] > 1)
-        {
-            objc_removeAssociatedObjects(ref->_obj);
-        }
-        
-        [ref->_objectObserver dealloc];
+        ref->_objectObserver = nil;
         //why crash here?
         //
         //free(ref);
@@ -286,10 +340,11 @@ void LuaObjCClassAddClouserIDForSelector(LuaObjCClassRef ref, int clouserID, con
 {
     if (ref && selectorName)
     {
-        [ref->_classMethods setObject: [NSNumber numberWithInt: clouserID] 
+        [ref->_classMethods setObject: [NSNumber numberWithInt: clouserID]
                                forKey: [NSString stringWithUTF8String: selectorName]];
     }
 }
+
 struct lua_State* LuaObjCClassGetLuaState(LuaObjCClassRef ref)
 {
     if (ref)
@@ -301,35 +356,3 @@ struct lua_State* LuaObjCClassGetLuaState(LuaObjCClassRef ref)
 
 int LuaObjCInvalidClouserID = -1;
 
-@interface LuaObjectObserver ()
-{
-@private
-    LuaObjCClassRef _ref;
-}
-@end
-
-@implementation LuaObjectObserver
-
-- (id)initWithClassRef: (LuaObjCClassRef)ref
-{
-    if ((self = [super init]))
-    {
-        _ref = ref;
-    }
-    return self;
-}
-
-- (oneway void)release
-{
-    if (1 == [self retainCount]) 
-    {
-        [super release]; 
-        LuaObjCClassFinalize(_ref);
-        [self dealloc];
-    }else
-    {
-        [super release];    
-    }
-}
-
-@end

@@ -469,30 +469,6 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
     free(propertyName);
 }
 
-#pragma mark - add default Ivar
-
-void _luaObjC_addDefaultIvarToNewClass(Class theNewClass)
-{
-    //lua_State
-    //
-    class_addIvar(theNewClass, "luaState", sizeof(lua_State*), log2(sizeof(lua_State*)), @encode(lua_State*));
-    
-    SEL getterName = @selector(luaState);
-    SEL setterName = @selector(setLuaState:);
-    
-    class_addMethod(theNewClass, getterName, (IMP)__luaObjc_PropertyGetter, "^@:");
-    class_addMethod(theNewClass, setterName, (IMP)__luaObjc_PropertySetter, "v@:^");
-    //lua_Class
-    class_addIvar(theNewClass, "luaClass", sizeof(id), log2(sizeof(id)), @encode(id));
-    
-    getterName = @selector(luaClass);
-    setterName = @selector(setLuaClass:);
-    
-    class_addMethod(theNewClass, getterName, (IMP)__luaObjc_PropertyGetter, "^@:");
-    class_addMethod(theNewClass, setterName, (IMP)__luaObjc_PropertySetter, "v@:^");
-    
-}
-
 static Class luaObjC_getLuaClassByName(NSString *className)
 {
     LuaObjCClassRef classRef = luaObjC_getRegisteredClassByName(className);
@@ -550,6 +526,7 @@ void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic,
     }
 
 }
+
 int luaObjC_addPropertyToClass(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);

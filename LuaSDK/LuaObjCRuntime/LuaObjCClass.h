@@ -37,13 +37,11 @@ void LuaObjCClassAddClouserIDForSelector(LuaObjCClassRef ref, int clouserID, con
 
 struct lua_State* LuaObjCClassGetLuaState(LuaObjCClassRef ref);
 
-@interface LuaObjectObserver : NSObject
+//replace the -dealloc method of Root class (NSObject)
+//
+extern void luaObjC_modifyRootClass(void);
 
-- (id)initWithClassRef: (LuaObjCClassRef)ref;
-
-@end
-
-LuaObjCClassRef luaObjC_getRegisteredClassByName(NSString *className);
+extern LuaObjCClassRef luaObjC_getRegisteredClassByName(NSString *className);
 
 void luaObjC_registerClass(LuaObjCClassRef obj);
 

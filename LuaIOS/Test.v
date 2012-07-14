@@ -122,7 +122,6 @@ GL = #import("OpenGLES")
 main = function()
     
             glEnable(1);
-            
             @autoreleasepool
             {
                 local a = [[NSString alloc] initWithUTF8String: "你好"];

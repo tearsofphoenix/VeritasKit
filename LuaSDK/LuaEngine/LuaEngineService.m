@@ -70,7 +70,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 {
     LuaLibraryInformation *infoLooper = nil;
     
-    //`NS' lib
+    //`Foundation' lib
     //
     infoLooper = LuaLibraryInformationMakeC(LuaEngineObjCSupport, LUA_NSLIBNAME, luaopen_foundation, 1, nil);
     
