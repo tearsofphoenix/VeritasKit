@@ -10,121 +10,15 @@
 
 #import "LuaObjCAuxiliary.h"
 
-#import "lstate.h"
+#import "lua.h"
 
 #import "lauxlib.h"
-
-
 
 #import "LuaObjCInternal.h"
 
 #import "NSString+LuaObjCIndex.h"
 #import "NSArray+LuaObjCIndex.h"
 #import "NSDictionary+LuaObjCIndex.h"
-
-#import "Block_private.h"
-
-static struct Block_descriptor_1 * _Block_descriptor_1(struct Block_layout *aBlock)
-{
-    return aBlock->descriptor;
-}
-
-static struct Block_descriptor_2 * _Block_descriptor_2(struct Block_layout *aBlock)
-{
-    if (! (aBlock->flags & BLOCK_HAS_COPY_DISPOSE)) return NULL;
-    uint8_t *desc = (uint8_t *)aBlock->descriptor;
-    desc += sizeof(struct Block_descriptor_1);
-    return (struct Block_descriptor_2 *)desc;
-}
-
-static struct Block_descriptor_3 * _Block_descriptor_3(struct Block_layout *aBlock)
-{
-    if (! (aBlock->flags & BLOCK_HAS_SIGNATURE)) return NULL;
-    uint8_t *desc = (uint8_t *)aBlock->descriptor;
-    desc += sizeof(struct Block_descriptor_1);
-    if (aBlock->flags & BLOCK_HAS_COPY_DISPOSE) {
-        desc += sizeof(struct Block_descriptor_2);
-    }
-    return (struct Block_descriptor_3 *)desc;
-}
-
-static const char *MyBlock_dump(const void *block) {
-    struct Block_layout *closure = (struct Block_layout *)block;
-    static char buffer[512];
-    char *cp = buffer;
-    if (closure == NULL) {
-        sprintf(cp, "NULL passed to _Block_dump\n");
-        return buffer;
-    }
-    cp += sprintf(cp, "^%p (new layout) =\n", closure);
-    if (closure->isa == NULL) {
-        cp += sprintf(cp, "isa: NULL\n");
-    }
-    else if (closure->isa == _NSConcreteStackBlock) {
-        cp += sprintf(cp, "isa: stack Block\n");
-    }
-    else if (closure->isa == _NSConcreteMallocBlock) {
-        cp += sprintf(cp, "isa: malloc heap Block\n");
-    }
-    else if (closure->isa == _NSConcreteAutoBlock) {
-        cp += sprintf(cp, "isa: GC heap Block\n");
-    }
-    else if (closure->isa == _NSConcreteGlobalBlock) {
-        cp += sprintf(cp, "isa: global Block\n");
-    }
-    else if (closure->isa == _NSConcreteFinalizingBlock) {
-        cp += sprintf(cp, "isa: finalizing Block\n");
-    }
-    else {
-        cp += sprintf(cp, "isa?: %p\n", closure->isa);
-    }
-    cp += sprintf(cp, "flags:");
-    if (closure->flags & BLOCK_HAS_SIGNATURE) {
-        cp += sprintf(cp, " HASSIGNATURE");
-    }
-    if (closure->flags & BLOCK_USE_STRET) {
-        cp += sprintf(cp, " STRET");
-    }
-    if (closure->flags & BLOCK_NEEDS_FREE) {
-        cp += sprintf(cp, " FREEME");
-    }
-    if (closure->flags & BLOCK_IS_GC) {
-        cp += sprintf(cp, " ISGC");
-    }
-    if (closure->flags & BLOCK_HAS_COPY_DISPOSE) {
-        cp += sprintf(cp, " HASHELP");
-    }
-    if (closure->flags & BLOCK_HAS_CTOR) {
-        cp += sprintf(cp, " HASCTOR");
-    }
-    cp += sprintf(cp, "\nrefcount+deallocating: %u\n", closure->flags & (BLOCK_REFCOUNT_MASK|BLOCK_DEALLOCATING));
-    cp += sprintf(cp, "invoke: %p\n", closure->invoke);
-    {
-        struct Block_descriptor_1 *desc1 = _Block_descriptor_1(closure);
-        struct Block_descriptor_2 *desc2 = _Block_descriptor_2(closure);
-        struct Block_descriptor_3 *desc3 = _Block_descriptor_3(closure);
-        if (desc1) {
-            cp += sprintf(cp, "descriptor: %p\n", desc1);
-            cp += sprintf(cp, "descriptor->reserved: %lu\n", desc1->reserved);
-            cp += sprintf(cp, "descriptor->size: %lu\n", desc1->size);
-        }
-        if (desc2) {
-            cp += sprintf(cp, "descriptor->copy helper: %p\n", desc2->copy);
-            cp += sprintf(cp, "descriptor->dispose helper: %p\n", desc2->dispose);
-        }
-        if (desc3) {
-            cp += sprintf(cp, "descriptor->signature: %p '%s'\n", desc3->signature, desc3->signature);
-            cp += sprintf(cp, "descriptor->layout: %p '%s'\n", desc3->layout, desc3->layout);
-        }
-    }
-    return buffer;
-}
-
-void MyBlock_ReplaceInvokeFunction(void *block, void *newInvoke)
-{
-    struct Block_layout *closure = (struct Block_layout *)block;
-    closure->invoke = newInvoke;
-}
 
 static int luaObjC_convertTableToNSArray(lua_State *L)
 {

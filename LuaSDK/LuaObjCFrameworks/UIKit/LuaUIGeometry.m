@@ -11,6 +11,7 @@
 #import "LuaObjCInternal.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaCGGeometry.h"
+#import "LuaObjCFrameworkFunctions.h"
 
 int lua_pushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
 {
@@ -85,16 +86,6 @@ static const luaL_Reg __LuaUIOffsetAPIs [] =
     {NULL, NULL},
 };
 
-static int _luaUIGeometryGarbageCollection(lua_State *L)
-{
-    void *obj = lua_touserdata(L, 1);
-    if (obj)
-    {
-        free(obj);
-    }
-    return 0;
-}
-
 static int _luaUIEdgeInsetIndex(lua_State *L)
 {
     UIEdgeInsets *obj = luaL_checkudata(L, 1, LUA_UIEdgeInsets_METANAME);
@@ -146,7 +137,7 @@ static int _luaUIEdgeInsetNewIndex(lua_State *L)
 
 static const luaL_Reg __LuaUIEdgeInsetMetaMethods[] =
 {
-    {"__gc", _luaUIGeometryGarbageCollection},
+    {"__gc", luaObjCInternal_StructGarbageCollection},
     {"__index", _luaUIEdgeInsetIndex},
     {"__newindex", _luaUIEdgeInsetNewIndex},
     {NULL, NULL},
@@ -189,7 +180,7 @@ static int _luaUIGeometryUIOffsetNewIndex(lua_State *L)
 
 static const luaL_Reg __LuaUIOffsetMetaMethods[] =
 {
-    {"__gc", _luaUIGeometryGarbageCollection},
+    {"__gc", luaObjCInternal_StructGarbageCollection},
     {"__index", _luaUIGeometryUIOffsetIndex},
     {"__newindex", _luaUIGeometryUIOffsetNewIndex},
     {NULL, NULL},

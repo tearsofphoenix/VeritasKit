@@ -75,7 +75,6 @@
 		344433D5156805B4009D0D3A /* NSDictionary+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433D4156805B3009D0D3A /* NSDictionary+LuaObjCIndex.m */; };
 		344433D81568061D009D0D3A /* NSString+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433D71568061D009D0D3A /* NSString+LuaObjCIndex.m */; };
 		34D9A691153486E400A1E2E3 /* lpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 34D9A68F153486E400A1E2E3 /* lpeg.c */; };
-		34E682251550485000699925 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E682241550485000699925 /* Particle.png */; };
 		E10053AF1590C57800F49D98 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AA1590C57800F49D98 /* XMLDocument.m */; };
 		E10053B01590C57800F49D98 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AC1590C57800F49D98 /* XMLNode.m */; };
 		E10053B11590C57800F49D98 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AE1590C57800F49D98 /* XMLPathProcessor.m */; };
@@ -362,7 +361,6 @@
 		34A4FFA914D56C4F00180B63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		34D9A68F153486E400A1E2E3 /* lpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lpeg.c; sourceTree = "<group>"; };
 		34D9A690153486E400A1E2E3 /* lpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lpeg.h; sourceTree = "<group>"; };
-		34E682241550485000699925 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 		34E8A17414D24C82000F9EB1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		34E8A17614D24C82000F9EB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		34EC2DBC153AFA3500A2FCE2 /* LuaObjCParser.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaObjCParser.lua; sourceTree = "<group>"; };
@@ -445,8 +443,6 @@
 		E14A5FDC15B041B4006D9228 /* LuaObjCFrameworkFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCFrameworkFunctions.m; sourceTree = "<group>"; };
 		E14AA81E1593647D00BD29E2 /* LuaObjCCacheTable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LuaObjCCacheTable.c; sourceTree = "<group>"; };
 		E14AA81F1593647D00BD29E2 /* LuaObjCCacheTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCCacheTable.h; sourceTree = "<group>"; };
-		E19844BF159414A500FB051C /* Block_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block_private.h; sourceTree = "<group>"; };
-		E19844C0159414A500FB051C /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		E19BA28415AB33AD00C870CA /* libffi_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_ios.a; sourceTree = "<group>"; };
 		E1A1CFB315B0850200C410B1 /* Accelerate.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accelerate.bridgesupport; sourceTree = "<group>"; };
 		E1A1CFB415B0850200C410B1 /* Accounts.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accounts.bridgesupport; sourceTree = "<group>"; };
@@ -617,9 +613,6 @@
 		226873731521AD5D009D6279 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E19844BF159414A500FB051C /* Block_private.h */,
-				E19844C0159414A500FB051C /* Block.h */,
-				34E682241550485000699925 /* Particle.png */,
 				229D91D91527D09A009780FE /* LuaIOS-Prefix.pch */,
 				226873741521AD5D009D6279 /* LuaIOS-Info.plist */,
 				226873751521AD5D009D6279 /* InfoPlist.strings */,
@@ -1161,7 +1154,6 @@
 				226873771521AD5D009D6279 /* InfoPlist.strings in Resources */,
 				226873A71521B2B8009D6279 /* Test.v in Resources */,
 				22EC440115243E1A00598F4F /* GLES.v in Resources */,
-				34E682251550485000699925 /* Particle.png in Resources */,
 				22B645721589EF81009C7A1C /* LuaCParser.lua in Resources */,
 				22D000AA15AE63750034442D /* LICENSE in Resources */,
 				22D000AE15AE63C00034442D /* VeritasKit-LICENSE in Resources */,

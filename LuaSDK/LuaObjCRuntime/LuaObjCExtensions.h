@@ -10,5 +10,3 @@
 struct lua_State;
 
 extern int (luaopen_objc_extensions)(struct lua_State *L);
-
-void MyBlock_ReplaceInvokeFunction(void *block, void *newInvoke);

@@ -8,7 +8,7 @@
 
 #import "LuaBridgeSupport.h"
 #import "LuaBridgeSupportFileParser.h"
-#import "lstate.h"
+#import "lua.h"
 #import "LuaBridgeInfo.h"
 
 static NSMutableDictionary *__registeredFrameworks = nil;

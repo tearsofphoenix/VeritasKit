@@ -8,7 +8,7 @@
 
 #import "NSArray+LuaObjCIndex.h"
 
-#import "lstate.h"
+#import "lua.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCClass.h"
 

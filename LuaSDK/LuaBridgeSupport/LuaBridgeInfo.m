@@ -7,7 +7,7 @@
 //
 
 #import "LuaBridgeInfo.h"
-#import "lstate.h"
+#import "lua.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaBridgeFunctor.h"
 #import "LuaObjCClass.h"
