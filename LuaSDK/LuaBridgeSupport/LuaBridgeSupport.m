@@ -12,19 +12,14 @@
 #import "LuaBridgeInfo.h"
 
 static NSMutableDictionary *__registeredFrameworks = nil;
-static NSMutableArray *__registeredFrameworkNames = nil;
 
 @implementation LuaBridgeSupport
 
 + (void)load
 {
-    if (!__registeredFrameworks) 
+    if (!__registeredFrameworks)
     {
         __registeredFrameworks = [[NSMutableDictionary alloc] init];
-    }
-    if (!__registeredFrameworkNames)
-    {
-        __registeredFrameworkNames = [[NSMutableArray alloc] init];
     }
     
     [super load];
@@ -32,7 +27,7 @@ static NSMutableArray *__registeredFrameworkNames = nil;
 
 + (void)importFramework: (NSString *)frameworkName
 {
-    if ([__registeredFrameworkNames indexOfObject: frameworkName] == NSNotFound)
+    if (![__registeredFrameworks objectForKey: frameworkName])
     {
         NSString *bridgeFilePath = [[NSBundle mainBundle] pathForResource: frameworkName
                                                                    ofType: @"bridgesupport"];
@@ -43,10 +38,10 @@ static NSMutableArray *__registeredFrameworkNames = nil;
         if (error)
         {
             //NSLog(@"error: %@", error);
-        }else 
+        }else
         {
-            [__registeredFrameworks addEntriesFromDictionary: [LuaBridgeSupportFileParser parseFileContents: bridgeFileContent]];
-            [__registeredFrameworkNames addObject: frameworkName];        
+            [__registeredFrameworks setObject: [LuaBridgeSupportFileParser parseFileContents: bridgeFileContent]
+                                       forKey: frameworkName];
         }
     }
 }
@@ -54,8 +49,16 @@ static NSMutableArray *__registeredFrameworkNames = nil;
 + (void)tryToResolveName: (NSString *)name
             intoLuaState: (struct lua_State *)state
 {
-    LuaBridgeInfo *info = [__registeredFrameworks objectForKey: name];
-    [info resolveIntoLuaState: state];
+    [__registeredFrameworks enumerateKeysAndObjectsUsingBlock: (^(NSString *frameworkName, NSDictionary *framework, BOOL *stop)
+                                                                {
+                                                                    LuaBridgeInfo *info = [framework objectForKey: name];
+                                                                    if (info)
+                                                                    {
+                                                                        *stop = YES;
+                                                                        [info resolveIntoLuaState: state];
+                                                                    }
+                                                                })];
+    
 }
 
 @end

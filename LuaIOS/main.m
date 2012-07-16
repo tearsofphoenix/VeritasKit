@@ -12,26 +12,12 @@
 #import "LuaObjCClass.h"
 #import "ffi.h"
 #import <objc/runtime.h>
-
-@interface Test : NSObject
-
-@end
-
-@implementation Test
-
-- (void)dealloc
-{
-    NSLog(@"obj: }");
-    [super dealloc];
-}
-
-@end
+#import "lua.h"
 
 int main(int argc, char *argv[])
 {    
     @autoreleasepool 
     {      
-        
         NSTimeInterval start_time = [NSDate timeIntervalSinceReferenceDate];
         printf("start-time: %f\n", start_time);
         

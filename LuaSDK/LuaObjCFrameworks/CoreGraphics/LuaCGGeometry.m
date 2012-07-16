@@ -489,7 +489,7 @@ static const luaL_Reg __lua_CGSizeMetaMethods[] =
 
 int LuaOpenCGGeometry(lua_State *L)
 {
-    luaL_newlib(L, __luaCGGeometryAPIs);
+    luaObjC_loadGlobalFunctions(L, __luaCGGeometryAPIs);
     luaObjCInternal_createmeta(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
     luaObjCInternal_createmeta(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
     luaObjCInternal_createmeta(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);

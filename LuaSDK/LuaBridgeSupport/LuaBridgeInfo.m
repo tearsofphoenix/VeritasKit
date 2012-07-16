@@ -44,7 +44,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
 @synthesize name = _name;
 @synthesize info = _info;
 
-- (void)resolveIntoLuaState: (struct lua_State *)state
+- (BOOL)resolveIntoLuaState: (struct lua_State *)state
 {
     switch (_type)
     {
@@ -55,12 +55,12 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             LuaObjCClassRef classRef = LuaObjCClassInitialize(state, theClass, nil, false);
             _luaObjCCacheTableInsertObjectForKey(state, classRef, className);
             luaObjC_pushNSObject(state, theClass);
-            break;
+            return YES;
         }
         case LuaBridgeEnumType:
         {
             lua_pushinteger(state, [[_info objectForKey: @"value"] intValue]);
-            break;
+            return YES;
         }
         case LuaBridgeConstantType:
         {
@@ -69,7 +69,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             LuaObjCClassRef classRef = LuaObjCClassInitialize(state, value, nil, true);
             _luaObjCCacheTableInsertObjectForKey(state, classRef, className);
             luaObjC_pushNSObject(state, value);
-            break;
+            return YES;
         }
         case LuaBridgeFunctionType:
         {
@@ -87,11 +87,11 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             _luaObjCCacheTableInsertObjectForKey(state, functorRef, [_name UTF8String]);
             
             [encodings release];
-            break;
+            return YES;
         }
         default:
         {
-            break;
+            return NO;
         }
     }
 }

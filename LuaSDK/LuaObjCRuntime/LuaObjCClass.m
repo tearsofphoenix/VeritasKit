@@ -228,7 +228,7 @@ void luaObjC_modifyRootClass(void)
 
 - (void)_clearUp
 {
-    LuaObjCClassFinalize(_ref);
+    //LuaObjCClassFinalize(_ref);
     _deallocIMPOfRootClass(self, _cmd);
 }
 
@@ -269,7 +269,27 @@ void LuaObjCClassFinalize(LuaObjCClassRef ref)
 {
     if (ref)
     {
-        ref->_objectObserver = nil;
+        switch ([ref->_objectObserver retainCount])
+        {
+            case 1:
+            {
+                [ref->_objectObserver release];
+                ref->_objectObserver = nil;
+                break;
+            }
+            case 2:
+            {
+                //[ref->_obj release];
+                objc_removeAssociatedObjects(ref->_obj);
+                [ref->_objectObserver dealloc];
+                ref->_objectObserver = nil;
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
         //why crash here?
         //
         //free(ref);

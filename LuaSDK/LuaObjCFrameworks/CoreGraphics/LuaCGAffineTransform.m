@@ -228,7 +228,7 @@ static const luaL_Reg __luaCGAffineTransformMetaMethods[] =
 
 int LuaOpenCGAffineTransform(lua_State *L)
 {
-    luaL_newlib(L, __luaCGAffineTransformAPIs);
+    luaObjC_loadGlobalFunctions(L, __luaCGAffineTransformAPIs);
     luaObjCInternal_createmeta(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
     
     return 0;

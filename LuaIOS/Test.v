@@ -47,6 +47,7 @@ GL = #import("OpenGLES")
 - (local)init
 {
     self = [super init]
+    //glEnable(0)
     print("call super")
     return self
 }
@@ -120,7 +121,8 @@ GL = #import("OpenGLES")
 
  
 main = function()
-    
+            aRect = CGRectMake(0, 0, 1, 1);
+            
             glEnable(1);
             @autoreleasepool
             {

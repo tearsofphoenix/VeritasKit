@@ -146,7 +146,7 @@ static const luaL_Reg __luaNSRangeAPIs[] = {
 
 int LuaOpenNSRange(lua_State *L)
 {
-    luaL_newlib(L, __luaNSRangeAPIs);
+    luaObjC_loadGlobalFunctions(L, __luaNSRangeAPIs);
     luaObjCInternal_createmeta(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
     
     return 0;

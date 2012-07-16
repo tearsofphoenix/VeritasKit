@@ -29,7 +29,7 @@ extern LuaBridgeType LuaBridgeTypeFromString(NSString *aString);
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) id info;
 
-- (void)resolveIntoLuaState: (struct lua_State *)state;
+- (BOOL)resolveIntoLuaState: (struct lua_State *)state;
 
 @end
 

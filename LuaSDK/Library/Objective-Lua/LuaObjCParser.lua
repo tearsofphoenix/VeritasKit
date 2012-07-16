@@ -1,43 +1,8 @@
 --
 local g_Engine
 
--- written for LPeg .5, by the way
 local lpeg = require 'lpeg'
 local P, R, S, C, Cc, Ct = lpeg.P, lpeg.R, lpeg.S, lpeg.C, lpeg.Cc, lpeg.Ct
-
-
--- decode a two-byte UTF-8 sequence
-local function f2 (s)
-                local c1, c2 = string.byte(s, 1, 2)
-                return c1 * 64 + c2 - 12416
-            end
-
--- decode a three-byte UTF-8 sequence
-local function f3 (s)
-                local c1, c2, c3 = string.byte(s, 1, 3)
-                return (c1 * 64 + c2) * 64 + c3 - 925824
-            end
-
--- decode a four-byte UTF-8 sequence
-local function f4 (s)
-                    local c1, c2, c3, c4 = string.byte(s, 1, 4)
-                    return ((c1 * 64 + c2) * 64 + c3) * 64 + c4 - 63447168
-end
-
-local cont = R("\128\191")   -- continuation byte
-
-local single_utf8 = R("\1\38")
-			+ R("\40\127")
-            + R("\194\223") * cont / f2
-            + R("\224\239") * cont * cont / f3
-            + R("\240\244") * cont * cont * cont / f4
-
-local double_utf8 = R("\1\33")
-                    + R("\35\127")
-                    + R("\194\223") * cont / f2
-                    + R("\224\239") * cont * cont / f3
-                    + R("\240\244") * cont * cont * cont / f4
-
 
 -- create a pattern which captures the lua value [id] and the input matching
 -- [patt] in a table
@@ -93,6 +58,8 @@ local longstringpredicate = P(function(input, index)
 local longstring = #(P'[' * P'='^1 * P'[') * longstringpredicate
 
 -- strings
+local single_utf8 = ((1 - S "'\r\n\f\\") + (P '\\' * 1))
+local double_utf8 = ((1 - S '"\r\n\f\\') + (P '\\' * 1))
 local singlequoted_string = P "'" * single_utf8 ^ 0 * "'"
 local doublequoted_string = P '"' * double_utf8 ^ 0 * '"'
 local olua_singlequoted_string = P "@'" * single_utf8 ^ 0 * "'"

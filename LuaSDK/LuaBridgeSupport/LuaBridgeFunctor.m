@@ -164,7 +164,7 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
 {
     //not gc bridge functor yet
     //
-    {"__gc", LuaBridgeFunctorFinalize},
+    //{"__gc", LuaBridgeFunctorFinalize},
     {"__call", LuaBridgeFunctorInvoke},
     {NULL, NULL}
 };
@@ -395,7 +395,6 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
 
         free((void *)ref->_returnValueEncoding);
 
-        //free(ref);
     }
 }
 
