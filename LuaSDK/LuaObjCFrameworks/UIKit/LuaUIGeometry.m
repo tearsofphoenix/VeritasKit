@@ -190,7 +190,7 @@ int LuaOpenUIGeometry(lua_State *L)
 {
     luaObjC_loadGlobalFunctions(L, __LuaUIGeometryAPIs);
     luaObjCInternal_createmeta(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
-    
+
     luaObjC_loadGlobalFunctions(L, __LuaUIOffsetAPIs);
     luaObjCInternal_createmeta(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
     

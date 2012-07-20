@@ -67,7 +67,6 @@ int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char*
         }
         case '{':
         {
-            
             if (!strcmp(returnType, @encode(CGRect)))
             {
                 typedef CGRect (* _IMP_T)(id, SEL);

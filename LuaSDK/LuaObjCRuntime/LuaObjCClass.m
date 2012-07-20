@@ -134,9 +134,20 @@ static int _luaEngine_resolveName(lua_State *L)
     return 1;
 }
 
+static int _luaEngine_garbadgeCollect(lua_State *L)
+{
+    void *obj = lua_touserdata(L, 1);
+    if (obj)
+    {
+        free(obj);
+    }
+    return 0;
+}
+
 static const luaL_Reg __luaObjC_Functions[] =
 {
     {"resolveName", _luaEngine_resolveName},
+    {"garbadgeCollect", _luaEngine_garbadgeCollect},
     {NULL, NULL},
 };
 
@@ -168,8 +179,9 @@ int luaopen_objc(lua_State *L)
     
     luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
     
-    static const char* s_ResolveNameMetaTable =
-    "setmetatable(_G, { __index = ObjC.resolveName })";
+    static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName, "
+                                                "                   __gc = ObjC.garbadgeCollect,"
+                                                "                 })";
 	luaL_loadstring(L, s_ResolveNameMetaTable);
 	lua_pcall(L, 0, 0, 0);
     

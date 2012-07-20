@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
         NSString *sourceCode = [NSString stringWithContentsOfFile: sourceFilePath
                                                          encoding: NSUTF8StringEncoding
                                                             error: NULL];        
-        
         LuaCall(sourceCode, @"main", nil, 0, 1, nil);
     }
 }

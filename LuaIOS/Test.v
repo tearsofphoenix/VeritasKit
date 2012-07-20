@@ -121,8 +121,8 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            aRect = CGRectMake(0, 0, 1, 1);
-            
+            local aRect = CGRectMake(0, 0, 1, 1);
+            print(aRect.x);
             glEnable(1);
             @autoreleasepool
             {
