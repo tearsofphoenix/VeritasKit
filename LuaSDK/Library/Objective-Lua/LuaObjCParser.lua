@@ -1,4 +1,6 @@
 --
+local unpack = table.unpack
+
 local g_Engine
 
 local lpeg = require 'lpeg'
@@ -150,6 +152,12 @@ function gettokens( input)
                                             t.text = "true"
                                         elseif (t.text == "NO") then
                                             t.text = "NO"
+                                        end
+                                    end
+
+                                    if (t.type == "operator") then
+                                        if (t.text == "!=") then
+                                            t.text = "~="
                                         end
                                     end
 

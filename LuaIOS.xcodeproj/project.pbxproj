@@ -89,8 +89,6 @@
 		E1163AB515ADD732004768C9 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7615ADD732004768C9 /* lbaselib.c */; };
 		E1163AB615ADD732004768C9 /* lbitlib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7715ADD732004768C9 /* lbitlib.c */; };
 		E1163AB715ADD732004768C9 /* lbitlib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7715ADD732004768C9 /* lbitlib.c */; };
-		E1163AB815ADD732004768C9 /* lbuflib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7815ADD732004768C9 /* lbuflib.c */; };
-		E1163AB915ADD732004768C9 /* lbuflib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7815ADD732004768C9 /* lbuflib.c */; };
 		E1163ABA15ADD732004768C9 /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7915ADD732004768C9 /* lcode.c */; };
 		E1163ABB15ADD732004768C9 /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = E1163A7915ADD732004768C9 /* lcode.c */; };
 		E1163ABC15ADD732004768C9 /* lcode.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163A7A15ADD732004768C9 /* lcode.h */; };
@@ -377,7 +375,6 @@
 		E1163A7515ADD732004768C9 /* lauxlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lauxlib.h; sourceTree = "<group>"; };
 		E1163A7615ADD732004768C9 /* lbaselib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbaselib.c; sourceTree = "<group>"; };
 		E1163A7715ADD732004768C9 /* lbitlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbitlib.c; sourceTree = "<group>"; };
-		E1163A7815ADD732004768C9 /* lbuflib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbuflib.c; sourceTree = "<group>"; };
 		E1163A7915ADD732004768C9 /* lcode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lcode.c; sourceTree = "<group>"; };
 		E1163A7A15ADD732004768C9 /* lcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lcode.h; sourceTree = "<group>"; };
 		E1163A7B15ADD732004768C9 /* lcorolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lcorolib.c; sourceTree = "<group>"; };
@@ -788,7 +785,6 @@
 				E1163A7515ADD732004768C9 /* lauxlib.h */,
 				E1163A7615ADD732004768C9 /* lbaselib.c */,
 				E1163A7715ADD732004768C9 /* lbitlib.c */,
-				E1163A7815ADD732004768C9 /* lbuflib.c */,
 				E1163A7915ADD732004768C9 /* lcode.c */,
 				E1163A7A15ADD732004768C9 /* lcode.h */,
 				E1163A7B15ADD732004768C9 /* lcorolib.c */,
@@ -1259,7 +1255,6 @@
 				E1163AB115ADD732004768C9 /* lauxlib.c in Sources */,
 				E1163AB415ADD732004768C9 /* lbaselib.c in Sources */,
 				E1163AB615ADD732004768C9 /* lbitlib.c in Sources */,
-				E1163AB815ADD732004768C9 /* lbuflib.c in Sources */,
 				E1163ABA15ADD732004768C9 /* lcode.c in Sources */,
 				E1163ABD15ADD732004768C9 /* lcorolib.c in Sources */,
 				E1163ABF15ADD732004768C9 /* lctype.c in Sources */,
@@ -1333,7 +1328,6 @@
 				E1163AB215ADD732004768C9 /* lauxlib.c in Sources */,
 				E1163AB515ADD732004768C9 /* lbaselib.c in Sources */,
 				E1163AB715ADD732004768C9 /* lbitlib.c in Sources */,
-				E1163AB915ADD732004768C9 /* lbuflib.c in Sources */,
 				E1163ABB15ADD732004768C9 /* lcode.c in Sources */,
 				E1163ABE15ADD732004768C9 /* lcorolib.c in Sources */,
 				E1163AC015ADD732004768C9 /* lctype.c in Sources */,
