@@ -32,8 +32,15 @@ id luaObjC_checkNSObject(lua_State *L, int index)
         }
         case LUA_TUSERDATA:
         {
-            LuaObjCClassRef obj = luaL_checkudata(L, index, LUA_NSOBJECT_METATABLENAME);
-            return LuaObjCClassGetObject(obj);
+            void* obj = luaL_testudata(L, index, LUA_NSOBJECT_METATABLENAME);
+            if (!obj)
+            {
+                obj = luaL_testudata(L, index, Lua_Class_MetaTableName);
+                return LuaClassGetObject(obj);
+            }else
+            {
+                return LuaObjectGetObject(obj);
+            }
         }
         default:
         {
@@ -79,8 +86,8 @@ const char* luaObjC_checkString(lua_State *L, int index)
         }
         case LUA_TUSERDATA:
         {
-            LuaObjCClassRef obj = luaL_checkudata(L, index, LUA_NSOBJECT_METATABLENAME);
-            return [LuaObjCClassGetObject(obj) UTF8String];
+            LuaObjectRef obj = luaL_checkudata(L, index, LUA_NSOBJECT_METATABLENAME);
+            return [LuaObjectGetObject(obj) UTF8String];
         }
         default:
         {
@@ -93,7 +100,7 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject)
 {    
     if (nsObject)
     {
-        LuaObjCClassInitialize(L, nsObject, nil, true);        
+        LuaObjectInitialize(L, nsObject);
     }else 
     {
         lua_pushnil(L);

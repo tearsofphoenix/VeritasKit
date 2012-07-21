@@ -136,6 +136,6 @@ main = function()
             }
             
         ---[[             
-        return UIApplicationMain(0, nil, nil, NSStringFromClass(AppDelegate))
+        return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
         --]]
 	end

@@ -16,8 +16,8 @@
 
 int main(int argc, char *argv[])
 {    
-    @autoreleasepool 
-    {      
+    @autoreleasepool
+    {                
         NSTimeInterval start_time = [NSDate timeIntervalSinceReferenceDate];
         printf("start-time: %f\n", start_time);
         NSLog(@"%@", NSStringFromCGRect(CGRectMake(0, 1, 11, 12)));

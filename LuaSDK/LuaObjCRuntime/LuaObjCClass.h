@@ -1,5 +1,5 @@
 //
-//  LuaObjCClass.h
+//  LuaClass.h
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 3/29/12.
@@ -12,38 +12,51 @@ struct lua_State;
 
 extern int LuaObjCInvalidClouserID;
 
-typedef struct __LuaObjCClass *LuaObjCClassRef;
+typedef struct __LuaClass *LuaClassRef;
 
-LuaObjCClassRef LuaObjCClassInitialize(struct lua_State *L, 
+#pragma mark - Class 
+
+LuaClassRef LuaClassInitialize(struct lua_State *L,
                                        id rawObject, 
                                        NSString *className,
                                        bool isInstance);
 
-bool LuaObjCClassIsInstance(LuaObjCClassRef ref);
+NSString *LuaClassGetClassName(LuaClassRef ref);
 
-NSString *LuaObjCClassGetClassName(LuaObjCClassRef ref);
+id LuaClassGetObject(LuaClassRef ref);
 
-id LuaObjCClassGetObject(LuaObjCClassRef ref);
+void LuaClassPrint(LuaClassRef ref);
 
-void LuaObjCClassPrint(LuaObjCClassRef ref);
+int LuaClassGetClouserIDOfSelector(LuaClassRef ref, SEL selector);
 
-void LuaObjCClassFinalize(LuaObjCClassRef ref);
+void LuaClassAddClouserIDForSelector(LuaClassRef ref, int clouserID, const char* selectorName);
 
-int LuaObjCClassGetClouserIDOfSelector(LuaObjCClassRef ref, SEL selector);
+struct lua_State* LuaClassGetLuaState(LuaClassRef ref);
 
-NSUInteger LuaObjCClassGetRetainCount(LuaObjCClassRef ref);
+#pragma - Object
 
-void LuaObjCClassAddClouserIDForSelector(LuaObjCClassRef ref, int clouserID, const char* selectorName);
+typedef struct __LuaObject *LuaObjectRef;
 
-struct lua_State* LuaObjCClassGetLuaState(LuaObjCClassRef ref);
+LuaObjectRef LuaObjectInitialize(struct lua_State *L,
+                                         id rawObject);
 
-//replace the -dealloc method of Root class (NSObject)
+id LuaObjectGetObject(LuaObjectRef ref);
+
+void LuaObjectPrint(LuaObjectRef ref);
+
+void LuaObjectFinalize(LuaObjectRef ref);
+
+NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
+
+struct lua_State* LuaObjectGetLuaState(LuaClassRef ref);
+
+#pragma - replace the -dealloc method of Root class (NSObject)
 //
 extern void luaObjC_modifyRootClass(void);
 
-extern LuaObjCClassRef luaObjC_getRegisteredClassByName(NSString *className);
+extern LuaClassRef luaObjC_getRegisteredClassByName(NSString *className);
 
-void luaObjC_registerClass(LuaObjCClassRef obj);
+void luaObjC_registerClass(LuaClassRef obj);
 
 int luaObjC_description(struct lua_State *L);
 

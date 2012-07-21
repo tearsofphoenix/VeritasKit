@@ -40,8 +40,8 @@ static NSInteger __keyIndex = 0;
 
 static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
 {
-    LuaObjCClassRef obj = lua_touserdata(L, lua_upvalueindex(1));
-    NSDictionary *dict = LuaObjCClassGetObject(obj);
+    LuaClassRef obj = lua_touserdata(L, lua_upvalueindex(1));
+    NSDictionary *dict = LuaClassGetObject(obj);
     if (!__keys)
     {
         __keys = [dict allKeys];

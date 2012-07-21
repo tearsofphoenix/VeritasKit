@@ -46,10 +46,10 @@ static int luaObjC_getArgumentCountOfSelector(SEL sel)
 
 static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
-    LuaObjCClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass([obj class]));
+    LuaClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass([obj class]));
 
-    int clouserID = LuaObjCClassGetClouserIDOfSelector(classRef, sel);
-    lua_State *luaState = LuaObjCClassGetLuaState(classRef);
+    int clouserID = LuaClassGetClouserIDOfSelector(classRef, sel);
+    lua_State *luaState = LuaClassGetLuaState(classRef);
 
     if (clouserID != LuaObjCInvalidClouserID)
     {        
@@ -344,7 +344,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
 {
     int argCount = lua_gettop(L);
-    LuaObjCClassRef obj = lua_touserdata(L, 1);
+    LuaClassRef obj = lua_touserdata(L, 1);
     const char* selectorName = luaObjC_checkString(L, 2);
     const char* typeLooper = NULL;
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
@@ -365,7 +365,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         [typeEncoding appendString: _LuaObjC_getTypeEncodingOfType(typeLooper)];
     }
     
-    Class theClass = LuaObjCClassGetObject(obj);
+    Class theClass = LuaClassGetObject(obj);
     
     if (!isObjectMethod) 
     {
@@ -423,7 +423,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         }
             
     }
-    LuaObjCClassAddClouserIDForSelector(obj, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
+    LuaClassAddClouserIDForSelector(obj, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
 
     [typeEncoding release];
     
@@ -471,8 +471,8 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
 
 static Class luaObjC_getLuaClassByName(NSString *className)
 {
-    LuaObjCClassRef classRef = luaObjC_getRegisteredClassByName(className);
-    return LuaObjCClassGetObject(classRef);
+    LuaClassRef classRef = luaObjC_getRegisteredClassByName(className);
+    return LuaClassGetObject(classRef);
 }
 
 void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic, const char* ownershipName,

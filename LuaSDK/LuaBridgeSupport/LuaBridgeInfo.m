@@ -52,7 +52,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         {
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
-            LuaObjCClassRef classRef = LuaObjCClassInitialize(state, theClass, nil, false);
+            LuaClassRef classRef = LuaClassInitialize(state, theClass, nil, false);
             _luaObjCCacheTableInsertObjectForKey(state, classRef, className);
             luaObjC_pushNSObject(state, theClass);
             return YES;
@@ -66,7 +66,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         {
             const char *className = [_name UTF8String];
             id value = [_info objectForKey: @"value"];
-            LuaObjCClassRef classRef = LuaObjCClassInitialize(state, value, nil, true);
+            LuaClassRef classRef = LuaClassInitialize(state, value, nil, true);
             _luaObjCCacheTableInsertObjectForKey(state, classRef, className);
             luaObjC_pushNSObject(state, value);
             return YES;

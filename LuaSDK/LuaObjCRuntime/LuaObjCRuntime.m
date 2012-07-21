@@ -133,8 +133,8 @@ static int luaObjC_NSLog(lua_State *L)
 
 int luaObjC_description(lua_State *L)
 {
-    LuaObjCClassRef obj = lua_touserdata(L, 1);
-    NSString *description = [LuaObjCClassGetObject(obj) description];
+    LuaClassRef obj = lua_touserdata(L, 1);
+    NSString *description = [LuaClassGetObject(obj) description];
     lua_pushstring(L, [description UTF8String]);
     return 1;
 }
@@ -154,7 +154,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
         return 0;
     }    
     
-    LuaObjCClassRef registeredClassRef = luaObjC_getRegisteredClassByName(internalClassName);
+    LuaClassRef registeredClassRef = luaObjC_getRegisteredClassByName(internalClassName);
     //has registered, put it into state
     //
     if (registeredClassRef)
@@ -166,7 +166,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0); 
         //add ivar to the new class
-        LuaObjCClassRef obj = LuaObjCClassInitialize(L, theNewClass, internalClassName, false);
+        LuaClassRef obj = LuaClassInitialize(L, theNewClass, internalClassName, false);
         
         luaObjC_registerClass(obj);
         
@@ -194,11 +194,11 @@ static int luaObjC_getProtocol(lua_State *L)
 
 static int luaObjC_retainBeforeReturnFromAutoreleasePool(lua_State *L)
 {
-    LuaObjCClassRef classRef = luaL_testudata(L, 1, LUA_NSOBJECT_METATABLENAME);
+    LuaClassRef classRef = luaL_testudata(L, 1, LUA_NSOBJECT_METATABLENAME);
     if (classRef)
     {
         //is NSObject instance
-        CFRetain(LuaObjCClassGetObject(classRef));
+        CFRetain(LuaClassGetObject(classRef));
     }
     return 1;
 }
@@ -338,11 +338,11 @@ static int luaObjC_createBlockObject(lua_State *L)
 static int luaObjC_registerClassPair(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);
-    LuaObjCClassRef classRef = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
+    LuaClassRef classRef = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
     
     if (classRef)
     {
-        objc_registerClassPair(LuaObjCClassGetObject(classRef));
+        objc_registerClassPair(LuaClassGetObject(classRef));
     }
     
     return 0;
@@ -397,14 +397,14 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
 
 static int luaObjC_garbadgeCollection(lua_State *L)
 {
-    LuaObjCClassRef objRef = lua_touserdata(L, 1);
+    LuaObjectRef objRef = lua_touserdata(L, 1);
     lua_Debug ar;
     lua_getstack(L, 1, &ar);
     const char * name = lua_getlocal(L, &ar, 1);
     //stackDump(L);
 
-    printf("[GC]name: %s count: %d\n", name, LuaObjCClassGetRetainCount(objRef));
-    LuaObjCClassFinalize(objRef);
+    printf("[GC]name: %s count: %d\n", name, LuaObjectGetRetainCount(objRef));
+    LuaObjectFinalize(objRef);
     //free(objRef);
 
     return 0;
