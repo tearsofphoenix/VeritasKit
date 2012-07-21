@@ -2,7 +2,7 @@
 //  main.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 3/27/12.
+//  Created by tearsofphoenix on 3/27/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

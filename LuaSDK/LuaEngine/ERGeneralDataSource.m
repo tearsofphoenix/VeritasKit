@@ -2,7 +2,7 @@
 //  ERGeneralDataSource.m
 //  ERGeneralPhaseII
 //
-//  Created by E-Reach Administrator on 5/21/12.
+//  Created by tearsofphoenix on 5/21/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

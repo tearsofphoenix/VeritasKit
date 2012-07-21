@@ -2,13 +2,13 @@
 //  LuaObjCAccelerator.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 3/30/12.
+//  Created by tearsofphoenix on 3/30/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "LuaObjCAccelerator.h"
 
-#import "LuaOBjCStructs.h"
+#import "LuaObjCStructs.h"
 
 #import "LuaObjCClass.h"
 
