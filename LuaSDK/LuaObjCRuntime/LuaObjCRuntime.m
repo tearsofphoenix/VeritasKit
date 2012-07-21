@@ -44,7 +44,7 @@ static int luaObjC_NSLog(lua_State *L)
 {    
     const char* charLooper = luaObjC_checkString(L, 1);
     NSMutableString *logString = [NSMutableString string];
-    NSUInteger iLooper = 2;
+    int iLooper = 2;
     while (charLooper && *charLooper)
     {
         switch (*charLooper)
@@ -68,7 +68,7 @@ static int luaObjC_NSLog(lua_State *L)
                     case 'i':
                     case 'u':
                     {
-                        NSUInteger value = lua_tointeger(L, iLooper);
+                        lua_Integer value = lua_tointeger(L, iLooper);
                         [logString appendFormat: @"%d", value];
                         ++iLooper;
                         break;

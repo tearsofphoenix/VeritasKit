@@ -14,7 +14,7 @@
 
 @property (nonatomic, retain) NSString *libaName;
 @property (nonatomic) lua_CFunction loadFunction;
-@property (nonatomic) NSInteger numberOfUpvalues;
+@property (nonatomic) int numberOfUpvalues;
 @property (nonatomic, retain) NSArray *dependentLibNames;
 @property (nonatomic, retain) NSString *featureID;
 
@@ -26,13 +26,13 @@
 extern LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
                                                          NSString *libName,
                                                          lua_CFunction loadFunction,
-                                                         NSInteger numberOfUpvalues,
+                                                         int numberOfUpvalues,
                                                          NSArray *dependentLibNames);
 
 extern LuaLibraryInformation * LuaLibraryInformationMakeC(NSString *fetureID,
                                                           const char *libName,
                                                           lua_CFunction loadFunction,
-                                                          NSInteger numberOfUpvalues,
+                                                          int numberOfUpvalues,
                                                           NSArray *dependentLibNames);
 
 extern void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs, 

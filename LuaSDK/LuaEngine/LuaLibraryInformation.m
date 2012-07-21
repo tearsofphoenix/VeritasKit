@@ -47,7 +47,7 @@
  LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
                                       NSString *libName,
                                       lua_CFunction loadFunction,
-                                      NSInteger numberOfUpvalues,
+                                      int numberOfUpvalues,
                                       NSArray *dependentLibNames)
 {
     LuaLibraryInformation *ret = [[LuaLibraryInformation alloc] init];
@@ -63,7 +63,7 @@
  LuaLibraryInformation * LuaLibraryInformationMakeC(NSString *fetureID,
                                        const char *libName,
                                        lua_CFunction loadFunction,
-                                       NSInteger numberOfUpvalues,
+                                       int numberOfUpvalues,
                                        NSArray *dependentLibNames)
 {
     return LuaLibraryInformationMake(fetureID,

@@ -7,7 +7,13 @@
 //
 
 #import "LuaBridgeFunctor.h"
+
+#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
 #import "ffi.h"
+#else
+#import <ffi.h>
+#endif
+
 #import "lua.h"
 #import "lauxlib.h"
 #import "LuaBridgeInfo.h"
@@ -113,7 +119,7 @@ struct LuaBridgeFuncotr
     ffi_type *_returnType;
     const char *_returnValueEncoding;
     void *_returnValue;
-    NSUInteger _returnCount;
+    int _returnCount;
     
     ffi_cif _cif;
     
@@ -184,7 +190,7 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
 {
     if (returnValue)
     {
-        NSUInteger argumentCount = [argumentTypeEncodings count];
+        uint argumentCount = (uint)[argumentTypeEncodings count];
         returnValue->_argumentCount = argumentCount;
         if (argumentCount > 0)
         {
@@ -419,7 +425,7 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
         }
         case 'i':
         {
-            *(int*)arguments[iLooper] = lua_tointeger(L, index);
+            *(int*)arguments[iLooper] = (int)lua_tointeger(L, index);
             break;
         }
         case 's':
@@ -444,7 +450,7 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
         }
         case 'I':
         {
-            *(unsigned int*)arguments[iLooper] = lua_tointeger(L, index);
+            *(unsigned int*)arguments[iLooper] = (unsigned int)lua_tointeger(L, index);
             break;
         }
         case 'S':

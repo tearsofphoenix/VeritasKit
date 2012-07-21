@@ -22,7 +22,6 @@
 		22350721159C380400D2CCF3 /* LuaObjCAccelerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2235071E159C380300D2CCF3 /* LuaObjCAccelerator.m */; };
 		22350722159C380400D2CCF3 /* LuaObjCInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 22350720159C380300D2CCF3 /* LuaObjCInternal.m */; };
 		22350742159C622A00D2CCF3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FF8C14D5508800180B63 /* OpenGLES.framework */; };
-		2240CCE815AAA35C00997375 /* libffi_OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240CCCB15AAA35C00997375 /* libffi_OSX.a */; };
 		2246849C15441F2B005A7E70 /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = 34EC2DBC153AFA3500A2FCE2 /* LuaObjCParser.lua */; };
 		224A3685152D8C7D00722A8D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224A3683152D8C7D00722A8D /* AddressBookUI.framework */; };
 		224A3973152D973300722A8D /* ObjectiveLua.v in Resources */ = {isa = PBXBuildFile; fileRef = 222B4C3F1530604F006FB7BF /* ObjectiveLua.v */; };
@@ -44,12 +43,6 @@
 		22A06023159BF3D200391F52 /* LuaObjCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A06022159BF3D200391F52 /* LuaObjCExtensions.m */; };
 		22A06026159BF84D00391F52 /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A06025159BF84D00391F52 /* LuaObjCAuxiliary.m */; };
 		22B645721589EF81009C7A1C /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = 22B645711589EF81009C7A1C /* LuaCParser.lua */; };
-		22BC376315AD0AE000F9A067 /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC375D15AD0AE000F9A067 /* ffi.h */; };
-		22BC376415AD0AE000F9A067 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC375E15AD0AE000F9A067 /* ffi_i386.h */; };
-		22BC376515AD0AE000F9A067 /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC375F15AD0AE000F9A067 /* ffi_x86_64.h */; };
-		22BC376615AD0AE000F9A067 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC376015AD0AE000F9A067 /* ffitarget.h */; };
-		22BC376715AD0AE000F9A067 /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC376115AD0AE000F9A067 /* ffitarget_i386.h */; };
-		22BC376815AD0AE000F9A067 /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BC376215AD0AE000F9A067 /* ffitarget_x86_64.h */; };
 		22D000AA15AE63750034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000A915AE63750034442D /* LICENSE */; };
 		22D000AB15AE63750034442D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000A915AE63750034442D /* LICENSE */; };
 		22D000AE15AE63C00034442D /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 22D000AD15AE63C00034442D /* VeritasKit-LICENSE */; };
@@ -170,6 +163,13 @@
 		E1163B0C15ADD732004768C9 /* lzio.h in Headers */ = {isa = PBXBuildFile; fileRef = E1163AAD15ADD732004768C9 /* lzio.h */; };
 		E124EE1C15903D3A00C889E1 /* LuaNSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E124EE1B15903D3A00C889E1 /* LuaNSCollection.m */; };
 		E12B2D1D15BA5F8D00065FD9 /* LuaObjCStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = E12B2D1C15BA5F8C00065FD9 /* LuaObjCStructs.h */; };
+		E12B2D2515BA60D500065FD9 /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = E12B2D1F15BA60D500065FD9 /* ffi.h */; };
+		E12B2D2615BA60D500065FD9 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = E12B2D2015BA60D500065FD9 /* ffi_i386.h */; };
+		E12B2D2715BA60D500065FD9 /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = E12B2D2115BA60D500065FD9 /* ffi_x86_64.h */; };
+		E12B2D2815BA60D500065FD9 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = E12B2D2215BA60D500065FD9 /* ffitarget.h */; };
+		E12B2D2915BA60D500065FD9 /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = E12B2D2315BA60D500065FD9 /* ffitarget_i386.h */; };
+		E12B2D2A15BA60D500065FD9 /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = E12B2D2415BA60D500065FD9 /* ffitarget_x86_64.h */; };
+		E12B2D2C15BA616A00065FD9 /* libffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E12B2D2B15BA616600065FD9 /* libffi.dylib */; };
 		E14907D31595BBA50088A170 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14907D21595BBA50088A170 /* Cocoa.framework */; };
 		E14907D51595BBC60088A170 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E14907D41595BBC60088A170 /* libxml2.dylib */; };
 		E14907D61595BBDC0088A170 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E10053AA1590C57800F49D98 /* XMLDocument.m */; };
@@ -300,12 +300,6 @@
 		22A06024159BF84C00391F52 /* LuaObjCAuxiliary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCAuxiliary.h; sourceTree = "<group>"; };
 		22A06025159BF84D00391F52 /* LuaObjCAuxiliary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCAuxiliary.m; sourceTree = "<group>"; };
 		22B645711589EF81009C7A1C /* LuaCParser.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LuaCParser.lua; sourceTree = "<group>"; };
-		22BC375D15AD0AE000F9A067 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
-		22BC375E15AD0AE000F9A067 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
-		22BC375F15AD0AE000F9A067 /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
-		22BC376015AD0AE000F9A067 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
-		22BC376115AD0AE000F9A067 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
-		22BC376215AD0AE000F9A067 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
 		22BC376A15AD0B7600F9A067 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
 		22BC376B15AD0B7600F9A067 /* ffi_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_armv7.h; sourceTree = "<group>"; };
 		22BC376C15AD0B7600F9A067 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
@@ -429,6 +423,13 @@
 		E124EE1A15903D3A00C889E1 /* LuaNSCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaNSCollection.h; sourceTree = "<group>"; };
 		E124EE1B15903D3A00C889E1 /* LuaNSCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaNSCollection.m; sourceTree = "<group>"; };
 		E12B2D1C15BA5F8C00065FD9 /* LuaObjCStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCStructs.h; sourceTree = "<group>"; };
+		E12B2D1F15BA60D500065FD9 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		E12B2D2015BA60D500065FD9 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		E12B2D2115BA60D500065FD9 /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
+		E12B2D2215BA60D500065FD9 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		E12B2D2315BA60D500065FD9 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		E12B2D2415BA60D500065FD9 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
+		E12B2D2B15BA616600065FD9 /* libffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libffi.dylib; sourceTree = DEVELOPER_DIR; };
 		E14907BD1595BB8B0088A170 /* LuaEngineCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LuaEngineCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14907C61595BB8B0088A170 /* LuaEngineCocoa-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LuaEngineCocoa-Info.plist"; sourceTree = "<group>"; };
 		E14907C81595BB8B0088A170 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -517,10 +518,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E12B2D2C15BA616A00065FD9 /* libffi.dylib in Frameworks */,
 				E14908141595BEDC0088A170 /* QuartzCore.framework in Frameworks */,
 				E14907D51595BBC60088A170 /* libxml2.dylib in Frameworks */,
 				E14907D31595BBA50088A170 /* Cocoa.framework in Frameworks */,
-				2240CCE815AAA35C00997375 /* libffi_OSX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +567,7 @@
 		2240CCC215AAA35C00997375 /* MacOSX */ = {
 			isa = PBXGroup;
 			children = (
-				22BC375C15AD0AE000F9A067 /* include */,
+				E12B2D1E15BA60D500065FD9 /* include */,
 				2240CCCB15AAA35C00997375 /* libffi_OSX.a */,
 			);
 			path = MacOSX;
@@ -646,19 +647,6 @@
 			);
 			name = LuaObjCRuntime;
 			path = LuaSDK/LuaObjCRuntime;
-			sourceTree = "<group>";
-		};
-		22BC375C15AD0AE000F9A067 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				22BC375D15AD0AE000F9A067 /* ffi.h */,
-				22BC375E15AD0AE000F9A067 /* ffi_i386.h */,
-				22BC375F15AD0AE000F9A067 /* ffi_x86_64.h */,
-				22BC376015AD0AE000F9A067 /* ffitarget.h */,
-				22BC376115AD0AE000F9A067 /* ffitarget_i386.h */,
-				22BC376215AD0AE000F9A067 /* ffitarget_x86_64.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		22BC376915AD0B7600F9A067 /* include */ = {
@@ -942,10 +930,35 @@
 			path = XML;
 			sourceTree = "<group>";
 		};
+		E12B2D1E15BA60D500065FD9 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E12B2D1F15BA60D500065FD9 /* ffi.h */,
+				E12B2D2015BA60D500065FD9 /* ffi_i386.h */,
+				E12B2D2115BA60D500065FD9 /* ffi_x86_64.h */,
+				E12B2D2215BA60D500065FD9 /* ffitarget.h */,
+				E12B2D2315BA60D500065FD9 /* ffitarget_i386.h */,
+				E12B2D2415BA60D500065FD9 /* ffitarget_x86_64.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		E12B2D2D15BA617D00065FD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E12B2D2B15BA616600065FD9 /* libffi.dylib */,
+				E14908131595BEDC0088A170 /* QuartzCore.framework */,
+				E14907D41595BBC60088A170 /* libxml2.dylib */,
+				E14907D21595BBA50088A170 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E14907C41595BB8B0088A170 /* LuaEngineCocoa */ = {
 			isa = PBXGroup;
 			children = (
 				E14907CB1595BB8B0088A170 /* LuaEngineCocoa.h */,
+				E12B2D2D15BA617D00065FD9 /* Frameworks */,
 				E14907C51595BB8B0088A170 /* Supporting Files */,
 			);
 			path = LuaEngineCocoa;
@@ -954,9 +967,6 @@
 		E14907C51595BB8B0088A170 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E14908131595BEDC0088A170 /* QuartzCore.framework */,
-				E14907D41595BBC60088A170 /* libxml2.dylib */,
-				E14907D21595BBA50088A170 /* Cocoa.framework */,
 				E14907C61595BB8B0088A170 /* LuaEngineCocoa-Info.plist */,
 				E14907C71595BB8B0088A170 /* InfoPlist.strings */,
 				E14907CA1595BB8B0088A170 /* LuaEngineCocoa-Prefix.pch */,
@@ -1033,12 +1043,6 @@
 				E1BC55B31595C5FF002255ED /* ERGeneralDataSource.h in Headers */,
 				E1BC55B51595C786002255ED /* LuaEngineCocoa.h in Headers */,
 				E14908441595C0940088A170 /* LuaEngineService.h in Headers */,
-				22BC376315AD0AE000F9A067 /* ffi.h in Headers */,
-				22BC376415AD0AE000F9A067 /* ffi_i386.h in Headers */,
-				22BC376515AD0AE000F9A067 /* ffi_x86_64.h in Headers */,
-				22BC376615AD0AE000F9A067 /* ffitarget.h in Headers */,
-				22BC376715AD0AE000F9A067 /* ffitarget_i386.h in Headers */,
-				22BC376815AD0AE000F9A067 /* ffitarget_x86_64.h in Headers */,
 				E1163AB015ADD732004768C9 /* lapi.h in Headers */,
 				E1163AB315ADD732004768C9 /* lauxlib.h in Headers */,
 				E1163ABC15ADD732004768C9 /* lcode.h in Headers */,
@@ -1072,6 +1076,12 @@
 				E14A5FDD15B041B4006D9228 /* LuaObjCFrameworkFunctions.h in Headers */,
 				E1B2622115B199D3005D085C /* LuaObjCProfile.h in Headers */,
 				E12B2D1D15BA5F8D00065FD9 /* LuaObjCStructs.h in Headers */,
+				E12B2D2515BA60D500065FD9 /* ffi.h in Headers */,
+				E12B2D2615BA60D500065FD9 /* ffi_i386.h in Headers */,
+				E12B2D2715BA60D500065FD9 /* ffi_x86_64.h in Headers */,
+				E12B2D2815BA60D500065FD9 /* ffitarget.h in Headers */,
+				E12B2D2915BA60D500065FD9 /* ffitarget_i386.h in Headers */,
+				E12B2D2A15BA60D500065FD9 /* ffitarget_x86_64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1502,8 +1512,6 @@
 				INFOPLIST_FILE = "LuaEngineCocoa/LuaEngineCocoa-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
 					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/MacOSX\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -1537,8 +1545,6 @@
 				INFOPLIST_FILE = "LuaEngineCocoa/LuaEngineCocoa-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/iphoneos\"",
-					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/iOS/simulator\"",
 					"\"$(SRCROOT)/LuaSDK/Library/libffi-3.0.11/MacOSX\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;

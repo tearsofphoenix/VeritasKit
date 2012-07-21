@@ -64,7 +64,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         //
         lua_rawgeti(luaState, LUA_REGISTRYINDEX, clouserID);
         
-        NSUInteger numberOfArgument = luaObjC_getArgumentCountOfSelector(sel);
+        int numberOfArgument = luaObjC_getArgumentCountOfSelector(sel);
         
         const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([obj class], sel));
         
@@ -201,7 +201,7 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
         case LuaClassIMPFunction:
         {
             NSInteger ret = 0;
-            NSInteger returnIndexOfLuaFunction = -1;
+            int returnIndexOfLuaFunction = -1;
             switch (lua_type(L, returnIndexOfLuaFunction)) 
             {
                 case LUA_TNIL:
@@ -452,7 +452,7 @@ static id __luaObjc_PropertyGetter(id obj, SEL selector)
 static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
 {
     const char *selectorString = (const char*)selector;
-    int length = strlen(selectorString) - strlen("set") - strlen(":");
+    size_t length = strlen(selectorString) - strlen("set") - strlen(":");
     char *propertyName = malloc(sizeof(char) * (length + 1));
     propertyName[length] = 0;
     strncpy(propertyName, selectorString + strlen("set"), length);

@@ -313,12 +313,12 @@ static void LuaEngine_initialize(LuaEngineService *self,
 - (void)executeFunctionName: (NSString *)functionName
                inSourceCode: (NSString *) sourceCode
           argumentPassBlock: (ERGeneralCallbackBlock)block
-              argumentCount: (NSInteger)argumentCount
-                returnCount: (NSInteger)returnCount 
+              argumentCount: (int)argumentCount
+                returnCount: (int)returnCount
                  completion: (ERGeneralCallbackBlock)completion
 {    
     LuaStateRef luaStateRef = _internal->luaState;
-    int status;
+    lua_Integer status;
     
     if (sourceCode)
     {
@@ -477,7 +477,8 @@ NSString * const LuaEngineLoadClassList = @"com.verits.LuaEngineService.loadClas
 void LuaCall(NSString *sourceCode,
              NSString *functionName,
              ERGeneralCallbackBlock block, 
-             NSInteger argumentCount, NSInteger returnCount,
+             int argumentCount,
+             int returnCount,
              ERGeneralCallbackBlock completion)
 {
     [(LuaEngineService *)[ERGeneralDataSource serviceByID: LuaEngineServiceID] executeFunctionName: functionName

@@ -93,7 +93,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         [invokation setSelector: selector];
         
         
-        for (NSUInteger iLooper = 2; iLooper < numberOfArguments; ++iLooper)
+        for (int iLooper = 2; iLooper < numberOfArguments; ++iLooper)
         {
             const char* argType = [methodSignature getArgumentTypeAtIndex: iLooper];
             argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
@@ -111,7 +111,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case 'Q':
                 case 'B':
                 {
-                    int integerPara = luaObjC_checkInteger(L,  iLooper + 1);
+                    lua_Integer integerPara = luaObjC_checkInteger(L,  iLooper + 1);
                     [invokation setArgument: &integerPara
                                     atIndex: iLooper];
                     break;

@@ -33,7 +33,7 @@ static int luaObjC_convertTableToNSArray(lua_State *L)
         }
         case LUA_TTABLE:
         {
-            int n = lua_rawlen(L, 1);                                
+            lua_Integer n = lua_rawlen(L, 1);
             NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity: n];
             
             for (int i=0; i<n; ++i)
@@ -70,7 +70,7 @@ static int  luaObjC_convertTableToNSDictionary(lua_State *L)
         }
         case LUA_TTABLE:
         {
-            int n = lua_rawlen(L, 1);                                
+            lua_Integer n = lua_rawlen(L, 1);
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity: n];
             id keyLooper = nil;
             id valueLooper = nil;
@@ -108,7 +108,7 @@ static int luaObjC_convertNSObjectToTable(lua_State *L)
     
     if ([obj isKindOfClass: [NSArray class]])
     {
-        NSUInteger size = [obj count];
+        int size = (int)[obj count];
         lua_createtable(L, size, 0);
         
         for (int i = 0; i < size; ++i)
@@ -120,7 +120,7 @@ static int luaObjC_convertNSObjectToTable(lua_State *L)
         return 1;
     }else if([obj isKindOfClass: [NSDictionary class]])
     {
-        NSUInteger count = [obj count];
+        int count = (int)[obj count];
         lua_createtable(L, 0, count);
         id valueLooper = nil;
         for (id keyLooper in obj)

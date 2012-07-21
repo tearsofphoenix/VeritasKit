@@ -335,7 +335,7 @@ id LuaObjCClassGetObject(LuaObjCClassRef ref)
     return nil;
 }
 
-int LuaObjCClassGetRetainCount(LuaObjCClassRef ref)
+NSUInteger LuaObjCClassGetRetainCount(LuaObjCClassRef ref)
 {
     if (ref)
     {

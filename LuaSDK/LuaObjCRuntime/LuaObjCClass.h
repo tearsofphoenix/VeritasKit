@@ -31,7 +31,7 @@ void LuaObjCClassFinalize(LuaObjCClassRef ref);
 
 int LuaObjCClassGetClouserIDOfSelector(LuaObjCClassRef ref, SEL selector);
 
-int LuaObjCClassGetRetainCount(LuaObjCClassRef ref);
+NSUInteger LuaObjCClassGetRetainCount(LuaObjCClassRef ref);
 
 void LuaObjCClassAddClouserIDForSelector(LuaObjCClassRef ref, int clouserID, const char* selectorName);
 

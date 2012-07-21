@@ -59,5 +59,6 @@ extern NSString * const LuaEngineServiceID;
 extern void LuaCall(NSString *sourceCode,
                     NSString *functionName,
                     ERGeneralCallbackBlock block, 
-                    NSInteger argumentCount, NSInteger returnCount,
+                    int argumentCount,
+                    int returnCount,
                     ERGeneralCallbackBlock completion);
