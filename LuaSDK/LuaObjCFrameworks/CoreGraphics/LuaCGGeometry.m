@@ -9,6 +9,7 @@
 #import "lua.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
+#import "LuaObjCFrameworkFunctions.h"
 
 int lua_pushCGPoint(lua_State *L, CGPoint p)
 {
@@ -72,7 +73,7 @@ static int lua_CGRectMake(lua_State *L)
 
 
 /* Return the leftmost x-value of `rect'. */
-int lua_CGRectIndex(lua_State *L)
+static int lua_CGRectIndex(lua_State *L)
 {
     CGRect *r = lua_touserdata(L, 1);
     const char *fieldName = lua_tostring(L, 2);
@@ -84,11 +85,14 @@ int lua_CGRectIndex(lua_State *L)
     {
         lua_pushCGSize(L, r->size);
         return 1;
+    }else
+    {
+        luaL_error(L, "Unknow field: %s of datatype (CGRect)", fieldName);
     }
     return 0;
 }
 
-int lua_CGRectNewIndex(lua_State *L)
+static int lua_CGRectNewIndex(lua_State *L)
 {
     CGRect *r = lua_touserdata(L, 1);
     const char *fieldName = lua_tostring(L, 2);
@@ -103,7 +107,14 @@ int lua_CGRectNewIndex(lua_State *L)
     return 0;
 }
 
-int lua_CGPointIndex(lua_State *L)
+static int lua_CGRectToString(lua_State *L)
+{
+    CGRect *r = lua_touserdata(L, 1);
+    lua_pushstring(L, [NSStringFromCGRect(*r) UTF8String]);
+    return 1;
+}
+
+static int lua_CGPointIndex(lua_State *L)
 {
     CGPoint *p = lua_touserdata(L, 1);
     const char *fieldName = lua_tostring(L, 2);
@@ -119,7 +130,14 @@ int lua_CGPointIndex(lua_State *L)
     return 0;
 }
 
-int lua_CGPointNewIndex(lua_State *L)
+static int lua_CGPointToString(lua_State *L)
+{
+    CGPoint *p = lua_touserdata(L, 1);
+    lua_pushstring(L, [NSStringFromCGPoint(*p) UTF8String]);
+    return 1;
+}
+
+static int lua_CGPointNewIndex(lua_State *L)
 {
     CGPoint *p = lua_touserdata(L, 1);
     const char *fieldName = lua_tostring(L, 2);
@@ -134,7 +152,7 @@ int lua_CGPointNewIndex(lua_State *L)
     return 0;
 }
 
-int lua_CGSizeIndex(lua_State *L)
+static int lua_CGSizeIndex(lua_State *L)
 {
     CGSize *s = lua_touserdata(L, 1);
     const char *fieldName = lua_tostring(L, 2);
@@ -150,7 +168,7 @@ int lua_CGSizeIndex(lua_State *L)
     return 0;
 }
 
-int lua_CGSizeNewIndex(lua_State *L)
+static int lua_CGSizeNewIndex(lua_State *L)
 {
     CGSize *s = lua_touserdata(L, 1);
     const char *fieldName = lua_tostring(L, 2);
@@ -163,6 +181,13 @@ int lua_CGSizeNewIndex(lua_State *L)
         s->height = lua_tonumber(L, 3);
     }
     return 0;
+}
+
+static int lua_CGSizeToString(lua_State *L)
+{
+    CGSize *s = lua_touserdata(L, 1);
+    lua_pushstring(L, [NSStringFromCGSize(*s) UTF8String]);
+    return 1;
 }
 
 static int lua_CGRectGetMinX(lua_State *L)
@@ -469,9 +494,43 @@ static const luaL_Reg __luaCGRectAPIs[] =
     {NULL, NULL},
 };
 
+static const luaL_Reg __lua_CGRectMetaMethods[] =
+{
+    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__index", lua_CGRectIndex},
+    {"__newindex", lua_CGRectNewIndex},
+    {"__tostring", lua_CGRectToString},
+    {NULL, NULL},
+};
+
+static const luaL_Reg __lua_CGPointMetaMethods[] =
+{
+    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__index", lua_CGPointIndex},
+    {"__newindex", lua_CGPointNewIndex},
+    {"__tostring", lua_CGPointToString},
+    {NULL, NULL},
+};
+
+
+static const luaL_Reg __lua_CGSizeMetaMethods[] =
+{
+    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__index", lua_CGSizeIndex},
+    {"__newindex", lua_CGSizeNewIndex},
+    {"__tostring", lua_CGSizeToString},
+    {NULL, NULL},
+};
+
 
 int LuaOpenCGGeometry(lua_State *L)
 {
+    luaObjCInternal_createmeta(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
+
+    luaObjCInternal_createmeta(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
+
+    luaObjCInternal_createmeta(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
+
     luaObjC_loadGlobalFunctions(L, __luaCGPointAPIs);
     
     luaObjC_loadGlobalFunctions(L, __luaCGSizeAPIs);

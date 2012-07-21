@@ -121,8 +121,8 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            local aRect = CGRectMake(0, 0, 1, 1);
-            //print(aRect.x);
+            local aRect = CGRectMake(0, 0, 10, 12);
+            print(aRect.origin);
             if aRect != 1 then
                 print("ok")
             end
