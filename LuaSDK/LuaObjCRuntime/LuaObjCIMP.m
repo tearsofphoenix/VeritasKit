@@ -67,7 +67,6 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         const char* selectorName = sel_getName(sel);
         lua_pushstring(luaState, selectorName);
         
-        //stackDump(luaState);
         //push real arguments
         //
         for (NSUInteger iLooper = 0; iLooper < numberOfArgument; ++iLooper)

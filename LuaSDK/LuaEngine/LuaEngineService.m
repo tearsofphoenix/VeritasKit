@@ -332,7 +332,6 @@ static void LuaEngine_initialize(LuaEngineService *self,
         const char* functionNameString = [functionName UTF8String];
         lua_getglobal(luaStateRef, functionNameString);
         
-        //stackDump(luaStateRef);
         //check if is a function
         //    
         if(!lua_isfunction(luaStateRef, -1))
