@@ -33,4 +33,6 @@ extern size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding);
 
 extern void luaObjCInternal_createmeta(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
 
+extern NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector);
+
 #endif

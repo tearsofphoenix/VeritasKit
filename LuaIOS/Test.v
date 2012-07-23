@@ -44,11 +44,15 @@ GL = #import("OpenGLES")
     return "hello"
 }
 
+- (void)voidArgument
+{
+    print("void argument")
+}
+
 - (id)init
 {
     self = [super init]
-    //glEnable(0)
-    print("call super")
+    [self voidArgument]
     return self
 }
 

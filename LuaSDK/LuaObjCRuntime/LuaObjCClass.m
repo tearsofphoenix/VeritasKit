@@ -294,7 +294,11 @@ int LuaClassGetClouserIDOfSelector(LuaClassRef ref, SEL selector)
 {
     if (ref && selector)
     {
-        return [[ref->_classMethods objectForKey: NSStringFromSelector(selector)] intValue];
+        NSNumber *closurID = [ref->_classMethods objectForKey: NSStringFromSelector(selector)];
+        if (closurID)
+        {
+            return [closurID intValue];
+        }
     }
     
     return LuaObjCInvalidClouserID;

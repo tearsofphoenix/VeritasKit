@@ -34,8 +34,6 @@
 
 #import "LuaNSRange.h"
 
-#import "LuaObjCLangExtensions.h"
-
 #import "LuaBridgeSupport.h"
 
 #import "LuaBridgeFunctor.h"

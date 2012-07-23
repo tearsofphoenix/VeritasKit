@@ -46,7 +46,31 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         lua_pushnil(L);
         return 0;
     }
+#if 0
+    //is implemented by objective-lua ?
+    LuaClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass([obj class]));
     
+    int closurID = LuaClassGetClouserIDOfSelector(classRef, selector);
+    if (closurID != LuaObjCInvalidClouserID)
+    {
+        lua_rawgeti(L, LUA_REGISTRYINDEX, closurID);
+        int count = luaObjCInternal_getArgumentOfSelector(selector) + 1 + 1; //include the 'self' and '_cmd' argument
+        lua_insert(L, 1);
+
+        if(lua_pcall(L, count, 1, 0) != LUA_OK)
+        {
+            lua_error(L);
+        }
+        
+        stackDump(L);
+
+        //set return value on top of stack
+        //
+        lua_settop(L, 1);
+        return 1;
+    }
+    
+#endif
     //deside IMP
     //
     IMP impRef = (IMP)luaObjC_getAcceleratorIMPBySelector(selector);

@@ -87,12 +87,12 @@ void objc_dumpClass(Class theClass)
 
 void stackDump (lua_State *L) 
 {
-    int i=lua_gettop(L);
+    int nargs = lua_gettop(L);
     printf(" ----------------  Stack Dump ----------------\n" );
     
     int t = 0;
-    BOOL stop = NO;
-    do
+
+    for (int i = 1; i <= nargs; ++i)
     {
         t = lua_type(L, i);
         switch (t) 
@@ -115,7 +115,6 @@ void stackDump (lua_State *L)
             case LUA_TNIL:
             {
                 printf("%d: nil\n",  i);
-                stop = YES;
                 break;
             }
             default:
@@ -124,8 +123,7 @@ void stackDump (lua_State *L)
                 break;
             }
         }
-        --i;
-    } while(i >= -20 && !stop);
+    }
     
     
     printf("--------------- Stack Dump Finished ---------------\n" );
@@ -354,4 +352,22 @@ void luaObjCInternal_createmeta(lua_State *L, const char *name, const luaL_Reg m
     lua_setfield(L, -2, "__index");  /* metatable.__index = metatable */
     luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
     lua_pop(L, 1);  /* pop new metatable */
+}
+
+NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector)
+{
+    const char* charLooper = (const char*)selector;
+    NSUInteger count = 0;
+    
+    while (*charLooper)
+    {
+        if (*charLooper == ':')
+        {
+            ++count;
+        }
+        
+        ++charLooper;
+    }
+    
+    return count;
 }

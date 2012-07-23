@@ -27,23 +27,6 @@ typedef enum
     LuaClassIMPUnknown,
 }LuaClassIMPType;
 
-static int luaObjC_getArgumentCountOfSelector(SEL sel)
-{
-    const char *str = [NSStringFromSelector(sel) cStringUsingEncoding: NSUTF8StringEncoding];
-    int count = 0;
-    while (str && *str) 
-    {
-        if (*str == ':')
-        {
-            ++count;
-        }
-        
-        ++str;
-    }
-    
-    return count;
-}
-
 static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
     LuaClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass([obj class]));
@@ -60,11 +43,13 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
             *returnedLuaState = luaState;
         }
         
+        //lua_settop(luaState, 0);
+
         //push lua function into stack
         //
         lua_rawgeti(luaState, LUA_REGISTRYINDEX, clouserID);
         
-        int numberOfArgument = luaObjC_getArgumentCountOfSelector(sel);
+        int numberOfArgument = luaObjCInternal_getArgumentOfSelector(sel);
         
         const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([obj class], sel));
         
@@ -72,10 +57,17 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         //
         const char* typeLooper = methodTypeEncoding + 1 + 1;
         
+        
         //push 'self' argument first
         //
         luaObjC_pushNSObject(luaState, obj);
+
+        //push '_cmd' argument next
+        //
+        const char* selectorName = sel_getName(sel);
+        lua_pushstring(luaState, selectorName);
         
+        //stackDump(luaState);
         //push real arguments
         //
         for (NSUInteger iLooper = 0; iLooper < numberOfArgument; ++iLooper)
@@ -154,9 +146,9 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
             }
         }
                 
-        //why +1 ? we have an implicit 'self' argument for method
+        //why +1 +1 ? we have an implicit 'self' argument and '_cmd' arguemnt for method
         //
-        int status = lua_pcall(luaState, numberOfArgument + 1, 1, 0);
+        int status = lua_pcall(luaState, numberOfArgument + 1 + 1, 1, 0);
         if (status != LUA_OK)
         {
             luaObjC_throwExceptionIfError(luaState);

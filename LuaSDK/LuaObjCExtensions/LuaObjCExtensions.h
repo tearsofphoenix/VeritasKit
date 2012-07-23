@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "LuaObjCIndexing.h"
 
 struct lua_State;
 
