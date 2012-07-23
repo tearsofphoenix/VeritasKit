@@ -13,6 +13,7 @@
 #import "LuaCGGeometry.h"
 #import "LuaObjCAuxiliary.h"
 #import "lua.h"
+#import "lauxlib.h"
 #import "ffi.h"
 #import "LuaBridgeFunctor.h"
 #import "NSMethodSignature+argumentsEncodings.h"
@@ -46,55 +47,56 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         lua_pushnil(L);
         return 0;
     }
-#if 0
+    
     //is implemented by objective-lua ?
-    Class targetClass = nil;
-    if (isToSelfClass)
+    lua_Debug ar;
+    lua_getstack(L, 1, &ar);
+    int index = 2;
+    const char *name = lua_getlocal(L, &ar, index);
+    if (name && !strcmp(name, "_cmd"))
     {
-        targetClass = [obj class];
-    }else
-    {
-        targetClass = [obj superclass];
-    }
-    
-    LuaClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass(targetClass));
-    
-    int closurID = LuaClassGetClouserIDOfSelector(classRef, selector);
-    if (closurID != LuaObjCInvalidClouserID)
-    {
-        //clear all others
-        //lua_settop(L, 0);
-        //luaObjC_pack(L);
-        stackDump(L);
-        lua_rawgeti(L, LUA_REGISTRYINDEX, closurID);
-        stackDump(L);
-
-        lua_replace(L, 0);
-        //luaObjC_unpack(L);
-        stackDump(L);
-        
-//        luaObjC_pushNSObject(L, obj);
-//        lua_pushstring(L, selectorName);
-        
-        int count = luaObjCInternal_getArgumentOfSelector(selector) + 1 + 1; //include the 'self' and '_cmd' argument
-        //lua_replace(L, -1);
-        //lua_insert(L, 0);
-        printf("SEL: %s\n", selectorName);
-        stackDump(L);
-        if(lua_pcall(L, count, 1, 0) != LUA_OK)
+        lua_pushstring(L, selectorName);
+        if(!lua_rawequal(L, -1, -2))
         {
-            lua_error(L);
-        }
-        
-        stackDump(L);
+            Class targetClass = nil;
+            if (isToSelfClass)
+            {
+                targetClass = [obj class];
+            }else
+            {
+                targetClass = [obj superclass];
+            }
+            
+            LuaClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass(targetClass));
+            
+            int closurID = LuaClassGetClouserIDOfSelector(classRef, selector);
+            if (closurID != LuaObjCInvalidClouserID)
+            {
+                lua_rawgeti(L, LUA_REGISTRYINDEX, closurID);
+                //lua_settop(L, -1);
+                lua_replace(L, -1);
 
-        //set return value on top of stack
-        //
-        lua_settop(L, 1);
-        return 1;
+                int count = luaObjCInternal_getArgumentOfSelector(selector) + 1 + 1; //include the 'self' and '_cmd' argument
+                //lua_replace(L, -1);
+                //lua_insert(L, 0);
+                printf("SEL: %s\n", selectorName);
+                //stackDump(L);
+                int status = lua_pcall(L, count, 1, 0);
+                if(status != LUA_OK)
+                {
+                    lua_error(L);
+                }
+                
+                //stackDump(L);
+                
+                //set return value on top of stack
+                //
+                //lua_settop(L, 1);
+                return 1;
+            }
+        }
     }
     
-#endif
     //deside IMP
     //
     IMP impRef = (IMP)luaObjC_getAcceleratorIMPBySelector(selector);

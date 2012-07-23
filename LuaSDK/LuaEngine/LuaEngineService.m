@@ -402,7 +402,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
         //parse source code to lua code
         //
         const char* parsedString = [self parseString: sourceCode];
-        //printf("string: %s\n", parsedString);
+        printf("string: %s\n", parsedString);
         //load source code
         //
         
