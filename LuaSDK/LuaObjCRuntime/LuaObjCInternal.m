@@ -87,15 +87,15 @@ void objc_dumpClass(Class theClass)
 
 void stackDump (lua_State *L) 
 {
-    int i=lua_gettop(L);
+    int nargs = lua_gettop(L);
     printf(" ----------------  Stack Dump ----------------\n" );
     
     int t = 0;
-    BOOL stop = NO;
-    do
+
+    for (int i = 1; i < nargs + 1; ++i)
     {
         t = lua_type(L, i);
-        switch (t) 
+        switch (t)
         {
             case LUA_TSTRING:
             {
@@ -115,7 +115,6 @@ void stackDump (lua_State *L)
             case LUA_TNIL:
             {
                 printf("%d: nil\n",  i);
-                stop = YES;
                 break;
             }
             default:
@@ -124,9 +123,7 @@ void stackDump (lua_State *L)
                 break;
             }
         }
-        --i;
-    } while(i >= -20 && !stop);
-    
+    }
     
     printf("--------------- Stack Dump Finished ---------------\n" );
 }

@@ -23,12 +23,14 @@
 #import "LuaObjCCacheTable.h"
 #import "LuaBridgeSupport.h"
 
+#define LuaObject_CommeonHeader      id _obj;\
+struct lua_State *_luaState;
+
 @class LuaObjectObserver;
 
 struct __LuaClass
 {
-    id _obj;
-    struct lua_State *_luaState;
+    LuaObject_CommeonHeader
     NSString *className;
     NSMutableDictionary *_classMethods;
 };
@@ -96,15 +98,20 @@ NSString * _LuaObjC_getTypeEncodingOfType(const char *typeName)
     return _LuaObjC_getTypeEncoding([NSString stringWithUTF8String: typeName]);
 }
 
-void luaObjC_registerClass(LuaClassRef obj)
+void luaObjC_registerClass(Class theClass, NSString *className, Class superClass)
 {
-    [__LuaObjC_ClassDictionary setObject: [NSValue valueWithPointer: obj]
-                                  forKey: obj->className];
+    LuaClassInfo *classInfo = [[LuaClassInfo alloc] initWithClass: theClass
+                                                        className: className
+                                                       superClass: superClass];
+    
+    [__LuaObjC_ClassDictionary setObject: classInfo
+                                  forKey: className];
+    [classInfo release];
 }
 
-LuaClassRef luaObjC_getRegisteredClassByName(NSString *className)
+LuaClassInfo *luaObjC_getRegisteredClassByName(NSString *className)
 {
-    return [[__LuaObjC_ClassDictionary objectForKey: className] pointerValue];
+    return [__LuaObjC_ClassDictionary objectForKey: className];
 }
 
 static int _luaEngine_resolveName(lua_State *L)
@@ -118,8 +125,8 @@ static int _luaEngine_resolveName(lua_State *L)
         Class theClass = objc_getClass(name);
         if (theClass)
         {
-            LuaClassRef classRef = LuaClassInitialize(L, theClass, nil, false);
-            _luaObjCCacheTableInsertObjectForKey(L, classRef, name);
+            LuaObjectRef objRef = LuaObjectInitialize(L, theClass);
+            _luaObjCCacheTableInsertObjectForKey(L, objRef, name);
             luaObjC_pushNSObject(L, theClass);
         }else
         {
@@ -145,7 +152,7 @@ static int _luaObjC_openIndexSupport(lua_State *L)
 }
 
 int luaopen_objc(lua_State *L)
-{
+{    
     if (!__LuaObjC_ClassDictionary)
     {
         __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
@@ -167,13 +174,109 @@ int luaopen_objc(lua_State *L)
     luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
     
     static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName, "
-                                                "                 })";
+    "                 })";
 	luaL_loadstring(L, s_ResolveNameMetaTable);
 	lua_pcall(L, 0, 0, 0);
     
     return 1;
     
 }
+
+@interface LuaClassInfo ()
+{
+@private
+    NSMutableDictionary *_classMethods;
+    NSMutableDictionary *_instanceMethods;
+    Class _luaClass;
+    Class _superLuaClass;
+    NSString *_luaClassName;
+}
+@end
+
+@implementation LuaClassInfo
+
+static void LuaClassInfo_addMethod(NSMutableDictionary *dict,
+                                   int closureID,
+                                   const char* selectorName)
+{
+    [dict setObject: [NSNumber numberWithInt: closureID]
+             forKey: [NSString stringWithUTF8String: selectorName]];
+
+}
+
+static int LuaClassInfo_methodIDForSelector(NSDictionary *dict, SEL selector)
+{
+    NSNumber *closureID = [dict objectForKey: NSStringFromSelector(selector)];
+    if (closureID)
+    {
+        return [closureID intValue];
+    }
+    return LuaObjCInvalidClouserID;
+}
+
+- (id)init
+{
+    [self doesNotRecognizeSelector: _cmd];
+    return nil;
+}
+
+- (id)initWithClass: (Class)luaClass
+          className: (NSString *)className
+         superClass: (Class)superClass
+{
+    if ((self = [super init]))
+    {
+        _classMethods = [[NSMutableDictionary alloc] init];
+        _instanceMethods = [[NSMutableDictionary alloc] init];
+        _luaClass = luaClass;
+        _luaClassName = [className retain];
+        _superLuaClass = superClass;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_classMethods release];
+    [_instanceMethods release];
+    [_luaClassName release];
+    
+    [super dealloc];
+}
+
+- (Class)luaClass
+{
+    return _luaClass;
+}
+
+- (Class)superLuaClass
+{
+    return _superLuaClass;
+}
+
+- (void)addClassMethod: (int)closureID
+       forSelectorName: (const char*)selectorName
+{
+    LuaClassInfo_addMethod(_classMethods, closureID, selectorName);
+}
+
+- (int)classMethodForSelector: (SEL)selector
+{
+    return LuaClassInfo_methodIDForSelector(_classMethods, selector);
+}
+
+- (void)addInstanceMethod: (int)closureID
+          forSelectorName: (const char*)selectorName
+{
+    LuaClassInfo_addMethod(_instanceMethods, closureID, selectorName);
+}
+
+- (int)instanceMethodForSelector: (SEL)selector
+{
+    return LuaClassInfo_methodIDForSelector(_instanceMethods, selector);
+}
+
+@end
 
 #pragma mark - Object observer
 
@@ -232,98 +335,11 @@ void luaObjC_modifyRootClass(void)
 
 #pragma mark - Object wrapper lift cycle
 
-LuaClassRef LuaClassInitialize(struct lua_State *L,
-                                       id rawObject,
-                                       NSString *className,
-                                       bool isInstance)
-{
-    LuaClassRef obj = lua_newuserdata(L, sizeof(struct __LuaClass));
-
-    obj->className = [className retain];
-    obj->_luaState = L;
-    
-    if (isInstance)
-    {
-        obj->_classMethods = nil;
-    }else
-    {
-        obj->_classMethods = [[NSMutableDictionary alloc] init];
-    }
-
-    obj->_obj = rawObject;
-    
-    luaL_getmetatable(L, Lua_Class_MetaTableName);
-    lua_setmetatable(L, -2);
-    
-    return obj;
-}
-
-NSString *LuaClassGetClassName(LuaClassRef ref)
-{
-    if (ref)
-    {
-        return ref->className;
-    }
-    return nil;
-}
-
-id LuaClassGetObject(LuaClassRef ref)
-{
-    if (ref)
-    {
-        return ref->_obj;
-    }
-    return nil;
-}
-
-void LuaClassPrint(LuaClassRef ref)
-{
-    if (ref)
-    {
-#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-        NSLog(@"Class: %@ instance: %p retainCount: %d",
-              [ref->_obj class], ref->_obj, [ref->_obj retainCount]);
-#else
-        NSLog(@"Class: %@ instance: %p retainCount: %lu",
-              [ref->_obj class], ref->_obj, [ref->_obj retainCount]);
-#endif
-    }
-}
-
-int LuaClassGetClouserIDOfSelector(LuaClassRef ref, SEL selector)
-{
-    if (ref && selector)
-    {
-        return [[ref->_classMethods objectForKey: NSStringFromSelector(selector)] intValue];
-    }
-    
-    return LuaObjCInvalidClouserID;
-}
-
-void LuaClassAddClouserIDForSelector(LuaClassRef ref, int clouserID, const char* selectorName)
-{
-    if (ref && selectorName)
-    {
-        [ref->_classMethods setObject: [NSNumber numberWithInt: clouserID]
-                               forKey: [NSString stringWithUTF8String: selectorName]];
-    }
-}
-
-struct lua_State* LuaClassGetLuaState(LuaClassRef ref)
-{
-    if (ref)
-    {
-        return ref->_luaState;
-    }
-    return NULL;
-}
-
 int LuaObjCInvalidClouserID = -1;
 
 struct __LuaObject
 {
-    id _obj;
-    struct lua_State *_luaState;
+    LuaObject_CommeonHeader
     LuaObjectObserver *_objectObserver;
 };
 
@@ -333,10 +349,13 @@ LuaObjectRef LuaObjectInitialize(struct lua_State *L,
     LuaObjectRef objRef = lua_newuserdata(L, sizeof(struct __LuaObject));
     
     objRef->_luaState = L;
-    
-    objRef->_objectObserver = [[LuaObjectObserver alloc] initWithObjectRef: objRef];
-    objc_setAssociatedObject(rawObject, &__LuaObjCAssociatedObjectKey, objRef->_objectObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objRef->_obj = rawObject;
+    
+    if ([rawObject class] != rawObject)
+    {
+        objRef->_objectObserver = [[LuaObjectObserver alloc] initWithObjectRef: objRef];
+        objc_setAssociatedObject(rawObject, &__LuaObjCAssociatedObjectKey, objRef->_objectObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
     
     luaL_getmetatable(L, LUA_NSOBJECT_METATABLENAME);
     lua_setmetatable(L, -2);
@@ -395,10 +414,10 @@ NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref)
     {
         return [ref->_objectObserver retainCount];
     }
-    return 0;   
+    return 0;
 }
 
-struct lua_State* LuaObjectGetLuaState(LuaClassRef ref)
+struct lua_State* LuaObjectGetLuaState(LuaObjectRef ref)
 {
     if (ref)
     {
@@ -407,3 +426,16 @@ struct lua_State* LuaObjectGetLuaState(LuaClassRef ref)
     return NULL;
 }
 
+int LuaObjectGetClouserIDOfSelector(id object, SEL selector)
+{
+    if (object && selector)
+    {
+ 
+    }
+    return LuaObjCInvalidClouserID;
+}
+
+void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName)
+{
+
+}

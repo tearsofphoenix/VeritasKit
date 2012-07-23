@@ -44,21 +44,14 @@ static int luaObjC_getArgumentCountOfSelector(SEL sel)
     return count;
 }
 
-static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
+static LuaClassIMPType __luaClass_IMP_preprocess(lua_State *luaState, id obj, SEL sel, va_list ap)
 {
-    LuaClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass([obj class]));
-
-    int clouserID = LuaClassGetClouserIDOfSelector(classRef, sel);
-    lua_State *luaState = LuaClassGetLuaState(classRef);
+    int clouserID = LuaObjectGetClouserIDOfSelector(obj, sel);
 
     if (clouserID != LuaObjCInvalidClouserID)
     {        
         //preprare arguments
         //        
-        if (returnedLuaState)
-        {
-            *returnedLuaState = luaState;
-        }
         
         //push lua function into stack
         //
@@ -188,7 +181,7 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
@@ -246,7 +239,7 @@ static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
@@ -280,7 +273,7 @@ static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, .
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
@@ -312,7 +305,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
@@ -344,7 +337,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
 {
     int argCount = lua_gettop(L);
-    LuaClassRef obj = lua_touserdata(L, 1);
+    LuaObjectRef obj = lua_touserdata(L, 1);
     const char* selectorName = luaObjC_checkString(L, 2);
     const char* typeLooper = NULL;
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
@@ -365,7 +358,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         [typeEncoding appendString: _LuaObjC_getTypeEncodingOfType(typeLooper)];
     }
     
-    Class theClass = LuaClassGetObject(obj);
+    Class theClass = LuaObjectGetObject(obj);
     
     if (!isObjectMethod) 
     {
@@ -423,7 +416,8 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         }
             
     }
-    LuaClassAddClouserIDForSelector(obj, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
+    
+    LuaClassAddClouserIDForSelector(LuaObjectGetObject(obj), luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
 
     [typeEncoding release];
     
@@ -469,12 +463,6 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
     free(propertyName);
 }
 
-static Class luaObjC_getLuaClassByName(NSString *className)
-{
-    LuaClassRef classRef = luaObjC_getRegisteredClassByName(className);
-    return LuaClassGetObject(classRef);
-}
-
 void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic, const char* ownershipName,
                                       const char* getterName, const char* setterName, const char* typeName,
                                       const char* propertyName)
@@ -501,7 +489,8 @@ void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic,
     objc_property_attribute_t backingivar  = {"V", propertyName};
     objc_property_attribute_t attrs[] = {atomicAttribute, type, ownership, backingivar};
     
-    Class theClass = luaObjC_getLuaClassByName([NSString stringWithUTF8String: className]);
+    LuaClassInfo *classInfo = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
+    Class theClass = [classInfo luaClass];
     
     if(!class_addIvar(theClass, propertyName, sizeof(id), log2(sizeof(id)), @encode(id)))
     {

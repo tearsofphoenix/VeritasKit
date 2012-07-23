@@ -10,7 +10,6 @@
 #define LuaIOS_LuaObjCInternal_h
 
 #define LUA_NSOBJECT_METATABLENAME "NSObject"    
-#define Lua_Class_MetaTableName "Class"
 
 struct lua_State;
 struct luaL_Reg;

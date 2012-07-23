@@ -121,12 +121,12 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            local aRect = CGRectMake(0, 0, 10, 12);
-            print(aRect.origin);
-            if aRect != 1 then
-                print("ok")
+            local foo = function(...)
+                print(...)
             end
-            glEnable(1);
+            
+            foo(1, 'a', nil);
+            
             @autoreleasepool
             {
                 local a = [[NSString alloc] initWithUTF8String: "你好"];

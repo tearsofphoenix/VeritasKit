@@ -20,8 +20,9 @@
 #import <objc/message.h>
 
 static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
-{    
-    LuaClassRef anObj = lua_touserdata(L, 1);   
+{
+    //stackDump(L);
+    LuaObjectRef anObj = lua_touserdata(L, 1);
     //optimize for nil object call
     //
     if (!anObj)
@@ -37,7 +38,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     //deside object
     //
     
-    id obj = LuaClassGetObject(anObj);
+    id obj = LuaObjectGetObject(anObj);
     
     //optimize for nil object call
     //
@@ -46,7 +47,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         lua_pushnil(L);
         return 0;
     }
-    
+
     //deside IMP
     //
     IMP impRef = (IMP)luaObjC_getAcceleratorIMPBySelector(selector);

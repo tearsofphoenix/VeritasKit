@@ -33,14 +33,8 @@ id luaObjC_checkNSObject(lua_State *L, int index)
         case LUA_TUSERDATA:
         {
             void* obj = luaL_testudata(L, index, LUA_NSOBJECT_METATABLENAME);
-            if (!obj)
-            {
-                obj = luaL_testudata(L, index, Lua_Class_MetaTableName);
-                return LuaClassGetObject(obj);
-            }else
-            {
-                return LuaObjectGetObject(obj);
-            }
+
+            return LuaObjectGetObject(obj);
         }
         default:
         {

@@ -41,7 +41,7 @@
 #import "LuaBridgeFunctor.h"
 
 static int luaObjC_NSLog(lua_State *L)
-{    
+{
     const char* charLooper = luaObjC_checkString(L, 1);
     NSMutableString *logString = [NSMutableString string];
     int iLooper = 2;
@@ -125,7 +125,7 @@ static int luaObjC_NSLog(lua_State *L)
         }
         ++charLooper;
     }
-
+    
     NSLog(@"%@", logString);
     
     return 0;
@@ -133,8 +133,8 @@ static int luaObjC_NSLog(lua_State *L)
 
 int luaObjC_description(lua_State *L)
 {
-    LuaClassRef obj = lua_touserdata(L, 1);
-    NSString *description = [LuaClassGetObject(obj) description];
+    LuaObjectRef obj = lua_touserdata(L, 1);
+    NSString *description = [LuaObjectGetObject(obj) description];
     lua_pushstring(L, [description UTF8String]);
     return 1;
 }
@@ -145,30 +145,31 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     const char *superClassName = lua_tostring(L, 2);
     
     NSString *internalClassName = [NSString stringWithUTF8String: newClassName];
-    
+        
+    //super Class must be registered in runtime
+    //
     Class superClass = objc_getClass(superClassName);
     
-    if (!superClass) 
+    if (!superClass)
     {
-        printf("Error: Unkown superclass:%s\n", superClassName);        
+        printf("Error: Unkown superclass:%s\n", superClassName);
         return 0;
-    }    
+    }
     
-    LuaClassRef registeredClassRef = luaObjC_getRegisteredClassByName(internalClassName);
+    LuaClassInfo *classInfo = luaObjC_getRegisteredClassByName(internalClassName);
     //has registered, put it into state
     //
-    if (registeredClassRef)
+    if (classInfo)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        lua_pushlightuserdata(L, registeredClassRef);
+        luaObjC_pushNSObject(L, [classInfo luaClass]);
         
     }else
     {
-        Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0); 
+        Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         //add ivar to the new class
-        LuaClassRef obj = LuaClassInitialize(L, theNewClass, internalClassName, false);
         
-        luaObjC_registerClass(obj);
+        luaObjC_registerClass(theNewClass, internalClassName, superClass);
         
     }
     return 1;
@@ -194,11 +195,11 @@ static int luaObjC_getProtocol(lua_State *L)
 
 static int luaObjC_retainBeforeReturnFromAutoreleasePool(lua_State *L)
 {
-    LuaClassRef classRef = luaL_testudata(L, 1, LUA_NSOBJECT_METATABLENAME);
+    LuaObjectRef classRef = luaL_testudata(L, 1, LUA_NSOBJECT_METATABLENAME);
     if (classRef)
     {
         //is NSObject instance
-        CFRetain(LuaClassGetObject(classRef));
+        CFRetain(LuaObjectGetObject(classRef));
     }
     return 1;
 }
@@ -217,7 +218,7 @@ typedef enum
 
 static LuaObjCValueType luaObjCGetTypeOfTypeName(const char* typeName)
 {
-    if (strchr(typeName, '*')) 
+    if (strchr(typeName, '*'))
     {
         return LuaObjCPointerType;
     }
@@ -244,17 +245,17 @@ static int luaObjC_createBlockObject(lua_State *L)
     const char** argumentTypes = NULL;
     
     if (argumentTypesCount > 0)
-    {        
+    {
         argumentTypes = malloc(argumentTypesCount * sizeof(char*));
         
-        for (int iLooper = 0; iLooper < argumentTypesCount; ++iLooper) 
+        for (int iLooper = 0; iLooper < argumentTypesCount; ++iLooper)
         {
             argumentTypes[iLooper] = lua_tostring(L, iLooper + 1);
         }
         
     }
     void (^block)(id selfObject, ...) = ^(id selfObject, ...)
-    {    
+    {
         lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);
         
         if (argumentTypesCount > 0)
@@ -338,12 +339,9 @@ static int luaObjC_createBlockObject(lua_State *L)
 static int luaObjC_registerClassPair(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);
-    LuaClassRef classRef = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
+    LuaClassInfo *classInfo = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
     
-    if (classRef)
-    {
-        objc_registerClassPair(LuaClassGetObject(classRef));
-    }
+    objc_registerClassPair([classInfo luaClass]);
     
     return 0;
 }
@@ -351,7 +349,7 @@ static int luaObjC_registerClassPair(lua_State *L)
 static int luaObjC_classPredeclearation(lua_State *L)
 {
     int argCount = lua_gettop(L);
-
+    
     for (int iLooper = 1; iLooper < argCount + 1; ++iLooper)
     {
         _luaObjC_registerClassPredeclearation([NSString stringWithUTF8String: lua_tostring(L, iLooper)]);
@@ -373,7 +371,7 @@ static int luaObjC_import_file(lua_State *L)
     return 1;
 }
 
-static const luaL_Reg luaObjC_runtimeFunctions[] = 
+static const luaL_Reg luaObjC_runtimeFunctions[] =
 {
     //base feature
     //
@@ -388,7 +386,7 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"objc_msgSend", luaObjC_objc_messageSend},
     
     {"objc_import_file", luaObjC_import_file},
-
+    
     {"objc_retainBeforeReturnFromAutoreleasePool", luaObjC_retainBeforeReturnFromAutoreleasePool},
     {"objc_createBlockObject", luaObjC_createBlockObject},
     {"objc_classPredeclearation", luaObjC_classPredeclearation},
@@ -402,11 +400,11 @@ static int luaObjC_garbadgeCollection(lua_State *L)
     lua_getstack(L, 1, &ar);
     const char * name = lua_getlocal(L, &ar, 1);
     //stackDump(L);
-
-    printf("[GC]name: %s count: %d\n", name, LuaObjectGetRetainCount(objRef));
-    LuaObjectFinalize(objRef);
+    
+    //printf("[GC]name: %s count: %d\n", name, LuaObjectGetRetainCount(objRef));
+    //LuaObjectFinalize(objRef);
     //free(objRef);
-
+    
     return 0;
 }
 
@@ -417,7 +415,7 @@ static int luaObjC_isEqual(lua_State *L)
     lua_pushboolean(L, [obj1 isEqual: obj2]);
     return 1;
 }
-   
+
 static int luaObjC_indexCollection(lua_State *L)
 {
     id obj = luaObjC_checkNSObject(L, 1);
@@ -495,8 +493,8 @@ static int luaObjC_callBlockObject(lua_State *L)
                 {
                     lua_pushnil(L);
                     break;
-                }   
-                case LUA_TBOOLEAN:		
+                }
+                case LUA_TBOOLEAN:
                 {
                     lua_pushboolean(L, lua_toboolean(L, iLooper));
                     break;
@@ -532,7 +530,7 @@ static int luaObjC_callBlockObject(lua_State *L)
                 case LUA_TTHREAD:
                 {
                     //TODO
-                    break;                    
+                    break;
                 }
                 default:
                 {
@@ -540,13 +538,13 @@ static int luaObjC_callBlockObject(lua_State *L)
                 }
             }
         }
-
+        
         if(lua_pcall(L, argCount - 1, returnCount, 0) != LUA_OK)
         {
             luaObjC_throwExceptionIfError(L);
         }
         
-    }else 
+    }else
     {
         NSException *exception = [NSException exceptionWithName: @"LuaObjCBlockException"
                                                          reason: @"Expect block object!"
@@ -556,7 +554,7 @@ static int luaObjC_callBlockObject(lua_State *L)
     return returnCount;
 }
 
-static const luaL_Reg LuaNS_ObjectMethods[] = 
+static const luaL_Reg LuaNS_ObjectMethods[] =
 {
     {"__gc", luaObjC_garbadgeCollection},
     {"__tostring", luaObjC_description},
@@ -573,10 +571,10 @@ static const luaL_Reg LuaNS_ObjectMethods[] =
 };
 
 
-static const luaL_Reg luaNS_functions[] = 
+static const luaL_Reg luaNS_functions[] =
 {
     {"NSLog", luaObjC_NSLog},
-    {NULL, NULL}  
+    {NULL, NULL}
 };
 
 
@@ -585,7 +583,7 @@ void luaObjC_setThisPointerInCurrentContextOfClass(lua_State *L, id thisObj)
     if (thisObj)
     {
         luaObjC_pushNSObject(L, thisObj);
-    }else 
+    }else
     {
         lua_pushnil(L);
     }
@@ -605,8 +603,8 @@ int luaopen_foundation(lua_State *L)
     luaopen_objc_profile(L);
     luaObjCInternal_openBridgeFunctor(L);
     
-    luaL_newlib(L, luaNS_functions);  
-
+    luaL_newlib(L, luaNS_functions);
+    
     luaObjCInternal_createmeta(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
     
     LuaOpenFoundation(L);
