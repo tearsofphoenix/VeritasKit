@@ -579,20 +579,6 @@ static const luaL_Reg luaNS_functions[] =
     {NULL, NULL}  
 };
 
-
-void luaObjC_setThisPointerInCurrentContextOfClass(lua_State *L, id thisObj)
-{
-    if (thisObj)
-    {
-        luaObjC_pushNSObject(L, thisObj);
-    }else 
-    {
-        lua_pushnil(L);
-    }
-    
-    lua_setglobal(L, "self");
-}
-
 int luaopen_foundation(lua_State *L)
 {
     luaObjC_modifyRootClass();

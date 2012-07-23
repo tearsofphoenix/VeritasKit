@@ -23,7 +23,7 @@ GL = #import("OpenGLES")
     return 5
 }
 
-- (local)tableView: (local)tableView cellForRowAtIndexPath: (local)indexPath
+- (id)tableView: (id)tableView cellForRowAtIndexPath: (id)indexPath
 {
     cell = [[UITableViewCell alloc] init]
     [[cell textLabel] setText: "Veritas"]
@@ -38,13 +38,13 @@ GL = #import("OpenGLES")
 
 @property (nonatomic, retain) UIWindow window
 
-+ (local)name
++ (id)name
 {
     print("call name")
     return "hello"
 }
 
-- (local)init
+- (id)init
 {
     self = [super init]
     //glEnable(0)
@@ -52,7 +52,7 @@ GL = #import("OpenGLES")
     return self
 }
 
-- (void)handleTapEvent: (local)sender
+- (void)handleTapEvent: (id)sender
 {
     print("handle event")
     print("start", os.clock())
@@ -70,7 +70,7 @@ GL = #import("OpenGLES")
    --return nil
 }
 
-- (BOOL)application: (local)application didFinishLaunchingWithOptions: (local)launchOptions
+- (BOOL)application: (id)application didFinishLaunchingWithOptions: (id)launchOptions
 {
     bounds = [[UIScreen mainScreen] bounds]
     

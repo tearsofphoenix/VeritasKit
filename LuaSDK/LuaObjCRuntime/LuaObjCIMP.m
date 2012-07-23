@@ -72,7 +72,11 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         //
         const char* typeLooper = methodTypeEncoding + 1 + 1;
         
-        //push arguments
+        //push 'self' argument first
+        //
+        luaObjC_pushNSObject(luaState, obj);
+        
+        //push real arguments
         //
         for (NSUInteger iLooper = 0; iLooper < numberOfArgument; ++iLooper)
         {
@@ -149,21 +153,15 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
                 }
             }
         }
-        
-        //preprare `self' for lua function call
+                
+        //why +1 ? we have an implicit 'self' argument for method
         //
-        luaObjC_setThisPointerInCurrentContextOfClass(luaState, obj);
-        
-        int status = lua_pcall(luaState, numberOfArgument, 1, 0);
+        int status = lua_pcall(luaState, numberOfArgument + 1, 1, 0);
         if (status != LUA_OK)
         {
             luaObjC_throwExceptionIfError(luaState);
         }
-        
-        //set `self' to `nil' after the lua function call
-        //
-        luaObjC_setThisPointerInCurrentContextOfClass(luaState, nil);
-        
+                
         return LuaClassIMPFunction;
     }
     /*if is property*/

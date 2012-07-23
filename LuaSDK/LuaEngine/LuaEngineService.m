@@ -300,7 +300,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);   
         lua_pop(luaStateRef, 1);
-        //printf("parsed: %s\n", ret);
+        printf("parsed: %s\n", ret);
         return ret;
     }else
     {

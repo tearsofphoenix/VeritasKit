@@ -243,7 +243,8 @@ function methodcall(ast)
         end
 
 local function methoddefinition(ast, class, methodType)
-            local args = {}
+            --implicit 'self' argument for class method
+            local args = {leaf("self")}
             if ast.args then
                 for _, v in ipairs(ast.args) do
                     args[#args+1] = v
