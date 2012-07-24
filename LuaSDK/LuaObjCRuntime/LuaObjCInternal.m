@@ -45,7 +45,7 @@ void luaObjC_throwExceptionIfError(lua_State *L)
                                                      reason: errorReason
                                                    userInfo: [NSDictionary dictionaryWithObjectsAndKeys: [NSValue valueWithPointer: L], @"LuaState", nil]
                               ];
-    @throw exception; 
+    @throw exception;
 }
 
 
