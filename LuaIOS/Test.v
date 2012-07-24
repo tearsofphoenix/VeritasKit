@@ -131,7 +131,12 @@ main = function()
             if aRect != 1 then
                 print("ok")
             end
-            glEnable(1);
+            
+            local a = [[Test alloc] init];
+            
+            local block = ^int(){ [a release]; }
+            block();
+            
             @autoreleasepool
             {
                 local a = [[NSString alloc] initWithUTF8String: "你好"];

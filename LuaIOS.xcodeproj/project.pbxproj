@@ -210,6 +210,7 @@
 		E176BEAE15BCF6A300196B48 /* LuaObjCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E176BEAC15BCF6A200196B48 /* LuaObjCExtensions.m */; };
 		E176BEAF15BCF6A300196B48 /* LuaObjCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E176BEAC15BCF6A200196B48 /* LuaObjCExtensions.m */; };
 		E19BA28515AB33AD00C870CA /* libffi_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E19BA28415AB33AD00C870CA /* libffi_ios.a */; };
+		E19FB50E15BEDC4C00C50C42 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FB50D15BEDC4C00C50C42 /* Test.m */; };
 		E1A1CFDB15B0850200C410B1 /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB315B0850200C410B1 /* Accelerate.bridgesupport */; };
 		E1A1CFDC15B0850200C410B1 /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB415B0850200C410B1 /* Accounts.bridgesupport */; };
 		E1A1CFDD15B0850200C410B1 /* AddressBook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A1CFB515B0850200C410B1 /* AddressBook.bridgesupport */; };
@@ -443,6 +444,8 @@
 		E176BEAB15BCF6A200196B48 /* LuaObjCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCExtensions.h; sourceTree = "<group>"; };
 		E176BEAC15BCF6A200196B48 /* LuaObjCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCExtensions.m; sourceTree = "<group>"; };
 		E19BA28415AB33AD00C870CA /* libffi_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_ios.a; sourceTree = "<group>"; };
+		E19FB50C15BEDC4C00C50C42 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		E19FB50D15BEDC4C00C50C42 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		E1A1CFB315B0850200C410B1 /* Accelerate.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accelerate.bridgesupport; sourceTree = "<group>"; };
 		E1A1CFB415B0850200C410B1 /* Accounts.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Accounts.bridgesupport; sourceTree = "<group>"; };
 		E1A1CFB515B0850200C410B1 /* AddressBook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AddressBook.bridgesupport; sourceTree = "<group>"; };
@@ -603,6 +606,7 @@
 		226873721521AD5D009D6279 /* LuaIOS */ = {
 			isa = PBXGroup;
 			children = (
+				E19FB50A15BEDC3D00C50C42 /* Test */,
 				226873731521AD5D009D6279 /* Supporting Files */,
 			);
 			path = LuaIOS;
@@ -983,6 +987,15 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		E19FB50A15BEDC3D00C50C42 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				E19FB50C15BEDC4C00C50C42 /* Test.h */,
+				E19FB50D15BEDC4C00C50C42 /* Test.m */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		E1A1CFB215B0850200C410B1 /* BridgeSupportFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,6 +1313,7 @@
 				E14A5FDE15B041B4006D9228 /* LuaObjCFrameworkFunctions.m in Sources */,
 				E1B2622215B199D3005D085C /* LuaObjCProfile.m in Sources */,
 				E176BEAE15BCF6A300196B48 /* LuaObjCExtensions.m in Sources */,
+				E19FB50E15BEDC4C00C50C42 /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

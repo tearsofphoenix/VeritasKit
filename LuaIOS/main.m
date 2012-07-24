@@ -7,24 +7,11 @@
 //
 
 #import "LuaEngineService.h"
-#import "LuaObjCInternal.h"
-#import "LuaObjCProfile.h"
-#import "LuaObjCClass.h"
-#import "ffi.h"
-#import <objc/runtime.h>
-#import "lua.h"
-#import "lauxlib.h"
-#import "LuaObjCInternal.h"
-#import "LuaObjCAuxiliary.h"
 
 int main(int argc, char *argv[])
 {    
     @autoreleasepool
-    {
-        NSString *sourceFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"Test.v"];
-        NSString *sourceCode = [NSString stringWithContentsOfFile: sourceFilePath
-                                                         encoding: NSUTF8StringEncoding
-                                                            error: NULL];        
-        LuaCall(sourceCode, @"main", nil, 0, 1, nil);
+    {        
+        LuaCall(@"Test.v", @"main", nil, 0, 1, nil);
     }
 }

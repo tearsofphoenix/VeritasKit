@@ -34,7 +34,7 @@ static int luaObjC_convertTableToNSArray(lua_State *L)
         case LUA_TTABLE:
         {
             lua_Integer n = lua_rawlen(L, 1);
-            NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity: n];
+            NSMutableArray *array = [[[NSMutableArray alloc] initWithCapacity: n] autorelease];
             
             for (int i=0; i<n; ++i)
             {
@@ -71,7 +71,7 @@ static int  luaObjC_convertTableToNSDictionary(lua_State *L)
         case LUA_TTABLE:
         {
             lua_Integer n = lua_rawlen(L, 1);
-            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity: n];
+            NSMutableDictionary *dictionary = [[[NSMutableDictionary alloc] initWithCapacity: n] autorelease];
             id keyLooper = nil;
             id valueLooper = nil;
             for (int i=0; i<n; i = i + 2)
@@ -277,7 +277,7 @@ static int luaObjC_objc_NSFastEnumerate(lua_State *L)
 static int luaObjC_createLiteralArray(lua_State *L)
 {
     int count = lua_gettop(L);
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
     for (int iLooper = 1; iLooper < count + 1; ++iLooper)
     {
         [array addObject: luaObjC_checkNSObject(L, iLooper)];
@@ -299,8 +299,8 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
         [values addObject: luaObjC_checkNSObject(L, halfIndex + iLooper)];
     }
     
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjects: values 
-                                                                     forKeys: keys];
+    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjects: values
+                                                                     forKeys: keys] autorelease];
     [keys release];
     [values release];
     

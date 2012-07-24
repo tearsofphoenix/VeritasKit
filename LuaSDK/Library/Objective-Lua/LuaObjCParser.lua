@@ -1465,6 +1465,10 @@ local olua_argumentListOfFunction = function()
 olua_objc_blockObject = function()
                             local blockBody
                             local args
+
+                            --optional expect the return type, just ignore it
+                            optionalexpect("identifier")
+
                             if peek("operator", "{") then
                                 blockBody = olua_block()
                             else

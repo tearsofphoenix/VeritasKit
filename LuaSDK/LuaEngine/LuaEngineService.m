@@ -316,9 +316,23 @@ static void LuaEngine_initialize(LuaEngineService *self,
               argumentCount: (int)argumentCount
                 returnCount: (int)returnCount
                  completion: (ERGeneralCallbackBlock)completion
-{    
+{
     LuaStateRef luaStateRef = _internal->luaState;
     lua_Integer status;
+    
+    if ([sourceCode hasSuffix: @".v"])
+    {
+        //is a path infact
+        NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: sourceCode];
+        NSError *error = nil;
+        sourceCode = [NSString stringWithContentsOfFile: filePath
+                                               encoding: NSUTF8StringEncoding
+                                                  error: &error];
+        if (error)
+        {
+            NSLog(@"in function: %s line: %d error: %@", __PRETTY_FUNCTION__, __LINE__, error);
+        }
+    }
     
     if (sourceCode)
     {
