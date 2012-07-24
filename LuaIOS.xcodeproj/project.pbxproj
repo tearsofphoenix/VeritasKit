@@ -24,8 +24,6 @@
 		22350742159C622A00D2CCF3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FF8C14D5508800180B63 /* OpenGLES.framework */; };
 		2246849C15441F2B005A7E70 /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = 34EC2DBC153AFA3500A2FCE2 /* LuaObjCParser.lua */; };
 		224A3685152D8C7D00722A8D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224A3683152D8C7D00722A8D /* AddressBookUI.framework */; };
-		224A3973152D973300722A8D /* ObjectiveLua.v in Resources */ = {isa = PBXBuildFile; fileRef = 222B4C3F1530604F006FB7BF /* ObjectiveLua.v */; };
-		224A3974152D973300722A8D /* Syntax.v in Resources */ = {isa = PBXBuildFile; fileRef = 3441787D154E524B0034AF85 /* Syntax.v */; };
 		2268736E1521AD5D009D6279 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E8A17414D24C82000F9EB1 /* UIKit.framework */; };
 		2268736F1521AD5D009D6279 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E8A17614D24C82000F9EB1 /* Foundation.framework */; };
 		226873711521AD5D009D6279 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226873701521AD5D009D6279 /* CoreGraphics.framework */; };
@@ -272,7 +270,6 @@
 		2215D8E015AFBFAF001056C3 /* LuaBridgeSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeSupport.m; sourceTree = "<group>"; };
 		2215D8E115AFBFAF001056C3 /* LuaBridgeSupportFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridgeSupportFileParser.h; sourceTree = "<group>"; };
 		2215D8E215AFBFAF001056C3 /* LuaBridgeSupportFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeSupportFileParser.m; sourceTree = "<group>"; };
-		222B4C3F1530604F006FB7BF /* ObjectiveLua.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectiveLua.v; sourceTree = "<group>"; };
 		2235071D159C380300D2CCF3 /* LuaObjCAccelerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCAccelerator.h; sourceTree = "<group>"; };
 		2235071E159C380300D2CCF3 /* LuaObjCAccelerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCAccelerator.m; sourceTree = "<group>"; };
 		2235071F159C380300D2CCF3 /* LuaObjCInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCInternal.h; sourceTree = "<group>"; };
@@ -340,7 +337,6 @@
 		22F7AB8115A14AE900E2DED3 /* LuaUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaUIKit.m; sourceTree = "<group>"; };
 		22F7ABFA15A14AE900E2DED3 /* LuaUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUIView.h; sourceTree = "<group>"; };
 		22F7ABFB15A14AE900E2DED3 /* LuaUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaUIView.m; sourceTree = "<group>"; };
-		3441787D154E524B0034AF85 /* Syntax.v */ = {isa = PBXFileReference; lastKnownFileType = text; path = Syntax.v; sourceTree = "<group>"; };
 		344433CE15680371009D0D3A /* NSArray+LuaObjCIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LuaObjCIndex.h"; sourceTree = "<group>"; };
 		344433CF15680371009D0D3A /* NSArray+LuaObjCIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LuaObjCIndex.m"; sourceTree = "<group>"; };
 		344433D11568038B009D0D3A /* LuaObjCIndexing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCIndexing.h; sourceTree = "<group>"; };
@@ -621,8 +617,6 @@
 				226873781521AD5D009D6279 /* main.m */,
 				226873A61521B2B8009D6279 /* Test.v */,
 				22EC440015243E1A00598F4F /* GLES.v */,
-				222B4C3F1530604F006FB7BF /* ObjectiveLua.v */,
-				3441787D154E524B0034AF85 /* Syntax.v */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1167,8 +1161,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				224A3973152D973300722A8D /* ObjectiveLua.v in Resources */,
-				224A3974152D973300722A8D /* Syntax.v in Resources */,
 				2246849C15441F2B005A7E70 /* LuaObjCParser.lua in Resources */,
 				226873771521AD5D009D6279 /* InfoPlist.strings in Resources */,
 				226873A71521B2B8009D6279 /* Test.v in Resources */,

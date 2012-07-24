@@ -1,5 +1,6 @@
 #import "XMLNode.h"
 
+#define strequal(str1, str2) !strcmp(str1, str2)
 
 @implementation XMLNode
 
@@ -30,7 +31,7 @@
     while (attribute)
     {
         
-        if ((attribute->ns == NULL) && [[NSString stringWithUTF8String: (const char *)attribute->name] isEqualToString: name])
+        if ((attribute->ns == NULL) && strequal((const char*)attribute->name, [name UTF8String]))
         {
             return [NSString stringWithUTF8String: (const char *)attribute->children->content];
         }
@@ -42,14 +43,16 @@
     
 }
 
-- (NSString *)attributeWithNamespace: (NSString *)theNamespace andName: (NSString *)name
+- (NSString *)attributeWithNamespace: (NSString *)theNamespace
+                             andName: (NSString *)name
 {
     
     xmlAttrPtr attribute = _rawNode->properties;
     while (attribute)
     {
         
-        if ([[NSString stringWithUTF8String: (const char *)attribute->ns->href] isEqualToString: theNamespace] && [[NSString stringWithUTF8String: (const char *)attribute->name] isEqualToString: name])
+        if (strequal((const char *)attribute->ns->href, [theNamespace UTF8String])
+            && strequal((const char *)attribute->name, [name UTF8String]))
         {
             return [NSString stringWithUTF8String: (const char *)attribute->children->content];
         }
