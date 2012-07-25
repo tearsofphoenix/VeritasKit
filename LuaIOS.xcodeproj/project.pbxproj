@@ -29,7 +29,7 @@
 		226873711521AD5D009D6279 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226873701521AD5D009D6279 /* CoreGraphics.framework */; };
 		226873771521AD5D009D6279 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 226873751521AD5D009D6279 /* InfoPlist.strings */; };
 		226873791521AD5D009D6279 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 226873781521AD5D009D6279 /* main.m */; };
-		226873A71521B2B8009D6279 /* Test.v in Resources */ = {isa = PBXBuildFile; fileRef = 226873A61521B2B8009D6279 /* Test.v */; };
+		226873A71521B2B8009D6279 /* Main.v in Resources */ = {isa = PBXBuildFile; fileRef = 226873A61521B2B8009D6279 /* Main.v */; };
 		2290F9C615A1AE1000BCA42D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2290F9C515A1AE0B00BCA42D /* GLKit.framework */; };
 		229F6EA115AED079001DE368 /* NSMethodSignature+argumentsEncodings.h in Headers */ = {isa = PBXBuildFile; fileRef = 229F6E9F15AED079001DE368 /* NSMethodSignature+argumentsEncodings.h */; };
 		229F6EA215AED079001DE368 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F6EA015AED079001DE368 /* NSMethodSignature+argumentsEncodings.m */; };
@@ -230,7 +230,7 @@
 		226873741521AD5D009D6279 /* LuaIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LuaIOS-Info.plist"; sourceTree = "<group>"; };
 		226873761521AD5D009D6279 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		226873781521AD5D009D6279 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		226873A61521B2B8009D6279 /* Test.v */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = Test.v; sourceTree = "<group>"; };
+		226873A61521B2B8009D6279 /* Main.v */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = Main.v; sourceTree = "<group>"; };
 		2290F9C515A1AE0B00BCA42D /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		229D91D91527D09A009780FE /* LuaIOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LuaIOS-Prefix.pch"; sourceTree = "<group>"; };
 		229F6E9F15AED079001DE368 /* NSMethodSignature+argumentsEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+argumentsEncodings.h"; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 				226873741521AD5D009D6279 /* LuaIOS-Info.plist */,
 				226873751521AD5D009D6279 /* InfoPlist.strings */,
 				226873781521AD5D009D6279 /* main.m */,
-				226873A61521B2B8009D6279 /* Test.v */,
+				226873A61521B2B8009D6279 /* Main.v */,
 				22EC440015243E1A00598F4F /* GLES.v */,
 			);
 			name = "Supporting Files";
@@ -718,8 +718,8 @@
 		34A4FF7B14D5324600180B63 /* Code Files */ = {
 			isa = PBXGroup;
 			children = (
-				E19FB5FD15BF113A00C50C42 /* LuaBase */,
 				34D9A68D153486E400A1E2E3 /* Library */,
+				E19FB5FD15BF113A00C50C42 /* LuaBase */,
 				2215D8DA15AFBFAF001056C3 /* LuaBridgeSupport */,
 				2268735B1521AB92009D6279 /* LuaEngine */,
 				344433CD15680371009D0D3A /* LuaObjCExtensions */,
@@ -833,11 +833,11 @@
 		E12B2D2D15BA617D00065FD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E19FB5F715BF021300C50C42 /* Foundation.framework */,
 				E12B2D2B15BA616600065FD9 /* libffi.dylib */,
-				E14908131595BEDC0088A170 /* QuartzCore.framework */,
 				E14907D41595BBC60088A170 /* libxml2.dylib */,
 				E14907D21595BBA50088A170 /* Cocoa.framework */,
+				E19FB5F715BF021300C50C42 /* Foundation.framework */,
+				E14908131595BEDC0088A170 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1111,7 +1111,7 @@
 			files = (
 				2246849C15441F2B005A7E70 /* LuaObjCParser.lua in Resources */,
 				226873771521AD5D009D6279 /* InfoPlist.strings in Resources */,
-				226873A71521B2B8009D6279 /* Test.v in Resources */,
+				226873A71521B2B8009D6279 /* Main.v in Resources */,
 				22EC440115243E1A00598F4F /* GLES.v in Resources */,
 				22B645721589EF81009C7A1C /* LuaCParser.lua in Resources */,
 				22D000AA15AE63750034442D /* LICENSE in Resources */,

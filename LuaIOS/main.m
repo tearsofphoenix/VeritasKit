@@ -10,8 +10,5 @@
 
 int main(int argc, char *argv[])
 {    
-    @autoreleasepool
-    {        
-        LuaCall(@"Test.v", @"main", nil, 0, 1, nil);
-    }
+    LuaCall(@"Main.v", @"main", nil, 0, 1, nil);
 }

@@ -134,8 +134,11 @@ main = function()
             
             local a = [[Test alloc] init];
             
-            local block = ^int(){ [a release]; }
-            block();
+            local block = ^int(){ [a autorelease]; }
+            @autoreleasepool
+            {
+                block();
+            }
             
             @autoreleasepool
             {

@@ -343,7 +343,7 @@ void LuaObjCInvoke(struct lua_State *L,
             case ':':
             {
                 SEL selector = *(SEL *)ref->_returnValue;
-                lua_pushstring(L, sel_getName(selector));
+                luaObjC_pushSelector(L, selector);
                 break;
             }
             case '#':

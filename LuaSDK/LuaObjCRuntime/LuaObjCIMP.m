@@ -64,8 +64,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
 
         //push '_cmd' argument next
         //
-        const char* selectorName = sel_getName(sel);
-        lua_pushstring(luaState, selectorName);
+        luaObjC_pushSelector(luaState, sel);
         
         //push real arguments
         //
@@ -112,7 +111,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
                 case ':':
                 {
                     SEL sel = va_arg(ap, SEL);
-                    lua_pushstring(luaState, sel_getName(sel));
+                    luaObjC_pushSelector(luaState, sel);
                     break;
                 }
                 case '{':
