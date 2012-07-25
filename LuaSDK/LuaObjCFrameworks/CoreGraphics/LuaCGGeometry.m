@@ -110,7 +110,11 @@ static int lua_CGRectNewIndex(lua_State *L)
 static int lua_CGRectToString(lua_State *L)
 {
     CGRect *r = lua_touserdata(L, 1);
+#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
     lua_pushstring(L, [NSStringFromCGRect(*r) UTF8String]);
+#else
+    lua_pushstring(L, [NSStringFromRect(*r) UTF8String]);
+#endif
     return 1;
 }
 
@@ -133,7 +137,12 @@ static int lua_CGPointIndex(lua_State *L)
 static int lua_CGPointToString(lua_State *L)
 {
     CGPoint *p = lua_touserdata(L, 1);
+
+#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
     lua_pushstring(L, [NSStringFromCGPoint(*p) UTF8String]);
+#else
+    lua_pushstring(L, [NSStringFromPoint(*p) UTF8String]);
+#endif
     return 1;
 }
 
@@ -186,7 +195,11 @@ static int lua_CGSizeNewIndex(lua_State *L)
 static int lua_CGSizeToString(lua_State *L)
 {
     CGSize *s = lua_touserdata(L, 1);
+#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
     lua_pushstring(L, [NSStringFromCGSize(*s) UTF8String]);
+#else
+    lua_pushstring(L, [NSStringFromSize(*s) UTF8String]);
+#endif
     return 1;
 }
 
