@@ -9,7 +9,6 @@
 #import "LuaEngineService.h"
 
 #import "lauxlib.h"
-
 #import "lualib.h"
 
 #import "LuaObjCClass.h"
@@ -29,8 +28,6 @@
 
 #import "LuaObjCAuxiliary.h"
 #import "LuaBridgeSupport.h"
-
-#import <dispatch/dispatch.h>
 
 static char * const LuaEngineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
@@ -59,14 +56,10 @@ typedef LuaEngineAttributes *LuaEngineAttributesRef;
     NSMutableArray *_md5OfParsedString;
 }
 
-- (void)showLuaOutput;
-
 @end
 
 
 @implementation LuaEngineService
-
-@synthesize delegate = _delegate;
 
 static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 {
@@ -182,7 +175,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     LuaLibraryInformationRegisterToState(libs, LuaEngineUIKitSupport, luaStateRef);
     
     internal->luaState = luaStateRef;
-        
+    
     NSString *sourceFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LuaObjCParser.lua"];
     
     //int status = luaL_dostring(parserStateRef, [parserSourceCode UTF8String]);
@@ -196,6 +189,11 @@ static void LuaEngine_initialize(LuaEngineService *self,
     *_internal = internal;
     
     g_engine = self;
+}
+
+static int _LuaEngine_writer(lua_State* L, const void* p, size_t size, void* u)
+{
+    return (fwrite(p,size,1,(FILE*)u)!=1) && (size!=0);
 }
 
 + (void)load
@@ -219,7 +217,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     
     lua_close(_internal->luaState);
     _internal->luaState = NULL;
-        
+    
     free(_internal);
     
     fclose(g_luaOutputFilePointer);
@@ -258,7 +256,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
                                                                           lua_setglobal(L, [name UTF8String]);
                                                                       })];
                           })
-              forAction: LuaEngineRegisterGlobalConstants];    
+              forAction: LuaEngineRegisterGlobalConstants];
 }
 
 - (const char *)parseString: (NSString *)sourceCode
@@ -400,25 +398,6 @@ static void LuaEngine_initialize(LuaEngineService *self,
     }
 }
 
-
-- (void)showLuaOutput
-{
-    NSString *path = _internal->path;
-    NSString *fileContent = [NSString stringWithContentsOfFile: path
-                                                      encoding: NSUTF8StringEncoding
-                                                         error: nil];
-    if ([_delegate respondsToSelector: @selector(showOutput:ofEngine:)])
-    {
-        
-        [_delegate showOutput: fileContent
-                     ofEngine: self];
-    }else
-    {
-        NSLog(@"Engine:%@", fileContent);
-    }
-}
-
-
 + (id)identity
 {
     return LuaEngineServiceID;
@@ -429,9 +408,6 @@ static void LuaEngine_initialize(LuaEngineService *self,
 #pragma mark - engine id
 
 NSString * const LuaEngineServiceID = @"com.veritas.service.luaengine";
-
-#pragma mark - supported libraries
-
 
 NSString * const LuaEngineObjCSupport = @"com.veritas.LuaEngineService.feature.objc";
 
@@ -444,6 +420,8 @@ NSString * const LuaEngineParserSupport = @"com.veritas.LuaEngineService.feature
 NSString * const LuaEngineDoSourceCode = @"com.veritas.LuaEngineService.doSourceCode";
 
 NSString * const LuaEngineRegisterGlobalConstants = @"com.veritas.LuaEngineService.registerGlobalConstatns";
+
+NSString * const LuaEngineDumpSourceCodeToFile = @"com.veritas.LuaEngineService.dumpSourceCode";
 
 void LuaCall(NSString *sourceCode,
              NSString *functionName,

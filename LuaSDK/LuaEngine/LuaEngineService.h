@@ -8,26 +8,14 @@
 #import "ERGeneralMetaService.h"
 #import "ERGeneralDataSource.h"
 
-extern NSString * const LuaEngineDoSourceCode;
-
-#pragma mark - internal use
-
-extern NSString * const LuaEngineRegisterGlobalConstants;
-
-@protocol LuaEngineDelegate; 
+extern void LuaCall(NSString *sourceCode,
+                    NSString *functionName,
+                    ERGeneralCallbackBlock block,
+                    int argumentCount,
+                    int returnCount,
+                    ERGeneralCallbackBlock completion);
 
 @interface LuaEngineService : ERGeneralMetaService
-
-@property (nonatomic, assign) id<LuaEngineDelegate> delegate;
-
-@end
-
-@protocol LuaEngineDelegate <NSObject>
-
-@optional
-
-- (void)showOutput: (NSString *)output
-          ofEngine: (LuaEngineService *)engine;
 
 @end
 
@@ -39,9 +27,9 @@ extern NSString * const LuaEngineParserSupport;
 
 extern NSString * const LuaEngineServiceID;
 
-extern void LuaCall(NSString *sourceCode,
-                    NSString *functionName,
-                    ERGeneralCallbackBlock block, 
-                    int argumentCount,
-                    int returnCount,
-                    ERGeneralCallbackBlock completion);
+extern NSString * const LuaEngineDoSourceCode;
+
+#pragma mark - internal use
+
+extern NSString * const LuaEngineRegisterGlobalConstants;
+
