@@ -2083,9 +2083,9 @@ local typetable =
 
     luaClass_addMethod = function(ast)
         if ast.methodType == "objectmethod" then
-            emit(" class_addObjectMethod(" .. ast.class.text .. ", ")
+            emit(" class_addObjectMethod('" .. ast.class.text .. "', ")
         else
-            emit(" class_addClassMethod(" .. ast.class.text .. ", ")
+            emit(" class_addClassMethod('" .. ast.class.text .. "', ")
         end
         emit(ast.selector)
 

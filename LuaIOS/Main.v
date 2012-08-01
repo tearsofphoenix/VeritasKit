@@ -126,29 +126,7 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            local aRect = CGRectMake(0, 0, 10, 12);
-            print(aRect.origin);
-            if aRect != 1 then
-                print("ok")
-            end
-            
-            local a = [[Test alloc] init];
-            
-            local block = ^int(){ [a autorelease]; }
-            @autoreleasepool
-            {
-                block();
-            }
-            
-            @autoreleasepool
-            {
-                local a = [[NSString alloc] initWithUTF8String: "你好"];
-                local b = [a stringByAppendingString: @"xxxx"];
-                print(b, a);
-                [a release]
-            }
-            
-        ---[[             
-        return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
-        --]]
-	end
+            local c = [AppDelegate class]
+            print(c)
+            return UIApplicationMain(0, nil, nil, NSStringFromClass(c))
+        end

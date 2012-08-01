@@ -10,28 +10,13 @@
 
 struct lua_State;
 
-extern int LuaObjCInvalidClouserID;
-
-typedef struct __LuaClass *LuaClassRef;
 
 #pragma mark - Class 
 
-LuaClassRef LuaClassInitialize(struct lua_State *L,
-                                       id rawObject, 
-                                       NSString *className,
-                                       bool isInstance);
+extern int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector);
 
-NSString *LuaClassGetClassName(LuaClassRef ref);
+extern void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName);
 
-id LuaClassGetObject(LuaClassRef ref);
-
-void LuaClassPrint(LuaClassRef ref);
-
-int LuaClassGetClouserIDOfSelector(LuaClassRef ref, SEL selector);
-
-void LuaClassAddClouserIDForSelector(LuaClassRef ref, int clouserID, const char* selectorName);
-
-struct lua_State* LuaClassGetLuaState(LuaClassRef ref);
 
 #pragma - Object
 
@@ -40,33 +25,24 @@ typedef struct __LuaObject *LuaObjectRef;
 LuaObjectRef LuaObjectInitialize(struct lua_State *L,
                                          id rawObject);
 
-id LuaObjectGetObject(LuaObjectRef ref);
+extern id LuaObjectGetObject(LuaObjectRef ref);
 
-void LuaObjectPrint(LuaObjectRef ref);
+extern void LuaObjectPrint(LuaObjectRef ref);
 
-void LuaObjectFinalize(LuaObjectRef ref);
+extern void LuaObjectFinalize(LuaObjectRef ref);
 
-NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
+extern NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
 
-struct lua_State* LuaObjectGetLuaState(LuaClassRef ref);
+extern struct lua_State* LuaObjectGetLuaState(LuaObjectRef ref);
 
-#pragma - replace the -dealloc method of Root class (NSObject)
+// replace the -dealloc method of Root class (NSObject)
 //
-extern void luaObjC_modifyRootClass(void);
+extern void luaObjCInternal_modifyRootClass(void);
 
-extern LuaClassRef luaObjC_getRegisteredClassByName(NSString *className);
+extern Class luaObjC_getRegisteredClassByName(NSString *className);
 
-void luaObjC_registerClass(LuaClassRef obj);
+extern void luaObjC_registerClass(struct lua_State *L, Class theClass, NSString *className);
 
-int luaObjC_description(struct lua_State *L);
-
-NSString * _LuaObjC_getTypeEncodingOfType(const char *typeName);
-
-NSString * _LuaObjC_getTypeEncoding(NSString *typeName);
-
-extern void _luaObjC_registerClassPredeclearation(NSString *className);
-
-extern void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block);
-extern int _luaObjC_getClouserIDOfBlock(void *block);
+extern struct lua_State *luaObjC_getStateOfClass(Class theClass);
 
 LUAMOD_API int (luaopen_objc)(struct lua_State *L);

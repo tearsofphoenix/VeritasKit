@@ -8,6 +8,8 @@
 
 #import "LuaObjCIMP.h"
 
+#import "LuaObjCBlock.h"
+
 #import "LuaObjCClass.h"
 
 #import "LuaObjCInternal.h"
@@ -17,6 +19,8 @@
 #import "LuaObjCAuxiliary.h"
 
 #import "lauxlib.h"
+
+#import "LuaObjCTypeEncoding.h"
 
 #import <objc/runtime.h>
 
@@ -29,10 +33,10 @@ typedef enum
 
 static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
-    LuaClassRef classRef = luaObjC_getRegisteredClassByName(NSStringFromClass([obj class]));
+    Class theClass = [obj class];
 
-    int clouserID = LuaClassGetClouserIDOfSelector(classRef, sel);
-    lua_State *luaState = LuaClassGetLuaState(classRef);
+    int clouserID = LuaClassGetClouserIDOfSelector(theClass, sel);
+    lua_State *luaState = luaObjC_getStateOfClass(theClass);
 
     if (clouserID != LuaObjCInvalidClouserID)
     {        
@@ -332,7 +336,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
 {
     int argCount = lua_gettop(L);
-    LuaClassRef obj = lua_touserdata(L, 1);
+    const char* className = lua_tostring(L, 1);
     const char* selectorName = luaObjC_checkString(L, 2);
     const char* typeLooper = NULL;
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
@@ -353,9 +357,9 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         [typeEncoding appendString: _LuaObjC_getTypeEncodingOfType(typeLooper)];
     }
     
-    Class theClass = LuaClassGetObject(obj);
+    Class theClass = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
     
-    if (!isObjectMethod) 
+    if (!isObjectMethod)
     {
         theClass = objc_getMetaClass(class_getName(theClass));
     }
@@ -411,7 +415,8 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         }
             
     }
-    LuaClassAddClouserIDForSelector(obj, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
+    
+    LuaClassAddClouserIDForSelector(theClass, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
 
     [typeEncoding release];
     
@@ -457,12 +462,6 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
     free(propertyName);
 }
 
-static Class luaObjC_getLuaClassByName(NSString *className)
-{
-    LuaClassRef classRef = luaObjC_getRegisteredClassByName(className);
-    return LuaClassGetObject(classRef);
-}
-
 void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic, const char* ownershipName,
                                       const char* getterName, const char* setterName, const char* typeName,
                                       const char* propertyName)
@@ -489,7 +488,7 @@ void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic,
     objc_property_attribute_t backingivar  = {"V", propertyName};
     objc_property_attribute_t attrs[] = {atomicAttribute, type, ownership, backingivar};
     
-    Class theClass = luaObjC_getLuaClassByName([NSString stringWithUTF8String: className]);
+    Class theClass = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
     
     if(!class_addIvar(theClass, propertyName, sizeof(id), log2(sizeof(id)), @encode(id)))
     {

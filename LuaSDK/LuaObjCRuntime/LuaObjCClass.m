@@ -9,7 +9,8 @@
 #import "LuaObjCClass.h"
 
 #import "LuaObjCInternal.h"
-
+#import "LuaObjCBlock.h"
+#import "LuaObjCTypeEncoding.h"
 #import "LuaCGGeometry.h"
 
 #import "LuaObjCAccelerator.h"
@@ -25,86 +26,35 @@
 
 @class LuaObjectObserver;
 
-struct __LuaClass
-{
-    id _obj;
-    struct lua_State *_luaState;
-    NSString *className;
-    NSMutableDictionary *_classMethods;
-};
-
+static NSMutableDictionary *__LuaObjC_MethodsDictionary = nil;
 static NSMutableDictionary *__LuaObjC_ClassDictionary = nil;
+static char __LuaObjC_KeyForLuaState;
 
-static NSMutableDictionary *__LuaObjC_TypeEncodingDictionary = nil;
-
-static NSMutableDictionary *__LuaObjC_clouserBlockDictionary = nil;
-
-void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block)
+void luaObjC_registerClass(struct lua_State *L, Class theClass, NSString *className)
 {
-    if (block)
-    {
-        [__LuaObjC_clouserBlockDictionary setObject: [NSNumber numberWithInteger: clouserID]
-                                             forKey: [NSValue valueWithPointer: block]];
-    }
-}
-
-int _luaObjC_getClouserIDOfBlock(void *block)
-{
-    NSNumber *clouser = [__LuaObjC_clouserBlockDictionary objectForKey: [NSValue valueWithPointer: block]];
-    if (clouser)
-    {
-        return [clouser intValue];
-    }
-    return LuaObjCInvalidClouserID;
-}
-
-static void _LuaObjC_initTypeEncodingDictionary(NSMutableDictionary *dict)
-{
-#define _AddTypeEncoding(dict, type) [dict setObject: [NSString stringWithUTF8String: @encode(type)] \
-forKey: [NSString stringWithUTF8String: #type]];
+    [__LuaObjC_ClassDictionary setObject: theClass
+                                  forKey: className];
     
-    _AddTypeEncoding(dict, NSInteger);
-    _AddTypeEncoding(dict, NSUInteger);
-    _AddTypeEncoding(dict, BOOL);
-    _AddTypeEncoding(dict, id);
-    _AddTypeEncoding(dict, SEL);
-    _AddTypeEncoding(dict, CGFloat);
-    _AddTypeEncoding(dict, int);
-    _AddTypeEncoding(dict, void);
+    objc_setAssociatedObject(theClass,
+                             &__LuaObjC_KeyForLuaState,
+                             [NSValue valueWithPointer: L],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-#undef _AddTypeEncoding
+    NSMutableDictionary *classMethods = [[NSMutableDictionary alloc] init];
+    
+    [__LuaObjC_MethodsDictionary setObject: classMethods
+                                    forKey: [NSValue valueWithPointer: theClass]];
+    [classMethods release];
 }
 
-void _luaObjC_registerClassPredeclearation(NSString *className)
+struct lua_State *luaObjC_getStateOfClass(Class theClass)
 {
-    [__LuaObjC_TypeEncodingDictionary setObject: [NSString stringWithUTF8String: @encode(id)]
-                                         forKey: className];
+    return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
 }
 
-NSString * _LuaObjC_getTypeEncoding(NSString *typeName)
+Class luaObjC_getRegisteredClassByName(NSString *className)
 {
-    NSString *typeEncoding = [__LuaObjC_TypeEncodingDictionary objectForKey: typeName];
-    if (!typeEncoding)
-    {
-        typeEncoding = [NSString stringWithUTF8String: @encode(id)];
-    }
-    return typeEncoding;
-}
-
-NSString * _LuaObjC_getTypeEncodingOfType(const char *typeName)
-{
-    return _LuaObjC_getTypeEncoding([NSString stringWithUTF8String: typeName]);
-}
-
-void luaObjC_registerClass(LuaClassRef obj)
-{
-    [__LuaObjC_ClassDictionary setObject: [NSValue valueWithPointer: obj]
-                                  forKey: obj->className];
-}
-
-LuaClassRef luaObjC_getRegisteredClassByName(NSString *className)
-{
-    return [[__LuaObjC_ClassDictionary objectForKey: className] pointerValue];
+    return [__LuaObjC_ClassDictionary objectForKey: className];
 }
 
 static int _luaEngine_resolveName(lua_State *L)
@@ -118,8 +68,8 @@ static int _luaEngine_resolveName(lua_State *L)
         Class theClass = objc_getClass(name);
         if (theClass)
         {
-            LuaClassRef classRef = LuaClassInitialize(L, theClass, nil, false);
-            _luaObjCCacheTableInsertObjectForKey(L, classRef, name);
+            LuaObjectRef objRef = LuaObjectInitialize(L, theClass);
+            _luaObjCCacheTableInsertObjectForKey(L, objRef, name);
             luaObjC_pushNSObject(L, theClass);
         }else
         {
@@ -146,28 +96,22 @@ static int _luaObjC_openIndexSupport(lua_State *L)
 
 int luaopen_objc(lua_State *L)
 {
-    if (!__LuaObjC_ClassDictionary)
-    {
-        __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, (^
+                               {
+                                   __LuaObjC_MethodsDictionary = [[NSMutableDictionary alloc] init];
+                                   __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
+                               }));
     
-    if (!__LuaObjC_TypeEncodingDictionary)
-    {
-        __LuaObjC_TypeEncodingDictionary = [[NSMutableDictionary alloc] init];
-        _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
-    }
-    
-    if (!__LuaObjC_clouserBlockDictionary)
-    {
-        __LuaObjC_clouserBlockDictionary = [[NSMutableDictionary alloc] init];
-    }
+    _luaObjC_initializeTypeEncoding();
+    _luaObjC_initializeBlockSupport();
     
     _luaObjCCacheTableCreate(L);
     
     luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
     
     static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName, "
-                                                "                 })";
+    "                 })";
 	luaL_loadstring(L, s_ResolveNameMetaTable);
 	lua_pcall(L, 0, 0, 0);
     
@@ -206,7 +150,7 @@ static void _luaObjC_runtimeDeallocMethod(id obj, SEL selector)
     _deallocIMPOfRootClass(obj, selector);
 }
 
-void luaObjC_modifyRootClass(void)
+void luaObjCInternal_modifyRootClass(void)
 {
     _deallocIMPOfRootClass = class_replaceMethod(objc_getClass("NSObject"), @selector(dealloc), (IMP)_luaObjC_runtimeDeallocMethod, "v@:");
 }
@@ -230,71 +174,12 @@ void luaObjC_modifyRootClass(void)
 
 @end
 
-#pragma mark - Object wrapper lift cycle
-
-LuaClassRef LuaClassInitialize(struct lua_State *L,
-                                       id rawObject,
-                                       NSString *className,
-                                       bool isInstance)
+int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector)
 {
-    LuaClassRef obj = lua_newuserdata(L, sizeof(struct __LuaClass));
-
-    obj->className = [className retain];
-    obj->_luaState = L;
-    
-    if (isInstance)
+    if (theClass && selector)
     {
-        obj->_classMethods = nil;
-    }else
-    {
-        obj->_classMethods = [[NSMutableDictionary alloc] init];
-    }
-
-    obj->_obj = rawObject;
-    
-    luaL_getmetatable(L, Lua_Class_MetaTableName);
-    lua_setmetatable(L, -2);
-    
-    return obj;
-}
-
-NSString *LuaClassGetClassName(LuaClassRef ref)
-{
-    if (ref)
-    {
-        return ref->className;
-    }
-    return nil;
-}
-
-id LuaClassGetObject(LuaClassRef ref)
-{
-    if (ref)
-    {
-        return ref->_obj;
-    }
-    return nil;
-}
-
-void LuaClassPrint(LuaClassRef ref)
-{
-    if (ref)
-    {
-#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-        NSLog(@"Class: %@ instance: %p retainCount: %d",
-              [ref->_obj class], ref->_obj, [ref->_obj retainCount]);
-#else
-        NSLog(@"Class: %@ instance: %p retainCount: %lu",
-              [ref->_obj class], ref->_obj, [ref->_obj retainCount]);
-#endif
-    }
-}
-
-int LuaClassGetClouserIDOfSelector(LuaClassRef ref, SEL selector)
-{
-    if (ref && selector)
-    {
-        NSNumber *closurID = [ref->_classMethods objectForKey: NSStringFromSelector(selector)];
+        NSDictionary *methods = [__LuaObjC_MethodsDictionary objectForKey: [NSValue valueWithPointer: theClass]];
+        NSNumber *closurID = [methods objectForKey: NSStringFromSelector(selector)];
         if (closurID)
         {
             return [closurID intValue];
@@ -304,22 +189,14 @@ int LuaClassGetClouserIDOfSelector(LuaClassRef ref, SEL selector)
     return LuaObjCInvalidClouserID;
 }
 
-void LuaClassAddClouserIDForSelector(LuaClassRef ref, int clouserID, const char* selectorName)
+void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName)
 {
-    if (ref && selectorName)
+    if (theClass && selectorName)
     {
-        [ref->_classMethods setObject: [NSNumber numberWithInt: clouserID]
+        NSMutableDictionary *methods = [__LuaObjC_MethodsDictionary objectForKey: [NSValue valueWithPointer: theClass]];
+        [methods setObject: [NSNumber numberWithInt: clouserID]
                                forKey: [NSString stringWithUTF8String: selectorName]];
     }
-}
-
-struct lua_State* LuaClassGetLuaState(LuaClassRef ref)
-{
-    if (ref)
-    {
-        return ref->_luaState;
-    }
-    return NULL;
 }
 
 int LuaObjCInvalidClouserID = -1;
@@ -327,7 +204,7 @@ int LuaObjCInvalidClouserID = -1;
 struct __LuaObject
 {
     id _obj;
-    struct lua_State *_luaState;
+    lua_State *_luaState;
     LuaObjectObserver *_objectObserver;
 };
 
@@ -399,10 +276,10 @@ NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref)
     {
         return [ref->_objectObserver retainCount];
     }
-    return 0;   
+    return 0;
 }
 
-struct lua_State* LuaObjectGetLuaState(LuaClassRef ref)
+lua_State* LuaObjectGetLuaState(LuaObjectRef ref)
 {
     if (ref)
     {

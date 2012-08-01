@@ -387,7 +387,7 @@ static int _LuaEngine_writer(lua_State* L, const void* p, size_t size, void* u)
         //parse source code to lua code
         //
         const char* parsedString = [self parseString: sourceCode];
-        printf("string: %s\n", parsedString);
+        //printf("string: %s\n", parsedString);
         //load source code
         //
         
