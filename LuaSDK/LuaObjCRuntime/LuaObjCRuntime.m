@@ -63,7 +63,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
         return 0;
     }
     
-    Class registeredClass = luaObjC_getRegisteredClassByName(internalClassName);
+    Class registeredClass = LuaClassGetRegisteredClassByName(internalClassName);
     //has registered, put it into state
     //
     if (registeredClass)
@@ -75,7 +75,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0); 
         
-        luaObjC_registerClass(L, theNewClass, internalClassName);
+        LuaClassRegister(L, theNewClass, internalClassName);
         luaObjC_pushNSObject(L, theNewClass);
     }
     return 1;
@@ -235,7 +235,7 @@ static int luaObjC_createBlockObject(lua_State *L)
     
     block = Block_copy(block);
     
-    _luaObjC_insertClouserIDOfBlock(clouserID, block);
+    LuaObjCBlockSetClosureID(clouserID, block);
     
     luaObjC_pushNSObject(L, block);
     
@@ -246,7 +246,7 @@ static int luaObjC_registerClassPair(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);
 
-    Class theClass = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
+    Class theClass = LuaClassGetRegisteredClassByName([NSString stringWithUTF8String: className]);
     
     if (theClass)
     {
@@ -262,7 +262,7 @@ static int luaObjC_classPredeclearation(lua_State *L)
     
     for (int iLooper = 1; iLooper < argCount + 1; ++iLooper)
     {
-        _luaObjC_registerClassPredeclearation([NSString stringWithUTF8String: lua_tostring(L, iLooper)]);
+        LuaObjCTypeEncodingAddPredeclearedClass([NSString stringWithUTF8String: lua_tostring(L, iLooper)]);
     }
     return 0;
 }
@@ -286,14 +286,14 @@ static int _luaEngine_resolveName(lua_State *L)
     const char* name = lua_tostring(L, 2);
     //printf("revolve: %s\n", name);
     
-    if (!_luaObjCCacheTableGetObjectForKey(L, name))
+    if (!LuaObjCCacheTableGetObjectForKey(L, name))
     {
-        printf("not got, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
+        printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
-            LuaObjectRef objRef = LuaObjectInitialize(L, theClass);
-            _luaObjCCacheTableInsertObjectForKey(L, objRef, name);
+            LuaObjectRef objRef = LuaObjectCreate(L, theClass);
+            LuaObjCCacheTableInsertObjectForKey(L, objRef, name);
             luaObjC_pushNSObject(L, theClass);
         }else
         {
@@ -313,12 +313,12 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"sel_registerName", luaObjC_createNSSelector},
     {"objc_getProtocol", luaObjC_getProtocol},
     {"objc_allocateClassPair", luaObjC_createClassWithSuperClass},
-    {"class_addProperty", luaObjC_addPropertyToClass},
-    {"class_addObjectMethod", luaObjC_luaClass_addObjectMethod},
-    {"class_addClassMethod", luaObjC_luaClass_addClassMethod},
+    {"class_addProperty", LuaIMPAddPropertyToClass},
+    {"class_addObjectMethod", LuaIMPAddInstanceMethod},
+    {"class_addClassMethod", LuaIMPAddClassMethod},
     {"objc_registerClassPair", luaObjC_registerClassPair},
-    {"objc_msgSendSuper", luaObjC_objc_messageSend_Super},
-    {"objc_msgSend", luaObjC_objc_messageSend},
+    {"objc_msgSendSuper", LuaObjCMessageSendSuper},
+    {"objc_msgSend", LuaObjCMessageSend},
     
     {"objc_import_file", luaObjC_import_file},
     
@@ -347,7 +347,7 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
 int luaopen_foundation(lua_State *L)
 {
     luaObjCInternal_modifyRootClass();
-    luaObjC_initializeAccelerators();
+    LuaObjCAcceleratorInitialize();
     
     luaopen_classSupport(L);
 

@@ -34,8 +34,4 @@ extern void luaObjCInternal_createmeta(struct lua_State *L, const char *name, co
 
 extern NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector);
 
-extern int luaObjC_pack (struct lua_State *L);
-
-extern int luaObjC_unpack (struct lua_State *L);
-
 #endif

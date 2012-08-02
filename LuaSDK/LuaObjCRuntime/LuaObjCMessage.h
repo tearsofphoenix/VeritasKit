@@ -8,6 +8,6 @@
 
 struct lua_State;
 
-extern int luaObjC_objc_messageSend(struct lua_State *L);
+extern int LuaObjCMessageSend(struct lua_State *L);
 
-extern int luaObjC_objc_messageSend_Super(struct lua_State *L);
+extern int LuaObjCMessageSendSuper(struct lua_State *L);

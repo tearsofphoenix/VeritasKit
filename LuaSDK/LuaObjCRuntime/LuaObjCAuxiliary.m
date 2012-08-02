@@ -94,7 +94,7 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject)
 {    
     if (nsObject)
     {
-        LuaObjectInitialize(L, nsObject);
+        LuaObjectCreate(L, nsObject);
     }else 
     {
         lua_pushnil(L);

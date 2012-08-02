@@ -18,7 +18,7 @@
 #import "lua.h"
 #import <objc/message.h>
 
-int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char* returnType, 
+int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType, 
                                                        IMP impRef, id obj, SEL selector)
 {
     returnType = _luaObjCInternal_jumpoverEncodingDecorator(returnType);
@@ -126,7 +126,7 @@ int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char*
 }
 
 
-int luaObjC_callImplementation_specializeForOneArgument(lua_State *L, 
+int LuaObjCAcceleratorForOneArgument(lua_State *L, 
                                                         const char* argType,
                                                         const char* returnType, 
                                                         IMP impRef, 
@@ -1449,23 +1449,23 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
 
 static NSMutableDictionary *__preAccelerators = nil;
 
-void luaObjC_registerAccelerator(SEL selector, LuaObjCAcceleratorIMP imp)
+void LuaObjCAcceleratorRegister(SEL selector, LuaObjCAcceleratorIMP imp)
 {
     if (!__preAccelerators)
     {
-        luaObjC_initializeAccelerators();
+        LuaObjCAcceleratorInitialize();
     }
     
     [__preAccelerators setObject: [NSValue valueWithPointer: imp]
                           forKey: NSStringFromSelector(selector)];
 }
 
-LuaObjCAcceleratorIMP luaObjC_getAcceleratorIMPBySelector(SEL selector)
+LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(SEL selector)
 {
     return [[__preAccelerators objectForKey: NSStringFromSelector(selector)] pointerValue];
 }
 
-void luaObjC_initializeAccelerators(void)
+void LuaObjCAcceleratorInitialize(void)
 {
     if (!__preAccelerators)
     {

@@ -51,7 +51,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
 
     //deside IMP
     //
-    IMP impRef = (IMP)luaObjC_getAcceleratorIMPBySelector(selector);
+    IMP impRef = (IMP)LuaObjCAcceleratorGetIMPBySelector(selector);
     if (impRef)
     {
         return ((LuaObjCAcceleratorIMP)impRef)(obj, selector, L);
@@ -81,13 +81,13 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         
         if (numberOfArguments == 2)
         {
-            return luaObjC_callImplementation_specializeForNoArgument(L, returnType, impRef, obj, selector);
+            return LuaObjCAcceleratorForNoArgument(L, returnType, impRef, obj, selector);
         }
         
         if (numberOfArguments == 3)
         {
             const char* firstArgType = [methodSignature getArgumentTypeAtIndex: 2];
-            return luaObjC_callImplementation_specializeForOneArgument(L, firstArgType, returnType, impRef, obj, selector);
+            return LuaObjCAcceleratorForOneArgument(L, firstArgType, returnType, impRef, obj, selector);
         }
         
         NSInvocation *invokation = [NSInvocation invocationWithMethodSignature: methodSignature];
@@ -283,12 +283,12 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     return 1;
 }
 
-int luaObjC_objc_messageSend(lua_State *L)
+int LuaObjCMessageSend(lua_State *L)
 {    
     return _luaObjC_objc_messageSendGeneral(L, YES);
 }
 
-int luaObjC_objc_messageSend_Super(lua_State *L)
+int LuaObjCMessageSendSuper(lua_State *L)
 {
     return _luaObjC_objc_messageSendGeneral(L, NO);
 }

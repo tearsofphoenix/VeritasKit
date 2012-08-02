@@ -34,7 +34,7 @@ static NSMutableDictionary *__LuaObjC_MethodsDictionary = nil;
 static NSMutableDictionary *__LuaObjC_ClassDictionary = nil;
 static char __LuaObjC_KeyForLuaState;
 
-void luaObjC_registerClass(struct lua_State *L, Class theClass, NSString *className)
+void LuaClassRegister(struct lua_State *L, Class theClass, NSString *className)
 {
     [__LuaObjC_ClassDictionary setObject: theClass
                                   forKey: className];
@@ -51,12 +51,12 @@ void luaObjC_registerClass(struct lua_State *L, Class theClass, NSString *classN
     [classMethods release];
 }
 
-struct lua_State *luaObjC_getStateOfClass(Class theClass)
+struct lua_State *LuaClassGetLuaState(Class theClass)
 {
     return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
 }
 
-Class luaObjC_getRegisteredClassByName(NSString *className)
+Class LuaClassGetRegisteredClassByName(NSString *className)
 {
     return [__LuaObjC_ClassDictionary objectForKey: className];
 }
@@ -70,9 +70,9 @@ int luaopen_classSupport(lua_State *L)
                                    __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
                                }));
     
-    _luaObjC_initializeTypeEncoding();
-    _luaObjC_initializeBlockSupport();
-    _luaObjCCacheTableCreate(L);
+    LuaObjCTypeEncodingInitialize();
+    LuaObjCBlockSupportInitialize();
+    LuaObjCCacheTableInitialize(L);
 
     return 1;
 }
@@ -166,7 +166,7 @@ struct __LuaObject
     LuaObjectObserver *_objectObserver;
 };
 
-LuaObjectRef LuaObjectInitialize(struct lua_State *L,
+LuaObjectRef LuaObjectCreate(struct lua_State *L,
                                  id rawObject)
 {
     LuaObjectRef objRef = lua_newuserdata(L, sizeof(struct __LuaObject));
@@ -238,13 +238,4 @@ NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref)
         return [ref->_objectObserver retainCount];
     }
     return 0;
-}
-
-lua_State* LuaObjectGetLuaState(LuaObjectRef ref)
-{
-    if (ref)
-    {
-        return ref->_luaState;
-    }
-    return NULL;
 }

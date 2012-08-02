@@ -10,8 +10,9 @@ struct lua_State;
 
 extern int LuaObjCInvalidClouserID;
 
-extern void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block);
+extern void LuaObjCBlockSupportInitialize(void);
 
-extern int _luaObjC_getClouserIDOfBlock(void *block);
+extern void LuaObjCBlockSetClosureID(int clouserID, void *block);
 
-extern void _luaObjC_initializeBlockSupport(void);
+extern int LuaObjCBlockGetClosureID(void *block);
+
