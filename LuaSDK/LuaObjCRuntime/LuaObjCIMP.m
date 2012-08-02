@@ -176,7 +176,7 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
@@ -234,7 +234,7 @@ static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
@@ -268,7 +268,7 @@ static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, .
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
@@ -300,7 +300,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(L, obj, sel, ap);
+    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
     switch (impType)
