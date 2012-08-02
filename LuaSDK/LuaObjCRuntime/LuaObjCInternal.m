@@ -45,7 +45,7 @@ void luaObjC_throwExceptionIfError(lua_State *L)
                                                      reason: errorReason
                                                    userInfo: [NSDictionary dictionaryWithObjectsAndKeys: [NSValue valueWithPointer: L], @"LuaState", nil]
                               ];
-    @throw exception; 
+    @throw exception;
 }
 
 
@@ -92,7 +92,7 @@ void stackDump (lua_State *L)
     
     int t = 0;
 
-    for (int i = 1; i < nargs + 1; ++i)
+    for (int i = -1; i <= nargs; ++i)
     {
         t = lua_type(L, i);
         switch (t)
@@ -351,4 +351,22 @@ void luaObjCInternal_createmeta(lua_State *L, const char *name, const luaL_Reg m
     lua_setfield(L, -2, "__index");  /* metatable.__index = metatable */
     luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
     lua_pop(L, 1);  /* pop new metatable */
+}
+
+NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector)
+{
+    const char* charLooper = (const char*)selector;
+    NSUInteger count = 0;
+    
+    while (*charLooper)
+    {
+        if (*charLooper == ':')
+        {
+            ++count;
+        }
+        
+        ++charLooper;
+    }
+    
+    return count;
 }

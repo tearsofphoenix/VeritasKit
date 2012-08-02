@@ -9,7 +9,8 @@
 #import "LuaObjCClass.h"
 
 #import "LuaObjCInternal.h"
-
+#import "LuaObjCBlock.h"
+#import "LuaObjCTypeEncoding.h"
 #import "LuaCGGeometry.h"
 
 #import "LuaObjCAccelerator.h"
@@ -28,255 +29,53 @@ struct lua_State *_luaState;
 
 @class LuaObjectObserver;
 
-struct __LuaClass
-{
-    LuaObject_CommeonHeader
-    NSString *className;
-    NSMutableDictionary *_classMethods;
-};
+static NSMutableDictionary *__LuaObjC_MethodsDictionary = nil;
 
 static NSMutableDictionary *__LuaObjC_ClassDictionary = nil;
+static char __LuaObjC_KeyForLuaState;
 
-static NSMutableDictionary *__LuaObjC_TypeEncodingDictionary = nil;
-
-static NSMutableDictionary *__LuaObjC_clouserBlockDictionary = nil;
-
-void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block)
+void luaObjC_registerClass(struct lua_State *L, Class theClass, NSString *className)
 {
-    if (block)
-    {
-        [__LuaObjC_clouserBlockDictionary setObject: [NSNumber numberWithInteger: clouserID]
-                                             forKey: [NSValue valueWithPointer: block]];
-    }
-}
-
-int _luaObjC_getClouserIDOfBlock(void *block)
-{
-    NSNumber *clouser = [__LuaObjC_clouserBlockDictionary objectForKey: [NSValue valueWithPointer: block]];
-    if (clouser)
-    {
-        return [clouser intValue];
-    }
-    return LuaObjCInvalidClouserID;
-}
-
-static void _LuaObjC_initTypeEncodingDictionary(NSMutableDictionary *dict)
-{
-#define _AddTypeEncoding(dict, type) [dict setObject: [NSString stringWithUTF8String: @encode(type)] \
-forKey: [NSString stringWithUTF8String: #type]];
-    
-    _AddTypeEncoding(dict, NSInteger);
-    _AddTypeEncoding(dict, NSUInteger);
-    _AddTypeEncoding(dict, BOOL);
-    _AddTypeEncoding(dict, id);
-    _AddTypeEncoding(dict, SEL);
-    _AddTypeEncoding(dict, CGFloat);
-    _AddTypeEncoding(dict, int);
-    _AddTypeEncoding(dict, void);
-    
-#undef _AddTypeEncoding
-}
-
-void _luaObjC_registerClassPredeclearation(NSString *className)
-{
-    [__LuaObjC_TypeEncodingDictionary setObject: [NSString stringWithUTF8String: @encode(id)]
-                                         forKey: className];
-}
-
-NSString * _LuaObjC_getTypeEncoding(NSString *typeName)
-{
-    NSString *typeEncoding = [__LuaObjC_TypeEncodingDictionary objectForKey: typeName];
-    if (!typeEncoding)
-    {
-        typeEncoding = [NSString stringWithUTF8String: @encode(id)];
-    }
-    return typeEncoding;
-}
-
-NSString * _LuaObjC_getTypeEncodingOfType(const char *typeName)
-{
-    return _LuaObjC_getTypeEncoding([NSString stringWithUTF8String: typeName]);
-}
-
-void luaObjC_registerClass(Class theClass, NSString *className, Class superClass)
-{
-    LuaClassInfo *classInfo = [[LuaClassInfo alloc] initWithClass: theClass
-                                                        className: className
-                                                       superClass: superClass];
-    
-    [__LuaObjC_ClassDictionary setObject: classInfo
+    [__LuaObjC_ClassDictionary setObject: theClass
                                   forKey: className];
-    [classInfo release];
+    
+    objc_setAssociatedObject(theClass,
+                             &__LuaObjC_KeyForLuaState,
+                             [NSValue valueWithPointer: L],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    NSMutableDictionary *classMethods = [[NSMutableDictionary alloc] init];
+    
+    [__LuaObjC_MethodsDictionary setObject: classMethods
+                                    forKey: [NSValue valueWithPointer: theClass]];
+    [classMethods release];
 }
 
-LuaClassInfo *luaObjC_getRegisteredClassByName(NSString *className)
+struct lua_State *luaObjC_getStateOfClass(Class theClass)
+{
+    return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
+}
+
+Class luaObjC_getRegisteredClassByName(NSString *className)
 {
     return [__LuaObjC_ClassDictionary objectForKey: className];
 }
 
-static int _luaEngine_resolveName(lua_State *L)
+int luaopen_classSupport(lua_State *L)
 {
-    const char* name = lua_tostring(L, 2);
-    //printf("revolve: %s\n", name);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, (^
+                               {
+                                   __LuaObjC_MethodsDictionary = [[NSMutableDictionary alloc] init];
+                                   __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
+                               }));
     
-    if (!_luaObjCCacheTableGetObjectForKey(L, name))
-    {
-        printf("not got, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
-        Class theClass = objc_getClass(name);
-        if (theClass)
-        {
-            LuaObjectRef objRef = LuaObjectInitialize(L, theClass);
-            _luaObjCCacheTableInsertObjectForKey(L, objRef, name);
-            luaObjC_pushNSObject(L, theClass);
-        }else
-        {
-            //this maybe a function, such as glEnable(...)
-            [LuaBridgeSupport tryToResolveName: [NSString stringWithUTF8String: name]
-                                  intoLuaState: L];
-        }
-    }
-    
-    return 1;
-}
-
-static const luaL_Reg __luaObjC_Functions[] =
-{
-    {"resolveName", _luaEngine_resolveName},
-    {NULL, NULL},
-};
-
-static int _luaObjC_openIndexSupport(lua_State *L)
-{
-    luaL_newlib(L, __luaObjC_Functions);
-    return 1;
-}
-
-int luaopen_objc(lua_State *L)
-{    
-    if (!__LuaObjC_ClassDictionary)
-    {
-        __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
-    }
-    
-    if (!__LuaObjC_TypeEncodingDictionary)
-    {
-        __LuaObjC_TypeEncodingDictionary = [[NSMutableDictionary alloc] init];
-        _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
-    }
-    
-    if (!__LuaObjC_clouserBlockDictionary)
-    {
-        __LuaObjC_clouserBlockDictionary = [[NSMutableDictionary alloc] init];
-    }
-    
+    _luaObjC_initializeTypeEncoding();
+    _luaObjC_initializeBlockSupport();
     _luaObjCCacheTableCreate(L);
-    
-    luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
-    
-    static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName, "
-    "                 })";
-	luaL_loadstring(L, s_ResolveNameMetaTable);
-	lua_pcall(L, 0, 0, 0);
-    
+
     return 1;
-    
 }
-
-@interface LuaClassInfo ()
-{
-@private
-    NSMutableDictionary *_classMethods;
-    NSMutableDictionary *_instanceMethods;
-    Class _luaClass;
-    Class _superLuaClass;
-    NSString *_luaClassName;
-}
-@end
-
-@implementation LuaClassInfo
-
-static void LuaClassInfo_addMethod(NSMutableDictionary *dict,
-                                   int closureID,
-                                   const char* selectorName)
-{
-    [dict setObject: [NSNumber numberWithInt: closureID]
-             forKey: [NSString stringWithUTF8String: selectorName]];
-
-}
-
-static int LuaClassInfo_methodIDForSelector(NSDictionary *dict, SEL selector)
-{
-    NSNumber *closureID = [dict objectForKey: NSStringFromSelector(selector)];
-    if (closureID)
-    {
-        return [closureID intValue];
-    }
-    return LuaObjCInvalidClouserID;
-}
-
-- (id)init
-{
-    [self doesNotRecognizeSelector: _cmd];
-    return nil;
-}
-
-- (id)initWithClass: (Class)luaClass
-          className: (NSString *)className
-         superClass: (Class)superClass
-{
-    if ((self = [super init]))
-    {
-        _classMethods = [[NSMutableDictionary alloc] init];
-        _instanceMethods = [[NSMutableDictionary alloc] init];
-        _luaClass = luaClass;
-        _luaClassName = [className retain];
-        _superLuaClass = superClass;
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    [_classMethods release];
-    [_instanceMethods release];
-    [_luaClassName release];
-    
-    [super dealloc];
-}
-
-- (Class)luaClass
-{
-    return _luaClass;
-}
-
-- (Class)superLuaClass
-{
-    return _superLuaClass;
-}
-
-- (void)addClassMethod: (int)closureID
-       forSelectorName: (const char*)selectorName
-{
-    LuaClassInfo_addMethod(_classMethods, closureID, selectorName);
-}
-
-- (int)classMethodForSelector: (SEL)selector
-{
-    return LuaClassInfo_methodIDForSelector(_classMethods, selector);
-}
-
-- (void)addInstanceMethod: (int)closureID
-          forSelectorName: (const char*)selectorName
-{
-    LuaClassInfo_addMethod(_instanceMethods, closureID, selectorName);
-}
-
-- (int)instanceMethodForSelector: (SEL)selector
-{
-    return LuaClassInfo_methodIDForSelector(_instanceMethods, selector);
-}
-
-@end
 
 #pragma mark - Object observer
 
@@ -309,7 +108,7 @@ static void _luaObjC_runtimeDeallocMethod(id obj, SEL selector)
     _deallocIMPOfRootClass(obj, selector);
 }
 
-void luaObjC_modifyRootClass(void)
+void luaObjCInternal_modifyRootClass(void)
 {
     _deallocIMPOfRootClass = class_replaceMethod(objc_getClass("NSObject"), @selector(dealloc), (IMP)_luaObjC_runtimeDeallocMethod, "v@:");
 }
@@ -333,13 +132,37 @@ void luaObjC_modifyRootClass(void)
 
 @end
 
-#pragma mark - Object wrapper lift cycle
+int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector)
+{
+    if (theClass && selector)
+    {
+        NSDictionary *methods = [__LuaObjC_MethodsDictionary objectForKey: [NSValue valueWithPointer: theClass]];
+        NSNumber *closurID = [methods objectForKey: NSStringFromSelector(selector)];
+        if (closurID)
+        {
+            return [closurID intValue];
+        }
+    }
+    
+    return LuaObjCInvalidClouserID;
+}
+
+void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName)
+{
+    if (theClass && selectorName)
+    {
+        NSMutableDictionary *methods = [__LuaObjC_MethodsDictionary objectForKey: [NSValue valueWithPointer: theClass]];
+        [methods setObject: [NSNumber numberWithInt: clouserID]
+                               forKey: [NSString stringWithUTF8String: selectorName]];
+    }
+}
 
 int LuaObjCInvalidClouserID = -1;
 
 struct __LuaObject
 {
-    LuaObject_CommeonHeader
+    id _obj;
+    lua_State *_luaState;
     LuaObjectObserver *_objectObserver;
 };
 
@@ -417,25 +240,11 @@ NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref)
     return 0;
 }
 
-struct lua_State* LuaObjectGetLuaState(LuaObjectRef ref)
+lua_State* LuaObjectGetLuaState(LuaObjectRef ref)
 {
     if (ref)
     {
         return ref->_luaState;
     }
     return NULL;
-}
-
-int LuaObjectGetClouserIDOfSelector(id object, SEL selector)
-{
-    if (object && selector)
-    {
- 
-    }
-    return LuaObjCInvalidClouserID;
-}
-
-void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName)
-{
-
 }

@@ -71,13 +71,6 @@
         {
             serviceBlock(callbackBlock, action, arguments);
         }
-    }else 
-    {
-        SEL selector = NSSelectorFromString(action);
-        if (selector && [self methodForSelector: selector])
-        {
-            //TODO, May Call selector
-        }
     }
 }
 

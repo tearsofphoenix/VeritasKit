@@ -17,5 +17,3 @@ extern void luaObjC_addPropertyToClassOrigin(const char* className, const char* 
                                              const char* propertyName);
 
 extern int luaObjC_addPropertyToClass(struct lua_State *L);
-
-extern void luaObjC_setThisPointerInCurrentContextOfClass(struct lua_State *L, id thisObj);

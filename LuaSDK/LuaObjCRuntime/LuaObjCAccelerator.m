@@ -62,7 +62,7 @@ int luaObjC_callImplementation_specializeForNoArgument(lua_State *L, const char*
         case ':':
         {
             typedef SEL (* _IMP_T)(id, SEL);
-            luaObjC_pushNSObject(L, NSStringFromSelector(((_IMP_T)impRef)(obj, selector)));
+            luaObjC_pushSelector(L, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
         case '{':
@@ -400,8 +400,8 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                 case ':':
                 {
                     typedef const char* (* _IMP_T)(id, SEL, SEL);
-                    SEL sel = NSSelectorFromString([NSString stringWithCString: luaObjC_checkString(L, LuaObjCArgumentStart)
-                                                                      encoding: NSUTF8StringEncoding]);
+                    SEL sel = sel_getUid(luaObjC_checkString(L, LuaObjCArgumentStart));
+
                     lua_pushstring(L, ((_IMP_T)impRef)(obj, selector, sel));
                     return 1;
                 }
@@ -579,27 +579,27 @@ int luaObjC_callImplementation_specializeForOneArgument(lua_State *L,
                 case 'B':
                 {
                     typedef SEL (* _IMP_T)(id, SEL, NSInteger);
-                    luaObjC_pushNSObject(L,NSStringFromSelector( ((_IMP_T)impRef)(obj, selector, luaObjC_checkInteger(L, LuaObjCArgumentStart)) ));
+                    luaObjC_pushSelector(L, ((_IMP_T)impRef)(obj, selector, luaObjC_checkInteger(L, LuaObjCArgumentStart)));
                     return 1;
                 }
                 case '*':
                 {
                     typedef SEL (* _IMP_T)(id, SEL, const char*);
-                    luaObjC_pushNSObject(L,NSStringFromSelector( ((_IMP_T)impRef)(obj, selector, lua_tostring(L, LuaObjCArgumentStart)) ));
+                    luaObjC_pushSelector(L, ((_IMP_T)impRef)(obj, selector, lua_tostring(L, LuaObjCArgumentStart)) );
                     return 1;
                 }
                 case '#':
                 case '@':
                 {
                     typedef SEL (* _IMP_T)(id, SEL, id);
-                    luaObjC_pushNSObject(L,NSStringFromSelector( ((_IMP_T)impRef)(obj, selector, luaObjC_checkNSObject(L, LuaObjCArgumentStart)) ));
+                    luaObjC_pushSelector(L, ((_IMP_T)impRef)(obj, selector, luaObjC_checkNSObject(L, LuaObjCArgumentStart)) );
                     return 1;
                 }
                 case '^':
                 case '[':
                 {
                     typedef SEL (* _IMP_T)(id, SEL, void*);
-                    luaObjC_pushNSObject(L,NSStringFromSelector( ((_IMP_T)impRef)(obj, selector, lua_touserdata(L, LuaObjCArgumentStart)) ));
+                    luaObjC_pushSelector(L, ((_IMP_T)impRef)(obj, selector, lua_touserdata(L, LuaObjCArgumentStart)) );
                     return 1;
                 }
                 default:

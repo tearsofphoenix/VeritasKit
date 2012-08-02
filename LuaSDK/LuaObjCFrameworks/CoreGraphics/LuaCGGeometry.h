@@ -13,6 +13,8 @@ extern "C" {
 
 #if TARGET_OS_IPHONE || TARGET_OS_EMBEDDED
 #include <CoreGraphics/CGGeometry.h>
+#else
+#include <Foundation/NSGeometry.h>    
 #endif
     
 #define LUA_CGPoint_METANAME	"CGPoint"

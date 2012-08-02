@@ -13,6 +13,7 @@
 #import "LuaCGGeometry.h"
 #import "LuaObjCAuxiliary.h"
 #import "lua.h"
+#import "lauxlib.h"
 #import "ffi.h"
 #import "LuaBridgeFunctor.h"
 #import "NSMethodSignature+argumentsEncodings.h"
@@ -21,7 +22,7 @@
 
 static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
 {
-    //stackDump(L);
+
     LuaObjectRef anObj = lua_touserdata(L, 1);
     //optimize for nil object call
     //
