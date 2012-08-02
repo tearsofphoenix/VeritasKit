@@ -57,44 +57,7 @@ Class luaObjC_getRegisteredClassByName(NSString *className)
     return [__LuaObjC_ClassDictionary objectForKey: className];
 }
 
-static int _luaEngine_resolveName(lua_State *L)
-{
-    const char* name = lua_tostring(L, 2);
-    //printf("revolve: %s\n", name);
-    
-    if (!_luaObjCCacheTableGetObjectForKey(L, name))
-    {
-        printf("not got, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
-        Class theClass = objc_getClass(name);
-        if (theClass)
-        {
-            LuaObjectRef objRef = LuaObjectInitialize(L, theClass);
-            _luaObjCCacheTableInsertObjectForKey(L, objRef, name);
-            luaObjC_pushNSObject(L, theClass);
-        }else
-        {
-            //this maybe a function, such as glEnable(...)
-            [LuaBridgeSupport tryToResolveName: [NSString stringWithUTF8String: name]
-                                  intoLuaState: L];
-        }
-    }
-    
-    return 1;
-}
-
-static const luaL_Reg __luaObjC_Functions[] =
-{
-    {"resolveName", _luaEngine_resolveName},
-    {NULL, NULL},
-};
-
-static int _luaObjC_openIndexSupport(lua_State *L)
-{
-    luaL_newlib(L, __luaObjC_Functions);
-    return 1;
-}
-
-int luaopen_objc(lua_State *L)
+int luaopen_classSupport(lua_State *L)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, (^
@@ -105,16 +68,8 @@ int luaopen_objc(lua_State *L)
     
     _luaObjC_initializeTypeEncoding();
     _luaObjC_initializeBlockSupport();
-    
     _luaObjCCacheTableCreate(L);
-    
-    luaL_requiref(L, "ObjC", _luaObjC_openIndexSupport, 1);
-    
-    static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName, "
-    "                 })";
-	luaL_loadstring(L, s_ResolveNameMetaTable);
-	lua_pcall(L, 0, 0, 0);
-    
+
     return 1;
     
 }

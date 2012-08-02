@@ -45,4 +45,4 @@ extern void luaObjC_registerClass(struct lua_State *L, Class theClass, NSString 
 
 extern struct lua_State *luaObjC_getStateOfClass(Class theClass);
 
-LUAMOD_API int (luaopen_objc)(struct lua_State *L);
+LUAMOD_API int (luaopen_classSupport)(struct lua_State *L);
