@@ -17,11 +17,11 @@ extern "C" {
 
 #pragma mark - strong table	
     
-	void _luaObjCCacheTableCreate(struct lua_State* lua_state);
+	void LuaObjCCacheTableInitialize(struct lua_State* L);
 	
-	void _luaObjCCacheTableInsertObjectForKey(struct lua_State* lua_state, void* the_object, const char *key);
+	void LuaObjCCacheTableInsertObjectForKey(struct lua_State* L, void* object, const char *key);
 	
-	void *_luaObjCCacheTableGetObjectForKey(struct lua_State* lua_state, const char* key);
+	void *LuaObjCCacheTableGetObjectForKey(struct lua_State* L, const char* key);
     
 #ifdef __cplusplus
 }

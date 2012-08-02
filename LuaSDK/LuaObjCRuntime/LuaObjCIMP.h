@@ -8,12 +8,8 @@
 
 struct lua_State;
 
-extern int luaObjC_luaClass_addObjectMethod(struct lua_State *L);
+extern int LuaIMPAddInstanceMethod(struct lua_State *L);
 
-extern int luaObjC_luaClass_addClassMethod(struct lua_State *L);
+extern int LuaIMPAddClassMethod(struct lua_State *L);
 
-extern void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic, const char* ownership,
-                                             const char* getterName, const char* setterName, const char* typeName,
-                                             const char* propertyName);
-
-extern int luaObjC_addPropertyToClass(struct lua_State *L);
+extern int LuaIMPAddPropertyToClass(struct lua_State *L);

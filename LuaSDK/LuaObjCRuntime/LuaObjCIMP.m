@@ -34,21 +34,21 @@ typedef enum
 static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
     Class theClass = [obj class];
-
+    
     int clouserID = LuaClassGetClouserIDOfSelector(theClass, sel);
-    lua_State *luaState = luaObjC_getStateOfClass(theClass);
-
+    lua_State *luaState = LuaClassGetLuaState(theClass);
+    
     if (clouserID != LuaObjCInvalidClouserID)
-    {        
+    {
         //preprare arguments
-        //        
+        //
         if (returnedLuaState)
         {
             *returnedLuaState = luaState;
         }
         
         //lua_settop(luaState, 0);
-
+        
         //push lua function into stack
         //
         lua_rawgeti(luaState, LUA_REGISTRYINDEX, clouserID);
@@ -65,7 +65,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         //push 'self' argument first
         //
         luaObjC_pushNSObject(luaState, obj);
-
+        
         //push '_cmd' argument next
         //
         luaObjC_pushSelector(luaState, sel);
@@ -147,7 +147,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
                 }
             }
         }
-                
+        
         //why +1 +1 ? we have an implicit 'self' argument and '_cmd' arguemnt for method
         //
         int status = lua_pcall(luaState, numberOfArgument + 1 + 1, 1, 0);
@@ -155,7 +155,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         {
             luaObjC_throwExceptionIfError(luaState);
         }
-                
+        
         return LuaClassIMPFunction;
     }
     /*if is property*/
@@ -170,7 +170,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
     }else
     {
         NSLog(@"call stack:%@", [NSThread callStackSymbols]);
-        [obj doesNotRecognizeSelector: sel];        
+        [obj doesNotRecognizeSelector: sel];
         return LuaClassIMPUnknown;
     }
 }
@@ -189,12 +189,12 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
         {
             printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
             break;
-        }   
+        }
         case LuaClassIMPFunction:
         {
             NSInteger ret = 0;
             int returnIndexOfLuaFunction = -1;
-            switch (lua_type(L, returnIndexOfLuaFunction)) 
+            switch (lua_type(L, returnIndexOfLuaFunction))
             {
                 case LUA_TNIL:
                 case LUA_TNONE:
@@ -205,7 +205,7 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
                 {
                     ret = lua_tonumber(L, returnIndexOfLuaFunction);
                     break;
-                }   
+                }
                 case LUA_TBOOLEAN:
                 {
                     ret = lua_toboolean(L, returnIndexOfLuaFunction);
@@ -247,7 +247,7 @@ static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
         {
             printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
             break;
-        }   
+        }
         case LuaClassIMPFunction:
         {
             CGFloat ret = lua_tonumber(L, -1);
@@ -281,7 +281,7 @@ static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, .
         {
             printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
             break;
-        }   
+        }
         case LuaClassIMPFunction:
         {
             //TODO
@@ -313,7 +313,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
         {
             printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
             break;
-        }   
+        }
         case LuaClassIMPFunction:
         {
             id ret = luaObjC_checkNSObject(L, -1);
@@ -344,20 +344,20 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
     //return type
     //
     typeLooper = luaObjC_checkString(L, 3);
-    const char* returnType = [_LuaObjC_getTypeEncodingOfType(typeLooper) UTF8String];
+    const char* returnType = [LuaObjCTypeEncodingOfType(typeLooper) UTF8String];
     
-    [typeEncoding appendString: _LuaObjC_getTypeEncodingOfType(typeLooper)];
-    [typeEncoding appendString: _LuaObjC_getTypeEncoding(@"id")];
-    [typeEncoding appendString: _LuaObjC_getTypeEncoding(@"SEL")];
+    [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
+    [typeEncoding appendString: LuaObjCTypeEncodingOfTypeName(@"id")];
+    [typeEncoding appendString: LuaObjCTypeEncodingOfTypeName(@"SEL")];
     
     for (int iLooper = 4; iLooper < argCount; ++iLooper)
     {
         typeLooper = luaObjC_checkString(L, iLooper);
         
-        [typeEncoding appendString: _LuaObjC_getTypeEncodingOfType(typeLooper)];
+        [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
     }
     
-    Class theClass = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
+    Class theClass = LuaClassGetRegisteredClassByName([NSString stringWithUTF8String: className]);
     
     if (!isObjectMethod)
     {
@@ -393,7 +393,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         {
             if(!class_addMethod(theClass, sel, (IMP)__luaClass_IMP_float_return, typeEncodingCString))
             {
-                printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString, returnType);                
+                printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString, returnType);
             }
             break;
         }
@@ -401,7 +401,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         {
             if(!class_addMethod(theClass, sel, (IMP)__luaClass_IMP_struct_return, typeEncodingCString))
             {
-                printf("Fail to class:%s registered method for SEL:%s typeencoding:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString);                
+                printf("Fail to class:%s registered method for SEL:%s typeencoding:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString);
             }
             break;
         }
@@ -409,7 +409,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         {
             if(!class_addMethod(theClass, sel, __luaClass_IMP_gerneral, typeEncodingCString))
             {
-                printf("Fail, class:%s registered method:%s typeencoding:%s return type:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString, returnType);                
+                printf("Fail, class:%s registered method:%s typeencoding:%s return type:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString, returnType);
             }
             break;
         }
@@ -417,19 +417,19 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
     }
     
     LuaClassAddClouserIDForSelector(theClass, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
-
+    
     [typeEncoding release];
     
     return 0;
 }
 
 
-int luaObjC_luaClass_addObjectMethod(lua_State *L)
+int LuaIMPAddInstanceMethod(lua_State *L)
 {
     return luaObjC_luaClass_addMethod(L, YES);
 }
 
-int luaObjC_luaClass_addClassMethod(lua_State *L)
+int LuaIMPAddClassMethod(lua_State *L)
 {
     return luaObjC_luaClass_addMethod(L, NO);
 }
@@ -453,7 +453,7 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
     
     Ivar ivar = class_getInstanceVariable([obj class], propertyName);
     id oldValue = object_getIvar(obj, ivar);
-    if (![oldValue isEqual: newValue]) 
+    if (![oldValue isEqual: newValue])
     {
         object_setIvar(obj, ivar, newValue);
     }
@@ -462,9 +462,9 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
     free(propertyName);
 }
 
-void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic, const char* ownershipName,
-                                      const char* getterName, const char* setterName, const char* typeName,
-                                      const char* propertyName)
+static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* atomic, const char* ownershipName,
+                                           const char* getterName, const char* setterName, const char* typeName,
+                                           const char* propertyName)
 {
     objc_property_attribute_t atomicAttribute = {"", ""};
     if (!strcmp(atomic, "nonatomic"))
@@ -473,7 +473,7 @@ void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic,
     }
     
     objc_property_attribute_t type = { "T", "@" };
-    type.value =  [_LuaObjC_getTypeEncodingOfType(typeName) UTF8String];
+    type.value =  [LuaObjCTypeEncodingOfType(typeName) UTF8String];
     
     
     objc_property_attribute_t ownership = { "", "" }; // C = copy, & = retain
@@ -488,7 +488,7 @@ void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic,
     objc_property_attribute_t backingivar  = {"V", propertyName};
     objc_property_attribute_t attrs[] = {atomicAttribute, type, ownership, backingivar};
     
-    Class theClass = luaObjC_getRegisteredClassByName([NSString stringWithUTF8String: className]);
+    Class theClass = LuaClassGetRegisteredClassByName([NSString stringWithUTF8String: className]);
     
     if(!class_addIvar(theClass, propertyName, sizeof(id), log2(sizeof(id)), @encode(id)))
     {
@@ -511,10 +511,10 @@ void luaObjC_addPropertyToClassOrigin(const char* className, const char* atomic,
     {
         printf("Failed add Property Setter:%s to Class:%s OK!\n", (const char*)selectorOfSet, className);
     }
-
+    
 }
 
-int luaObjC_addPropertyToClass(lua_State *L)
+int LuaIMPAddPropertyToClass(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);
     const char* atomic = luaObjC_checkString(L, 2);
@@ -524,8 +524,8 @@ int luaObjC_addPropertyToClass(lua_State *L)
     const char* typeName = luaObjC_checkString(L, 6);
     const char* propertyName = luaObjC_checkString(L, 7);
     //const char* propertyInternalName = luaObjC_checkString(L, 8);
-    luaObjC_addPropertyToClassOrigin(className, atomic, ownershipName, getterName, 
-                                     setterName, typeName, propertyName);
-     
+    LuaIMPAddPropertyToClassOrigin(className, atomic, ownershipName, getterName,
+                                   setterName, typeName, propertyName);
+    
     return 0;
 }

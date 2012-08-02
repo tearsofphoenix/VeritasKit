@@ -6,10 +6,10 @@
 //
 //
 
-extern NSString * _LuaObjC_getTypeEncodingOfType(const char *typeName);
+extern NSString * LuaObjCTypeEncodingOfType(const char *typeName);
 
-extern NSString * _LuaObjC_getTypeEncoding(NSString *typeName);
+extern NSString * LuaObjCTypeEncodingOfTypeName(NSString *typeName);
 
-extern void _luaObjC_registerClassPredeclearation(NSString *className);
+extern void LuaObjCTypeEncodingAddPredeclearedClass(NSString *className);
 
-extern void _luaObjC_initializeTypeEncoding(void);
+extern void LuaObjCTypeEncodingInitialize(void);

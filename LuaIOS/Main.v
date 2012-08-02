@@ -126,7 +126,5 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            local c = [AppDelegate class]
-            print(c)
-            return UIApplicationMain(0, nil, nil, NSStringFromClass(c))
+            return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
         end

@@ -17,12 +17,21 @@ extern int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector);
 
 extern void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName);
 
+// replace the -dealloc method of Root class (NSObject)
+//
+extern void luaObjCInternal_modifyRootClass(void);
 
-#pragma - Object
+extern Class LuaClassGetRegisteredClassByName(NSString *className);
+
+extern void LuaClassRegister(struct lua_State *L, Class theClass, NSString *className);
+
+extern struct lua_State *LuaClassGetLuaState(Class theClass);
+
+#pragma - Object observer
 
 typedef struct __LuaObject *LuaObjectRef;
 
-LuaObjectRef LuaObjectInitialize(struct lua_State *L,
+LuaObjectRef LuaObjectCreate(struct lua_State *L,
                                          id rawObject);
 
 extern id LuaObjectGetObject(LuaObjectRef ref);
@@ -32,17 +41,5 @@ extern void LuaObjectPrint(LuaObjectRef ref);
 extern void LuaObjectFinalize(LuaObjectRef ref);
 
 extern NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
-
-extern struct lua_State* LuaObjectGetLuaState(LuaObjectRef ref);
-
-// replace the -dealloc method of Root class (NSObject)
-//
-extern void luaObjCInternal_modifyRootClass(void);
-
-extern Class luaObjC_getRegisteredClassByName(NSString *className);
-
-extern void luaObjC_registerClass(struct lua_State *L, Class theClass, NSString *className);
-
-extern struct lua_State *luaObjC_getStateOfClass(Class theClass);
 
 LUAMOD_API int (luaopen_classSupport)(struct lua_State *L);

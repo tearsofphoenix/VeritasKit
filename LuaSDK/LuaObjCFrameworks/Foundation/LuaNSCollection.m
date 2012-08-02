@@ -185,25 +185,25 @@ int LuaOpenNSColletion(lua_State *L)
 {
     //NSArray accelerators
     //
-    luaObjC_registerAccelerator(@selector(arrayWithObjects:),
+    LuaObjCAcceleratorRegister(@selector(arrayWithObjects:),
                                 _luaObjC_NSArray_arrayWithObjects);
-    luaObjC_registerAccelerator(@selector(initWithObjects:),
+    LuaObjCAcceleratorRegister(@selector(initWithObjects:),
                                 _luaObjC_NSArray_NSOrderedSet_initWithObjects);
-    luaObjC_registerAccelerator(@selector(dictionaryWithObjectsAndKeys:),
+    LuaObjCAcceleratorRegister(@selector(dictionaryWithObjectsAndKeys:),
                                 _luaObjC_NSDictionary_dictionaryWithObjectsAndKeys);
-    luaObjC_registerAccelerator(@selector(initWithObjectsAndKeys:),
+    LuaObjCAcceleratorRegister(@selector(initWithObjectsAndKeys:),
                                 _luaObjC_NSDictionary_initWithObjectsAndKeys);
-    luaObjC_registerAccelerator(@selector(orderedSetWithObjects:),
+    LuaObjCAcceleratorRegister(@selector(orderedSetWithObjects:),
                                 _luaObjC_NSOrderedSet_orderedSetWithObjects);
-    luaObjC_registerAccelerator(@selector(setWithObjects:),
+    LuaObjCAcceleratorRegister(@selector(setWithObjects:),
                                 _luaObjC_NSSet_setWithObjects);
-    luaObjC_registerAccelerator(@selector(enumerateObjectsUsingBlock:),
+    LuaObjCAcceleratorRegister(@selector(enumerateObjectsUsingBlock:),
                                 _luaObjC_NSCollection_enumerateObjectsUsingBlock);
-    luaObjC_registerAccelerator(@selector(enumerateObjectsWithOptions:usingBlock:),
+    LuaObjCAcceleratorRegister(@selector(enumerateObjectsWithOptions:usingBlock:),
                                 _luaObjC_NSCollection_enumerateObjectsWithOptions_usingBlock);
-    luaObjC_registerAccelerator(@selector(enumerateKeysAndObjectsUsingBlock:),
+    LuaObjCAcceleratorRegister(@selector(enumerateKeysAndObjectsUsingBlock:),
                                 _luaObjC_NSCollection_enumerateKeysAndObjectsUsingBlock);
-    luaObjC_registerAccelerator(@selector(enumerateKeysAndObjectsWithOptions:usingBlock:),
+    LuaObjCAcceleratorRegister(@selector(enumerateKeysAndObjectsWithOptions:usingBlock:),
                                 _luaObjC_NSCollection_enumerateKeysAndObjectsWithOptions_usingBlock);
     
     return 0;

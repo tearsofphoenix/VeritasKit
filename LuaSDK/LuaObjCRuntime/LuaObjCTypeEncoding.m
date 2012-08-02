@@ -27,13 +27,13 @@ forKey: [NSString stringWithUTF8String: #type]];
 #undef _AddTypeEncoding
 }
 
-void _luaObjC_registerClassPredeclearation(NSString *className)
+void LuaObjCTypeEncodingAddPredeclearedClass(NSString *className)
 {
     [__LuaObjC_TypeEncodingDictionary setObject: [NSString stringWithUTF8String: @encode(id)]
                                          forKey: className];
 }
 
-NSString * _LuaObjC_getTypeEncoding(NSString *typeName)
+NSString * LuaObjCTypeEncodingOfTypeName(NSString *typeName)
 {
     NSString *typeEncoding = [__LuaObjC_TypeEncodingDictionary objectForKey: typeName];
     if (!typeEncoding)
@@ -43,12 +43,12 @@ NSString * _LuaObjC_getTypeEncoding(NSString *typeName)
     return typeEncoding;
 }
 
-NSString * _LuaObjC_getTypeEncodingOfType(const char *typeName)
+NSString * LuaObjCTypeEncodingOfType(const char *typeName)
 {
-    return _LuaObjC_getTypeEncoding([NSString stringWithUTF8String: typeName]);
+    return LuaObjCTypeEncodingOfTypeName([NSString stringWithUTF8String: typeName]);
 }
 
-void _luaObjC_initializeTypeEncoding(void)
+void LuaObjCTypeEncodingInitialize(void)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, (^

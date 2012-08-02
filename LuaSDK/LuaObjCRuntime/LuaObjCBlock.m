@@ -9,7 +9,7 @@
 
 static NSMutableDictionary *__LuaObjC_clouserBlockDictionary = nil;
 
-void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block)
+void LuaObjCBlockSetClosureID(int clouserID, void *block)
 {
     if (block)
     {
@@ -18,7 +18,7 @@ void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block)
     }
 }
 
-int _luaObjC_getClouserIDOfBlock(void *block)
+int LuaObjCBlockGetClosureID(void *block)
 {
     NSNumber *clouser = [__LuaObjC_clouserBlockDictionary objectForKey: [NSValue valueWithPointer: block]];
     if (clouser)
@@ -28,7 +28,7 @@ int _luaObjC_getClouserIDOfBlock(void *block)
     return LuaObjCInvalidClouserID;
 }
 
-void _luaObjC_initializeBlockSupport(void)
+void LuaObjCBlockSupportInitialize(void)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, (^
