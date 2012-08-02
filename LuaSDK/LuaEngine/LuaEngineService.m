@@ -33,8 +33,6 @@ static char * const LuaEngineFrameworkImportQueueIdentifier = "com.veritas.lua-e
 
 static LuaEngineService *g_engine = nil;
 
-extern FILE *g_luaOutputFilePointer;
-
 typedef struct lua_State *LuaStateRef;
 
 typedef struct
@@ -145,27 +143,15 @@ static void LuaEngine_initialize(LuaEngineService *self,
     
     LuaEngineAttributesRef internal = calloc(1, sizeof(LuaEngineAttributes));
     
-    //    NSString *guid = [[NSProcessInfo processInfo] globallyUniqueString];
-    //    NSString *path = [[NSTemporaryDirectory() stringByAppendingPathComponent:guid] retain];
-    NSString *path = @"./log.txt";
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath: path])
-    {
-        [fileManager createFileAtPath: path
-                             contents: nil
-                           attributes: nil];
-    }
-    
-    g_luaOutputFilePointer = stdout;
-    //    g_luaOutputFilePointer = fopen([path cStringUsingEncoding: NSUTF8StringEncoding], "w");
-    
-    internal->path = path;
+    internal->path = nil;
     
     //init parser state
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
+    
     luaObjC_loadGlobalFunctions(parserStateRef, __compileTimeFunctions);
     LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
+    
     internal->parserState = parserStateRef;
     
     //init runtime state
@@ -189,11 +175,6 @@ static void LuaEngine_initialize(LuaEngineService *self,
     *_internal = internal;
     
     g_engine = self;
-}
-
-static int _LuaEngine_writer(lua_State* L, const void* p, size_t size, void* u)
-{
-    return (fwrite(p,size,1,(FILE*)u)!=1) && (size!=0);
 }
 
 + (void)load
@@ -220,8 +201,6 @@ static int _LuaEngine_writer(lua_State* L, const void* p, size_t size, void* u)
     
     free(_internal);
     
-    fclose(g_luaOutputFilePointer);
-    g_luaOutputFilePointer = NULL;
     g_engine = nil;
     
     [_luaEngineLibs release];
@@ -271,7 +250,7 @@ static int _LuaEngine_writer(lua_State* L, const void* p, size_t size, void* u)
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
-        //printf("parsed: %s\n", ret);
+        printf("parsed: %s\n", ret);
         return ret;
     }else
     {
