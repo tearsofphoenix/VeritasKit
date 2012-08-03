@@ -11,152 +11,152 @@
 #import "LuaBridgeInfo.h"
 #import <dlfcn.h>
 
-typedef void (^LuaBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
+typedef void (* LuaBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
 
-static LuaBridgeNodeParserBlock __LuaBridgeConstantNodeParser = (^(XMLNode *node, NSMutableDictionary *result)
-                                                                 {
-                                                                     NSString *name = [node attributeWithName: @"name"];
-                                                                     LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
-                                                                     
-                                                                     [info setType: LuaBridgeConstantType];
-                                                                     [info setName: name];
-                                                                     
-                                                                     NSMutableDictionary *constantInfo = [[NSMutableDictionary alloc] init];
-                                                                     NSString *type = [node attributeWithName: @"type"];
-                                                                     [constantInfo setObject: type
-                                                                                      forKey: @"type"];
-                                                                     
-                                                                     switch(*[type UTF8String])
-                                                                     {
-                                                                         case 'c':
-                                                                         case 'i':
-                                                                         case 's':
-                                                                         case 'l':
-                                                                         case 'q':
-                                                                         case 'C':
-                                                                         case 'I':
-                                                                         case 'S':
-                                                                         case 'L':
-                                                                         case 'Q':
-                                                                         case 'B':
-                                                                         {
-                                                                             NSInteger *address = dlsym(RTLD_DEFAULT, [name UTF8String]);
-                                                                             if (address)
-                                                                             {
-                                                                                 [constantInfo setObject: [NSNumber numberWithInteger: *address]
-                                                                                                  forKey: @"value"];
-                                                                             }
-                                                                             break;
-                                                                         }
-                                                                         case 'f':
-                                                                         case 'd':
-                                                                         {
-                                                                             CGFloat * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
-                                                                             if (address)
-                                                                             {
-                                                                                 [constantInfo setObject: [NSNumber numberWithDouble: *address]
-                                                                                                  forKey: @"value"];
-                                                                             }
-                                                                             break;
-                                                                         }
-                                                                         case '@':
-                                                                         {
-                                                                             id * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
-                                                                             if (address && *address)
-                                                                             {
-                                                                                 [constantInfo setObject: *address
-                                                                                                  forKey: @"value"];
-                                                                             }
-                                                                             break;
-                                                                         }
-                                                                         case '{':
-                                                                         {
-                                                                             //TODO
-                                                                             //
-                                                                         }
-                                                                         default:
-                                                                         {
-                                                                             break;
-                                                                         }
-                                                                     }
+static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *result)
+                                         {
+                                             NSString *name = [node attributeWithName: @"name"];
+                                             LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
+                                             
+                                             [info setType: LuaBridgeConstantType];
+                                             [info setName: name];
+                                             
+                                             NSMutableDictionary *constantInfo = [[NSMutableDictionary alloc] init];
+                                             NSString *type = [node attributeWithName: @"type"];
+                                             [constantInfo setObject: type
+                                                              forKey: @"type"];
+                                             
+                                             switch(*[type UTF8String])
+                                             {
+                                                 case 'c':
+                                                 case 'i':
+                                                 case 's':
+                                                 case 'l':
+                                                 case 'q':
+                                                 case 'C':
+                                                 case 'I':
+                                                 case 'S':
+                                                 case 'L':
+                                                 case 'Q':
+                                                 case 'B':
+                                                 {
+                                                     NSInteger *address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                     if (address)
+                                                     {
+                                                         [constantInfo setObject: [NSNumber numberWithInteger: *address]
+                                                                          forKey: @"value"];
+                                                     }
+                                                     break;
+                                                 }
+                                                 case 'f':
+                                                 case 'd':
+                                                 {
+                                                     CGFloat * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                     if (address)
+                                                     {
+                                                         [constantInfo setObject: [NSNumber numberWithDouble: *address]
+                                                                          forKey: @"value"];
+                                                     }
+                                                     break;
+                                                 }
+                                                 case '@':
+                                                 {
+                                                     id * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+                                                     if (address && *address)
+                                                     {
+                                                         [constantInfo setObject: *address
+                                                                          forKey: @"value"];
+                                                     }
+                                                     break;
+                                                 }
+                                                 case '{':
+                                                 {
+                                                     //TODO
+                                                     //
+                                                 }
+                                                 default:
+                                                 {
+                                                     break;
+                                                 }
+                                             }
 
-                                                                     [info setInfo: constantInfo];
-                                                                     [constantInfo release];
-                                                                     
-                                                                     [result setObject: info
-                                                                                forKey: name];
-                                                                     
-                                                                     [info release];
-                                                                 });
+                                             [info setInfo: constantInfo];
+                                             [constantInfo release];
+                                             
+                                             [result setObject: info
+                                                        forKey: name];
+                                             
+                                             [info release];
+                                         }
 
-static LuaBridgeNodeParserBlock __LuaBridgeEnumNodeParser = (^(XMLNode *node, NSMutableDictionary *result)
-                                                             {
-                                                                 NSString *name = [node attributeWithName: @"name"];
-                                                                 LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
-                                                                 
-                                                                 [info setType: LuaBridgeEnumType];
-                                                                 [info setName: name];
-                                                                 
-                                                                 NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                                                                               [node attributeWithName: @"value"], @"value", nil];
-                                                                 [info setInfo: constantInfo];
-                                                                 [constantInfo release];
-                                                                 
-                                                                 [result setObject: info
-                                                                            forKey: name];
-                                                                 
-                                                                 [info release];
-                                                             });
+static void _luaBridgeEnumNodeParser(XMLNode *node, NSMutableDictionary *result)
+                                     {
+                                         NSString *name = [node attributeWithName: @"name"];
+                                         LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
+                                         
+                                         [info setType: LuaBridgeEnumType];
+                                         [info setName: name];
+                                         
+                                         NSDictionary *constantInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                       [node attributeWithName: @"value"], @"value", nil];
+                                         [info setInfo: constantInfo];
+                                         [constantInfo release];
+                                         
+                                         [result setObject: info
+                                                    forKey: name];
+                                         
+                                         [info release];
+                                     }
 
 
-static LuaBridgeNodeParserBlock __LuaBridgeFunctionNodeParser = (^(XMLNode *node, NSMutableDictionary *result)
-                                                                 {
-                                                                     NSString *name = [node attributeWithName: @"name"];
-                                                                     LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
-                                                                     
-                                                                     [info setType: LuaBridgeFunctionType];
-                                                                     [info setName: name];
-                                                                     
-                                                                     NSMutableDictionary *functionInfos = [[NSMutableDictionary alloc] init];
-                                                                     NSMutableArray *arguments = [[NSMutableArray alloc] init];
-                                                                     
-                                                                     XMLNode *argNode = [node firstChild];
-                                                                     NSString *elementnameLooper = nil;
-                                                                     
-                                                                     while(argNode)
-                                                                     {
-                                                                         elementnameLooper = [argNode elementName];
-                                                                         if ([elementnameLooper isEqualToString: @"arg"])
-                                                                         {
-                                                                             LuaBridgeArgumentInfo *argInfo = [[LuaBridgeArgumentInfo alloc] init];
-                                                                             [argInfo setType: [argNode attributeWithName: @"type"]];
-                                                                             [argInfo setType64: [argNode attributeWithName: @"type64"]];
-                                                                             
-                                                                             [arguments addObject: argInfo];
-                                                                             [argInfo release];
-                                                                         }
-                                                                         
-                                                                         if ([elementnameLooper isEqualToString: @"retval"])
-                                                                         {
-                                                                             [functionInfos setObject: [argNode attributeWithName: @"type"]
-                                                                                               forKey: elementnameLooper];
-                                                                         }
-                                                                         
-                                                                         argNode = [argNode nextSibling];
-                                                                     }
-                                                                     
-                                                                     [functionInfos setObject: arguments
-                                                                                       forKey: @"arg"];
-                                                                     [arguments release];
-                                                                     
-                                                                     [info setInfo: functionInfos];
-                                                                     [functionInfos release];
-                                                                     
-                                                                     [result setObject: info
-                                                                                forKey: name];
-                                                                     
-                                                                     [info release];
-                                                                 });
+static void _luaBridgeFunctionNodeParser(XMLNode *node, NSMutableDictionary *result)
+                                         {
+                                             NSString *name = [node attributeWithName: @"name"];
+                                             LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
+                                             
+                                             [info setType: LuaBridgeFunctionType];
+                                             [info setName: name];
+                                             
+                                             NSMutableDictionary *functionInfos = [[NSMutableDictionary alloc] init];
+                                             NSMutableArray *arguments = [[NSMutableArray alloc] init];
+                                             
+                                             XMLNode *argNode = [node firstChild];
+                                             NSString *elementnameLooper = nil;
+                                             
+                                             while(argNode)
+                                             {
+                                                 elementnameLooper = [argNode elementName];
+                                                 if ([elementnameLooper isEqualToString: @"arg"])
+                                                 {
+                                                     LuaBridgeArgumentInfo *argInfo = [[LuaBridgeArgumentInfo alloc] init];
+                                                     [argInfo setType: [argNode attributeWithName: @"type"]];
+                                                     [argInfo setType64: [argNode attributeWithName: @"type64"]];
+                                                     
+                                                     [arguments addObject: argInfo];
+                                                     [argInfo release];
+                                                 }
+                                                 
+                                                 if ([elementnameLooper isEqualToString: @"retval"])
+                                                 {
+                                                     [functionInfos setObject: [argNode attributeWithName: @"type"]
+                                                                       forKey: elementnameLooper];
+                                                 }
+                                                 
+                                                 argNode = [argNode nextSibling];
+                                             }
+                                             
+                                             [functionInfos setObject: arguments
+                                                               forKey: @"arg"];
+                                             [arguments release];
+                                             
+                                             [info setInfo: functionInfos];
+                                             [functionInfos release];
+                                             
+                                             [result setObject: info
+                                                        forKey: name];
+                                             
+                                             [info release];
+                                         };
 
 static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
 
@@ -167,11 +167,11 @@ static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
     if (!__LuaBridgeRegisteredNodeParsers)
     {
         __LuaBridgeRegisteredNodeParsers = [[NSMutableDictionary alloc] init];
-        [__LuaBridgeRegisteredNodeParsers setObject: __LuaBridgeConstantNodeParser
+        [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeConstantNodeParser]
                                              forKey: @"constant"];
-        [__LuaBridgeRegisteredNodeParsers setObject: __LuaBridgeEnumNodeParser
+        [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeEnumNodeParser]
                                              forKey: @"enum"];
-        [__LuaBridgeRegisteredNodeParsers setObject: __LuaBridgeFunctionNodeParser
+        [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeFunctionNodeParser]
                                              forKey: @"function"];
     }
     [super load];
@@ -192,7 +192,7 @@ static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
             while (nodeLooper)
             {
                 NSString *typeName = [nodeLooper elementName];
-                LuaBridgeNodeParserBlock block = [__LuaBridgeRegisteredNodeParsers objectForKey: typeName];
+                LuaBridgeNodeParserBlock block = [[__LuaBridgeRegisteredNodeParsers objectForKey: typeName] pointerValue];
                 if (block)
                 {
                     block(nodeLooper, result);

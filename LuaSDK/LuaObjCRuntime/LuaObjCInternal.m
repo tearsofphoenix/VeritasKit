@@ -119,7 +119,7 @@ void stackDump (lua_State *L)
             }
             default:
             {
-                printf("%d: %s\n", i, lua_typename(L, t)); 
+                printf("%d: %p %s\n", i, lua_topointer(L, t), lua_typename(L, t));
                 break;
             }
         }

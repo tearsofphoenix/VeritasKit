@@ -351,25 +351,8 @@ int luaopen_foundation(lua_State *L)
     luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);
 
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
-    
-    
-    //    luaL_getsubtable(L, LUA_REGISTRYINDEX, "_G");
-    //    lua_newtable(L);
-    //    lua_pushliteral(L, "__index");
-    //
-    //    luaL_getsubtable(L, LUA_REGISTRYINDEX, "_LOADED");
-    //    lua_pushliteral(L, "ObjC");
-    //    lua_gettable(L, -2);
-    //
-    //    lua_pushliteral(L, "resolveName");
-    //    lua_gettable(L, -2);
-    //    lua_remove(L, -2);
-    //    lua_rawset(L, -3);
-    //
-    //    stackDump(L);
-    
-    static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName, "
-    "                 })";
+        
+    static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName})";
 	luaL_loadstring(L, s_ResolveNameMetaTable);
 	lua_pcall(L, 0, 0, 0);
     
