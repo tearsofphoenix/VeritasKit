@@ -53,7 +53,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         //
         lua_rawgeti(luaState, LUA_REGISTRYINDEX, clouserID);
         
-        int numberOfArgument = luaObjCInternal_getArgumentOfSelector(sel);
+        NSUInteger numberOfArgument = luaObjCInternal_getArgumentOfSelector(sel);
         
         const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([obj class], sel));
         
@@ -150,7 +150,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         
         //why +1 +1 ? we have an implicit 'self' argument and '_cmd' arguemnt for method
         //
-        int status = lua_pcall(luaState, numberOfArgument + 1 + 1, 1, 0);
+        int status = lua_pcall(luaState, (int)numberOfArgument + 1 + 1, 1, 0);
         if (status != LUA_OK)
         {
             luaObjC_throwExceptionIfError(luaState);

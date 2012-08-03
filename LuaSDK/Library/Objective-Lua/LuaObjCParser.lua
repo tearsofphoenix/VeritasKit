@@ -26,8 +26,7 @@ local ident = token('identifier', idsafe * (idsafe + digit + P '.') ^ 0)
 -- keywords
 local olua_keywords = P '@implementation' + P '@property' + P '@end'
                     + P '@selector' + P '@protocol' + P '@autoreleasepool' 
-                    + P '@array' + P '@dictionary' + P '@table' + P '@try'
-                    + P '@catch' + P '@throw' + P '@finally'
+                    + P '@try' + P '@catch' + P '@throw' + P '@finally'
                     + P '#import' + P'@enumerate' + P'@typedef' + P '@class'
                     + P '@[' + P '@{' + P'YES' + P'NO'
                     
@@ -420,9 +419,6 @@ local olua_typeannotation
 local olua_methoddefinition
 local olua_createSelector
 local olua_getProtocol
-local olua_convertTableToNSArray
-local olua_convertTableToNSDictionary
-local olua_convertNSObjectToTable
 local olua_import_file
 local olua_throw
 local olua_objc_blockObject
@@ -994,15 +990,6 @@ rvalueleaf = function()
                     elseif (t.text == "@protocol") then
                         pos = pos + 1
                         return olua_getProtocol()
-                    elseif (t.text == "@array") then
-                        pos = pos + 1
-                        return olua_convertTableToNSArray()
-                    elseif (t.text == "@dictionary") then
-                        pos = pos + 1
-                        return olua_convertTableToNSDictionary()
-                    elseif (t.text == "@table") then
-                        pos = pos + 1
-                        return olua_convertNSObjectToTable()
                     elseif (t.text == "#import") then
                         pos = pos + 1
                         return olua_import_file()
@@ -1352,36 +1339,7 @@ olua_getProtocol = function()
                             protocol=stringify(protocol.text),
                         }
                       end
-olua_convertTableToNSArray = function()
-                                expect("operator", "(")
-                                 local t = expect("identifier")
-                                 expect("operator", ")")
-                                 return 
-                                 {
-                                    type="olua_convertTableToNSArray",
-                                    text=stringify(t.text),
-                                }
-                      end
-olua_convertTableToNSDictionary = function()
-                                     expect("operator", "(")
-                                     local t = expect("identifier")
-                                     expect("operator", ")")
-                                     return 
-                                     {
-                                        type="olua_convertTableToNSDictionary",
-                                        text=stringify(t.text),
-                                    }
-                      end
-olua_convertNSObjectToTable = function()
-                                     expect("operator", "(")
-                                     local t = expect("identifier")
-                                     expect("operator", ")")
-                                     return 
-                                     {
-                                        type="olua_convertNSObjectToTable",
-                                        text=stringify(t.text),
-                                    }
-                      end
+
 olua_import_file = function()
                         local fileName
                         if optionalexpect("operator", "(") then
@@ -2129,19 +2087,7 @@ local typetable =
         local protocol = ast.protocol
         emit(" objc_getProtocol(" .. protocol .. ")")
     end,
-    
-    olua_convertTableToNSArray = function(ast)
-        emit(" luaObjC_convertTableToNSArray(" .. ast.text .. ")")
-    end,
-    
-    olua_convertTableToNSDictionary = function(ast)
-        emit(" luaObjC_convertTableToNSDictionary(" .. ast.text .. ")")
-    end,
-    
-    olua_convertNSObjectToTable = function(ast)
-        emit(" luaObjC_convertNSObjectToTable(" .. ast.text .. ")")
-    end,
-    
+
     objc_autoreleasepool = function(ast)
         emit([==[
                 do 
