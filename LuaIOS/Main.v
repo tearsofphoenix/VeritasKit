@@ -118,8 +118,18 @@ GL = #import("OpenGLES")
     [tapGesture release]
             
     print("end", os.clock())
-
+    print("testFloat", [self testFloat], [self testID])
     return true
+}
+
+- (CGFloat)testFloat
+{
+    return 10.0010;
+}
+
+- (id)testID
+{
+    return @"xxx";
 }
 
 @end
