@@ -162,8 +162,6 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
     IMP imp = class_getMethodImplementation([obj class], sel);
     if (imp)
     {
-        //TODO
-        //
         luaObjC_pushNSObject(luaState, imp(obj, sel, luaObjC_checkNSObject(luaState, 1)));
         return LuaClassIMPProperty;
         

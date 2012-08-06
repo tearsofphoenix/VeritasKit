@@ -238,20 +238,10 @@ static int luaObjC_callBlockObject(lua_State *L)
                     break;
                 }
                 case LUA_TTABLE:
-                {
-                    //TODO
-                    //lua_gettable(<#lua_State *L#>, <#int idx#>)
-                    break;
-                }
                 case LUA_TFUNCTION:
-                {
-                    //TODO
-                    //
-                    break;
-                }
                 case LUA_TTHREAD:
                 {
-                    //TODO
+                    lua_pushvalue(L, iLooper);
                     break;
                 }
                 default:

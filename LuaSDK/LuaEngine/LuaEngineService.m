@@ -99,7 +99,7 @@ static LuaStateRef _luaEngine_createLuaState(void)
     lua_gc(luaStateRef, LUA_GCSTOP, 0);  /* stop collector during initialization */
     
     luaL_openlibs(luaStateRef);
-    //TODO, forbide gc first
+
     lua_gc(luaStateRef, LUA_GCRESTART, 0);
     
     return luaStateRef;
