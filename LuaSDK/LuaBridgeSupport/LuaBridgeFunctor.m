@@ -147,7 +147,7 @@ static int LuaBridgeFunctorInvoke(lua_State *L)
     
     [ref->_argumentTypeEncodings enumerateObjectsUsingBlock: (^(NSString *encoding, NSUInteger idx, BOOL *stop)
                                                               {
-                                                                  LuaObjCInvocationSetArgumentFromLuaStateAtInex(ref, L, idx + 1 + 1, [encoding UTF8String], idx);
+                                                                  LuaObjCInvocationSetArgumentFromLuaStateAtInex(ref, L, (int)idx + 1 + 1, [encoding UTF8String], idx);
                                                               })];
     
     LuaObjCInvoke(L, ref);

@@ -24,14 +24,7 @@
 
 #import <objc/runtime.h>
 
-typedef enum
-{
-    LuaClassIMPFunction,
-    LuaClassIMPProperty,
-    LuaClassIMPUnknown,
-}LuaClassIMPType;
-
-static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
+static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
     Class theClass = [obj class];
     
@@ -53,7 +46,7 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         //
         lua_rawgeti(luaState, LUA_REGISTRYINDEX, clouserID);
         
-        int numberOfArgument = luaObjCInternal_getArgumentOfSelector(sel);
+        NSUInteger numberOfArgument = luaObjCInternal_getArgumentOfSelector(sel);
         
         const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([obj class], sel));
         
@@ -150,28 +143,24 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
         
         //why +1 +1 ? we have an implicit 'self' argument and '_cmd' arguemnt for method
         //
-        int status = lua_pcall(luaState, numberOfArgument + 1 + 1, 1, 0);
+        int status = lua_pcall(luaState, (int)numberOfArgument + 1 + 1, 1, 0);
         if (status != LUA_OK)
         {
             luaObjC_throwExceptionIfError(luaState);
         }
         
-        return LuaClassIMPFunction;
+        return ;
     }
     /*if is property*/
-    IMP imp = class_getMethodImplementation([obj class], sel);
+    IMP imp = class_getMethodImplementation(theClass, sel);
     if (imp)
     {
-        //TODO
-        //
         luaObjC_pushNSObject(luaState, imp(obj, sel, luaObjC_checkNSObject(luaState, 1)));
-        return LuaClassIMPProperty;
         
     }else
     {
         NSLog(@"call stack:%@", [NSThread callStackSymbols]);
         [obj doesNotRecognizeSelector: sel];
-        return LuaClassIMPUnknown;
     }
 }
 
@@ -180,56 +169,29 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
-    switch (impType)
+    NSInteger ret = 0;
+    int returnIndexOfLuaFunction = -1;
+    switch (lua_type(L, returnIndexOfLuaFunction))
     {
-        case LuaClassIMPUnknown:
+        case LUA_TNUMBER:
         {
-            printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
+            ret = lua_tonumber(L, returnIndexOfLuaFunction);
             break;
         }
-        case LuaClassIMPFunction:
+        case LUA_TBOOLEAN:
         {
-            NSInteger ret = 0;
-            int returnIndexOfLuaFunction = -1;
-            switch (lua_type(L, returnIndexOfLuaFunction))
-            {
-                case LUA_TNIL:
-                case LUA_TNONE:
-                {
-                    break;
-                }
-                case LUA_TNUMBER:
-                {
-                    ret = lua_tonumber(L, returnIndexOfLuaFunction);
-                    break;
-                }
-                case LUA_TBOOLEAN:
-                {
-                    ret = lua_toboolean(L, returnIndexOfLuaFunction);
-                    break;
-                }
-                default:
-                {
-                    break;
-                }
-            }
-            return ret;
-        }
-        case LuaClassIMPProperty:
-        {
-            //TODO
-            //
-            return 0;
+            ret = lua_toboolean(L, returnIndexOfLuaFunction);
+            break;
         }
         default:
         {
             break;
         }
     }
-    return 0;
+    return ret;
     
 }
 
@@ -238,33 +200,11 @@ static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
-    switch (impType)
-    {
-        case LuaClassIMPUnknown:
-        {
-            printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
-            break;
-        }
-        case LuaClassIMPFunction:
-        {
-            CGFloat ret = lua_tonumber(L, -1);
-            return ret;
-        }
-        case LuaClassIMPProperty:
-        {
-            //TODO
-            //
-            return 0;
-        }
-        default:
-        {
-            break;
-        }
-    }
-    return 0.0;
+    CGFloat ret = lua_tonumber(L, -1);
+    return ret;
 }
 
 static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, ...)
@@ -272,31 +212,17 @@ static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, .
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
-    switch (impType)
-    {
-        case LuaClassIMPUnknown:
-        {
-            printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
-            break;
-        }
-        case LuaClassIMPFunction:
-        {
-            //TODO
-            //
-        }
-        case LuaClassIMPProperty:
-        {
-            //TODO
-            //
-        }
-        default:
-        {
-            break;
-        }
-    }
+    //store struct type as userdata type
+    //
+    void *returnData = lua_touserdata(L, -1);
+    NSMethodSignature *signature = [obj methodSignatureForSelector: sel];
+    const char* type = [signature methodReturnType];
+    NSUInteger size;
+    NSGetSizeAndAlignment(type, &size, NULL);
+    memcpy(returnAddress, returnData, size);
 }
 
 static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
@@ -304,32 +230,11 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
-    switch (impType)
-    {
-        case LuaClassIMPUnknown:
-        {
-            printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
-            break;
-        }
-        case LuaClassIMPFunction:
-        {
-            id ret = luaObjC_checkNSObject(L, -1);
-            return ret;
-        }
-        case LuaClassIMPProperty:
-        {
-            //TODO
-            //
-        }
-        default:
-        {
-            break;
-        }
-    }
-    return nil;
+    id ret = luaObjC_checkNSObject(L, -1);
+    return ret;
 }
 
 

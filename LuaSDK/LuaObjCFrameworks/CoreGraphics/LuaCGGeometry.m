@@ -418,7 +418,7 @@ static int lua_CGRectDivide(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1); 
     CGFloat amount = lua_tonumber(L, 2);
-    CGRectEdge edge = lua_tointeger(L, 3);
+    CGRectEdge edge = (CGRectEdge)lua_tointeger(L, 3);
     
     CGRect slice;
     CGRect remainder;

@@ -99,7 +99,7 @@ static LuaStateRef _luaEngine_createLuaState(void)
     lua_gc(luaStateRef, LUA_GCSTOP, 0);  /* stop collector during initialization */
     
     luaL_openlibs(luaStateRef);
-    //TODO, forbide gc first
+
     lua_gc(luaStateRef, LUA_GCRESTART, 0);
     
     return luaStateRef;
@@ -142,8 +142,6 @@ static void LuaEngine_initialize(LuaEngineService *self,
     *_luaEngineLibs = libs;
     
     LuaEngineAttributesRef internal = calloc(1, sizeof(LuaEngineAttributes));
-    
-    internal->path = nil;
     
     //init parser state
     //
@@ -200,7 +198,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     _internal->luaState = NULL;
     
     free(_internal);
-    
+
     g_engine = nil;
     
     [_luaEngineLibs release];
