@@ -185,16 +185,26 @@ int LuaOpenNSColletion(lua_State *L)
 {
     //NSArray accelerators
     //
-    luaObjC_registerAccelerator(@selector(arrayWithObjects:), _luaObjC_NSArray_arrayWithObjects);
-    luaObjC_registerAccelerator(@selector(initWithObjects:), _luaObjC_NSArray_NSOrderedSet_initWithObjects);        
-    luaObjC_registerAccelerator(@selector(dictionaryWithObjectsAndKeys:), _luaObjC_NSDictionary_dictionaryWithObjectsAndKeys);
-    luaObjC_registerAccelerator(@selector(initWithObjectsAndKeys:), _luaObjC_NSDictionary_initWithObjectsAndKeys);
-    luaObjC_registerAccelerator(@selector(orderedSetWithObjects:), _luaObjC_NSOrderedSet_orderedSetWithObjects);
-    luaObjC_registerAccelerator(@selector(setWithObjects:), _luaObjC_NSSet_setWithObjects);
-    luaObjC_registerAccelerator(@selector(enumerateObjectsUsingBlock:), _luaObjC_NSCollection_enumerateObjectsUsingBlock);
-    luaObjC_registerAccelerator(@selector(enumerateObjectsWithOptions:usingBlock:), _luaObjC_NSCollection_enumerateObjectsWithOptions_usingBlock);
-    luaObjC_registerAccelerator(@selector(enumerateKeysAndObjectsUsingBlock:), _luaObjC_NSCollection_enumerateKeysAndObjectsUsingBlock);
-    luaObjC_registerAccelerator(@selector(enumerateKeysAndObjectsWithOptions:usingBlock:), _luaObjC_NSCollection_enumerateKeysAndObjectsWithOptions_usingBlock);
+    LuaObjCAcceleratorRegister(@selector(arrayWithObjects:),
+                                _luaObjC_NSArray_arrayWithObjects);
+    LuaObjCAcceleratorRegister(@selector(initWithObjects:),
+                                _luaObjC_NSArray_NSOrderedSet_initWithObjects);
+    LuaObjCAcceleratorRegister(@selector(dictionaryWithObjectsAndKeys:),
+                                _luaObjC_NSDictionary_dictionaryWithObjectsAndKeys);
+    LuaObjCAcceleratorRegister(@selector(initWithObjectsAndKeys:),
+                                _luaObjC_NSDictionary_initWithObjectsAndKeys);
+    LuaObjCAcceleratorRegister(@selector(orderedSetWithObjects:),
+                                _luaObjC_NSOrderedSet_orderedSetWithObjects);
+    LuaObjCAcceleratorRegister(@selector(setWithObjects:),
+                                _luaObjC_NSSet_setWithObjects);
+    LuaObjCAcceleratorRegister(@selector(enumerateObjectsUsingBlock:),
+                                _luaObjC_NSCollection_enumerateObjectsUsingBlock);
+    LuaObjCAcceleratorRegister(@selector(enumerateObjectsWithOptions:usingBlock:),
+                                _luaObjC_NSCollection_enumerateObjectsWithOptions_usingBlock);
+    LuaObjCAcceleratorRegister(@selector(enumerateKeysAndObjectsUsingBlock:),
+                                _luaObjC_NSCollection_enumerateKeysAndObjectsUsingBlock);
+    LuaObjCAcceleratorRegister(@selector(enumerateKeysAndObjectsWithOptions:usingBlock:),
+                                _luaObjC_NSCollection_enumerateKeysAndObjectsWithOptions_usingBlock);
     
     return 0;
 }

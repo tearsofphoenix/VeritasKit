@@ -2,14 +2,15 @@
 //  LuaCATransform3D.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/2/12.
+//  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCATransform3D.h"
-#import "lapi.h"
+#import "lua.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "LuaCGAffineTransform.h"
+#import "LuaObjCFrameworkFunctions.h"
 
 int lua_pushCATransform3D(lua_State *L, CATransform3D t)
 {
@@ -20,6 +21,149 @@ int lua_pushCATransform3D(lua_State *L, CATransform3D t)
     lua_setmetatable(L, -2);
     return 1;
 }
+
+static int lua_CATransform3DIndex(lua_State *L)
+{
+    CATransform3D *t = lua_touserdata(L, 1);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "m11"))
+    {
+        lua_pushnumber(L, t->m11);
+        
+    }else if (!strcmp(fieldName, "m12"))
+    {
+        lua_pushnumber(L, t->m12);
+        
+    }else if (!strcmp(fieldName, "m13"))
+    {
+        lua_pushnumber(L, t->m13);
+        
+    }else if (!strcmp(fieldName, "m14"))
+    {
+        lua_pushnumber(L, t->m14);
+        
+    }else if (!strcmp(fieldName, "m21"))
+    {
+        lua_pushnumber(L, t->m21);
+        
+    }else if (!strcmp(fieldName, "m22"))
+    {
+        lua_pushnumber(L, t->m22);
+        
+    }else if (!strcmp(fieldName, "m23"))
+    {
+        lua_pushnumber(L, t->m23);
+        
+    }else if (!strcmp(fieldName, "m24"))
+    {
+        lua_pushnumber(L, t->m24);
+        
+    }else if (!strcmp(fieldName, "m31"))
+    {
+        lua_pushnumber(L, t->m31);
+        
+    }else if (!strcmp(fieldName, "m32"))
+    {
+        lua_pushnumber(L, t->m32);
+        
+    }else if (!strcmp(fieldName, "m33"))
+    {
+        lua_pushnumber(L, t->m33);
+        
+    }else if (!strcmp(fieldName, "m34"))
+    {
+        lua_pushnumber(L, t->m34);
+        
+    }else if (!strcmp(fieldName, "m41"))
+    {
+        lua_pushnumber(L, t->m41);
+        
+    }else if (!strcmp(fieldName, "m42"))
+    {
+        lua_pushnumber(L, t->m42);
+        
+    }else if (!strcmp(fieldName, "m43"))
+    {
+        lua_pushnumber(L, t->m43);
+        
+    }else if (!strcmp(fieldName, "m44"))
+    {
+        lua_pushnumber(L, t->m44);
+    }
+    return 1;
+}
+
+static int lua_CATransform3DNewIndex(lua_State *L)
+{
+    CATransform3D *t = lua_touserdata(L, 1);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "m11"))
+    {
+        t->m11 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m12"))
+    {
+        t->m12 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m13"))
+    {
+        t->m13 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m14"))
+    {
+        t->m14 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m21"))
+    {
+        t->m21 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m22"))
+    {
+        t->m22 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m23"))
+    {
+        t->m23 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m24"))
+    {
+        t->m24 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m31"))
+    {
+        t->m31 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m32"))
+    {
+        t->m32 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m33"))
+    {
+        t->m33 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m34"))
+    {
+        t->m34 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m41"))
+    {
+        t->m41 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m42"))
+    {
+        t->m42 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m43"))
+    {
+        t->m43 = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "m44"))
+    {
+        t->m44 = lua_tonumber(L, 3);
+    }
+    return 0;
+}
+
 static int lua_CATransform3DIsIdentity (lua_State *L)
 {
     CATransform3D *t = lua_touserdata(L, 1);
@@ -131,7 +275,15 @@ static int lua_CATransform3DGetAffineTransform (lua_State *L)
     return 1;
 }
 
-static const luaL_Reg __LuaCATransform3DAPIs[] = 
+static const luaL_Reg __LuaCATransform3DMetaMethods[] =
+{
+    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__index", lua_CATransform3DIndex},
+    {"__newindex", lua_CATransform3DNewIndex},
+    {NULL, NULL},
+};
+
+static const luaL_Reg __LuaCATransform3DAPIs[] =
 {
     {"CATransform3DIsIdentity ", lua_CATransform3DIsIdentity },
     {"CATransform3DEqualToTransform ", lua_CATransform3DEqualToTransform },
@@ -151,6 +303,9 @@ static const luaL_Reg __LuaCATransform3DAPIs[] =
 
 int LuaOpenCATransform3D(lua_State *L)
 {
+    luaObjCInternal_createmeta(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
+    
     luaObjC_loadGlobalFunctions(L, __LuaCATransform3DAPIs);
+    
     return 0;
 }

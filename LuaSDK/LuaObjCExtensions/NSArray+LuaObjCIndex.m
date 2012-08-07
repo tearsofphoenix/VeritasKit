@@ -2,13 +2,13 @@
 //  NSArray+LuaObjCIndex.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/20/12.
+//  Created by tearsofphoenix on 5/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "NSArray+LuaObjCIndex.h"
 
-#import "lstate.h"
+#import "lua.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCClass.h"
 
@@ -33,8 +33,8 @@
 
 static int luaObjC_NSArray_luaEnumerator(lua_State *L)
 {
-    LuaObjCClassRef obj = lua_touserdata(L, lua_upvalueindex(1));
-    NSArray *array = LuaObjCClassGetObject(obj);
+    LuaObjectRef obj = lua_touserdata(L, lua_upvalueindex(1));
+    NSArray *array = LuaObjectGetObject(obj);
     static NSInteger index = 0;
     if (index < [array count])
     {

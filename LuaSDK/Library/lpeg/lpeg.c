@@ -230,8 +230,8 @@ static const char *val2str (lua_State *L, int idx) {
 }
 
 
-static int getposition (lua_State *L, int t, int i) {
-  int res;
+static lua_Integer getposition (lua_State *L, int t, int i) {
+  lua_Integer res;
   lua_getfenv(L, -1);
   lua_rawgeti(L, -1, i);  /* get key from pattern's environment */
   lua_gettable(L, t);  /* get position from positions table */
@@ -351,19 +351,6 @@ static void printpatt (Instruction *p) {
   }
 }
 
-
-#if 1
-static void printcap (Capture *cap) {
-  //printcapkind(cap->kind);
-    printf(" (idx: %d - size: %d) -> %p\n", cap->idx, cap->siz, cap->s);
-}
-
-
-static void printcaplist (Capture *cap) {
-  for (; cap->s; cap++) printcap(cap);
-}
-#endif
-
 /* }====================================================== */
 
 
@@ -384,7 +371,7 @@ typedef struct Stack {
 #define getstackbase(L, ptop)	((Stack *)lua_touserdata(L, stackidx(ptop)))
 
 
-static int runtimecap (lua_State *L, Capture *close, Capture *ocap,
+static lua_Integer runtimecap (lua_State *L, Capture *close, Capture *ocap,
                        const char *o, const char *s, int ptop);
 
 
@@ -402,8 +389,8 @@ static Capture *doublecap (lua_State *L, Capture *cap, int captop, int ptop) {
 static Stack *doublestack (lua_State *L, Stack **stacklimit, int ptop) {
   Stack *stack = getstackbase(L, ptop);
   Stack *newstack;
-  int n = *stacklimit - stack;
-  int max, newn;
+  lua_Integer n = *stacklimit - stack;
+  lua_Integer max, newn;
   lua_getfield(L, LUA_REGISTRYINDEX, MAXSTACKIDX);
   max = lua_tointeger(L, -1);
   lua_pop(L, 1);
@@ -567,7 +554,7 @@ static const char *match (lua_State *L,
       }
       case ICloseRunTime: {
         int fr = lua_gettop(L) + 1;  /* stack index of first result */
-        int ncap = runtimecap(L, capture + captop, capture, o, s, ptop);
+        lua_Integer ncap = runtimecap(L, capture + captop, capture, o, s, ptop);
         lua_Integer res = lua_tointeger(L, fr) - 1;  /* offset */
         int n = lua_gettop(L) - fr;  /* number of new captures */
         if (res == -1) {  /* may not be a number */
@@ -954,7 +941,7 @@ static int isheadfail (Instruction *p) {
 */
 static int ktablelen (lua_State *L, int idx) {
   if (!lua_istable(L, idx)) return 0;
-  else return lua_objlen(L, idx);
+  else return (int)lua_objlen(L, idx);
 }
 
 
@@ -1263,7 +1250,7 @@ static Instruction *getpatt (lua_State *L, int idx, int *size) {
       break;
     }
     case LUA_TNUMBER: {
-      int n = lua_tointeger(L, idx);
+      int n = (int)lua_tointeger(L, idx);
       if (n == 0)  /* empty pattern? */
         p = newpatt(L, 0);
       else if (n > 0)
@@ -2028,7 +2015,7 @@ static int functioncap (CapState *cs) {
 }
 
 
-static int runtimecap (lua_State *L, Capture *close, Capture *ocap,
+static lua_Integer runtimecap (lua_State *L, Capture *close, Capture *ocap,
                        const char *o, const char *s, int ptop) 
 {
     //printf("o: %s s: %s\n", o, s);

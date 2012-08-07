@@ -2,18 +2,19 @@
 //  LuaNSBundle.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/2/12.
+//  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaNSBundle.h"
-#import "lapi.h"
+#import "lua.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "LuaObjCAuxiliary.h"
 
 static int lua_NSLocalizedString(lua_State *L)
 {
-    luaObjC_pushNSObject(L, NSLocalizedString(luaObjC_checkNSObject(L, 1), luaObjC_checkNSObject(L, 2)));
+    luaObjC_pushNSObject(L, NSLocalizedString(luaObjC_checkNSObject(L, 1),
+                                              luaObjC_checkNSObject(L, 2)));
     return 1;
 }
 

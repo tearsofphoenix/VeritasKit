@@ -1,41 +1,10 @@
+--
+local unpack = table.unpack
 
--- written for LPeg .5, by the way
+local g_Engine
+
 local lpeg = require 'lpeg'
 local P, R, S, C, Cc, Ct = lpeg.P, lpeg.R, lpeg.S, lpeg.C, lpeg.Cc, lpeg.Ct
-
-
--- decode a two-byte UTF-8 sequence
-local function f2 (s)
-                local c1, c2 = string.byte(s, 1, 2)
-                return c1 * 64 + c2 - 12416
-            end
-
--- decode a three-byte UTF-8 sequence
-local function f3 (s)
-                local c1, c2, c3 = string.byte(s, 1, 3)
-                return (c1 * 64 + c2) * 64 + c3 - 925824
-            end
-
--- decode a four-byte UTF-8 sequence
-local function f4 (s)
-                    local c1, c2, c3, c4 = string.byte(s, 1, 4)
-                    return ((c1 * 64 + c2) * 64 + c3) * 64 + c4 - 63447168
-end
-
-local cont = R("\128\191")   -- continuation byte
-
-local single_utf8 = R("\1\38")
-			+ R("\40\127")
-            + R("\194\223") * cont / f2
-            + R("\224\239") * cont * cont / f3
-            + R("\240\244") * cont * cont * cont / f4
-
-local double_utf8 = R("\1\33")
-                    + R("\35\127")
-                    + R("\194\223") * cont / f2
-                    + R("\224\239") * cont * cont / f3
-                    + R("\240\244") * cont * cont * cont / f4
-
 
 -- create a pattern which captures the lua value [id] and the input matching
 -- [patt] in a table
@@ -57,8 +26,7 @@ local ident = token('identifier', idsafe * (idsafe + digit + P '.') ^ 0)
 -- keywords
 local olua_keywords = P '@implementation' + P '@property' + P '@end'
                     + P '@selector' + P '@protocol' + P '@autoreleasepool' 
-                    + P '@array' + P '@dictionary' + P '@table' + P '@try'
-                    + P '@catch' + P '@throw' + P '@finally'
+                    + P '@try' + P '@catch' + P '@throw' + P '@finally'
                     + P '#import' + P'@enumerate' + P'@typedef' + P '@class'
                     + P '@[' + P '@{' + P'YES' + P'NO'
                     
@@ -91,6 +59,8 @@ local longstringpredicate = P(function(input, index)
 local longstring = #(P'[' * P'='^1 * P'[') * longstringpredicate
 
 -- strings
+local single_utf8 = ((1 - S "'\r\n\f\\") + (P '\\' * 1))
+local double_utf8 = ((1 - S '"\r\n\f\\') + (P '\\' * 1))
 local singlequoted_string = P "'" * single_utf8 ^ 0 * "'"
 local doublequoted_string = P '"' * double_utf8 ^ 0 * '"'
 local olua_singlequoted_string = P "@'" * single_utf8 ^ 0 * "'"
@@ -184,6 +154,12 @@ function gettokens( input)
                                         end
                                     end
 
+                                    if (t.type == "operator") then
+                                        if (t.text == "!=") then
+                                            t.text = "~="
+                                        end
+                                    end
+
                                     if rawtoken and rawtoken[2]:find('\n') then
                                         t.nlafter = true
                                     end
@@ -266,7 +242,8 @@ function methodcall(ast)
         end
 
 local function methoddefinition(ast, class, methodType)
-            local args = {}
+            --implicit 'self' argument for class method
+            local args = {leaf("self"), leaf("_cmd")}
             if ast.args then
                 for _, v in ipairs(ast.args) do
                     args[#args+1] = v
@@ -442,9 +419,6 @@ local olua_typeannotation
 local olua_methoddefinition
 local olua_createSelector
 local olua_getProtocol
-local olua_convertTableToNSArray
-local olua_convertTableToNSDictionary
-local olua_convertNSObjectToTable
 local olua_import_file
 local olua_throw
 local olua_objc_blockObject
@@ -1016,15 +990,6 @@ rvalueleaf = function()
                     elseif (t.text == "@protocol") then
                         pos = pos + 1
                         return olua_getProtocol()
-                    elseif (t.text == "@array") then
-                        pos = pos + 1
-                        return olua_convertTableToNSArray()
-                    elseif (t.text == "@dictionary") then
-                        pos = pos + 1
-                        return olua_convertTableToNSDictionary()
-                    elseif (t.text == "@table") then
-                        pos = pos + 1
-                        return olua_convertNSObjectToTable()
                     elseif (t.text == "#import") then
                         pos = pos + 1
                         return olua_import_file()
@@ -1374,40 +1339,12 @@ olua_getProtocol = function()
                             protocol=stringify(protocol.text),
                         }
                       end
-olua_convertTableToNSArray = function()
-                                expect("operator", "(")
-                                 local t = expect("identifier")
-                                 expect("operator", ")")
-                                 return 
-                                 {
-                                    type="olua_convertTableToNSArray",
-                                    text=stringify(t.text),
-                                }
-                      end
-olua_convertTableToNSDictionary = function()
-                                     expect("operator", "(")
-                                     local t = expect("identifier")
-                                     expect("operator", ")")
-                                     return 
-                                     {
-                                        type="olua_convertTableToNSDictionary",
-                                        text=stringify(t.text),
-                                    }
-                      end
-olua_convertNSObjectToTable = function()
-                                     expect("operator", "(")
-                                     local t = expect("identifier")
-                                     expect("operator", ")")
-                                     return 
-                                     {
-                                        type="olua_convertNSObjectToTable",
-                                        text=stringify(t.text),
-                                    }
-                      end
+
 olua_import_file = function()
                         local fileName
                         if optionalexpect("operator", "(") then
                             fileName = expect("string").text
+                            compileTimeInteraction(g_Engine, "import", fileName)
                             expect("operator", ")")
                         else
                             fileName = expect("string").text
@@ -1486,6 +1423,10 @@ local olua_argumentListOfFunction = function()
 olua_objc_blockObject = function()
                             local blockBody
                             local args
+
+                            --optional expect the return type, just ignore it
+                            optionalexpect("identifier")
+
                             if peek("operator", "{") then
                                 blockBody = olua_block()
                             else
@@ -1938,18 +1879,18 @@ local typetable =
     end,
                                 
     ["return"] = function(ast)
-        emit("\nreturn\n")
+        emit(" return ")
         if ast.value then
             recursivelyunparse(ast.value)
         end
     end,
     
     returnFromAutoreleasePool = function(ast)
-        emit("return {'@pool',")
+        emit(" return {'@pool',")
         if ast.value then
             recursivelyunparse(ast.value)
         else
-            emit("nil")
+            emit(" nil ")
         end
         emit("}")
     end,
@@ -2085,11 +2026,11 @@ local typetable =
             emit(",")
         end
         recursivelyunparse(ast.args)
-        emit(")\n")
+        emit(")")
     end,
     
     olua_method_super_call = function(ast)
-        emit("\nobjc_msgSendSuper(self,")
+        emit(" objc_msgSendSuper(self,")
         recursivelyunparse(ast.args)
         emit(")")
     end,
@@ -2100,9 +2041,9 @@ local typetable =
 
     luaClass_addMethod = function(ast)
         if ast.methodType == "objectmethod" then
-            emit("\nclass_addObjectMethod(" .. ast.class.text .. ", ")
+            emit(" class_addObjectMethod('" .. ast.class.text .. "', ")
         else
-            emit("\nclass_addClassMethod(" .. ast.class.text .. ", ")
+            emit(" class_addClassMethod('" .. ast.class.text .. "', ")
         end
         emit(ast.selector)
 
@@ -2123,16 +2064,16 @@ local typetable =
     class_implementation = function(ast)
         emit("\ndo\n")
 		recursivelyunparse(ast.chunk)
-        emit("\nobjc_registerClassPair('" .. ast.class.text .. "')")
+        emit(" objc_registerClassPair('" .. ast.class.text .. "')")
         recursivelyunparse(ast.classMethodsChunk)
-		emit("\nend")
+		emit(" end")
     end,
     
     olua_property_declearation = function(ast)
         local className = ast.class.text
         local propertyAttribute = ast.attribute
 
-        emit("\nclass_addProperty('" .. className .. "', '" .. propertyAttribute.atomic .. "','")
+        emit(" class_addProperty('" .. className .. "', '" .. propertyAttribute.atomic .. "','")
         emit(propertyAttribute.ownership .. "','" .. propertyAttribute.getter .. "','" .. propertyAttribute.setter .. "','")
         emit(propertyAttribute.type .. "','" .. propertyAttribute.name .. "','" .. propertyAttribute.internalName .. "')" )
     end,
@@ -2146,19 +2087,7 @@ local typetable =
         local protocol = ast.protocol
         emit(" objc_getProtocol(" .. protocol .. ")")
     end,
-    
-    olua_convertTableToNSArray = function(ast)
-        emit(" luaObjC_convertTableToNSArray(" .. ast.text .. ")")
-    end,
-    
-    olua_convertTableToNSDictionary = function(ast)
-        emit(" luaObjC_convertTableToNSDictionary(" .. ast.text .. ")")
-    end,
-    
-    olua_convertNSObjectToTable = function(ast)
-        emit(" luaObjC_convertNSObjectToTable(" .. ast.text .. ")")
-    end,
-    
+
     objc_autoreleasepool = function(ast)
         emit([==[
                 do 
@@ -2183,11 +2112,11 @@ local typetable =
     end,
     
     olua_import_file = function(ast)
-        emit("\nobjc_import_file(" .. ast.fileName .. ")")
+        emit(" objc_import_file(" .. ast.fileName .. ")")
     end,
     
     olua_throw = function(ast)
-        emit("\nobjc_throw(")
+        emit(" objc_throw(")
         recursivelyunparse(ast.value)
         emit(")")
     end,
@@ -2198,7 +2127,7 @@ local typetable =
     end,
     olua_objc_blockObject = function(ast)                            
 
-                                emit("\nobjc_createBlockObject(")
+                                emit(" objc_createBlockObject(")
                                 local args = ast.args
                                 if args then
                                     local argumentTypes = {}
@@ -2215,11 +2144,11 @@ local typetable =
                                         recursivelyunparse(args.argumentNames)
                                     emit(")")
                                         recursivelyunparse(ast.blockBody)
-                                    emit("\nend)")
+                                    emit("end)")
                                 else 
                                     emit("function()")
                                     recursivelyunparse(ast.blockBody)
-                                    emit("\nend)")
+                                    emit("end)")
                                 end
     end,
     
@@ -2231,18 +2160,18 @@ local typetable =
                                              recursivelyunparse(ast.tryBlock)
                                              emit("\nend")
 
-                                             emit("\nlocal __catchBlock__func=function(" .. ast.catchBlock.arg .. ")")
+                                             emit(" local __catchBlock__func=function(" .. ast.catchBlock.arg .. ")")
                                              recursivelyunparse(ast.catchBlock.chunk)
                                              emit("\nend")
                                              
-                                             emit("\nlocal __fianllyBlock__func")
+                                             emit(" local __fianllyBlock__func")
                                              if ast.finallyBlock then
                                                 emit("=function()")
                                                     recursivelyunparse(ast.finallyBlock)
                                                 emit("\nend")
                                              end
                                              
-                                             emit("\nobjc_tryCatchFinally(__tryBlock__func, __catchBlock__func, __fianllyBlock__func)")
+                                             emit(" objc_tryCatchFinally(__tryBlock__func, __catchBlock__func, __fianllyBlock__func)")
 
                                  emit("\nend")
     end,    
@@ -2348,6 +2277,7 @@ local unparser = function(ast)
                 end
 
 
-translate = function(intext, source)
-                return unparser(parser(intext, source))
+translate = function(intext, engine)
+                g_Engine = engine
+                return unparser(parser(intext, nil))
             end	

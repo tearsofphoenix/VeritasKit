@@ -1,8 +1,8 @@
 //
-//  LuaObjCClass.h
+//  LuaClass.h
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 3/29/12.
+//  Created by tearsofphoenix on 3/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,52 +10,36 @@
 
 struct lua_State;
 
-extern int LuaObjCInvalidClouserID;
 
-typedef struct __LuaObjCClass *LuaObjCClassRef;
+#pragma mark - Class 
 
-LuaObjCClassRef LuaObjCClassInitialize(struct lua_State *L, 
-                                       id rawObject, 
-                                       NSString *className,
-                                       bool isInstance);
+extern int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector);
 
-bool LuaObjCClassIsInstance(LuaObjCClassRef ref);
+extern void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName);
 
-NSString *LuaObjCClassGetClassName(LuaObjCClassRef ref);
+// replace the -dealloc method of Root class (NSObject)
+//
+extern void luaObjCInternal_modifyRootClass(void);
 
-id LuaObjCClassGetObject(LuaObjCClassRef ref);
+extern Class LuaClassGetRegisteredClassByName(NSString *className);
 
-void LuaObjCClassPrint(LuaObjCClassRef ref);
+extern void LuaClassRegister(struct lua_State *L, Class theClass, NSString *className);
 
-void LuaObjCClassFinalize(LuaObjCClassRef ref);
+extern struct lua_State *LuaClassGetLuaState(Class theClass);
 
-int LuaObjCClassGetClouserIDOfSelector(LuaObjCClassRef ref, SEL selector);
+#pragma - Object observer
 
-int LuaObjCClassGetRetainCount(LuaObjCClassRef ref);
+typedef struct __LuaObject *LuaObjectRef;
 
-void LuaObjCClassAddClouserIDForSelector(LuaObjCClassRef ref, int clouserID, const char* selectorName);
+LuaObjectRef LuaObjectCreate(struct lua_State *L,
+                                         id rawObject);
 
-struct lua_State* LuaObjCClassGetLuaState(LuaObjCClassRef ref);
+extern id LuaObjectGetObject(LuaObjectRef ref);
 
-@interface LuaObjectObserver : NSObject
+extern void LuaObjectPrint(LuaObjectRef ref);
 
-- (id)initWithClassRef: (LuaObjCClassRef)ref;
+extern void LuaObjectFinalize(LuaObjectRef ref);
 
-@end
+extern NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
 
-LuaObjCClassRef luaObjC_getRegisteredClassByName(NSString *className);
-
-void luaObjC_registerClass(LuaObjCClassRef obj);
-
-int luaObjC_description(struct lua_State *L);
-
-NSString * _LuaObjC_getTypeEncodingOfType(const char *typeName);
-
-NSString * _LuaObjC_getTypeEncoding(NSString *typeName);
-
-extern void _luaObjC_registerClassPredeclearation(NSString *className);
-
-extern void _luaObjC_insertClouserIDOfBlock(int clouserID, void *block);
-extern int _luaObjC_getClouserIDOfBlock(void *block);
-
-LUAMOD_API int (luaopen_objc)(struct lua_State *L);
+LUAMOD_API int (luaopen_classSupport)(struct lua_State *L);

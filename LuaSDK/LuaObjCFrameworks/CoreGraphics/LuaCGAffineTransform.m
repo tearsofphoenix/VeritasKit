@@ -2,14 +2,76 @@
 //  LuaCGAffineTransform.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/2/12.
+//  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGAffineTransform.h"
-#import "lapi.h"
+#import "lua.h"
 #import "lauxlib.h"
 #import "LuaObjCInternal.h"
 #import "LuaCGGeometry.h"
+#import "LuaObjCFrameworkFunctions.h"
+
+static int lua_CGAffineTransformIndex(lua_State *L)
+{
+    CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "a"))
+    {
+        lua_pushnumber(L, t->a);
+        return 1;
+    }else if (!strcmp(fieldName, "b"))
+    {
+        lua_pushnumber(L, t->b);
+        return 1;
+    }else if (!strcmp(fieldName, "c"))
+    {
+        lua_pushnumber(L, t->c);
+        return 1;
+    }else if (!strcmp(fieldName, "d"))
+    {
+        lua_pushnumber(L, t->d);
+        return 1;
+    }else if (!strcmp(fieldName, "tx"))
+    {
+        lua_pushnumber(L, t->tx);
+        return 1;
+    }else if (!strcmp(fieldName, "ty"))
+    {
+        lua_pushnumber(L, t->ty);
+        return 1;
+    }
+    
+    return 0;
+}
+
+static int lua_CGAffineTransformNewIndex(lua_State *L)
+{
+    CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
+    const char *fieldName = lua_tostring(L, 2);
+    if (!strcmp(fieldName, "a"))
+    {
+        t->a = lua_tonumber(L, 3);
+        
+    }else if (!strcmp(fieldName, "b"))
+    {
+        t->b = lua_tonumber(L, 3);
+    }else if (!strcmp(fieldName, "c"))
+    {
+        t->c = lua_tonumber(L, 3);
+    }else if (!strcmp(fieldName, "d"))
+    {
+        t->d = lua_tonumber(L, 3);
+    }else if (!strcmp(fieldName, "tx"))
+    {
+        t->tx = lua_tonumber(L, 3);
+    }else if (!strcmp(fieldName, "ty"))
+    {
+        t->ty = lua_tonumber(L, 3);
+    }
+    
+    return 0;
+}
 
 int lua_pushCGAffineTransform(lua_State *L, CGAffineTransform t)
 {
@@ -150,11 +212,25 @@ static const luaL_Reg __luaCGAffineTransformAPIs[] =
     {"CGAffineTransformInvert", lua_CGAffineTransformInvert},
     {"CGAffineTransformConcat", lua_CGAffineTransformConcat},
     {"CGAffineTransformEqualToTransform", lua_CGAffineTransformEqualToTransform},
+    {"CGPointApplyAffineTransform", lua_CGPointApplyAffineTransform},
+    {"CGSizeApplyAffineTransform", lua_CGSizeApplyAffineTransform},
+    {"CGRectApplyAffineTransform", lua_CGRectApplyAffineTransform},
+    {NULL, NULL},
+};
+
+static const luaL_Reg __luaCGAffineTransformMetaMethods[] =
+{
+    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__index", lua_CGAffineTransformIndex},
+    {"__newindex", lua_CGAffineTransformNewIndex},
     {NULL, NULL},
 };
 
 int LuaOpenCGAffineTransform(lua_State *L)
 {
+    luaObjCInternal_createmeta(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
+
     luaObjC_loadGlobalFunctions(L, __luaCGAffineTransformAPIs);
+    
     return 0;
 }

@@ -2,7 +2,7 @@
 //  ERGeneralMetaService.m
 //  BoCPress
 //
-//  Created by E-Reach Administrator on 4/4/12.
+//  Created by tearsofphoenix on 4/4/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -70,13 +70,6 @@
         @autoreleasepool 
         {
             serviceBlock(callbackBlock, action, arguments);
-        }
-    }else 
-    {
-        SEL selector = NSSelectorFromString(action);
-        if (selector && [self methodForSelector: selector])
-        {
-            //TODO, May Call selector
         }
     }
 }

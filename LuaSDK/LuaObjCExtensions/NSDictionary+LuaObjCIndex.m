@@ -2,13 +2,13 @@
 //  LuaObjCIndex.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/20/12.
+//  Created by tearsofphoenix on 5/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "NSDictionary+LuaObjCIndex.h"
 
-#import "lstate.h"
+#import "lua.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCClass.h"
 
@@ -40,8 +40,8 @@ static NSInteger __keyIndex = 0;
 
 static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
 {
-    LuaObjCClassRef obj = lua_touserdata(L, lua_upvalueindex(1));
-    NSDictionary *dict = LuaObjCClassGetObject(obj);
+    LuaObjectRef obj = lua_touserdata(L, lua_upvalueindex(1));
+    NSDictionary *dict = LuaObjectGetObject(obj);
     if (!__keys)
     {
         __keys = [dict allKeys];

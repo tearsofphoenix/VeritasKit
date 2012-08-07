@@ -2,7 +2,7 @@
 //  NSString+LuaObjCIndex.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/20/12.
+//  Created by tearsofphoenix on 5/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCClass.h"
-#import "lstate.h"
+#import "lua.h"
 
 @implementation NSString (LuaObjCIndex)
 

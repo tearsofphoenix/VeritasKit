@@ -2,7 +2,7 @@
 //  LuaObjCInternal.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 4/7/12.
+//  Created by tearsofphoenix on 4/7/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,27 +14,6 @@
 #import "lauxlib.h"
 #import "LuaBridgeSupport.h"
 #import <objc/runtime.h>
-
-static void luaObjC_loadClassList(lua_State *L, const char* classList[])
-{
-    if (classList)
-    {
-        NSUInteger iLooper = 0;
-        const char* classNameLooper = classList[iLooper];
-        Class classLooper = objc_getClass(classNameLooper);
-        while (classNameLooper)
-        {
-            if (classLooper)
-            {
-                luaObjC_pushNSObject(L, classLooper);
-                lua_setglobal(L, classNameLooper);
-            }
-            ++iLooper;
-            classNameLooper = classList[iLooper];
-            classLooper = objc_getClass(classNameLooper);
-        }
-    }
-}
 
 int luaObjC_preloadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)
 {
@@ -66,7 +45,7 @@ void luaObjC_throwExceptionIfError(lua_State *L)
                                                      reason: errorReason
                                                    userInfo: [NSDictionary dictionaryWithObjectsAndKeys: [NSValue valueWithPointer: L], @"LuaState", nil]
                               ];
-    @throw exception; 
+    @throw exception;
 }
 
 
@@ -108,12 +87,12 @@ void objc_dumpClass(Class theClass)
 
 void stackDump (lua_State *L) 
 {
-    int i=lua_gettop(L);
+    int nargs = lua_gettop(L);
     printf(" ----------------  Stack Dump ----------------\n" );
     
     int t = 0;
-    BOOL stop = NO;
-    do
+
+    for (int i = -1; i <= nargs; ++i)
     {
         t = lua_type(L, i);
         switch (t) 
@@ -136,17 +115,15 @@ void stackDump (lua_State *L)
             case LUA_TNIL:
             {
                 printf("%d: nil\n",  i);
-                stop = YES;
                 break;
             }
             default:
             {
-                printf("%d: %s\n", i, lua_typename(L, t)); 
+                printf("%d: %p %s\n", i, lua_topointer(L, t), lua_typename(L, t));
                 break;
             }
         }
-        --i;
-    } while(i >= -20 && !stop);
+    }
     
     
     printf("--------------- Stack Dump Finished ---------------\n" );
@@ -197,173 +174,29 @@ static const char *_luaObjCInternal_jumpOverToChar(const char *charLooper, char 
     return NULL;
 }
 
-
-size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding)
+void luaObjCInternal_createmeta(lua_State *L, const char *name, const luaL_Reg methods[])
 {
-    if (!encoding)
-    {
-        return 0;
-    }
-    const char *charLooper = encoding;
+    luaL_newmetatable(L, name);
+    lua_pushvalue(L, -1);  /* push metatable */
+    lua_setfield(L, -2, "__index");  /* metatable.__index = metatable */
+    luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
+    lua_pop(L, 1);  /* pop new metatable */
+}
+
+NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector)
+{
+    const char* charLooper = (const char*)selector;
+    NSUInteger count = 0;
     
-    size_t structFieldSizes[1024];
-    int fieldLooper = 0;
-    //jumpover the name of the struct
-    //
-    charLooper = _luaObjCInternal_jumpOverToChar(charLooper, '=');
-    
-    while (*charLooper) 
+    while (*charLooper)
     {
-       switch (*charLooper)
+        if (*charLooper == ':')
         {
-            case '\'':
-            {
-                charLooper = _luaObjCInternal_jumpOverToChar(charLooper, '\'');
-                break;
-            }
-            case 'c':
-            {
-                structFieldSizes[fieldLooper] = sizeof(char);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'i':
-            {
-                structFieldSizes[fieldLooper] = sizeof(int);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 's':
-            {
-                structFieldSizes[fieldLooper] = sizeof(short);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'l':
-            {
-                structFieldSizes[fieldLooper] = sizeof(long);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'q':
-            {
-                structFieldSizes[fieldLooper] = sizeof(long double);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'C':
-            {
-                structFieldSizes[fieldLooper] = sizeof(unsigned char);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'I':
-            {
-                structFieldSizes[fieldLooper] = sizeof(unsigned int);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'S':
-            {
-                structFieldSizes[fieldLooper] = sizeof(unsigned short);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'L':
-            {
-                structFieldSizes[fieldLooper] = sizeof(unsigned long);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'Q':
-            {
-                //Notice here, but this will be rarely used
-                //
-                structFieldSizes[fieldLooper] = sizeof(long double);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'B':
-            {
-                structFieldSizes[fieldLooper] = sizeof(char);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'f':
-            {
-                structFieldSizes[fieldLooper] = sizeof(float);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case 'd':
-            {
-                structFieldSizes[fieldLooper] = sizeof(double);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case '*':
-            case '#':
-            case '@':
-            case ':':
-            case '^':
-            case '[':
-            {
-                structFieldSizes[fieldLooper] = sizeof(void *);
-                ++fieldLooper;
-                ++charLooper;
-                break;
-            }
-            case '{':
-            {
-                //TODO
-                //
-                charLooper = _luaObjCInternal_jumpOverToChar(charLooper, '=');                
-                break;
-            }
-            default:
-            {
-                ++charLooper;
-                break;
-            }
+            ++count;
         }
+        
+        ++charLooper;
     }
     
-    size_t structSize = 0;
-    size_t currentSlotSize = 0;
-    for (int iLooper = 0; iLooper < fieldLooper; ++iLooper)
-    {
-        currentSlotSize += structFieldSizes[iLooper];
-        if (currentSlotSize > LUAOBJC_TARGET_ALIGMENT)
-        {
-            currentSlotSize -= structFieldSizes[iLooper];
-            structSize += LUAOBJC_TARGET_ALIGMENT;
-            currentSlotSize = structFieldSizes[iLooper];
-            if (iLooper == fieldLooper - 1)
-            {
-                structSize += MAX(structSize, LUAOBJC_TARGET_ALIGMENT);
-            }
-        }else if (currentSlotSize < LUAOBJC_TARGET_ALIGMENT)
-        {
-            
-        }else
-        {
-            structSize += currentSlotSize;
-            currentSlotSize = 0;
-        }
-    }
-    
-    return structSize;
+    return count;
 }

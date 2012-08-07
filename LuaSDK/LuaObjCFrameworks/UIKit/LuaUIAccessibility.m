@@ -2,7 +2,7 @@
 //  LuaUIAccessibility.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/2/12.
+//  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIAccessibility.h"
@@ -19,11 +19,7 @@ static int luaUIKit_UIAccessibilityZoomFocusChanged(lua_State *L)
 
 static const luaL_Reg __LuaUIAccessibilityAPIs[] = 
 {
-    //accessbility
-    //
-    
-    {"UIAccessibilityZoomFocusChanged", luaUIKit_UIAccessibilityZoomFocusChanged},
-        
+    {"UIAccessibilityZoomFocusChanged", luaUIKit_UIAccessibilityZoomFocusChanged},        
     {NULL, NULL},
 };
 

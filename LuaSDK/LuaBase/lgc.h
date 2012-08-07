@@ -1,5 +1,5 @@
 /*
-** $Id: lgc.h,v 2.44 2010/06/30 14:11:17 roberto Exp $
+** $Id: lgc.h,v 2.56 2012/05/23 15:43:14 roberto Exp $
 ** Garbage Collector
 ** See Copyright Notice in lua.h
 */
@@ -23,6 +23,14 @@
 ** the collection cycle. These lists have no meaning when the invariant
 ** is not being enforced (e.g., sweep phase).
 */
+
+
+
+/* how much to allocate before next GC step */
+#if !defined(GCSTEPSIZE)
+/* ~100 small strings */
+#define GCSTEPSIZE	(cast_int(100 * sizeof(TString)))
+#endif
 
 
 /*
@@ -52,10 +60,6 @@
 #define keepinvariant(g)  (isgenerational(g) || g->gcstate <= GCSatomic)
 
 
-#define gcstopped(g)	((g)->GCdebt == MIN_LMEM)
-#define stopgc(g)	((g)->GCdebt = MIN_LMEM)
-
-
 /*
 ** some useful bit tricks
 */
@@ -67,17 +71,14 @@
 #define l_setbit(x,b)		setbits(x, bitmask(b))
 #define resetbit(x,b)		resetbits(x, bitmask(b))
 #define testbit(x,b)		testbits(x, bitmask(b))
-#define set2bits(x,b1,b2)	setbits(x, (bit2mask(b1, b2)))
-#define reset2bits(x,b1,b2)	resetbits(x, (bit2mask(b1, b2)))
-
 
 
 /* Layout for bit use in `marked' field: */
 #define WHITE0BIT	0  /* object is white (type 0) */
 #define WHITE1BIT	1  /* object is white (type 1) */
 #define BLACKBIT	2  /* object is black */
-#define FINALIZEDBIT	3  /* for userdata: has been finalized */
-#define SEPARATED	4  /*  "    ": it's in 'udgc' list or in 'tobefnz' */
+#define FINALIZEDBIT	3  /* object has been separated for finalization */
+#define SEPARATED	4  /* object is in 'finobj' list or in 'tobefnz' */
 #define FIXEDBIT	5  /* object is fixed (should not be collected) */
 #define OLDBIT		6  /* object is old (only in generational mode) */
 /* bit 7 is currently used by tests (luaL_checkmemory) */
@@ -108,7 +109,9 @@
 #define luaC_white(g)	cast(lu_byte, (g)->currentwhite & WHITEBITS)
 
 
-#define luaC_checkGC(L) {condchangemem(L); if (G(L)->GCdebt > 0) luaC_step(L);}
+#define luaC_condGC(L,c) \
+	{if (G(L)->GCdebt > 0) {c;}; condchangemem(L);}
+#define luaC_checkGC(L)		luaC_condGC(L, luaC_step(L);)
 
 
 #define luaC_barrier(L,p,v) { if (valiswhite(v) && isblack(obj2gco(p)))  \
@@ -127,9 +130,9 @@
 #define luaC_barrierproto(L,p,c) \
    { if (isblack(obj2gco(p))) luaC_barrierproto_(L,p,c); }
 
-LUAI_FUNC void luaC_separateudata (lua_State *L, int all);
 LUAI_FUNC void luaC_freeallobjects (lua_State *L);
 LUAI_FUNC void luaC_step (lua_State *L);
+LUAI_FUNC void luaC_forcestep (lua_State *L);
 LUAI_FUNC void luaC_runtilstate (lua_State *L, int statesmask);
 LUAI_FUNC void luaC_fullgc (lua_State *L, int isemergency);
 LUAI_FUNC GCObject *luaC_newobj (lua_State *L, int tt, size_t sz,
@@ -137,7 +140,7 @@ LUAI_FUNC GCObject *luaC_newobj (lua_State *L, int tt, size_t sz,
 LUAI_FUNC void luaC_barrier_ (lua_State *L, GCObject *o, GCObject *v);
 LUAI_FUNC void luaC_barrierback_ (lua_State *L, GCObject *o);
 LUAI_FUNC void luaC_barrierproto_ (lua_State *L, Proto *p, Closure *c);
-LUAI_FUNC void luaC_checkfinalizer (lua_State *L, Udata *u);
+LUAI_FUNC void luaC_checkfinalizer (lua_State *L, GCObject *o, Table *mt);
 LUAI_FUNC void luaC_checkupvalcolor (global_State *g, UpVal *uv);
 LUAI_FUNC void luaC_changemode (lua_State *L, int mode);
 

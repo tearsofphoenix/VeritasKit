@@ -2,17 +2,18 @@
 //  LuaCoreGraphics.h
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/2/12.
+//  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 #ifdef __cplusplus
 extern "C" {
 #endif
+    
 #include "luaconf.h"
-#include "lua.h"
-#define LUA_CoreGraphics_METANAME	"CoreGraphics"
-LUAMOD_API int (LuaOpenCoreGraphics)(lua_State *L);
-#include <CoreGraphics/CoreGraphics.h>
+    struct lua_State;
+        
+    LUAMOD_API int (LuaOpenCoreGraphics)(struct lua_State *L);
+
 #ifdef __cplusplus
 }
 #endif

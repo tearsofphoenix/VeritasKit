@@ -2,7 +2,7 @@
 //  LuaLibraryInformation.m
 //  AZenecaExhibit
 //
-//  Created by E-Reach Administrator on 6/1/12.
+//  Created by tearsofphoenix on 6/1/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @implementation LuaLibraryInformation
 
-@synthesize libaName = _libaName;
+@synthesize libaName = _libName;
 @synthesize loadFunction = _loadFunction;
 @synthesize numberOfUpvalues = _numberOfUpvalues;
 @synthesize dependentLibNames = _dependentLibNames;
@@ -18,7 +18,7 @@
 
 - (void)dealloc
 {
-    [_libaName release];
+    [_libName release];
     [_dependentLibNames release];
     [_featureID release];
     
@@ -35,7 +35,7 @@
                                                                                libraries: dict];
                                                      })];
     
-    luaL_requiref(luaState, [_libaName cStringUsingEncoding: NSUTF8StringEncoding],
+    luaL_requiref(luaState, [_libName cStringUsingEncoding: NSUTF8StringEncoding],
                   _loadFunction, _numberOfUpvalues);
     lua_pop(luaState, 1);
 }
@@ -47,7 +47,7 @@
  LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
                                       NSString *libName,
                                       lua_CFunction loadFunction,
-                                      NSInteger numberOfUpvalues,
+                                      int numberOfUpvalues,
                                       NSArray *dependentLibNames)
 {
     LuaLibraryInformation *ret = [[LuaLibraryInformation alloc] init];
@@ -63,7 +63,7 @@
  LuaLibraryInformation * LuaLibraryInformationMakeC(NSString *fetureID,
                                        const char *libName,
                                        lua_CFunction loadFunction,
-                                       NSInteger numberOfUpvalues,
+                                       int numberOfUpvalues,
                                        NSArray *dependentLibNames)
 {
     return LuaLibraryInformationMake(fetureID,

@@ -2,7 +2,7 @@
 //  LuaUIView.m
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 5/2/12.
+//  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIView.h"
@@ -98,9 +98,12 @@ int LuaOpenUIView(lua_State *L)
 {    
     //UIView animation accelerators
     //
-    luaObjC_registerAccelerator(@selector(animateWithDuration:animations:), _luaObjC_UIView_animateWithDuration_animations);
-    luaObjC_registerAccelerator(@selector(animateWithDuration:animations:completion:),_luaObjC_UIView_animateWithDuration_animations_completion);
-    luaObjC_registerAccelerator(@selector(animateWithDuration:delay:options:animations:completion:), _luaObjC_UIView_animateWithDuration_delay_options_animations_completion);
+    LuaObjCAcceleratorRegister(@selector(animateWithDuration:animations:),
+                                _luaObjC_UIView_animateWithDuration_animations);
+    LuaObjCAcceleratorRegister(@selector(animateWithDuration:animations:completion:),
+                                _luaObjC_UIView_animateWithDuration_animations_completion);
+    LuaObjCAcceleratorRegister(@selector(animateWithDuration:delay:options:animations:completion:),
+                                _luaObjC_UIView_animateWithDuration_delay_options_animations_completion);
     
     return 0;
 }

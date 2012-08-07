@@ -2,7 +2,7 @@
 //  LuaObjCInternal.h
 //  LuaIOS
 //
-//  Created by E-Reach Administrator on 4/7/12.
+//  Created by tearsofphoenix on 4/7/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -28,6 +28,8 @@ extern void stackDump (struct lua_State *L);
 
 extern const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
 
-extern size_t _luaObjCInternal_sizeOfStructWithEncoding(const char *encoding);
+extern void luaObjCInternal_createmeta(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
+
+extern NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector);
 
 #endif
