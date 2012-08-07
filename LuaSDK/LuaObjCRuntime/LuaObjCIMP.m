@@ -24,14 +24,7 @@
 
 #import <objc/runtime.h>
 
-typedef enum
-{
-    LuaClassIMPFunction,
-    LuaClassIMPProperty,
-    LuaClassIMPUnknown,
-}LuaClassIMPType;
-
-static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
+static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
     Class theClass = [obj class];
     
@@ -156,20 +149,18 @@ static LuaClassIMPType __luaClass_IMP_preprocess(lua_State **returnedLuaState, i
             luaObjC_throwExceptionIfError(luaState);
         }
         
-        return LuaClassIMPFunction;
+        return ;
     }
     /*if is property*/
-    IMP imp = class_getMethodImplementation([obj class], sel);
+    IMP imp = class_getMethodImplementation(theClass, sel);
     if (imp)
     {
         luaObjC_pushNSObject(luaState, imp(obj, sel, luaObjC_checkNSObject(luaState, 1)));
-        return LuaClassIMPProperty;
         
     }else
     {
         NSLog(@"call stack:%@", [NSThread callStackSymbols]);
         [obj doesNotRecognizeSelector: sel];
-        return LuaClassIMPUnknown;
     }
 }
 
@@ -221,31 +212,17 @@ static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, .
     va_list ap;
     va_start(ap, sel);
     lua_State *L;
-    LuaClassIMPType impType = __luaClass_IMP_preprocess(&L, obj, sel, ap);
+    __luaClass_IMP_preprocess(&L, obj, sel, ap);
     va_end(ap);
     
-    switch (impType)
-    {
-        case LuaClassIMPUnknown:
-        {
-            printf("Error:%s line:%d\n", __FUNCTION__, __LINE__);
-            break;
-        }
-        case LuaClassIMPFunction:
-        {
-            //TODO
-            //
-        }
-        case LuaClassIMPProperty:
-        {
-            //TODO
-            //
-        }
-        default:
-        {
-            break;
-        }
-    }
+    //store struct type as userdata type
+    //
+    void *returnData = lua_touserdata(L, -1);
+    NSMethodSignature *signature = [obj methodSignatureForSelector: sel];
+    const char* type = [signature methodReturnType];
+    NSUInteger size;
+    NSGetSizeAndAlignment(type, &size, NULL);
+    memcpy(returnAddress, returnData, size);
 }
 
 static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
