@@ -14,22 +14,22 @@
 struct lua_State;
 struct luaL_Reg;
 
-extern int luaObjC_preloadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
+extern int LuaObjCInternal_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
 
-#define luaObjC_loadGlobalFunctions(L, f) luaObjC_preloadGlobalFunctions(L, f, sizeof(f) / sizeof(f[0]))
+#define luaObjC_loadGlobalFunctions(L, f) LuaObjCInternal_loadGlobalFunctions(L, f, sizeof(f) / sizeof(f[0]))
 
 extern void luaObjC_throwExceptionIfError(struct lua_State *L);
 
 extern void objc_dumpClass(Class theClass);
 
-extern void stackDump (struct lua_State *L);
+extern void stackDump(struct lua_State *L);
 
 #define FunctionDebugPrint() printf("In func: %s line: %d\n", __FUNCTION__, __LINE__)
 
-extern const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
+extern const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
 
-extern void luaObjCInternal_createmeta(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
+extern void LuaObjCInternal_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
 
-extern NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector);
+extern NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector);
 
 #endif

@@ -46,7 +46,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         //
         lua_rawgeti(luaState, LUA_REGISTRYINDEX, clouserID);
         
-        NSUInteger numberOfArgument = luaObjCInternal_getArgumentOfSelector(sel);
+        NSUInteger numberOfArgument = LuaObjCInternal_argumentCountOfSelector(sel);
         
         const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([obj class], sel));
         
