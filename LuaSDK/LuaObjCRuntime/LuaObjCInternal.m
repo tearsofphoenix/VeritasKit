@@ -134,7 +134,7 @@ const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
     {
         switch (*charLooper)
         {
-            case 'r': //const
+            case _C_CONST: //const
             case 'n': //in
             case 'N': //inout
             case 'o': //out

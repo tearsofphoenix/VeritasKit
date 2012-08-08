@@ -59,7 +59,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     
     //deside IMP
     //
-    IMP impRef = (IMP)LuaObjCAcceleratorGetIMPBySelector(selector);
+    IMP impRef = (IMP)LuaObjCAcceleratorGetIMPBySelector([obj class], selector);
     if (impRef)
     {
         return ((LuaObjCAcceleratorIMP)impRef)(obj, selector, L);
@@ -103,47 +103,47 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
             switch (*argType)
             {
-                case 'c':
-                case 'i':
-                case 's':
-                case 'l':
-                case 'q':
-                case 'C':
-                case 'I':
-                case 'S':
-                case 'L':
-                case 'Q':
-                case 'B':
+                case _C_CHR:
+                case _C_INT:
+                case _C_SHT:
+                case _C_LNG:
+                case _C_LNG_LNG:
+                case _C_UCHR:
+                case _C_UINT:
+                case _C_USHT:
+                case _C_ULNG:
+                case _C_ULNG_LNG:
+                case _C_BOOL:
                 {
                     lua_Integer integerPara = luaObjC_checkInteger(L,  iLooper + 1);
                     [invokation setArgument: &integerPara
                                     atIndex: iLooper];
                     break;
                 }
-                case 'f':
-                case 'd':
+                case _C_FLT:
+                case _C_DBL:
                 {
                     CGFloat doublePara = lua_tonumber(L,  iLooper + 1);
                     [invokation setArgument: &doublePara
                                     atIndex: iLooper];
                     break;
                 }
-                case '*':
+                case _C_CHARPTR:
                 {
                     const char *str = lua_tostring(L,  iLooper + 1);
                     [invokation setArgument: &str
                                     atIndex: iLooper];
                     break;
                 }
-                case '#':
-                case '@':
+                case _C_CLASS:
+                case _C_ID:
                 {
                     id argLooper = luaObjC_checkNSObject(L,  iLooper + 1);
                     [invokation setArgument: &argLooper
                                     atIndex: iLooper];
                     break;
                 }
-                case ':':
+                case _C_SEL:
                 {
                     const char *str = lua_tostring(L,  iLooper + 1);
                     SEL sel = NSSelectorFromString([NSString stringWithCString: str
@@ -153,7 +153,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                     
                     break;
                 }
-                case '{':
+                case _C_STRUCT_B:
                 {
                     void *structValue = lua_touserdata(L,  iLooper + 1);
                     [invokation setArgument: structValue
@@ -161,8 +161,8 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                     
                     break;
                 }
-                case '^':
-                case '[':
+                case _C_PTR:
+                case _C_ARY_B:
                 {
                     void *p = lua_touserdata(L,  iLooper + 1);
                     [invokation setArgument: &p
@@ -189,54 +189,54 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         switch (*returnType)
         {
                 
-            case 'c':
-            case 'i':
-            case 's':
-            case 'l':
-            case 'q':
-            case 'C':
-            case 'I':
-            case 'S':
-            case 'L':
-            case 'Q':
-            case 'B':
+            case _C_CHR:
+            case _C_INT:
+            case _C_SHT:
+            case _C_LNG:
+            case _C_LNG_LNG:
+            case _C_UCHR:
+            case _C_UINT:
+            case _C_USHT:
+            case _C_ULNG:
+            case _C_ULNG_LNG:
+            case _C_BOOL:
             {
                 NSInteger integerPara = 0;
                 [invokation getReturnValue: &integerPara];
                 lua_pushinteger(L, integerPara);
                 return 1;
             }
-            case 'f':
-            case 'd':
+            case _C_FLT:
+            case _C_DBL:
             {
                 CGFloat doublePara = 0;
                 [invokation getReturnValue: &doublePara];
                 lua_pushnumber(L, doublePara);
                 return 1;
             }
-            case '*':
+            case _C_CHARPTR:
             {
                 const char *str = NULL;
                 [invokation getReturnValue: &str];
                 lua_pushstring(L, str);
                 return 1;
             }
-            case '#':
-            case '@':
+            case _C_CLASS:
+            case _C_ID:
             {
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                 luaObjC_pushNSObject(L, obj);
                 return 1;
             }
-            case ':':
+            case _C_SEL:
             {
                 SEL sel = NULL;
                 [invokation getReturnValue: &sel];
                 luaObjC_pushSelector(L, sel);
                 return 1;
             }
-            case '{':
+            case _C_STRUCT_B:
             {
                 
                 if (!strcmp(returnType, @encode(CGRect)))
@@ -259,15 +259,15 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 }
                 return 1;
             }
-            case '^':
-            case '[':
+            case _C_PTR:
+            case _C_ARY_B:
             {
                 void *p = NULL;
                 [invokation getReturnValue: &p];
                 lua_pushlightuserdata(L, p);
                 return 1;
             }
-            case 'v':
+            case _C_VOID:
             {
                 return 0;
             }

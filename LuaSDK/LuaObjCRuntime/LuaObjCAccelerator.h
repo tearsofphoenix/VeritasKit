@@ -17,9 +17,9 @@ typedef int (* LuaObjCAcceleratorIMP)(id obj, SEL sel, struct lua_State *L);
 
 extern void LuaObjCAcceleratorInitialize(void);
 
-extern void LuaObjCAcceleratorRegister(SEL selector, LuaObjCAcceleratorIMP imp);
+extern void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp);
 
-extern LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(SEL selector);
+extern LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL selector);
 
 //accelerator for methods that have no argument
 //

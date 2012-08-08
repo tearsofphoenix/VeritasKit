@@ -20,80 +20,81 @@
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCInternal.h"
 #import <dlfcn.h>
+#import <objc/runtime.h>
 
 static ffi_type * _luaBridgeInternal_typeOfEncoding(const char *encoding)
 {
     switch (*encoding)
     {
-        case 'c':
+        case _C_CHR:
         {
             return  &ffi_type_schar;
         }
-        case 'i':
+        case _C_INT:
         {
             return &ffi_type_sint;
         }
-        case 's':
+        case _C_SHT:
         {
             return &ffi_type_sshort;
         }
-        case 'l':
+        case _C_LNG:
         {
             return &ffi_type_slong;
         }
-        case 'q':
+        case _C_LNG_LNG:
         {
             return &ffi_type_longdouble;
         }
-        case 'C':
+        case _C_UCHR:
         {
             return &ffi_type_uchar;
         }
-        case 'I':
+        case _C_UINT:
         {
             return &ffi_type_uint;
         }
-        case 'S':
+        case _C_USHT:
         {
             return &ffi_type_ushort;
         }
-        case 'L':
+        case _C_ULNG:
         {
             return &ffi_type_ulong;
         }
-        case 'Q':
+        case _C_ULNG_LNG:
         {
             //Notice here, but this will be rarely used
             //
             return &ffi_type_longdouble;
         }
-        case 'B':
+        case _C_BOOL:
         {
             return &ffi_type_uchar;
         }
-        case 'f':
+        case _C_FLT:
         {
             return &ffi_type_float;
         }
-        case 'd':
+        case _C_DBL:
         {
             return &ffi_type_double;
         }
-        case '*':
-        case '#':
-        case '@':
-        case ':':
-        case '^':
-        case '[':
+        case _C_CHARPTR:
+        case _C_CLASS:
+        case _C_ID:
+        case _C_SEL:
+        case _C_PTR:
+        case _C_ARY_B:
         {
             return &ffi_type_pointer;
         }
-        case '{':
+        case _C_STRUCT_B:
         {
             //TODO
             //
         }
-        case 'v':
+        case _C_VOID:
         case 'V': //"Vv"
         {
             return &ffi_type_void;
@@ -268,102 +269,102 @@ void LuaObjCInvoke(struct lua_State *L,
         
         switch (*returnValueEncoding)
         {
-            case 'c':
+            case _C_CHR:
             {
                 lua_pushinteger(L, *(char*)ref->_returnValue);
                 break;
             }
-            case 'i':
+            case _C_INT:
             {
                 lua_pushinteger(L, *(int*)ref->_returnValue);
                 break;
             }
-            case 's':
+            case _C_SHT:
             {
                 lua_pushinteger(L, *(short*)ref->_returnValue);
                 break;
             }
-            case 'l':
+            case _C_LNG:
             {
                 lua_pushinteger(L, *(long*)ref->_returnValue);
                 break;
             }
-            case 'q':
+            case _C_LNG_LNG:
             {
                 lua_pushnumber(L, *(long double*)ref->_returnValue);
                 break;
             }
-            case 'C':
+            case _C_UCHR:
             {
                 lua_pushinteger(L, *(unsigned char*)ref->_returnValue);
                 break;
             }
-            case 'I':
+            case _C_UINT:
             {
                 lua_pushinteger(L, *(unsigned int*)ref->_returnValue);
                 break;
             }
-            case 'S':
+            case _C_USHT:
             {
                 lua_pushinteger(L, *(unsigned short*)ref->_returnValue);
                 break;
             }
-            case 'L':
+            case _C_ULNG:
             {
                 lua_pushinteger(L, *(unsigned long*)ref->_returnValue);
                 break;
             }
-            case 'Q':
+            case _C_ULNG_LNG:
             {
                 //Notice here, but this will be rarely used
                 //
                 lua_pushnumber(L, *(long double*)ref->_returnValue);
                 break;
             }
-            case 'B':
+            case _C_BOOL:
             {
                 lua_pushboolean(L, *(char*)ref->_returnValue);
                 break;
             }
-            case 'f':
+            case _C_FLT:
             {
                 lua_pushnumber(L, *(float*)ref->_returnValue);
                 break;
             }
-            case 'd':
+            case _C_DBL:
             {
                 lua_pushnumber(L, *(double*)ref->_returnValue);
                 break;
             }
-            case '*':
+            case _C_CHARPTR:
             {
                 lua_pushstring(L, *(const char**)ref->_returnValue);
                 break;
             }
-            case ':':
+            case _C_SEL:
             {
                 SEL selector = *(SEL *)ref->_returnValue;
                 luaObjC_pushSelector(L, selector);
                 break;
             }
-            case '#':
-            case '@':
+            case _C_CLASS:
+            case _C_ID:
             {
                 luaObjC_pushNSObject(L, *(id *)ref->_returnValue);
                 break;
             }
-            case '^':
-            case '[':
+            case _C_PTR:
+            case _C_ARY_B:
             {
                 lua_pushlightuserdata(L,  *(void* *)ref->_returnValue);
                 break;
             }
-            case '{':
+            case _C_STRUCT_B:
             {
                 //TODO
                 //
             }
-            case 'v':
+            case _C_VOID:
             case 'V': //"Vv"
             {
                 break;
@@ -418,97 +419,97 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
     void **arguments = ref->_arguments;
     switch (*encoding)
     {
-        case 'c':
+        case _C_CHR:
         {
             *(char*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'i':
+        case _C_INT:
         {
             *(int*)arguments[iLooper] = (int)lua_tointeger(L, index);
             break;
         }
-        case 's':
+        case _C_SHT:
         {
             *(short*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'l':
+        case _C_LNG:
         {
             *(long*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'q':
+        case _C_LNG_LNG:
         {
             *(long double*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'C':
+        case _C_UCHR:
         {
             *(unsigned char*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'I':
+        case _C_UINT:
         {
             *(unsigned int*)arguments[iLooper] = (unsigned int)lua_tointeger(L, index);
             break;
         }
-        case 'S':
+        case _C_USHT:
         {
             *(unsigned short*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'L':
+        case _C_ULNG:
         {
             *(unsigned long*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'Q':
+        case _C_ULNG_LNG:
         {
             //Notice here, but this will be rarely used
             //
             *(long double*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'B':
+        case _C_BOOL:
         {
             *(unsigned char*)arguments[iLooper] = lua_tointeger(L, index);
             break;
         }
-        case 'f':
+        case _C_FLT:
         {
             *(float*)arguments[iLooper] = lua_tonumber(L, index);
             break;
         }
-        case 'd':
+        case _C_DBL:
         {
             *(double*)arguments[iLooper] = lua_tonumber(L, index);
             break;
         }
-        case '*':
-        case ':':
+        case _C_CHARPTR:
+        case _C_SEL:
         {
             *(const char **)arguments[iLooper] = lua_tostring(L, index);
             break;
         }
-        case '#':
+        case _C_CLASS:
         {
             *(id *)arguments[iLooper] = luaObjC_checkNSObject(L, index);
             break;
         }
-        case '@':
+        case _C_ID:
         {
             id obj = luaObjC_checkNSObject(L, index);
             *(id *)arguments[iLooper] = [obj retain];
             break;
         }
-        case '^':
-        case '[':
+        case _C_PTR:
+        case _C_ARY_B:
         {
             *(void **)arguments[iLooper] = lua_touserdata(L, index);
             break;
         }
-        case '{':
+        case _C_STRUCT_B:
         {
             //TODO
             //

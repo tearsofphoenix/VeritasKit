@@ -70,48 +70,48 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
             ++typeLooper;
             switch (*typeLooper)
             {
-                case 'c':
-                case 'i':
-                case 's':
-                case 'l':
-                case 'q':
-                case 'C':
-                case 'I':
-                case 'S':
-                case 'L':
-                case 'Q':
-                case 'B':
+                case _C_CHR:
+                case _C_INT:
+                case _C_SHT:
+                case _C_LNG:
+                case _C_LNG_LNG:
+                case _C_UCHR:
+                case _C_UINT:
+                case _C_USHT:
+                case _C_ULNG:
+                case _C_ULNG_LNG:
+                case _C_BOOL:
                 {
                     NSInteger integerPara = va_arg(ap, NSInteger);
                     lua_pushinteger(luaState, integerPara);
                     break;
                 }
-                case 'f':
-                case 'd':
+                case _C_FLT:
+                case _C_DBL:
                 {
                     CGFloat doublePara = (CGFloat)va_arg(ap, double);
                     lua_pushnumber(luaState, doublePara);
                     break;
                 }
-                case '*':
+                case _C_CHARPTR:
                 {
                     const char *str = va_arg(ap, const char*);
                     lua_pushstring(luaState, str);
                     break;
                 }
-                case '@':
+                case _C_ID:
                 {
                     id argLooper = va_arg(ap,  id);
                     luaObjC_pushNSObject(luaState, argLooper);
                     break;
                 }
-                case ':':
+                case _C_SEL:
                 {
                     SEL sel = va_arg(ap, SEL);
                     luaObjC_pushSelector(luaState, sel);
                     break;
                 }
-                case '{':
+                case _C_STRUCT_B:
                 {
                     if (!strncmp(typeLooper, @encode(CGRect), strlen(@encode(CGRect))))
                     {
@@ -127,8 +127,8 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
                     }
                     break;
                 }
-                case '^':
-                case '[':
+                case _C_PTR:
+                case _C_ARY_B:
                 {
                     void *p = va_arg(ap, void*);
                     lua_pushlightuserdata(luaState, p);
@@ -298,28 +298,28 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     
     switch (*returnType)
     {
-        case 'c':
-        case 'i':
-        case 's':
-        case 'l':
-        case 'q':
-        case 'C':
-        case 'I':
-        case 'S':
-        case 'L':
-        case 'Q':
-        case 'B':
+        case _C_CHR:
+        case _C_INT:
+        case _C_SHT:
+        case _C_LNG:
+        case _C_LNG_LNG:
+        case _C_UCHR:
+        case _C_UINT:
+        case _C_USHT:
+        case _C_ULNG:
+        case _C_ULNG_LNG:
+        case _C_BOOL:
         {
             imp = (IMP)__luaClass_IMP_integer_return;
             break;
         }
-        case 'f':
-        case 'd':
+        case _C_FLT:
+        case _C_DBL:
         {
             imp = (IMP)__luaClass_IMP_float_return;
             break;
         }
-        case '{':
+        case _C_STRUCT_B:
         {
             imp = (IMP)__luaClass_IMP_struct_return;
             break;

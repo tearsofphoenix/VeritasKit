@@ -10,6 +10,7 @@
 #import "XMLDocument.h"
 #import "LuaBridgeInfo.h"
 #import <dlfcn.h>
+#import <objc/runtime.h>
 
 typedef void (* LuaBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
 
@@ -28,17 +29,17 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
                                              
                                              switch(*[type UTF8String])
                                              {
-                                                 case 'c':
-                                                 case 'i':
-                                                 case 's':
-                                                 case 'l':
-                                                 case 'q':
-                                                 case 'C':
-                                                 case 'I':
-                                                 case 'S':
-                                                 case 'L':
-                                                 case 'Q':
-                                                 case 'B':
+                                                 case _C_CHR:
+                                                 case _C_INT:
+                                                 case _C_SHT:
+                                                 case _C_LNG:
+                                                 case _C_LNG_LNG:
+                                                 case _C_UCHR:
+                                                 case _C_UINT:
+                                                 case _C_USHT:
+                                                 case _C_ULNG:
+                                                 case _C_ULNG_LNG:
+                                                 case _C_BOOL:
                                                  {
                                                      NSInteger *address = dlsym(RTLD_DEFAULT, [name UTF8String]);
                                                      if (address)
@@ -48,8 +49,8 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
                                                      }
                                                      break;
                                                  }
-                                                 case 'f':
-                                                 case 'd':
+                                                 case _C_FLT:
+                                                 case _C_DBL:
                                                  {
                                                      CGFloat * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
                                                      if (address)
@@ -59,7 +60,7 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
                                                      }
                                                      break;
                                                  }
-                                                 case '@':
+                                                 case _C_ID:
                                                  {
                                                      id * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
                                                      if (address && *address)
@@ -69,7 +70,7 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
                                                      }
                                                      break;
                                                  }
-                                                 case '{':
+                                                 case _C_STRUCT_B:
                                                  {
                                                      //TODO
                                                      //

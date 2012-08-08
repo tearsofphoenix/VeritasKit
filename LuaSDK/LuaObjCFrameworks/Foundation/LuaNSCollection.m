@@ -185,25 +185,30 @@ int LuaOpenNSColletion(lua_State *L)
 {
     //NSArray accelerators
     //
-    LuaObjCAcceleratorRegister(@selector(arrayWithObjects:),
+
+    LuaObjCAcceleratorRegister([NSArray class], @selector(arrayWithObjects:),
                                 _luaObjC_NSArray_arrayWithObjects);
-    LuaObjCAcceleratorRegister(@selector(initWithObjects:),
+    LuaObjCAcceleratorRegister([NSArray class], @selector(initWithObjects:),
                                 _luaObjC_NSArray_NSOrderedSet_initWithObjects);
-    LuaObjCAcceleratorRegister(@selector(dictionaryWithObjectsAndKeys:),
+    
+    LuaObjCAcceleratorRegister([NSDictionary class], @selector(dictionaryWithObjectsAndKeys:),
                                 _luaObjC_NSDictionary_dictionaryWithObjectsAndKeys);
-    LuaObjCAcceleratorRegister(@selector(initWithObjectsAndKeys:),
+    LuaObjCAcceleratorRegister([NSDictionary class], @selector(initWithObjectsAndKeys:),
                                 _luaObjC_NSDictionary_initWithObjectsAndKeys);
-    LuaObjCAcceleratorRegister(@selector(orderedSetWithObjects:),
+    
+    LuaObjCAcceleratorRegister([NSOrderedSet class], @selector(orderedSetWithObjects:),
                                 _luaObjC_NSOrderedSet_orderedSetWithObjects);
-    LuaObjCAcceleratorRegister(@selector(setWithObjects:),
+    LuaObjCAcceleratorRegister([NSSet class], @selector(setWithObjects:),
                                 _luaObjC_NSSet_setWithObjects);
-    LuaObjCAcceleratorRegister(@selector(enumerateObjectsUsingBlock:),
+    
+    LuaObjCAcceleratorRegister([NSObject class], @selector(enumerateObjectsUsingBlock:),
                                 _luaObjC_NSCollection_enumerateObjectsUsingBlock);
-    LuaObjCAcceleratorRegister(@selector(enumerateObjectsWithOptions:usingBlock:),
+    LuaObjCAcceleratorRegister([NSObject class], @selector(enumerateObjectsWithOptions:usingBlock:),
                                 _luaObjC_NSCollection_enumerateObjectsWithOptions_usingBlock);
-    LuaObjCAcceleratorRegister(@selector(enumerateKeysAndObjectsUsingBlock:),
+    
+    LuaObjCAcceleratorRegister([NSObject class], @selector(enumerateKeysAndObjectsUsingBlock:),
                                 _luaObjC_NSCollection_enumerateKeysAndObjectsUsingBlock);
-    LuaObjCAcceleratorRegister(@selector(enumerateKeysAndObjectsWithOptions:usingBlock:),
+    LuaObjCAcceleratorRegister([NSObject class], @selector(enumerateKeysAndObjectsWithOptions:usingBlock:),
                                 _luaObjC_NSCollection_enumerateKeysAndObjectsWithOptions_usingBlock);
     
     return 0;
