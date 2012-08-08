@@ -29,8 +29,10 @@ forKey: [NSString stringWithUTF8String: #type]];
     _AddTypeEncoding(dict, CGAffineTransform);
     _AddTypeEncoding(dict, NSRange);
     _AddTypeEncoding(dict, CATransform3D);
+#if TARGET_OS_IPHONE
     _AddTypeEncoding(dict, UIEdgeInsets);
     _AddTypeEncoding(dict, UIOffset);
+#endif
     
 #undef _AddTypeEncoding
 }

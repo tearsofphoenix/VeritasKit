@@ -45,7 +45,11 @@ static int luaObjC_NSLog(lua_State *L)
                     case 'u':
                     {
                         lua_Integer value = lua_tointeger(L, iLooper);
+#if TARGET_OS_IPHONE
                         [logString appendFormat: @"%d", value];
+#else
+                        [logString appendFormat: @"%ld", value];
+#endif
                         ++iLooper;
                         break;
                     }
@@ -122,8 +126,12 @@ static int luaObjC_garbadgeCollection(lua_State *L)
     lua_getstack(L, 1, &ar);
     const char * name = lua_getlocal(L, &ar, 1);
     //stackDump(L);
-    
+#if TARGET_OS_IPHONE
     printf("[GC]name: %s count: %d\n", name, LuaObjectGetRetainCount(objRef));
+#else
+    printf("[GC]name: %s count: %ld\n", name, LuaObjectGetRetainCount(objRef));
+#endif
+    
     LuaObjectFinalize(objRef);
     //free(objRef);
     

@@ -7,6 +7,7 @@
 //
 
 #import "LuaEngineService.h"
+#import "ERGeneralDataSource.h"
 
 #import "lauxlib.h"
 #import "lualib.h"
@@ -160,7 +161,10 @@ static void LuaEngine_initialize(LuaEngineService *self,
     
     internal->luaState = luaStateRef;
     
-    NSString *sourceFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LuaObjCParser.lua"];
+    NSBundle *engineBundle = [NSBundle bundleForClass: [LuaEngineService class]];
+    
+    NSString *sourceFilePath = [engineBundle pathForResource: @"LuaObjCParser"
+                                                         ofType: @"lua"];
     
     //int status = luaL_dostring(parserStateRef, [parserSourceCode UTF8String]);
     if (luaL_dofile(parserStateRef, [sourceFilePath UTF8String]) != LUA_OK)

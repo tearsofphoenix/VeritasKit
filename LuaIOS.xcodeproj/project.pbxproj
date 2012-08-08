@@ -98,7 +98,6 @@
 		22FB9EDB15CBCB6F00895B7E /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = E19FB63315BF113B00C50C42 /* lvm.c */; };
 		22FB9EDC15CBCB6F00895B7E /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = E19FB63515BF113B00C50C42 /* lzio.c */; };
 		22FB9EE315CBCBAF00895B7E /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EB5AD915CA1C7D003FAF79 /* LuaNSObjectSupport.m */; };
-		22FB9EE415CBCC9800895B7E /* LuaOSX-framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14907BD1595BB8B0088A170 /* LuaOSX-framework.framework */; };
 		344433D015680371009D0D3A /* NSArray+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433CF15680371009D0D3A /* NSArray+LuaObjCIndex.m */; };
 		344433D5156805B4009D0D3A /* NSDictionary+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433D4156805B3009D0D3A /* NSDictionary+LuaObjCIndex.m */; };
 		344433D81568061D009D0D3A /* NSString+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 344433D71568061D009D0D3A /* NSString+LuaObjCIndex.m */; };
@@ -243,7 +242,7 @@
 		E1B2622115B199D3005D085C /* LuaObjCProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B2621F15B199D3005D085C /* LuaObjCProfile.h */; };
 		E1B2622215B199D3005D085C /* LuaObjCProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2622015B199D3005D085C /* LuaObjCProfile.m */; };
 		E1B2622315B199D3005D085C /* LuaObjCProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2622015B199D3005D085C /* LuaObjCProfile.m */; };
-		E1BC55B31595C5FF002255ED /* ERGeneralDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E1EF54871587938C00F35BD2 /* ERGeneralDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1B6F35215D2B24E004ECF47 /* LuaOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14907BD1595BB8B0088A170 /* LuaOSX.framework */; };
 		E1BC55B51595C786002255ED /* LuaEngineOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = E14907CB1595BB8B0088A170 /* LuaEngineOSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1EF54801587919500F35BD2 /* LuaEngineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF547C1587919500F35BD2 /* LuaEngineService.m */; };
 		E1EF54811587919500F35BD2 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EF547E1587919500F35BD2 /* LuaLibraryInformation.m */; };
@@ -382,7 +381,7 @@
 		E12B2D2315BA60D500065FD9 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
 		E12B2D2415BA60D500065FD9 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
 		E12B2D2B15BA616600065FD9 /* libffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libffi.dylib; sourceTree = DEVELOPER_DIR; };
-		E14907BD1595BB8B0088A170 /* LuaOSX-framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "LuaOSX-framework.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E14907BD1595BB8B0088A170 /* LuaOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LuaOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14907C61595BB8B0088A170 /* LuaEngineOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LuaEngineOSX-Info.plist"; sourceTree = "<group>"; };
 		E14907C81595BB8B0088A170 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E14907CA1595BB8B0088A170 /* LuaEngineOSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LuaEngineOSX-Prefix.pch"; sourceTree = "<group>"; };
@@ -532,7 +531,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22FB9EE415CBCC9800895B7E /* LuaOSX-framework.framework in Frameworks */,
+				E1B6F35215D2B24E004ECF47 /* LuaOSX.framework in Frameworks */,
 				22FB9EB215CBC9CA00895B7E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,7 +879,7 @@
 			isa = PBXGroup;
 			children = (
 				2268736C1521AD5D009D6279 /* LuaIOS.app */,
-				E14907BD1595BB8B0088A170 /* LuaOSX-framework.framework */,
+				E14907BD1595BB8B0088A170 /* LuaOSX.framework */,
 				22FB9EAE15CBC9CA00895B7E /* LuaOSXTest */,
 			);
 			name = Products;
@@ -1125,7 +1124,6 @@
 			files = (
 				E14908421595C0940088A170 /* ERGeneralConstants.h in Headers */,
 				E14908431595C0940088A170 /* ERGeneralMetaService.h in Headers */,
-				E1BC55B31595C5FF002255ED /* ERGeneralDataSource.h in Headers */,
 				E1BC55B51595C786002255ED /* LuaEngineOSX.h in Headers */,
 				E14908441595C0940088A170 /* LuaEngineService.h in Headers */,
 				229F6EA115AED079001DE368 /* NSMethodSignature+argumentsEncodings.h in Headers */,
@@ -1185,9 +1183,9 @@
 			productReference = 22FB9EAE15CBC9CA00895B7E /* LuaOSXTest */;
 			productType = "com.apple.product-type.tool";
 		};
-		E14907BC1595BB8B0088A170 /* LuaOSX-framework */ = {
+		E14907BC1595BB8B0088A170 /* LuaOSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E14907D01595BB8B0088A170 /* Build configuration list for PBXNativeTarget "LuaOSX-framework" */;
+			buildConfigurationList = E14907D01595BB8B0088A170 /* Build configuration list for PBXNativeTarget "LuaOSX" */;
 			buildPhases = (
 				E14907B81595BB8B0088A170 /* Sources */,
 				E14907B91595BB8B0088A170 /* Frameworks */,
@@ -1198,9 +1196,9 @@
 			);
 			dependencies = (
 			);
-			name = "LuaOSX-framework";
+			name = LuaOSX;
 			productName = LuaEngineCocoa;
-			productReference = E14907BD1595BB8B0088A170 /* LuaOSX-framework.framework */;
+			productReference = E14907BD1595BB8B0088A170 /* LuaOSX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1224,7 +1222,7 @@
 			projectRoot = "";
 			targets = (
 				2268736B1521AD5D009D6279 /* LuaIOS */,
-				E14907BC1595BB8B0088A170 /* LuaOSX-framework */,
+				E14907BC1595BB8B0088A170 /* LuaOSX */,
 				22FB9EAD15CBC9CA00895B7E /* LuaOSXTest */,
 			);
 		};
@@ -1707,6 +1705,7 @@
 				22FB9EBC15CBC9CA00895B7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		34E8A16A14D24C82000F9EB1 /* Build configuration list for PBXProject "LuaIOS" */ = {
 			isa = XCConfigurationList;
@@ -1717,7 +1716,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E14907D01595BB8B0088A170 /* Build configuration list for PBXNativeTarget "LuaOSX-framework" */ = {
+		E14907D01595BB8B0088A170 /* Build configuration list for PBXNativeTarget "LuaOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E14907CE1595BB8B0088A170 /* Debug */,
