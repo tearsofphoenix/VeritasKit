@@ -21,7 +21,7 @@
 int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType, 
                                                        IMP impRef, id obj, SEL selector)
 {
-    returnType = _luaObjCInternal_jumpoverEncodingDecorator(returnType);
+    returnType = LuaObjCInternal_jumpoverEncodingDecorator(returnType);
     switch (*returnType) 
     {
         case 'c':

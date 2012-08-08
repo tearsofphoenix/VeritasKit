@@ -15,7 +15,7 @@
 #import "LuaBridgeSupport.h"
 #import <objc/runtime.h>
 
-int luaObjC_preloadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)
+int LuaObjCInternal_loadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)
 {
     NSUInteger iLooper = 0;
     luaL_Reg reg;
@@ -128,7 +128,7 @@ void stackDump (lua_State *L)
     printf("--------------- Stack Dump Finished ---------------\n" );
 }
 
-const char* _luaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
+const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
 {
     if (charLooper)
     {
@@ -173,7 +173,7 @@ static const char *_luaObjCInternal_jumpOverToChar(const char *charLooper, char 
     return NULL;
 }
 
-void luaObjCInternal_createmeta(lua_State *L, const char *name, const luaL_Reg methods[])
+void LuaObjCInternal_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
 {
     luaL_newmetatable(L, name);
     lua_pushvalue(L, -1);  /* push metatable */
@@ -182,7 +182,7 @@ void luaObjCInternal_createmeta(lua_State *L, const char *name, const luaL_Reg m
     lua_pop(L, 1);  /* pop new metatable */
 }
 
-NSUInteger luaObjCInternal_getArgumentOfSelector(SEL selector)
+NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector)
 {
     const char* charLooper = (const char*)selector;
     NSUInteger count = 0;

@@ -303,7 +303,7 @@ static const luaL_Reg __LuaCATransform3DAPIs[] =
 
 int LuaOpenCATransform3D(lua_State *L)
 {
-    luaObjCInternal_createmeta(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
+    LuaObjCInternal_createMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
     
     luaObjC_loadGlobalFunctions(L, __LuaCATransform3DAPIs);
     

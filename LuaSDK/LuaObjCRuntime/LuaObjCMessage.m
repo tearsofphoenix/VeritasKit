@@ -100,7 +100,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         for (int iLooper = 2; iLooper < numberOfArguments; ++iLooper)
         {
             const char* argType = [methodSignature getArgumentTypeAtIndex: iLooper];
-            argType = _luaObjCInternal_jumpoverEncodingDecorator(argType);
+            argType = LuaObjCInternal_jumpoverEncodingDecorator(argType);
             switch (*argType)
             {
                 case 'c':
