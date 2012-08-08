@@ -25,7 +25,3 @@ extern LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(SEL selector);
 //
 extern int LuaObjCAcceleratorForNoArgument(struct lua_State *L, const char* returnType, IMP impRef, id obj, SEL selector);
 
-//accelerator for methods that have only one argument
-//
-extern int LuaObjCAcceleratorForOneArgument(struct lua_State *L, const char* argType, const char* returnType, IMP impRef, id obj, SEL selector);
-

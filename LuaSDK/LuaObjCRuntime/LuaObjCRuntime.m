@@ -314,7 +314,7 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"objc_getProtocol", luaObjC_getProtocol},
     {"objc_allocateClassPair", luaObjC_createClassWithSuperClass},
     {"class_addProperty", LuaIMPAddPropertyToClass},
-    {"class_addObjectMethod", LuaIMPAddInstanceMethod},
+    {"class_addInstanceMethod", LuaIMPAddInstanceMethod},
     {"class_addClassMethod", LuaIMPAddClassMethod},
     {"objc_registerClassPair", luaObjC_registerClassPair},
     {"objc_msgSendSuper", LuaObjCMessageSendSuper},

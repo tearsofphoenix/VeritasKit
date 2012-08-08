@@ -207,7 +207,7 @@ static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
     return ret;
 }
 
-static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, ...)
+static void* __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, ...)
 {
     va_list ap;
     va_start(ap, sel);
@@ -218,11 +218,29 @@ static void __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, .
     //store struct type as userdata type
     //
     void *returnData = lua_touserdata(L, -1);
-    NSMethodSignature *signature = [obj methodSignatureForSelector: sel];
-    const char* type = [signature methodReturnType];
+    Class objClass = [obj class];
+    Method method = NULL;
+    
+    if (objClass == obj)
+    {
+        method = class_getClassMethod(objClass, sel);
+        
+    }else
+    {
+        method = class_getInstanceMethod(objClass, sel);
+    }
+    
+    char* returnType = method_copyReturnType(method);
+    
     NSUInteger size;
-    NSGetSizeAndAlignment(type, &size, NULL);
+    NSGetSizeAndAlignment(returnType, &size, NULL);
+    
+    //free(returnType);
+    
     memcpy(returnAddress, returnData, size);
+    
+    return returnData;
+    //lua_pushlightuserdata(L, returnData);
 }
 
 static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
@@ -238,15 +256,16 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 }
 
 
-static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
+static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
 {
     int argCount = lua_gettop(L);
 
-    const char* className = lua_tostring(L, 1);
+    NSString * className = [NSString stringWithUTF8String: lua_tostring(L, 1)];
     const char* selectorName = luaObjC_checkString(L, 2);
     const char* typeLooper = NULL;
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
     
+    //printf("add method: %s\n", selectorName);
     //return type
     //
     typeLooper = luaObjC_checkString(L, 3);
@@ -263,7 +282,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
     }
     
-    Class theClass = LuaClassGetRegisteredClassByName([NSString stringWithUTF8String: className]);
+    Class theClass = LuaClassGetRegisteredClassByName(className);
     
     if (!isObjectMethod)
     {
@@ -271,7 +290,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
     }
     
     SEL sel = sel_registerName(selectorName);
-    
+        
     const char* typeEncodingCString = [typeEncoding UTF8String];
     
     switch (*returnType)
@@ -299,7 +318,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         {
             if(!class_addMethod(theClass, sel, (IMP)__luaClass_IMP_float_return, typeEncodingCString))
             {
-                printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString, returnType);
+                printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
             }
             break;
         }
@@ -307,7 +326,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         {
             if(!class_addMethod(theClass, sel, (IMP)__luaClass_IMP_struct_return, typeEncodingCString))
             {
-                printf("Fail to class:%s registered method for SEL:%s typeencoding:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString);
+                printf("Fail to class:%s registered method for SEL:%s typeencoding:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString);
             }
             break;
         }
@@ -315,7 +334,7 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
         {
             if(!class_addMethod(theClass, sel, __luaClass_IMP_gerneral, typeEncodingCString))
             {
-                printf("Fail, class:%s registered method:%s typeencoding:%s return type:%s\n", [NSStringFromClass(theClass) UTF8String], (const char*)sel, typeEncodingCString, returnType);
+                printf("Fail, class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
             }
             break;
         }
@@ -332,12 +351,12 @@ static int luaObjC_luaClass_addMethod(lua_State *L, BOOL isObjectMethod)
 
 int LuaIMPAddInstanceMethod(lua_State *L)
 {
-    return luaObjC_luaClass_addMethod(L, YES);
+    return luaObjC_class_addMethod(L, YES);
 }
 
 int LuaIMPAddClassMethod(lua_State *L)
 {
-    return luaObjC_luaClass_addMethod(L, NO);
+    return luaObjC_class_addMethod(L, NO);
 }
 
 #pragma mark - property

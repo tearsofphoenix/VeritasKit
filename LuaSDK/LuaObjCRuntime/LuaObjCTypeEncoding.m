@@ -23,6 +23,14 @@ forKey: [NSString stringWithUTF8String: #type]];
     _AddTypeEncoding(dict, CGFloat);
     _AddTypeEncoding(dict, int);
     _AddTypeEncoding(dict, void);
+    _AddTypeEncoding(dict, CGRect);
+    _AddTypeEncoding(dict, CGSize);
+    _AddTypeEncoding(dict, CGPoint);
+    _AddTypeEncoding(dict, CGAffineTransform);
+    _AddTypeEncoding(dict, NSRange);
+    _AddTypeEncoding(dict, CATransform3D);
+    _AddTypeEncoding(dict, UIEdgeInsets);
+    _AddTypeEncoding(dict, UIOffset);
     
 #undef _AddTypeEncoding
 }

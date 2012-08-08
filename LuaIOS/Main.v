@@ -117,19 +117,26 @@ GL = #import("OpenGLES")
     [window addGestureRecognizer: tapGesture]
     [tapGesture release]
             
-    print("end", os.clock())
     print("testFloat", [self testFloat], [self testID])
+    --local a = [self testStruct]
+    --print(NSStringFromCGRect(a))
+    
     return true
 }
 
 - (CGFloat)testFloat
 {
-    return 10.0010;
+    return 10.0010
 }
 
 - (id)testID
 {
-    return @"xxx";
+    return @"xxx"
+}
+
+- (CGRect)testStruct
+{
+    return CGRectMake(0, 1, 2, 3)
 }
 
 @end
