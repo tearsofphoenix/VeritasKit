@@ -17,4 +17,23 @@
     [super dealloc];
 }
 
+- (BOOL)respondsToSelector: (SEL)aSelector
+{
+    printf("in func: %s\n", __PRETTY_FUNCTION__);
+    return YES;
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+    printf("in func: %s\n", __PRETTY_FUNCTION__);
+    return [NSMethodSignature signatureWithObjCTypes: "@@:"];
+}
+
+- (void)forwardInvocation: (NSInvocation *)anInvocation
+{
+    printf("in func: %s\n", __PRETTY_FUNCTION__);
+    
+    [anInvocation invokeWithTarget: self];
+}
+
 @end

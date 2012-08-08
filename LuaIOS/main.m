@@ -9,6 +9,6 @@
 #import "LuaEngineService.h"
 
 int main(int argc, char *argv[])
-{    
+{
     LuaCall(@"Main.v", @"main", nil, 0, 1, nil);
 }

@@ -238,9 +238,9 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
                                          argumentCount,
                                          returnValue->_returnType,
                                          returnValue->_argumentTypes);
-        if (status == FFI_OK)
+        if (status != FFI_OK)
         {
-            NSLog(@"ok");
+            printf("fail to create c interface.\n");
         }
 
     }

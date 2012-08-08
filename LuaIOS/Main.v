@@ -136,7 +136,7 @@ GL = #import("OpenGLES")
 
 - (CGRect)testStruct
 {
-    return CGRectMake(0, 1, 2, 3)
+    return CGRectMake(0, 0, 320, 460)
 }
 
 @end

@@ -207,7 +207,7 @@ static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
     return ret;
 }
 
-static void* __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, ...)
+static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
 {
     va_list ap;
     va_start(ap, sel);
@@ -236,11 +236,9 @@ static void* __luaClass_IMP_struct_return(void *returnAddress, id obj, SEL sel, 
     NSGetSizeAndAlignment(returnType, &size, NULL);
     
     //free(returnType);
-    
-    memcpy(returnAddress, returnData, size);
-    
-    return returnData;
-    //lua_pushlightuserdata(L, returnData);
+        
+    //return returnData;
+    lua_pushlightuserdata(L, returnData);
 }
 
 static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
@@ -272,8 +270,10 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     const char* returnType = [LuaObjCTypeEncodingOfType(typeLooper) UTF8String];
     
     [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
-    [typeEncoding appendString: LuaObjCTypeEncodingOfTypeName(@"id")];
-    [typeEncoding appendString: LuaObjCTypeEncodingOfTypeName(@"SEL")];
+    
+    //id && selector
+    //
+    [typeEncoding appendString: @"@:"];
     
     for (int iLooper = 4; iLooper < argCount; ++iLooper)
     {
@@ -282,16 +282,19 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
         [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
     }
     
-    Class theClass = LuaClassGetRegisteredClassByName(className);
     
+    SEL sel = sel_registerName(selectorName);
+
+    Class theClass = LuaClassGetRegisteredClassByName(className);
+
     if (!isObjectMethod)
     {
         theClass = objc_getMetaClass(class_getName(theClass));
     }
-    
-    SEL sel = sel_registerName(selectorName);
         
     const char* typeEncodingCString = [typeEncoding UTF8String];
+    
+    IMP imp = NULL;
     
     switch (*returnType)
     {
@@ -307,40 +310,33 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
         case 'Q':
         case 'B':
         {
-            if(!class_addMethod(theClass, sel, (IMP)__luaClass_IMP_integer_return, typeEncodingCString))
-            {
-                printf("fail to add class method:%s\n", (const char*)sel);
-            }
+            imp = (IMP)__luaClass_IMP_integer_return;
             break;
         }
         case 'f':
         case 'd':
         {
-            if(!class_addMethod(theClass, sel, (IMP)__luaClass_IMP_float_return, typeEncodingCString))
-            {
-                printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
-            }
+            imp = (IMP)__luaClass_IMP_float_return;
             break;
         }
         case '{':
         {
-            if(!class_addMethod(theClass, sel, (IMP)__luaClass_IMP_struct_return, typeEncodingCString))
-            {
-                printf("Fail to class:%s registered method for SEL:%s typeencoding:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString);
-            }
+            imp = (IMP)__luaClass_IMP_struct_return;
             break;
         }
         default:
         {
-            if(!class_addMethod(theClass, sel, __luaClass_IMP_gerneral, typeEncodingCString))
-            {
-                printf("Fail, class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
-            }
+            imp = __luaClass_IMP_gerneral;
             break;
         }
             
     }
     
+    if(!class_addMethod(theClass, sel, imp, typeEncodingCString))
+    {
+        printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
+    }
+
     LuaClassAddClouserIDForSelector(theClass, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
     
     [typeEncoding release];

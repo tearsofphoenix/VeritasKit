@@ -63,7 +63,7 @@ void objc_dumpClass(Class theClass)
             printf("\t\tname:%s encoding:%s\n", ivar_getName(classIvarList[i]), ivar_getTypeEncoding(classIvarList[i]));
         }
         
-        free(classIvarList);
+        //free(classIvarList);
         
         unsigned int classMethodCount = 0;
         Method *methodList = class_copyMethodList(theClass, &classMethodCount);
@@ -72,7 +72,7 @@ void objc_dumpClass(Class theClass)
         {
             printf("\t\tname:%s encoding:%s\n", (const char*)method_getName(methodList[i]), method_getTypeEncoding(methodList[i]));
         }
-        free(methodList);
+        //free(methodList);
         
         unsigned int classPropertyCount = 0;
         objc_property_t *properties = class_copyPropertyList(theClass, &classPropertyCount);
@@ -81,7 +81,7 @@ void objc_dumpClass(Class theClass)
         {
             printf("\t\tname:%s attributes:%s\n", property_getName(properties[i]), property_getAttributes(properties[i]));
         }
-        free(properties);
+        //free(properties);
     }
 }
 

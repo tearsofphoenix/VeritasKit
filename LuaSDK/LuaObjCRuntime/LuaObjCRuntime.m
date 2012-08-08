@@ -288,7 +288,7 @@ static int _luaEngine_resolveName(lua_State *L)
     
     if (!LuaObjCCacheTableGetObjectForKey(L, name))
     {
-        printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
+        //printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
         Class theClass = objc_getClass(name);
         if (theClass)
         {

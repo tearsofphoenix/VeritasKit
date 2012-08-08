@@ -20,6 +20,14 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
+@interface NSInvocation (PrivateMethodsExpose)
+
+- (void)invokeUsingIMP: (IMP)imp;
+
+- (void)invokeSuper;
+
+@end
+
 static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
 {
     
@@ -127,6 +135,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                                     atIndex: iLooper];
                     break;
                 }
+                case '#':
                 case '@':
                 {
                     id argLooper = luaObjC_checkNSObject(L,  iLooper + 1);
@@ -168,7 +177,14 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         }
         
         [invokation retainArguments];
-        [invokation invoke];
+        
+        if (isToSelfClass)
+        {
+            [invokation invoke];
+        }else
+        {
+            [invokation invokeSuper];
+        }
         
         switch (*returnType)
         {
@@ -205,6 +221,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 lua_pushstring(L, str);
                 return 1;
             }
+            case '#':
             case '@':
             {
                 id obj = nil;
