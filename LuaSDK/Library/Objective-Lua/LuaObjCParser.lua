@@ -1911,13 +1911,13 @@ local typetable =
             emit("(")
         end
                                         
-        emit("\nfunction\n")
+        emit("\nfunction ")
         if ast.name then
             recursivelyunparse(ast.name)
         end
         emit("(")
         recursivelyunparse(ast.args)
-        emit(")")
+        emit(")\n")
         recursivelyunparse(ast.chunk)
         emit("\nend\n")
                                             
@@ -2041,9 +2041,9 @@ local typetable =
 
     luaClass_addMethod = function(ast)
         if ast.methodType == "objectmethod" then
-            emit(" class_addObjectMethod('" .. ast.class.text .. "', ")
+            emit("\nclass_addObjectMethod('" .. ast.class.text .. "', ")
         else
-            emit(" class_addClassMethod('" .. ast.class.text .. "', ")
+            emit("\nclass_addClassMethod('" .. ast.class.text .. "', ")
         end
         emit(ast.selector)
 
@@ -2066,7 +2066,7 @@ local typetable =
 		recursivelyunparse(ast.chunk)
         emit(" objc_registerClassPair('" .. ast.class.text .. "')")
         recursivelyunparse(ast.classMethodsChunk)
-		emit(" end")
+		emit(" end\n")
     end,
     
     olua_property_declearation = function(ast)
@@ -2112,7 +2112,7 @@ local typetable =
     end,
     
     olua_import_file = function(ast)
-        emit(" objc_import_file(" .. ast.fileName .. ")")
+        emit(" objc_import_file(" .. ast.fileName .. ")\n")
     end,
     
     olua_throw = function(ast)
@@ -2158,17 +2158,17 @@ local typetable =
                                             ]==]
                                     )
                                              recursivelyunparse(ast.tryBlock)
-                                             emit("\nend")
+                                             emit("\nend\n")
 
                                              emit(" local __catchBlock__func=function(" .. ast.catchBlock.arg .. ")")
                                              recursivelyunparse(ast.catchBlock.chunk)
                                              emit("\nend")
                                              
-                                             emit(" local __fianllyBlock__func")
+                                             emit(" local __fianllyBlock__func\n")
                                              if ast.finallyBlock then
                                                 emit("=function()")
                                                     recursivelyunparse(ast.finallyBlock)
-                                                emit("\nend")
+                                                emit("\nend\n")
                                              end
                                              
                                              emit(" objc_tryCatchFinally(__tryBlock__func, __catchBlock__func, __fianllyBlock__func)")
@@ -2192,7 +2192,7 @@ local typetable =
                                 emit(")")
     end,
     olua_objc_literalDictionary = function(ast)
-                                    emit(" objc_createLiteralDictionary(")
+                                    emit("objc_createLiteralDictionary(")
                                     if (#ast.keys > 0) then
                                         recursivelyunparse(ast.keys)
                                         emit(",")
@@ -2257,7 +2257,7 @@ local unparser = function(ast)
                         else
                             if t.line then
                                 while (line < t.line) do
-                                    s[#s+1] = "\n"
+                                    --s[#s+1] = "\n"
                                     line = line + 1
                                     lasttype = nil
                                 end
@@ -2279,5 +2279,7 @@ local unparser = function(ast)
 
 translate = function(intext, engine)
                 g_Engine = engine
-                return unparser(parser(intext, nil))
-            end	
+                local result = unparser(parser(intext, nil))
+                return result
+                --return string.gsub(result, "(\n+)", "\n")
+            end

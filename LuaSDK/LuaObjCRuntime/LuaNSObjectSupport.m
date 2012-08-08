@@ -45,7 +45,7 @@ static int luaObjC_NSLog(lua_State *L)
                     case 'u':
                     {
                         lua_Integer value = lua_tointeger(L, iLooper);
-                        [logString appendFormat: @"%ld", value];
+                        [logString appendFormat: @"%d", value];
                         ++iLooper;
                         break;
                     }
@@ -123,7 +123,7 @@ static int luaObjC_garbadgeCollection(lua_State *L)
     const char * name = lua_getlocal(L, &ar, 1);
     //stackDump(L);
     
-    printf("[GC]name: %s count: %ld\n", name, LuaObjectGetRetainCount(objRef));
+    printf("[GC]name: %s count: %d\n", name, LuaObjectGetRetainCount(objRef));
     LuaObjectFinalize(objRef);
     //free(objRef);
     

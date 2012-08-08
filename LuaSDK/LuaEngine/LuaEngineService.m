@@ -251,7 +251,7 @@ static int _LuaEngine_writer(lua_State* L, const void* p, size_t size, void* u)
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
-        //printf("parsed: %s\n", ret);
+        printf("parsed: %s\n", ret);
         return ret;
     }else
     {
