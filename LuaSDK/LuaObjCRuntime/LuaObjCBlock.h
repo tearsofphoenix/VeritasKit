@@ -8,11 +8,15 @@
 
 struct lua_State;
 
-extern int LuaObjCInvalidClouserID;
+typedef int LuaClosureType;
+
+extern LuaClosureType LuaObjCInvalidClouserID;
+
+extern Class LuaObjCNSBlockClass;
 
 extern void LuaObjCBlockSupportInitialize(void);
 
-extern void LuaObjCBlockSetClosureID(int clouserID, void *block);
+extern void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block);
 
-extern int LuaObjCBlockGetClosureID(void *block);
+extern LuaClosureType LuaObjCBlockGetClosureID(id block);
 

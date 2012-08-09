@@ -66,6 +66,7 @@ lua_Integer luaObjC_checkInteger(lua_State *L, int index)
         }
     }
 }
+
 const char* luaObjC_checkString(lua_State *L, int index)
 {
     switch (lua_type(L, index))

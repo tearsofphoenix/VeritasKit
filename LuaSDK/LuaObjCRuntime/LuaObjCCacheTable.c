@@ -10,8 +10,6 @@
 #include "lua.h"
 #include <stdbool.h>
 
-#define LUACOCOA_OBJECT_GLOBAL_WEAK_TABLE_ID "Veritas.GlobalWeakTable"
-
 static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool isWeakTable)
 {
 	lua_pushstring(L, tableID);
@@ -19,6 +17,7 @@ static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool i
 	lua_newtable(L);
 	lua_pushvalue(L, -1);  // table is its own metatable
 	lua_setmetatable(L, -2);
+    
     if (isWeakTable)
     {
         lua_pushliteral(L, "__mode");
@@ -27,7 +26,7 @@ static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool i
     }
 	
 	// Now that we've created a new table, put it in the global registry
-	lua_settable(L, LUA_REGISTRYINDEX); /* registry[LUACOCOA_OBJECT_GLOBAL_WEAK_TABLE_ID] = weak_table */
+	lua_settable(L, LUA_REGISTRYINDEX);
 	
 }
 
@@ -35,7 +34,7 @@ static void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *tableID
 {
     lua_getfield(L, LUA_REGISTRYINDEX, tableID); // puts the global weak table on top of the stack
 	
-	lua_pushlightuserdata(L, object); // stack: [object_ptr weak_table]
+	lua_pushlightuserdata(L, object); // stack: [object table]
 	lua_setfield(L, -2, key);
 	
 	// table is still on top of stack. Don't forget to pop it now that we are done with it
@@ -44,34 +43,34 @@ static void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *tableID
 
 static void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* tableID, const char* key)
 {
-    lua_getfield(L, LUA_REGISTRYINDEX, tableID); // puts the global weak table on top of the stack
+    lua_getfield(L, LUA_REGISTRYINDEX, tableID);
 	lua_getfield(L, -1, key);
 
 	if(lua_isnil(L, -1))
 	{
 		return NULL;
-	}
-	else
+        
+	}else
 	{
 		return lua_touserdata(L, -1);
 	}
 }
 
-#define LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID "LuaCocoa.GlobalStrongTable"
+static const char* LuaObjCGlobalCacheTableID = "com.veritas.lua-objc.global.cachetable";
 
 void LuaObjCCacheTableInitialize(lua_State* L)
 {
-    _luaObjC_createTableWithID(L, LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID, false);
+    _luaObjC_createTableWithID(L, LuaObjCGlobalCacheTableID, false);
 }
 
 void LuaObjCCacheTableInsertObjectForKey(lua_State* L, void* object, const char *key)
 {
-    _luaObjC_insertObjectInTableWithID(L, LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID, object, key);
+    _luaObjC_insertObjectInTableWithID(L, LuaObjCGlobalCacheTableID, object, key);
 }
 
 void* LuaObjCCacheTableGetObjectForKey(lua_State* L, const char* key)
 {
-    return _luaObjC_getObjectInTableWithID(L, LUACOCOA_OBJECT_GLOBAL_STRONG_TABLE_ID, key);
+    return _luaObjC_getObjectInTableWithID(L, LuaObjCGlobalCacheTableID, key);
 }
 
 

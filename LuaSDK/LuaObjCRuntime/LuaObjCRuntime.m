@@ -147,7 +147,7 @@ static LuaObjCValueType luaObjCGetTypeOfTypeName(const char* typeName)
 static int luaObjC_createBlockObject(lua_State *L)
 {
     int argumentTypesCount = lua_gettop(L) - 1;
-    int clouserID = luaL_ref(L, LUA_REGISTRYINDEX);
+    LuaClosureType clouserID = luaL_ref(L, LUA_REGISTRYINDEX);
     const char** argumentTypes = NULL;
     
     if (argumentTypesCount > 0)

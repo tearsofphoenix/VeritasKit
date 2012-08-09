@@ -164,13 +164,15 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     }
 }
 
+#define __LuaClassPreprocess(obj, sel)     va_list ap;\
+                                           va_start(ap, sel);\
+                                           lua_State *L;\
+                                           __luaClass_IMP_preprocess(&L, obj, sel, ap);\
+                                           va_end(ap);
+
 static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
 {
-    va_list ap;
-    va_start(ap, sel);
-    lua_State *L;
-    __luaClass_IMP_preprocess(&L, obj, sel, ap);
-    va_end(ap);
+    __LuaClassPreprocess(obj, sel);
     
     NSInteger ret = 0;
     int returnIndexOfLuaFunction = -1;
@@ -197,27 +199,19 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
 
 static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
 {
-    va_list ap;
-    va_start(ap, sel);
-    lua_State *L;
-    __luaClass_IMP_preprocess(&L, obj, sel, ap);
-    va_end(ap);
+    __LuaClassPreprocess(obj, sel);
     
-    CGFloat ret = lua_tonumber(L, -1);
-    return ret;
+    return lua_tonumber(L, -1);
 }
 
 static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
 {
-    va_list ap;
-    va_start(ap, sel);
-    lua_State *L;
-    __luaClass_IMP_preprocess(&L, obj, sel, ap);
-    va_end(ap);
+    __LuaClassPreprocess(obj, sel);
     
     //store struct type as userdata type
     //
-    void *returnData = lua_touserdata(L, -1);
+    //void *returnData = lua_touserdata(L, -1);
+    
     Class objClass = [obj class];
     Method method = NULL;
     
@@ -238,21 +232,17 @@ static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
     //free(returnType);
         
     //return returnData;
-    lua_pushlightuserdata(L, returnData);
+    lua_pushvalue(L, -1);
 }
 
 static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 {
-    va_list ap;
-    va_start(ap, sel);
-    lua_State *L;
-    __luaClass_IMP_preprocess(&L, obj, sel, ap);
-    va_end(ap);
+    __LuaClassPreprocess(obj, sel);
     
-    id ret = luaObjC_checkNSObject(L, -1);
-    return ret;
+    return luaObjC_checkNSObject(L, -1);
 }
 
+#undef __LuaClassPreprocess
 
 static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
 {

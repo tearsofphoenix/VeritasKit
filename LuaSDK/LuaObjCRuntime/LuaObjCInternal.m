@@ -153,26 +153,6 @@ const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
     return charLooper;
 }
 
-static const char *_luaObjCInternal_jumpOverToChar(const char *charLooper, char targetChar)
-{
-    if (charLooper)
-    {
-        while (*charLooper != targetChar)
-        {
-            ++charLooper;
-        }
-        
-        //jumpover the '=' char
-        //
-        if (*charLooper)
-        {
-            ++charLooper;
-        }
-        return charLooper;
-    }
-    return NULL;
-}
-
 void LuaObjCInternal_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
 {
     luaL_newmetatable(L, name);

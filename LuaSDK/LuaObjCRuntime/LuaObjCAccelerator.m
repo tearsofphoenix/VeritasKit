@@ -108,14 +108,10 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             return 1;
         }
         case _C_VOID:
+        case 'V':
         {
             typedef void (* _IMP_T)(id, SEL);
             ((_IMP_T)impRef)(obj, selector);
-            return 1;
-        }
-        case 'V': //"Vv"
-        {
-            [obj release];
             return 0;
         }
         default:

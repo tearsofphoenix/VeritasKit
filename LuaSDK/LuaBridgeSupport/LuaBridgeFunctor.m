@@ -110,18 +110,26 @@ const char * LuaBridgeFuncotrMetaName = "com.veritas.luaobjc.internal.bridge-fun
 
 struct LuaBridgeFuncotr
 {
+    //real function pointer
+    //
     void *_functionPointer;
     
+    //arguments
+    //
     ffi_type **_argumentTypes;
     NSArray *_argumentTypeEncodings;
     void **_arguments;
     NSUInteger _argumentCount;
     
+    //return type
+    //
     ffi_type *_returnType;
     const char *_returnValueEncoding;
     void *_returnValue;
     int _returnCount;
     
+    //c-interface
+    //
     ffi_cif _cif;
     
 };

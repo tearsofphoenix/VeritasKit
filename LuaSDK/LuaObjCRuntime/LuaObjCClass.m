@@ -157,8 +157,6 @@ void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* 
     }
 }
 
-int LuaObjCInvalidClouserID = -1;
-
 struct __LuaObject
 {
     id _obj;

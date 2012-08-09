@@ -211,9 +211,9 @@ static int luaObjC_callBlockObject(lua_State *L)
     int returnCount = 1;
     id block = luaObjC_checkNSObject(L, 1);
     
-    if ([block isKindOfClass: objc_getClass("NSBlock")])
+    if ([block isKindOfClass: LuaObjCNSBlockClass])
     {
-        int clouserID = LuaObjCBlockGetClosureID(block);
+        LuaClosureType clouserID = LuaObjCBlockGetClosureID(block);
         lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);
         for (int iLooper = 2; iLooper < argCount + 1; ++iLooper)
         {

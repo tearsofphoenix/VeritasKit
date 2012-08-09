@@ -6,10 +6,15 @@
 //
 //
 #import "LuaObjCBlock.h"
+#import <objc/runtime.h>
 
 static NSMutableDictionary *__LuaObjC_clouserBlockDictionary = nil;
 
-void LuaObjCBlockSetClosureID(int clouserID, void *block)
+LuaClosureType LuaObjCInvalidClouserID = -1;
+
+Class LuaObjCNSBlockClass = Nil;
+
+void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block)
 {
     if (block)
     {
@@ -18,7 +23,7 @@ void LuaObjCBlockSetClosureID(int clouserID, void *block)
     }
 }
 
-int LuaObjCBlockGetClosureID(void *block)
+LuaClosureType LuaObjCBlockGetClosureID(id block)
 {
     NSNumber *clouser = [__LuaObjC_clouserBlockDictionary objectForKey: [NSValue valueWithPointer: block]];
     if (clouser)
@@ -34,5 +39,6 @@ void LuaObjCBlockSupportInitialize(void)
     dispatch_once(&onceToken, (^
                                {
                                    __LuaObjC_clouserBlockDictionary = [[NSMutableDictionary alloc] init];
+                                   LuaObjCNSBlockClass = objc_getClass("NSBlock");                                   
                                }));
 }
