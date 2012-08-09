@@ -1149,7 +1149,6 @@ tableliteral = function()
                                 entry.value = rvalue()
                             else
                                 -- Key/value assignment. the `]' has been expected, so not expect it again
-                                --expect("operator", "]")
                                 expect("operator", "=")
                                 entry.value = rvalue()
                             end
