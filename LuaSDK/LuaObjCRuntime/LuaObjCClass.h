@@ -12,9 +12,9 @@ struct lua_State;
 
 //lua function <---> Objective-C method bridge
 //
-extern int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector);
+extern int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector);
 
-extern void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName);
+extern void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName);
 
 // replace the -dealloc method of Root class (NSObject)
 //
