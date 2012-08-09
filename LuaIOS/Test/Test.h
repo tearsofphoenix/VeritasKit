@@ -10,4 +10,6 @@
 
 @interface Test : NSObject
 
+@property (nonatomic, assign, setter = setString :) NSString *test;
+
 @end

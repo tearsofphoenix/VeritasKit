@@ -149,13 +149,18 @@ static int luaObjC_isEqual(lua_State *L)
 static int luaObjC_indexCollection(lua_State *L)
 {
     id obj = luaObjC_checkNSObject(L, 1);
-    NSLog(@"in func: %s line: %d obj: %@", __func__, __LINE__, obj);
+
     if ([obj respondsToSelector: @selector(indexObjectWithState:)])
     {
         [obj indexObjectWithState: L];
         return 1;
     }else
     {
+        NSException *exception = [NSException exceptionWithName: @"LuaObjCException"
+                                                         reason: @"unknow supported __index operation on object!"
+                                                       userInfo: nil];
+        @throw exception;
+        
         return 0;
     }
 }

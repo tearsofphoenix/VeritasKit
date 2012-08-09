@@ -37,6 +37,7 @@ GL = #import("OpenGLES")
 @implementation AppDelegate : NSObject
 
 @property (nonatomic, retain) UIWindow window
+@property (nonatomic, assign, setter=setString:) NSString testString
 
 + (id)name
 {
@@ -83,7 +84,6 @@ GL = #import("OpenGLES")
     //[window setUserInteractionEnabled: NO]
     [self setWindow: window]    
     print([self window])
-    print(self.window)
     local backgroundColor = [UIColor whiteColor]
 
     
@@ -117,9 +117,8 @@ GL = #import("OpenGLES")
     [window addGestureRecognizer: tapGesture]
     [tapGesture release]
             
-    print("testFloat", [self testFloat], [self testID])
-    --local a = [self testStruct]
-    --print(NSStringFromCGRect(a))
+    [self setString: @"xxx"]
+    print([self testString])
     
     return true
 }

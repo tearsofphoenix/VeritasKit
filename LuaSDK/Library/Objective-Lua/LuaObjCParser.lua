@@ -1560,21 +1560,21 @@ olua_property_declearation = function()
                                             end
                                         elseif (text == "getter") then
                                             if propertyAttribute.getter then
-                                                print(1546)
                                                 unexpectederror(t)
                                             else
-                                                expect("operator", "=")
-                                                propertyAttribute.getter = expect("identifier")
                                                 pos = pos + 1
+                                                expect("operator", "=")
+                                                propertyAttribute.getter = expect("identifier").text
                                             end
                                         elseif (text == "setter") then
                                             if propertyAttribute.setter then
-                                                print(1555)
                                                 unexpectederror(t)
                                             else
-                                                expect("operator", "=")
-                                                propertyAttribute.setter = expect("identifier")
                                                 pos = pos + 1
+                                                expect("operator", "=")
+                                                local setter = expect("identifier").text
+                                                expect("operator",":")
+                                                propertyAttribute.setter = setter .. ":"
                                             end
                                         end    
                                                                             
@@ -2072,7 +2072,7 @@ local typetable =
     olua_property_declearation = function(ast)
         local className = ast.class.text
         local propertyAttribute = ast.attribute
-
+        print('setter', propertyAttribute.setter)
         emit(" class_addProperty('" .. className .. "', '" .. propertyAttribute.atomic .. "','")
         emit(propertyAttribute.ownership .. "','" .. propertyAttribute.getter .. "','" .. propertyAttribute.setter .. "','")
         emit(propertyAttribute.type .. "','" .. propertyAttribute.name .. "','" .. propertyAttribute.internalName .. "')" )
