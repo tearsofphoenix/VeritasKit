@@ -10,6 +10,8 @@
 
 struct lua_State;
 
+//lua function <---> Objective-C method bridge
+//
 extern int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector);
 
 extern void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName);
@@ -18,13 +20,15 @@ extern void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const
 //
 extern void luaObjCInternal_modifyRootClass(void);
 
+//register class
+//
 extern Class LuaClassGetRegisteredClassByName(NSString *className);
 
 extern void LuaClassRegister(struct lua_State *L, Class theClass, NSString *className);
 
 extern struct lua_State *LuaClassGetLuaState(Class theClass);
 
-#pragma - Object observer
+#pragma mark - Object observer
 
 typedef struct __LuaObject *LuaObjectRef;
 
@@ -38,5 +42,6 @@ extern void LuaObjectPrint(LuaObjectRef ref);
 extern void LuaObjectFinalize(LuaObjectRef ref);
 
 extern NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
+
 
 LUAMOD_API int (luaopen_classSupport)(struct lua_State *L);

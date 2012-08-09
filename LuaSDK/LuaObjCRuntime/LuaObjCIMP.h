@@ -11,5 +11,3 @@ struct lua_State;
 extern int LuaIMPAddInstanceMethod(struct lua_State *L);
 
 extern int LuaIMPAddClassMethod(struct lua_State *L);
-
-extern int LuaIMPAddPropertyToClass(struct lua_State *L);

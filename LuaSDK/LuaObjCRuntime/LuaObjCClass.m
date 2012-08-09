@@ -22,33 +22,37 @@
 #import "lauxlib.h"
 
 #import "LuaObjCCacheTable.h"
+
 #import "LuaBridgeSupport.h"
 
-#define LuaObject_CommeonHeader      id _obj;\
-struct lua_State *_luaState;
 
 @class LuaObjectObserver;
 
-static NSMutableDictionary *__LuaObjC_MethodsDictionary = nil;
-
 static NSMutableDictionary *__LuaObjC_ClassDictionary = nil;
+
+
+//key for lua state on Class
+//
 static char __LuaObjC_KeyForLuaState;
+
+//key for methods of the Class defined by Objective-Lua
+//
+static char __LuaObjC_KeyForMethods;
 
 void LuaClassRegister(struct lua_State *L, Class theClass, NSString *className)
 {
     [__LuaObjC_ClassDictionary setObject: theClass
                                   forKey: className];
     
-    objc_setAssociatedObject(theClass,
-                             &__LuaObjC_KeyForLuaState,
-                             [NSValue valueWithPointer: L],
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(theClass, &__LuaObjC_KeyForLuaState, [NSValue valueWithPointer: L], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
     
     NSMutableDictionary *classMethods = [[NSMutableDictionary alloc] init];
+
+    objc_setAssociatedObject(theClass, &__LuaObjC_KeyForMethods, classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    [__LuaObjC_MethodsDictionary setObject: classMethods
-                                    forKey: [NSValue valueWithPointer: theClass]];
     [classMethods release];
+    
 }
 
 struct lua_State *LuaClassGetLuaState(Class theClass)
@@ -66,14 +70,13 @@ int luaopen_classSupport(lua_State *L)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, (^
                                {
-                                   __LuaObjC_MethodsDictionary = [[NSMutableDictionary alloc] init];
                                    __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
                                }));
     
     LuaObjCTypeEncodingInitialize();
     LuaObjCBlockSupportInitialize();
     LuaObjCCacheTableInitialize(L);
-
+    
     return 1;
 }
 
@@ -136,7 +139,8 @@ int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector)
 {
     if (theClass && selector)
     {
-        NSDictionary *methods = [__LuaObjC_MethodsDictionary objectForKey: [NSValue valueWithPointer: theClass]];
+        NSDictionary *methods = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForMethods);
+        
         NSNumber *closurID = [methods objectForKey: NSStringFromSelector(selector)];
         if (closurID)
         {
@@ -151,9 +155,10 @@ void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* 
 {
     if (theClass && selectorName)
     {
-        NSMutableDictionary *methods = [__LuaObjC_MethodsDictionary objectForKey: [NSValue valueWithPointer: theClass]];
+        NSMutableDictionary *methods = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForMethods);
+        
         [methods setObject: [NSNumber numberWithInt: clouserID]
-                               forKey: [NSString stringWithUTF8String: selectorName]];
+                    forKey: [NSString stringWithUTF8String: selectorName]];
     }
 }
 
@@ -165,7 +170,7 @@ struct __LuaObject
 };
 
 LuaObjectRef LuaObjectCreate(struct lua_State *L,
-                                 id rawObject)
+                             id rawObject)
 {
     LuaObjectRef objRef = lua_newuserdata(L, sizeof(struct __LuaObject));
     

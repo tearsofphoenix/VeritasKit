@@ -46,6 +46,8 @@
 
 #import "LuaNSObjectSupport.h"
 
+#import "LuaObjCProperty.h"
+
 static int luaObjC_createClassWithSuperClass(lua_State *L)
 {
     const char *newClassName = lua_tostring(L, 1);

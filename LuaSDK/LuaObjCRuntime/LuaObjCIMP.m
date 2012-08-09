@@ -28,7 +28,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
 {
     Class theClass = [obj class];
     
-    int clouserID = LuaClassGetClouserIDOfSelector(theClass, sel);
+    LuaClosureType clouserID = LuaClassGetClouserIDOfSelector(theClass, sel);
     lua_State *luaState = LuaClassGetLuaState(theClass);
     
     if (clouserID != LuaObjCInvalidClouserID)
@@ -190,6 +190,9 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
         }
         default:
         {
+            //TODO
+            //bad-cast here, so should throw an error
+            //
             break;
         }
     }
@@ -250,13 +253,13 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
 
     NSString * className = [NSString stringWithUTF8String: lua_tostring(L, 1)];
     const char* selectorName = luaObjC_checkString(L, 2);
-    const char* typeLooper = NULL;
+
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
     
     //printf("add method: %s\n", selectorName);
     //return type
     //
-    typeLooper = luaObjC_checkString(L, 3);
+    const char* typeLooper = luaObjC_checkString(L, 3);
     const char* returnType = [LuaObjCTypeEncodingOfType(typeLooper) UTF8String];
     
     [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
@@ -343,100 +346,4 @@ int LuaIMPAddInstanceMethod(lua_State *L)
 int LuaIMPAddClassMethod(lua_State *L)
 {
     return luaObjC_class_addMethod(L, NO);
-}
-
-#pragma mark - property
-
-static id __luaObjc_PropertyGetter(id obj, SEL selector)
-{
-    Ivar ivar = class_getInstanceVariable([obj class], (const char *)selector);
-    return object_getIvar(obj, ivar);
-}
-
-static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
-{
-    const char *selectorString = (const char*)selector;
-    size_t length = strlen(selectorString) - strlen("set") - strlen(":");
-    char *propertyName = malloc(sizeof(char) * (length + 1));
-    propertyName[length] = 0;
-    strncpy(propertyName, selectorString + strlen("set"), length);
-    propertyName[0] = tolower(propertyName[0]);
-    
-    Ivar ivar = class_getInstanceVariable([obj class], propertyName);
-    id oldValue = object_getIvar(obj, ivar);
-    if (![oldValue isEqual: newValue])
-    {
-        object_setIvar(obj, ivar, newValue);
-    }
-    
-    //why this? will cause a crash
-    free(propertyName);
-}
-
-static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* atomic, const char* ownershipName,
-                                           const char* getterName, const char* setterName, const char* typeName,
-                                           const char* propertyName)
-{
-    objc_property_attribute_t atomicAttribute = {"", ""};
-    if (!strcmp(atomic, "nonatomic"))
-    {
-        atomicAttribute.name = "N";
-    }
-    
-    objc_property_attribute_t type = { "T", "@" };
-    type.value =  [LuaObjCTypeEncodingOfType(typeName) UTF8String];
-    
-    
-    objc_property_attribute_t ownership = { "", "" }; // C = copy, & = retain
-    if (!strcmp(ownershipName, "copy"))
-    {
-        ownership.name = "C";
-    }else if (!strcmp(ownershipName, "retain"))
-    {
-        ownership.name = "&";
-    }
-    
-    objc_property_attribute_t backingivar  = {"V", propertyName};
-    objc_property_attribute_t attrs[] = {atomicAttribute, type, ownership, backingivar};
-    
-    Class theClass = LuaClassGetRegisteredClassByName([NSString stringWithUTF8String: className]);
-    
-    if(!class_addIvar(theClass, propertyName, sizeof(id), log2(sizeof(id)), @encode(id)))
-    {
-        printf("Failed to Add Ivar: %s to Class:%s!\n", propertyName, className);
-    }
-    
-    if(!class_addProperty(theClass, propertyName, attrs, 4))
-    {
-        printf("Failed add Property:%s to Class:%s OK!\n", propertyName, className);
-    }
-    
-    SEL selectorOfGet = sel_registerName(getterName);
-    SEL selectorOfSet = sel_registerName(setterName);
-    
-    if(!class_addMethod(theClass, selectorOfGet, (IMP)__luaObjc_PropertyGetter, "@@:"))
-    {
-        printf("Failed add Property Getter:%s to Class:%s OK!\n", (const char*)selectorOfGet, className);
-    }
-    if(!class_addMethod(theClass, selectorOfSet, (IMP)__luaObjc_PropertySetter, "v@:@"))
-    {
-        printf("Failed add Property Setter:%s to Class:%s OK!\n", (const char*)selectorOfSet, className);
-    }
-    
-}
-
-int LuaIMPAddPropertyToClass(lua_State *L)
-{
-    const char* className = luaObjC_checkString(L, 1);
-    const char* atomic = luaObjC_checkString(L, 2);
-    const char* ownershipName = luaObjC_checkString(L, 3);
-    const char* getterName = luaObjC_checkString(L, 4);
-    const char* setterName = luaObjC_checkString(L, 5);
-    const char* typeName = luaObjC_checkString(L, 6);
-    const char* propertyName = luaObjC_checkString(L, 7);
-    //const char* propertyInternalName = luaObjC_checkString(L, 8);
-    LuaIMPAddPropertyToClassOrigin(className, atomic, ownershipName, getterName,
-                                   setterName, typeName, propertyName);
-    
-    return 0;
 }
