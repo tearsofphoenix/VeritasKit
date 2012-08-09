@@ -45,29 +45,94 @@ const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter)
 }
 
 #pragma mark - property
+//getter
+#define __LuaObjC_propertyGetterWithType(Type, obj, selector)     Class objClass = [obj class];\
+                                                                const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);\
+                                                                Type returnValue;\
+                                                                 object_getInstanceVariable(obj, propertyName, (void **)&returnValue);\
+                                                                 return returnValue;
 
 static id __luaObjc_PropertyGetter(id obj, SEL selector)
 {
+    __LuaObjC_propertyGetterWithType(id, obj, selector);
+}
+
+static NSInteger __luaObjC_propertyGetterIntegerReturn(id obj, SEL selector)
+{
     Class objClass = [obj class];
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
+    NSInteger returnValue = 0;
+    
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
-    return object_getIvar(obj, ivar);
+    if (ivar)
+    {
+        returnValue = *((NSInteger *)obj + ivar_getOffset(ivar));
+    }
+    
+    return returnValue;
 }
+
+static CGFloat __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
+{
+    Class objClass = [obj class];
+    const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
+    CGFloat returnValue = 0.0;
+
+    Ivar ivar = class_getInstanceVariable(objClass, propertyName);
+    if (ivar)
+    {
+        returnValue = *((CGFloat *)obj + ivar_getOffset(ivar));
+    }
+
+    return returnValue;
+
+    //__LuaObjC_propertyGetterWithType(CGFloat, obj, selector);
+}
+
+#undef __LuaObjC_propertyGetterWithType
+
+//TODO
+//
+#define __LuaObjC_propertySetterWithType(Type, obj, selector, newValue)     Class objClass = [obj class];\
+                                                                  const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);\
+                                                                  Type value = newValue;\
+                                                                  object_setInstanceVariable(obj, propertyName, &value);
 
 //TODO
 //
 static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
 {
+//    Class objClass = [obj class];
+//    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
+//    object_setInstanceVariable(obj, propertyName, newValue);
+}
+
+static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, CGFloat newValue)
+{
     Class objClass = [obj class];
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
-    
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
-    id oldValue = object_getIvar(obj, ivar);
-    if (![oldValue isEqual: newValue])
+    if (ivar)
     {
-        object_setIvar(obj, ivar, newValue);
+        CGFloat *value = (CGFloat *)obj + ivar_getOffset(ivar);
+        *value = newValue;
+    }
+    //__LuaObjC_propertySetterWithType(CGFloat, obj, selector, newValue);
+}
+
+static void __luaObjC_PropertySetter_integerValue(id obj, SEL selector, NSInteger newValue)
+{
+    Class objClass = [obj class];
+    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
+    Ivar ivar = class_getInstanceVariable(objClass, propertyName);
+    if (ivar)
+    {
+        NSInteger *value = (NSInteger *)obj + ivar_getOffset(ivar);
+        *value = newValue;
     }
 }
+
+#undef __LuaObjC_propertySetterWithType
 
 static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* atomic, const char* ownershipName,
                                            const char* getterName, const char* setterName, const char* typeName,
@@ -81,7 +146,8 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     }
     
     objc_property_attribute_t type = { "T", "@" };
-    type.value =  [LuaObjCTypeEncodingOfType(typeName) UTF8String];
+    const char* typeEncoding = [LuaObjCTypeEncodingOfType(typeName) UTF8String];
+    type.value =  typeEncoding;
     
     
     objc_property_attribute_t ownership = { "", "" }; // C = copy, & = retain
@@ -102,7 +168,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     NSUInteger typeSize;
     NSGetSizeAndAlignment(type.value, &typeSize, NULL);
     
-    if(!class_addIvar(theClass, propertyName, typeSize, log2(typeSize), type.value))
+    if(!class_addIvar(theClass, propertyName, typeSize, log2(typeSize), typeEncoding))
     {
         printf("Failed to Add Ivar: %s to Class:%s!\n", propertyName, className);
     }
@@ -115,11 +181,39 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     SEL selectorOfGet = sel_registerName(getterName);
     SEL selectorOfSet = sel_registerName(setterName);
     
-    if(!class_addMethod(theClass, selectorOfGet, (IMP)__luaObjc_PropertyGetter, "@@:"))
+    IMP getterIMP = NULL;
+    IMP setterIMP = NULL;
+    
+    switch (*typeEncoding)
+    {
+        case _C_ID:
+        case _C_CLASS:
+        {
+            getterIMP = (IMP)__luaObjc_PropertyGetter;
+            setterIMP = (IMP)__luaObjc_PropertySetter;
+            break;
+        }
+        case _C_FLT:
+        case _C_DBL:
+        {
+            getterIMP = (IMP)__luaObjC_propertyGetterFloatReturn;
+            setterIMP = (IMP)__luaObjC_PropertySetter_floatValue;
+            break;
+        }
+        default:
+        {
+            getterIMP = (IMP)__luaObjC_propertyGetterIntegerReturn;
+            setterIMP = (IMP)__luaObjC_PropertySetter_integerValue;
+            break;
+        }
+    }
+    
+    if(!class_addMethod(theClass, selectorOfGet, getterIMP, [[NSString stringWithFormat: @"%s@:", typeEncoding] UTF8String]))
     {
         printf("Failed add Property Getter:%s to Class:%s OK!\n", (const char*)selectorOfGet, className);
     }
-    if(!class_addMethod(theClass, selectorOfSet, (IMP)__luaObjc_PropertySetter, "v@:@"))
+    
+    if(!class_addMethod(theClass, selectorOfSet, setterIMP, [[NSString stringWithFormat: @"v@:%s", typeEncoding] UTF8String]))
     {
         printf("Failed add Property Setter:%s to Class:%s OK!\n", (const char*)selectorOfSet, className);
     }

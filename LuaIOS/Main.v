@@ -38,6 +38,8 @@ GL = #import("OpenGLES")
 
 @property (nonatomic, retain) UIWindow window
 @property (nonatomic, assign, setter=setString:) NSString testString
+@property (nonatomic) CGFloat tf
+@property (nonatomic) NSInteger ti
 
 + (id)name
 {
@@ -82,8 +84,14 @@ GL = #import("OpenGLES")
     
     local window = [[UIWindow alloc] initWithFrame: bounds]
     //[window setUserInteractionEnabled: NO]
-    [self setWindow: window]    
+    [self setWindow: window]
     print([self window])
+    [self setTf: 1919.1]
+    print([self tf])
+    
+    [self setTi: 123213]
+    print([self ti])
+
     local backgroundColor = [UIColor whiteColor]
 
     
@@ -117,7 +125,7 @@ GL = #import("OpenGLES")
     [window addGestureRecognizer: tapGesture]
     [tapGesture release]
             
-    [self setString: @"xxx"]
+    [self setString: @"x-----xx"]
     print([self testString])
     
     return true

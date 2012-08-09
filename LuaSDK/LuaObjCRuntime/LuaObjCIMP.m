@@ -282,7 +282,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
 
     if (!isObjectMethod)
     {
-        theClass = objc_getMetaClass(class_getName(theClass));
+        theClass = objc_getMetaClass(class_getName(theClass));        
     }
         
     const char* typeEncodingCString = [typeEncoding UTF8String];
@@ -327,7 +327,24 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     
     if(!class_addMethod(theClass, sel, imp, typeEncodingCString))
     {
-        printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
+        Method existsMethod = NULL;
+        if (!isObjectMethod)
+        {
+            existsMethod = class_getClassMethod(theClass, sel);
+            
+        }else
+        {
+            existsMethod = class_getInstanceMethod(theClass, sel);
+        }
+
+        if (existsMethod)
+        {
+            method_setImplementation(existsMethod, imp);
+            
+        }else
+        {
+            printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
+        }
     }
 
     LuaClassAddClosureIDForSelector(theClass, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
