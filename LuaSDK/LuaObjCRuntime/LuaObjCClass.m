@@ -135,7 +135,7 @@ void luaObjCInternal_modifyRootClass(void)
 
 @end
 
-int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector)
+int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector)
 {
     if (theClass && selector)
     {
@@ -151,7 +151,7 @@ int LuaClassGetClouserIDOfSelector(Class theClass, SEL selector)
     return LuaObjCInvalidClouserID;
 }
 
-void LuaClassAddClouserIDForSelector(Class theClass, int clouserID, const char* selectorName)
+void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName)
 {
     if (theClass && selectorName)
     {

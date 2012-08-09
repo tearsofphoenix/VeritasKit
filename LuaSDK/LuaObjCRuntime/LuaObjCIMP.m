@@ -28,7 +28,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
 {
     Class theClass = [obj class];
     
-    LuaClosureType clouserID = LuaClassGetClouserIDOfSelector(theClass, sel);
+    LuaClosureType clouserID = LuaClassGetClosureIDOfSelector(theClass, sel);
     lua_State *luaState = LuaClassGetLuaState(theClass);
     
     if (clouserID != LuaObjCInvalidClouserID)
@@ -330,7 +330,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
         printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
     }
 
-    LuaClassAddClouserIDForSelector(theClass, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
+    LuaClassAddClosureIDForSelector(theClass, luaL_ref(L, LUA_REGISTRYINDEX), selectorName);
     
     [typeEncoding release];
     

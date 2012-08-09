@@ -12,6 +12,7 @@
 #import "LuaObjCAccelerator.h"
 #import "LuaCGGeometry.h"
 #import "LuaObjCAuxiliary.h"
+#import "LuaObjCBlock.h"
 #import "lua.h"
 #import "lauxlib.h"
 #import "ffi.h"
@@ -42,7 +43,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     
     const char *selectorName = lua_tostring(L, 2);
     //printf("SEL: %s\n", selectorName);
-    SEL selector = sel_registerName(selectorName);
+    SEL selector = sel_getUid(selectorName);
     
     //deside object
     //
@@ -57,9 +58,11 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         return 0;
     }
     
-    //deside IMP
-    //
-    IMP impRef = (IMP)LuaObjCAcceleratorGetIMPBySelector([obj class], selector);
+    Class objClass = [obj class];
+    //TODO
+    //LuaClosureType closureID = LuaClassGetClosureIDOfSelector(objClass, selector);
+    
+    IMP impRef = (IMP)LuaObjCAcceleratorGetIMPBySelector(objClass, selector);
     if (impRef)
     {
         return ((LuaObjCAcceleratorIMP)impRef)(obj, selector, L);
@@ -146,8 +149,8 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_SEL:
                 {
                     const char *str = lua_tostring(L,  iLooper + 1);
-                    SEL sel = NSSelectorFromString([NSString stringWithCString: str
-                                                                      encoding: NSUTF8StringEncoding]);
+                    SEL sel = sel_getUid(str);
+
                     [invokation setArgument: &sel
                                     atIndex: iLooper];
                     
