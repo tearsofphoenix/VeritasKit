@@ -16,10 +16,6 @@ extern int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector);
 
 extern void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName);
 
-// replace the -dealloc method of Root class (NSObject)
-//
-extern void luaObjCInternal_modifyRootClass(void);
-
 //register class
 //
 extern Class LuaClassGetRegisteredClassByName(NSString *className);
@@ -38,8 +34,6 @@ LuaObjectRef LuaObjectCreate(struct lua_State *L,
 extern id LuaObjectGetObject(LuaObjectRef ref);
 
 extern void LuaObjectPrint(LuaObjectRef ref);
-
-extern void LuaObjectFinalize(LuaObjectRef ref);
 
 extern NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
 

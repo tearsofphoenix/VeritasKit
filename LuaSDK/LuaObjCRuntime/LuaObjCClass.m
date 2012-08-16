@@ -25,6 +25,7 @@
 
 #import "LuaBridgeSupport.h"
 
+static void LuaObjectFinalize(LuaObjectRef ref);
 
 @class LuaObjectObserver;
 
@@ -84,8 +85,6 @@ int luaopen_classSupport(lua_State *L)
 
 static char __LuaObjCAssociatedObjectKey;
 
-static IMP _deallocIMPOfRootClass = NULL;
-
 @interface LuaObjectObserver : NSObject
 {
 @private
@@ -94,29 +93,15 @@ static IMP _deallocIMPOfRootClass = NULL;
 
 - (id)initWithObjectRef: (LuaObjectRef)ref;
 
-- (void)_clearUp;
-
 @end
 
-
-static void _luaObjC_runtimeDeallocMethod(id obj, SEL selector)
-{
-    LuaObjectObserver *observer = objc_getAssociatedObject(obj, &__LuaObjCAssociatedObjectKey);
-    if (observer)
-    {
-        objc_removeAssociatedObjects(obj);
-        [observer _clearUp];
-    }
-    
-    _deallocIMPOfRootClass(obj, selector);
-}
-
-void luaObjCInternal_modifyRootClass(void)
-{
-    _deallocIMPOfRootClass = class_replaceMethod(objc_getClass("NSObject"), @selector(dealloc), (IMP)_luaObjC_runtimeDeallocMethod, "v@:");
-}
-
 @implementation LuaObjectObserver
+
+- (id)init
+{
+    [self doesNotRecognizeSelector: _cmd];
+    return nil;
+}
 
 - (id)initWithObjectRef:(LuaObjectRef)ref
 {
@@ -127,10 +112,11 @@ void luaObjCInternal_modifyRootClass(void)
     return self;
 }
 
-- (void)_clearUp
+- (void)dealloc
 {
-    //LuaClassFinalize(_ref);
-    _deallocIMPOfRootClass(self, _cmd);
+    //NSLog(@"in func: %s self: %p", __func__, _ref);
+    
+    [super dealloc];
 }
 
 @end
@@ -179,8 +165,14 @@ LuaObjectRef LuaObjectCreate(struct lua_State *L,
     
     if ([rawObject class] != rawObject)
     {
-        objRef->_objectObserver = [[LuaObjectObserver alloc] initWithObjectRef: objRef];
-        objc_setAssociatedObject(rawObject, &__LuaObjCAssociatedObjectKey, objRef->_objectObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        LuaObjectObserver *objectObserver = [[LuaObjectObserver alloc] initWithObjectRef: objRef];
+        objc_setAssociatedObject(rawObject,
+                                 &__LuaObjCAssociatedObjectKey,
+                                 objectObserver,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [objectObserver release];
+        
+        objRef->_objectObserver = objectObserver;
     }
     
     luaL_getmetatable(L, LUA_NSOBJECT_METATABLENAME);
@@ -203,34 +195,13 @@ void LuaObjectPrint(LuaObjectRef ref)
     
 }
 
-void LuaObjectFinalize(LuaObjectRef ref)
+static void LuaObjectFinalize(LuaObjectRef ref)
 {
     if (ref)
     {
-        switch ([ref->_objectObserver retainCount])
-        {
-            case 1:
-            {
-                [ref->_objectObserver release];
-                ref->_objectObserver = nil;
-                break;
-            }
-            case 2:
-            {
-                //[ref->_obj release];
-                objc_removeAssociatedObjects(ref->_obj);
-                [ref->_objectObserver dealloc];
-                ref->_objectObserver = nil;
-                break;
-            }
-            default:
-            {
-                break;
-            }
-        }
-        //why crash here?
-        //
-        //free(ref);
+        ref->_obj = nil;
+        ref->_objectObserver = nil;
+        ref->_luaState = nil;
     }
 }
 

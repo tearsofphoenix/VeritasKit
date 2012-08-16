@@ -24,7 +24,7 @@
 {
     NSDictionary *dict = luaObjC_checkNSObject(state, 2);
     
-    NSMutableDictionary *ret = [[NSMutableDictionary alloc] initWithDictionary: self];
+    NSMutableDictionary *ret = [[[NSMutableDictionary alloc] initWithDictionary: self] autorelease];
     [ret addEntriesFromDictionary: dict];
     luaObjC_pushNSObject(state, ret);
 }

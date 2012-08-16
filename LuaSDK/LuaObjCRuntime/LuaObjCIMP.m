@@ -166,7 +166,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
 
 #define __LuaClassPreprocess(obj, sel)     va_list ap;\
                                            va_start(ap, sel);\
-                                           lua_State *L;\
+                                           lua_State *L = NULL;\
                                            __luaClass_IMP_preprocess(&L, obj, sel, ap);\
                                            va_end(ap);
 

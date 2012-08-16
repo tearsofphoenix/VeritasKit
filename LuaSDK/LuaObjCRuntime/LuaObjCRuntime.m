@@ -348,7 +348,6 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
 
 int luaopen_foundation(lua_State *L)
 {
-    luaObjCInternal_modifyRootClass();
     LuaObjCAcceleratorInitialize();
     
     luaopen_classSupport(L);

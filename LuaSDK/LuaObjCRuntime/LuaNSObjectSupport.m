@@ -119,25 +119,6 @@ static int luaObjC_description(lua_State *L)
     return 1;
 }
 
-static int luaObjC_garbadgeCollection(lua_State *L)
-{
-    LuaObjectRef objRef = lua_touserdata(L, 1);
-    lua_Debug ar;
-    lua_getstack(L, 1, &ar);
-    const char * name = lua_getlocal(L, &ar, 1);
-    //stackDump(L);
-#if TARGET_OS_IPHONE
-    printf("[GC]name: %s count: %d\n", name, LuaObjectGetRetainCount(objRef));
-#else
-    printf("[GC]name: %s count: %ld\n", name, LuaObjectGetRetainCount(objRef));
-#endif
-    
-    LuaObjectFinalize(objRef);
-    //free(objRef);
-    
-    return 0;
-}
-
 static int luaObjC_isEqual(lua_State *L)
 {
     id obj1 = luaObjC_checkNSObject(L, 1);
@@ -281,7 +262,6 @@ static int luaObjC_callBlockObject(lua_State *L)
 
 static const luaL_Reg LuaNS_ObjectMethods[] =
 {
-    {"__gc", luaObjC_garbadgeCollection},
     {"__tostring", luaObjC_description},
     
     {"__index", luaObjC_indexCollection},
