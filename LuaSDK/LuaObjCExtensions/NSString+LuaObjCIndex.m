@@ -50,7 +50,6 @@
     lua_pushinteger(state, [self length]);
 }
 
-
 + (NSString *)UUID
 {
     CFUUIDRef   uuid;
