@@ -29,6 +29,8 @@
 
 #import "LuaObjCAuxiliary.h"
 #import "LuaBridgeSupport.h"
+#import "LuaObjCParser.h"
+#import "NSData+Base64.h"
 
 static char * const LuaEngineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
@@ -160,17 +162,17 @@ static void LuaEngine_initialize(LuaEngineService *self,
     LuaLibraryInformationRegisterToState(libs, LuaEngineUIKitSupport, luaStateRef);
     
     internal->luaState = luaStateRef;
-    
-    NSBundle *engineBundle = [NSBundle bundleForClass: [LuaEngineService class]];
-    
-    NSString *sourceFilePath = [engineBundle pathForResource: @"LuaObjCParser"
-                                                         ofType: @"lua"];
+        
+    NSString *sourceCode = [[NSString alloc] initWithData: [NSData dataFromBase64String: kLuaObjCParserString]
+                                                     encoding: NSUTF8StringEncoding];
     
     //int status = luaL_dostring(parserStateRef, [parserSourceCode UTF8String]);
-    if (luaL_dofile(parserStateRef, [sourceFilePath UTF8String]) != LUA_OK)
+    if (luaL_dostring(parserStateRef, [sourceCode UTF8String]) != LUA_OK)
     {
         luaObjC_throwExceptionIfError(parserStateRef);
     }
+    
+    [sourceCode release];
     
     internal->frameworkImportQueue = dispatch_queue_create(LuaEngineFrameworkImportQueueIdentifier, DISPATCH_QUEUE_CONCURRENT);
     
