@@ -29,7 +29,7 @@ static NSMutableDictionary *__registeredFrameworks = nil;
 {
     if (![__registeredFrameworks objectForKey: frameworkName])
     {
-        NSString *bridgeFilePath = [[NSBundle mainBundle] pathForResource: frameworkName
+        NSString *bridgeFilePath = [[NSBundle bundleForClass: self] pathForResource: frameworkName
                                                                    ofType: @"bridgesupport"];
         NSError *error = nil;
         NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath

@@ -1,4 +1,4 @@
---
+
 local unpack = table.unpack
 
 local g_Engine
@@ -134,29 +134,29 @@ function gettokens( input)
                                     }
                                     --Deal olua_string* here, just remove the `@', 
                                     --treat it as normal lua string (`@' == 64)
-                                    if (t.type == "string") and (t.text:byte(1) == 64) then
+                                    if (t.type == 'string') and (t.text:byte(1) == 64) then
                                         t.text = t.text:sub(2)
-                                        t.type = "NSConstantString";
+                                        t.type = 'NSConstantString';
                                     end
-                                    if (t.type == "number") and (t.text:byte(1) == 64) then
+                                    if (t.type == 'number') and (t.text:byte(1) == 64) then
                                         t.text = t.text:sub(2)
-                                        t.type = "NSConstantNumber";
+                                        t.type = 'NSConstantNumber';
                                     end
-                                    if (t.type == "identifier") and (t.text == "__LINE__") then
-                                        t.type = "number"
+                                    if (t.type == 'identifier') and (t.text == '__LINE__') then
+                                        t.type = 'number'
                                         t.text = rawtoken[3]
                                     end
-                                    if (t.type == "keyword") then
-                                        if (t.text == "YES") then
-                                            t.text = "true"
-                                        elseif (t.text == "NO") then
-                                            t.text = "NO"
+                                    if (t.type == 'keyword') then
+                                        if (t.text == 'YES') then
+                                            t.text = 'true'
+                                        elseif (t.text == 'NO') then
+                                            t.text = 'NO'
                                         end
                                     end
 
-                                    if (t.type == "operator") then
-                                        if (t.text == "!=") then
-                                            t.text = "~="
+                                    if (t.type == 'operator') then
+                                        if (t.text == '!=') then
+                                            t.text = '~='
                                         end
                                     end
 
@@ -180,7 +180,7 @@ function gettokens( input)
         end
 
 local function stringify(s)
-                    if not s:find('"') then
+                    if not s:find("'") then
                         return '"'..s..'"'
                     elseif not s:find("'") then
                         return "'"..s.."'"
@@ -190,7 +190,7 @@ local function stringify(s)
                     while true do
                         local e = string.rep('=', i)
                         if not s:find("%["..e.."%]") then
-                            return "["..e.."["..s.."]"..e.."]"
+                            return '['..e..'['..s..']'..e..']'
                         end
                         i = i + 1
                     end
@@ -201,11 +201,11 @@ local function leaf(t)
                 end
 
 local function identifierleaf(s)
-                    return leaf({type="identifier", text=s})
+                    return leaf({type='identifier', text=s})
                end
 
 local function stringleaf(s)
-                    return leaf({type="string", text=stringify(s)})
+                    return leaf({type='string', text=stringify(s)})
                 end
 
 function methodcall(ast)
@@ -222,7 +222,7 @@ function methodcall(ast)
                     selector=stringify(selector),
                     args=
                     {
-                        type="list",
+                        type='list',
                         unpack(args)
                     }
                 }
@@ -233,7 +233,7 @@ function methodcall(ast)
                     type="olua_method_super_call",
                     args=
                     {
-                        type="list",
+                        type='list',
                         stringleaf(selector),
                         unpack(args)
                     }
@@ -268,7 +268,7 @@ local function methoddefinition(ast, class, methodType)
                     type="functiondef",
                     args=
                     {
-                        type="list",
+                        type='list',
                         unpack(args)
                     },
                     chunk=ast.chunk
@@ -307,7 +307,7 @@ function implementation(ast)
                 type="objc_allocateClassPair",
                 args=
                 {
-                    type="list",
+                    type='list',
                     stringleaf(ast.class.text),
                     stringleaf(ast.superclass)
                 }
@@ -519,7 +519,7 @@ expect = function(type, ...)
 local function isterminatorkeyword(s)
                     return (s == "end") or (s == "else") or
                     (s == "elseif") or (s == "until") or
-                    (s == "@end") 
+                    (s == '@end') 
                 end
 
 chunk = function()
@@ -527,7 +527,7 @@ chunk = function()
 
             while tokens[pos] do
                 local t = tokens[pos]
-                if (t.type == "keyword") then
+                if (t.type == 'keyword') then
                     if isterminatorkeyword(t.text) then
                         break
                     end
@@ -536,7 +536,7 @@ chunk = function()
                         local a = laststat()
                         ast[#ast+1] = a
 
-                        optionalexpect("operator", ";")
+                        optionalexpect('operator', ';')
                         break
                     end
                 end
@@ -544,7 +544,7 @@ chunk = function()
                 local a = stat()
                 ast[#ast+1] = a
 
-                optionalexpect("operator", ";")
+                optionalexpect('operator', ';')
             end
 
             return ast
@@ -552,7 +552,7 @@ chunk = function()
 
 stat = function()
             local t = tokens[pos]
-            if (t.type == "keyword") then
+            if (t.type == 'keyword') then
                 if (t.text == "do") then
                     return doend()
                 elseif (t.text == "while") then
@@ -591,7 +591,7 @@ stat = function()
                 end
             else
                 local e = rvalue()
-                if peek("operator", ",") or peek("operator", "=") then
+                if peek('operator', ',') or peek('operator', '=') then
                     return assignment(e)
                 else
                     return e
@@ -601,7 +601,7 @@ stat = function()
 
 laststat = function()
                 local t = tokens[pos]
-                if (t.type == "keyword") then
+                if (t.type == 'keyword') then
                     if (t.text == "break") then
                         pos = pos + 1
                         return {type="break"}
@@ -609,7 +609,7 @@ laststat = function()
                         pos = pos + 1
 
                         local value
-                        if (tokens[pos].type == "keyword") and
+                        if (tokens[pos].type == 'keyword') and
                             isterminatorkeyword(tokens[pos].text) then
                         else
                             value = rvaluelist()
@@ -622,51 +622,51 @@ laststat = function()
             end
 
 doend = function()
-            expect("keyword", "do")
+            expect('keyword', "do")
             local t = tokens[pos]
             local ast = {}
-            if t.type == "operator" and t.text == "{" then
+            if t.type == 'operator' and t.text == "{" then
                 ast.chunk = olua_block()
-                expect("keyword", "while")
+                expect('keyword', "while")
                 ast.condition = rvalue()                   
                 ast.type="dowhile"
             else
                 ast.type = "doend"
                 ast.chunk =chunk()
-                expect("keyword", "end")
+                expect('keyword', "end")
             end
             return ast
         end
 
 ifelseend = function()
-                expect("keyword", "if")
+                expect('keyword', "if")
                 local ast = {type="ifelseend"}
                 local hasBracketFlag = false
                 while true do
                     local condition = rvalue()
                     local c
                     local t = tokens[pos]
-                    if t.type == "operator" and t.text == "{" then
+                    if t.type == 'operator' and t.text == "{" then
                         hasBracketFlag = true
                         c = olua_block()
                     else
-                        expect("keyword", "then")
+                        expect('keyword', "then")
                         c = chunk()
                     end
 
                     ast[#ast+1] = {condition=condition, chunk=c}
 
-                    t = optionalexpect("keyword", "elseif", "else", "end")
+                    t = optionalexpect('keyword', "elseif", "else", "end")
                     if (t.text == "end") then
                         break
                     elseif (t.text == "else") then
                         t = tokens[pos]
-                        if t.type == "operator" and t.text == "{" then                            
+                        if t.type == 'operator' and t.text == "{" then                            
                             hasBracketFlag = true
                             c = olua_block()                            
                         else
                             c = chunk()
-                            expect("keyword", "end")
+                            expect('keyword', "end")
                         end
                         ast[#ast+1] = {chunk=c}
                         break
@@ -679,17 +679,17 @@ ifelseend = function()
             end
 
 whiledoend = function()
-                expect("keyword", "while")
+                expect('keyword', "while")
                 local c = rvalue()
                 
                 local b
                 local t = tokens[pos]
-                if t.type == "operator" and t.text == "{" then
+                if t.type == 'operator' and t.text == "{" then
                     b = olua_block()
                 else
-                    expect("keyword", "do")
+                    expect('keyword', "do")
                     b = chunk()
-                    expect("keyword", "end")
+                    expect('keyword', "end")
                 end
                 return 
                 {
@@ -700,74 +700,74 @@ whiledoend = function()
             end
 
 repeatuntil = function()
-                    expect("keyword", "repeat")
+                    expect('keyword', "repeat")
                     local b = chunk()
-                    expect("keyword", "until")
+                    expect('keyword', "until")
                     local c = rvalue()
 
                     return {type="repeatuntil", condition=c, chunk=b}
                 end
 
 forend = function()
-            expect("keyword", "for")
+            expect('keyword', "for")
             local ast = {}
 
-            if peek("operator", "(") then
+            if peek('operator', '(') then
                 pos = pos + 1
                 ast.var = lvalue()
                 ast.var = lvaluelist(ast.var)
-                expect("keyword", "in")
+                expect('keyword', "in")
                 ast.iterator = rvalue()
-                expect("operator", ")")
+                expect('operator', ')')
                 ast.chunk = olua_block()
                 ast.type = "olua_forinend"
             else
 
                 ast.var = lvalue()
-                if peek("operator", "=") then
+                if peek('operator', '=') then
                     pos = pos + 1
                     ast.type = "forend"
 
                     ast.low = rvalue()
-                    expect("operator", ",")
+                    expect('operator', ',')
                     ast.high = rvalue()
-                    if peek("operator", ",") then
+                    if peek('operator', ',') then
                         pos = pos + 1
                         ast.step = rvalue()
                     end
                 else
                     ast.var = lvaluelist(ast.var)
-                    expect("keyword", "in")
+                    expect('keyword', "in")
                     ast.type = "forinend"
 
                     ast.iterator = rvalue()
                 end
 
-                expect("keyword", "do")
+                expect('keyword', "do")
                 ast.chunk = chunk()
-                expect("keyword", "end") 
+                expect('keyword', "end") 
             end
             return ast
         end
 
 functiondef = function()
-                expect("keyword", "function")
+                expect('keyword', "function")
                 local name
-                if not peek("operator", "(") then
+                if not peek('operator', '(') then
                     name = lvalue()
                 end
 
-                expect("operator", "(")
+                expect('operator', '(')
                 local args = lvaluelist()
-                expect("operator", ")")
+                expect('operator', ')')
                 
                 local c
                 local t = tokens[pos]
-                if t.type == "operator" and t.text == "{" then
+                if t.type == 'operator' and t.text == "{" then
                     c = olua_block()
                 else
                     c = chunk()                
-                    expect("keyword", "end")
+                    expect('keyword', "end")
                 end
                 return 
                 {
@@ -779,23 +779,23 @@ functiondef = function()
             end
 
 assignment = function(e)
-if not e or peek("operator", ",") then
+if not e or peek('operator', ',') then
 e = lvaluelist(e)
 end
-expect("operator", "=")
+expect('operator', '=')
 local a = rvaluelist()
 return {type="assignment", left=e, right=a}
 end
 
 localdef = function()
-                expect("keyword", "local")
+                expect('keyword', "local")
                 local ast
-                if peek("keyword", "function") then
+                if peek('keyword', "function") then
                     ast = functiondef()
                 else
                     local e = lvaluelist()
                     local a = nil
-                if peek("operator", "=") then
+                if peek('operator', '=') then
                     pos = pos + 1
                     a = rvaluelist()
                 end
@@ -815,9 +815,9 @@ localdef = function()
            end
 
 rvaluelist = function(e)
-local ast = {type="list"}
+local ast = {type='list'}
 if not e then
-if peek("operator", ")") then
+if peek('operator', ')') then
 return ast
 end
 e = rvalue()
@@ -825,7 +825,7 @@ end
 
 ast[#ast+1] = e
 while true do
-if not peek("operator", ",") then
+if not peek('operator', ',') then
 return ast
 end
 pos = pos + 1
@@ -868,40 +868,40 @@ local function rightassocbinop(left, precedence, type, ...)
 
 -- or
 rvalue = function()
-            return leftassocbinop(rvalue2, 1, "keyword", "or")
+            return leftassocbinop(rvalue2, 1, 'keyword', "or")
          end
 
 -- and
 rvalue2 = function()
-                return leftassocbinop(rvalue3, 2, "keyword", "and")
+                return leftassocbinop(rvalue3, 2, 'keyword', "and")
             end
 
 -- < > <= >= ~= ==
 rvalue3 = function()
-            return leftassocbinop(rvalue4, 3, "operator",
+            return leftassocbinop(rvalue4, 3, 'operator',
                                   "<", ">", "<=", ">=", "~=", "==", "!=")
             end
 
 -- ..
 rvalue4 = function()
-            return rightassocbinop(rvalue5, 4, "operator", "..")
+            return rightassocbinop(rvalue5, 4, 'operator', "..")
           end
 
 -- + -
 rvalue5 = function()
-                return leftassocbinop(rvalue6, 5, "operator", "+", "-")
+                return leftassocbinop(rvalue6, 5, 'operator', "+", "-")
           end
 
 -- * / %
 rvalue6 = function()
-             return leftassocbinop(rvalue7, 6, "operator", "*", "/", "%")
+             return leftassocbinop(rvalue7, 6, 'operator', "*", "/", "%")
           end
 
 -- not # unary-
 rvalue7 = function()
-            if peek("operator", "-") or 
-               peek("operator", "#") or
-               peek("keyword", "not") then
+            if peek('operator', "-") or 
+               peek('operator', "#") or
+               peek('keyword', "not") then
                 local t = tokens[pos]
                 pos = pos + 1
                 return {type="unop", precedence=7, operator=t.text, value=rvalue8()}
@@ -912,7 +912,7 @@ rvalue7 = function()
 
 -- ^
 rvalue8 = function()
-            return rightassocbinop(rvalue9, 8, "operator", "^")
+            return rightassocbinop(rvalue9, 8, 'operator', "^")
           end
 
 -- . : [] functioncalls
@@ -924,7 +924,7 @@ rvalue9 = function()
                     break
                 end
 
-                if (t.type == "operator") then		
+                if (t.type == 'operator') then		
                     if (t.text == ".") or (t.text == ":") then
                         pos = pos + 1
                         rleaf = rvalueleaf()
@@ -937,7 +937,7 @@ rvalue9 = function()
                             left=e, 
                             right=rleaf
                         }
-                    elseif (t.text == "[") then
+                    elseif (t.text == '[') then
                     -- This might be either a dereference or the beginning of an
                     -- Objective Lua method call in the next statement; so we
                     -- need to disambiguate and potentially backtrack.
@@ -949,7 +949,7 @@ rvalue9 = function()
                         local oldpos = pos
                         pos = pos + 1
                         local index = rvalue()
-                        if optionalexpect("operator", "]") then
+                        if optionalexpect('operator', ']') then
                             -- Dereference.
                             e = {type="deref", left=e, right=index}
                         else
@@ -957,12 +957,12 @@ rvalue9 = function()
                             pos = oldpos
                             return e
                         end
-                    elseif (t.text == "(") then
+                    elseif (t.text == '(') then
                         e = functioncall(e)
                     else
                         break
                     end
-                elseif (t.type == "string") then
+                elseif (t.type == 'string') then
                     e = functioncall(e)
                 else
                     break
@@ -978,7 +978,7 @@ local function leaf(t)
 
 rvalueleaf = function()
                 local t = tokens[pos]
-                if (t.type == "keyword") then
+                if (t.type == 'keyword') then
                     if (t.text == "nil") or (t.text == "true") or (t.text == "false") then
                         pos = pos + 1
                         return leaf(t)
@@ -1003,18 +1003,18 @@ rvalueleaf = function()
                         pos = pos + 1
                         return olua_objc_literalDictionary()
                     end                
-                elseif (t.type == "number") or (t.type == "string") or (t.type == "identifier") then
+                elseif (t.type == 'number') or (t.type == 'string') or (t.type == 'identifier') then
                     pos = pos + 1
                     return leaf(t)
-                elseif (t.type == "operator") then
-                    if (t.text == "(") then
+                elseif (t.type == 'operator') then
+                    if (t.text == '(') then
                         pos = pos + 1
                         local e = rvalue()
-                        expect("operator", ")")
+                        expect('operator', ')')
                         return e
                     elseif (t.text == "{") then
                         return tableliteral()
-                    elseif (t.text == "[") then
+                    elseif (t.text == '[') then
                         return olua_methodcall()
                     elseif (t.text == "...") then
                         pos = pos + 1
@@ -1023,7 +1023,7 @@ rvalueleaf = function()
                         pos = pos + 1
                         return olua_objc_blockObject()
                     end
-                elseif (t.type == "NSConstantString") then
+                elseif (t.type == 'NSConstantString') then
                     pos = pos + 1
                     return t
                 elseif (t.type == "NSConstantNumber") then
@@ -1036,9 +1036,9 @@ rvalueleaf = function()
             end
 
 lvaluelist = function(e)
-                local ast = {type="list"}
+                local ast = {type='list'}
                 if not e then
-                    if peek("operator", ")") then
+                    if peek('operator', ')') then
                         return ast
                     end
                     e = lvalue()
@@ -1046,7 +1046,7 @@ lvaluelist = function(e)
 
                 ast[#ast+1] = e
                 while true do
-                    if not peek("operator", ",") then
+                    if not peek('operator', ',') then
                         return ast
                     end
                     pos = pos + 1
@@ -1058,7 +1058,7 @@ lvalue = function()
             local ast = lvalueleaf()
             while true do
                 local t = tokens[pos]
-                if (t.type == "operator") then
+                if (t.type == 'operator') then
                     if (t.text == ".") or (t.text == ":") then
                         local t = tokens[pos]
                         pos = pos + 1
@@ -1070,10 +1070,10 @@ lvalue = function()
                             left=ast, 
                             right=lvalueleaf()
                         }                    
-                    elseif (t.text == "[") then
+                    elseif (t.text == '[') then
                         pos = pos + 1
                         local index = rvalue()
-                        expect("operator", "]")
+                        expect('operator', ']')
                         ast = 
                         {
                             type="deref", 
@@ -1092,10 +1092,10 @@ lvalue = function()
 
 lvalueleaf = function()
                 local t = tokens[pos]
-                if (t.type == "identifier") then
+                if (t.type == 'identifier') then
                     pos = pos + 1
                     return {type="leaf", value=t}
-                elseif (t.type == "operator") then
+                elseif (t.type == 'operator') then
                     if (t.text == "...") then
                         pos = pos + 1
                         return leaf(t)
@@ -1106,50 +1106,50 @@ lvalueleaf = function()
             end
 
 lvalueidentifier = function()
-                        local t = expect("identifier")
+                        local t = expect('identifier')
                         return leaf(t)
                     end
 
 functioncall = function(value)
                     local args
 
-                    if peek("string") or peek("operator", "{") then
+                    if peek('string') or peek('operator', "{") then
                         print("1108")
                         args = rvalueleaf()
                     else
-                        expect("operator", "(")
+                        expect('operator', '(')
                         args = rvaluelist()
-                        expect("operator", ")")
+                        expect('operator', ')')
                     end
                     return {type="functioncall", value=value, args=args}
                 end
 
 tableliteral = function()
                     local ast = {type="tableliteral"}
-                    expect("operator", "{")
-                    while not peek("operator", "}") do 
+                    expect('operator', "{")
+                    while not peek('operator', '}') do 
                         local entry = {}
-                        if (tokens[pos].type == "identifier") and
-                        (tokens[pos+1].type == "operator") and
-                        (tokens[pos+1].text == "=") then
+                        if (tokens[pos].type == 'identifier') and
+                        (tokens[pos+1].type == 'operator') and
+                        (tokens[pos+1].text == '=') then
                             entry.key = tokens[pos]
                             pos = pos + 2
                             entry.value = rvalue()
-                        elseif (tokens[pos].type == "operator") and
-                        (tokens[pos].text == "[") then
+                        elseif (tokens[pos].type == 'operator') and
+                        (tokens[pos].text == '[') then
                         -- Disambiguate [expr]=value from [expr selector].
 
                             local oldpos = pos
                             pos = pos + 1
                             entry.key = rvalue()
-                            if not optionalexpect("operator", "]") then
+                            if not optionalexpect('operator', ']') then
                                 -- This must be a method call. Backtrack.
                                 pos = oldpos
                                 entry.key = nil
                                 entry.value = rvalue()
                             else
                                 -- Key/value assignment. the `]' has been expected, so not expect it again
-                                expect("operator", "=")
+                                expect('operator', '=')
                                 entry.value = rvalue()
                             end
                         else
@@ -1157,12 +1157,12 @@ tableliteral = function()
                         end
 
                         ast[#ast + 1] = entry
-                        if not optionalexpect("operator", ",", ";") then
+                        if not optionalexpect('operator', ',', ';') then
                             break
                         end
                     end
                     
-                    expect("operator", "}")
+                    expect('operator', '}')
                     return ast
                 end
 
@@ -1178,8 +1178,8 @@ local function peekselel()
                         return false
                     end
 
-                    local isselel = ((t1.type == "identifier") or (t1.type == "keyword")) 
-                    				and (t2.type == "operator") and (t2.text == ":")
+                    local isselel = ((t1.type == 'identifier') or (t1.type == 'keyword')) 
+                    				and (t2.type == 'operator') and (t2.text == ":")
 
                     return isselel, t1, t2
                 end
@@ -1196,11 +1196,11 @@ local function getselel()
     olua_block = function()
                     
                     local ast = {type="chunk"}
-                    expect("operator", "{")
+                    expect('operator', "{")
                     
-                    while not peek("operator", "}") do 
+                    while not peek('operator', '}') do 
                         local t = tokens[pos]
-                        if (t.type == "keyword") then
+                        if (t.type == 'keyword') then
                             if isterminatorkeyword(t.text) then
                                 break
                             end
@@ -1209,7 +1209,7 @@ local function getselel()
                                 local a = laststat()
                                 ast[#ast+1] = a
 
-                                optionalexpect("operator", ";")
+                                optionalexpect('operator', ';')
                                 break
                             end
                         end
@@ -1217,10 +1217,10 @@ local function getselel()
                         local a = stat()
                         ast[#ast+1] = a
 
-                        optionalexpect("operator", ";")
+                        optionalexpect('operator', ';')
                     end
                     
-                    expect("operator", "}")
+                    expect('operator', '}')
                     return 
                     {
                         type="olua_block",
@@ -1229,15 +1229,15 @@ local function getselel()
                 end
 
 olua_methodcall = function()
-                        expect("operator", "[")
+                        expect('operator', '[')
                         local object = nil
-                        if not optionalexpect("identifier", "super") then
+                        if not optionalexpect('identifier', "super") then
                             object = rvalue()
                         end
                         local selector = {}
                         local args = {}
 
-                        if not peek("identifier") and not peek("keyword") then
+                        if not peek('identifier') and not peek('keyword') then
                             expectederror("identifier or selector element")
                         end
 
@@ -1257,11 +1257,11 @@ olua_methodcall = function()
                             end
                         end
 
-                        while optionalexpect("operator", ",") do
+                        while optionalexpect('operator', ',') do
                             args[#args + 1] = rvalue()
                         end
 
-                        expect("operator", "]")
+                        expect('operator', ']')
                         return methodcall 
                         {
                             type="olua_methodcall",
@@ -1272,7 +1272,7 @@ olua_methodcall = function()
                  end
 olua_throw = function()
                 local obj = stat()
-                optionalexpect("operator", ";")
+                optionalexpect('operator', ';')
                 local ast = 
                 {
                     type = "olua_throw",
@@ -1281,16 +1281,16 @@ olua_throw = function()
                 return ast
              end
 olua_implementation = function()
-                            expect("keyword", "@implementation")
+                            expect('keyword', "@implementation")
 
-                            local class = expect("identifier")
+                            local class = expect('identifier')
                             local superclass = nil
                             local category = nil
-                            if optionalexpect("operator", ":") then
+                            if optionalexpect('operator', ":") then
                                 superclass = rvalueleaf()
-                            elseif optionalexpect("operator", "(") then
-                                category = expect("identifier")
-                                expect("operator", ")") 
+                            elseif optionalexpect('operator', '(') then
+                                category = expect('identifier')
+                                expect('operator', ')') 
                             end
 
                             local ast =
@@ -1304,8 +1304,8 @@ olua_implementation = function()
 
                             while tokens[pos] do
                                 local t = tokens[pos]
-                                if (t.type == "keyword") then
-                                    if (t.text == "@end") then
+                                if (t.type == 'keyword') then
+                                    if (t.text == '@end') then
                                         break
                                     end
                                 end
@@ -1314,14 +1314,14 @@ olua_implementation = function()
                                 ast[#ast+1] = a
                             end
 
-                            expect("keyword", "@end")
+                            expect('keyword', '@end')
                             
                             return implementation(ast)
                     end
 olua_createSelector = function()
-                         expect("operator", "(")
+                         expect('operator', '(')
                          local sel = getselel()
-                         expect("operator", ")")
+                         expect('operator', ')')
                          return 
                          {
                             type="olua_createSelector",
@@ -1329,9 +1329,9 @@ olua_createSelector = function()
                         }
                       end
 olua_getProtocol = function()
-                         expect("operator", "(")
-                         local protocol = expect("identifier")
-                         expect("operator", ")")
+                         expect('operator', '(')
+                         local protocol = expect('identifier')
+                         expect('operator', ')')
                          return 
                          {
                             type="olua_getProtocol",
@@ -1341,12 +1341,12 @@ olua_getProtocol = function()
 
 olua_import_file = function()
                         local fileName
-                        if optionalexpect("operator", "(") then
-                            fileName = expect("string").text
-                            compileTimeInteraction(g_Engine, "import", fileName)
-                            expect("operator", ")")
+                        if optionalexpect('operator', '(') then
+                            fileName = expect('string').text
+                            compileTimeInteraction(g_Engine, 'import', fileName)
+                            expect('operator', ')')
                         else
-                            fileName = expect("string").text
+                            fileName = expect('string').text
                         end
                         return
                         {
@@ -1357,16 +1357,16 @@ olua_import_file = function()
                    
 local olua_getTypeName = function()
                             local typeContent = ''
-                            expect("identifier")
+                            expect('identifier')
                             local t = tokens[pos]
                             typeContent = t.text
                             while true do
-                                if t.type == "operator" then
+                                if t.type == 'operator' then
                                     if t.text == "*" then
                                         result  = result .. t.text
-                                    elseif t.text == "[" then
-                                        expect("number")
-                                        expect("]")
+                                    elseif t.text == '[' then
+                                        expect('number')
+                                        expect(']')
                                         result = result .. "*"
                                         return result
                                     else
@@ -1383,15 +1383,15 @@ local olua_getTypeName = function()
                          
 local olua_argumentListOfFunction = function()
                 local ast = {}
-                local argumentTypes = {type="list"}
-                local argumentNames = {type="list"}
+                local argumentTypes = {type='list'}
+                local argumentNames = {type='list'}
                 ast.argumentTypes = argumentTypes
                 ast.argumentNames = argumentNames
 
-                if peek("operator", ")") then
+                if peek('operator', ')') then
                     return ast
                 end
-                if optionalexpect("identifier", "void") then
+                if optionalexpect('identifier', "void") then
                     return ast
                 end
 
@@ -1401,13 +1401,13 @@ local olua_argumentListOfFunction = function()
                 argumentTypes[#argumentTypes+1] = typeLooper
                 argumentNames[#argumentNames+1] = nameLooper
 
-                if peek("operator", ")") then
+                if peek('operator', ')') then
                     return ast
                 end
 
                 while true do
                     print(tokens[pos].text)
-                    if not peek("operator", ",") then
+                    if not peek('operator', ',') then
                         return ast
                     end
                     pos = pos + 1
@@ -1424,14 +1424,14 @@ olua_objc_blockObject = function()
                             local args
 
                             --optional expect the return type, just ignore it
-                            optionalexpect("identifier")
+                            optionalexpect('identifier')
 
-                            if peek("operator", "{") then
+                            if peek('operator', "{") then
                                 blockBody = olua_block()
                             else
-                                expect("operator", "(")
+                                expect('operator', '(')
                                 args = olua_argumentListOfFunction()
-                                expect("operator", ")")
+                                expect('operator', ')')
 
                                 blockBody = olua_block()
                             end
@@ -1452,12 +1452,12 @@ olua_objc_enumerator = function()
 olua_objc_classPredeclearation = function()
                             local classNames = lvaluelist()
                             if #classNames < 1 then
-                                expectederror("identifier", "class names")
+                                expectederror('identifier', "class names")
                             end
-                            optionalexpect("operator", ";")
+                            optionalexpect('operator', ';')
                             for k, v in ipairs(classNames) do
                                 local ast = v.value
-                                ast.type = "string"
+                                ast.type = 'string'
                                 ast.text = stringify(ast.text)
                             end
                             return 
@@ -1492,7 +1492,7 @@ local rtag_return_in_chunk = function(ch)
                     end
 
 objc_autoreleasepool = function()
-                             expect("keyword", "@autoreleasepool")
+                             expect('keyword', "@autoreleasepool")
                              local c = olua_block()
 
                              rtag_return_in_chunk(c.chunk)
@@ -1507,10 +1507,10 @@ objc_autoreleasepool = function()
 olua_objc_trycatchfinally = function()
                                 local tryBlock = olua_block()
                                 
-                                expect("keyword", "@catch")
-                                expect("operator", "(")
-                                local throwedObject = expect("identifier")
-                                expect("operator", ")")
+                                expect('keyword', "@catch")
+                                expect('operator', '(')
+                                local throwedObject = expect('identifier')
+                                expect('operator', ')')
                                 local chunk = olua_block()
 
                                 local catchBlock = { 
@@ -1519,7 +1519,7 @@ olua_objc_trycatchfinally = function()
                                                     }
 
                                 local finallyBlock
-                                if optionalexpect("keyword", "@finally") then
+                                if optionalexpect('keyword', "@finally") then
                                     finallyBlock = olua_block()
                                 end
                                 return 
@@ -1533,13 +1533,13 @@ olua_objc_trycatchfinally = function()
 olua_property_declearation = function()
                                 local propertyAttribute = {}
                                 
-                               if optionalexpect("operator", "(") then                                
+                               if optionalexpect('operator', '(') then                                
                                     while true do
                                         local t = tokens[pos]
                                         local text = t.text
-                                        if (text == ",") then
+                                        if (text == ',') then
                                             pos = pos + 1
-                                        elseif (text == ")") then
+                                        elseif (text == ')') then
                                             break
                                         elseif (text == "nonatomic") then
                                             if propertyAttribute.atomic then
@@ -1562,34 +1562,34 @@ olua_property_declearation = function()
                                                 unexpectederror(t)
                                             else
                                                 pos = pos + 1
-                                                expect("operator", "=")
-                                                propertyAttribute.getter = expect("identifier").text
+                                                expect('operator', '=')
+                                                propertyAttribute.getter = expect('identifier').text
                                             end
                                         elseif (text == "setter") then
                                             if propertyAttribute.setter then
                                                 unexpectederror(t)
                                             else
                                                 pos = pos + 1
-                                                expect("operator", "=")
-                                                local setter = expect("identifier").text
-                                                expect("operator",":")
+                                                expect('operator', '=')
+                                                local setter = expect('identifier').text
+                                                expect('operator',":")
                                                 propertyAttribute.setter = setter .. ":"
                                             end
                                         end    
                                                                             
                                     end
-                                    expect("operator", ")")
+                                    expect('operator', ')')
                                 end
                                     
-                                local type = expect("identifier").text
-                                local name = expect("identifier").text
+                                local type = expect('identifier').text
+                                local name = expect('identifier').text
                                                                 
                                 propertyAttribute["type"] = type
                                 propertyAttribute["name"] = name
                                 propertyAttribute["internalName"] = name
                                 
-                                if optionalexpect("operator", "=") then
-                                    propertyAttribute["internalName"] = expect("identifier").text
+                                if optionalexpect('operator', '=') then
+                                    propertyAttribute["internalName"] = expect('identifier').text
                                 end
                                 
                                 
@@ -1605,7 +1605,7 @@ olua_property_declearation = function()
                                 if not propertyAttribute.setter then
                                     propertyAttribute.setter = "set" .. name:gsub("^%l", string.upper) .. ":"
                                 end
-                                optionalexpect("operator", ";")
+                                optionalexpect('operator', ';')
                                 return 
                                 {
                                     type = "olua_property_declearation",
@@ -1615,7 +1615,7 @@ olua_property_declearation = function()
                              
 olua_implementation_stat = function(class)
                                 local t = tokens[pos]
-                                if (t.type == "keyword") then
+                                if (t.type == 'keyword') then
                                     if (t.text == "@property") then
                                         pos = pos + 1
                                         local c = olua_property_declearation()
@@ -1627,7 +1627,7 @@ olua_implementation_stat = function(class)
                                             }
                                     end
                                 else
-                                    if (t.type == "operator") and
+                                    if (t.type == 'operator') and
                                         ((t.text == "-") or (t.text == "+")) then
                                         return olua_methoddefinition()		
                                     end
@@ -1637,11 +1637,11 @@ olua_implementation_stat = function(class)
                             end
 
 olua_typeannotation = function()
-                        expect("operator", "(")
+                        expect('operator', '(')
                         local result = ''
                         while true do
                             local t = tokens[pos]
-                            if (t.type == "operator" and t.text == ")") then
+                            if (t.type == 'operator' and t.text == ')') then
                                 pos = pos + 1
                                 break
                             end                            
@@ -1653,7 +1653,7 @@ olua_typeannotation = function()
 
 
 olua_methoddefinition = function()
-                            local t = expect("operator", "-", "+")
+                            local t = expect('operator', "-", "+")
                             local classmethod = (t.text == "+")
 
                             local selector = {}
@@ -1662,11 +1662,11 @@ olua_methoddefinition = function()
                             local args = {}
                             local extraargs = {}
 
-                            if peek("operator", "(") then
+                            if peek('operator', '(') then
                                 rettype = olua_typeannotation()
                             end
 
-                            if not peek("identifier") and not peek("keyword") then
+                            if not peek('identifier') and not peek('keyword') then
                                 expectederror("identifier or selector element")
                             end
 
@@ -1683,7 +1683,7 @@ olua_methoddefinition = function()
 
                                     selector[#selector + 1] = t
 
-                                    if peek("operator", "(") then
+                                    if peek('operator', '(') then
                                         argtypes[#argtypes + 1] = olua_typeannotation()
                                     else
                                         argtypes[#argtypes + 1] = {}
@@ -1693,7 +1693,7 @@ olua_methoddefinition = function()
                                 end
                             end
 
-                            if optionalexpect("operator", ",") then
+                            if optionalexpect('operator', ',') then
                                 extraargs = lvaluelist()
                             end
 
@@ -1714,8 +1714,8 @@ olua_methoddefinition = function()
 
 olua_objc_literalArray = function()
                             local args
-                            if optionalexpect("operator", "]") then
-                                optionalexpect("operator", ";")
+                            if optionalexpect('operator', ']') then
+                                optionalexpect('operator', ';')
                                 args = {}
                                 return
                                 {
@@ -1724,8 +1724,8 @@ olua_objc_literalArray = function()
                                 }
                             end
                             args = rvaluelist()
-                            expect("operator", "]")
-                            optionalexpect("operator", ";")
+                            expect('operator', ']')
+                            optionalexpect('operator', ';')
                             return
                             {
                                 type = "olua_objc_literalArray",
@@ -1733,8 +1733,8 @@ olua_objc_literalArray = function()
                             }
                         end
 olua_objc_literalDictionary = function()
-                                if optionalexpect("operator", "}") then
-                                    optionalexpect("operator", ";")
+                                if optionalexpect('operator', '}') then
+                                    optionalexpect('operator', ';')
                                     return
                                     {
                                         type = "olua_objc_literalDictionary",
@@ -1742,15 +1742,15 @@ olua_objc_literalDictionary = function()
                                         values = {},
                                     }
                                 end
-                                local keys = {type="list"}
-                                local values = {type="list"}
+                                local keys = {type='list'}
+                                local values = {type='list'}
                                 while true do
                                     keys[#keys + 1] = rvalue()
-                                    expect("operator", "=")
+                                    expect('operator', '=')
                                     values[#values + 1] = rvalue()
-                                    if peek("operator", "}") then
+                                    if peek('operator', '}') then
                                         pos = pos + 1
-                                        optionalexpect("operator", ";")
+                                        optionalexpect('operator', ';')
                                         return
                                         {
                                             type = "olua_objc_literalDictionary",
@@ -1758,7 +1758,7 @@ olua_objc_literalDictionary = function()
                                             values = values,
                                         }
                                     end
-                                    expect("operator", ",")
+                                    expect('operator', ',')
                                 end
                             end
 
@@ -1823,12 +1823,12 @@ local typetable =
     forend = function(ast)
         emit("for")
         recursivelyunparse(ast.var)
-        emit("=")
+        emit('=')
         recursivelyunparse(ast.low)
-        emit(",")
+        emit(',')
         recursivelyunparse(ast.high)
         if ast.step then
-            emit(",")
+            emit(',')
             recursivelyunparse(ast.step)
         end
         emit("do")
@@ -1867,14 +1867,14 @@ local typetable =
         recursivelyunparse(ast.chunk)
         emit("until not(")
         recursivelyunparse(ast.condition)
-        emit(")")
+        emit(')')
     end,
     repeatuntil = function(ast)
         emit("repeat")
         recursivelyunparse(ast.chunk)
         emit("until(")
         recursivelyunparse(ast.condition)
-        emit(")")
+        emit(')')
     end,
                                 
     ["return"] = function(ast)
@@ -1891,7 +1891,7 @@ local typetable =
         else
             emit(" nil ")
         end
-        emit("}")
+        emit('}')
     end,
     
     ["break"] = function(ast)
@@ -1900,35 +1900,35 @@ local typetable =
                                     
     functioncall = function(ast)
         recursivelyunparse(ast.value)
-        emit("(")
+        emit('(')
         recursivelyunparse(ast.args)
-        emit(")")
+        emit(')')
     end,
                                     
     functiondef = function(ast)
         if not ast.name then
-            emit("(")
+            emit('(')
         end
                                         
         emit("\nfunction ")
         if ast.name then
             recursivelyunparse(ast.name)
         end
-        emit("(")
+        emit('(')
         recursivelyunparse(ast.args)
         emit(")\n")
         recursivelyunparse(ast.chunk)
         emit("\nend\n")
                                             
         if not ast.name then
-            emit(")")
+            emit(')')
         end
     end,
                                                 
     assignment = function(ast)
         recursivelyunparse(ast.left)
         if ast.right then
-            emit("=")
+            emit('=')
             recursivelyunparse(ast.right)
         end
     end,
@@ -1937,7 +1937,7 @@ local typetable =
         for i = 1, #ast do
             local exp = ast[i]
             if (i > 1) then
-                emit(",")
+                emit(',')
             end
             recursivelyunparse(exp)
         end
@@ -1948,21 +1948,21 @@ local typetable =
         for i = 1, #ast do
             local entry = ast[i]
             if (i > 1) then
-                emit(",")
+                emit(',')
             end
             if entry.key then
-                if (entry.key.type == "identifier") then
+                if (entry.key.type == 'identifier') then
                     emit(entry.key)
                 else
-                    emit("[")
+                    emit('[')
                     recursivelyunparse(entry.key)
-                    emit("]")
+                    emit(']')
                 end
-                    emit("=")
+                    emit('=')
             end
             recursivelyunparse(entry.value)
         end
-        emit("}")
+        emit('}')
     end,
     
     binop = function(ast)
@@ -1978,9 +1978,9 @@ local typetable =
     
     deref = function(ast)
         recursivelyunparse(ast.left)
-        emit("[")
+        emit('[')
         recursivelyunparse(ast.right)
-        emit("]")
+        emit(']')
     end,
     
     ["local"] = function(ast)
@@ -1995,7 +1995,7 @@ local typetable =
     objc_allocateClassPair = function(ast)
         emit("objc_allocateClassPair(")
         recursivelyunparse(ast.args)
-        emit(")")
+        emit(')')
     end,
     
     olua_block = function(ast)
@@ -2010,7 +2010,7 @@ local typetable =
         emit(" args={")
         for i = 1, #ast.args do
             if (i > 1) then
-                emit(",")
+                emit(',')
             end
             recursivelyunparse(ast.args[i])
         end
@@ -2020,18 +2020,18 @@ local typetable =
     olua_method_inner_call = function(ast)
         emit(" objc_msgSend(")
         recursivelyunparse(ast.object)
-        emit("," .. ast.selector)
+        emit(',' .. ast.selector)
         if #ast.args > 0 then
-            emit(",")
+            emit(',')
         end
         recursivelyunparse(ast.args)
-        emit(")")
+        emit(')')
     end,
     
     olua_method_super_call = function(ast)
         emit(" objc_msgSendSuper(self,")
         recursivelyunparse(ast.args)
-        emit(")")
+        emit(')')
     end,
 
     olua_class_method_implementation = function(ast)
@@ -2055,9 +2055,9 @@ local typetable =
         for i = 1,#ast.argtypes do
             emit(",'" .. ast.argtypes[i] .. "'")
         end
-        emit(",")
+        emit(',')
         recursivelyunparse(ast.imp)
-        emit(")")
+        emit(')')
     end,
          
     class_implementation = function(ast)
@@ -2079,12 +2079,12 @@ local typetable =
     
     olua_createSelector = function(ast)
         local sel = ast.sel
-        emit(" sel_registerName(" .. sel .. ")")
+        emit(" sel_registerName(" .. sel .. ')')
     end,
     
     olua_getProtocol = function(ast)
         local protocol = ast.protocol
-        emit(" objc_getProtocol(" .. protocol .. ")")
+        emit(" objc_getProtocol(" .. protocol .. ')')
     end,
 
     objc_autoreleasepool = function(ast)
@@ -2117,12 +2117,12 @@ local typetable =
     olua_throw = function(ast)
         emit(" objc_throw(")
         recursivelyunparse(ast.value)
-        emit(")")
+        emit(')')
     end,
     olua_objc_enumerator = function(ast)
         emit(" objc_NSFastEnumerate(")
         recursivelyunparse(ast.args)
-        emit(")")
+        emit(')')
     end,
     olua_objc_blockObject = function(ast)                            
 
@@ -2133,15 +2133,15 @@ local typetable =
                                     for _,i in ipairs(args.argumentTypes) do
                                         argumentTypes[#argumentTypes + 1] = stringleaf(i.value.text)
                                     end
-                                        argumentTypes.type = "list"
+                                        argumentTypes.type = 'list'
                                     if #argumentTypes > 1 then
                                         recursivelyunparse(argumentTypes)
-                                        emit(",")
+                                        emit(',')
                                     end
 
                                     emit("function(")
                                         recursivelyunparse(args.argumentNames)
-                                    emit(")")
+                                    emit(')')
                                         recursivelyunparse(ast.blockBody)
                                     emit("end)")
                                 else 
@@ -2159,7 +2159,7 @@ local typetable =
                                              recursivelyunparse(ast.tryBlock)
                                              emit("\nend\n")
 
-                                             emit(" local __catchBlock__func=function(" .. ast.catchBlock.arg .. ")")
+                                             emit(" local __catchBlock__func=function(" .. ast.catchBlock.arg .. ')')
                                              recursivelyunparse(ast.catchBlock.chunk)
                                              emit("\nend")
                                              
@@ -2175,29 +2175,29 @@ local typetable =
                                  emit("\nend")
     end,    
     NSConstantString = function(ast)
-                                emit(" __NSConstantString(" .. ast.text .. ")")
+                                emit(" __NSConstantString(" .. ast.text .. ')')
     end,
     NSConstantNumber = function(ast)
-                                emit(" __NSConstantNumber(" .. ast.text .. ")")
+                                emit(" __NSConstantNumber(" .. ast.text .. ')')
     end,
     olua_objc_classPredeclearation = function(ast)
                                 emit(" objc_classPredeclearation(")
                                 recursivelyunparse(ast.classNames)
-                                emit(")")
+                                emit(')')
     end,
     olua_objc_literalArray = function(ast)
                                 emit(" objc_createLiteralArray(")
                                 recursivelyunparse(ast.args)
-                                emit(")")
+                                emit(')')
     end,
     olua_objc_literalDictionary = function(ast)
                                     emit("objc_createLiteralDictionary(")
                                     if (#ast.keys > 0) then
                                         recursivelyunparse(ast.keys)
-                                        emit(",")
+                                        emit(',')
                                         recursivelyunparse(ast.values)
                                     end
-                                    emit(")")
+                                    emit(')')
     end,
 }
 
@@ -2205,9 +2205,9 @@ recursivelyunparsebinop = function(ast, thisprecedence)
                             if (ast.type == "binop") and
                             (not ast.precedence or not thisprecedence or 
                              (ast.precedence < thisprecedence)) then
-                                emit("(")
+                                emit('(')
                                 recursivelyunparse(ast)
-                                emit(")")
+                                emit(')')
                             else
                                 recursivelyunparse(ast)
                                 end
@@ -2241,7 +2241,7 @@ local unparser = function(ast)
                     local lasttype = nil
                     local s = {}
                     for _, t in ipairs(result) do
-                        if type(t) == "string" then
+                        if type(t) == 'string' then
                             local isstring = t:find("^[%w_]*$")
                             if needsspace[lasttype] and isstring then
                                 s[#s+1] = " "
@@ -2249,7 +2249,7 @@ local unparser = function(ast)
 
                             s[#s+1] = t
                             if isstring then
-                                lasttype = "string"
+                                lasttype = 'string'
                             else
                                 lasttype = nil
                             end

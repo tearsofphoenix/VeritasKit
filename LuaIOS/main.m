@@ -7,8 +7,13 @@
 //
 
 #import "LuaEngineService.h"
+#import "NSData+Base64.h"
 
 int main(int argc, char *argv[])
 {
+    NSData *data = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"LuaObjCParser"
+                                                                                   ofType: @"lua"]];
+    NSLog(@"%@", [data base64EncodedString]);
+    
     LuaCall(@"Main.v", @"main", nil, 0, 1, nil);
 }

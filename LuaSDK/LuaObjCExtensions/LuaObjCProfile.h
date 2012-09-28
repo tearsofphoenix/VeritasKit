@@ -7,6 +7,7 @@
 //
 
 #import "luaconf.h"
+//#import "LuaObjCParserScript.h"
 
 struct lua_State;
 
