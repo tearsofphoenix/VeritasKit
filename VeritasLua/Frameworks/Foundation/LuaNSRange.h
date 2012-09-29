@@ -5,10 +5,12 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
-#ifdef __cplusplus
-extern "C" {
-#endif
+
 #include "luaconf.h"
+
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
 
 #define LUA_NSRange_METANAME	"NSRange"
     
@@ -18,6 +20,4 @@ extern "C" {
     
 LUAMOD_API int (LuaOpenNSRange)(struct lua_State *L);
 
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS

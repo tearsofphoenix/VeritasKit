@@ -231,6 +231,7 @@
 		E13C8F1B16168B0D00A72BEF /* LuaObjCTypeEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E3516168B0C00A72BEF /* LuaObjCTypeEncoding.h */; };
 		E13C8F1C16168B0D00A72BEF /* LuaObjCTypeEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3616168B0C00A72BEF /* LuaObjCTypeEncoding.m */; };
 		E13C8F1D16168B0D00A72BEF /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */; };
+		E19827261616A4A10076399B /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827251616A4A10076399B /* LuaObjCBase.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -497,6 +498,7 @@
 		E13C8E3516168B0C00A72BEF /* LuaObjCTypeEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCTypeEncoding.h; sourceTree = "<group>"; };
 		E13C8E3616168B0C00A72BEF /* LuaObjCTypeEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCTypeEncoding.m; sourceTree = "<group>"; };
 		E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VeritasKit-LICENSE"; sourceTree = "<group>"; };
+		E19827251616A4A10076399B /* LuaObjCBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCBase.h; sourceTree = "<group>"; };
 		E19FB50C15BEDC4C00C50C42 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		E19FB50D15BEDC4C00C50C42 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -960,6 +962,7 @@
 		E13C8E1D16168B0C00A72BEF /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
+				E19827251616A4A10076399B /* LuaObjCBase.h */,
 				E13C8E1E16168B0C00A72BEF /* LuaNSObjectSupport.h */,
 				E13C8E1F16168B0C00A72BEF /* LuaNSObjectSupport.m */,
 				E13C8E2016168B0C00A72BEF /* LuaObjCAccelerator.h */,
@@ -1098,6 +1101,7 @@
 				E13C8F1716168B0D00A72BEF /* LuaObjCProperty.h in Headers */,
 				E13C8F1916168B0D00A72BEF /* LuaObjCRuntime.h in Headers */,
 				E13C8F1B16168B0D00A72BEF /* LuaObjCTypeEncoding.h in Headers */,
+				E19827261616A4A10076399B /* LuaObjCBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

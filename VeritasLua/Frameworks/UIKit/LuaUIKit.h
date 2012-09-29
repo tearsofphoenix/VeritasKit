@@ -8,8 +8,14 @@
 
 #include "luaconf.h"
 
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
+
 #define LUA_UIKITLIBNAME	"UIKit"
 
 struct lua_State;
 
 LUAMOD_API int (LuaOpenUIKit)(struct lua_State *L);
+
+__END_DECLS

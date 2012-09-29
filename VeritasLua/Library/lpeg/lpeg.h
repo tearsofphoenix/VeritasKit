@@ -8,6 +8,10 @@
 #ifndef lpeg_h
 #define lpeg_h
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include "lua.h"
 
 
@@ -36,5 +40,9 @@ typedef void (*Newpf) (lua_State *L,
                        size_t l);  /* size of data to be passed to 'f' */
 
 LUAMOD_API int luaopen_lpeg (lua_State *L);
+
+#ifdef __cplusplus
+    }
+#endif
 
 #endif

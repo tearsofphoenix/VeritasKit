@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
 
 struct lua_State;
 
@@ -22,6 +22,4 @@ extern NSInteger luaObjC_checkInteger(struct lua_State *L, int index);
 
 #define luaObjC_pushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
 
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS

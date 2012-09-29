@@ -5,9 +5,6 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #include "luaconf.h"
 
@@ -16,7 +13,11 @@ extern "C" {
 #else
 #include <Foundation/NSGeometry.h>    
 #endif
-    
+
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
+
 #define LUA_CGPoint_METANAME	"CGPoint"
 
 #define LUA_CGSize_METANAME	"CGSize"
@@ -33,7 +34,4 @@ extern "C" {
     
     LUAMOD_API int (LuaOpenCGGeometry)(struct lua_State *L);
     
-    
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS

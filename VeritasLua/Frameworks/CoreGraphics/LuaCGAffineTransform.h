@@ -6,11 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-    
+
 #include "luaconf.h"
+
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
 
     struct lua_State;
 #define LUA_CGAffineTransform_METANAME	"CGAffineTransform"
@@ -19,6 +20,4 @@ extern "C" {
     
     LUAMOD_API int (LuaOpenCGAffineTransform)(struct lua_State *L);
 
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS

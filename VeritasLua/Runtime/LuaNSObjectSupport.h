@@ -6,14 +6,12 @@
 //
 //
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
 
 struct lua_State;
 
 extern int luaObjC_openNSObjectSupport(struct lua_State *L);
 
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS

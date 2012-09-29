@@ -9,10 +9,10 @@
 #ifndef LUA_OBJC_WEAK_TABLE_H
 #define LUA_OBJC_WEAK_TABLE_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-    
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
+
     struct lua_State;
 
 #pragma mark - strong table	
@@ -23,9 +23,7 @@ extern "C" {
 	
 	void *LuaObjCCacheTableGetObjectForKey(struct lua_State* L, const char* key);
     
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS
 
 #endif /* LUA_OBJC_WEAK_TABLE_H */
 

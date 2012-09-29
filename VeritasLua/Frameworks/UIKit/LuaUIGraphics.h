@@ -7,7 +7,12 @@
 //;
 
 #include "luaconf.h"
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
 
 struct lua_State;
 
 LUAMOD_API int (LuaOpenUIGraphics)(struct lua_State *L);
+
+__END_DECLS

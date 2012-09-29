@@ -9,6 +9,10 @@
 #ifndef LuaIOS_LuaObjCInternal_h
 #define LuaIOS_LuaObjCInternal_h
 
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
+
 #define LUA_NSOBJECT_METATABLENAME "NSObject"    
 
 struct lua_State;
@@ -31,5 +35,8 @@ extern const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLoo
 extern void LuaObjCInternal_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
 
 extern NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector);
+
+__END_DECLS
+
 
 #endif

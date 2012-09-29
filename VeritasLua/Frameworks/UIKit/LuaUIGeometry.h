@@ -10,6 +10,10 @@
 
 #include <UIKit/UIGeometry.h>
 
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
+
 struct lua_State;
 
     #define LUA_UIEdgeInsets_METANAME "UIEdgeInsets"
@@ -21,3 +25,5 @@ struct lua_State;
     int lua_pushUIOffset(struct lua_State *L, UIOffset offset);
     
     LUAMOD_API int (LuaOpenUIGeometry)(struct lua_State *L);
+
+__END_DECLS

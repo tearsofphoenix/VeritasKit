@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#ifdef __cplusplus
-extern "C" 
-{
-#endif
-    #include "luaconf.h"
-    #include "lua.h"
+#include "luaconf.h"
+#include "lua.h"
+
+#include "LuaObjCBase.h"
+
+__BEGIN_DECLS
+
 
     LUAMOD_API int (LuaOpenNSColletion)(lua_State *L);
-#ifdef __cplusplus
-}
-#endif
+
+__END_DECLS
