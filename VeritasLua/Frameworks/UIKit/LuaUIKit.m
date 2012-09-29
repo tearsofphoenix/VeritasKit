@@ -7,7 +7,10 @@
 //
 #import "LuaUIKit.h"
 
-#import "LuaCoreGraphics.h"
+//CoreGraphics
+//
+#import "LuaCGAffineTransform.h"
+#import "LuaCGGeometry.h"
 
 #import "LuaUIAccessibility.h"
 #import "LuaUIGeometry.h"
@@ -19,7 +22,8 @@ int LuaOpenUIKit(struct lua_State *L)
 {
     //load CoreGraphics
     //
-    LuaOpenCoreGraphics(L);
+    LuaOpenCGAffineTransform(L);
+    LuaOpenCGGeometry(L);
         
     LuaOpenUIAccessibility(L);
     LuaOpenUIGeometry(L);

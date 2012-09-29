@@ -98,10 +98,6 @@
 		E13C8E8216168B0C00A72BEF /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D8D16168B0C00A72BEF /* LuaCGAffineTransform.m */; };
 		E13C8E8316168B0C00A72BEF /* LuaCGGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D8E16168B0C00A72BEF /* LuaCGGeometry.h */; };
 		E13C8E8416168B0C00A72BEF /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D8F16168B0C00A72BEF /* LuaCGGeometry.m */; };
-		E13C8E8516168B0C00A72BEF /* LuaCoreGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D9016168B0C00A72BEF /* LuaCoreGraphics.h */; };
-		E13C8E8616168B0C00A72BEF /* LuaCoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D9116168B0C00A72BEF /* LuaCoreGraphics.m */; };
-		E13C8E8716168B0C00A72BEF /* LuaFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D9316168B0C00A72BEF /* LuaFoundation.h */; };
-		E13C8E8816168B0C00A72BEF /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D9416168B0C00A72BEF /* LuaFoundation.m */; };
 		E13C8E8916168B0C00A72BEF /* LuaNSBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D9516168B0C00A72BEF /* LuaNSBundle.h */; };
 		E13C8E8A16168B0C00A72BEF /* LuaNSBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D9616168B0C00A72BEF /* LuaNSBundle.m */; };
 		E13C8E8B16168B0C00A72BEF /* LuaNSCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D9716168B0C00A72BEF /* LuaNSCollection.h */; };
@@ -114,8 +110,6 @@
 		E13C8EA616168B0C00A72BEF /* LuaEAGL.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DB416168B0C00A72BEF /* LuaEAGL.m */; };
 		E13C8EA716168B0C00A72BEF /* LuaCATransform3D.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DB616168B0C00A72BEF /* LuaCATransform3D.h */; };
 		E13C8EA816168B0C00A72BEF /* LuaCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DB716168B0C00A72BEF /* LuaCATransform3D.m */; };
-		E13C8EA916168B0C00A72BEF /* LuaQuartzCore.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DB816168B0C00A72BEF /* LuaQuartzCore.h */; };
-		E13C8EAA16168B0C00A72BEF /* LuaQuartzCore.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DB916168B0C00A72BEF /* LuaQuartzCore.m */; };
 		E13C8EAB16168B0C00A72BEF /* LuaObjCFrameworkFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DBB16168B0C00A72BEF /* LuaObjCFrameworkFunctions.h */; };
 		E13C8EAC16168B0C00A72BEF /* LuaObjCFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DBC16168B0C00A72BEF /* LuaObjCFrameworkFunctions.m */; };
 		E13C8EAD16168B0C00A72BEF /* LuaObjCStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DBD16168B0C00A72BEF /* LuaObjCStructs.h */; };
@@ -232,6 +226,8 @@
 		E13C8F1C16168B0D00A72BEF /* LuaObjCTypeEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3616168B0C00A72BEF /* LuaObjCTypeEncoding.m */; };
 		E13C8F1D16168B0D00A72BEF /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */; };
 		E19827261616A4A10076399B /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827251616A4A10076399B /* LuaObjCBase.h */; };
+		E19827291616D6440076399B /* LuaFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827271616D6430076399B /* LuaFoundation.h */; };
+		E198272A1616D6440076399B /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E19827281616D6430076399B /* LuaFoundation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,10 +361,6 @@
 		E13C8D8D16168B0C00A72BEF /* LuaCGAffineTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCGAffineTransform.m; sourceTree = "<group>"; };
 		E13C8D8E16168B0C00A72BEF /* LuaCGGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCGGeometry.h; sourceTree = "<group>"; };
 		E13C8D8F16168B0C00A72BEF /* LuaCGGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCGGeometry.m; sourceTree = "<group>"; };
-		E13C8D9016168B0C00A72BEF /* LuaCoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCoreGraphics.h; sourceTree = "<group>"; };
-		E13C8D9116168B0C00A72BEF /* LuaCoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCoreGraphics.m; sourceTree = "<group>"; };
-		E13C8D9316168B0C00A72BEF /* LuaFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFoundation.h; sourceTree = "<group>"; };
-		E13C8D9416168B0C00A72BEF /* LuaFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaFoundation.m; sourceTree = "<group>"; };
 		E13C8D9516168B0C00A72BEF /* LuaNSBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaNSBundle.h; sourceTree = "<group>"; };
 		E13C8D9616168B0C00A72BEF /* LuaNSBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaNSBundle.m; sourceTree = "<group>"; };
 		E13C8D9716168B0C00A72BEF /* LuaNSCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaNSCollection.h; sourceTree = "<group>"; };
@@ -381,8 +373,6 @@
 		E13C8DB416168B0C00A72BEF /* LuaEAGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaEAGL.m; sourceTree = "<group>"; };
 		E13C8DB616168B0C00A72BEF /* LuaCATransform3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCATransform3D.h; sourceTree = "<group>"; };
 		E13C8DB716168B0C00A72BEF /* LuaCATransform3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaCATransform3D.m; sourceTree = "<group>"; };
-		E13C8DB816168B0C00A72BEF /* LuaQuartzCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaQuartzCore.h; sourceTree = "<group>"; };
-		E13C8DB916168B0C00A72BEF /* LuaQuartzCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaQuartzCore.m; sourceTree = "<group>"; };
 		E13C8DBB16168B0C00A72BEF /* LuaObjCFrameworkFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCFrameworkFunctions.h; sourceTree = "<group>"; };
 		E13C8DBC16168B0C00A72BEF /* LuaObjCFrameworkFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCFrameworkFunctions.m; sourceTree = "<group>"; };
 		E13C8DBD16168B0C00A72BEF /* LuaObjCStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCStructs.h; sourceTree = "<group>"; };
@@ -499,6 +489,8 @@
 		E13C8E3616168B0C00A72BEF /* LuaObjCTypeEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCTypeEncoding.m; sourceTree = "<group>"; };
 		E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VeritasKit-LICENSE"; sourceTree = "<group>"; };
 		E19827251616A4A10076399B /* LuaObjCBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCBase.h; sourceTree = "<group>"; };
+		E19827271616D6430076399B /* LuaFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFoundation.h; sourceTree = "<group>"; };
+		E19827281616D6430076399B /* LuaFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaFoundation.m; sourceTree = "<group>"; };
 		E19FB50C15BEDC4C00C50C42 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		E19FB50D15BEDC4C00C50C42 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -751,8 +743,6 @@
 				E13C8D8D16168B0C00A72BEF /* LuaCGAffineTransform.m */,
 				E13C8D8E16168B0C00A72BEF /* LuaCGGeometry.h */,
 				E13C8D8F16168B0C00A72BEF /* LuaCGGeometry.m */,
-				E13C8D9016168B0C00A72BEF /* LuaCoreGraphics.h */,
-				E13C8D9116168B0C00A72BEF /* LuaCoreGraphics.m */,
 			);
 			path = CoreGraphics;
 			sourceTree = "<group>";
@@ -760,8 +750,8 @@
 		E13C8D9216168B0C00A72BEF /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				E13C8D9316168B0C00A72BEF /* LuaFoundation.h */,
-				E13C8D9416168B0C00A72BEF /* LuaFoundation.m */,
+				E19827271616D6430076399B /* LuaFoundation.h */,
+				E19827281616D6430076399B /* LuaFoundation.m */,
 				E13C8D9516168B0C00A72BEF /* LuaNSBundle.h */,
 				E13C8D9616168B0C00A72BEF /* LuaNSBundle.m */,
 				E13C8D9716168B0C00A72BEF /* LuaNSCollection.h */,
@@ -788,8 +778,6 @@
 			children = (
 				E13C8DB616168B0C00A72BEF /* LuaCATransform3D.h */,
 				E13C8DB716168B0C00A72BEF /* LuaCATransform3D.m */,
-				E13C8DB816168B0C00A72BEF /* LuaQuartzCore.h */,
-				E13C8DB916168B0C00A72BEF /* LuaQuartzCore.m */,
 			);
 			path = QuartzCore;
 			sourceTree = "<group>";
@@ -1036,15 +1024,12 @@
 				E13C8E7F16168B0C00A72BEF /* NSString+LuaObjCIndex.h in Headers */,
 				E13C8E8116168B0C00A72BEF /* LuaCGAffineTransform.h in Headers */,
 				E13C8E8316168B0C00A72BEF /* LuaCGGeometry.h in Headers */,
-				E13C8E8516168B0C00A72BEF /* LuaCoreGraphics.h in Headers */,
-				E13C8E8716168B0C00A72BEF /* LuaFoundation.h in Headers */,
 				E13C8E8916168B0C00A72BEF /* LuaNSBundle.h in Headers */,
 				E13C8E8B16168B0C00A72BEF /* LuaNSCollection.h in Headers */,
 				E13C8E8D16168B0C00A72BEF /* LuaNSRange.h in Headers */,
 				E13C8E8F16168B0C00A72BEF /* LuaNSString.h in Headers */,
 				E13C8EA516168B0C00A72BEF /* LuaEAGL.h in Headers */,
 				E13C8EA716168B0C00A72BEF /* LuaCATransform3D.h in Headers */,
-				E13C8EA916168B0C00A72BEF /* LuaQuartzCore.h in Headers */,
 				E13C8EAB16168B0C00A72BEF /* LuaObjCFrameworkFunctions.h in Headers */,
 				E13C8EAD16168B0C00A72BEF /* LuaObjCStructs.h in Headers */,
 				E13C8EAE16168B0C00A72BEF /* LuaUIAccessibility.h in Headers */,
@@ -1102,6 +1087,7 @@
 				E13C8F1916168B0D00A72BEF /* LuaObjCRuntime.h in Headers */,
 				E13C8F1B16168B0D00A72BEF /* LuaObjCTypeEncoding.h in Headers */,
 				E19827261616A4A10076399B /* LuaObjCBase.h in Headers */,
+				E19827291616D6440076399B /* LuaFoundation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,15 +1254,12 @@
 				E13C8E8016168B0C00A72BEF /* NSString+LuaObjCIndex.m in Sources */,
 				E13C8E8216168B0C00A72BEF /* LuaCGAffineTransform.m in Sources */,
 				E13C8E8416168B0C00A72BEF /* LuaCGGeometry.m in Sources */,
-				E13C8E8616168B0C00A72BEF /* LuaCoreGraphics.m in Sources */,
-				E13C8E8816168B0C00A72BEF /* LuaFoundation.m in Sources */,
 				E13C8E8A16168B0C00A72BEF /* LuaNSBundle.m in Sources */,
 				E13C8E8C16168B0C00A72BEF /* LuaNSCollection.m in Sources */,
 				E13C8E8E16168B0C00A72BEF /* LuaNSRange.m in Sources */,
 				E13C8E9016168B0C00A72BEF /* LuaNSString.m in Sources */,
 				E13C8EA616168B0C00A72BEF /* LuaEAGL.m in Sources */,
 				E13C8EA816168B0C00A72BEF /* LuaCATransform3D.m in Sources */,
-				E13C8EAA16168B0C00A72BEF /* LuaQuartzCore.m in Sources */,
 				E13C8EAC16168B0C00A72BEF /* LuaObjCFrameworkFunctions.m in Sources */,
 				E13C8EAF16168B0C00A72BEF /* LuaUIAccessibility.m in Sources */,
 				E13C8EB116168B0C00A72BEF /* LuaUIGeometry.m in Sources */,
@@ -1331,6 +1314,7 @@
 				E13C8F1816168B0D00A72BEF /* LuaObjCProperty.m in Sources */,
 				E13C8F1A16168B0D00A72BEF /* LuaObjCRuntime.m in Sources */,
 				E13C8F1C16168B0D00A72BEF /* LuaObjCTypeEncoding.m in Sources */,
+				E198272A1616D6440076399B /* LuaFoundation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
