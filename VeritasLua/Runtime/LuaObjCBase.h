@@ -9,6 +9,10 @@
 #ifndef LuaIOS_LuaObjCBase_h
 #define LuaIOS_LuaObjCBase_h
 
+#include "luaconf.h"
+
+#define VK_EXPORT LUAMODE_API
+
 #include <TargetConditionals.h>
 
 #if TARGET_OS_MAC

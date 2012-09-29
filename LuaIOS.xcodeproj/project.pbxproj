@@ -71,8 +71,6 @@
 		E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */; };
 		E13C8E6816168B0C00A72BEF /* LuaBridgeSupportFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */; };
 		E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E13C8E6A16168B0C00A72BEF /* ERGeneralDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7216168B0C00A72BEF /* ERGeneralDataSource.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E13C8E6B16168B0C00A72BEF /* ERGeneralDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7316168B0C00A72BEF /* ERGeneralDataSource.m */; };
 		E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6D16168B0C00A72BEF /* ERGeneralMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */; };
 		E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7616168B0C00A72BEF /* LuaEngineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -334,8 +332,6 @@
 		E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridgeSupportFileParser.h; sourceTree = "<group>"; };
 		E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeSupportFileParser.m; sourceTree = "<group>"; };
 		E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERGeneralConstants.h; sourceTree = "<group>"; };
-		E13C8D7216168B0C00A72BEF /* ERGeneralDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERGeneralDataSource.h; sourceTree = "<group>"; };
-		E13C8D7316168B0C00A72BEF /* ERGeneralDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERGeneralDataSource.m; sourceTree = "<group>"; };
 		E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERGeneralMetaService.h; sourceTree = "<group>"; };
 		E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERGeneralMetaService.m; sourceTree = "<group>"; };
 		E13C8D7616168B0C00A72BEF /* LuaEngineService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaEngineService.h; sourceTree = "<group>"; };
@@ -689,8 +685,6 @@
 			isa = PBXGroup;
 			children = (
 				E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */,
-				E13C8D7216168B0C00A72BEF /* ERGeneralDataSource.h */,
-				E13C8D7316168B0C00A72BEF /* ERGeneralDataSource.m */,
 				E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */,
 				E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */,
 				E13C8D7616168B0C00A72BEF /* LuaEngineService.h */,
@@ -1007,7 +1001,6 @@
 				22D834CD1615AAEF00C9F07C /* VeritasVM.h in Headers */,
 				E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */,
 				E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */,
-				E13C8E6A16168B0C00A72BEF /* ERGeneralDataSource.h in Headers */,
 				E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */,
 				E13C8E6116168B0C00A72BEF /* LuaBridgeFunctor.h in Headers */,
 				E13C8E6316168B0C00A72BEF /* LuaBridgeInfo.h in Headers */,
@@ -1241,7 +1234,6 @@
 				E13C8E6416168B0C00A72BEF /* LuaBridgeInfo.m in Sources */,
 				E13C8E6616168B0C00A72BEF /* LuaBridgeSupport.m in Sources */,
 				E13C8E6816168B0C00A72BEF /* LuaBridgeSupportFileParser.m in Sources */,
-				E13C8E6B16168B0C00A72BEF /* ERGeneralDataSource.m in Sources */,
 				E13C8E6D16168B0C00A72BEF /* ERGeneralMetaService.m in Sources */,
 				E13C8E6F16168B0C00A72BEF /* LuaEngineService.m in Sources */,
 				E13C8E7116168B0C00A72BEF /* LuaLibraryInformation.m in Sources */,

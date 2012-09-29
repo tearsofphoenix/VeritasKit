@@ -25,6 +25,21 @@
 
 @interface ERGeneralMetaService : NSObject<ERGeneralMetaService>
 
++ (void)registerService: (Class)serviceClass;
+
++ (id<ERGeneralMetaService>)serviceByID: (NSString *)serviceID;
+
++ (void)registerBlock: (ERGeneralCallbackBlock)block
+   onDidLoadOfService: (id)serviceID;
+
 @end
 
 extern NSString * const ERGeneralMetaServiceID;
+
+static inline void ERSC(NSString *serviceID, NSString *action, ERGeneralCallbackBlock callback, NSArray *arguments)
+{
+    [[ERGeneralMetaService serviceByID: serviceID] callForAction: action
+                                                      arguments: arguments
+                                                   withCallback: callback];
+}
+

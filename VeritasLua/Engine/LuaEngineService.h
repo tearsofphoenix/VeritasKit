@@ -5,30 +5,42 @@
 //  Created by tearsofphoenix on 2/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+
 #import "ERGeneralMetaService.h"
 
-extern void LuaCall(NSString *sourceCode,
-                    NSString *functionName,
-                    ERGeneralCallbackBlock block,
-                    int argumentCount,
-                    int returnCount,
-                    ERGeneralCallbackBlock completion);
+#include "LuaObjCBase.h"
 
 @interface LuaEngineService : ERGeneralMetaService
 
 @end
 
+//IDs of Supported Features
+//
 extern NSString * const LuaEngineObjCSupport;
 
 extern NSString * const LuaEngineUIKitSupport;
 
 extern NSString * const LuaEngineParserSupport;
 
+//Service ID
+//
 extern NSString * const LuaEngineServiceID;
 
-extern NSString * const LuaEngineDoSourceCode;
+//Service Actions
+//
+extern NSString * const LuaEngineServiceActionDoSourceCode;
 
 #pragma mark - internal use
 
-extern NSString * const LuaEngineRegisterGlobalConstants;
+extern NSString * const LuaEngineServiceActionRegisterGlobalConstants;
 
+__BEGIN_DECLS
+
+extern void LuaCall(NSString *sourceCode,
+                    NSString *functionName,
+                    ERGeneralCallbackBlock start,
+                    int argumentCount,
+                    int returnCount,
+                    ERGeneralCallbackBlock completion);
+
+__END_DECLS

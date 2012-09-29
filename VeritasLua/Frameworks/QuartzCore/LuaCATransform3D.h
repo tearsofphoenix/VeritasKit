@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 
-#include "luaconf.h"
-
 #include <QuartzCore/CATransform3D.h>
 
 #include "LuaObjCBase.h"

@@ -7,8 +7,6 @@
 //;
 
 
-#include "luaconf.h"
-
 #include "LuaObjCBase.h"
 
 __BEGIN_DECLS

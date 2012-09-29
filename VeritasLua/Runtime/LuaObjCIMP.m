@@ -164,15 +164,15 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     }
 }
 
-#define __LuaClassPreprocess(obj, sel)     va_list ap;\
-                                           va_start(ap, sel);\
-                                           lua_State *L = NULL;\
-                                           __luaClass_IMP_preprocess(&L, obj, sel, ap);\
-                                           va_end(ap);
+#define __LuaClassPreprocess(obj, sel, state)     va_list ap;\
+                                                  va_start(ap, sel);\
+                                                  lua_State *state = NULL;\
+                                                  __luaClass_IMP_preprocess(&state, obj, sel, ap);\
+                                                  va_end(ap);
 
 static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
 {
-    __LuaClassPreprocess(obj, sel);
+    __LuaClassPreprocess(obj, sel, L);
     
     NSInteger ret = 0;
     int returnIndexOfLuaFunction = -1;
@@ -202,14 +202,14 @@ static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
 
 static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
 {
-    __LuaClassPreprocess(obj, sel);
+    __LuaClassPreprocess(obj, sel, L);
     
     return lua_tonumber(L, -1);
 }
 
 static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
 {
-    __LuaClassPreprocess(obj, sel);
+    __LuaClassPreprocess(obj, sel, L);
     
     //store struct type as userdata type
     //
@@ -240,7 +240,7 @@ static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
 
 static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 {
-    __LuaClassPreprocess(obj, sel);
+    __LuaClassPreprocess(obj, sel, L);
     
     return luaObjC_checkNSObject(L, -1);
 }

@@ -7,10 +7,9 @@
 //
 
 #import "ERGeneralMetaService.h"
-#import "ERGeneralDataSource.h"
 
 @interface ERGeneralMetaService ()
-{    
+{
 @private
     NSMutableDictionary *_registeredProcessors;
 }
@@ -19,11 +18,21 @@
 
 @implementation ERGeneralMetaService
 
+static NSMutableDictionary *__resgiteredServices = nil;
+static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
+
 + (void)load
 {
-    [super load];
+    if (!__resgiteredServices)
+    {
+        __resgiteredServices = [[NSMutableDictionary alloc] init];
+    }
+    if (!__registeredCallbackOnDidLoadOfService)
+    {
+        __registeredCallbackOnDidLoadOfService = [[NSMutableDictionary alloc] init];
+    }
     
-    [ERGeneralDataSource registerService: self];
+    [ERGeneralMetaService registerService: self];
 }
 
 - (void)initServiceCallbackFunctions
@@ -34,18 +43,11 @@
 - (id)init
 {
     if ((self = [super init]))
-    {        
+    {
         _registeredProcessors = [[NSMutableDictionary alloc] init];
         [self initServiceCallbackFunctions];
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [_registeredProcessors release];
-    
-    [super dealloc];
 }
 
 - (void)registerBlock: (ERGeneralServiceBlock)serviceBlock
@@ -60,14 +62,14 @@
     }
 }
 
-- (void)callForAction: (NSString *)action 
-            arguments: (NSArray *)arguments 
+- (void)callForAction: (NSString *)action
+            arguments: (NSArray *)arguments
          withCallback: (ERGeneralCallbackBlock)callbackBlock
-{    
+{
     ERGeneralServiceBlock serviceBlock = [_registeredProcessors objectForKey: action];
     if (serviceBlock)
     {
-        @autoreleasepool 
+        @autoreleasepool
         {
             serviceBlock(callbackBlock, action, arguments);
         }
@@ -77,6 +79,60 @@
 + (id)identity
 {
     return ERGeneralMetaServiceID;
+}
+
+
+
++ (void)registerService: (Class)serviceClass
+{
+    @autoreleasepool
+    {
+        if (!__resgiteredServices)
+        {
+            [self load];
+        }
+        
+        id<ERGeneralMetaService> service = [[serviceClass alloc] init];
+        id serviceID = [serviceClass identity];
+        
+        [__resgiteredServices setObject: service
+                                 forKey: serviceID];
+        [service release];
+        
+        ERGeneralCallbackBlock block = [__registeredCallbackOnDidLoadOfService objectForKey: serviceID];
+        if (block)
+        {
+            block(nil, [NSArray arrayWithObject: serviceID]);
+        }
+    }
+}
+
++ (id<ERGeneralMetaService>)serviceByID: (NSString *)serviceID
+{
+    return [__resgiteredServices objectForKey: serviceID];
+}
+
++ (void)registerBlock: (ERGeneralCallbackBlock)block
+   onDidLoadOfService: (id)serviceID
+{
+    @autoreleasepool
+    {
+        if (block && serviceID)
+        {
+            //has registered, so just call it
+            //
+            if ([__resgiteredServices objectForKey: serviceID])
+            {
+                block(nil, [NSArray arrayWithObject: serviceID]);
+            }else
+            {
+                block = Block_copy(block);
+                [__registeredCallbackOnDidLoadOfService setObject: block
+                                                           forKey: serviceID];
+                Block_release(block);
+            }
+        }
+    }
 }
 
 @end

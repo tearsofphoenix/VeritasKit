@@ -7,7 +7,6 @@
 //
 
 #import "LuaEngineService.h"
-#import "ERGeneralDataSource.h"
 
 #import "lauxlib.h"
 #import "lualib.h"
@@ -19,6 +18,7 @@
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
 
 #import "LuaUIKit.h"
+
 #endif
 
 #import "lpeg.h"
@@ -102,7 +102,7 @@ static LuaStateRef _luaEngine_createLuaState(void)
     lua_gc(luaStateRef, LUA_GCSTOP, 0);  /* stop collector during initialization */
     
     luaL_openlibs(luaStateRef);
-
+    
     lua_gc(luaStateRef, LUA_GCRESTART, 0);
     
     return luaStateRef;
@@ -162,9 +162,9 @@ static void LuaEngine_initialize(LuaEngineService *self,
     LuaLibraryInformationRegisterToState(libs, LuaEngineUIKitSupport, luaStateRef);
     
     internal->luaState = luaStateRef;
-        
+    
     NSString *sourceCode = [[NSString alloc] initWithData: [NSData dataFromBase64String: kLuaObjCParserString]
-                                                     encoding: NSUTF8StringEncoding];
+                                                 encoding: NSUTF8StringEncoding];
     
     //int status = luaL_dostring(parserStateRef, [parserSourceCode UTF8String]);
     if (luaL_dostring(parserStateRef, [sourceCode UTF8String]) != LUA_OK)
@@ -183,7 +183,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
 
 + (void)load
 {
-    [super load];
+    [super registerService: self];
 }
 
 - (id)init
@@ -204,7 +204,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     _internal->luaState = NULL;
     
     free(_internal);
-
+    
     g_engine = nil;
     
     [_luaEngineLibs release];
@@ -225,7 +225,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
                                   callback(action, arguments);
                               }
                           })
-              forAction: LuaEngineDoSourceCode];
+              forAction: LuaEngineServiceActionDoSourceCode];
     
     [self registerBlock: (^(ERGeneralCallbackBlock callback, NSString *action, NSArray *arguments)
                           {
@@ -239,7 +239,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
                                                                           lua_setglobal(L, [name UTF8String]);
                                                                       })];
                           })
-              forAction: LuaEngineRegisterGlobalConstants];
+              forAction: LuaEngineServiceActionRegisterGlobalConstants];
 }
 
 - (const char *)parseString: (NSString *)sourceCode
@@ -390,21 +390,21 @@ static void LuaEngine_initialize(LuaEngineService *self,
 
 #pragma mark - engine id
 
-NSString * const LuaEngineServiceID = @"com.veritas.service.luaengine";
+NSString * const LuaEngineServiceID = @"com.veritas.service.lua-engine";
 
-NSString * const LuaEngineObjCSupport = @"com.veritas.LuaEngineService.feature.objc";
+NSString * const LuaEngineObjCSupport = @"lua-engine.feature.objc";
 
-NSString * const LuaEngineUIKitSupport = @"com.veritas.LuaEngineService.feature.uikit";
+NSString * const LuaEngineUIKitSupport = @"lua-engine.feature.uikit";
 
-NSString * const LuaEngineParserSupport = @"com.veritas.LuaEngineService.feature.lpeg";
+NSString * const LuaEngineParserSupport = @"lua-engine.feature.lpeg";
 
 #pragma mark - engine supported actions
 
-NSString * const LuaEngineDoSourceCode = @"com.veritas.LuaEngineService.doSourceCode";
+NSString * const LuaEngineServiceActionDoSourceCode = @"lua-engine.action.doSourceCode";
 
-NSString * const LuaEngineRegisterGlobalConstants = @"com.veritas.LuaEngineService.registerGlobalConstatns";
+NSString * const LuaEngineServiceActionRegisterGlobalConstants = @"lua-engine.action.registerGlobalConstatns";
 
-NSString * const LuaEngineDumpSourceCodeToFile = @"com.veritas.LuaEngineService.dumpSourceCode";
+NSString * const LuaEngineDumpSourceCodeToFile = @"lua-engine.action.dumpSourceCode";
 
 void LuaCall(NSString *sourceCode,
              NSString *functionName,
@@ -413,11 +413,11 @@ void LuaCall(NSString *sourceCode,
              int returnCount,
              ERGeneralCallbackBlock completion)
 {
-    [(LuaEngineService *)[ERGeneralDataSource serviceByID: LuaEngineServiceID] executeFunctionName: functionName
-                                                                                      inSourceCode: sourceCode
-                                                                                 argumentPassBlock: block
-                                                                                     argumentCount: argumentCount
-                                                                                       returnCount: returnCount
-                                                                                        completion: completion];
+    [(LuaEngineService *)[ERGeneralMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
+                                                                                       inSourceCode: sourceCode
+                                                                                  argumentPassBlock: block
+                                                                                      argumentCount: argumentCount
+                                                                                        returnCount: returnCount
+                                                                                         completion: completion];
 }
 

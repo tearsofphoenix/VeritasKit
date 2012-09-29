@@ -5,8 +5,8 @@
 //  Created by tearsofphoenix on 3/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+
 #include "LuaObjCBase.h"
-#include "luaconf.h"
 
 __BEGIN_DECLS
 

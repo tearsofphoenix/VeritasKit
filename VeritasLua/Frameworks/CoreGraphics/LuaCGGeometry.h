@@ -6,12 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 
-#include "luaconf.h"
-
 #if TARGET_OS_IPHONE || TARGET_OS_EMBEDDED
-#include <CoreGraphics/CGGeometry.h>
+    #include <CoreGraphics/CGGeometry.h>
 #else
-#include <Foundation/NSGeometry.h>    
+    #include <Foundation/NSGeometry.h>
 #endif
 
 #include "LuaObjCBase.h"
