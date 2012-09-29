@@ -10,6 +10,6 @@
 
 __BEGIN_DECLS
 
-extern int luaObjCInternal_StructGarbageCollection(struct lua_State *L);
+VK_EXPORT int luaObjCInternal_StructGarbageCollection(struct lua_State *L);
 
 __END_DECLS

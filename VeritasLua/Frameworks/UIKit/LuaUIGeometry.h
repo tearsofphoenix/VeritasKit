@@ -12,11 +12,11 @@ __BEGIN_DECLS
 
     #define LUA_UIEdgeInsets_METANAME "UIEdgeInsets"
     
-    int lua_pushUIEdgeInsets(struct lua_State *L, UIEdgeInsets edgeInsets);
+    VK_EXPORT int lua_pushUIEdgeInsets(struct lua_State *L, UIEdgeInsets edgeInsets);
     
     #define LUA_UIOffset_METANAME "UIOffset"
     
-    int lua_pushUIOffset(struct lua_State *L, UIOffset offset);
+    VK_EXPORT int lua_pushUIOffset(struct lua_State *L, UIOffset offset);
     
     LUAMOD_API int LuaOpenUIGeometry(struct lua_State *L);
 

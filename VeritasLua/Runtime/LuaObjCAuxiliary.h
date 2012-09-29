@@ -10,13 +10,13 @@
 
 __BEGIN_DECLS
 
-extern id luaObjC_checkNSObject(struct lua_State *L, int index);
+VK_EXPORT id luaObjC_checkNSObject(struct lua_State *L, int index);
 
-extern const char* luaObjC_checkString(struct lua_State *L, int index);
+VK_EXPORT const char* luaObjC_checkString(struct lua_State *L, int index);
 
-extern int luaObjC_pushNSObject(struct lua_State *L, id nsObject);
+VK_EXPORT int luaObjC_pushNSObject(struct lua_State *L, id nsObject);
 
-extern NSInteger luaObjC_checkInteger(struct lua_State *L, int index);
+VK_EXPORT NSInteger luaObjC_checkInteger(struct lua_State *L, int index);
 
 #define luaObjC_pushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
 

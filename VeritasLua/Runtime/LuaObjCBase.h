@@ -11,7 +11,7 @@
 
 #include "luaconf.h"
 
-#define VK_EXPORT LUAMODE_API
+#define VK_EXPORT LUAMOD_API
 
 #include <TargetConditionals.h>
 

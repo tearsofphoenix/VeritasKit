@@ -10,8 +10,8 @@
 
 __BEGIN_DECLS
 
-extern int LuaObjCMessageSend(struct lua_State *L);
+VK_EXPORT int LuaObjCMessageSend(struct lua_State *L);
 
-extern int LuaObjCMessageSendSuper(struct lua_State *L);
+VK_EXPORT int LuaObjCMessageSendSuper(struct lua_State *L);
 
 __END_DECLS

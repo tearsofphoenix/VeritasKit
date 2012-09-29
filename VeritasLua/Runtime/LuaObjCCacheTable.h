@@ -13,13 +13,14 @@
 
 __BEGIN_DECLS
 
-#pragma mark - strong table	
-    
-	void LuaObjCCacheTableInitialize(struct lua_State* L);
+//strong table
+//
+
+VK_EXPORT	void LuaObjCCacheTableInitialize(struct lua_State* L);
 	
-	void LuaObjCCacheTableInsertObjectForKey(struct lua_State* L, void* object, const char *key);
+VK_EXPORT	void LuaObjCCacheTableInsertObjectForKey(struct lua_State* L, void* object, const char *key);
 	
-	void *LuaObjCCacheTableGetObjectForKey(struct lua_State* L, const char* key);
+VK_EXPORT	void *LuaObjCCacheTableGetObjectForKey(struct lua_State* L, const char* key);
     
 __END_DECLS
 

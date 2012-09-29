@@ -12,7 +12,7 @@ __BEGIN_DECLS
 
 #define LUA_NSRange_METANAME	"NSRange"
 
-    extern int lua_pushNSRange(struct lua_State *L, NSRange range);
+VK_EXPORT int lua_pushNSRange(struct lua_State *L, NSRange range);
     
 LUAMOD_API int LuaOpenNSRange(struct lua_State *L);
 

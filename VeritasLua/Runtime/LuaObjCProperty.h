@@ -11,10 +11,10 @@
 __BEGIN_DECLS
 
 //lua function <---> Objective-C property bridge
-extern const char *LuaClassGetPropertyNameWithGetter(Class theClass, SEL getter);
+VK_EXPORT const char *LuaClassGetPropertyNameWithGetter(Class theClass, SEL getter);
 
-extern const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter);
+VK_EXPORT const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter);
 
-extern int LuaIMPAddPropertyToClass(struct lua_State *L);
+VK_EXPORT int LuaIMPAddPropertyToClass(struct lua_State *L);
 
 __END_DECLS

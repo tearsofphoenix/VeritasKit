@@ -11,25 +11,25 @@
 
 #include "LuaObjCBase.h"
 
+#define LUA_NSOBJECT_METATABLENAME "NSObject"
+
 __BEGIN_DECLS
 
-#define LUA_NSOBJECT_METATABLENAME "NSObject"    
-
-extern int LuaObjCInternal_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
+VK_EXPORT int LuaObjCInternal_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
 
 #define luaObjC_loadGlobalFunctions(L, f) LuaObjCInternal_loadGlobalFunctions(L, f, sizeof(f) / sizeof(f[0]))
 
-extern void luaObjC_throwExceptionIfError(struct lua_State *L);
+VK_EXPORT void luaObjC_throwExceptionIfError(struct lua_State *L);
 
-extern void objc_dumpClass(Class theClass);
+VK_EXPORT void objc_dumpClass(Class theClass);
 
-extern void stackDump(struct lua_State *L);
+VK_EXPORT void stackDump(struct lua_State *L);
 
-extern const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
+VK_EXPORT const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
 
-extern void LuaObjCInternal_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
+VK_EXPORT void LuaObjCInternal_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
 
-extern NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector);
+VK_EXPORT NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector);
 
 __END_DECLS
 

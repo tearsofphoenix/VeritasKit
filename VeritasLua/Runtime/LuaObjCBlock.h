@@ -17,12 +17,12 @@ enum
 
 typedef int LuaClosureType;
 
-extern Class LuaObjCNSBlockClass;
+VK_EXPORT Class LuaObjCNSBlockClass;
 
-extern void LuaObjCBlockSupportInitialize(void);
+VK_EXPORT void LuaObjCBlockSupportInitialize(void);
 
-extern void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block);
+VK_EXPORT void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block);
 
-extern LuaClosureType LuaObjCBlockGetClosureID(id block);
+VK_EXPORT LuaClosureType LuaObjCBlockGetClosureID(id block);
 
 __END_DECLS

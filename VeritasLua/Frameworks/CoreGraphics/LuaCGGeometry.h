@@ -22,11 +22,11 @@ __BEGIN_DECLS
 
 #define LUA_CGRect_METANAME	"CGRect"
     
-    extern int lua_pushCGPoint(struct lua_State *L, CGPoint p);
+    VK_EXPORT int lua_pushCGPoint(struct lua_State *L, CGPoint p);
     
-    extern int lua_pushCGSize(struct lua_State *L, CGSize s);
+    VK_EXPORT int lua_pushCGSize(struct lua_State *L, CGSize s);
     
-    extern int lua_pushCGRect(struct lua_State *L, CGRect r);
+    VK_EXPORT int lua_pushCGRect(struct lua_State *L, CGRect r);
     
     LUAMOD_API int LuaOpenCGGeometry(struct lua_State *L);
     

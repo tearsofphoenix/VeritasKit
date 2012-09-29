@@ -18,14 +18,14 @@ __BEGIN_DECLS
 
 typedef int (* LuaObjCAcceleratorIMP)(id obj, SEL sel, struct lua_State *L);
 
-extern void LuaObjCAcceleratorInitialize(void);
+VK_EXPORT void LuaObjCAcceleratorInitialize(void);
 
-extern void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp);
+VK_EXPORT void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp);
 
-extern LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL selector);
+VK_EXPORT LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL selector);
 
 //accelerator for methods that have no argument
 //
-extern int LuaObjCAcceleratorForNoArgument(struct lua_State *L, const char* returnType, IMP impRef, id obj, SEL selector);
+VK_EXPORT int LuaObjCAcceleratorForNoArgument(struct lua_State *L, const char* returnType, IMP impRef, id obj, SEL selector);
 
 __END_DECLS

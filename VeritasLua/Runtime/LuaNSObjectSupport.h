@@ -10,6 +10,6 @@
 
 __BEGIN_DECLS
 
-extern int luaObjC_openNSObjectSupport(struct lua_State *L);
+VK_EXPORT int luaObjC_openNSObjectSupport(struct lua_State *L);
 
 __END_DECLS

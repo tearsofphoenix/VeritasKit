@@ -12,7 +12,7 @@ __BEGIN_DECLS
 
 #define LUA_CGAffineTransform_METANAME	"CGAffineTransform"
     
-    extern int lua_pushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
+    VK_EXPORT int lua_pushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
     
     LUAMOD_API int LuaOpenCGAffineTransform(struct lua_State *L);
 

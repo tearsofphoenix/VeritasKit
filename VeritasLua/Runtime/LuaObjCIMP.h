@@ -9,8 +9,8 @@
 
 __BEGIN_DECLS
 
-extern int LuaIMPAddInstanceMethod(struct lua_State *L);
+VK_EXPORT int LuaIMPAddInstanceMethod(struct lua_State *L);
 
-extern int LuaIMPAddClassMethod(struct lua_State *L);
+VK_EXPORT int LuaIMPAddClassMethod(struct lua_State *L);
 
 __END_DECLS
