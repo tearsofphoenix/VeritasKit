@@ -10,8 +10,6 @@
 
 __BEGIN_DECLS
 
-struct lua_State;
-
 enum
 {
     LuaObjCInvalidClouserID = -1,

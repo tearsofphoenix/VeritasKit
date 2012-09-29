@@ -11,9 +11,7 @@
 #include "LuaObjCBase.h"
 
 __BEGIN_DECLS
-
-    struct lua_State;
     
-    LUAMOD_API int (LuaOpenEAGL)(struct lua_State *L);
+    LUAMOD_API int LuaOpenEAGL(struct lua_State *L);
     
 __END_DECLS

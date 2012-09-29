@@ -7,13 +7,12 @@
 //
 
 #include "luaconf.h"
-#include "lua.h"
 
 #include "LuaObjCBase.h"
 
 __BEGIN_DECLS
 
 
-    LUAMOD_API int (LuaOpenNSColletion)(lua_State *L);
+    LUAMOD_API int LuaOpenNSColletion(struct lua_State *L);
 
 __END_DECLS

@@ -16,8 +16,6 @@ __BEGIN_DECLS
 
 #define LuaObjCArgumentStart (3)
 
-struct lua_State;
-
 typedef int (* LuaObjCAcceleratorIMP)(id obj, SEL sel, struct lua_State *L);
 
 extern void LuaObjCAcceleratorInitialize(void);

@@ -23,8 +23,6 @@ __BEGIN_DECLS
 #define LUA_CGSize_METANAME	"CGSize"
 
 #define LUA_CGRect_METANAME	"CGRect"
-
-    struct lua_State;
     
     extern int lua_pushCGPoint(struct lua_State *L, CGPoint p);
     
@@ -32,6 +30,6 @@ __BEGIN_DECLS
     
     extern int lua_pushCGRect(struct lua_State *L, CGRect r);
     
-    LUAMOD_API int (LuaOpenCGGeometry)(struct lua_State *L);
+    LUAMOD_API int LuaOpenCGGeometry(struct lua_State *L);
     
 __END_DECLS

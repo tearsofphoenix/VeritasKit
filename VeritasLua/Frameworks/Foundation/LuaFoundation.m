@@ -12,7 +12,7 @@
 #import "LuaNSString.h"
 #import "LuaNSCollection.h"
 
-int LuaOpenFoundation(lua_State *L)
+int LuaOpenFoundation(struct lua_State *L)
 {    
     LuaOpenNSBundle(L);
    

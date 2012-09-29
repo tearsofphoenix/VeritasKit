@@ -7,12 +7,11 @@
 //;
 
 #include "luaconf.h"
-#include "lua.h"
 
 #include "LuaObjCBase.h"
 
 __BEGIN_DECLS
 
-    LUAMOD_API int (LuaOpenFoundation)(lua_State *L);
+    LUAMOD_API int LuaOpenFoundation(struct lua_State *L);
 
 __END_DECLS

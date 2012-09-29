@@ -13,11 +13,10 @@
 
 __BEGIN_DECLS
 
-    struct lua_State;
 #define LUA_CGAffineTransform_METANAME	"CGAffineTransform"
     
     extern int lua_pushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
     
-    LUAMOD_API int (LuaOpenCGAffineTransform)(struct lua_State *L);
+    LUAMOD_API int LuaOpenCGAffineTransform(struct lua_State *L);
 
 __END_DECLS

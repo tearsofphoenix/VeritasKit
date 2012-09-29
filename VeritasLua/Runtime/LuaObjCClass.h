@@ -10,8 +10,6 @@
 
 __BEGIN_DECLS
 
-struct lua_State;
-
 //lua function <---> Objective-C method bridge
 //
 extern int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector);

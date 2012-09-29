@@ -8,12 +8,11 @@
 
 
 #include "luaconf.h"
-#include "lua.h"
 
 #include "LuaObjCBase.h"
 
 __BEGIN_DECLS
 
-LUAMOD_API int (LuaOpenNSString)(lua_State *L);
+LUAMOD_API int LuaOpenNSString(struct lua_State *L);
 
 __END_DECLS

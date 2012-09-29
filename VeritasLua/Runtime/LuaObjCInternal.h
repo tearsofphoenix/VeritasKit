@@ -15,9 +15,6 @@ __BEGIN_DECLS
 
 #define LUA_NSOBJECT_METATABLENAME "NSObject"    
 
-struct lua_State;
-struct luaL_Reg;
-
 extern int LuaObjCInternal_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
 
 #define luaObjC_loadGlobalFunctions(L, f) LuaObjCInternal_loadGlobalFunctions(L, f, sizeof(f) / sizeof(f[0]))
@@ -27,8 +24,6 @@ extern void luaObjC_throwExceptionIfError(struct lua_State *L);
 extern void objc_dumpClass(Class theClass);
 
 extern void stackDump(struct lua_State *L);
-
-#define FunctionDebugPrint() printf("In func: %s line: %d\n", __FUNCTION__, __LINE__)
 
 extern const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
 

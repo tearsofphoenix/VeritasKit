@@ -14,8 +14,6 @@ __BEGIN_DECLS
 
 #define LUA_NSLIBNAME       "NS"    
 
-struct lua_State;
-
-LUAMOD_API int (luaopen_foundation)(struct lua_State *L);
+LUAMOD_API int luaopen_foundation(struct lua_State *L);
 
 __END_DECLS

@@ -10,8 +10,6 @@
 
 __BEGIN_DECLS
 
-struct lua_State;
-
 //lua function <---> Objective-C property bridge
 extern const char *LuaClassGetPropertyNameWithGetter(Class theClass, SEL getter);
 

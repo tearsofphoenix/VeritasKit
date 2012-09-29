@@ -11,8 +11,6 @@
 
 __BEGIN_DECLS
 
-struct lua_State;
-
-LUAMOD_API int (LuaOpenUIView)(struct lua_State *L);
+LUAMOD_API int LuaOpenUIView(struct lua_State *L);
 
 __END_DECLS

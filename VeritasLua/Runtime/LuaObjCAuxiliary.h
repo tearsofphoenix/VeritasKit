@@ -10,8 +10,6 @@
 
 __BEGIN_DECLS
 
-struct lua_State;
-
 extern id luaObjC_checkNSObject(struct lua_State *L, int index);
 
 extern const char* luaObjC_checkString(struct lua_State *L, int index);

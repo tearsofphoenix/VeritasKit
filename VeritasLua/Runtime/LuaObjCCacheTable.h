@@ -13,8 +13,6 @@
 
 __BEGIN_DECLS
 
-    struct lua_State;
-
 #pragma mark - strong table	
     
 	void LuaObjCCacheTableInitialize(struct lua_State* L);

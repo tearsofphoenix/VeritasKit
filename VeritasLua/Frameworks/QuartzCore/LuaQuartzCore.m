@@ -8,7 +8,7 @@
 #import "LuaQuartzCore.h"
 #import "LuaCATransform3D.h"
 
-int LuaOpenQuartzCore(lua_State *L)
+int LuaOpenQuartzCore(struct lua_State *L)
 {
     LuaOpenCATransform3D(L);
     
