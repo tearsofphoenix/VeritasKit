@@ -6,11 +6,18 @@
 //
 //
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct lua_State;
 
-typedef int LuaClosureType;
+enum
+{
+    LuaObjCInvalidClouserID = -1,
+};
 
-extern LuaClosureType LuaObjCInvalidClouserID;
+typedef int LuaClosureType;
 
 extern Class LuaObjCNSBlockClass;
 
@@ -20,3 +27,6 @@ extern void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block);
 
 extern LuaClosureType LuaObjCBlockGetClosureID(id block);
 
+#ifdef __cplusplus
+}
+#endif

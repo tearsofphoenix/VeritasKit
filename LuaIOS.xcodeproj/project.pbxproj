@@ -11,7 +11,6 @@
 		226873A71521B2B8009D6279 /* Main.v in Resources */ = {isa = PBXBuildFile; fileRef = 226873A61521B2B8009D6279 /* Main.v */; };
 		22D834AA1615A9DE00C9F07C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D834A91615A9DE00C9F07C /* Default-568h@2x.png */; };
 		22D834B21615AA3D00C9F07C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FB9EB115CBC9CA00895B7E /* Foundation.framework */; };
-		22D834B81615AA3D00C9F07C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22D834B61615AA3D00C9F07C /* InfoPlist.strings */; };
 		22D834CD1615AAEF00C9F07C /* VeritasVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 22D834BA1615AA3D00C9F07C /* VeritasVM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22D835411615AC0A00C9F07C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E8A17414D24C82000F9EB1 /* UIKit.framework */; };
 		22D835421615AC1100C9F07C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A4FFA914D56C4F00180B63 /* QuartzCore.framework */; };
@@ -21,7 +20,7 @@
 		22D835481615AD7A00C9F07C /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FB50D15BEDC4C00C50C42 /* Test.m */; };
 		22D835491615AD7A00C9F07C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 226873781521AD5D009D6279 /* main.m */; };
 		22D8354A1615AD8400C9F07C /* VeritasVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D834B11615AA3D00C9F07C /* VeritasVM.framework */; };
-		22D835971615B02300C9F07C /* VeritasVM.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22D834B11615AA3D00C9F07C /* VeritasVM.framework */; };
+		22D835971615B02300C9F07C /* VeritasVM.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 22D834B11615AA3D00C9F07C /* VeritasVM.framework */; };
 		22EC440115243E1A00598F4F /* GLES.v in Resources */ = {isa = PBXBuildFile; fileRef = 22EC440015243E1A00598F4F /* GLES.v */; };
 		E13C8E3916168B0C00A72BEF /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E13C8D4016168B0C00A72BEF /* Accelerate.bridgesupport */; };
 		E13C8E3A16168B0C00A72BEF /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E13C8D4116168B0C00A72BEF /* Accounts.bridgesupport */; };
@@ -71,12 +70,12 @@
 		E13C8E6616168B0C00A72BEF /* LuaBridgeSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6D16168B0C00A72BEF /* LuaBridgeSupport.m */; };
 		E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */; };
 		E13C8E6816168B0C00A72BEF /* LuaBridgeSupportFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */; };
-		E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */; };
-		E13C8E6A16168B0C00A72BEF /* ERGeneralDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7216168B0C00A72BEF /* ERGeneralDataSource.h */; };
+		E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E13C8E6A16168B0C00A72BEF /* ERGeneralDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7216168B0C00A72BEF /* ERGeneralDataSource.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6B16168B0C00A72BEF /* ERGeneralDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7316168B0C00A72BEF /* ERGeneralDataSource.m */; };
-		E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */; };
+		E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6D16168B0C00A72BEF /* ERGeneralMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */; };
-		E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7616168B0C00A72BEF /* LuaEngineService.h */; };
+		E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7616168B0C00A72BEF /* LuaEngineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6F16168B0C00A72BEF /* LuaEngineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7716168B0C00A72BEF /* LuaEngineService.m */; };
 		E13C8E7016168B0C00A72BEF /* LuaLibraryInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7816168B0C00A72BEF /* LuaLibraryInformation.h */; };
 		E13C8E7116168B0C00A72BEF /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7916168B0C00A72BEF /* LuaLibraryInformation.m */; };
@@ -234,15 +233,26 @@
 		E13C8F1D16168B0D00A72BEF /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2206F803161690C2007CBD1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34E8A16714D24C82000F9EB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22D834B01615AA3D00C9F07C;
+			remoteInfo = VeritasVM;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		22D835961615B01400C9F07C /* CopyFiles */ = {
+		22D835961615B01400C9F07C /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				22D835971615B02300C9F07C /* VeritasVM.framework in CopyFiles */,
+				22D835971615B02300C9F07C /* VeritasVM.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		22E3E9421615B23600001540 /* CopyFiles */ = {
@@ -269,7 +279,6 @@
 		22D834A91615A9DE00C9F07C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		22D834B11615AA3D00C9F07C /* VeritasVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeritasVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D834B51615AA3D00C9F07C /* VeritasVM-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VeritasVM-Info.plist"; sourceTree = "<group>"; };
-		22D834B71615AA3D00C9F07C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		22D834B91615AA3D00C9F07C /* VeritasVM-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeritasVM-Prefix.pch"; sourceTree = "<group>"; };
 		22D834BA1615AA3D00C9F07C /* VeritasVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasVM.h; sourceTree = "<group>"; };
 		22EC440015243E1A00598F4F /* GLES.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GLES.v; sourceTree = "<group>"; };
@@ -555,7 +564,6 @@
 			isa = PBXGroup;
 			children = (
 				22D834B51615AA3D00C9F07C /* VeritasVM-Info.plist */,
-				22D834B61615AA3D00C9F07C /* InfoPlist.strings */,
 				22D834B91615AA3D00C9F07C /* VeritasVM-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -1006,14 +1014,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D834CD1615AAEF00C9F07C /* VeritasVM.h in Headers */,
+				E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */,
+				E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */,
+				E13C8E6A16168B0C00A72BEF /* ERGeneralDataSource.h in Headers */,
+				E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */,
 				E13C8E6116168B0C00A72BEF /* LuaBridgeFunctor.h in Headers */,
 				E13C8E6316168B0C00A72BEF /* LuaBridgeInfo.h in Headers */,
 				E13C8E6516168B0C00A72BEF /* LuaBridgeSupport.h in Headers */,
 				E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */,
-				E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */,
-				E13C8E6A16168B0C00A72BEF /* ERGeneralDataSource.h in Headers */,
-				E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */,
-				E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */,
 				E13C8E7016168B0C00A72BEF /* LuaLibraryInformation.h in Headers */,
 				E13C8E7216168B0C00A72BEF /* LuaObjCExtensions.h in Headers */,
 				E13C8E7416168B0C00A72BEF /* LuaObjCIndexing.h in Headers */,
@@ -1103,11 +1111,12 @@
 				226873681521AD5D009D6279 /* Sources */,
 				226873691521AD5D009D6279 /* Frameworks */,
 				2268736A1521AD5D009D6279 /* Resources */,
-				22D835961615B01400C9F07C /* CopyFiles */,
+				22D835961615B01400C9F07C /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2206F804161690C2007CBD1C /* PBXTargetDependency */,
 			);
 			name = LuaIOS;
 			productName = LuaIOS;
@@ -1175,7 +1184,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D834B81615AA3D00C9F07C /* InfoPlist.strings in Resources */,
 				E13C8E3916168B0C00A72BEF /* Accelerate.bridgesupport in Resources */,
 				E13C8E3A16168B0C00A72BEF /* Accounts.bridgesupport in Resources */,
 				E13C8E3B16168B0C00A72BEF /* AddressBook.bridgesupport in Resources */,
@@ -1324,19 +1332,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2206F804161690C2007CBD1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22D834B01615AA3D00C9F07C /* VeritasVM */;
+			targetProxy = 2206F803161690C2007CBD1C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		226873751521AD5D009D6279 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				226873761521AD5D009D6279 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		22D834B61615AA3D00C9F07C /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22D834B71615AA3D00C9F07C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

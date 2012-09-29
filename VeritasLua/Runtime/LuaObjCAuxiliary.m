@@ -43,7 +43,7 @@ id luaObjC_checkNSObject(lua_State *L, int index)
     }
 }
 
-lua_Integer luaObjC_checkInteger(lua_State *L, int index)
+NSInteger luaObjC_checkInteger(lua_State *L, int index)
 {
     switch (lua_type(L, index))
     {

@@ -10,8 +10,6 @@
 
 static NSMutableDictionary *__LuaObjC_clouserBlockDictionary = nil;
 
-LuaClosureType LuaObjCInvalidClouserID = -1;
-
 Class LuaObjCNSBlockClass = Nil;
 
 void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block)

@@ -5,6 +5,9 @@
 //  Created by tearsofphoenix on 3/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #import "luaconf.h"
 
@@ -39,3 +42,7 @@ extern NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
 
 
 LUAMOD_API int (luaopen_classSupport)(struct lua_State *L);
+
+#ifdef __cplusplus
+}
+#endif

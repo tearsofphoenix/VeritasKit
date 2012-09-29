@@ -9,6 +9,10 @@
 //the first argument is `id', the second is `SEL',
 //so the arguments of the method starts from 3,
 //
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define LuaObjCArgumentStart (3)
 
 struct lua_State;
@@ -25,3 +29,6 @@ extern LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, 
 //
 extern int LuaObjCAcceleratorForNoArgument(struct lua_State *L, const char* returnType, IMP impRef, id obj, SEL selector);
 
+#ifdef __cplusplus
+}
+#endif

@@ -6,6 +6,14 @@
 //
 //
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct lua_State;
 
 extern int luaObjC_openNSObjectSupport(struct lua_State *L);
+
+#ifdef __cplusplus
+}
+#endif
