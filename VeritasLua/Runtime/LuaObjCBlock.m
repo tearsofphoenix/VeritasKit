@@ -12,31 +12,36 @@ static NSMutableDictionary *__LuaObjC_clouserBlockDictionary = nil;
 
 Class LuaObjCNSBlockClass = Nil;
 
-void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block)
-{
-    if (block)
-    {
-        [__LuaObjC_clouserBlockDictionary setObject: [NSNumber numberWithInteger: clouserID]
-                                             forKey: [NSValue valueWithPointer: block]];
-    }
-}
-
-LuaClosureType LuaObjCBlockGetClosureID(id block)
-{
-    NSNumber *clouser = [__LuaObjC_clouserBlockDictionary objectForKey: [NSValue valueWithPointer: block]];
-    if (clouser)
-    {
-        return [clouser intValue];
-    }
-    return LuaObjCInvalidClouserID;
-}
-
-void LuaObjCBlockSupportInitialize(void)
+static void LuaObjCBlockSupportInitialize(void)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, (^
                                {
                                    __LuaObjC_clouserBlockDictionary = [[NSMutableDictionary alloc] init];
-                                   LuaObjCNSBlockClass = objc_getClass("NSBlock");                                   
+                                   LuaObjCNSBlockClass = objc_getClass("NSBlock");
                                }));
+}
+
+void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block)
+{
+    if (!LuaObjCNSBlockClass)
+    {
+        LuaObjCBlockSupportInitialize();
+    }
+    
+    if (block)
+    {
+        [__LuaObjC_clouserBlockDictionary setObject: [NSNumber numberWithInteger: clouserID]
+                                             forKey: block];
+    }
+}
+
+LuaClosureType LuaObjCBlockGetClosureID(id block)
+{
+    NSNumber *clouser = [__LuaObjC_clouserBlockDictionary objectForKey: block];
+    if (clouser)
+    {
+        return [clouser intValue];
+    }
+    return LuaObjCInvalidClouserID;
 }

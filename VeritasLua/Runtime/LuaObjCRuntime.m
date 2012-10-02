@@ -14,8 +14,6 @@
 
 #import "LuaObjCClass.h"
 
-#import "LuaObjCAccelerator.h"
-
 #import "LuaObjCInternal.h"
 
 #import "LuaCGGeometry.h"
@@ -347,9 +345,7 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
 }
 
 int luaopen_foundation(lua_State *L)
-{
-    LuaObjCAcceleratorInitialize();
-    
+{    
     luaopen_classSupport(L);
 
     luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);

@@ -9,6 +9,7 @@
 #include "LuaObjCCacheTable.h"
 #include "lua.h"
 #include <stdbool.h>
+#include <dispatch/dispatch.h>
 
 static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool isWeakTable)
 {
@@ -30,7 +31,7 @@ static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool i
 	
 }
 
-static void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *tableID, void *object, const char *key)
+static inline void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *tableID, void *object, const char *key)
 {
     lua_getfield(L, LUA_REGISTRYINDEX, tableID); // puts the global weak table on top of the stack
 	
@@ -41,11 +42,11 @@ static void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *tableID
 	lua_pop(L, 1);
 }
 
-static void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* tableID, const char* key)
+static inline void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* tableID, const char* key)
 {
     lua_getfield(L, LUA_REGISTRYINDEX, tableID);
 	lua_getfield(L, -1, key);
-
+    
 	if(lua_isnil(L, -1))
 	{
 		return NULL;

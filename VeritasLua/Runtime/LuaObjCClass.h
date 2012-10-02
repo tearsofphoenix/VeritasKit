@@ -28,12 +28,9 @@ VK_EXPORT struct lua_State *LuaClassGetLuaState(Class theClass);
 
 typedef struct __LuaObject *LuaObjectRef;
 
-LuaObjectRef LuaObjectCreate(struct lua_State *L,
-                                         id rawObject);
+VK_EXPORT LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject);
 
 VK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
-
-VK_EXPORT void LuaObjectPrint(LuaObjectRef ref);
 
 VK_EXPORT NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
 

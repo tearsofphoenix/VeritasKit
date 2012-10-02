@@ -25,7 +25,6 @@
 
 #import "LuaBridgeSupport.h"
 
-static void LuaObjectFinalize(LuaObjectRef ref);
 
 @class LuaObjectObserver;
 
@@ -75,7 +74,6 @@ int luaopen_classSupport(lua_State *L)
                                }));
     
     LuaObjCTypeEncodingInitialize();
-    LuaObjCBlockSupportInitialize();
     LuaObjCCacheTableInitialize(L);
     
     return 1;
@@ -188,21 +186,6 @@ id LuaObjectGetObject(LuaObjectRef ref)
         return ref->_obj;
     }
     return nil;
-}
-
-void LuaObjectPrint(LuaObjectRef ref)
-{
-    
-}
-
-static void LuaObjectFinalize(LuaObjectRef ref)
-{
-    if (ref)
-    {
-        ref->_obj = nil;
-        ref->_objectObserver = nil;
-        ref->_luaState = nil;
-    }
 }
 
 NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref)

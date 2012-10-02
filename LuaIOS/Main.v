@@ -69,7 +69,7 @@ GL = #import("OpenGLES")
    alert = [[UIAlertView alloc] initWithTitle: @"te测"
                                       message: @"te"
                                      delegate: nil
-                            cancelButtonTitle: @'dd'
+                            cancelButtonTitle: @'好'
                             otherButtonTitles: nil]
    [alert show]
    [alert release]

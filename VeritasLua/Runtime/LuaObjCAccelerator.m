@@ -18,11 +18,11 @@
 #import "lua.h"
 #import <objc/message.h>
 
-int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType, 
-                                                       IMP impRef, id obj, SEL selector)
+int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
+                                    IMP impRef, id obj, SEL selector)
 {
     returnType = LuaObjCInternal_jumpoverEncodingDecorator(returnType);
-    switch (*returnType) 
+    switch (*returnType)
     {
         case _C_CHR:
         case _C_INT:
@@ -125,6 +125,15 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
 
 static NSMutableDictionary *__preAccelerators = nil;
 
+static inline void LuaObjCAcceleratorInitialize(void)
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, (^
+                               {
+                                   __preAccelerators = [[NSMutableDictionary alloc] init];                                   
+                               }));
+}
+
 void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
 {
     if (!__preAccelerators)
@@ -141,10 +150,3 @@ LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL sel
     return [[__preAccelerators objectForKey: NSStringFromSelector(selector)] pointerValue];
 }
 
-void LuaObjCAcceleratorInitialize(void)
-{
-    if (!__preAccelerators)
-    {
-        __preAccelerators = [[NSMutableDictionary alloc] init];       
-    }
-}
