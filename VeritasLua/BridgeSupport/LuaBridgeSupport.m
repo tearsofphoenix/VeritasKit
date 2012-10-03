@@ -20,24 +20,24 @@ static NSMutableDictionary *__registeredFrameworks = nil;
     if (!__registeredFrameworks)
     {
         __registeredFrameworks = [[NSMutableDictionary alloc] init];
-    }
-    
-    [super load];
+    }    
 }
 
 + (void)importFramework: (NSString *)frameworkName
 {
-    if (![__registeredFrameworks objectForKey: frameworkName])
+    if (! CFDictionaryGetValue((CFDictionaryRef)__registeredFrameworks, frameworkName) )
     {
         NSString *bridgeFilePath = [[NSBundle bundleForClass: self] pathForResource: frameworkName
-                                                                   ofType: @"bridgesupport"];
+                                                                             ofType: @"bridgesupport"];
         NSError *error = nil;
         NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath
                                                                 encoding: NSUTF8StringEncoding
                                                                    error: &error];
         if (error)
         {
-            //NSLog(@"error: %@", error);
+#if DEBUG
+            NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
+#endif
         }else
         {
             [__registeredFrameworks setObject: [LuaBridgeSupportFileParser parseFileContents: bridgeFileContent]

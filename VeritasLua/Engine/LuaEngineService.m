@@ -116,12 +116,8 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
     {
         NSString *frameworkName = [NSString stringWithUTF8String: lua_tostring(L, 3)];
         frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
-        
-        dispatch_async(g_engine->_internal->frameworkImportQueue,
-                       (^
-                        {
-                            [LuaBridgeSupport importFramework: frameworkName];
-                        }));
+
+        [LuaBridgeSupport importFramework: frameworkName];
     }
     
     return 0;
