@@ -42,13 +42,12 @@ forKey: [NSString stringWithUTF8String: #type]];
 
 void LuaObjCTypeEncodingAddPredeclearedClass(NSString *className)
 {
-    [__LuaObjC_TypeEncodingDictionary setObject: [NSString stringWithUTF8String: @encode(id)]
-                                         forKey: className];
+    CFDictionarySetValue((CFMutableDictionaryRef)__LuaObjC_TypeEncodingDictionary, className, [NSString stringWithUTF8String: @encode(id)]);
 }
 
 NSString * LuaObjCTypeEncodingOfTypeName(NSString *typeName)
 {
-    NSString *typeEncoding = [__LuaObjC_TypeEncodingDictionary objectForKey: typeName];
+    NSString *typeEncoding = CFDictionaryGetValue((CFDictionaryRef)__LuaObjC_TypeEncodingDictionary, typeName);
     if (!typeEncoding)
     {
         typeEncoding = [NSString stringWithUTF8String: @encode(id)];

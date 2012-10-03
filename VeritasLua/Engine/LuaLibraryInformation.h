@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "lauxlib.h"
-
-#import "lualib.h"
+#include "LuaObjCBase.h"
+#include "lua.h"
 
 @interface LuaLibraryInformation : NSObject
 
@@ -23,18 +22,22 @@
 
 @end
 
-extern LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
+__BEGIN_DECLS
+
+VK_EXPORT LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
                                                          NSString *libName,
                                                          lua_CFunction loadFunction,
                                                          int numberOfUpvalues,
                                                          NSArray *dependentLibNames);
 
-extern LuaLibraryInformation * LuaLibraryInformationMakeC(NSString *fetureID,
+VK_EXPORT LuaLibraryInformation * LuaLibraryInformationMakeC(NSString *fetureID,
                                                           const char *libName,
                                                           lua_CFunction loadFunction,
                                                           int numberOfUpvalues,
                                                           NSArray *dependentLibNames);
 
-extern void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs, 
+VK_EXPORT void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs,
                                                  NSString * libraryID, 
                                                  lua_State *luaState);
+
+__END_DECLS

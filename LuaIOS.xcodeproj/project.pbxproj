@@ -70,7 +70,6 @@
 		E13C8E6616168B0C00A72BEF /* LuaBridgeSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6D16168B0C00A72BEF /* LuaBridgeSupport.m */; };
 		E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */; };
 		E13C8E6816168B0C00A72BEF /* LuaBridgeSupportFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */; };
-		E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6D16168B0C00A72BEF /* ERGeneralMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */; };
 		E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7616168B0C00A72BEF /* LuaEngineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -331,7 +330,6 @@
 		E13C8D6D16168B0C00A72BEF /* LuaBridgeSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeSupport.m; sourceTree = "<group>"; };
 		E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridgeSupportFileParser.h; sourceTree = "<group>"; };
 		E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeSupportFileParser.m; sourceTree = "<group>"; };
-		E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERGeneralConstants.h; sourceTree = "<group>"; };
 		E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERGeneralMetaService.h; sourceTree = "<group>"; };
 		E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERGeneralMetaService.m; sourceTree = "<group>"; };
 		E13C8D7616168B0C00A72BEF /* LuaEngineService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaEngineService.h; sourceTree = "<group>"; };
@@ -684,7 +682,6 @@
 		E13C8D7016168B0C00A72BEF /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				E13C8D7116168B0C00A72BEF /* ERGeneralConstants.h */,
 				E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */,
 				E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */,
 				E13C8D7616168B0C00A72BEF /* LuaEngineService.h */,
@@ -999,7 +996,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D834CD1615AAEF00C9F07C /* VeritasVM.h in Headers */,
-				E13C8E6916168B0C00A72BEF /* ERGeneralConstants.h in Headers */,
 				E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */,
 				E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */,
 				E13C8E6116168B0C00A72BEF /* LuaBridgeFunctor.h in Headers */,

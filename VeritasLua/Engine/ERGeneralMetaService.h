@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ERGeneralConstants.h"
-                                     
+typedef void (^ERGeneralCallbackBlock)(NSString *action, NSArray *arguments);
+typedef void (^ERGeneralServiceBlock)(ERGeneralCallbackBlock callback, NSString *action, NSArray *arguments);
+
 @protocol ERGeneralMetaService <NSObject>
 
 + (id)identity;

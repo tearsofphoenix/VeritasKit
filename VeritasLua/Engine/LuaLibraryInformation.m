@@ -7,6 +7,7 @@
 //
 
 #import "LuaLibraryInformation.h"
+#import "lauxlib.h"
 
 @implementation LuaLibraryInformation
 

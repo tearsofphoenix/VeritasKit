@@ -95,8 +95,8 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
         id<ERGeneralMetaService> service = [[serviceClass alloc] init];
         id serviceID = [serviceClass identity];
         
-        [__resgiteredServices setObject: service
-                                 forKey: serviceID];
+        CFDictionarySetValue((CFMutableDictionaryRef)__resgiteredServices, serviceID, service);
+        
         [service release];
         
         ERGeneralCallbackBlock block = [__registeredCallbackOnDidLoadOfService objectForKey: serviceID];
@@ -127,6 +127,8 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
             }else
             {
                 block = Block_copy(block);
+                
+                //CFDictionarySetValue((CFMutableDictionaryRef)__registeredCallbackOnDidLoadOfService, serviceID, block);
                 [__registeredCallbackOnDidLoadOfService setObject: block
                                                            forKey: serviceID];
                 Block_release(block);
