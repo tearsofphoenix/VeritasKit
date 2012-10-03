@@ -71,10 +71,10 @@ int luaopen_classSupport(lua_State *L)
     dispatch_once(&onceToken, (^
                                {
                                    __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
+                                   
+                                   LuaObjCTypeEncodingInitialize();
+                                   LuaObjCCacheTableInitialize(L);
                                }));
-    
-    LuaObjCTypeEncodingInitialize();
-    LuaObjCCacheTableInitialize(L);
     
     return 1;
 }
@@ -153,15 +153,14 @@ struct __LuaObject
     LuaObjectObserver *_objectObserver;
 };
 
-LuaObjectRef LuaObjectCreate(struct lua_State *L,
-                             id rawObject)
+LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject)
 {
     LuaObjectRef objRef = lua_newuserdata(L, sizeof(struct __LuaObject));
     
     objRef->_luaState = L;
     objRef->_obj = rawObject;
     
-    if ([rawObject class] != rawObject)
+    if (object_getClass(rawObject) != rawObject)
     {
         LuaObjectObserver *objectObserver = [[LuaObjectObserver alloc] initWithObjectRef: objRef];
         objc_setAssociatedObject(rawObject,

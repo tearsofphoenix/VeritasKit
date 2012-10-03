@@ -26,7 +26,7 @@
 
 static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
-    Class theClass = [obj class];
+    Class theClass = object_getClass(obj);
     
     LuaClosureType clouserID = LuaClassGetClosureIDOfSelector(theClass, sel);
     lua_State *luaState = LuaClassGetLuaState(theClass);
@@ -48,7 +48,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         
         NSUInteger numberOfArgument = LuaObjCInternal_argumentCountOfSelector(sel);
         
-        const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod([obj class], sel));
+        const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod(theClass, sel));
         
         //jump over return type, id, SEL
         //
@@ -215,7 +215,7 @@ static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
     //
     //void *returnData = lua_touserdata(L, -1);
     
-    Class objClass = [obj class];
+    Class objClass = object_getClass(obj);
     Method method = NULL;
     
     if (objClass == obj)

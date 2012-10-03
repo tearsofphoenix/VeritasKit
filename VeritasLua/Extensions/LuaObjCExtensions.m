@@ -19,125 +19,7 @@
 #import "NSString+LuaObjCIndex.h"
 #import "NSArray+LuaObjCIndex.h"
 #import "NSDictionary+LuaObjCIndex.h"
-
-static int luaObjC_convertTableToNSArray(lua_State *L)
-{
-    int type = lua_type(L, 1);
-    
-    switch (type)
-    {
-        case LUA_TNIL:
-        {
-            lua_pushnil(L);
-            return 1;
-        }
-        case LUA_TTABLE:
-        {
-            lua_Integer n = lua_rawlen(L, 1);
-            NSMutableArray *array = [[[NSMutableArray alloc] initWithCapacity: n] autorelease];
-            
-            for (int i=0; i<n; ++i)
-            {
-                lua_rawgeti(L, 1, i+1);                             
-                [array addObject: luaObjC_checkNSObject(L, -1)];           
-                lua_remove(L, -1);
-            }
-            
-            luaObjC_pushNSObject(L, array);
-            
-            return 1; 
-        }
-        default:
-        {
-            printf("Error:Invalid argument for object array!");
-            return 0;
-        }
-    }
-    
-    return 0;
-}
-
-static int  luaObjC_convertTableToNSDictionary(lua_State *L)
-{
-    int type = lua_type(L, 1);
-    
-    switch (type)
-    {
-        case LUA_TNIL:
-        {
-            lua_pushnil(L);
-            return 1;
-        }
-        case LUA_TTABLE:
-        {
-            lua_Integer n = lua_rawlen(L, 1);
-            NSMutableDictionary *dictionary = [[[NSMutableDictionary alloc] initWithCapacity: n] autorelease];
-            id keyLooper = nil;
-            id valueLooper = nil;
-            for (int i=0; i<n; i = i + 2)
-            {
-                lua_rawgeti(L, 1, i+1);                             
-                keyLooper = luaObjC_checkNSObject(L, -1);           
-                lua_remove(L, -1);
-                
-                lua_rawgeti(L, 1, i+2);                             
-                valueLooper = luaObjC_checkNSObject(L, -1);           
-                lua_remove(L, -1);
-                
-                [dictionary setObject: valueLooper
-                               forKey: keyLooper];
-            }
-            
-            luaObjC_pushNSObject(L, dictionary);
-            
-            return 1; 
-        }
-        default:
-        {
-            printf("Error:Invalid argument for object array!");
-            return 0;
-        }
-    }
-    
-    return 0;
-}
-
-static int luaObjC_convertNSObjectToTable(lua_State *L)
-{
-    id obj = luaObjC_checkNSObject(L, 1);
-    
-    if ([obj isKindOfClass: [NSArray class]])
-    {
-        int size = (int)[obj count];
-        lua_createtable(L, size, 0);
-        
-        for (int i = 0; i < size; ++i)
-        {
-            lua_pushinteger(L, i+1); 
-            luaObjC_pushNSObject(L, [obj objectAtIndex: i]);
-            lua_settable(L, -3);
-        }
-        return 1;
-    }else if([obj isKindOfClass: [NSDictionary class]])
-    {
-        int count = (int)[obj count];
-        lua_createtable(L, 0, count);
-        id valueLooper = nil;
-        for (id keyLooper in obj)
-        {  /* fill the table with given functions */
-            valueLooper = [obj objectForKey: keyLooper];
-            luaObjC_pushNSObject(L, keyLooper);
-            luaObjC_pushNSObject(L, valueLooper);
-            lua_settable(L, -3);
-        }
-        return 1;
-    }else 
-    {
-        NSLog(@"Error, unsupported class:%@ to table\n", [obj class]);
-    }
-    
-    return 0;
-}
+#import <objc/runtime.h>
 
 static int luaObjC_objc_throw(lua_State *L)
 {
@@ -318,9 +200,6 @@ static int luaObjC_createConstantNumber(lua_State *L)
 static const luaL_Reg __luaObjCExtensions [] =
 {
     //veritas extensions
-    {"luaObjC_convertTableToNSArray", luaObjC_convertTableToNSArray},
-    {"luaObjC_convertTableToNSDictionary",luaObjC_convertTableToNSDictionary},
-    {"luaObjC_convertNSObjectToTable", luaObjC_convertNSObjectToTable},
     {"objc_tryCatchFinally", luaObjC_objc_tryCatchFinally},
     {"objc_throw", luaObjC_objc_throw},
     {"objc_UUIDString", luaObjC_objc_UUIDString},

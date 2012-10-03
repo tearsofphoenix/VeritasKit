@@ -10,7 +10,7 @@
 
 struct lua_State;
 
-@protocol LuaObjCIndexing <NSObject>
+@interface NSObject (LuaObjCIndexing)
 
 - (void)indexObjectWithState: (struct lua_State *)state;
 
@@ -18,13 +18,13 @@ struct lua_State;
 
 @end
 
-@protocol LuaObjCConcating <NSObject>
+@interface NSObject (LuaObjCConcating)
 
 - (void)concatObjectWithState: (struct lua_State *)state;
 
 @end
 
-@protocol LuaObjCMeasurable <NSObject>
+@interface NSObject (LuaObjCMeasurable)
 
 - (void)getLengthOfObjectWithState: (struct lua_State *)state;
 

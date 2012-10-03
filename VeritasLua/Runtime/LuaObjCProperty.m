@@ -30,14 +30,14 @@ static char __LuaObjC_KeyForSetterProperties;
 
 static char __LuaObjC_KeyForGetterProperties;
 
-const char *LuaClassGetPropertyNameWithGetter(Class theClass, SEL getter)
+static inline const char *LuaClassGetPropertyNameWithGetter(Class theClass, SEL getter)
 {
     NSMutableDictionary *getters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties);
     NSString *propertyName = [getters objectForKey: [NSValue valueWithPointer: getter]];
     return [propertyName UTF8String];
 }
 
-const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter)
+static inline const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter)
 {
     NSMutableDictionary *setters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForSetterProperties);
     NSString *propertyName = [setters objectForKey: [NSValue valueWithPointer: setter]];
@@ -46,7 +46,7 @@ const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter)
 
 #pragma mark - property
 //getter
-#define __LuaObjC_propertyGetterWithType(Type, obj, selector)     Class objClass = [obj class];\
+#define __LuaObjC_propertyGetterWithType(Type, obj, selector)     Class objClass = object_getClass(obj);\
                                                                 const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);\
                                                                 Type returnValue;\
                                                                  object_getInstanceVariable(obj, propertyName, (void **)&returnValue);\
@@ -59,7 +59,7 @@ static id __luaObjc_PropertyGetter(id obj, SEL selector)
 
 static NSInteger __luaObjC_propertyGetterIntegerReturn(id obj, SEL selector)
 {
-    Class objClass = [obj class];
+    Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
     NSInteger returnValue = 0;
     
@@ -74,7 +74,7 @@ static NSInteger __luaObjC_propertyGetterIntegerReturn(id obj, SEL selector)
 
 static CGFloat __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
 {
-    Class objClass = [obj class];
+    Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
     CGFloat returnValue = 0.0;
 
@@ -93,7 +93,7 @@ static CGFloat __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
 
 //TODO
 //
-#define __LuaObjC_propertySetterWithType(Type, obj, selector, newValue)     Class objClass = [obj class];\
+#define __LuaObjC_propertySetterWithType(Type, obj, selector, newValue)     Class objClass = object_getClass(obj);\
                                                                   const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);\
                                                                   Type value = newValue;\
                                                                   object_setInstanceVariable(obj, propertyName, &value);
@@ -102,14 +102,14 @@ static CGFloat __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
 //
 static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
 {
-//    Class objClass = [obj class];
+//    Class objClass = object_getClass(obj);
 //    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
 //    object_setInstanceVariable(obj, propertyName, newValue);
 }
 
 static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, CGFloat newValue)
 {
-    Class objClass = [obj class];
+    Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
     if (ivar)
@@ -122,7 +122,7 @@ static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, CGFloat ne
 
 static void __luaObjC_PropertySetter_integerValue(id obj, SEL selector, NSInteger newValue)
 {
-    Class objClass = [obj class];
+    Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
     if (ivar)

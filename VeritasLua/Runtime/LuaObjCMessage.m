@@ -23,8 +23,6 @@
 
 @interface NSInvocation (PrivateMethodsExpose)
 
-- (void)invokeUsingIMP: (IMP)imp;
-
 - (void)invokeSuper;
 
 @end
@@ -58,9 +56,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         return 0;
     }
     
-    Class objClass = [obj class];
-    //TODO
-    //LuaClosureType closureID = LuaClassGetClosureIDOfSelector(objClass, selector);
+    Class objClass = object_getClass(obj);
     
     IMP impRef = (IMP)LuaObjCAcceleratorGetIMPBySelector(objClass, selector);
     if (impRef)
@@ -74,7 +70,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             
         }else
         {
-            impRef = class_getMethodImplementation([obj superclass], selector);
+            impRef = class_getMethodImplementation(class_getSuperclass(objClass), selector);
             
         }
         
