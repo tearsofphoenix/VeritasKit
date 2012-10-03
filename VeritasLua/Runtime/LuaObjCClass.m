@@ -8,23 +8,17 @@
 
 #import "LuaObjCClass.h"
 
-#import "LuaObjCInternal.h"
 #import "LuaObjCBlock.h"
-#import "LuaObjCTypeEncoding.h"
-#import "LuaCGGeometry.h"
 
-#import "LuaObjCAccelerator.h"
+#import "LuaObjCTypeEncoding.h"
 
 #import "LuaObjCAuxiliary.h"
 
 #import <objc/runtime.h>
-#import <dlfcn.h>
+
 #import "lauxlib.h"
 
 #import "LuaObjCCacheTable.h"
-
-#import "LuaBridgeSupport.h"
-
 
 @class LuaObjectObserver;
 

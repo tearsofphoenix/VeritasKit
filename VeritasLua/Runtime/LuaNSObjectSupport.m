@@ -7,18 +7,17 @@
 //
 
 #import "LuaNSObjectSupport.h"
-#import "lua.h"
 #import "lauxlib.h"
 #import "LuaObjCClass.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCIndexing.h"
 #import "LuaObjCInternal.h"
 #import "LuaObjCBlock.h"
-#import <objc/runtime.h>
 
 static int luaObjC_NSLog(lua_State *L)
 {
     const char* charLooper = luaObjC_checkString(L, 1);
+
     NSMutableString *logString = [NSMutableString string];
     int iLooper = 2;
     while (charLooper && *charLooper)
@@ -45,11 +44,9 @@ static int luaObjC_NSLog(lua_State *L)
                     case 'u':
                     {
                         lua_Integer value = lua_tointeger(L, iLooper);
-#if TARGET_OS_IPHONE
-                        [logString appendFormat: @"%d", value];
-#else
-                        [logString appendFormat: @"%ld", value];
-#endif
+
+                        [logString appendFormat: @"%d", (NSInteger)value];
+                        
                         ++iLooper;
                         break;
                     }

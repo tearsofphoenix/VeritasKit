@@ -35,6 +35,6 @@ VK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
 VK_EXPORT NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
 
 
-LUAMOD_API int (luaopen_classSupport)(struct lua_State *L);
+LUAMOD_API int luaopen_classSupport(struct lua_State *L);
 
 __END_DECLS

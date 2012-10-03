@@ -11,8 +11,6 @@
 
 #include "LuaObjCBase.h"
 
-#define LUA_NSOBJECT_METATABLENAME "NSObject"
-
 __BEGIN_DECLS
 
 VK_EXPORT int LuaObjCInternal_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);

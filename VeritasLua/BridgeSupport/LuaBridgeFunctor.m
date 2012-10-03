@@ -230,9 +230,7 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
             returnValue->_returnValueEncoding = NULL;
         }else
         {
-            char *dupString = malloc(sizeof(char) * strlen(returnEncoding));
-            strcpy(dupString, returnEncoding);
-            returnValue->_returnValueEncoding = dupString;
+            returnValue->_returnValueEncoding = strdup(returnEncoding);
             returnValue->_returnType = _luaBridgeInternal_typeOfEncoding(returnEncoding);
             returnValue->_returnValue = malloc(returnValue->_returnType->size);
             returnValue->_returnCount = 1;

@@ -56,8 +56,9 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
     if (serviceBlock && action)
     {
         serviceBlock = Block_copy(serviceBlock);
-        [_registeredProcessors setObject: serviceBlock
-                                  forKey: action];
+        
+        CFDictionarySetValue((CFMutableDictionaryRef)_registeredProcessors, action, serviceBlock);
+        
         Block_release(serviceBlock);
     }
 }
@@ -66,7 +67,8 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
             arguments: (NSArray *)arguments
          withCallback: (ERGeneralCallbackBlock)callbackBlock
 {
-    ERGeneralServiceBlock serviceBlock = [_registeredProcessors objectForKey: action];
+    ERGeneralServiceBlock serviceBlock = CFDictionaryGetValue((CFDictionaryRef)_registeredProcessors, action);
+   
     if (serviceBlock)
     {
         @autoreleasepool
@@ -86,12 +88,7 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 + (void)registerService: (Class)serviceClass
 {
     @autoreleasepool
-    {
-        if (!__resgiteredServices)
-        {
-            [self load];
-        }
-        
+    {        
         id<ERGeneralMetaService> service = [[serviceClass alloc] init];
         id serviceID = [serviceClass identity];
         
@@ -121,16 +118,16 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
         {
             //has registered, so just call it
             //
-            if ([__resgiteredServices objectForKey: serviceID])
+            if (CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID))
             {
                 block(nil, [NSArray arrayWithObject: serviceID]);
+                
             }else
             {
                 block = Block_copy(block);
                 
-                //CFDictionarySetValue((CFMutableDictionaryRef)__registeredCallbackOnDidLoadOfService, serviceID, block);
-                [__registeredCallbackOnDidLoadOfService setObject: block
-                                                           forKey: serviceID];
+                CFDictionaryAddValue((CFMutableDictionaryRef)__registeredCallbackOnDidLoadOfService, serviceID, block);
+
                 Block_release(block);
             }
         }

@@ -12,10 +12,7 @@
 
 #import "LuaObjCInternal.h"
 
-#import "LuaObjCCacheTable.h"
 #import "lauxlib.h"
-
-#import <objc/runtime.h>
 
 id luaObjC_checkNSObject(lua_State *L, int index)
 {
@@ -27,8 +24,7 @@ id luaObjC_checkNSObject(lua_State *L, int index)
         }   
         case LUA_TSTRING:
         {
-            return [NSString stringWithCString: lua_tostring(L, index)
-                                      encoding: NSUTF8StringEncoding];
+            return [NSString stringWithUTF8String: lua_tostring(L, index)];
         }
         case LUA_TUSERDATA:
         {

@@ -8,17 +8,9 @@
 
 #import "LuaObjCProperty.h"
 
-#import "LuaObjCBlock.h"
-
 #import "LuaObjCClass.h"
 
-#import "LuaObjCInternal.h"
-
-#import "LuaCGGeometry.h"
-
 #import "LuaObjCAuxiliary.h"
-
-#import "lauxlib.h"
 
 #import "LuaObjCTypeEncoding.h"
 
@@ -244,7 +236,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
                 forKey: [NSValue valueWithPointer: selectorOfGet]];
 }
 
-int LuaIMPAddPropertyToClass(lua_State *L)
+int LuaIMPAddPropertyToClass(struct lua_State *L)
 {
     
     const char* className = luaObjC_checkString(L, 1);

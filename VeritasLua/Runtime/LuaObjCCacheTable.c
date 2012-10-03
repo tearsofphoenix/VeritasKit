@@ -7,9 +7,10 @@
 //
 
 #include "LuaObjCCacheTable.h"
+
 #include "lua.h"
+
 #include <stdbool.h>
-#include <dispatch/dispatch.h>
 
 static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool isWeakTable)
 {

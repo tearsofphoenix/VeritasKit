@@ -8,11 +8,8 @@
 
 #import "LuaObjCInternal.h"
 
-#import "LuaObjCClass.h"
-
-#import "LuaObjCAuxiliary.h"
 #import "lauxlib.h"
-#import "LuaBridgeSupport.h"
+
 #import <objc/runtime.h>
 
 int LuaObjCInternal_loadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)

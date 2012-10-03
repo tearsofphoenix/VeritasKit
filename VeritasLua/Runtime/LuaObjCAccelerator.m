@@ -10,12 +10,12 @@
 
 #import "LuaObjCStructs.h"
 
-#import "LuaObjCClass.h"
-
 #import "LuaObjCAuxiliary.h"
 
 #import "LuaObjCInternal.h"
+
 #import "lua.h"
+
 #import <objc/message.h>
 
 int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
@@ -123,15 +123,12 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
 
 #pragma mark - source
 
-static NSMutableDictionary *__preAccelerators = nil;
+static CFMutableDictionaryRef __preAccelerators = nil;
+static const CFIndex __preAcceleratorCapacity = 1024;
 
 static inline void LuaObjCAcceleratorInitialize(void)
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, (^
-                               {
-                                   __preAccelerators = [[NSMutableDictionary alloc] init];                                   
-                               }));
+    __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), __preAcceleratorCapacity, NULL, NULL);
 }
 
 void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
@@ -141,12 +138,11 @@ void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAccelerator
         LuaObjCAcceleratorInitialize();
     }
     
-    [__preAccelerators setObject: [NSValue valueWithPointer: imp]
-                          forKey: NSStringFromSelector(selector)];
+    CFDictionaryAddValue(__preAccelerators, selector, imp);
 }
 
 LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL selector)
 {
-    return [[__preAccelerators objectForKey: NSStringFromSelector(selector)] pointerValue];
+    return CFDictionaryGetValue(__preAccelerators, selector);
 }
 

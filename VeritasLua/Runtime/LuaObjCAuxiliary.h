@@ -8,6 +8,8 @@
 
 #include "LuaObjCBase.h"
 
+#define LUA_NSOBJECT_METATABLENAME "NSObject"
+
 __BEGIN_DECLS
 
 VK_EXPORT id luaObjC_checkNSObject(struct lua_State *L, int index);
