@@ -69,7 +69,7 @@
 		E13C8E6616168B0C00A72BEF /* LuaBridgeSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6D16168B0C00A72BEF /* LuaBridgeSupport.m */; };
 		E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */; };
 		E13C8E6816168B0C00A72BEF /* LuaBridgeSupportFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */; };
-		E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* ERGeneralMetaService.h */; settings = {ATTRIBUTES = (); }; };
 		E13C8E6D16168B0C00A72BEF /* ERGeneralMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7516168B0C00A72BEF /* ERGeneralMetaService.m */; };
 		E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7616168B0C00A72BEF /* LuaEngineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6F16168B0C00A72BEF /* LuaEngineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7716168B0C00A72BEF /* LuaEngineService.m */; };
@@ -197,9 +197,9 @@
 		E13C8F0316168B0D00A72BEF /* lzio.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1C16168B0C00A72BEF /* lzio.h */; };
 		E13C8F0416168B0D00A72BEF /* LuaNSObjectSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1E16168B0C00A72BEF /* LuaNSObjectSupport.h */; };
 		E13C8F0516168B0D00A72BEF /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E1F16168B0C00A72BEF /* LuaNSObjectSupport.m */; };
-		E13C8F0616168B0D00A72BEF /* LuaObjCAccelerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2016168B0C00A72BEF /* LuaObjCAccelerator.h */; };
+		E13C8F0616168B0D00A72BEF /* LuaObjCAccelerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2016168B0C00A72BEF /* LuaObjCAccelerator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8F0716168B0D00A72BEF /* LuaObjCAccelerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2116168B0C00A72BEF /* LuaObjCAccelerator.m */; };
-		E13C8F0816168B0D00A72BEF /* LuaObjCAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2216168B0C00A72BEF /* LuaObjCAuxiliary.h */; };
+		E13C8F0816168B0D00A72BEF /* LuaObjCAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2216168B0C00A72BEF /* LuaObjCAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8F0916168B0D00A72BEF /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2316168B0C00A72BEF /* LuaObjCAuxiliary.m */; };
 		E13C8F0A16168B0D00A72BEF /* LuaObjCBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2416168B0C00A72BEF /* LuaObjCBlock.h */; };
 		E13C8F0B16168B0D00A72BEF /* LuaObjCBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2516168B0C00A72BEF /* LuaObjCBlock.m */; };
@@ -993,8 +993,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D834CD1615AAEF00C9F07C /* VeritasVM.h in Headers */,
-				E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */,
+				E13C8F0816168B0D00A72BEF /* LuaObjCAuxiliary.h in Headers */,
+				E13C8F0616168B0D00A72BEF /* LuaObjCAccelerator.h in Headers */,
 				E13C8E6E16168B0C00A72BEF /* LuaEngineService.h in Headers */,
+				E13C8E6C16168B0C00A72BEF /* ERGeneralMetaService.h in Headers */,
 				E13C8E6116168B0C00A72BEF /* LuaBridgeFunctor.h in Headers */,
 				E13C8E6316168B0C00A72BEF /* LuaBridgeInfo.h in Headers */,
 				E13C8E6516168B0C00A72BEF /* LuaBridgeSupport.h in Headers */,
@@ -1060,8 +1062,6 @@
 				E13C8F0116168B0D00A72BEF /* lvm.h in Headers */,
 				E13C8F0316168B0D00A72BEF /* lzio.h in Headers */,
 				E13C8F0416168B0D00A72BEF /* LuaNSObjectSupport.h in Headers */,
-				E13C8F0616168B0D00A72BEF /* LuaObjCAccelerator.h in Headers */,
-				E13C8F0816168B0D00A72BEF /* LuaObjCAuxiliary.h in Headers */,
 				E13C8F0A16168B0D00A72BEF /* LuaObjCBlock.h in Headers */,
 				E13C8F0D16168B0D00A72BEF /* LuaObjCCacheTable.h in Headers */,
 				E13C8F0E16168B0D00A72BEF /* LuaObjCClass.h in Headers */,

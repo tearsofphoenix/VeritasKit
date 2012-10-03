@@ -7,3 +7,5 @@
 //
 
 #import <VeritasVM/LuaEngineService.h>
+#import <VeritasVM/LuaObjCAccelerator.h>
+#import <VeritasVM/LuaObjCAuxiliary.h>

@@ -99,3 +99,29 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject)
     
     return 1;
 }
+
+int LuaObjCLoadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)
+{
+    NSUInteger iLooper = 0;
+    luaL_Reg reg;
+    for (iLooper = 0; iLooper < count; ++iLooper)
+    {
+        reg = functions[iLooper];
+        if (reg.func && reg.name)
+        {
+            lua_pushcfunction(L, reg.func);
+            lua_setglobal(L, reg.name);
+        }
+    }
+    
+    return 0;
+}
+
+void LuaObjC_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
+{
+    luaL_newmetatable(L, name);
+    lua_pushvalue(L, -1);  /* push metatable */
+    lua_setfield(L, -2, "__index");  /* metatable.__index = metatable */
+    luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
+    lua_pop(L, 1);  /* pop new metatable */
+}

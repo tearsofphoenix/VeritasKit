@@ -8,7 +8,7 @@
 #import "LuaCGAffineTransform.h"
 #import "lua.h"
 #import "lauxlib.h"
-#import "LuaObjCInternal.h"
+#import "LuaObjCAuxiliary.h"
 #import "LuaCGGeometry.h"
 #import "LuaObjCFrameworkFunctions.h"
 
@@ -228,7 +228,7 @@ static const luaL_Reg __luaCGAffineTransformMetaMethods[] =
 
 int LuaOpenCGAffineTransform(lua_State *L)
 {
-    LuaObjCInternal_createMetatable(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
+    LuaObjC_createMetatable(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
 
     luaObjC_loadGlobalFunctions(L, __luaCGAffineTransformAPIs);
     

@@ -10,7 +10,7 @@
 
 #import "lauxlib.h"
 
-#import "LuaObjCInternal.h"
+#import "LuaObjCAuxiliary.h"
 
 #import <mach/mach_time.h>
 

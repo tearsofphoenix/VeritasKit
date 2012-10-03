@@ -8,7 +8,7 @@
 #import "LuaCATransform3D.h"
 #import "lua.h"
 #import "lauxlib.h"
-#import "LuaObjCInternal.h"
+#import "LuaObjCAuxiliary.h"
 #import "LuaCGAffineTransform.h"
 #import "LuaObjCFrameworkFunctions.h"
 
@@ -303,7 +303,7 @@ static const luaL_Reg __LuaCATransform3DAPIs[] =
 
 int LuaOpenCATransform3D(lua_State *L)
 {
-    LuaObjCInternal_createMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
+    LuaObjC_createMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
     
     luaObjC_loadGlobalFunctions(L, __LuaCATransform3DAPIs);
     

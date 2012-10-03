@@ -283,7 +283,7 @@ int luaObjC_openNSObjectSupport(lua_State *L)
 {
     luaObjC_loadGlobalFunctions(L, luaNS_functions);
     luaL_newlib(L, luaNS_functions);
-    LuaObjCInternal_createMetatable(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
+    LuaObjC_createMetatable(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
     return 0;
 }
 

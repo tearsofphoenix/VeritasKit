@@ -188,9 +188,9 @@ static const luaL_Reg __LuaUIOffsetMetaMethods[] =
 
 int LuaOpenUIGeometry(lua_State *L)
 {
-    LuaObjCInternal_createMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
+    LuaObjC_createMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
 
-    LuaObjCInternal_createMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
+    LuaObjC_createMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
 
     luaObjC_loadGlobalFunctions(L, __LuaUIGeometryAPIs);
 

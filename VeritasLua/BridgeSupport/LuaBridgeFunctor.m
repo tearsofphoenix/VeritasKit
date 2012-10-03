@@ -187,7 +187,7 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
 int luaObjCInternal_openBridgeFunctor(struct lua_State *L)
 {
     luaL_newlib(L, __LuaObjCBridgeSupportFunctions);
-    LuaObjCInternal_createMetatable(L, LuaBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
+    LuaObjC_createMetatable(L, LuaBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
     return 1;
 }
 

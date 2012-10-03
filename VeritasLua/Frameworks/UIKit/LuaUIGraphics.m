@@ -8,7 +8,7 @@
 #import "LuaUIGraphics.h"
 #import "lua.h"
 #import "lauxlib.h"
-#import "LuaObjCInternal.h"
+#import "LuaObjCAuxiliary.h"
 #import "LuaCGGeometry.h"
 
 static int lua_UIGraphicsBeginImageContext(lua_State *L)

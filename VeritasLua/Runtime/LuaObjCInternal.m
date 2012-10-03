@@ -12,24 +12,6 @@
 
 #import <objc/runtime.h>
 
-int LuaObjCInternal_loadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)
-{
-    NSUInteger iLooper = 0;
-    luaL_Reg reg;
-    for (iLooper = 0; iLooper < count; ++iLooper) 
-    {
-        reg = functions[iLooper];
-        if (reg.func && reg.name)
-        {
-            lua_pushcfunction(L, reg.func);
-            lua_setglobal(L, reg.name);
-        }
-    }
-    
-    return 0;
-}
-
-
 void luaObjC_throwExceptionIfError(lua_State *L)
 {
     const char *msg = lua_tostring(L, -1);
@@ -69,6 +51,7 @@ void objc_dumpClass(Class theClass)
         {
             printf("\t\tname:%s encoding:%s\n", (const char*)method_getName(methodList[i]), method_getTypeEncoding(methodList[i]));
         }
+        
         //free(methodList);
         
         unsigned int classPropertyCount = 0;
@@ -78,6 +61,7 @@ void objc_dumpClass(Class theClass)
         {
             printf("\t\tname:%s attributes:%s\n", property_getName(properties[i]), property_getAttributes(properties[i]));
         }
+        
         //free(properties);
     }
 }
@@ -148,15 +132,6 @@ const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
         } 
     }
     return charLooper;
-}
-
-void LuaObjCInternal_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
-{
-    luaL_newmetatable(L, name);
-    lua_pushvalue(L, -1);  /* push metatable */
-    lua_setfield(L, -2, "__index");  /* metatable.__index = metatable */
-    luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
-    lua_pop(L, 1);  /* pop new metatable */
 }
 
 NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector)

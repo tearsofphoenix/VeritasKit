@@ -22,4 +22,11 @@ VK_EXPORT NSInteger luaObjC_checkInteger(struct lua_State *L, int index);
 
 #define luaObjC_pushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
 
+
+VK_EXPORT int LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
+
+#define luaObjC_loadGlobalFunctions(L, f) LuaObjCLoadGlobalFunctions(L, f, sizeof(f) / sizeof(f[0]))
+
+VK_EXPORT void LuaObjC_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
+
 __END_DECLS
