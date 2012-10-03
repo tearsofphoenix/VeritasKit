@@ -32,7 +32,7 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
         __registeredCallbackOnDidLoadOfService = [[NSMutableDictionary alloc] init];
     }
     
-    [ERGeneralMetaService registerService: self];
+    [self registerService: self];
 }
 
 - (void)initServiceCallbackFunctions
