@@ -146,7 +146,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
     
-    luaObjC_loadGlobalFunctions(parserStateRef, __compileTimeFunctions);
+    LuaObjCLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
     LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
     
     internal->parserState = parserStateRef;

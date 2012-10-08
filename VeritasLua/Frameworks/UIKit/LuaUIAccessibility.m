@@ -25,6 +25,6 @@ static const luaL_Reg __LuaUIAccessibilityAPIs[] =
 
 int LuaOpenUIAccessibility(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __LuaUIAccessibilityAPIs);
+    LuaObjCLoadGlobalFunctions(L, __LuaUIAccessibilityAPIs);
     return 0;
 }

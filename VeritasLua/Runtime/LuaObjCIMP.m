@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCIMP.h"
 
 #import "LuaObjCBlock.h"
 

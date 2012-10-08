@@ -21,7 +21,7 @@ id luaObjC_checkNSObject(lua_State *L, int index)
         case LUA_TNIL:
         {
             return nil;
-        }   
+        }
         case LUA_TSTRING:
         {
             return [NSString stringWithUTF8String: lua_tostring(L, index)];
@@ -29,7 +29,7 @@ id luaObjC_checkNSObject(lua_State *L, int index)
         case LUA_TUSERDATA:
         {
             void* obj = luaL_testudata(L, index, LUA_NSOBJECT_METATABLENAME);
-
+            
             return LuaObjectGetObject(obj);
         }
         default:
@@ -54,7 +54,7 @@ NSInteger luaObjC_checkInteger(lua_State *L, int index)
         case LUA_TNUMBER:
         {
             return lua_tointeger(L, index);
-        }   
+        }
         default:
         {
             lua_error(L);
@@ -70,7 +70,7 @@ const char* luaObjC_checkString(lua_State *L, int index)
         case LUA_TNIL:
         {
             return NULL;
-        }   
+        }
         case LUA_TSTRING:
         {
             return lua_tostring(L, index);
@@ -88,11 +88,11 @@ const char* luaObjC_checkString(lua_State *L, int index)
 }
 
 int luaObjC_pushNSObject(lua_State *L, id nsObject)
-{    
+{
     if (nsObject)
     {
         LuaObjectCreate(L, nsObject);
-    }else 
+    }else
     {
         lua_pushnil(L);
     }
@@ -100,7 +100,22 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject)
     return 1;
 }
 
-int LuaObjCLoadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInteger count)
+void LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
+{
+    if (functions)
+    {
+        luaL_Reg regLooper;
+        NSInteger iLooper = 0;
+        while ((regLooper = functions[iLooper], regLooper.func && regLooper.name))
+        {
+            lua_pushcfunction(L, regLooper.func);
+            lua_setglobal(L, regLooper.name);
+            ++iLooper;
+        }
+    }
+}
+
+void LuaObjCLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], NSUInteger count)
 {
     NSUInteger iLooper = 0;
     luaL_Reg reg;
@@ -113,8 +128,6 @@ int LuaObjCLoadGlobalFunctions(lua_State *L, const luaL_Reg functions[], NSUInte
             lua_setglobal(L, reg.name);
         }
     }
-    
-    return 0;
 }
 
 void LuaObjC_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
