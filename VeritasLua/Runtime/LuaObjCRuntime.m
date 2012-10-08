@@ -256,7 +256,7 @@ static int luaObjC_classPredeclearation(lua_State *L)
     
     for (int iLooper = 1; iLooper < argCount + 1; ++iLooper)
     {
-        LuaObjCTypeEncodingAddPredeclearedClass([NSString stringWithUTF8String: lua_tostring(L, iLooper)]);
+        LuaObjCTypeEncodingAddPredeclearedClass(lua_tostring(L, iLooper));
     }
     return 0;
 }

@@ -10,11 +10,9 @@
 
 __BEGIN_DECLS
 
-VK_EXPORT NSString * LuaObjCTypeEncodingOfType(const char *typeName);
+VK_EXPORT const char * LuaObjCTypeEncodingOfType(const char *typeName);
 
-VK_EXPORT NSString * LuaObjCTypeEncodingOfTypeName(NSString *typeName);
-
-VK_EXPORT void LuaObjCTypeEncodingAddPredeclearedClass(NSString *className);
+VK_EXPORT void LuaObjCTypeEncodingAddPredeclearedClass(const char *className);
 
 VK_EXPORT void LuaObjCTypeEncodingInitialize(void);
 

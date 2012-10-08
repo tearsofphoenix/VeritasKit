@@ -138,7 +138,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     }
     
     objc_property_attribute_t type = { "T", "@" };
-    const char* typeEncoding = [LuaObjCTypeEncodingOfType(typeName) UTF8String];
+    const char* typeEncoding = LuaObjCTypeEncodingOfType(typeName);
     type.value =  typeEncoding;
     
     

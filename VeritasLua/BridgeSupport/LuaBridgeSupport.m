@@ -36,7 +36,7 @@ static NSMutableDictionary *__registeredFrameworks = nil;
         if (error)
         {
 #if DEBUG
-            NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
+            //NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
 #endif
         }else
         {
