@@ -29,3 +29,5 @@ struct lua_State;
 - (void)getLengthOfObjectWithState: (struct lua_State *)state;
 
 @end
+
+

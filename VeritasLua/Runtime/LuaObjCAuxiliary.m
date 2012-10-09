@@ -14,6 +14,8 @@
 
 #import "lauxlib.h"
 
+const char * LUA_NSOBJECT_METATABLENAME = "com.veritas.vm.meta.NSObject";
+
 id luaObjC_checkNSObject(lua_State *L, int index)
 {
     switch (lua_type(L, index))

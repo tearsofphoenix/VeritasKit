@@ -47,6 +47,17 @@ VK_EXPORT int LuaObjCMessageSendSuper(struct lua_State *L);
 
 VK_EXPORT int LuaIMPAddPropertyToClass(struct lua_State *L);
 
+/*
+ * only for the veritas virtual machine
+ */
+
+//accelerator for methods that have no argument
+//
+VK_EXPORT int LuaObjCAcceleratorForNoArgument(struct lua_State *L,
+                                              const char* returnType,
+                                              IMP impRef,
+                                              id obj,
+                                              SEL selector);
 
 __END_DECLS
 

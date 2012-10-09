@@ -410,7 +410,7 @@ void LuaCall(NSString *sourceCode,
              void(^completion)(struct lua_State *)
              )
 {
-    [(LuaEngineService *)[ERGeneralMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
+    [(LuaEngineService *)[ERMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
                                                                                        inSourceCode: sourceCode
                                                                                   argumentPassBlock: start
                                                                                       argumentCount: argumentCount

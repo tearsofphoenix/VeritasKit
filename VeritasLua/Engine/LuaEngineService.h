@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ERGeneralMetaService.h"
+#import "ERMetaService.h"
 
 #include "LuaObjCBase.h"
 
-@interface LuaEngineService : ERGeneralMetaService
+@interface LuaEngineService : ERMetaService
 
 @end
 

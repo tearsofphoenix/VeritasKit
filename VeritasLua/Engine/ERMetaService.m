@@ -1,14 +1,14 @@
 //
-//  ERGeneralMetaService.m
+//  ERMetaService.m
 //  BoCPress
 //
 //  Created by tearsofphoenix on 4/4/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ERGeneralMetaService.h"
+#import "ERMetaService.h"
 
-@interface ERGeneralMetaService ()
+@interface ERMetaService ()
 {
 @private
     NSMutableDictionary *_registeredProcessors;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation ERGeneralMetaService
+@implementation ERMetaService
 
 static NSMutableDictionary *__resgiteredServices = nil;
 static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
@@ -89,7 +89,7 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 {
     @autoreleasepool
     {        
-        id<ERGeneralMetaService> service = [[serviceClass alloc] init];
+        id<ERMetaService> service = [[serviceClass alloc] init];
         id serviceID = [serviceClass identity];
         
         CFDictionarySetValue((CFMutableDictionaryRef)__resgiteredServices, serviceID, service);
@@ -104,7 +104,7 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
     }
 }
 
-+ (id<ERGeneralMetaService>)serviceByID: (NSString *)serviceID
++ (id<ERMetaService>)serviceByID: (NSString *)serviceID
 {
     return [__resgiteredServices objectForKey: serviceID];
 }

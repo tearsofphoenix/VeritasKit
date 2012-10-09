@@ -8,7 +8,7 @@
 
 #include "LuaObjCBase.h"
 
-#define LUA_NSOBJECT_METATABLENAME "NSObject"
+extern const char * LUA_NSOBJECT_METATABLENAME;
 
 __BEGIN_DECLS
 

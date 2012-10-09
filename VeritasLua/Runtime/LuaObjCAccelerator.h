@@ -22,8 +22,4 @@ VK_EXPORT void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCA
 
 VK_EXPORT LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL selector);
 
-//accelerator for methods that have no argument
-//
-VK_EXPORT int LuaObjCAcceleratorForNoArgument(struct lua_State *L, const char* returnType, IMP impRef, id obj, SEL selector);
-
 __END_DECLS

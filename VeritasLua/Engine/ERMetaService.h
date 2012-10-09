@@ -1,5 +1,5 @@
 //
-//  ERGeneralMetaService.h
+//  ERMetaService.h
 //  BoCPress
 //
 //  Created by tearsofphoenix on 4/4/12.
@@ -9,7 +9,7 @@
 typedef void (^ERGeneralCallbackBlock)(NSString *action, NSArray *arguments);
 typedef void (^ERGeneralServiceBlock)(ERGeneralCallbackBlock callback, NSString *action, NSArray *arguments);
 
-@protocol ERGeneralMetaService <NSObject>
+@protocol ERMetaService <NSObject>
 
 + (id)identity;
 
@@ -24,11 +24,11 @@ typedef void (^ERGeneralServiceBlock)(ERGeneralCallbackBlock callback, NSString 
 
 @end
 
-@interface ERGeneralMetaService : NSObject<ERGeneralMetaService>
+@interface ERMetaService : NSObject<ERMetaService>
 
 + (void)registerService: (Class)serviceClass;
 
-+ (id<ERGeneralMetaService>)serviceByID: (NSString *)serviceID;
++ (id<ERMetaService>)serviceByID: (NSString *)serviceID;
 
 + (void)registerBlock: (ERGeneralCallbackBlock)block
    onDidLoadOfService: (id)serviceID;
@@ -39,7 +39,7 @@ extern NSString * const ERGeneralMetaServiceID;
 
 static inline void ERSC(NSString *serviceID, NSString *action, ERGeneralCallbackBlock callback, NSArray *arguments)
 {
-    [[ERGeneralMetaService serviceByID: serviceID] callForAction: action
+    [[ERMetaService serviceByID: serviceID] callForAction: action
                                                       arguments: arguments
                                                    withCallback: callback];
 }
