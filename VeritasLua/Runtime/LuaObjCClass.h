@@ -18,9 +18,9 @@ VK_EXPORT void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, co
 
 //register class
 //
-VK_EXPORT Class LuaClassGetRegisteredClassByName(NSString *className);
+VK_EXPORT Class LuaClassGetRegisteredClassByName(const char *className);
 
-VK_EXPORT void LuaClassRegister(struct lua_State *L, Class theClass, NSString *className);
+VK_EXPORT void LuaClassRegister(struct lua_State *L, Class theClass, const char *className);
 
 VK_EXPORT struct lua_State *LuaClassGetLuaState(Class theClass);
 

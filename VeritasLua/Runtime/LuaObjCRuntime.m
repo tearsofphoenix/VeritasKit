@@ -44,9 +44,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
 {
     const char *newClassName = lua_tostring(L, 1);
     const char *superClassName = lua_tostring(L, 2);
-    
-    NSString *internalClassName = [NSString stringWithUTF8String: newClassName];
-        
+            
     //super Class must be registered in runtime
     //
     Class superClass = objc_getClass(superClassName);
@@ -57,7 +55,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
         return 0;
     }
     
-    Class registeredClass = LuaClassGetRegisteredClassByName(internalClassName);
+    Class registeredClass = LuaClassGetRegisteredClassByName(newClassName);
     //has registered, put it into state
     //
     if (registeredClass)
@@ -69,7 +67,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0); 
         
-        LuaClassRegister(L, theNewClass, internalClassName);
+        LuaClassRegister(L, theNewClass, newClassName);
         luaObjC_pushNSObject(L, theNewClass);
     }
     return 1;
@@ -240,7 +238,7 @@ static int luaObjC_registerClassPair(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);
 
-    Class theClass = LuaClassGetRegisteredClassByName([NSString stringWithUTF8String: className]);
+    Class theClass = LuaClassGetRegisteredClassByName(className);
     
     if (theClass)
     {

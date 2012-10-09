@@ -16,4 +16,6 @@ VK_EXPORT void LuaObjCTypeEncodingAddPredeclearedClass(const char *className);
 
 VK_EXPORT void LuaObjCTypeEncodingInitialize(void);
 
+VK_EXPORT Boolean _luaObjCCStringEqual(const void *value1, const void *value2);
+
 __END_DECLS

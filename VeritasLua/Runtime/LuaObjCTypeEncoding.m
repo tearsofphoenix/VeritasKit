@@ -59,7 +59,7 @@ const char * LuaObjCTypeEncodingOfType(const char *typeName)
     return typeEncoding;
 }
 
-static Boolean _luaObjCCStringEqual(const void *value1, const void *value2)
+Boolean _luaObjCCStringEqual(const void *value1, const void *value2)
 {
     const char *str1 = value1;
     const char *str2 = value2;

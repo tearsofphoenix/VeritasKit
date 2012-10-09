@@ -250,7 +250,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
 {
     int argCount = lua_gettop(L);
 
-    NSString * className = [NSString stringWithUTF8String: lua_tostring(L, 1)];
+    const char * className = lua_tostring(L, 1);
     const char* selectorName = luaObjC_checkString(L, 2);
 
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
@@ -342,7 +342,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
             
         }else
         {
-            printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", [className UTF8String], (const char*)sel, typeEncodingCString, returnType);
+            printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", className, (const char*)sel, typeEncodingCString, returnType);
         }
     }
 

@@ -22,7 +22,9 @@
 
 @class LuaObjectObserver;
 
-static NSMutableDictionary *__LuaObjC_ClassDictionary = nil;
+static CFDictionaryKeyCallBacks __LuaObjC_ClassKeyCallbacks;
+
+static CFMutableDictionaryRef __LuaObjC_ClassDictionary = NULL;
 
 
 //key for lua state on Class
@@ -33,10 +35,9 @@ static char __LuaObjC_KeyForLuaState;
 //
 static char __LuaObjC_KeyForMethods;
 
-void LuaClassRegister(struct lua_State *L, Class theClass, NSString *className)
+void LuaClassRegister(struct lua_State *L, Class theClass, const char *className)
 {
-    [__LuaObjC_ClassDictionary setObject: theClass
-                                  forKey: className];
+    CFDictionaryAddValue(__LuaObjC_ClassDictionary, strdup(className), theClass);
     
     objc_setAssociatedObject(theClass, &__LuaObjC_KeyForLuaState, [NSValue valueWithPointer: L], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -54,9 +55,9 @@ struct lua_State *LuaClassGetLuaState(Class theClass)
     return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
 }
 
-Class LuaClassGetRegisteredClassByName(NSString *className)
+Class LuaClassGetRegisteredClassByName(const char *className)
 {
-    return [__LuaObjC_ClassDictionary objectForKey: className];
+    return CFDictionaryGetValue(__LuaObjC_ClassDictionary, className);
 }
 
 int luaopen_classSupport(lua_State *L)
@@ -64,8 +65,13 @@ int luaopen_classSupport(lua_State *L)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, (^
                                {
-                                   __LuaObjC_ClassDictionary = [[NSMutableDictionary alloc] init];
-                                   
+                                   __LuaObjC_ClassKeyCallbacks.equal = _luaObjCCStringEqual;
+                                   __LuaObjC_ClassKeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
+
+                                   __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,
+                                                                                         &__LuaObjC_ClassKeyCallbacks,
+                                                                                         &kCFTypeDictionaryValueCallBacks);
+
                                    LuaObjCTypeEncodingInitialize();
                                    LuaObjCCacheTableInitialize(L);
                                }));
