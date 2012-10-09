@@ -38,9 +38,10 @@ __BEGIN_DECLS
 
 extern void LuaCall(NSString *sourceCode,
                     NSString *functionName,
-                    ERGeneralCallbackBlock start,
+                    void(^start)(struct lua_State *),
                     int argumentCount,
                     int returnCount,
-                    ERGeneralCallbackBlock completion);
+                    void(^completion)(struct lua_State *)
+);
 
 __END_DECLS

@@ -262,10 +262,10 @@ static void LuaEngine_initialize(LuaEngineService *self,
 
 - (void)executeFunctionName: (NSString *)functionName
                inSourceCode: (NSString *) sourceCode
-          argumentPassBlock: (ERGeneralCallbackBlock)block
+          argumentPassBlock: (void(^)(struct lua_State *))block
               argumentCount: (int)argumentCount
                 returnCount: (int)returnCount
-                 completion: (ERGeneralCallbackBlock)completion
+                 completion: (void(^)(struct lua_State *))completion
 {
     LuaStateRef luaStateRef = _internal->luaState;
     lua_Integer status;
@@ -312,7 +312,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
                     printf("[LuaEngineService] warning: push arguments to `void'-arguments-function\n");
                 }
                 
-                block(nil, [NSArray arrayWithObject: [NSValue valueWithPointer: luaStateRef]]);
+                block(luaStateRef);
             }
             
             //execute
@@ -335,7 +335,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
                     printf("[LuaEngineService] warning: deal return value on `void'-return-function\n");
                 }
                 
-                completion(nil, [NSArray arrayWithObject: [NSValue valueWithPointer: luaStateRef]]);
+                completion(luaStateRef);
             }
             
             //clear up the return value
@@ -346,7 +346,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     {
         if (completion)
         {
-            completion(nil, [NSArray arrayWithObject: [NSValue valueWithPointer: luaStateRef]]);
+            completion(luaStateRef);
         }
         
         //clear up the return value
@@ -404,14 +404,15 @@ NSString * const LuaEngineDumpSourceCodeToFile = @"lua-engine.action.dumpSourceC
 
 void LuaCall(NSString *sourceCode,
              NSString *functionName,
-             ERGeneralCallbackBlock block,
+             void(^start)(struct lua_State *),
              int argumentCount,
              int returnCount,
-             ERGeneralCallbackBlock completion)
+             void(^completion)(struct lua_State *)
+             )
 {
     [(LuaEngineService *)[ERGeneralMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
                                                                                        inSourceCode: sourceCode
-                                                                                  argumentPassBlock: block
+                                                                                  argumentPassBlock: start
                                                                                       argumentCount: argumentCount
                                                                                         returnCount: returnCount
                                                                                          completion: completion];
