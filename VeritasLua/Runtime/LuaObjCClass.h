@@ -12,9 +12,11 @@ __BEGIN_DECLS
 
 //lua function <---> Objective-C method bridge
 //
-VK_EXPORT int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector);
+VK_EXPORT int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector, bool isClassMethod);
 
-VK_EXPORT void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName);
+//Notice: when add Class-Method to theClass, you just pass the class itself instead of the meta class
+//
+VK_EXPORT void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod);
 
 //register class
 //

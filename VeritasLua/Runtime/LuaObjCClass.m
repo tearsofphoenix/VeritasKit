@@ -34,6 +34,18 @@ static char __LuaObjC_KeyForLuaState;
 //key for methods of the Class defined by Objective-Lua
 //
 static char __LuaObjC_KeyForMethods;
+static char __LuaObjC_KeyForClassMethods;
+
+static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *key)
+{
+    CFMutableDictionaryRef classMethods = CFDictionaryCreateMutable(CFAllocatorGetDefault(),
+                                                                    16, &__LuaObjC_ClassKeyCallbacks, NULL);
+    
+    objc_setAssociatedObject(theClass, key, (id)classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    CFRelease(classMethods);
+
+}
 
 void LuaClassRegister(struct lua_State *L, Class theClass, const char *className)
 {
@@ -41,13 +53,11 @@ void LuaClassRegister(struct lua_State *L, Class theClass, const char *className
     
     objc_setAssociatedObject(theClass, &__LuaObjC_KeyForLuaState, [NSValue valueWithPointer: L], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    
-    NSMutableDictionary *classMethods = [[NSMutableDictionary alloc] init];
-
-    objc_setAssociatedObject(theClass, &__LuaObjC_KeyForMethods, classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    [classMethods release];
-    
+    //Notice: the Class has not been registerd into the objc runtime
+    //at this time
+    //
+    _luaClassAttachDictionaryToClass(theClass, &__LuaObjC_KeyForMethods);
+    _luaClassAttachDictionaryToClass(theClass, &__LuaObjC_KeyForClassMethods);
 }
 
 struct lua_State *LuaClassGetLuaState(Class theClass)
@@ -120,30 +130,46 @@ static char __LuaObjCAssociatedObjectKey;
 
 @end
 
-int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector)
+int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector, bool isClassMethod)
 {
     if (theClass && selector)
     {
-        NSDictionary *methods = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForMethods);
-        
-        NSNumber *closurID = [methods objectForKey: NSStringFromSelector(selector)];
-        if (closurID)
+        const void *key = &__LuaObjC_KeyForMethods;
+        if (isClassMethod)
         {
-            return [closurID intValue];
+            key = &__LuaObjC_KeyForClassMethods;
+        }
+        
+        CFDictionaryRef methods = (CFDictionaryRef)objc_getAssociatedObject(theClass, key);
+        if (CFDictionaryContainsKey(methods, selector))
+        {
+            return (int)CFDictionaryGetValue(methods, selector);
         }
     }
     
     return LuaObjCInvalidClouserID;
 }
 
-void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName)
+void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod)
 {
     if (theClass && selectorName)
     {
-        NSMutableDictionary *methods = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForMethods);
-        
-        [methods setObject: [NSNumber numberWithInt: clouserID]
-                    forKey: [NSString stringWithUTF8String: selectorName]];
+        const void *key = &__LuaObjC_KeyForMethods;
+        if (isClassMethod)
+        {
+            key = &__LuaObjC_KeyForClassMethods;
+        }
+
+        CFMutableDictionaryRef methods = (CFMutableDictionaryRef)objc_getAssociatedObject(theClass, key);
+        if (methods)
+        {
+            CFDictionaryAddValue(methods, strdup(selectorName), (const void *)clouserID);
+        }else
+        {
+            //this should never happen!
+            //
+            NSLog(@"warning: class %@ have no methods dictionary!", theClass);
+        }
     }
 }
 
