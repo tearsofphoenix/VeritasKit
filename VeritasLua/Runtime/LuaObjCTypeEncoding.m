@@ -45,18 +45,23 @@ static void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
 
 void LuaObjCTypeEncodingAddPredeclearedClass(const char *className)
 {
-    CFDictionaryAddValue((CFMutableDictionaryRef)__LuaObjC_TypeEncodingDictionary, strdup(className), @encode(id));
+    CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, strdup(className), @encode(id));
 }
 
 const char * LuaObjCTypeEncodingOfType(const char *typeName)
 {
-    const char *typeEncoding = CFDictionaryGetValue((CFDictionaryRef)__LuaObjC_TypeEncodingDictionary, typeName);
+    const char *typeEncoding = CFDictionaryGetValue(__LuaObjC_TypeEncodingDictionary, typeName);
     if (!typeEncoding)
     {
         typeEncoding = @encode(id);
     }
         
     return typeEncoding;
+}
+
+void _luaObjCFreeCallback(CFAllocatorRef allocator, const void *value)
+{
+    free((void *)value);
 }
 
 Boolean _luaObjCCStringEqual(const void *value1, const void *value2)
@@ -83,11 +88,14 @@ void LuaObjCTypeEncodingInitialize(void)
     dispatch_once(&onceToken, (^
                                {
                                    __LuaObjC_KeyCallbacks.equal = _luaObjCCStringEqual;
+                                   __LuaObjC_KeyCallbacks.release = _luaObjCFreeCallback;
                                    __LuaObjC_KeyCallbacks.hash = _luaObjCCStringHash;
                                    
                                    __LuaObjC_ValueCallbacks.equal = _luaObjCCStringEqual;
                                    
-                                   __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 3, &__LuaObjC_KeyCallbacks, &__LuaObjC_ValueCallbacks);
+                                   __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 3,
+                                                                                                &__LuaObjC_KeyCallbacks,
+                                                                                                &__LuaObjC_ValueCallbacks);
                                    _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
                                }));
 }

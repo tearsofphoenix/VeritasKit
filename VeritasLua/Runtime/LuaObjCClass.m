@@ -66,6 +66,7 @@ int luaopen_classSupport(lua_State *L)
     dispatch_once(&onceToken, (^
                                {
                                    __LuaObjC_ClassKeyCallbacks.equal = _luaObjCCStringEqual;
+                                   __LuaObjC_ClassKeyCallbacks.release = _luaObjCFreeCallback;
                                    __LuaObjC_ClassKeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
 
                                    __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,

@@ -18,4 +18,6 @@ VK_EXPORT void LuaObjCTypeEncodingInitialize(void);
 
 VK_EXPORT Boolean _luaObjCCStringEqual(const void *value1, const void *value2);
 
+VK_EXPORT void _luaObjCFreeCallback(CFAllocatorRef allocator, const void *value);
+
 __END_DECLS
