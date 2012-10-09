@@ -59,6 +59,6 @@ static const luaL_Reg __luaNSBundleAPIs[] =
 
 int LuaOpenNSBundle(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __luaNSBundleAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaNSBundleAPIs);
     return 0;
 }

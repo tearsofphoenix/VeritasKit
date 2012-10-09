@@ -24,5 +24,5 @@ VK_EXPORT	void *LuaObjCCacheTableGetObjectForKey(struct lua_State* L, const char
     
 __END_DECLS
 
-#endif /* LUA_OBJC_WEAK_TABLE_H */
+#endif 
 

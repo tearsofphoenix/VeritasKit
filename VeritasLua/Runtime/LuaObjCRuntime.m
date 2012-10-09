@@ -18,10 +18,6 @@
 
 #import "LuaCGGeometry.h"
 
-#import "LuaObjCMessage.h"
-
-#import "LuaObjCIMP.h"
-
 #import "LuaObjCAuxiliary.h"
 
 #import "LuaObjCExtensions.h"
@@ -43,8 +39,6 @@
 #import "LuaObjCCacheTable.h"
 
 #import "LuaNSObjectSupport.h"
-
-#import "LuaObjCProperty.h"
 
 static int luaObjC_createClassWithSuperClass(lua_State *L)
 {
@@ -262,7 +256,7 @@ static int luaObjC_classPredeclearation(lua_State *L)
     
     for (int iLooper = 1; iLooper < argCount + 1; ++iLooper)
     {
-        LuaObjCTypeEncodingAddPredeclearedClass([NSString stringWithUTF8String: lua_tostring(L, iLooper)]);
+        LuaObjCTypeEncodingAddPredeclearedClass(lua_tostring(L, iLooper));
     }
     return 0;
 }
@@ -348,7 +342,7 @@ int luaopen_foundation(lua_State *L)
 {    
     luaopen_classSupport(L);
 
-    luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);
+    LuaObjCLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
 
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
 

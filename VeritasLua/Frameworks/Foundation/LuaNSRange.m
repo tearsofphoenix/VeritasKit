@@ -148,7 +148,7 @@ int LuaOpenNSRange(lua_State *L)
 {
     LuaObjC_createMetatable(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
 
-    luaObjC_loadGlobalFunctions(L, __luaNSRangeAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaNSRangeAPIs);
     
     return 0;
 }

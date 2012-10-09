@@ -230,7 +230,7 @@ int LuaOpenCGAffineTransform(lua_State *L)
 {
     LuaObjC_createMetatable(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
 
-    luaObjC_loadGlobalFunctions(L, __luaCGAffineTransformAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGAffineTransformAPIs);
     
     return 0;
 }

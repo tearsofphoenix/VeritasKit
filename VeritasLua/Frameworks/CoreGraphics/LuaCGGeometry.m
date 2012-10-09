@@ -544,11 +544,11 @@ int LuaOpenCGGeometry(lua_State *L)
 
     LuaObjC_createMetatable(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
 
-    luaObjC_loadGlobalFunctions(L, __luaCGPointAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGPointAPIs);
     
-    luaObjC_loadGlobalFunctions(L, __luaCGSizeAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGSizeAPIs);
 
-    luaObjC_loadGlobalFunctions(L, __luaCGRectAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGRectAPIs);
 
     return 0;
 }

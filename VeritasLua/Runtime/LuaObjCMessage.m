@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCMessage.h"
-
 #import "LuaObjCClass.h"
 
 #import "LuaObjCInternal.h"

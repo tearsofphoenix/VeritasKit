@@ -23,6 +23,31 @@ VK_EXPORT const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* char
 
 VK_EXPORT NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector);
 
+/*
+ *   internal api of IMP imeplementation, you should never use them directly.
+ */
+
+VK_EXPORT int LuaIMPAddInstanceMethod(struct lua_State *L);
+
+VK_EXPORT int LuaIMPAddClassMethod(struct lua_State *L);
+
+/*
+ *   internal api of message send, you should never use them directly. they are only
+ *   used to construct the veritas virtual machine.
+ */
+
+VK_EXPORT int LuaObjCMessageSend(struct lua_State *L);
+
+VK_EXPORT int LuaObjCMessageSendSuper(struct lua_State *L);
+
+/*
+ *   internal api of @property syntax support, they are used to contribute the virtal machine only.
+ *   lua function <---> Objective-C property bridge
+ */
+
+VK_EXPORT int LuaIMPAddPropertyToClass(struct lua_State *L);
+
+
 __END_DECLS
 
 

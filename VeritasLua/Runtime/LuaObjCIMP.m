@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCIMP.h"
 
 #import "LuaObjCBlock.h"
 
@@ -260,9 +259,9 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     //return type
     //
     const char* typeLooper = luaObjC_checkString(L, 3);
-    const char* returnType = [LuaObjCTypeEncodingOfType(typeLooper) UTF8String];
+    const char* returnType = LuaObjCTypeEncodingOfType(typeLooper);
     
-    [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
+    [typeEncoding appendFormat: @"%s", LuaObjCTypeEncodingOfType(typeLooper)];
     
     //id && selector
     //
@@ -272,7 +271,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     {
         typeLooper = luaObjC_checkString(L, iLooper);
         
-        [typeEncoding appendString: LuaObjCTypeEncodingOfType(typeLooper)];
+        [typeEncoding appendFormat: @"%s", LuaObjCTypeEncodingOfType(typeLooper)];
     }
     
     

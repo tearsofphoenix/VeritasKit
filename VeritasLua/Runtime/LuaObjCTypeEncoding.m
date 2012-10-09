@@ -8,12 +8,15 @@
 
 #import "LuaObjCTypeEncoding.h"
 
-static NSMutableDictionary *__LuaObjC_TypeEncodingDictionary = nil;
+static CFDictionaryKeyCallBacks __LuaObjC_KeyCallbacks;
+static CFDictionaryValueCallBacks __LuaObjC_ValueCallbacks;
 
-static void _LuaObjC_initTypeEncodingDictionary(NSMutableDictionary *dict)
+static CFMutableDictionaryRef __LuaObjC_TypeEncodingDictionary = NULL;
+
+static void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
 {
-#define _AddTypeEncoding(dict, type) [dict setObject: [NSString stringWithUTF8String: @encode(type)] \
-forKey: [NSString stringWithUTF8String: #type]];
+    
+#define _AddTypeEncoding(dict, type) CFDictionaryAddValue(dict, #type, @encode(type))
     
     _AddTypeEncoding(dict, NSInteger);
     _AddTypeEncoding(dict, NSUInteger);
@@ -40,24 +43,38 @@ forKey: [NSString stringWithUTF8String: #type]];
 #undef _AddTypeEncoding
 }
 
-void LuaObjCTypeEncodingAddPredeclearedClass(NSString *className)
+void LuaObjCTypeEncodingAddPredeclearedClass(const char *className)
 {
-    CFDictionarySetValue((CFMutableDictionaryRef)__LuaObjC_TypeEncodingDictionary, className, [NSString stringWithUTF8String: @encode(id)]);
+    CFDictionaryAddValue((CFMutableDictionaryRef)__LuaObjC_TypeEncodingDictionary, strdup(className), @encode(id));
 }
 
-NSString * LuaObjCTypeEncodingOfTypeName(NSString *typeName)
+const char * LuaObjCTypeEncodingOfType(const char *typeName)
 {
-    NSString *typeEncoding = CFDictionaryGetValue((CFDictionaryRef)__LuaObjC_TypeEncodingDictionary, typeName);
+    const char *typeEncoding = CFDictionaryGetValue((CFDictionaryRef)__LuaObjC_TypeEncodingDictionary, typeName);
     if (!typeEncoding)
     {
-        typeEncoding = [NSString stringWithUTF8String: @encode(id)];
+        typeEncoding = @encode(id);
     }
+        
     return typeEncoding;
 }
 
-NSString * LuaObjCTypeEncodingOfType(const char *typeName)
+static Boolean _luaObjCCStringEqual(const void *value1, const void *value2)
 {
-    return LuaObjCTypeEncodingOfTypeName([NSString stringWithUTF8String: typeName]);
+    const char *str1 = value1;
+    const char *str2 = value2;
+
+    if(!strcmp(str1, str2))
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+static CFHashCode _luaObjCCStringHash(const void *value1)
+{
+    return strlen(value1);
 }
 
 void LuaObjCTypeEncodingInitialize(void)
@@ -65,7 +82,12 @@ void LuaObjCTypeEncodingInitialize(void)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, (^
                                {
-                                   __LuaObjC_TypeEncodingDictionary = [[NSMutableDictionary alloc] init];
+                                   __LuaObjC_KeyCallbacks.equal = _luaObjCCStringEqual;
+                                   __LuaObjC_KeyCallbacks.hash = _luaObjCCStringHash;
+                                   
+                                   __LuaObjC_ValueCallbacks.equal = _luaObjCCStringEqual;
+                                   
+                                   __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 3, &__LuaObjC_KeyCallbacks, &__LuaObjC_ValueCallbacks);
                                    _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
                                }));
 }
