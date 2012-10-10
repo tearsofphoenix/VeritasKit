@@ -39,10 +39,10 @@ static inline const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL 
 #pragma mark - property
 //getter
 #define __LuaObjC_propertyGetterWithType(Type, obj, selector)     Class objClass = object_getClass(obj);\
-                                                                const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);\
-                                                                Type returnValue;\
-                                                                 object_getInstanceVariable(obj, propertyName, (void **)&returnValue);\
-                                                                 return returnValue;
+const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);\
+Type returnValue;\
+object_getInstanceVariable(obj, propertyName, (void **)&returnValue);\
+return returnValue;
 
 static id __luaObjc_PropertyGetter(id obj, SEL selector)
 {
@@ -69,15 +69,15 @@ static CGFloat __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
     CGFloat returnValue = 0.0;
-
+    
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
     if (ivar)
     {
         returnValue = *((CGFloat *)obj + ivar_getOffset(ivar));
     }
-
+    
     return returnValue;
-
+    
     //__LuaObjC_propertyGetterWithType(CGFloat, obj, selector);
 }
 
@@ -86,17 +86,17 @@ static CGFloat __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
 //TODO
 //
 #define __LuaObjC_propertySetterWithType(Type, obj, selector, newValue)     Class objClass = object_getClass(obj);\
-                                                                  const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);\
-                                                                  Type value = newValue;\
-                                                                  object_setInstanceVariable(obj, propertyName, &value);
+const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);\
+Type value = newValue;\
+object_setInstanceVariable(obj, propertyName, &value);
 
 //TODO
 //
 static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
 {
-//    Class objClass = object_getClass(obj);
-//    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
-//    object_setInstanceVariable(obj, propertyName, newValue);
+    //    Class objClass = object_getClass(obj);
+    //    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
+    //    object_setInstanceVariable(obj, propertyName, newValue);
 }
 
 static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, CGFloat newValue)
@@ -210,28 +210,30 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
         printf("Failed add Property Setter:%s to Class:%s OK!\n", (const char*)selectorOfSet, className);
     }
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, (^
-                               {
-                                   NSMutableDictionary *setters = [[NSMutableDictionary alloc] init];
-                                   
-                                   objc_setAssociatedObject(theClass, &__LuaObjC_KeyForSetterProperties, setters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                                   
-                                   [setters release];
-                                   
-                                   
-                                   NSMutableDictionary *getters = [[NSMutableDictionary alloc] init];
-                                   
-                                   objc_setAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties, getters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                                   
-                                   [getters release];
-                               }));
-    
     NSMutableDictionary *setters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForSetterProperties);
+    if (!setters)
+    {
+        setters = [[NSMutableDictionary alloc] init];
+        
+        objc_setAssociatedObject(theClass, &__LuaObjC_KeyForSetterProperties, setters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        [setters release];
+    }
+    
+    NSMutableDictionary *getters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties);
+    if (!getters)
+    {
+        getters = [[NSMutableDictionary alloc] init];
+        
+        objc_setAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties, getters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        [getters release];
+        
+    }
+    
     [setters setObject: [NSString stringWithUTF8String: propertyName]
                 forKey: [NSValue valueWithPointer: selectorOfSet]];
     
-    NSMutableDictionary *getters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties);
     [getters setObject: [NSString stringWithUTF8String: propertyName]
                 forKey: [NSValue valueWithPointer: selectorOfGet]];
 }

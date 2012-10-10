@@ -44,7 +44,7 @@ static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *
     objc_setAssociatedObject(theClass, key, (id)classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     CFRelease(classMethods);
-
+    
 }
 
 void LuaClassRegister(struct lua_State *L, Class theClass, const char *className)
@@ -72,20 +72,17 @@ Class LuaClassGetRegisteredClassByName(const char *className)
 
 int luaopen_classSupport(lua_State *L)
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, (^
-                               {
-                                   __LuaObjC_ClassKeyCallbacks.equal = _luaObjCCStringEqual;
-                                   __LuaObjC_ClassKeyCallbacks.release = _luaObjCFreeCallback;
-                                   __LuaObjC_ClassKeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
-
-                                   __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,
-                                                                                         &__LuaObjC_ClassKeyCallbacks,
-                                                                                         &kCFTypeDictionaryValueCallBacks);
-
-                                   LuaObjCTypeEncodingInitialize();
-                                   LuaObjCCacheTableInitialize(L);
-                               }));
+    
+    __LuaObjC_ClassKeyCallbacks.equal = _luaObjCCStringEqual;
+    __LuaObjC_ClassKeyCallbacks.release = _luaObjCFreeCallback;
+    __LuaObjC_ClassKeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
+    
+    __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,
+                                                          &__LuaObjC_ClassKeyCallbacks,
+                                                          &kCFTypeDictionaryValueCallBacks);
+    
+    LuaObjCTypeEncodingInitialize();
+    LuaObjCCacheTableInitialize(L);
     
     return 1;
 }
@@ -159,7 +156,7 @@ void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* 
         {
             key = &__LuaObjC_KeyForClassMethods;
         }
-
+        
         CFMutableDictionaryRef methods = (CFMutableDictionaryRef)objc_getAssociatedObject(theClass, key);
         if (methods)
         {
