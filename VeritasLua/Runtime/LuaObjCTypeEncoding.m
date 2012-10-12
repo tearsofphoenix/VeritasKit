@@ -90,7 +90,7 @@ void LuaObjCTypeEncodingInitialize(void)
     
     __LuaObjC_ValueCallbacks.equal = _luaObjCCStringEqual;
     
-    __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 3,
+    __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
                                                                  &__LuaObjC_KeyCallbacks,
                                                                  &__LuaObjC_ValueCallbacks);
     _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);

@@ -145,7 +145,21 @@ static int luaObjC_indexCollection(lua_State *L)
 
 static int luaObjC_addObjectToCollection(lua_State *L)
 {
-    return 0;
+    id obj = luaObjC_checkNSObject(L, 1);
+    
+    if ([obj respondsToSelector: @selector(addObjectAtIndexWithState:)])
+    {
+        [obj addObjectAtIndexWithState: L];
+        return 0;
+    }else
+    {
+        NSException *exception = [NSException exceptionWithName: @"LuaObjCException"
+                                                         reason: @"unknow supported __index operation on object!"
+                                                       userInfo: nil];
+        @throw exception;
+        
+        return 0;
+    }
 }
 
 static int luaObjC_getLengthOfObject(lua_State *L)
@@ -175,7 +189,6 @@ static int luaObjC_concatCollection(lua_State *L)
 {
     id obj = luaObjC_checkNSObject(L, 1);
     
-    NSLog(@"in func: %s line: %d obj: %@", __func__, __LINE__, obj);
     if ([obj respondsToSelector: @selector(concatObjectWithState:)])
     {
         [obj concatObjectWithState: L];
