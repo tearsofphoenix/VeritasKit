@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <VeritasVM/LuaEngineService.h>
+#import <VeritasVM/VMachineService.h>
 #import <VeritasVM/LuaObjCAccelerator.h>
 #import <VeritasVM/LuaObjCAuxiliary.h>

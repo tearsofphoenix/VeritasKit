@@ -1,14 +1,14 @@
 //
-//  ERMetaService.m
+//  VMetaService.m
 //  BoCPress
 //
 //  Created by tearsofphoenix on 4/4/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ERMetaService.h"
+#import "VMetaService.h"
 
-@interface ERMetaService ()
+@interface VMetaService ()
 {
 @private
     NSMutableDictionary *_registeredProcessors;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation ERMetaService
+@implementation VMetaService
 
 static NSMutableDictionary *__resgiteredServices = nil;
 static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
@@ -50,7 +50,7 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
     return self;
 }
 
-- (void)registerBlock: (ERGeneralServiceBlock)serviceBlock
+- (void)registerBlock: (VServiceBlock)serviceBlock
             forAction: (NSString *)action
 {
     if (serviceBlock && action)
@@ -66,16 +66,13 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 
 - (void)callForAction: (NSString *)action
             arguments: (NSArray *)arguments
-         withCallback: (ERGeneralCallbackBlock)callbackBlock
+         withCallback: (VCallbackBlock)callbackBlock
 {
-    ERGeneralServiceBlock serviceBlock = CFDictionaryGetValue((CFDictionaryRef)_registeredProcessors, action);
-   
+    VServiceBlock serviceBlock = CFDictionaryGetValue((CFDictionaryRef)_registeredProcessors, action);
+    
     if (serviceBlock)
     {
-        @autoreleasepool
-        {
-            serviceBlock(callbackBlock, action, arguments);
-        }
+        serviceBlock(callbackBlock, action, arguments);
     }
 }
 
@@ -89,16 +86,16 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 + (void)registerService: (Class)serviceClass
 {
     @autoreleasepool
-    {        
-        id<ERMetaService> service = [[serviceClass alloc] init];
+    {
+        id<VMetaService> service = [[serviceClass alloc] init];
         id serviceID = [serviceClass identity];
         
         [__resgiteredServices setObject: service
                                  forKey: serviceID];
-                
+        
         [service release];
         
-        ERGeneralCallbackBlock block = [__registeredCallbackOnDidLoadOfService objectForKey: serviceID];
+        VCallbackBlock block = [__registeredCallbackOnDidLoadOfService objectForKey: serviceID];
         if (block)
         {
             block(nil, [NSArray arrayWithObject: serviceID]);
@@ -106,12 +103,12 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
     }
 }
 
-+ (id<ERMetaService>)serviceByID: (NSString *)serviceID
++ (id<VMetaService>)serviceByID: (NSString *)serviceID
 {
     return [__resgiteredServices objectForKey: serviceID];
 }
 
-+ (void)registerBlock: (ERGeneralCallbackBlock)block
++ (void)registerBlock: (VCallbackBlock)block
    onDidLoadOfService: (id)serviceID
 {
     @autoreleasepool
@@ -130,7 +127,7 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
                 
                 [__registeredCallbackOnDidLoadOfService setObject: block
                                                            forKey: serviceID];
-
+                
                 Block_release(block);
             }
         }

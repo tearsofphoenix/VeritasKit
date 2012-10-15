@@ -24,19 +24,13 @@
 __BEGIN_DECLS
 
 VK_EXPORT LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
-                                                         NSString *libName,
-                                                         lua_CFunction loadFunction,
-                                                         int numberOfUpvalues,
-                                                         NSArray *dependentLibNames);
-
-VK_EXPORT LuaLibraryInformation * LuaLibraryInformationMakeC(NSString *fetureID,
-                                                          const char *libName,
-                                                          lua_CFunction loadFunction,
-                                                          int numberOfUpvalues,
-                                                          NSArray *dependentLibNames);
+                                                            NSString *libName,
+                                                            lua_CFunction loadFunction,
+                                                            int numberOfUpvalues,
+                                                            NSArray *dependentLibNames);
 
 VK_EXPORT void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs,
-                                                 NSString * libraryID, 
-                                                 lua_State *luaState);
+                                                    NSString * libraryID,
+                                                    lua_State *luaState);
 
 __END_DECLS

@@ -1,18 +1,18 @@
 //
-//  LuaEngineService.h
+//  VMachineService.h
 //  LuaCL
 //
 //  Created by tearsofphoenix on 2/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ERMetaService.h"
+#import "VMetaService.h"
 
 #include "LuaObjCBase.h"
 
 typedef void (^LuaObjCBlock)(struct lua_State *);
 
-@interface LuaEngineService : ERMetaService
+@interface VMachineService : VMetaService
 
 @end
 

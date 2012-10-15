@@ -1,12 +1,12 @@
 //
-//  LuaEngineService.m
+//  VMachineService.m
 //  LuaCL
 //
 //  Created by tearsofphoenix on 2/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaEngineService.h"
+#import "VMachineService.h"
 
 #import "lauxlib.h"
 #import "lualib.h"
@@ -34,7 +34,7 @@
 
 static char * const LuaEngineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
-static LuaEngineService *g_engine = nil;
+static VMachineService *g_engine = nil;
 
 typedef struct lua_State *LuaStateRef;
 
@@ -44,12 +44,13 @@ typedef struct
     LuaStateRef luaState;
     LuaStateRef parserState;
     dispatch_queue_t frameworkImportQueue;
+    
 }LuaEngineAttributes;
 
 typedef LuaEngineAttributes *LuaEngineAttributesRef;
 
 
-@interface LuaEngineService ()
+@interface VMachineService ()
 {
 @private
     LuaEngineAttributesRef _internal;
@@ -60,7 +61,7 @@ typedef LuaEngineAttributes *LuaEngineAttributesRef;
 @end
 
 
-@implementation LuaEngineService
+@implementation VMachineService
 
 static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 {
@@ -68,7 +69,11 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     
     //`Foundation' lib
     //
-    infoLooper = LuaLibraryInformationMakeC(LuaEngineObjCSupport, LUA_NSLIBNAME, luaopen_foundation, 1, nil);
+    infoLooper = LuaLibraryInformationMake(LuaEngineObjCSupport,
+                                           [NSString stringWithUTF8String: LUA_NSLIBNAME],
+                                           luaopen_foundation,
+                                           1,
+                                           nil);
     
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
@@ -76,14 +81,20 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //`UIKit' lib
     //
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-    infoLooper = LuaLibraryInformationMakeC(LuaEngineUIKitSupport, LUA_UIKITLIBNAME, LuaOpenUIKit, 1,
+    infoLooper = LuaLibraryInformationMake(LuaEngineUIKitSupport,
+                                           [NSString stringWithUTF8String: LUA_UIKITLIBNAME],
+                                           LuaOpenUIKit,
+                                           1,
                                             [NSArray arrayWithObject:  LuaEngineObjCSupport]);
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
 #endif
     //`lpeg' lib
     //
-    infoLooper = LuaLibraryInformationMakeC(LuaEngineParserSupport, LUA_LPEGLIBNAME, luaopen_lpeg, 1,
+    infoLooper = LuaLibraryInformationMake(LuaEngineParserSupport,
+                                           [NSString stringWithUTF8String: LUA_LPEGLIBNAME],
+                                           luaopen_lpeg,
+                                           1,
                                             nil);
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
@@ -110,7 +121,7 @@ static LuaStateRef _luaEngine_createLuaState(void)
 
 static int _luaEngine_compileTimeInteraction(lua_State *L)
 {
-    //LuaEngineService *service = luaObjC_checkNSObject(L, 1);
+    //VMachineService *service = luaObjC_checkNSObject(L, 1);
     const char *message = lua_tostring(L, 2);
     if (!strcmp(message, "import"))
     {
@@ -129,7 +140,7 @@ static const luaL_Reg __compileTimeFunctions [] =
     {NULL, NULL},
 };
 
-static void LuaEngine_initialize(LuaEngineService *self,
+static void LuaEngine_initialize(VMachineService *self,
                                  LuaEngineAttributesRef *_internal,
                                  NSMutableDictionary **_luaEngineLibs,
                                  NSMutableArray **_md5OfParsedString)
@@ -213,7 +224,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
 {
     [super initServiceCallbackFunctions];
     
-    [self registerBlock: (^(ERGeneralCallbackBlock callback, NSString *action, NSArray *arguments)
+    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
                           {
                               [self doString: [arguments objectAtIndex: 0]];
                               if (callback)
@@ -223,7 +234,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
                           })
               forAction: LuaEngineServiceActionDoSourceCode];
     
-    [self registerBlock: (^(ERGeneralCallbackBlock callback, NSString *action, NSArray *arguments)
+    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
                           {
                               LuaStateRef L = _internal->luaState;
                               [arguments enumerateObjectsUsingBlock: (^(NSArray *obj, NSUInteger idx, BOOL *stop)
@@ -251,7 +262,9 @@ static void LuaEngine_initialize(LuaEngineService *self,
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
         //printf("parsed: %s\n", ret);
-        return ret;
+        ///TODO: is here right?
+        //
+        return strdup(ret);
     }else
     {
         luaObjC_throwExceptionIfError(luaStateRef);
@@ -309,7 +322,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
             {
                 if (0 == argumentCount)
                 {
-                    printf("[LuaEngineService] warning: push arguments to `void'-arguments-function\n");
+                    printf("[VMachineService] warning: push arguments to `void'-arguments-function\n");
                 }
                 
                 block(luaStateRef);
@@ -317,7 +330,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
             
             //execute
             //
-            //printf("[LuaEngineService] debug: will call lua function: %s\n", functionNameString);
+            //printf("[VMachineService] debug: will call lua function: %s\n", functionNameString);
             
             status = lua_pcall(luaStateRef, argumentCount, returnCount, 0);
             
@@ -332,7 +345,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
             {
                 if (0 == returnCount)
                 {
-                    printf("[LuaEngineService] warning: deal return value on `void'-return-function\n");
+                    printf("[VMachineService] warning: deal return value on `void'-return-function\n");
                 }
                 
                 completion(luaStateRef);
@@ -355,7 +368,7 @@ static void LuaEngine_initialize(LuaEngineService *self,
     }
 }
 
-- (void)doString:(NSString *)sourceCode
+- (void)doString: (NSString *)sourceCode
 {
     if ([_md5OfParsedString indexOfObject: sourceCode] == NSNotFound)
     {
@@ -410,7 +423,7 @@ void LuaCall(NSString *sourceCode,
              LuaObjCBlock completion
              )
 {
-    [(LuaEngineService *)[ERMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
+    [(VMachineService *)[VMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
                                                                                 inSourceCode: sourceCode
                                                                            argumentPassBlock: start
                                                                                argumentCount: argumentCount

@@ -61,20 +61,6 @@
     return [ret autorelease];
 }
 
- LuaLibraryInformation * LuaLibraryInformationMakeC(NSString *fetureID,
-                                       const char *libName,
-                                       lua_CFunction loadFunction,
-                                       int numberOfUpvalues,
-                                       NSArray *dependentLibNames)
-{
-    return LuaLibraryInformationMake(fetureID,
-                           [NSString stringWithCString: libName
-                                              encoding: NSUTF8StringEncoding],
-                           loadFunction,
-                           numberOfUpvalues,
-                           dependentLibNames);
-}
-
 void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs, NSString * libraryID, lua_State *luaState)
 {
     [[_luaEngineLibs objectForKey: libraryID] registerIntoLuaState: luaState
