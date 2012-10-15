@@ -14,8 +14,6 @@
 
 #import "LuaObjCInternal.h"
 
-#import "lua.h"
-
 #import <objc/message.h>
 
 int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,

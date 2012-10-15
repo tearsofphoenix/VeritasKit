@@ -10,6 +10,8 @@
 
 #include "LuaObjCBase.h"
 
+typedef void (^LuaObjCBlock)(struct lua_State *);
+
 @interface LuaEngineService : ERMetaService
 
 @end
@@ -38,10 +40,9 @@ __BEGIN_DECLS
 
 extern void LuaCall(NSString *sourceCode,
                     NSString *functionName,
-                    void(^start)(struct lua_State *),
+                    LuaObjCBlock start,
                     int argumentCount,
                     int returnCount,
-                    void(^completion)(struct lua_State *)
-);
+                    LuaObjCBlock completion);
 
 __END_DECLS

@@ -7,7 +7,7 @@
 //
 
 #import "LuaObjCIndexing.h"
-#import "lua.h"
+#import "LuaObjCBase.h"
 
 @interface NSDictionary (LuaObjCIndex)
 

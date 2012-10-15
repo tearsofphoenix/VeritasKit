@@ -7,7 +7,6 @@
 //
 
 #include "LuaObjCBase.h"
-#include "lua.h"
 
 @interface LuaLibraryInformation : NSObject
 

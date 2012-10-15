@@ -116,7 +116,7 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
     {
         NSString *frameworkName = [NSString stringWithUTF8String: lua_tostring(L, 3)];
         frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
-
+        
         [LuaBridgeSupport importFramework: frameworkName];
     }
     
@@ -262,10 +262,10 @@ static void LuaEngine_initialize(LuaEngineService *self,
 
 - (void)executeFunctionName: (NSString *)functionName
                inSourceCode: (NSString *) sourceCode
-          argumentPassBlock: (void(^)(struct lua_State *))block
+          argumentPassBlock: (LuaObjCBlock)block
               argumentCount: (int)argumentCount
                 returnCount: (int)returnCount
-                 completion: (void(^)(struct lua_State *))completion
+                 completion: (LuaObjCBlock)completion
 {
     LuaStateRef luaStateRef = _internal->luaState;
     lua_Integer status;
@@ -404,17 +404,17 @@ NSString * const LuaEngineDumpSourceCodeToFile = @"lua-engine.action.dumpSourceC
 
 void LuaCall(NSString *sourceCode,
              NSString *functionName,
-             void(^start)(struct lua_State *),
+             LuaObjCBlock start,
              int argumentCount,
              int returnCount,
-             void(^completion)(struct lua_State *)
+             LuaObjCBlock completion
              )
 {
     [(LuaEngineService *)[ERMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
-                                                                                       inSourceCode: sourceCode
-                                                                                  argumentPassBlock: start
-                                                                                      argumentCount: argumentCount
-                                                                                        returnCount: returnCount
-                                                                                         completion: completion];
+                                                                                inSourceCode: sourceCode
+                                                                           argumentPassBlock: start
+                                                                               argumentCount: argumentCount
+                                                                                 returnCount: returnCount
+                                                                                  completion: completion];
 }
 

@@ -7,8 +7,6 @@
 //
 
 struct lua_State;
-
-struct LuaBridgeFuncotr;
                                         
 enum 
 {

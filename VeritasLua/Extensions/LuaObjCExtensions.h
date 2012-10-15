@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#include "LuaObjCIndexing.h"
 #include "LuaObjCBase.h"
 
 __BEGIN_DECLS

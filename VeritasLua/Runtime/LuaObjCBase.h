@@ -9,7 +9,7 @@
 #ifndef LuaIOS_LuaObjCBase_h
 #define LuaIOS_LuaObjCBase_h
 
-#include "luaconf.h"
+#include "lua.h"
 
 #define VK_EXPORT LUAMOD_API
 

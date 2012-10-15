@@ -10,8 +10,6 @@
 
 #import "LuaObjCAuxiliary.h"
 
-#import "lua.h"
-
 #import "lauxlib.h"
 
 #import "LuaObjCInternal.h"
@@ -19,7 +17,6 @@
 #import "NSString+LuaObjCIndex.h"
 #import "NSArray+LuaObjCIndex.h"
 #import "NSDictionary+LuaObjCIndex.h"
-#import <objc/runtime.h>
 
 static int luaObjC_objc_throw(lua_State *L)
 {
