@@ -19,8 +19,8 @@ typedef int LuaClosureType;
 
 VK_EXPORT Class LuaObjCNSBlockClass;
 
-VK_EXPORT void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block);
+VK_EXPORT void luaObjC_addClosureIDForBlock(LuaClosureType clouserID, id block);
 
-VK_EXPORT LuaClosureType LuaObjCBlockGetClosureID(id block);
+VK_EXPORT LuaClosureType luaObjC_getClosureIDOfBlock(id block);
 
 __END_DECLS

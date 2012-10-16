@@ -12,19 +12,19 @@ __BEGIN_DECLS
 
 //lua function <---> Objective-C method bridge
 //
-VK_EXPORT int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector, bool isClassMethod);
+VK_EXPORT int luaObjC_getClosureIDOfSelector(Class theClass, SEL selector, bool isClassMethod);
 
 //Notice: when add Class-Method to theClass, you just pass the class itself instead of the meta class
 //
-VK_EXPORT void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod);
+VK_EXPORT void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod);
 
 //register class
 //
-VK_EXPORT Class LuaClassGetRegisteredClassByName(const char *className);
+VK_EXPORT Class luaObjC_getClass(const char *className);
 
-VK_EXPORT void LuaClassRegister(struct lua_State *L, Class theClass, const char *className);
+VK_EXPORT void luaObjC_allocateClass(struct lua_State *L, Class theClass, const char *className);
 
-VK_EXPORT struct lua_State *LuaClassGetLuaState(Class theClass);
+VK_EXPORT struct lua_State *luaObjC_getLuaStateOfClass(Class theClass);
 
 #pragma mark - Object observer
 
@@ -37,6 +37,6 @@ VK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
 VK_EXPORT NSUInteger LuaObjectGetRetainCount(LuaObjectRef ref);
 
 
-LUAMOD_API int luaopen_classSupport(struct lua_State *L);
+LUAMOD_API int luaObjC_openClassSupport(struct lua_State *L);
 
 __END_DECLS

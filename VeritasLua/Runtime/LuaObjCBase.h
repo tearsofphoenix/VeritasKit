@@ -34,8 +34,6 @@
     #endif
 #endif
 
-struct lua_State;
-
 struct luaL_Reg;
 
 #endif

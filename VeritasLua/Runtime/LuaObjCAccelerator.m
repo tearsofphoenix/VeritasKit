@@ -122,25 +122,36 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
 #pragma mark - source
 
 static CFMutableDictionaryRef __preAccelerators = nil;
-static const CFIndex __preAcceleratorCapacity = 1024;
 
 static inline void LuaObjCAcceleratorInitialize(void)
 {
-    __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), __preAcceleratorCapacity, NULL, NULL);
+    __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 }
 
-void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
+void luaObjC_registerAccelerator(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
 {
     if (!__preAccelerators)
     {
         LuaObjCAcceleratorInitialize();
     }
     
-    CFDictionaryAddValue(__preAccelerators, selector, imp);
+    CFMutableDictionaryRef classAccelerators = (CFMutableDictionaryRef)CFDictionaryGetValue(__preAccelerators, theClass);
+    if (!classAccelerators)
+    {
+        classAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024, NULL, NULL);
+    }
+    
+    CFDictionaryAddValue(classAccelerators, selector, imp);
 }
 
-LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL selector)
+LuaObjCAcceleratorIMP luaObjC_getAcceleratorIMPOfSelector(Class theClass, SEL selector)
 {
-    return CFDictionaryGetValue(__preAccelerators, selector);
+    CFMutableDictionaryRef classAccelerators = (CFMutableDictionaryRef)CFDictionaryGetValue(__preAccelerators, theClass);
+    if (classAccelerators)
+    {
+        return CFDictionaryGetValue(classAccelerators, selector);
+    }
+    
+    return NULL;
 }
 

@@ -53,7 +53,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
             LuaObjectRef classRef = LuaObjectCreate(state, theClass);
-            LuaObjCCacheTableInsertObjectForKey(state, classRef, className);
+            luaObjC_addValueInCacheTable(state, classRef, className);
             luaObjC_pushNSObject(state, theClass);
             return YES;
         }
@@ -67,7 +67,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             const char *className = [_name UTF8String];
             id value = [_info objectForKey: @"value"];
             LuaObjectRef classRef = LuaObjectCreate(state, value);
-            LuaObjCCacheTableInsertObjectForKey(state, classRef, className);
+            luaObjC_addValueInCacheTable(state, classRef, className);
             luaObjC_pushNSObject(state, value);
             return YES;
         }
@@ -84,7 +84,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             const char *returnTypeEncoding = [[_info objectForKey: @"retval"] UTF8String];
             
             LuaBridgeFuncotrRef functorRef = LuaBridgeFunctorCreate(state, _name, encodings, returnTypeEncoding);
-            LuaObjCCacheTableInsertObjectForKey(state, functorRef, [_name UTF8String]);
+            luaObjC_addValueInCacheTable(state, functorRef, [_name UTF8String]);
             
             [encodings release];
             return YES;

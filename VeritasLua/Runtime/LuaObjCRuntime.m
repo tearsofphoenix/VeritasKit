@@ -55,7 +55,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
         return 0;
     }
     
-    Class registeredClass = LuaClassGetRegisteredClassByName(newClassName);
+    Class registeredClass = luaObjC_getClass(newClassName);
     //has registered, put it into state
     //
     if (registeredClass)
@@ -67,7 +67,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0); 
         
-        LuaClassRegister(L, theNewClass, newClassName);
+        luaObjC_allocateClass(L, theNewClass, newClassName);
         luaObjC_pushNSObject(L, theNewClass);
     }
     return 1;
@@ -227,7 +227,7 @@ static int luaObjC_createBlockObject(lua_State *L)
     
     block = Block_copy(block);
     
-    LuaObjCBlockSetClosureID(clouserID, block);
+    luaObjC_addClosureIDForBlock(clouserID, block);
     
     luaObjC_pushNSObject(L, block);
     
@@ -238,7 +238,7 @@ static int luaObjC_registerClassPair(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);
 
-    Class theClass = LuaClassGetRegisteredClassByName(className);
+    Class theClass = luaObjC_getClass(className);
     
     if (theClass)
     {
@@ -278,14 +278,14 @@ static int _luaEngine_resolveName(lua_State *L)
     const char* name = lua_tostring(L, 2);
     //printf("revolve: %s\n", name);
     
-    if (!LuaObjCCacheTableGetObjectForKey(L, name))
+    if (!luaObjC_getValueInCacheTable(L, name))
     {
         //printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
             LuaObjectRef objRef = LuaObjectCreate(L, theClass);
-            LuaObjCCacheTableInsertObjectForKey(L, objRef, name);
+            luaObjC_addValueInCacheTable(L, objRef, name);
             luaObjC_pushNSObject(L, theClass);
         }else
         {
@@ -336,11 +336,11 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
     return 1;
 }
 
-int luaopen_foundation(lua_State *L)
+int luaObjC_openFoundationSupport(lua_State *L)
 {    
-    luaopen_classSupport(L);
+    luaObjC_openClassSupport(L);
 
-    LuaObjCLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
+    luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);
 
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
 

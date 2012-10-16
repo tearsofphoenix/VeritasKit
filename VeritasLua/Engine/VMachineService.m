@@ -71,7 +71,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //
     infoLooper = LuaLibraryInformationMake(LuaEngineObjCSupport,
                                            [NSString stringWithUTF8String: LUA_NSLIBNAME],
-                                           luaopen_foundation,
+                                           luaObjC_openFoundationSupport,
                                            1,
                                            nil);
     
@@ -157,7 +157,7 @@ static void LuaEngine_initialize(VMachineService *self,
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
     
-    LuaObjCLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
+    luaObjC_loadGlobalFunctions(parserStateRef, __compileTimeFunctions);
     LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
     
     internal->parserState = parserStateRef;

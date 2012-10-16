@@ -28,8 +28,8 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     Class theClass = object_getClass(obj);
     bool isClassMethod = (theClass == obj);
 
-    LuaClosureType clouserID = LuaClassGetClosureIDOfSelector(theClass, sel, isClassMethod);
-    lua_State *luaState = LuaClassGetLuaState(theClass);
+    LuaClosureType clouserID = luaObjC_getClosureIDOfSelector(theClass, sel, isClassMethod);
+    lua_State *luaState = luaObjC_getLuaStateOfClass(theClass);
     
     if (clouserID != LuaObjCInvalidClouserID)
     {
@@ -278,7 +278,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     
     SEL sel = sel_registerName(selectorName);
 
-    Class theClass = LuaClassGetRegisteredClassByName(className);
+    Class theClass = luaObjC_getClass(className);
     Class classToAddClosure = theClass;
     
     if (!isObjectMethod)
@@ -348,7 +348,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
         }
     }
 
-    LuaClassAddClosureIDForSelector(classToAddClosure, luaL_ref(L, LUA_REGISTRYINDEX), selectorName, !isObjectMethod);
+    luaObjC_addClosureIDForSelector(classToAddClosure, luaL_ref(L, LUA_REGISTRYINDEX), selectorName, !isObjectMethod);
     
     [typeEncoding release];
     

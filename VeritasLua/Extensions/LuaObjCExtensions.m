@@ -209,6 +209,6 @@ static const luaL_Reg __luaObjCExtensions [] =
 
 int luaopen_objc_extensions(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __luaObjCExtensions);
+    luaObjC_loadGlobalFunctions(L, __luaObjCExtensions);
     return 1;
 }

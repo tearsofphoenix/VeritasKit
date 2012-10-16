@@ -24,7 +24,7 @@ static inline void LuaObjCBlockSupportInitialize(void)
     }
 }
 
-void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block)
+void luaObjC_addClosureIDForBlock(LuaClosureType clouserID, id block)
 {
     if (!LuaObjCNSBlockClass)
     {
@@ -37,7 +37,7 @@ void LuaObjCBlockSetClosureID(LuaClosureType clouserID, id block)
     }
 }
 
-LuaClosureType LuaObjCBlockGetClosureID(id block)
+LuaClosureType luaObjC_getClosureIDOfBlock(id block)
 {
     LuaClosureType closureID = (LuaClosureType) CFDictionaryGetValue(__LuaObjC_clouserBlockDictionary, block);
 

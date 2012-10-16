@@ -209,7 +209,7 @@ static int luaObjC_callBlockObject(lua_State *L)
     
     if ([block isKindOfClass: LuaObjCNSBlockClass])
     {
-        LuaClosureType clouserID = LuaObjCBlockGetClosureID(block);
+        LuaClosureType clouserID = luaObjC_getClosureIDOfBlock(block);
         lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);
         for (int iLooper = 2; iLooper < argCount + 1; ++iLooper)
         {
@@ -294,7 +294,7 @@ static const luaL_Reg luaNS_functions[] =
 
 int luaObjC_openNSObjectSupport(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, luaNS_functions);
+    luaObjC_loadGlobalFunctions(L, luaNS_functions);
     luaL_newlib(L, luaNS_functions);
     LuaObjC_createMetatable(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
     return 0;

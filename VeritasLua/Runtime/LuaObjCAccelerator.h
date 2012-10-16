@@ -18,8 +18,8 @@ __BEGIN_DECLS
 
 typedef int (* LuaObjCAcceleratorIMP)(id obj, SEL sel, struct lua_State *L);
 
-VK_EXPORT void LuaObjCAcceleratorRegister(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp);
+VK_EXPORT void luaObjC_registerAccelerator(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp);
 
-VK_EXPORT LuaObjCAcceleratorIMP LuaObjCAcceleratorGetIMPBySelector(Class theClass, SEL selector);
+VK_EXPORT LuaObjCAcceleratorIMP luaObjC_getAcceleratorIMPOfSelector(Class theClass, SEL selector);
 
 __END_DECLS

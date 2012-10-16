@@ -155,7 +155,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     objc_property_attribute_t backingivar  = {"V", propertyName};
     objc_property_attribute_t attrs[] = {atomicAttribute, type, ownership, backingivar};
     
-    Class theClass = LuaClassGetRegisteredClassByName( className );
+    Class theClass = luaObjC_getClass( className );
     
     NSUInteger typeSize;
     NSGetSizeAndAlignment(type.value, &typeSize, NULL);

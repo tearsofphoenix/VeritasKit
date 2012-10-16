@@ -102,7 +102,7 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject)
     return 1;
 }
 
-void LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
+void luaObjC_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
 {
     if (functions)
     {
@@ -117,7 +117,7 @@ void LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *func
     }
 }
 
-void LuaObjCLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], NSUInteger count)
+void luaObjC_loadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], NSUInteger count)
 {
     NSUInteger iLooper = 0;
     luaL_Reg reg;

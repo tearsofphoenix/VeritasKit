@@ -47,7 +47,7 @@ static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *
     
 }
 
-void LuaClassRegister(struct lua_State *L, Class theClass, const char *className)
+void luaObjC_allocateClass(struct lua_State *L, Class theClass, const char *className)
 {
     CFDictionaryAddValue(__LuaObjC_ClassDictionary, strdup(className), theClass);
     
@@ -60,17 +60,17 @@ void LuaClassRegister(struct lua_State *L, Class theClass, const char *className
     _luaClassAttachDictionaryToClass(theClass, &__LuaObjC_KeyForClassMethods);
 }
 
-struct lua_State *LuaClassGetLuaState(Class theClass)
+struct lua_State *luaObjC_getLuaStateOfClass(Class theClass)
 {
     return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
 }
 
-Class LuaClassGetRegisteredClassByName(const char *className)
+Class luaObjC_getClass(const char *className)
 {
     return CFDictionaryGetValue(__LuaObjC_ClassDictionary, className);
 }
 
-int luaopen_classSupport(lua_State *L)
+int luaObjC_openClassSupport(lua_State *L)
 {
     
     __LuaObjC_ClassKeyCallbacks.equal = _luaObjCCStringEqual;
@@ -82,7 +82,7 @@ int luaopen_classSupport(lua_State *L)
                                                           &kCFTypeDictionaryValueCallBacks);
     
     LuaObjCTypeEncodingInitialize();
-    LuaObjCCacheTableInitialize(L);
+    luaObjC_initializeCacheTable(L);
     
     return 1;
 }
@@ -127,7 +127,7 @@ static char __LuaObjCAssociatedObjectKey;
 
 @end
 
-int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector, bool isClassMethod)
+int luaObjC_getClosureIDOfSelector(Class theClass, SEL selector, bool isClassMethod)
 {
     if (theClass && selector)
     {
@@ -147,7 +147,7 @@ int LuaClassGetClosureIDOfSelector(Class theClass, SEL selector, bool isClassMet
     return LuaObjCInvalidClouserID;
 }
 
-void LuaClassAddClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod)
+void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod)
 {
     if (theClass && selectorName)
     {

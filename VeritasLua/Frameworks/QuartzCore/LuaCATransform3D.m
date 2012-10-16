@@ -305,7 +305,7 @@ int LuaOpenCATransform3D(lua_State *L)
 {
     LuaObjC_createMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
     
-    LuaObjCLoadGlobalFunctions(L, __LuaCATransform3DAPIs);
+    luaObjC_loadGlobalFunctions(L, __LuaCATransform3DAPIs);
     
     return 0;
 }

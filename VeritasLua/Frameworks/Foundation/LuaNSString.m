@@ -28,6 +28,6 @@ static const luaL_Reg __LuaNSStringFunctions[] =
 
 int LuaOpenNSString(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __LuaNSStringFunctions);
+    luaObjC_loadGlobalFunctions(L, __LuaNSStringFunctions);
     return 0;
 }

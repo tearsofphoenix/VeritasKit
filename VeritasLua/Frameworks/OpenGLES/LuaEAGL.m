@@ -30,7 +30,7 @@ static const luaL_Reg __luaObjC_EAGL_Functions[] =
 
 int LuaOpenEAGL(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __luaObjC_EAGL_Functions);
+    luaObjC_loadGlobalFunctions(L, __luaObjC_EAGL_Functions);
     
     return 0;
 }

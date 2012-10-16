@@ -16,11 +16,11 @@ __BEGIN_DECLS
 //strong table
 //
 
-VK_EXPORT	void LuaObjCCacheTableInitialize(struct lua_State* L);
+VK_EXPORT	void luaObjC_initializeCacheTable(struct lua_State* L);
 	
-VK_EXPORT	void LuaObjCCacheTableInsertObjectForKey(struct lua_State* L, void* object, const char *key);
+VK_EXPORT	void luaObjC_addValueInCacheTable(struct lua_State* L, void* object, const char *key);
 	
-VK_EXPORT	void *LuaObjCCacheTableGetObjectForKey(struct lua_State* L, const char* key);
+VK_EXPORT	void *luaObjC_getValueInCacheTable(struct lua_State* L, const char* key);
     
 __END_DECLS
 

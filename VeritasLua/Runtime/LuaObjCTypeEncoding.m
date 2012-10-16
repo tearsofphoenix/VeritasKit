@@ -16,28 +16,28 @@ static CFMutableDictionaryRef __LuaObjC_TypeEncodingDictionary = NULL;
 static void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
 {
     
-#define _AddTypeEncoding(dict, type) CFDictionaryAddValue(dict, #type, @encode(type))
+#define _AddTypeEncoding(type) CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, #type, @encode(type))
     
-    _AddTypeEncoding(dict, NSInteger);
-    _AddTypeEncoding(dict, NSUInteger);
-    _AddTypeEncoding(dict, BOOL);
-    _AddTypeEncoding(dict, id);
-    _AddTypeEncoding(dict, SEL);
-    _AddTypeEncoding(dict, CGFloat);
-    _AddTypeEncoding(dict, int);
-    _AddTypeEncoding(dict, float);
-    _AddTypeEncoding(dict, double);
-    _AddTypeEncoding(dict, char);
-    _AddTypeEncoding(dict, void);
-    _AddTypeEncoding(dict, CGRect);
-    _AddTypeEncoding(dict, CGSize);
-    _AddTypeEncoding(dict, CGPoint);
-    _AddTypeEncoding(dict, CGAffineTransform);
-    _AddTypeEncoding(dict, NSRange);
-    _AddTypeEncoding(dict, CATransform3D);
+    _AddTypeEncoding(NSInteger);
+    _AddTypeEncoding(NSUInteger);
+    _AddTypeEncoding(BOOL);
+    _AddTypeEncoding(id);
+    _AddTypeEncoding(SEL);
+    _AddTypeEncoding(CGFloat);
+    _AddTypeEncoding(int);
+    _AddTypeEncoding(float);
+    _AddTypeEncoding(double);
+    _AddTypeEncoding(char);
+    _AddTypeEncoding(void);
+    _AddTypeEncoding(CGRect);
+    _AddTypeEncoding(CGSize);
+    _AddTypeEncoding(CGPoint);
+    _AddTypeEncoding(CGAffineTransform);
+    _AddTypeEncoding(NSRange);
+    _AddTypeEncoding(CATransform3D);
 #if TARGET_OS_IPHONE
-    _AddTypeEncoding(dict, UIEdgeInsets);
-    _AddTypeEncoding(dict, UIOffset);
+    _AddTypeEncoding(UIEdgeInsets);
+    _AddTypeEncoding(UIOffset);
 #endif
     
 #undef _AddTypeEncoding
@@ -77,16 +77,11 @@ Boolean _luaObjCCStringEqual(const void *value1, const void *value2)
     return NO;
 }
 
-static CFHashCode _luaObjCCStringHash(const void *value1)
-{
-    return strlen(value1);
-}
-
 void LuaObjCTypeEncodingInitialize(void)
 {
     __LuaObjC_KeyCallbacks.equal = _luaObjCCStringEqual;
     __LuaObjC_KeyCallbacks.release = _luaObjCFreeCallback;
-    __LuaObjC_KeyCallbacks.hash = _luaObjCCStringHash;
+    __LuaObjC_KeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
     
     __LuaObjC_ValueCallbacks.equal = _luaObjCCStringEqual;
     

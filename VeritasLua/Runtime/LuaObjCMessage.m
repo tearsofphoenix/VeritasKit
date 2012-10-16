@@ -57,7 +57,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     
     Class objClass = object_getClass(obj);
     
-    IMP impRef = (IMP)LuaObjCAcceleratorGetIMPBySelector(objClass, selector);
+    IMP impRef = (IMP)luaObjC_getAcceleratorIMPOfSelector(objClass, selector);
     if (impRef)
     {
         return ((LuaObjCAcceleratorIMP)impRef)(obj, selector, L);

@@ -58,17 +58,17 @@ static inline void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* ta
 
 static const char* LuaObjCGlobalCacheTableID = "com.veritas.lua-objc.global.cachetable";
 
-void LuaObjCCacheTableInitialize(lua_State* L)
+void luaObjC_initializeCacheTable(lua_State* L)
 {
     _luaObjC_createTableWithID(L, LuaObjCGlobalCacheTableID, false);
 }
 
-void LuaObjCCacheTableInsertObjectForKey(lua_State* L, void* object, const char *key)
+void luaObjC_addValueInCacheTable(lua_State* L, void* object, const char *key)
 {
     _luaObjC_insertObjectInTableWithID(L, LuaObjCGlobalCacheTableID, object, key);
 }
 
-void* LuaObjCCacheTableGetObjectForKey(lua_State* L, const char* key)
+void* luaObjC_getValueInCacheTable(lua_State* L, const char* key)
 {
     return _luaObjC_getObjectInTableWithID(L, LuaObjCGlobalCacheTableID, key);
 }

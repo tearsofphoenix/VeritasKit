@@ -192,9 +192,9 @@ int LuaOpenUIGeometry(lua_State *L)
 
     LuaObjC_createMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
 
-    LuaObjCLoadGlobalFunctions(L, __LuaUIGeometryAPIs);
+    luaObjC_loadGlobalFunctions(L, __LuaUIGeometryAPIs);
 
-    LuaObjCLoadGlobalFunctions(L, __LuaUIOffsetAPIs);
+    luaObjC_loadGlobalFunctions(L, __LuaUIOffsetAPIs);
     
     return 0;
 }

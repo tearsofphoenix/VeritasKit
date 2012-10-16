@@ -138,6 +138,6 @@ static const luaL_Reg __LuaUIGraphicsAPIs[] =
 
 int LuaOpenUIGraphics(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __LuaUIGraphicsAPIs);
+    luaObjC_loadGlobalFunctions(L, __LuaUIGraphicsAPIs);
     return 0;
 }
