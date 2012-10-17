@@ -73,8 +73,8 @@ Class luaObjC_getClass(const char *className)
 int luaObjC_openClassSupport(lua_State *L)
 {
     
-    __LuaObjC_ClassKeyCallbacks.equal = _luaObjCCStringEqual;
-    __LuaObjC_ClassKeyCallbacks.release = _luaObjCFreeCallback;
+    __LuaObjC_ClassKeyCallbacks.equal = luaInternal_CStringEqual;
+    __LuaObjC_ClassKeyCallbacks.release = luaInternal_freeCallback;
     __LuaObjC_ClassKeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
     
     __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,

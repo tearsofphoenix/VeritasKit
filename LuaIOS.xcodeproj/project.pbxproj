@@ -76,8 +76,6 @@
 		E13C8E6F16168B0C00A72BEF /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7716168B0C00A72BEF /* VMachineService.m */; };
 		E13C8E7016168B0C00A72BEF /* LuaLibraryInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7816168B0C00A72BEF /* LuaLibraryInformation.h */; };
 		E13C8E7116168B0C00A72BEF /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7916168B0C00A72BEF /* LuaLibraryInformation.m */; };
-		E13C8E7216168B0C00A72BEF /* LuaObjCExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7B16168B0C00A72BEF /* LuaObjCExtensions.h */; };
-		E13C8E7316168B0C00A72BEF /* LuaObjCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7C16168B0C00A72BEF /* LuaObjCExtensions.m */; };
 		E13C8E7416168B0C00A72BEF /* LuaObjCIndexing.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7D16168B0C00A72BEF /* LuaObjCIndexing.h */; };
 		E13C8E7516168B0C00A72BEF /* LuaObjCProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7E16168B0C00A72BEF /* LuaObjCProfile.h */; };
 		E13C8E7616168B0C00A72BEF /* LuaObjCProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7F16168B0C00A72BEF /* LuaObjCProfile.m */; };
@@ -332,8 +330,6 @@
 		E13C8D7716168B0C00A72BEF /* VMachineService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMachineService.m; sourceTree = "<group>"; };
 		E13C8D7816168B0C00A72BEF /* LuaLibraryInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaLibraryInformation.h; sourceTree = "<group>"; };
 		E13C8D7916168B0C00A72BEF /* LuaLibraryInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaLibraryInformation.m; sourceTree = "<group>"; };
-		E13C8D7B16168B0C00A72BEF /* LuaObjCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCExtensions.h; sourceTree = "<group>"; };
-		E13C8D7C16168B0C00A72BEF /* LuaObjCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCExtensions.m; sourceTree = "<group>"; };
 		E13C8D7D16168B0C00A72BEF /* LuaObjCIndexing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCIndexing.h; sourceTree = "<group>"; };
 		E13C8D7E16168B0C00A72BEF /* LuaObjCProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCProfile.h; sourceTree = "<group>"; };
 		E13C8D7F16168B0C00A72BEF /* LuaObjCProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCProfile.m; sourceTree = "<group>"; };
@@ -688,8 +684,6 @@
 		E13C8D7A16168B0C00A72BEF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E13C8D7B16168B0C00A72BEF /* LuaObjCExtensions.h */,
-				E13C8D7C16168B0C00A72BEF /* LuaObjCExtensions.m */,
 				E13C8D7D16168B0C00A72BEF /* LuaObjCIndexing.h */,
 				E13C8D7E16168B0C00A72BEF /* LuaObjCProfile.h */,
 				E13C8D7F16168B0C00A72BEF /* LuaObjCProfile.m */,
@@ -995,7 +989,6 @@
 				E13C8E6516168B0C00A72BEF /* LuaBridgeSupport.h in Headers */,
 				E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */,
 				E13C8E7016168B0C00A72BEF /* LuaLibraryInformation.h in Headers */,
-				E13C8E7216168B0C00A72BEF /* LuaObjCExtensions.h in Headers */,
 				E13C8E7416168B0C00A72BEF /* LuaObjCIndexing.h in Headers */,
 				E13C8E7516168B0C00A72BEF /* LuaObjCProfile.h in Headers */,
 				E13C8E7716168B0C00A72BEF /* NSArray+LuaObjCIndex.h in Headers */,
@@ -1219,7 +1212,6 @@
 				E13C8E6D16168B0C00A72BEF /* VMetaService.m in Sources */,
 				E13C8E6F16168B0C00A72BEF /* VMachineService.m in Sources */,
 				E13C8E7116168B0C00A72BEF /* LuaLibraryInformation.m in Sources */,
-				E13C8E7316168B0C00A72BEF /* LuaObjCExtensions.m in Sources */,
 				E13C8E7616168B0C00A72BEF /* LuaObjCProfile.m in Sources */,
 				E13C8E7816168B0C00A72BEF /* NSArray+LuaObjCIndex.m in Sources */,
 				E13C8E7A16168B0C00A72BEF /* NSData+Base64.m in Sources */,
@@ -1317,7 +1309,7 @@
 		2268737F1521AD5D009D6279 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1341,7 +1333,7 @@
 		226873801521AD5D009D6279 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1365,7 +1357,7 @@
 		22D834BE1615AA3D00C9F07C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1389,7 +1381,7 @@
 		22D834BF1615AA3D00C9F07C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;

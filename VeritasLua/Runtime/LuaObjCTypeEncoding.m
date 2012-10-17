@@ -43,7 +43,7 @@ static void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
 #undef _AddTypeEncoding
 }
 
-void LuaObjCTypeEncodingAddPredeclearedClass(const char *className)
+void luaObjC_addEncodingForPredeclearClass(const char *className)
 {
     CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, strdup(className), @encode(id));
 }
@@ -59,12 +59,12 @@ const char * LuaObjCTypeEncodingOfType(const char *typeName)
     return typeEncoding;
 }
 
-void _luaObjCFreeCallback(CFAllocatorRef allocator, const void *value)
+void luaInternal_freeCallback(CFAllocatorRef allocator, const void *value)
 {
     free((void *)value);
 }
 
-Boolean _luaObjCCStringEqual(const void *value1, const void *value2)
+Boolean luaInternal_CStringEqual(const void *value1, const void *value2)
 {
     const char *str1 = value1;
     const char *str2 = value2;
@@ -79,11 +79,11 @@ Boolean _luaObjCCStringEqual(const void *value1, const void *value2)
 
 void LuaObjCTypeEncodingInitialize(void)
 {
-    __LuaObjC_KeyCallbacks.equal = _luaObjCCStringEqual;
-    __LuaObjC_KeyCallbacks.release = _luaObjCFreeCallback;
+    __LuaObjC_KeyCallbacks.equal = luaInternal_CStringEqual;
+    __LuaObjC_KeyCallbacks.release = luaInternal_freeCallback;
     __LuaObjC_KeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
     
-    __LuaObjC_ValueCallbacks.equal = _luaObjCCStringEqual;
+    __LuaObjC_ValueCallbacks.equal = luaInternal_CStringEqual;
     
     __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
                                                                  &__LuaObjC_KeyCallbacks,

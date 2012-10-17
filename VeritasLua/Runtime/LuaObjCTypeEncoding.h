@@ -12,12 +12,12 @@ __BEGIN_DECLS
 
 VK_EXPORT const char * LuaObjCTypeEncodingOfType(const char *typeName);
 
-VK_EXPORT void LuaObjCTypeEncodingAddPredeclearedClass(const char *className);
+VK_EXPORT void luaObjC_addEncodingForPredeclearClass(const char *className);
 
 VK_EXPORT void LuaObjCTypeEncodingInitialize(void);
 
-VK_EXPORT Boolean _luaObjCCStringEqual(const void *value1, const void *value2);
+VK_EXPORT Boolean luaInternal_CStringEqual(const void *value1, const void *value2);
 
-VK_EXPORT void _luaObjCFreeCallback(CFAllocatorRef allocator, const void *value);
+VK_EXPORT void luaInternal_freeCallback(CFAllocatorRef allocator, const void *value);
 
 __END_DECLS

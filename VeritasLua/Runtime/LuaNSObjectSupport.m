@@ -180,7 +180,7 @@ static int luaObjC_unionCollection(lua_State *L)
     return 1;
 }
 
-static int luaObjC_subconcatCollection(lua_State *L)
+static int luaObjC_subtractCollection(lua_State *L)
 {
     return 1;
 }
@@ -279,7 +279,7 @@ static const luaL_Reg LuaNS_ObjectMethods[] =
     {"__len", luaObjC_getLengthOfObject},
     {"__eq", luaObjC_isEqual},
     {"__add", luaObjC_unionCollection},
-    {"__sub", luaObjC_subconcatCollection},
+    {"__sub", luaObjC_subtractCollection},
     {"__concat", luaObjC_concatCollection},
     {"__call", luaObjC_callBlockObject},
     {NULL, NULL}
@@ -292,7 +292,7 @@ static const luaL_Reg luaNS_functions[] =
     {NULL, NULL}
 };
 
-int luaObjC_openNSObjectSupport(lua_State *L)
+int luaObjC_openNSObjectExtensionSupport(lua_State *L)
 {
     luaObjC_loadGlobalFunctions(L, luaNS_functions);
     luaL_newlib(L, luaNS_functions);
