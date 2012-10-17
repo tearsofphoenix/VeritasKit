@@ -13,7 +13,7 @@ static CFDictionaryValueCallBacks __LuaObjC_ValueCallbacks;
 
 static CFMutableDictionaryRef __LuaObjC_TypeEncodingDictionary = NULL;
 
-static void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
+static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
 {
     
 #define _AddTypeEncoding(type) CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, #type, @encode(type))
@@ -43,8 +43,28 @@ static void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
 #undef _AddTypeEncoding
 }
 
+static inline void LuaObjCTypeEncodingInitialize(void)
+{
+    __LuaObjC_KeyCallbacks.equal = luaInternal_CStringEqual;
+    __LuaObjC_KeyCallbacks.release = luaInternal_freeCallback;
+    __LuaObjC_KeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
+    
+    __LuaObjC_ValueCallbacks.equal = luaInternal_CStringEqual;
+    
+    __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
+                                                                 &__LuaObjC_KeyCallbacks,
+                                                                 &__LuaObjC_ValueCallbacks);
+    _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
+    
+}
+
 void luaObjC_addEncodingForPredeclearClass(const char *className)
 {
+    if (!__LuaObjC_TypeEncodingDictionary)
+    {
+        LuaObjCTypeEncodingInitialize();
+    }
+    
     CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, strdup(className), @encode(id));
 }
 
@@ -75,19 +95,4 @@ Boolean luaInternal_CStringEqual(const void *value1, const void *value2)
     }
     
     return NO;
-}
-
-void LuaObjCTypeEncodingInitialize(void)
-{
-    __LuaObjC_KeyCallbacks.equal = luaInternal_CStringEqual;
-    __LuaObjC_KeyCallbacks.release = luaInternal_freeCallback;
-    __LuaObjC_KeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
-    
-    __LuaObjC_ValueCallbacks.equal = luaInternal_CStringEqual;
-    
-    __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
-                                                                 &__LuaObjC_KeyCallbacks,
-                                                                 &__LuaObjC_ValueCallbacks);
-    _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
-    
 }

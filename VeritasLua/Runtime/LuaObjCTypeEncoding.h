@@ -14,7 +14,7 @@ VK_EXPORT const char * LuaObjCTypeEncodingOfType(const char *typeName);
 
 VK_EXPORT void luaObjC_addEncodingForPredeclearClass(const char *className);
 
-VK_EXPORT void LuaObjCTypeEncodingInitialize(void);
+#pragma mark - project api
 
 VK_EXPORT Boolean luaInternal_CStringEqual(const void *value1, const void *value2);
 

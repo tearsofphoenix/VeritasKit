@@ -70,7 +70,7 @@ Class luaObjC_getClass(const char *className)
     return CFDictionaryGetValue(__LuaObjC_ClassDictionary, className);
 }
 
-int luaObjC_openClassSupport(lua_State *L)
+int luaObjC_classInitialize(lua_State *L)
 {
     
     __LuaObjC_ClassKeyCallbacks.equal = luaInternal_CStringEqual;
@@ -81,7 +81,7 @@ int luaObjC_openClassSupport(lua_State *L)
                                                           &__LuaObjC_ClassKeyCallbacks,
                                                           &kCFTypeDictionaryValueCallBacks);
     
-    LuaObjCTypeEncodingInitialize();
+    //LuaObjCTypeEncodingInitialize();
     luaObjC_initializeCacheTable(L);
     
     return 1;

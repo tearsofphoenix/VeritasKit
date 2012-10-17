@@ -527,7 +527,7 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
 
 int luaObjC_openFoundationSupport(lua_State *L)
 {    
-    luaObjC_openClassSupport(L);
+    luaObjC_classInitialize(L);
 
     luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);
 
