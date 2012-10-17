@@ -8,7 +8,12 @@
 
 #import "LuaObjCTypeEncoding.h"
 
-static CFDictionaryKeyCallBacks __LuaObjC_KeyCallbacks;
+CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks = {
+                                                            .equal=luaInternal_CStringEqual,
+                                                            .release=luaInternal_freeCallback,
+                                                            .hash=(CFDictionaryHashCallBack)strlen
+                                                        };
+
 static CFDictionaryValueCallBacks __LuaObjC_ValueCallbacks;
 
 static CFMutableDictionaryRef __LuaObjC_TypeEncodingDictionary = NULL;
@@ -44,15 +49,11 @@ static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef di
 }
 
 static inline void LuaObjCTypeEncodingInitialize(void)
-{
-    __LuaObjC_KeyCallbacks.equal = luaInternal_CStringEqual;
-    __LuaObjC_KeyCallbacks.release = luaInternal_freeCallback;
-    __LuaObjC_KeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
-    
+{    
     __LuaObjC_ValueCallbacks.equal = luaInternal_CStringEqual;
     
     __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
-                                                                 &__LuaObjC_KeyCallbacks,
+                                                                 &kLuaObjCCStringKeyCallBacks,
                                                                  &__LuaObjC_ValueCallbacks);
     _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
     

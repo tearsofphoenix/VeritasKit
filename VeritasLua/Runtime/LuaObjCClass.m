@@ -22,8 +22,6 @@
 
 @class LuaObjectObserver;
 
-static CFDictionaryKeyCallBacks __LuaObjC_ClassKeyCallbacks;
-
 static CFMutableDictionaryRef __LuaObjC_ClassDictionary = NULL;
 
 
@@ -39,7 +37,7 @@ static char __LuaObjC_KeyForClassMethods;
 static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *key)
 {
     CFMutableDictionaryRef classMethods = CFDictionaryCreateMutable(CFAllocatorGetDefault(),
-                                                                    16, &__LuaObjC_ClassKeyCallbacks, NULL);
+                                                                    16, &kLuaObjCCStringKeyCallBacks, NULL);
     
     objc_setAssociatedObject(theClass, key, (id)classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -72,13 +70,8 @@ Class luaObjC_getClass(const char *className)
 
 int luaObjC_classInitialize(lua_State *L)
 {
-    
-    __LuaObjC_ClassKeyCallbacks.equal = luaInternal_CStringEqual;
-    __LuaObjC_ClassKeyCallbacks.release = luaInternal_freeCallback;
-    __LuaObjC_ClassKeyCallbacks.hash = (CFDictionaryHashCallBack)strlen;
-    
     __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,
-                                                          &__LuaObjC_ClassKeyCallbacks,
+                                                          &kLuaObjCCStringKeyCallBacks,
                                                           &kCFTypeDictionaryValueCallBacks);
     
     //LuaObjCTypeEncodingInitialize();

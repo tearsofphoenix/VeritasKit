@@ -10,6 +10,8 @@
 
 __BEGIN_DECLS
 
+VK_EXPORT CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks;
+
 VK_EXPORT const char * LuaObjCTypeEncodingOfType(const char *typeName);
 
 VK_EXPORT void luaObjC_addEncodingForPredeclearClass(const char *className);
