@@ -11,6 +11,6 @@
 
 int main(int argc, char *argv[])
 {
-    objc_dumpClass([UIPopoverController class]);
+    //objc_dumpClass([UIPopoverController class]);
     LuaCall(@"Main.v", @"main", nil, 0, 1, nil);
 }

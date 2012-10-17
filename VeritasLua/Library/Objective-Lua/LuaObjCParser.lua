@@ -779,13 +779,13 @@ functiondef = function()
             end
 
 assignment = function(e)
-if not e or peek('operator', ',') then
-e = lvaluelist(e)
-end
-expect('operator', '=')
-local a = rvaluelist()
-return {type="assignment", left=e, right=a}
-end
+                if not e or peek('operator', ',') then
+                    e = lvaluelist(e)
+                end
+                expect('operator', '=')
+                local a = rvaluelist()
+                return {type="assignment", left=e, right=a}
+            end
 
 localdef = function()
                 expect('keyword', "local")
@@ -815,23 +815,23 @@ localdef = function()
            end
 
 rvaluelist = function(e)
-local ast = {type='list'}
-if not e then
-if peek('operator', ')') then
-return ast
-end
-e = rvalue()
-end
+                local ast = {type='list'}
+                if not e then
+                    if peek('operator', ')') then
+                        return ast
+                    end
+                    e = rvalue()
+                end
 
-ast[#ast+1] = e
-while true do
-if not peek('operator', ',') then
-return ast
-end
-pos = pos + 1
-ast[#ast+1] = rvalue()
-end
-end	
+                ast[#ast+1] = e
+                while true do
+                    if not peek('operator', ',') then
+                        return ast
+                    end
+                    pos = pos + 1
+                    ast[#ast+1] = rvalue()
+                end
+            end	
 
 local function leftassocbinop(left, precedence, type, ...)
             local e = left()
@@ -979,6 +979,7 @@ local function leaf(t)
 rvalueleaf = function()
                 local t = tokens[pos]
                 if (t.type == 'keyword') then
+                    print(983)
                     if (t.text == "nil") or (t.text == "true") or (t.text == "false") then
                         pos = pos + 1
                         return leaf(t)
@@ -997,6 +998,7 @@ rvalueleaf = function()
                         pos = pos + 1
                         return olua_objc_enumerator()
                     elseif (t.text == "@[") then
+                        print(1000)
                         pos = pos + 1
                         return olua_objc_literalArray()
                     elseif (t.text == "@{") then
@@ -1114,7 +1116,6 @@ functioncall = function(value)
                     local args
 
                     if peek('string') or peek('operator', "{") then
-                        print("1108")
                         args = rvalueleaf()
                     else
                         expect('operator', '(')
@@ -1714,7 +1715,10 @@ olua_methoddefinition = function()
 
 olua_objc_literalArray = function()
                             local args
+                            print(1717)
+
                             if optionalexpect('operator', ']') then
+                                print(1719)
                                 optionalexpect('operator', ';')
                                 args = {}
                                 return
@@ -1723,6 +1727,7 @@ olua_objc_literalArray = function()
                                     args = args,
                                 }
                             end
+                            print(1727)
                             args = rvaluelist()
                             expect('operator', ']')
                             optionalexpect('operator', ';')
@@ -2187,7 +2192,10 @@ local typetable =
     end,
     olua_objc_literalArray = function(ast)
                                 emit(" objc_createLiteralArray(")
-                                recursivelyunparse(ast.args)
+                                print(2190)
+                                if #ast.args > 0 then
+                                    recursivelyunparse(ast.args)
+                                end
                                 emit(')')
     end,
     olua_objc_literalDictionary = function(ast)

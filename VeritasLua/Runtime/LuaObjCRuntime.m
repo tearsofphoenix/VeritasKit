@@ -462,15 +462,27 @@ static int luaObjC_objc_NSFastEnumerate(lua_State *L)
     return 0;
 }
 
+#pragma mark - literal object support, i.e. @{}, @[], @1 
+
+static CFMutableArrayRef _LuaObjCLiteralStorage = NULL;
+
 static int luaObjC_createLiteralArray(lua_State *L)
 {
     int count = lua_gettop(L);
+    
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+    
     for (int iLooper = 1; iLooper < count + 1; ++iLooper)
     {
         [array addObject: luaObjC_checkNSObject(L, iLooper)];
     }
-    luaObjC_pushNSObject(L, array);
+    
+    NSArray *value = [NSArray arrayWithArray: array];
+    
+    CFArrayAppendValue(_LuaObjCLiteralStorage, value);
+    
+    luaObjC_pushNSObject(L, value);
+    
     return 1;
 }
 
@@ -481,25 +493,36 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     
     NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity: halfIndex];
     NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity: halfIndex];
+    
     for (int iLooper = 1; iLooper < halfIndex + 1; ++iLooper)
     {
         [keys addObject: luaObjC_checkNSObject(L, iLooper)];
         [values addObject: luaObjC_checkNSObject(L, halfIndex + iLooper)];
     }
     
-    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjects: values
-                                                                      forKeys: keys] autorelease];
+    
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjects: values
+                                                       forKeys: keys];
+    CFArrayAppendValue(_LuaObjCLiteralStorage, dict);
+    
+    [dict release];
+    
     [keys release];
     [values release];
     
     luaObjC_pushNSObject(L, dict);
+    
     return 1;
 }
 
-static int luaObjC_createConstantNumber(lua_State *L)
+static inline int luaObjC_createConstantNumber(lua_State *L)
 {
-    CGFloat number = lua_tonumber(L, 1);
-    luaObjC_pushNSObject(L, [NSNumber numberWithDouble: number]);
+    NSNumber *number = [[NSNumber alloc] initWithDouble: lua_tonumber(L, 1)];
+    CFArrayAppendValue(_LuaObjCLiteralStorage, number);
+    [number release];
+    
+    luaObjC_pushNSObject(L, number);
+    
     return 1;
 }
 
@@ -553,6 +576,11 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
 
 int luaObjC_openFoundationSupport(lua_State *L)
 {
+    if (!_LuaObjCLiteralStorage)
+    {
+        _LuaObjCLiteralStorage = CFArrayCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeArrayCallBacks);
+    }
+    
     luaObjC_classInitialize(L);
     
     luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);

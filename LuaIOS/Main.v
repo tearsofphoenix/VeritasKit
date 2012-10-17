@@ -79,7 +79,7 @@ GL = #import("OpenGLES")
 
 - (BOOL)application: (id)application didFinishLaunchingWithOptions: (id)launchOptions
 {
-    print("_cmd is", _cmd)
+    print("_cmd is", @[ @1])
     bounds = [[UIScreen mainScreen] bounds]
     
     local window = [[UIWindow alloc] initWithFrame: bounds]
