@@ -12,7 +12,9 @@
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCIndexing.h"
 #import "LuaObjCInternal.h"
-#import "LuaObjCBlock.h"
+#import "LuaObjCRuntime.h"
+
+#import <objc/runtime.h>
 
 static int luaObjC_NSLog(lua_State *L)
 {
@@ -201,7 +203,7 @@ static int luaObjC_callBlockObject(lua_State *L)
     int returnCount = 1;
     id block = luaObjC_checkNSObject(L, 1);
     
-    if ([block isKindOfClass: LuaObjCNSBlockClass])
+    if ([block isKindOfClass: objc_getClass("NSBlock")])
     {
         LuaClosureType clouserID = luaObjC_getClosureIDOfBlock(block);
         lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);

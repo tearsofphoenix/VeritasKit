@@ -28,19 +28,57 @@
 
 #import "LuaBridgeFunctor.h"
 
-#import "LuaObjCBlock.h"
-
 #import "LuaNSObjectSupport.h"
 
 #import "NSString+LuaObjCIndex.h"
 
 #import "NSArray+LuaObjCIndex.h"
 
+#pragma mark - block support
+
+
+static CFMutableDictionaryRef __LuaObjC_clouserBlockDictionary = NULL;
+
+static inline void LuaObjCBlockSupportInitialize(void)
+{
+    
+    __LuaObjC_clouserBlockDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(),
+                                                                 1024,
+                                                                 &kCFTypeDictionaryKeyCallBacks,
+                                                                 NULL);
+}
+
+static inline void luaObjC_addClosureIDForBlock(LuaClosureType clouserID, id block)
+{
+    if (!__LuaObjC_clouserBlockDictionary)
+    {
+        LuaObjCBlockSupportInitialize();
+    }
+    
+    if (block)
+    {
+        CFDictionaryAddValue(__LuaObjC_clouserBlockDictionary, block, (const void *)clouserID);
+    }
+}
+
+LuaClosureType luaObjC_getClosureIDOfBlock(id block)
+{
+    LuaClosureType closureID = (LuaClosureType) CFDictionaryGetValue(__LuaObjC_clouserBlockDictionary, block);
+    
+    if (closureID)
+    {
+        return closureID;
+    }
+    return LuaObjCInvalidClouserID;
+}
+
+#pragma mark - class support
+
 static int luaObjC_createClassWithSuperClass(lua_State *L)
 {
     const char *newClassName = lua_tostring(L, 1);
     const char *superClassName = lua_tostring(L, 2);
-            
+    
     //super Class must be registered in runtime
     //
     Class superClass = objc_getClass(superClassName);
@@ -61,7 +99,7 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
         
     }else
     {
-        Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0); 
+        Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
         luaObjC_allocateClass(L, theNewClass, newClassName);
         luaObjC_pushNSObject(L, theNewClass);
@@ -233,7 +271,7 @@ static int luaObjC_createBlockObject(lua_State *L)
 static int luaObjC_registerClassPair(lua_State *L)
 {
     const char* className = luaObjC_checkString(L, 1);
-
+    
     Class theClass = luaObjC_getClass(className);
     
     if (theClass)
@@ -297,73 +335,67 @@ static int _luaEngine_resolveName(lua_State *L)
 
 static int luaObjC_objc_throw(lua_State *L)
 {
-    NSString *reason = nil;
     switch (lua_type(L, 1))
     {
         case LUA_TNIL:
         case LUA_TNONE:
         {
-            reason = @"@throw nil value!";
+            luaL_error(L, "@throw nil value!");
             break;
         }
         case LUA_TBOOLEAN:
         {
             BOOL value = lua_toboolean(L, 1);
-            reason = [NSString stringWithFormat: @"@throw BOOL:%s value!",
-                      value ? "YES" : "NO"];
+            luaL_error(L,  "@throw BOOL:%s value!", value ? "YES" : "NO");
             break;
         }
         case LUA_TLIGHTUSERDATA:
         {
             void* p = lua_touserdata(L, 1);
-            reason = [NSString stringWithFormat: @"@throw pointer:%p value!", p];
+            luaL_error(L, "@throw pointer:%p value!", p);
             break;
         }
         case LUA_TNUMBER:
         {
             lua_Number number = lua_tonumber(L, 1);
-            reason = [NSString stringWithFormat: @"@throw number:%f value!", number];
+            luaL_error(L, "@throw number:%f value!", number);
             break;
         }
         case LUA_TSTRING:
         {
             const char* str = lua_tostring(L, 1);
-            reason = [NSString stringWithFormat: @"@throw string:%s value!", str];
+            luaL_error(L, "@throw string:%s value!", str);
             break;
         }
         case LUA_TTABLE:
         {
-            reason = @"@throw table value!";
+            luaL_error(L, "@throw table value!");
             break;
         }
         case LUA_TFUNCTION:
         {
-            reason = @"@throw function value!";
+            luaL_error(L, "@throw function value!");
             break;
         }
         case LUA_TUSERDATA:
         {
             id obj = luaObjC_checkNSObject(L, 1);
-            reason = [NSString stringWithFormat: @"@throw object:%@ value!", obj];
+            luaL_error(L, "@throw object:%s value!", [[obj description] UTF8String]);
             break;
         }
         case LUA_TTHREAD:
         {
-            reason = @"@throw thread value!";
+            luaL_error(L, "@throw thread value!");
             break;
         }
         default:
         {
-            reason = @"@throw (unknown) type!";
+            luaL_error(L, "@throw (unknown) type!");
             break;
         }
     }
     
-    NSException *exception = [NSException exceptionWithName: @"LuaObjCException"
-                                                     reason: reason
-                                                   userInfo: nil];
-    
-    @throw exception;
+    return 0;
 }
 
 static int luaObjC_objc_tryCatchFinally(lua_State *L)
@@ -498,11 +530,11 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"objc_NSFastEnumerate", luaObjC_objc_NSFastEnumerate},
     {"objc_createLiteralArray", luaObjC_createLiteralArray},
     {"objc_createLiteralDictionary", luaObjC_createLiteralDictionary},
-
+    
     {"__NSConstantNumber", luaObjC_createConstantNumber},
-
-//    {"resolveName", _luaEngine_resolveName},
-
+    
+    //    {"resolveName", _luaEngine_resolveName},
+    
     {NULL, NULL}
 };
 
@@ -520,13 +552,13 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
 }
 
 int luaObjC_openFoundationSupport(lua_State *L)
-{    
+{
     luaObjC_classInitialize(L);
-
+    
     luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);
-
+    
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
-
+    
     //    luaL_getsubtable(L, LUA_REGISTRYINDEX, "_G");
     //    lua_newtable(L);
     //    lua_pushliteral(L, "__index");
@@ -541,9 +573,9 @@ int luaObjC_openFoundationSupport(lua_State *L)
     //    lua_rawset(L, -3);
     //
     //    stackDump(L);
-            
+    
     static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName})";
-
+    
 	luaL_loadstring(L, s_ResolveNameMetaTable);
 	lua_pcall(L, 0, 0, 0);
     

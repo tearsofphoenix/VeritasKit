@@ -8,9 +8,9 @@
 
 #import "LuaObjCClass.h"
 
-#import "LuaObjCBlock.h"
-
 #import "LuaObjCAuxiliary.h"
+
+#import "LuaObjCRuntime.h"
 
 #import <objc/runtime.h>
 

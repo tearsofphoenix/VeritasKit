@@ -7,8 +7,6 @@
 //
 
 
-#import "LuaObjCBlock.h"
-
 #import "LuaObjCClass.h"
 
 #import "LuaObjCInternal.h"
@@ -16,6 +14,8 @@
 #import "LuaCGGeometry.h"
 
 #import "LuaObjCAuxiliary.h"
+
+#import "LuaObjCRuntime.h"
 
 #import <objc/runtime.h>
 
