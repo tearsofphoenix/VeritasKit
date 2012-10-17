@@ -128,7 +128,7 @@ void luaObjC_loadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg function
     }
 }
 
-void LuaObjC_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
+void luaObjC_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
 {
     luaL_newmetatable(L, name);
     lua_pushvalue(L, -1);  /* push metatable */

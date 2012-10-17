@@ -27,6 +27,6 @@ VK_EXPORT void luaObjC_loadGlobalFunctionsWithLength(struct lua_State *L, const 
 
 VK_EXPORT void luaObjC_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions);
 
-VK_EXPORT void LuaObjC_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
+VK_EXPORT void luaObjC_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
 
 __END_DECLS

@@ -20,7 +20,7 @@ VK_EXPORT	void *luaObjC_getValueInCacheTable(struct lua_State* L, const char* ke
 
 #pragma mark - type encoding
 
-VK_EXPORT CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks;
+//VK_EXPORT CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks;
 
 VK_EXPORT const char * LuaObjCTypeEncodingOfType(const char *typeName);
 
