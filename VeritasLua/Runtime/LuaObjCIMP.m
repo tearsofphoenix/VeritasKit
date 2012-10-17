@@ -19,6 +19,25 @@
 
 #import <objc/runtime.h>
 
+static inline NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector)
+{
+    const char* charLooper = (const char*)selector;
+    NSUInteger count = 0;
+    
+    while (*charLooper)
+    {
+        if (*charLooper == ':')
+        {
+            ++count;
+        }
+        
+        ++charLooper;
+    }
+    
+    return count;
+}
+
+
 static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)
 {
     Class theClass = object_getClass(obj);

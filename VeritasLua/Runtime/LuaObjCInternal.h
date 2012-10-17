@@ -19,8 +19,6 @@ VK_EXPORT void stackDump(struct lua_State *L);
 
 VK_EXPORT const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
 
-VK_EXPORT NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector);
-
 /*
  *   internal api of IMP imeplementation, you should never use them directly.
  */

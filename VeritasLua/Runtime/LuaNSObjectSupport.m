@@ -134,10 +134,7 @@ static int luaObjC_indexCollection(lua_State *L)
         return 1;
     }else
     {
-        NSException *exception = [NSException exceptionWithName: @"LuaObjCException"
-                                                         reason: @"unknow supported __index operation on object!"
-                                                       userInfo: nil];
-        @throw exception;
+        luaL_error(L, "exception: unsupported __index operation on object: %p!", obj);
         
         return 0;
     }
@@ -153,10 +150,7 @@ static int luaObjC_addObjectToCollection(lua_State *L)
         return 0;
     }else
     {
-        NSException *exception = [NSException exceptionWithName: @"LuaObjCException"
-                                                         reason: @"unknow supported __index operation on object!"
-                                                       userInfo: nil];
-        @throw exception;
+        luaL_error(L, "exception: unsupported __add operation on object: %p!", obj);
         
         return 0;
     }
@@ -262,10 +256,7 @@ static int luaObjC_callBlockObject(lua_State *L)
         
     }else
     {
-        NSException *exception = [NSException exceptionWithName: @"LuaObjCBlockException"
-                                                         reason: @"Expect block object!"
-                                                       userInfo: nil];
-        @throw exception;
+        luaL_error(L, "exception: expect block object: %p!", block);
     }
     return returnCount;
 }

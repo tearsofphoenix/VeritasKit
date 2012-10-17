@@ -116,20 +116,3 @@ const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
     return charLooper;
 }
 
-NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector)
-{
-    const char* charLooper = (const char*)selector;
-    NSUInteger count = 0;
-    
-    while (*charLooper)
-    {
-        if (*charLooper == ':')
-        {
-            ++count;
-        }
-        
-        ++charLooper;
-    }
-    
-    return count;
-}
