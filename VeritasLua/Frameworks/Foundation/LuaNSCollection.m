@@ -107,9 +107,10 @@ static int _luaObjC_NSCollection_enumerateObjectsUsingBlock(id obj, SEL selector
                                           lua_rawgeti(L, LUA_REGISTRYINDEX, functionID);
                                           luaObjC_pushNSObject(L, obj);
                                           lua_pushinteger(L, idx);
+                                          
                                           if(lua_pcall(L, 2, 1, 0) != LUA_OK)
                                           {
-                                              luaObjC_throwExceptionIfError(L);
+                                              luaL_error(L, "error in enumerateObjectsUsingBlock:");
                                           }
                                           *stop = lua_toboolean(L, -1);
                                           lua_pop(L, 1);
@@ -129,7 +130,7 @@ static int _luaObjC_NSCollection_enumerateObjectsWithOptions_usingBlock(id obj, 
                                            lua_pushinteger(L, idx);
                                            if(lua_pcall(L, 2, 1, 0) != LUA_OK)
                                            {
-                                               luaObjC_throwExceptionIfError(L);
+                                               luaL_error(L, "error in enumerateObjectsWithOptions:usingBlock:");
                                            }
                                            *stop = lua_toboolean(L, -1);
                                            lua_pop(L, 1);
@@ -148,7 +149,7 @@ static int _luaObjC_NSCollection_enumerateKeysAndObjectsUsingBlock(id obj, SEL s
                                                  luaObjC_pushNSObject(L, obj);
                                                  if(lua_pcall(L, 2, 1, 0) != LUA_OK)
                                                  {
-                                                     luaObjC_throwExceptionIfError(L);
+                                                     luaL_error(L, "error in enumerateKeysAndObjectsUsingBlock:");
                                                  }
                                                  *stop = lua_toboolean(L, -1);
                                                  lua_pop(L, 1);
@@ -171,7 +172,7 @@ static int _luaObjC_NSCollection_enumerateKeysAndObjectsWithOptions_usingBlock(i
                                                  luaObjC_pushNSObject(L, obj);
                                                  if(lua_pcall(L, 2, 1, 0) != LUA_OK)
                                                  {
-                                                     luaObjC_throwExceptionIfError(L);
+                                                     luaL_error(L, "error in enumerateKeysAndObjectsWithOptions:usingBlock:");
                                                  }
                                                  *stop = lua_toboolean(L, -1);
                                                  lua_pop(L, 1);

@@ -13,8 +13,6 @@
 
 __BEGIN_DECLS
 
-VK_EXPORT void luaObjC_throwExceptionIfError(struct lua_State *L);
-
 VK_EXPORT void objc_dumpClass(Class theClass);
 
 VK_EXPORT void stackDump(struct lua_State *L);

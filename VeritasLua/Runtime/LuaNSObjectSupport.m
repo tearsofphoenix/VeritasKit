@@ -257,7 +257,7 @@ static int luaObjC_callBlockObject(lua_State *L)
         
         if(lua_pcall(L, argCount - 1, returnCount, 0) != LUA_OK)
         {
-            luaObjC_throwExceptionIfError(L);
+            luaL_error(L, "error in call block object: %p", block);
         }
         
     }else

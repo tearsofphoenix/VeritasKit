@@ -23,7 +23,7 @@ static int _luaObjC_UIView_animateWithDuration_animations(id obj, SEL selector, 
                                       int status = lua_pcall(luaState, 0, 1, 0);
                                       if (status != LUA_OK)
                                       {
-                                          luaObjC_throwExceptionIfError(luaState);
+                                          luaL_error(luaState, "error in [UIView animateWithDuration:animations:]");
                                       }
                                   })];
     return 0;
@@ -43,7 +43,7 @@ static int _luaObjC_UIView_animateWithDuration_animations_completion(id obj, SEL
                                       int status = lua_pcall(luaState, 0, 0, 0);
                                       if (status != LUA_OK)
                                       {
-                                          luaObjC_throwExceptionIfError(luaState);
+                                          luaL_error(luaState, "error in animation of [UIView animateWithDuration:animations:completion:]");
                                       }
                                   })
                      completion: (^(BOOL finished) 
@@ -53,7 +53,7 @@ static int _luaObjC_UIView_animateWithDuration_animations_completion(id obj, SEL
                                       int status = lua_pcall(luaState, 1, 0, 0);
                                       if (status != LUA_OK)
                                       {
-                                          luaObjC_throwExceptionIfError(luaState);
+                                          luaL_error(luaState, "error in completion of [UIView animateWithDuration:animations:completion:]");
                                       }
                                   })];
     return 0;
@@ -77,7 +77,7 @@ static int _luaObjC_UIView_animateWithDuration_delay_options_animations_completi
                                       int status = lua_pcall(luaState, 0, 0, 0);
                                       if (status != LUA_OK)
                                       {
-                                          luaObjC_throwExceptionIfError(luaState);
+                                          luaL_error(luaState, "error in animation of [UIView animateWithDuration:delay:options:animations:completion:]");
                                       }
                                   })
                      completion: (^(BOOL finished) 
@@ -87,7 +87,7 @@ static int _luaObjC_UIView_animateWithDuration_delay_options_animations_completi
                                       int status = lua_pcall(luaState, 1, 0, 0);
                                       if (status != LUA_OK)
                                       {
-                                          luaObjC_throwExceptionIfError(luaState);
+                                          luaL_error(luaState, "error in completion of [UIView animateWithDuration:delay:options:animations:completion:]");
                                       }
                                   })];
     return 0;

@@ -10,22 +10,6 @@
 
 #import <objc/runtime.h>
 
-void luaObjC_throwExceptionIfError(lua_State *L)
-{
-    const char *msg = lua_tostring(L, -1);
-    NSString *errorReason = nil;
-    if (msg)
-    {
-        errorReason = [NSString stringWithUTF8String: msg];
-    }
-    NSException *exception = [NSException exceptionWithName: @"#LuaError#"
-                                                     reason: errorReason
-                                                   userInfo: [NSDictionary dictionaryWithObjectsAndKeys: [NSValue valueWithPointer: L], @"LuaState", nil]
-                              ];
-    @throw exception;
-}
-
-
 void objc_dumpClass(Class theClass)
 {
     if (theClass)

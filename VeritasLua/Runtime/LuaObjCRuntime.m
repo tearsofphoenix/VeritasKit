@@ -379,7 +379,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
         if(lua_pcall(L, 0, 0, 0) != LUA_OK)
         {
             printf("1st in try\n");
-            luaObjC_throwExceptionIfError(L);
+            luaL_error(L, "error in @try");
         }
         
         
@@ -396,7 +396,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
         {
             printf("1st in catch\n");
             
-            luaObjC_throwExceptionIfError(L);
+            luaL_error(L, "error in @catch");
         }
     }
     @finally

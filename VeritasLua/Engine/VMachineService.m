@@ -175,7 +175,7 @@ static void LuaEngine_initialize(VMachineService *self,
     //int status = luaL_dostring(parserStateRef, [parserSourceCode UTF8String]);
     if (luaL_dostring(parserStateRef, [sourceCode UTF8String]) != LUA_OK)
     {
-        luaObjC_throwExceptionIfError(parserStateRef);
+        luaL_error(luaStateRef, "error in do string");
     }
     
     [sourceCode release];
@@ -266,7 +266,7 @@ static void LuaEngine_initialize(VMachineService *self,
         return strdup(ret);
     }else
     {
-        luaObjC_throwExceptionIfError(luaStateRef);
+        luaL_error(luaStateRef, "error in parse string");
     }
     
     return NULL;
@@ -312,7 +312,7 @@ static void LuaEngine_initialize(VMachineService *self,
         //
         if(!lua_isfunction(luaStateRef, -1))
         {
-            luaObjC_throwExceptionIfError(luaStateRef);
+            luaL_error(luaStateRef, "not function found with name: %s", functionNameString);
         }else
         {
             //push arguments
@@ -335,7 +335,7 @@ static void LuaEngine_initialize(VMachineService *self,
             
             if (status != LUA_OK)
             {
-                luaObjC_throwExceptionIfError(luaStateRef);
+                luaL_error(luaStateRef, "error run");
             }
             
             //deal return value
@@ -384,7 +384,7 @@ static void LuaEngine_initialize(VMachineService *self,
         
         if (luaL_dostring(luaStateRef, parsedString) != LUA_OK)
         {
-            luaObjC_throwExceptionIfError(luaStateRef);
+            luaL_error(luaStateRef, "error in do string: %s", parsedString);
         }
     }
 }

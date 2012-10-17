@@ -142,7 +142,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         int status = lua_pcall(luaState, (int)numberOfArgument + 1 + 1, 1, 0);
         if (status != LUA_OK)
         {
-            luaObjC_throwExceptionIfError(luaState);
+            luaL_error(luaState, "error in call @selector: %s", (const char*)sel);
         }
         
         return ;
