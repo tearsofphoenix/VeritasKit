@@ -7,7 +7,7 @@
 //
 
 #import "LuaNSObjectSupport.h"
-#import "lauxlib.h"
+
 #import "LuaObjCClass.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCIndexing.h"

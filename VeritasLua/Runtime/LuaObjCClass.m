@@ -10,15 +10,170 @@
 
 #import "LuaObjCBlock.h"
 
-#import "LuaObjCTypeEncoding.h"
-
 #import "LuaObjCAuxiliary.h"
 
 #import <objc/runtime.h>
 
-#import "lauxlib.h"
+#pragma mark - cache table in lua state
 
-#import "LuaObjCCacheTable.h"
+
+static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool isWeakTable)
+{
+	lua_pushstring(L, tableID);
+	
+	lua_newtable(L);
+	lua_pushvalue(L, -1);  // table is its own metatable
+	lua_setmetatable(L, -2);
+    
+    if (isWeakTable)
+    {
+        lua_pushliteral(L, "__mode");
+        lua_pushliteral(L, "kv"); // make values weak, I don't think lightuserdata is strong ref'd so 'k' is optional.
+        lua_settable(L, -3);   // metatable.__mode = "v"
+    }
+	
+	// Now that we've created a new table, put it in the global registry
+	lua_settable(L, LUA_REGISTRYINDEX);
+	
+}
+
+static inline void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *tableID, void *object, const char *key)
+{
+    lua_getfield(L, LUA_REGISTRYINDEX, tableID); // puts the global weak table on top of the stack
+	
+	lua_pushlightuserdata(L, object); // stack: [object table]
+	lua_setfield(L, -2, key);
+	
+	// table is still on top of stack. Don't forget to pop it now that we are done with it
+	lua_pop(L, 1);
+}
+
+static inline void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* tableID, const char* key)
+{
+    lua_getfield(L, LUA_REGISTRYINDEX, tableID);
+	lua_getfield(L, -1, key);
+    
+	if(lua_isnil(L, -1))
+	{
+		return NULL;
+        
+	}else
+	{
+		return lua_touserdata(L, -1);
+	}
+}
+
+static const char* LuaObjCGlobalCacheTableID = "com.veritas.lua-objc.global.cachetable";
+
+void luaObjC_initializeCacheTable(lua_State* L)
+{
+    _luaObjC_createTableWithID(L, LuaObjCGlobalCacheTableID, false);
+}
+
+void luaObjC_addValueInCacheTable(lua_State* L, void* object, const char *key)
+{
+    _luaObjC_insertObjectInTableWithID(L, LuaObjCGlobalCacheTableID, object, key);
+}
+
+void* luaObjC_getValueInCacheTable(lua_State* L, const char* key)
+{
+    return _luaObjC_getObjectInTableWithID(L, LuaObjCGlobalCacheTableID, key);
+}
+
+
+#pragma mark - type encoding support
+
+CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks = {
+    .equal=luaInternal_CStringEqual,
+    .release=luaInternal_freeCallback,
+    .hash=(CFDictionaryHashCallBack)strlen
+};
+
+static CFDictionaryValueCallBacks __LuaObjC_ValueCallbacks;
+
+static CFMutableDictionaryRef __LuaObjC_TypeEncodingDictionary = NULL;
+
+static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
+{
+    
+#define _AddTypeEncoding(type) CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, #type, @encode(type))
+    
+    _AddTypeEncoding(NSInteger);
+    _AddTypeEncoding(NSUInteger);
+    _AddTypeEncoding(BOOL);
+    _AddTypeEncoding(id);
+    _AddTypeEncoding(SEL);
+    _AddTypeEncoding(CGFloat);
+    _AddTypeEncoding(int);
+    _AddTypeEncoding(float);
+    _AddTypeEncoding(double);
+    _AddTypeEncoding(char);
+    _AddTypeEncoding(void);
+    _AddTypeEncoding(CGRect);
+    _AddTypeEncoding(CGSize);
+    _AddTypeEncoding(CGPoint);
+    _AddTypeEncoding(CGAffineTransform);
+    _AddTypeEncoding(NSRange);
+    _AddTypeEncoding(CATransform3D);
+#if TARGET_OS_IPHONE
+    _AddTypeEncoding(UIEdgeInsets);
+    _AddTypeEncoding(UIOffset);
+#endif
+    
+#undef _AddTypeEncoding
+}
+
+static inline void LuaObjCTypeEncodingInitialize(void)
+{
+    __LuaObjC_ValueCallbacks.equal = luaInternal_CStringEqual;
+    
+    __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
+                                                                 &kLuaObjCCStringKeyCallBacks,
+                                                                 &__LuaObjC_ValueCallbacks);
+    _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
+    
+}
+
+void luaObjC_addEncodingForPredeclearClass(const char *className)
+{
+    if (!__LuaObjC_TypeEncodingDictionary)
+    {
+        LuaObjCTypeEncodingInitialize();
+    }
+    
+    CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, strdup(className), @encode(id));
+}
+
+const char * LuaObjCTypeEncodingOfType(const char *typeName)
+{
+    const char *typeEncoding = CFDictionaryGetValue(__LuaObjC_TypeEncodingDictionary, typeName);
+    if (!typeEncoding)
+    {
+        typeEncoding = @encode(id);
+    }
+    
+    return typeEncoding;
+}
+
+void luaInternal_freeCallback(CFAllocatorRef allocator, const void *value)
+{
+    free((void *)value);
+}
+
+Boolean luaInternal_CStringEqual(const void *value1, const void *value2)
+{
+    const char *str1 = value1;
+    const char *str2 = value2;
+    
+    if(!strcmp(str1, str2))
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+#pragma mark - class
 
 @class LuaObjectObserver;
 
@@ -125,6 +280,7 @@ int luaObjC_getClosureIDOfSelector(Class theClass, SEL selector, bool isClassMet
     if (theClass && selector)
     {
         const void *key = &__LuaObjC_KeyForMethods;
+        
         if (isClassMethod)
         {
             key = &__LuaObjC_KeyForClassMethods;
@@ -162,6 +318,8 @@ void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const char* 
         }
     }
 }
+
+#pragma mark - object api
 
 struct __LuaObject
 {

@@ -10,8 +10,6 @@
 
 #import "LuaObjCAuxiliary.h"
 
-#import "LuaObjCTypeEncoding.h"
-
 #import "LuaObjCInternal.h"
 
 #import <objc/runtime.h>

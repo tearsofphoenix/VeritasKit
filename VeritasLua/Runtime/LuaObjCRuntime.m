@@ -10,8 +10,6 @@
 
 #import <objc/runtime.h>
 
-#import "lauxlib.h"
-
 #import "LuaObjCClass.h"
 
 #import "LuaObjCInternal.h"
@@ -31,10 +29,6 @@
 #import "LuaBridgeFunctor.h"
 
 #import "LuaObjCBlock.h"
-
-#import "LuaObjCTypeEncoding.h"
-
-#import "LuaObjCCacheTable.h"
 
 #import "LuaNSObjectSupport.h"
 

@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCATransform3D.h"
-#import "lua.h"
-#import "lauxlib.h"
+
 #import "LuaObjCAuxiliary.h"
 #import "LuaCGAffineTransform.h"
 #import "LuaObjCFrameworkFunctions.h"

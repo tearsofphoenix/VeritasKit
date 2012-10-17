@@ -10,7 +10,6 @@
 #import "LuaObjCAccelerator.h"
 #import "LuaObjCInternal.h"
 #import "LuaObjCAuxiliary.h"
-#import "lauxlib.h"
 
 static NSMutableArray *__luaObjC_getArrayFromState(lua_State *L)
 {

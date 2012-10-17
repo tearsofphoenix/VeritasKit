@@ -10,6 +10,7 @@
 #define LuaIOS_LuaObjCBase_h
 
 #include "lua.h"
+#include "lauxlib.h"
 
 #define VK_EXPORT LUAMOD_API
 

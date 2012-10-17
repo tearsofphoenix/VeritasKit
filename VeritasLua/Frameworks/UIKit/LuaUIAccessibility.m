@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIAccessibility.h"
-#import "lauxlib.h"
-#import "LuaObjCInternal.h"
 #import "LuaObjCAuxiliary.h"
 
 static int luaUIKit_UIAccessibilityZoomFocusChanged(lua_State *L)

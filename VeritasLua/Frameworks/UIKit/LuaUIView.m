@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIView.h"
-#import "lauxlib.h"
 #import "LuaObjCInternal.h"
 
 #import "LuaObjCAccelerator.h"

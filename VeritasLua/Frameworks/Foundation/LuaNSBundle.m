@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaNSBundle.h"
-#import "lua.h"
-#import "lauxlib.h"
-#import "LuaObjCInternal.h"
+
 #import "LuaObjCAuxiliary.h"
 
 static int lua_NSLocalizedString(lua_State *L)

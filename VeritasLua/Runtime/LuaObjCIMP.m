@@ -17,10 +17,6 @@
 
 #import "LuaObjCAuxiliary.h"
 
-#import "lauxlib.h"
-
-#import "LuaObjCTypeEncoding.h"
-
 #import <objc/runtime.h>
 
 static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL sel, va_list ap)

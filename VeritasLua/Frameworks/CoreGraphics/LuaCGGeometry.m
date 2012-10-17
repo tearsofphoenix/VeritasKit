@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGGeometry.h"
-#import "lua.h"
-#import "lauxlib.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCFrameworkFunctions.h"
 

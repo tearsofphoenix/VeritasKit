@@ -16,8 +16,6 @@
 
 #import "LuaObjCAuxiliary.h"
 
-#import "lauxlib.h"
-
 #import <objc/message.h>
 
 @interface NSInvocation (PrivateMethodsExpose)

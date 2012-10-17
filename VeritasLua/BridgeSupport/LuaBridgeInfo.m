@@ -11,7 +11,6 @@
 #import "LuaObjCAuxiliary.h"
 #import "LuaBridgeFunctor.h"
 #import "LuaObjCClass.h"
-#import "LuaObjCCacheTable.h"
 
 #import <objc/runtime.h>
 

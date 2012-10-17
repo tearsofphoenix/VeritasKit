@@ -8,8 +8,6 @@
 
 #import "LuaObjCInternal.h"
 
-#import "lauxlib.h"
-
 #import <objc/runtime.h>
 
 void luaObjC_throwExceptionIfError(lua_State *L)

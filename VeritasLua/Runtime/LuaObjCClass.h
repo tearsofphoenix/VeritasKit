@@ -10,6 +10,28 @@
 
 __BEGIN_DECLS
 
+#pragma mark - cache table
+
+VK_EXPORT	void luaObjC_initializeCacheTable(struct lua_State* L);
+
+VK_EXPORT	void luaObjC_addValueInCacheTable(struct lua_State* L, void* object, const char *key);
+
+VK_EXPORT	void *luaObjC_getValueInCacheTable(struct lua_State* L, const char* key);
+
+#pragma mark - type encoding
+
+VK_EXPORT CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks;
+
+VK_EXPORT const char * LuaObjCTypeEncodingOfType(const char *typeName);
+
+VK_EXPORT void luaObjC_addEncodingForPredeclearClass(const char *className);
+
+#pragma mark - project api
+
+VK_EXPORT Boolean luaInternal_CStringEqual(const void *value1, const void *value2);
+
+VK_EXPORT void luaInternal_freeCallback(CFAllocatorRef allocator, const void *value);
+
 //lua function <---> Objective-C method bridge
 //
 VK_EXPORT int luaObjC_getClosureIDOfSelector(Class theClass, SEL selector, bool isClassMethod);

@@ -8,8 +8,6 @@
 
 #import "LuaObjCProfile.h"
 
-#import "lauxlib.h"
-
 #import "LuaObjCAuxiliary.h"
 
 #import <mach/mach_time.h>

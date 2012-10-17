@@ -202,8 +202,6 @@
 		E13C8F0916168B0D00A72BEF /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2316168B0C00A72BEF /* LuaObjCAuxiliary.m */; };
 		E13C8F0A16168B0D00A72BEF /* LuaObjCBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2416168B0C00A72BEF /* LuaObjCBlock.h */; };
 		E13C8F0B16168B0D00A72BEF /* LuaObjCBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2516168B0C00A72BEF /* LuaObjCBlock.m */; };
-		E13C8F0C16168B0D00A72BEF /* LuaObjCCacheTable.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2616168B0C00A72BEF /* LuaObjCCacheTable.c */; };
-		E13C8F0D16168B0D00A72BEF /* LuaObjCCacheTable.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2716168B0C00A72BEF /* LuaObjCCacheTable.h */; };
 		E13C8F0E16168B0D00A72BEF /* LuaObjCClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2816168B0C00A72BEF /* LuaObjCClass.h */; };
 		E13C8F0F16168B0D00A72BEF /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2916168B0C00A72BEF /* LuaObjCClass.m */; };
 		E13C8F1116168B0D00A72BEF /* LuaObjCIMP.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2B16168B0C00A72BEF /* LuaObjCIMP.m */; };
@@ -214,8 +212,6 @@
 		E13C8F1816168B0D00A72BEF /* LuaObjCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3216168B0C00A72BEF /* LuaObjCProperty.m */; };
 		E13C8F1916168B0D00A72BEF /* LuaObjCRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E3316168B0C00A72BEF /* LuaObjCRuntime.h */; };
 		E13C8F1A16168B0D00A72BEF /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3416168B0C00A72BEF /* LuaObjCRuntime.m */; };
-		E13C8F1B16168B0D00A72BEF /* LuaObjCTypeEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E3516168B0C00A72BEF /* LuaObjCTypeEncoding.h */; };
-		E13C8F1C16168B0D00A72BEF /* LuaObjCTypeEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3616168B0C00A72BEF /* LuaObjCTypeEncoding.m */; };
 		E13C8F1D16168B0D00A72BEF /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */; };
 		E19827261616A4A10076399B /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827251616A4A10076399B /* LuaObjCBase.h */; };
 		E19827291616D6440076399B /* LuaFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827271616D6430076399B /* LuaFoundation.h */; };
@@ -456,8 +452,6 @@
 		E13C8E2316168B0C00A72BEF /* LuaObjCAuxiliary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCAuxiliary.m; sourceTree = "<group>"; };
 		E13C8E2416168B0C00A72BEF /* LuaObjCBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCBlock.h; sourceTree = "<group>"; };
 		E13C8E2516168B0C00A72BEF /* LuaObjCBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCBlock.m; sourceTree = "<group>"; };
-		E13C8E2616168B0C00A72BEF /* LuaObjCCacheTable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LuaObjCCacheTable.c; sourceTree = "<group>"; };
-		E13C8E2716168B0C00A72BEF /* LuaObjCCacheTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCCacheTable.h; sourceTree = "<group>"; };
 		E13C8E2816168B0C00A72BEF /* LuaObjCClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCClass.h; sourceTree = "<group>"; };
 		E13C8E2916168B0C00A72BEF /* LuaObjCClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCClass.m; sourceTree = "<group>"; };
 		E13C8E2B16168B0C00A72BEF /* LuaObjCIMP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCIMP.m; sourceTree = "<group>"; };
@@ -468,8 +462,6 @@
 		E13C8E3216168B0C00A72BEF /* LuaObjCProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCProperty.m; sourceTree = "<group>"; };
 		E13C8E3316168B0C00A72BEF /* LuaObjCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCRuntime.h; sourceTree = "<group>"; };
 		E13C8E3416168B0C00A72BEF /* LuaObjCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCRuntime.m; sourceTree = "<group>"; };
-		E13C8E3516168B0C00A72BEF /* LuaObjCTypeEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCTypeEncoding.h; sourceTree = "<group>"; };
-		E13C8E3616168B0C00A72BEF /* LuaObjCTypeEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCTypeEncoding.m; sourceTree = "<group>"; };
 		E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VeritasKit-LICENSE"; sourceTree = "<group>"; };
 		E19827251616A4A10076399B /* LuaObjCBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCBase.h; sourceTree = "<group>"; };
 		E19827271616D6430076399B /* LuaFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFoundation.h; sourceTree = "<group>"; };
@@ -937,8 +929,6 @@
 				E13C8E2316168B0C00A72BEF /* LuaObjCAuxiliary.m */,
 				E13C8E2416168B0C00A72BEF /* LuaObjCBlock.h */,
 				E13C8E2516168B0C00A72BEF /* LuaObjCBlock.m */,
-				E13C8E2616168B0C00A72BEF /* LuaObjCCacheTable.c */,
-				E13C8E2716168B0C00A72BEF /* LuaObjCCacheTable.h */,
 				E13C8E2816168B0C00A72BEF /* LuaObjCClass.h */,
 				E13C8E2916168B0C00A72BEF /* LuaObjCClass.m */,
 				E13C8E2B16168B0C00A72BEF /* LuaObjCIMP.m */,
@@ -949,8 +939,6 @@
 				E13C8E3216168B0C00A72BEF /* LuaObjCProperty.m */,
 				E13C8E3316168B0C00A72BEF /* LuaObjCRuntime.h */,
 				E13C8E3416168B0C00A72BEF /* LuaObjCRuntime.m */,
-				E13C8E3516168B0C00A72BEF /* LuaObjCTypeEncoding.h */,
-				E13C8E3616168B0C00A72BEF /* LuaObjCTypeEncoding.m */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -1049,12 +1037,10 @@
 				E13C8F0316168B0D00A72BEF /* lzio.h in Headers */,
 				E13C8F0416168B0D00A72BEF /* LuaNSObjectSupport.h in Headers */,
 				E13C8F0A16168B0D00A72BEF /* LuaObjCBlock.h in Headers */,
-				E13C8F0D16168B0D00A72BEF /* LuaObjCCacheTable.h in Headers */,
 				E13C8F0E16168B0D00A72BEF /* LuaObjCClass.h in Headers */,
 				E13C8F1216168B0D00A72BEF /* LuaObjCInternal.h in Headers */,
 				E13C8F1616168B0D00A72BEF /* LuaObjCParser.h in Headers */,
 				E13C8F1916168B0D00A72BEF /* LuaObjCRuntime.h in Headers */,
-				E13C8F1B16168B0D00A72BEF /* LuaObjCTypeEncoding.h in Headers */,
 				E19827261616A4A10076399B /* LuaObjCBase.h in Headers */,
 				E19827291616D6440076399B /* LuaFoundation.h in Headers */,
 			);
@@ -1272,14 +1258,12 @@
 				E13C8F0716168B0D00A72BEF /* LuaObjCAccelerator.m in Sources */,
 				E13C8F0916168B0D00A72BEF /* LuaObjCAuxiliary.m in Sources */,
 				E13C8F0B16168B0D00A72BEF /* LuaObjCBlock.m in Sources */,
-				E13C8F0C16168B0D00A72BEF /* LuaObjCCacheTable.c in Sources */,
 				E13C8F0F16168B0D00A72BEF /* LuaObjCClass.m in Sources */,
 				E13C8F1116168B0D00A72BEF /* LuaObjCIMP.m in Sources */,
 				E13C8F1316168B0D00A72BEF /* LuaObjCInternal.m in Sources */,
 				E13C8F1516168B0D00A72BEF /* LuaObjCMessage.m in Sources */,
 				E13C8F1816168B0D00A72BEF /* LuaObjCProperty.m in Sources */,
 				E13C8F1A16168B0D00A72BEF /* LuaObjCRuntime.m in Sources */,
-				E13C8F1C16168B0D00A72BEF /* LuaObjCTypeEncoding.m in Sources */,
 				E198272A1616D6440076399B /* LuaFoundation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
