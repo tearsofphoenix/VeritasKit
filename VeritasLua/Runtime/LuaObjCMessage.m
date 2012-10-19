@@ -75,7 +75,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         
         if (!methodSignature)
         {
-            printf("[#ERROR#] line: %d nil method signature for SEL:%s\n", __LINE__, selectorName);
+            NSLog(@"[#ERROR#] line: %d nil method signature for SEL:%s for: %@\n", __LINE__, selectorName, obj);
         }
         
         NSUInteger numberOfArguments = [methodSignature numberOfArguments];
@@ -218,14 +218,6 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 return 1;
             }
             case _C_CLASS:
-            {
-                id obj = nil;
-                [invokation getReturnValue: &obj];
-                
-                luaObjC_pushNSObject(L, obj, false);
-
-                return 1;
-            }
             case _C_ID:
             {
                 id obj = nil;

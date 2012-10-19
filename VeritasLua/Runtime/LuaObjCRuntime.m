@@ -95,14 +95,14 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     if (registeredClass)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        luaObjC_pushNSObject(L, registeredClass, false);
+        luaObjC_pushNSObject(L, registeredClass, true);
         
     }else
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
         luaObjC_allocateClass(L, theNewClass, newClassName);
-        luaObjC_pushNSObject(L, theNewClass, false);
+        luaObjC_pushNSObject(L, theNewClass, true);
     }
     return 1;
 }
@@ -322,7 +322,7 @@ static int _luaEngine_resolveName(lua_State *L)
         {
             LuaObjectRef objRef = LuaObjectCreate(L, theClass);
             luaObjC_addValueInCacheTable(L, objRef, name);
-            luaObjC_pushNSObject(L, theClass, false);
+            luaObjC_pushNSObject(L, theClass, true);
         }else
         {
             //this maybe a function, such as glEnable(...)

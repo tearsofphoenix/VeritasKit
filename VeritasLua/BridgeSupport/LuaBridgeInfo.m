@@ -53,7 +53,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             Class theClass = objc_getClass(className);
             LuaObjectRef classRef = LuaObjectCreate(state, theClass);
             luaObjC_addValueInCacheTable(state, classRef, className);
-            luaObjC_pushNSObject(state, theClass, false);
+            luaObjC_pushNSObject(state, theClass, true);
             return YES;
         }
         case LuaBridgeEnumType:

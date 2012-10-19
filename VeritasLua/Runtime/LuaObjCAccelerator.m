@@ -54,11 +54,6 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             return 1;
         }
         case _C_CLASS:
-        {
-            id result = impRef(obj, selector);
-            luaObjC_pushNSObject(L, result, false);
-            return 1;
-        }
         case _C_ID:
         {
             id result = impRef(obj, selector);
@@ -143,7 +138,7 @@ static CFMutableDictionaryRef __preAccelerators = nil;
 
 static inline void LuaObjCAcceleratorInitialize(void)
 {
-    __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 64, NULL, &kCFTypeDictionaryValueCallBacks);
 }
 
 void luaObjC_registerAccelerator(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
