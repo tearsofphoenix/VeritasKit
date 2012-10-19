@@ -7,10 +7,8 @@
 //
 
 #import "NSDictionary+LuaObjCIndex.h"
-
-#import "lua.h"
 #import "LuaObjCAuxiliary.h"
-#import "LuaObjCClass.h"
+#import "LuaNSObjectSupport.h"
 
 @implementation NSDictionary (LuaObjCIndex)
 

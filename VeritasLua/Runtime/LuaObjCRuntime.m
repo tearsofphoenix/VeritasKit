@@ -320,7 +320,7 @@ static int _luaEngine_resolveName(lua_State *L)
         Class theClass = objc_getClass(name);
         if (theClass)
         {
-            LuaObjectRef objRef = LuaObjectCreate(L, theClass);
+            LuaObjectRef objRef = LuaObjectCreate(L, theClass, true);
             luaObjC_addValueInCacheTable(L, objRef, name);
             luaObjC_pushNSObject(L, theClass);
         }else

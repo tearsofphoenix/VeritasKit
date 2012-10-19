@@ -8,7 +8,7 @@
 
 #import "LuaObjCAuxiliary.h"
 
-#import "LuaObjCClass.h"
+#import "LuaNSObjectSupport.h"
 
 const char * LUA_NSOBJECT_METATABLENAME = "com.veritas.vm.meta.NSObject";
 
@@ -89,7 +89,7 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject)
 {
     if (nsObject)
     {
-        LuaObjectCreate(L, nsObject);
+        LuaObjectCreate(L, nsObject, true);
     }else
     {
         lua_pushnil(L);

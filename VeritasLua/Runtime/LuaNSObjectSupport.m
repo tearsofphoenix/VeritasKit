@@ -113,44 +113,7 @@ static int luaObjC_NSLog(lua_State *L)
 #pragma mark - Object observer
 
 static CFMutableArrayRef __LuaObjCRuntimePool = NULL;
-
-static char __LuaObjCAssociatedObjectKey;
-
-@interface LuaObjectObserver : NSObject
-{
-@private
-    LuaObjectRef _ref;
-}
-
-- (id)initWithObjectRef: (LuaObjectRef)ref;
-
-@end
-
-@implementation LuaObjectObserver
-
-- (id)init
-{
-    [self doesNotRecognizeSelector: _cmd];
-    return nil;
-}
-
-- (id)initWithObjectRef:(LuaObjectRef)ref
-{
-    if ((self = [super init]))
-    {
-        _ref = ref;
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    //NSLog(@"in func: %s self: %p", __func__, _ref);
-    
-    [super dealloc];
-}
-
-@end
+static NSRecursiveLock *__LuaObjCRuntimePoolLock = nil;
 
 #pragma mark - object api
 
@@ -158,28 +121,23 @@ struct __LuaObject
 {
     id _obj;
     lua_State *_luaState;
-    LuaObjectObserver *_objectObserver;
 };
 
-LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject)
+LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject, bool shouldStore)
 {
     LuaObjectRef objRef = lua_newuserdata(L, sizeof(struct __LuaObject));
     
     objRef->_luaState = L;
     objRef->_obj = rawObject;
     
-    if (object_getClass(rawObject) != rawObject)
+    if (object_getClass(rawObject) != rawObject
+        && shouldStore)
     {
+        [__LuaObjCRuntimePoolLock lock];
+        
         CFArrayAppendValue(__LuaObjCRuntimePool, rawObject);
         
-        LuaObjectObserver *objectObserver = [[LuaObjectObserver alloc] initWithObjectRef: objRef];
-        objc_setAssociatedObject(rawObject,
-                                 &__LuaObjCAssociatedObjectKey,
-                                 objectObserver,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [objectObserver release];
-        
-        objRef->_objectObserver = objectObserver;
+        [__LuaObjCRuntimePoolLock unlock];
     }
     
     luaL_getmetatable(L, LUA_NSOBJECT_METATABLENAME);
@@ -353,18 +311,23 @@ static int luaObjC_callBlockObject(lua_State *L)
 }
 
 static int luaObjC_garbageCollection(lua_State *L)
-{
-    printf("in func: %s\n", __func__);
-    
+{    
     LuaObjectRef objRef = lua_touserdata(L, 1);
     
     if (objRef)
     {
         const void *obj = objRef->_obj;
-        NSLog(@"obj: %@", obj);
         
-        CFIndex index = CFArrayGetFirstIndexOfValue(__LuaObjCRuntimePool, CFRangeMake(0, CFArrayGetCount(__LuaObjCRuntimePool)), obj);
-        CFArrayRemoveValueAtIndex(__LuaObjCRuntimePool, index);
+        [__LuaObjCRuntimePoolLock lock];
+        
+        CFIndex arrayCount = CFArrayGetCount(__LuaObjCRuntimePool);
+        CFIndex index = CFArrayGetFirstIndexOfValue(__LuaObjCRuntimePool, CFRangeMake(0, arrayCount), obj);
+        if (0 <= index && index < arrayCount)
+        {
+            CFArrayRemoveValueAtIndex(__LuaObjCRuntimePool, index);
+        }
+        
+        [__LuaObjCRuntimePoolLock unlock];
     }
         
     return 0;
@@ -398,6 +361,7 @@ int luaObjC_openNSObjectExtensionSupport(lua_State *L)
     if (!__LuaObjCRuntimePool)
     {
         __LuaObjCRuntimePool = CFArrayCreateMutable(CFAllocatorGetDefault(), 4096, &kCFTypeArrayCallBacks);
+        __LuaObjCRuntimePoolLock = [[NSRecursiveLock alloc] init];
     }
     
     luaObjC_loadGlobalFunctions(L, luaNS_functions);

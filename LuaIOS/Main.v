@@ -150,5 +150,15 @@ GL = #import("OpenGLES")
 
  
 main = function()
+            --[[local value = [[NSString alloc] initWithUTF8String: "value--string"];
+
+            local block = (^
+                            {
+                                print(value)
+                            })
+            [value release];
+            
+            block();
+            ]]--
             return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
         end

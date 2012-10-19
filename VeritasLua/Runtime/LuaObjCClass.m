@@ -178,8 +178,6 @@ Boolean luaInternal_CStringEqual(const void *value1, const void *value2)
 
 #pragma mark - class
 
-@class LuaObjectObserver;
-
 static CFMutableDictionaryRef __LuaObjC_ClassDictionary = NULL;
 
 

@@ -38,15 +38,6 @@ VK_EXPORT void luaObjC_allocateClass(struct lua_State *L, Class theClass, const 
 
 VK_EXPORT struct lua_State *luaObjC_getLuaStateOfClass(Class theClass);
 
-#pragma mark - Object observer
-
-typedef struct __LuaObject *LuaObjectRef;
-
-VK_EXPORT LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject);
-
-VK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
-
-
 LUAMOD_API int luaObjC_classInitialize(struct lua_State *L);
 
 __END_DECLS

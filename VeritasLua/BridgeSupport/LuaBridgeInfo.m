@@ -7,10 +7,10 @@
 //
 
 #import "LuaBridgeInfo.h"
-#import "lua.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaBridgeFunctor.h"
 #import "LuaObjCClass.h"
+#import "LuaNSObjectSupport.h"
 
 #import <objc/runtime.h>
 
@@ -51,7 +51,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         {
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
-            LuaObjectRef classRef = LuaObjectCreate(state, theClass);
+            LuaObjectRef classRef = LuaObjectCreate(state, theClass, true);
             luaObjC_addValueInCacheTable(state, classRef, className);
             luaObjC_pushNSObject(state, theClass);
             return YES;
@@ -65,7 +65,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         {
             const char *className = [_name UTF8String];
             id value = [_info objectForKey: @"value"];
-            LuaObjectRef classRef = LuaObjectCreate(state, value);
+            LuaObjectRef classRef = LuaObjectCreate(state, value, true);
             luaObjC_addValueInCacheTable(state, classRef, className);
             luaObjC_pushNSObject(state, value);
             return YES;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCClass.h"
+#import "LuaNSObjectSupport.h"
 
 #import "LuaObjCInternal.h"
 
@@ -222,7 +222,9 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             {
                 id obj = nil;
                 [invokation getReturnValue: &obj];
+               
                 luaObjC_pushNSObject(L, obj);
+                
                 return 1;
             }
             case _C_SEL:

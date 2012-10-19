@@ -14,6 +14,8 @@
 
 #import "LuaObjCInternal.h"
 
+#import "LuaNSObjectSupport.h"
+
 #import <objc/message.h>
 
 int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
@@ -54,7 +56,23 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_CLASS:
         case _C_ID:
         {
-            luaObjC_pushNSObject(L, impRef(obj, selector));
+            id result = impRef(obj, selector);
+            
+            if (sel_isEqual(selector, @selector(alloc)))
+            {
+                if (result)
+                {
+                    LuaObjectCreate(L, result, false);
+                }else
+                {
+                    lua_pushnil(L);
+                }
+                
+            }else
+            {
+                luaObjC_pushNSObject(L, result);
+            }
+            
             return 1;
         }
         case _C_SEL:
