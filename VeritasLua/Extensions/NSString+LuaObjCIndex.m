@@ -28,14 +28,14 @@
         {
             const char* str = lua_tostring(state, 2);
             NSString *ret = [self stringByAppendingFormat: @"%s", str];
-            luaObjC_pushNSObject(state, ret, true);
+            luaObjC_pushNSObject(state, ret, true, false);
             break;
         }   
         case LUA_TUSERDATA:
         {
             NSString *str = luaObjC_checkNSObject(state, 2);
             NSString *ret = [self stringByAppendingString: str];
-            luaObjC_pushNSObject(state, ret, true);
+            luaObjC_pushNSObject(state, ret, true, false);
             break;
         }
         default:

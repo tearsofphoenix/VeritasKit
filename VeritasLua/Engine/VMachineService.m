@@ -287,7 +287,7 @@ static void LuaEngine_initialize(VMachineService *self,
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
-        //printf("parsed: %s\n", ret);
+        printf("parsed: %s\n", ret);
         ///TODO: is here right?
         //
         return strdup(ret);

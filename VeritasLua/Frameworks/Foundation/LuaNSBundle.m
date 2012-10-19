@@ -12,7 +12,7 @@
 static int lua_NSLocalizedString(lua_State *L)
 {
     luaObjC_pushNSObject(L, NSLocalizedString(luaObjC_checkNSObject(L, 1),
-                                              luaObjC_checkNSObject(L, 2)), true);
+                                              luaObjC_checkNSObject(L, 2)), true, false);
     return 1;
 }
 
@@ -20,7 +20,7 @@ static int lua_NSLocalizedStringFromTable(lua_State *L)
 {    
     luaObjC_pushNSObject(L, NSLocalizedStringFromTable(luaObjC_checkNSObject(L, 1), 
                                                     luaObjC_checkNSObject(L, 2),
-                                                    luaObjC_checkNSObject(L, 3)), true);
+                                                    luaObjC_checkNSObject(L, 3)), true, false);
 
     return 1;
 }
@@ -30,7 +30,7 @@ static int lua_NSLocalizedStringFromTableInBundle(lua_State *L)
     luaObjC_pushNSObject(L, NSLocalizedStringFromTableInBundle(luaObjC_checkNSObject(L, 1), 
                                                             luaObjC_checkNSObject(L, 2),
                                                             luaObjC_checkNSObject(L, 3),
-                                                            luaObjC_checkNSObject(L, 4)), true);
+                                                            luaObjC_checkNSObject(L, 4)), true, false);
     
     return 1;
 }
@@ -41,7 +41,7 @@ static int lua_NSLocalizedStringWithDefaultValue(lua_State *L)
                                                             luaObjC_checkNSObject(L, 2),
                                                             luaObjC_checkNSObject(L, 3),
                                                             luaObjC_checkNSObject(L, 4),
-                                                            luaObjC_checkNSObject(L, 5)), true);
+                                                            luaObjC_checkNSObject(L, 5)), true, false);
     
     return 1;
 }

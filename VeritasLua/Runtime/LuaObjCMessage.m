@@ -218,12 +218,21 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 return 1;
             }
             case _C_CLASS:
+            {
+                id obj = nil;
+                [invokation getReturnValue: &obj];
+                
+                luaObjC_pushNSObject(L, obj, true, true);
+                
+                return 1;
+
+            }
             case _C_ID:
             {
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                
-                luaObjC_pushNSObject(L, obj, true);
+                luaObjC_pushNSObject(L, obj, true, false);
                 
                 return 1;
             }

@@ -12,6 +12,8 @@
 
 const char * LUA_NSOBJECT_METATABLENAME = "com.veritas.vm.meta.NSObject";
 
+const char * LUA_CLASS_METATABLENAME = "com.veritas.vm.meta.Class";
+
 id luaObjC_checkNSObject(lua_State *L, int index)
 {
     switch (lua_type(L, index))
@@ -26,7 +28,7 @@ id luaObjC_checkNSObject(lua_State *L, int index)
         }
         case LUA_TUSERDATA:
         {
-            void* obj = luaL_testudata(L, index, LUA_NSOBJECT_METATABLENAME);
+            void* obj = lua_touserdata(L, index);
             
             return LuaObjectGetObject(obj);
         }
@@ -75,7 +77,7 @@ const char* luaObjC_checkString(lua_State *L, int index)
         }
         case LUA_TUSERDATA:
         {
-            LuaObjectRef obj = luaL_checkudata(L, index, LUA_NSOBJECT_METATABLENAME);
+            LuaObjectRef obj = lua_touserdata(L, index);
             return [LuaObjectGetObject(obj) UTF8String];
         }
         default:
@@ -85,11 +87,11 @@ const char* luaObjC_checkString(lua_State *L, int index)
     }
 }
 
-int luaObjC_pushNSObject(lua_State *L, id nsObject, bool shouldStoreInPool)
+int luaObjC_pushNSObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClass)
 {
     if (nsObject)
     {
-        LuaObjectCreate(L, nsObject);
+        LuaObjectCreate(L, nsObject, isClass);
         
         if (shouldStoreInPool)
         {

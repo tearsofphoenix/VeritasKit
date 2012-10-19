@@ -54,6 +54,11 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             return 1;
         }
         case _C_CLASS:
+        {
+            id result = impRef(obj, selector);
+            luaObjC_pushNSObject(L, result, true, true);
+            return 1;
+        }
         case _C_ID:
         {
             id result = impRef(obj, selector);
@@ -61,11 +66,11 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             if (sel_isEqual(selector, @selector(alloc)))
             {
 
-                luaObjC_pushNSObject(L, result, false);
+                luaObjC_pushNSObject(L, result, false, false);
                 
             }else
             {
-                luaObjC_pushNSObject(L, result, true);
+                luaObjC_pushNSObject(L, result, true, false);
             }
             
             return 1;

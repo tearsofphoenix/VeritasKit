@@ -10,11 +10,13 @@
 
 extern const char * LUA_NSOBJECT_METATABLENAME;
 
+extern const char * LUA_CLASS_METATABLENAME;
+
 __BEGIN_DECLS
 
 VK_EXPORT id luaObjC_checkNSObject(struct lua_State *L, int index);
 
-VK_EXPORT int luaObjC_pushNSObject(struct lua_State *L, id obj, bool shouldStoreInPool);
+VK_EXPORT int luaObjC_pushNSObject(struct lua_State *L, id obj, bool shouldStoreInPool, bool isClass);
 
 VK_EXPORT const char* luaObjC_checkString(struct lua_State *L, int index);
 

@@ -125,14 +125,21 @@ struct __LuaObject
     lua_State *_luaState;
 };
 
-LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject)
+LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject, bool isClass)
 {
     LuaObjectRef objRef = lua_newuserdata(L, sizeof(struct __LuaObject));
     
     objRef->_luaState = L;
     objRef->_obj = rawObject;
     
-    luaL_getmetatable(L, LUA_NSOBJECT_METATABLENAME);
+    if (isClass)
+    {
+        luaL_getmetatable(L, LUA_CLASS_METATABLENAME);
+    }else
+    {
+        luaL_getmetatable(L, LUA_NSOBJECT_METATABLENAME);
+    }
+    
     lua_setmetatable(L, -2);
     
     return objRef;
@@ -346,6 +353,13 @@ static const luaL_Reg LuaNS_ObjectMethods[] =
     {NULL, NULL}
 };
 
+static const luaL_Reg LuaNS_ClassMethods[] =
+{
+    {"__tostring", luaObjC_description},
+    {"__eq", luaObjC_isEqual},
+    
+    {NULL, NULL}
+};
 
 static const luaL_Reg luaNS_functions[] =
 {
@@ -368,6 +382,9 @@ int luaObjC_openNSObjectExtensionSupport(lua_State *L)
     luaObjC_loadGlobalFunctions(L, luaNS_functions);
     luaL_newlib(L, luaNS_functions);
     luaObjC_createMetatable(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
+    
+    luaObjC_createMetatable(L, LUA_CLASS_METATABLENAME, LuaNS_ClassMethods);
+    
     return 0;
 }
 

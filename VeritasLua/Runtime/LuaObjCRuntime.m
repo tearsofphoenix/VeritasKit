@@ -95,14 +95,14 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     if (registeredClass)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        luaObjC_pushNSObject(L, registeredClass, true);
+        luaObjC_pushNSObject(L, registeredClass, true, true);
         
     }else
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
         luaObjC_allocateClass(L, theNewClass, newClassName);
-        luaObjC_pushNSObject(L, theNewClass, true);
+        luaObjC_pushNSObject(L, theNewClass, true, true);
     }
     return 1;
 }
@@ -265,7 +265,7 @@ static int luaObjC_createBlockObject(lua_State *L)
     
     luaObjC_addClosureIDForBlock(clouserID, block);
     
-    luaObjC_pushNSObject(L, block, true);
+    luaObjC_pushNSObject(L, block, true, false);
     
     return 1;
 }
@@ -312,7 +312,6 @@ static int luaObjC_import_file(lua_State *L)
 static int _luaEngine_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
-    //printf("revolve: %s\n", name);
     
     if (!luaObjC_getValueInCacheTable(L, name))
     {
@@ -320,9 +319,11 @@ static int _luaEngine_resolveName(lua_State *L)
         Class theClass = objc_getClass(name);
         if (theClass)
         {
-            LuaObjectRef objRef = LuaObjectCreate(L, theClass);
+            printf("revolve: %s\n", name);
+
+            LuaObjectRef objRef = LuaObjectCreate(L, theClass, true);
             luaObjC_addValueInCacheTable(L, objRef, name);
-            luaObjC_pushNSObject(L, theClass, true);
+            luaObjC_pushNSObject(L, theClass, true, true);
         }else
         {
             //this maybe a function, such as glEnable(...)
@@ -422,7 +423,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
     {
         lua_rawgeti(L, LUA_REGISTRYINDEX, catchBlock);
         
-        luaObjC_pushNSObject(L, exception, true);
+        luaObjC_pushNSObject(L, exception, true, false);
         
         printf("catch in objc, line:%d\n", __LINE__);
         
@@ -483,7 +484,7 @@ static int luaObjC_createLiteralArray(lua_State *L)
     
     CFArrayAppendValue(_LuaObjCLiteralStorage, value);
     
-    luaObjC_pushNSObject(L, value, true);
+    luaObjC_pushNSObject(L, value, true, false);
     
     return 1;
 }
@@ -512,7 +513,7 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     [keys release];
     [values release];
     
-    luaObjC_pushNSObject(L, dict, true);
+    luaObjC_pushNSObject(L, dict, true, false);
     
     return 1;
 }
@@ -523,7 +524,7 @@ static inline int luaObjC_createConstantNumber(lua_State *L)
     CFArrayAppendValue(_LuaObjCLiteralStorage, number);
     [number release];
     
-    luaObjC_pushNSObject(L, number, true);
+    luaObjC_pushNSObject(L, number, true, false);
     
     return 1;
 }

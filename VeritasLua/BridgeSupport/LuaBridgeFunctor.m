@@ -354,9 +354,13 @@ void LuaObjCInvoke(struct lua_State *L,
                 break;
             }
             case _C_CLASS:
+            {
+                luaObjC_pushNSObject(L, *(id *)ref->_returnValue, true, true);
+                break;
+            }
             case _C_ID:
             {
-                luaObjC_pushNSObject(L, *(id *)ref->_returnValue, true);
+                luaObjC_pushNSObject(L, *(id *)ref->_returnValue, true, false);
                 break;
             }
             case _C_PTR:

@@ -13,7 +13,7 @@ static int lua_NSConstantStringCreate(lua_State *L)
 {
     const char* str = lua_tostring(L, 1);
     NSString *constantString = [[[NSString alloc] initWithUTF8String: str] autorelease];
-    luaObjC_pushNSObject(L, constantString, true);
+    luaObjC_pushNSObject(L, constantString, true, false);
     return 1;
 }
 

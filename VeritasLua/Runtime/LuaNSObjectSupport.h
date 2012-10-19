@@ -14,12 +14,11 @@ __BEGIN_DECLS
 
 typedef struct __LuaObject *LuaObjectRef;
 
-VK_EXPORT LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject);
+VK_EXPORT LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject, bool isClass);
 
 VK_EXPORT void LuaObjectStoreInPool(struct lua_State *L, id obj);
 
 VK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
-
 
 VK_EXPORT int luaObjC_openNSObjectExtensionSupport(struct lua_State *L);
 
