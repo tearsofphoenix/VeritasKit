@@ -85,11 +85,17 @@ const char* luaObjC_checkString(lua_State *L, int index)
     }
 }
 
-int luaObjC_pushNSObject(lua_State *L, id nsObject)
+int luaObjC_pushNSObject(lua_State *L, id nsObject, bool shouldStoreInPool)
 {
     if (nsObject)
     {
-        LuaObjectCreate(L, nsObject, true);
+        LuaObjectCreate(L, nsObject);
+        
+        if (shouldStoreInPool)
+        {
+            LuaObjectStoreInPool(L, nsObject);
+        }
+        
     }else
     {
         lua_pushnil(L);

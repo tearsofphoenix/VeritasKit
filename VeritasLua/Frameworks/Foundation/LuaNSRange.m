@@ -79,7 +79,7 @@ static int lua_NSUnionRange(lua_State *L)
 static int lua_NSStringFromRange(lua_State *L)
 {
     NSRange *range = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
-    luaObjC_pushNSObject(L, NSStringFromRange(*range));
+    luaObjC_pushNSObject(L, NSStringFromRange(*range), true);
     return 1;
 }
 

@@ -337,7 +337,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         
         //push 'self' argument first
         //
-        luaObjC_pushNSObject(luaState, obj);
+        luaObjC_pushNSObject(luaState, obj, true);
         
         //push '_cmd' argument next
         //
@@ -382,7 +382,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
                 case _C_ID:
                 {
                     id argLooper = va_arg(ap,  id);
-                    luaObjC_pushNSObject(luaState, argLooper);
+                    luaObjC_pushNSObject(luaState, argLooper, true);
                     break;
                 }
                 case _C_SEL:
@@ -435,7 +435,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     IMP imp = class_getMethodImplementation(theClass, sel);
     if (imp)
     {
-        luaObjC_pushNSObject(luaState, imp(obj, sel, luaObjC_checkNSObject(luaState, 1)));
+        luaObjC_pushNSObject(luaState, imp(obj, sel, luaObjC_checkNSObject(luaState, 1)), true);
         
     }else
     {

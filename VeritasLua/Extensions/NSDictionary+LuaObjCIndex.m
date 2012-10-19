@@ -15,7 +15,7 @@
 - (void)indexObjectWithState: (lua_State *)L
 {
     id key = luaObjC_checkNSObject(L, 2);
-    luaObjC_pushNSObject(L, [self objectForKey: key]);    
+    luaObjC_pushNSObject(L, [self objectForKey: key], true);
 }
 
 - (void)concatObjectWithState: (lua_State *)state
@@ -24,7 +24,7 @@
     
     NSMutableDictionary *ret = [[[NSMutableDictionary alloc] initWithDictionary: self] autorelease];
     [ret addEntriesFromDictionary: dict];
-    luaObjC_pushNSObject(state, ret);
+    luaObjC_pushNSObject(state, ret, true);
 }
 
 - (void)getLengthOfObjectWithState: (lua_State *)state
@@ -48,8 +48,8 @@ static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
     if (__keyIndex < [__keys count])
     {
         id key = [__keys objectAtIndex: __keyIndex];
-        luaObjC_pushNSObject(L, key);
-        luaObjC_pushNSObject(L, [dict objectForKey: key]);
+        luaObjC_pushNSObject(L, key, true);
+        luaObjC_pushNSObject(L, [dict objectForKey: key], true);
         ++__keyIndex;
         return 2;
     }else 

@@ -16,13 +16,13 @@
 - (void)indexObjectWithState: (lua_State *)L
 {
     NSUInteger index = lua_tointeger(L, 2);
-    luaObjC_pushNSObject(L, [self objectAtIndex: index]);    
+    luaObjC_pushNSObject(L, [self objectAtIndex: index], true);    
 }
 
 - (void)concatObjectWithState: (lua_State *)state
 {
     NSArray *other = luaObjC_checkNSObject(state, 2);
-    luaObjC_pushNSObject(state, [self arrayByAddingObjectsFromArray: other]); 
+    luaObjC_pushNSObject(state, [self arrayByAddingObjectsFromArray: other], true); 
 }
 
 - (void)getLengthOfObjectWithState: (lua_State *)state
@@ -37,7 +37,7 @@ static int luaObjC_NSArray_luaEnumerator(lua_State *L)
     static NSInteger index = 0;
     if (index < [array count])
     {
-        luaObjC_pushNSObject(L, [array objectAtIndex: index]);
+        luaObjC_pushNSObject(L, [array objectAtIndex: index], true);
         lua_pushinteger(L, index);
         ++index;
         return 2;

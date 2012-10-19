@@ -54,23 +54,23 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             return 1;
         }
         case _C_CLASS:
+        {
+            id result = impRef(obj, selector);
+            luaObjC_pushNSObject(L, result, false);
+            return 1;
+        }
         case _C_ID:
         {
             id result = impRef(obj, selector);
             
             if (sel_isEqual(selector, @selector(alloc)))
             {
-                if (result)
-                {
-                    LuaObjectCreate(L, result, false);
-                }else
-                {
-                    lua_pushnil(L);
-                }
+
+                luaObjC_pushNSObject(L, result, false);
                 
             }else
             {
-                luaObjC_pushNSObject(L, result);
+                luaObjC_pushNSObject(L, result, true);
             }
             
             return 1;
@@ -157,9 +157,15 @@ void luaObjC_registerAccelerator(Class theClass, SEL selector, LuaObjCAccelerato
     if (!classAccelerators)
     {
         classAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024, NULL, NULL);
+        
+        CFDictionaryAddValue(__preAccelerators, theClass, classAccelerators);
+        
+        CFRelease(classAccelerators);
+
     }
     
     CFDictionaryAddValue(classAccelerators, selector, imp);
+    
 }
 
 LuaObjCAcceleratorIMP luaObjC_getAcceleratorIMPOfSelector(Class theClass, SEL selector)

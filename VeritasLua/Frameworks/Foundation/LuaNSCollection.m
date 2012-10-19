@@ -30,10 +30,10 @@ static int _luaObjC_NSArray_arrayWithObjects(id obj, SEL selector, lua_State *L)
     NSMutableArray *array = __luaObjC_getArrayFromState(L);
     if (obj == [NSArray class])
     {
-        luaObjC_pushNSObject(L, [NSArray arrayWithArray: array]);
+        luaObjC_pushNSObject(L, [NSArray arrayWithArray: array], true);
     }else 
     {
-        luaObjC_pushNSObject(L, array);
+        luaObjC_pushNSObject(L, array, true);
     }
     
     return 1;
@@ -42,7 +42,7 @@ static int _luaObjC_NSArray_arrayWithObjects(id obj, SEL selector, lua_State *L)
 static int _luaObjC_NSArray_NSOrderedSet_initWithObjects(id obj, SEL selector, lua_State *L)
 {
     NSMutableArray *array = __luaObjC_getArrayFromState(L);
-    luaObjC_pushNSObject(L, [obj initWithArray: array]);
+    luaObjC_pushNSObject(L, [obj initWithArray: array], true);
     return 1;
 }
 
@@ -69,10 +69,10 @@ static int _luaObjC_NSDictionary_dictionaryWithObjectsAndKeys(id obj, SEL select
     NSMutableDictionary *dict = __luaObjC_getDictionaryFromState(L);
     if (obj == [NSDictionary class])
     {
-        luaObjC_pushNSObject(L, [NSDictionary dictionaryWithDictionary: dict]);
+        luaObjC_pushNSObject(L, [NSDictionary dictionaryWithDictionary: dict], true);
     }else 
     {
-        luaObjC_pushNSObject(L, dict);
+        luaObjC_pushNSObject(L, dict, true);
     }
     return 1;
 }
@@ -80,7 +80,7 @@ static int _luaObjC_NSDictionary_dictionaryWithObjectsAndKeys(id obj, SEL select
 static int _luaObjC_NSDictionary_initWithObjectsAndKeys(id obj, SEL selector, lua_State *L)
 {
     NSMutableDictionary *dict = __luaObjC_getDictionaryFromState(L);
-    luaObjC_pushNSObject(L, [obj initWithDictionary: dict]);
+    luaObjC_pushNSObject(L, [obj initWithDictionary: dict], true);
     return 1;
 }
 
@@ -88,14 +88,14 @@ static int _luaObjC_NSOrderedSet_orderedSetWithObjects(id obj, SEL selector, lua
 {
     NSArray *array = __luaObjC_getArrayFromState(L);
     
-    luaObjC_pushNSObject(L, [obj orderedSetWithArray: array]);
+    luaObjC_pushNSObject(L, [obj orderedSetWithArray: array], true);
     return 1;
 }
 
 static int _luaObjC_NSSet_setWithObjects(id obj, SEL selector, lua_State *L)
 {
     NSArray *array = __luaObjC_getArrayFromState(L);
-    luaObjC_pushNSObject(L, [obj setWithArray: array]);
+    luaObjC_pushNSObject(L, [obj setWithArray: array], true);
     return 1;
 }
 
@@ -105,7 +105,7 @@ static int _luaObjC_NSCollection_enumerateObjectsUsingBlock(id obj, SEL selector
     [obj enumerateObjectsUsingBlock: (^(id obj, NSUInteger idx, BOOL *stop) 
                                       {
                                           lua_rawgeti(L, LUA_REGISTRYINDEX, functionID);
-                                          luaObjC_pushNSObject(L, obj);
+                                          luaObjC_pushNSObject(L, obj, true);
                                           lua_pushinteger(L, idx);
                                           
                                           if(lua_pcall(L, 2, 1, 0) != LUA_OK)
@@ -126,7 +126,7 @@ static int _luaObjC_NSCollection_enumerateObjectsWithOptions_usingBlock(id obj, 
                           usingBlock: (^(id obj, NSUInteger idx, BOOL *stop) 
                                        {
                                            lua_rawgeti(L, LUA_REGISTRYINDEX, functionID);
-                                           luaObjC_pushNSObject(L, obj);
+                                           luaObjC_pushNSObject(L, obj, true);
                                            lua_pushinteger(L, idx);
                                            if(lua_pcall(L, 2, 1, 0) != LUA_OK)
                                            {
@@ -145,8 +145,8 @@ static int _luaObjC_NSCollection_enumerateKeysAndObjectsUsingBlock(id obj, SEL s
     [obj enumerateKeysAndObjectsUsingBlock: (^(id key, id obj, BOOL *stop) 
                                              {
                                                  lua_rawgeti(L, LUA_REGISTRYINDEX, functionID);
-                                                 luaObjC_pushNSObject(L, key);
-                                                 luaObjC_pushNSObject(L, obj);
+                                                 luaObjC_pushNSObject(L, key, true);
+                                                 luaObjC_pushNSObject(L, obj, true);
                                                  if(lua_pcall(L, 2, 1, 0) != LUA_OK)
                                                  {
                                                      luaL_error(L, "error in enumerateKeysAndObjectsUsingBlock:");
@@ -168,8 +168,8 @@ static int _luaObjC_NSCollection_enumerateKeysAndObjectsWithOptions_usingBlock(i
                                  usingBlock: (^(id key, id obj, BOOL *stop) 
                                              {
                                                  lua_rawgeti(L, LUA_REGISTRYINDEX, functionID);
-                                                 luaObjC_pushNSObject(L, key);
-                                                 luaObjC_pushNSObject(L, obj);
+                                                 luaObjC_pushNSObject(L, key, true);
+                                                 luaObjC_pushNSObject(L, obj, true);
                                                  if(lua_pcall(L, 2, 1, 0) != LUA_OK)
                                                  {
                                                      luaL_error(L, "error in enumerateKeysAndObjectsWithOptions:usingBlock:");
