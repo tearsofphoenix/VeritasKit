@@ -33,6 +33,8 @@
 
 static char * const LuaEngineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
+static char * const LuaEngineGarbadgeCollectionQueueIdentifier = "com.veritas.lua-engine.garbage-colletion.queue";
+
 static VMachineService *g_engine = nil;
 
 typedef struct lua_State *LuaStateRef;
@@ -43,6 +45,9 @@ typedef struct
     LuaStateRef luaState;
     LuaStateRef parserState;
     dispatch_queue_t frameworkImportQueue;
+    dispatch_queue_t garbageCollectionQueue;
+    dispatch_source_t garbageCollectTimer;
+    
     
 }LuaEngineAttributes;
 
@@ -84,7 +89,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
                                            [NSString stringWithUTF8String: LUA_UIKITLIBNAME],
                                            LuaOpenUIKit,
                                            1,
-                                            [NSArray arrayWithObject:  LuaEngineObjCSupport]);
+                                           [NSArray arrayWithObject:  LuaEngineObjCSupport]);
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
 #endif
@@ -94,7 +99,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
                                            [NSString stringWithUTF8String: LUA_LPEGLIBNAME],
                                            luaopen_lpeg,
                                            1,
-                                            nil);
+                                           nil);
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
 }
@@ -182,6 +187,22 @@ static void LuaEngine_initialize(VMachineService *self,
     
     internal->frameworkImportQueue = dispatch_queue_create(LuaEngineFrameworkImportQueueIdentifier, DISPATCH_QUEUE_CONCURRENT);
     
+    dispatch_queue_t garbageQueue = dispatch_queue_create(LuaEngineGarbadgeCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
+    internal->garbageCollectionQueue = garbageQueue;
+    
+    dispatch_source_t garbageCollectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, garbageQueue);
+    internal->garbageCollectTimer = garbageCollectTimer;
+    
+    NSTimeInterval collectInterval = 5 * NSEC_PER_SEC;
+    
+    dispatch_source_set_timer(garbageCollectTimer, dispatch_time(DISPATCH_TIME_NOW, collectInterval), collectInterval, 0);
+    dispatch_source_set_event_handler(garbageCollectTimer,
+                                      (^
+                                       {
+                                           lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
+                                           
+                                       }));
+    
     *_internal = internal;
     
     g_engine = self;
@@ -197,6 +218,9 @@ static void LuaEngine_initialize(VMachineService *self,
     if ((self = [super init]))
     {
         LuaEngine_initialize(self, &_internal, &_luaEngineLibs, &_md5OfParsedString);
+        
+        dispatch_resume(_internal->garbageCollectTimer);
+
     }
     return self;
 }
@@ -223,9 +247,11 @@ static void LuaEngine_initialize(VMachineService *self,
 {
     [super initServiceCallbackFunctions];
     
+    __block id fakeSelf = self;
+    
     [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
                           {
-                              [self doString: [arguments objectAtIndex: 0]];
+                              [fakeSelf doString: [arguments objectAtIndex: 0]];
                               if (callback)
                               {
                                   callback(action, arguments);
@@ -236,6 +262,7 @@ static void LuaEngine_initialize(VMachineService *self,
     [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
                           {
                               LuaStateRef L = _internal->luaState;
+
                               [arguments enumerateObjectsUsingBlock: (^(NSArray *obj, NSUInteger idx, BOOL *stop)
                                                                       {
                                                                           NSInteger value = [[obj objectAtIndex: 0] intValue];
@@ -352,7 +379,7 @@ static void LuaEngine_initialize(VMachineService *self,
             
             //clear up the return value
             //
-            lua_pop(luaStateRef, 1);
+            lua_pop(luaStateRef, 1);            
         }
     }else
     {
@@ -423,10 +450,10 @@ void LuaCall(NSString *sourceCode,
              )
 {
     [(VMachineService *)[VMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
-                                                                                inSourceCode: sourceCode
-                                                                           argumentPassBlock: start
-                                                                               argumentCount: argumentCount
-                                                                                 returnCount: returnCount
-                                                                                  completion: completion];
+                                                                              inSourceCode: sourceCode
+                                                                         argumentPassBlock: start
+                                                                             argumentCount: argumentCount
+                                                                               returnCount: returnCount
+                                                                                completion: completion];
 }
 

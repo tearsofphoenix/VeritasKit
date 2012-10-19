@@ -202,7 +202,6 @@
 		E13C8F0916168B0D00A72BEF /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2316168B0C00A72BEF /* LuaObjCAuxiliary.m */; };
 		E13C8F0E16168B0D00A72BEF /* LuaObjCClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2816168B0C00A72BEF /* LuaObjCClass.h */; };
 		E13C8F0F16168B0D00A72BEF /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2916168B0C00A72BEF /* LuaObjCClass.m */; };
-		E13C8F1116168B0D00A72BEF /* LuaObjCIMP.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2B16168B0C00A72BEF /* LuaObjCIMP.m */; };
 		E13C8F1216168B0D00A72BEF /* LuaObjCInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E2C16168B0C00A72BEF /* LuaObjCInternal.h */; };
 		E13C8F1316168B0D00A72BEF /* LuaObjCInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2D16168B0C00A72BEF /* LuaObjCInternal.m */; };
 		E13C8F1516168B0D00A72BEF /* LuaObjCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E2F16168B0C00A72BEF /* LuaObjCMessage.m */; };
@@ -450,7 +449,6 @@
 		E13C8E2316168B0C00A72BEF /* LuaObjCAuxiliary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCAuxiliary.m; sourceTree = "<group>"; };
 		E13C8E2816168B0C00A72BEF /* LuaObjCClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCClass.h; sourceTree = "<group>"; };
 		E13C8E2916168B0C00A72BEF /* LuaObjCClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCClass.m; sourceTree = "<group>"; };
-		E13C8E2B16168B0C00A72BEF /* LuaObjCIMP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCIMP.m; sourceTree = "<group>"; };
 		E13C8E2C16168B0C00A72BEF /* LuaObjCInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCInternal.h; sourceTree = "<group>"; };
 		E13C8E2D16168B0C00A72BEF /* LuaObjCInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCInternal.m; sourceTree = "<group>"; };
 		E13C8E2F16168B0C00A72BEF /* LuaObjCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCMessage.m; sourceTree = "<group>"; };
@@ -925,7 +923,6 @@
 				E13C8E2316168B0C00A72BEF /* LuaObjCAuxiliary.m */,
 				E13C8E2816168B0C00A72BEF /* LuaObjCClass.h */,
 				E13C8E2916168B0C00A72BEF /* LuaObjCClass.m */,
-				E13C8E2B16168B0C00A72BEF /* LuaObjCIMP.m */,
 				E13C8E2C16168B0C00A72BEF /* LuaObjCInternal.h */,
 				E13C8E2D16168B0C00A72BEF /* LuaObjCInternal.m */,
 				E13C8E2F16168B0C00A72BEF /* LuaObjCMessage.m */,
@@ -1251,7 +1248,6 @@
 				E13C8F0716168B0D00A72BEF /* LuaObjCAccelerator.m in Sources */,
 				E13C8F0916168B0D00A72BEF /* LuaObjCAuxiliary.m in Sources */,
 				E13C8F0F16168B0D00A72BEF /* LuaObjCClass.m in Sources */,
-				E13C8F1116168B0D00A72BEF /* LuaObjCIMP.m in Sources */,
 				E13C8F1316168B0D00A72BEF /* LuaObjCInternal.m in Sources */,
 				E13C8F1516168B0D00A72BEF /* LuaObjCMessage.m in Sources */,
 				E13C8F1816168B0D00A72BEF /* LuaObjCProperty.m in Sources */,

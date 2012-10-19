@@ -186,6 +186,7 @@ static int luaObjC_createBlockObject(lua_State *L)
         }
         
     }
+    
     void (^block)(id selfObject, ...) = ^(id selfObject, ...)
     {
         lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);
@@ -255,6 +256,7 @@ static int luaObjC_createBlockObject(lua_State *L)
             }
             va_end(ap);
         }
+        
         lua_pcall(L, argumentTypesCount, 0, 0);
         //check return object
     };
