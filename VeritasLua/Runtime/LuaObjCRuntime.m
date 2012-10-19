@@ -322,8 +322,9 @@ static int _luaEngine_resolveName(lua_State *L)
             printf("revolve: %s\n", name);
 
             LuaObjectRef objRef = LuaObjectCreate(L, theClass, true);
+            
             luaObjC_addValueInCacheTable(L, objRef, name);
-            luaObjC_pushNSObject(L, theClass, true, true);
+            
         }else
         {
             //this maybe a function, such as glEnable(...)
