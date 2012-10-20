@@ -85,21 +85,19 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 
 + (void)registerService: (Class)serviceClass
 {
-    @autoreleasepool
+    
+    id<VMetaService> service = [[serviceClass alloc] init];
+    id serviceID = [serviceClass identity];
+    
+    [__resgiteredServices setObject: service
+                             forKey: serviceID];
+    
+    [service release];
+    
+    VCallbackBlock block = [__registeredCallbackOnDidLoadOfService objectForKey: serviceID];
+    if (block)
     {
-        id<VMetaService> service = [[serviceClass alloc] init];
-        id serviceID = [serviceClass identity];
-        
-        [__resgiteredServices setObject: service
-                                 forKey: serviceID];
-        
-        [service release];
-        
-        VCallbackBlock block = [__registeredCallbackOnDidLoadOfService objectForKey: serviceID];
-        if (block)
-        {
-            block(nil, [NSArray arrayWithObject: serviceID]);
-        }
+        block(nil, [NSArray arrayWithObject: serviceID]);
     }
 }
 
@@ -111,25 +109,23 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 + (void)registerBlock: (VCallbackBlock)block
    onDidLoadOfService: (id)serviceID
 {
-    @autoreleasepool
+    
+    if (block && serviceID)
     {
-        if (block && serviceID)
+        //has registered, so just call it
+        //
+        if (CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID))
         {
-            //has registered, so just call it
-            //
-            if (CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID))
-            {
-                block(nil, [NSArray arrayWithObject: serviceID]);
-                
-            }else
-            {
-                block = Block_copy(block);
-                
-                [__registeredCallbackOnDidLoadOfService setObject: block
-                                                           forKey: serviceID];
-                
-                Block_release(block);
-            }
+            block(nil, [NSArray arrayWithObject: serviceID]);
+            
+        }else
+        {
+            block = Block_copy(block);
+            
+            [__registeredCallbackOnDidLoadOfService setObject: block
+                                                       forKey: serviceID];
+            
+            Block_release(block);
         }
     }
 }

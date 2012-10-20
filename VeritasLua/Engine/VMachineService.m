@@ -174,9 +174,16 @@ static void LuaEngine_initialize(VMachineService *self,
     
     internal->luaState = luaStateRef;
     
+#if 0
     NSString *sourceCode = [[NSString alloc] initWithData: [NSData dataFromBase64String: kLuaObjCParserString]
                                                  encoding: NSUTF8StringEncoding];
-    
+#else
+    NSString *luaObjCParserPath = [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
+                                                                                    ofType: @"lua"];
+    NSString *sourceCode = [[NSString alloc] initWithContentsOfFile: luaObjCParserPath
+                                                           encoding: NSUTF8StringEncoding
+                                                              error: NULL];
+#endif
     //int status = luaL_dostring(parserStateRef, [parserSourceCode UTF8String]);
     if (luaL_dostring(parserStateRef, [sourceCode UTF8String]) != LUA_OK)
     {

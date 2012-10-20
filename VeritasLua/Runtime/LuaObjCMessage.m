@@ -75,7 +75,13 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         
         if (!methodSignature)
         {
-            NSLog(@"[#ERROR#] line: %d nil method signature for SEL:%s for: %@\n", __LINE__, selectorName, obj);
+            NSException *exception = [NSException exceptionWithName: @"LuaObjCInvalidArgument"
+                                                             reason: [NSString stringWithFormat: @"[#ERROR#] line: %d nil method signature for SEL:%s for: %@\n", __LINE__, selectorName, obj]
+                                                           userInfo: nil];
+            
+            NSLog(@"callback: %@", [NSThread callStackSymbols]);
+            
+            @throw exception;
         }
         
         NSUInteger numberOfArguments = [methodSignature numberOfArguments];

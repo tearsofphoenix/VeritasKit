@@ -17,6 +17,8 @@ VK_EXPORT void objc_dumpClass(Class theClass);
 
 VK_EXPORT void stackDump(struct lua_State *L);
 
+VK_EXPORT void lua_dumpTable(struct lua_State *L);
+
 VK_EXPORT const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
 
 /*

@@ -16,6 +16,8 @@
 
 #import "LuaObjCInternal.h"
 
+#import "LuaNSObjectSupport.h"
+
 #import <objc/runtime.h>
 
 #pragma mark - cache table in lua state
@@ -67,20 +69,32 @@ static inline void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* ta
 }
 
 static const char* LuaObjCGlobalCacheTableID = "com.veritas.lua-objc.global.cachetable";
+static NSRecursiveLock *_cacheTableLock = nil;
 
 void luaObjC_initializeCacheTable(lua_State* L)
 {
     _luaObjC_createTableWithID(L, LuaObjCGlobalCacheTableID, false);
+    _cacheTableLock = [[NSRecursiveLock alloc] init];
 }
 
 void luaObjC_addValueInCacheTable(lua_State* L, void* object, const char *key)
 {
+    [_cacheTableLock lock];
+    
     _luaObjC_insertObjectInTableWithID(L, LuaObjCGlobalCacheTableID, object, key);
+    
+    [_cacheTableLock unlock];
 }
 
 void* luaObjC_getValueInCacheTable(lua_State* L, const char* key)
 {
-    return _luaObjC_getObjectInTableWithID(L, LuaObjCGlobalCacheTableID, key);
+    [_cacheTableLock lock];
+    
+    void *value = _luaObjC_getObjectInTableWithID(L, LuaObjCGlobalCacheTableID, key);
+    
+    [_cacheTableLock unlock];
+    
+    return value;
 }
 
 

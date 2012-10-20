@@ -313,15 +313,20 @@ static int _luaEngine_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
     
-    if (!luaObjC_getValueInCacheTable(L, name))
+    const void *value = luaObjC_getValueInCacheTable(L, name);
+    
+    printf("revolve: %s result: %p\n", name, value);
+
+    if (!value)
     {
         //printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
         Class theClass = objc_getClass(name);
         if (theClass)
         {
-            printf("revolve: %s\n", name);
-
             LuaObjectRef objRef = LuaObjectCreate(L, theClass, true);
+            
+            NSLog(@"object: %@ key: %s", theClass, name);
+
             luaObjC_addValueInCacheTable(L, objRef, name);
             luaObjC_pushNSObject(L, theClass, true, true);
         }else
@@ -331,6 +336,8 @@ static int _luaEngine_resolveName(lua_State *L)
                                   intoLuaState: L];
         }
     }
+    
+    //stackDump(L);
     
     return 1;
 }

@@ -322,7 +322,7 @@ static int luaObjC_callBlockObject(lua_State *L)
 static int luaObjC_garbageCollection(lua_State *L)
 {
     LuaObjectRef objRef = lua_touserdata(L, 1);
-    
+        
     if (objRef)
     {
         const void *obj = objRef->_obj;
