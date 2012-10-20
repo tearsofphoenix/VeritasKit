@@ -325,10 +325,8 @@ static int _luaEngine_resolveName(lua_State *L)
         {
             LuaObjectRef objRef = LuaObjectCreate(L, theClass, true);
             
-            NSLog(@"object: %@ key: %s", theClass, name);
-
             luaObjC_addValueInCacheTable(L, objRef, name);
-            luaObjC_pushNSObject(L, theClass, true, true);
+            
         }else
         {
             //this maybe a function, such as glEnable(...)

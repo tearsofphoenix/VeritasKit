@@ -53,7 +53,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             Class theClass = objc_getClass(className);
             LuaObjectRef classRef = LuaObjectCreate(state, theClass, true);
             luaObjC_addValueInCacheTable(state, classRef, className);
-            luaObjC_pushNSObject(state, theClass, true, true);
+            
             return YES;
         }
         case LuaBridgeEnumType:
@@ -67,7 +67,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             id value = [_info objectForKey: @"value"];
             LuaObjectRef classRef = LuaObjectCreate(state, value, false);
             luaObjC_addValueInCacheTable(state, classRef, className);
-            luaObjC_pushNSObject(state, value, true, false);
+
             return YES;
         }
         case LuaBridgeFunctionType:
