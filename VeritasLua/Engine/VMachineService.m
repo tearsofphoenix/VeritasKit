@@ -202,7 +202,7 @@ static void LuaEngine_initialize(VMachineService *self,
     dispatch_source_set_event_handler(garbageCollectTimer,
                                       (^
                                        {
-                                           //lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
+                                           lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
                                            
                                        }));
     
