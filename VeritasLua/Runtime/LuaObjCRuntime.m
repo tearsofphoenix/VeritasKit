@@ -127,7 +127,7 @@ static int luaObjC_getProtocol(lua_State *L)
 
 static int luaObjC_retainBeforeReturnFromAutoreleasePool(lua_State *L)
 {
-    LuaObjectRef objRef = luaL_testudata(L, 1, LUA_NSOBJECT_METATABLENAME);
+    LuaObjectRef objRef = lua_touserdata(L, 1);
     if (objRef)
     {
         //is NSObject instance
@@ -313,38 +313,29 @@ static int _luaEngine_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
     
-    const void *value = luaObjC_getValueInCacheTable(L, name);
     
-    printf("revolve: %s result: %p\n", name, value);
-
-    if (!value)
+    //printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
+    Class theClass = objc_getClass(name);
+    if (theClass)
     {
-        //printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
-        Class theClass = objc_getClass(name);
-        if (theClass)
+//        LuaObjectCreate(L, theClass, true);
+        luaObjC_pushNSObject(L, theClass, false, true);
+        //luaObjC_addValueInCacheTable(L, objRef, name);
+        
+        return 1;
+    }else
+    {
+        //this maybe a function, such as glEnable(...)
+        if ([LuaBridgeSupport resolveName: [NSString stringWithUTF8String: name]
+                             intoLuaState: L])
         {
-            LuaObjectRef objRef = LuaObjectCreate(L, theClass, true);
-            
-            luaObjC_addValueInCacheTable(L, objRef, name);
-            
             return 1;
         }else
         {
-            //this maybe a function, such as glEnable(...)
-            if ([LuaBridgeSupport resolveName: [NSString stringWithUTF8String: name]
-                             intoLuaState: L])
-            {
-                return 1;
-            }else
-            {
-                //
-                printf("fail to revolve name: %s!\n", name);
-                return 0;
-            }
+            //
+            printf("fail to revolve name: %s!\n", name);
+            return 0;
         }
-    }else
-    {
-        return 1;
     }
 }
 
@@ -478,7 +469,7 @@ static int luaObjC_objc_NSFastEnumerate(lua_State *L)
     return 0;
 }
 
-#pragma mark - literal object support, i.e. @{}, @[], @1 
+#pragma mark - literal object support, i.e. @{}, @[], @1
 
 static CFMutableArrayRef _LuaObjCLiteralStorage = NULL;
 

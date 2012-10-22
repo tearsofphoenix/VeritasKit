@@ -55,7 +55,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             
             NSLog(@"in func: %s %@ %s", __func__, theClass, className);
             
-            luaObjC_addValueInCacheTable(state, classRef, className);
+            //luaObjC_addValueInCacheTable(state, classRef, className);
             
             return YES;
         }
@@ -72,7 +72,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             
             NSLog(@"in func: %s %@ %s", __func__, value, className);
 
-            luaObjC_addValueInCacheTable(state, classRef, className);
+            //luaObjC_addValueInCacheTable(state, classRef, className);
 
             return YES;
         }
@@ -92,7 +92,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             
             NSLog(@"in func: %s %@", __func__, _name);
 
-            luaObjC_addValueInCacheTable(state, functorRef, [_name UTF8String]);
+            //luaObjC_addValueInCacheTable(state, functorRef, [_name UTF8String]);
             
             [encodings release];
             return YES;
