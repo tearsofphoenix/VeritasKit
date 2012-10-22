@@ -27,15 +27,18 @@
 #import "LuaLibraryInformation.h"
 
 #import "LuaObjCAuxiliary.h"
-#import "LuaBridgeSupport.h"
+#import "VBridgeService.h"
+#import "LuaBridgeSupportFileParser.h"
 #import "LuaObjCParser.h"
 #import "NSData+Base64.h"
 
-static char * const LuaEngineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
+static char * const VMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
-static char * const LuaEngineGarbadgeCollectionQueueIdentifier = "com.veritas.lua-engine.garbage-colletion.queue";
+static char * const VMachineGarbageCollectionQueueIdentifier = "com.veritas.lua-engine.garbage-colletion.queue";
 
-static VMachineService *g_engine = nil;
+//Gardage collect time interval, in seconds
+//
+static const NSTimeInterval VMachineGarbageCollectInterval = 10;
 
 typedef struct lua_State *LuaStateRef;
 
@@ -47,15 +50,15 @@ typedef struct
     dispatch_queue_t garbageCollectionQueue;
     dispatch_source_t garbageCollectTimer;
     
-}LuaEngineAttributes;
+}VMachineAttributes;
 
-typedef LuaEngineAttributes *LuaEngineAttributesRef;
+typedef VMachineAttributes *VMachineAttributesRef;
 
 
 @interface VMachineService ()
 {
 @private
-    LuaEngineAttributesRef _internal;
+    VMachineAttributesRef _internal;
     NSMutableDictionary *_luaEngineLibs;
     NSMutableArray *_md5OfParsedString;
 }
@@ -71,7 +74,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     
     //`Foundation' lib
     //
-    infoLooper = LuaLibraryInformationMake(LuaEngineObjCSupport,
+    infoLooper = LuaLibraryInformationMake(VMachineObjCSupport,
                                            [NSString stringWithUTF8String: LUA_NSLIBNAME],
                                            LuaObjCOpenFoundationSupport,
                                            1,
@@ -83,17 +86,17 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //`UIKit' lib
     //
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-    infoLooper = LuaLibraryInformationMake(LuaEngineUIKitSupport,
+    infoLooper = LuaLibraryInformationMake(VMachineUIKitSupport,
                                            [NSString stringWithUTF8String: LUA_UIKITLIBNAME],
                                            LuaObjCOpenUIKit,
                                            1,
-                                           [NSArray arrayWithObject:  LuaEngineObjCSupport]);
+                                           [NSArray arrayWithObject:  VMachineObjCSupport]);
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
 #endif
     //`lpeg' lib
     //
-    infoLooper = LuaLibraryInformationMake(LuaEngineParserSupport,
+    infoLooper = LuaLibraryInformationMake(VMachineParserSupport,
                                            [NSString stringWithUTF8String: LUA_LPEGLIBNAME],
                                            luaopen_lpeg,
                                            1,
@@ -131,7 +134,8 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
         NSString *frameworkName = [NSString stringWithUTF8String: lua_tostring(L, 3)];
         frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
         
-        [LuaBridgeSupport importFramework: frameworkName];
+        VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ frameworkName ]);
+        //[VBridgeService importFramework: frameworkName];
     }
     
     return 0;
@@ -143,25 +147,25 @@ static const luaL_Reg __compileTimeFunctions [] =
     {NULL, NULL},
 };
 
-static void LuaEngine_initialize(VMachineService *self,
-                                 LuaEngineAttributesRef *_internal,
-                                 NSMutableDictionary **_luaEngineLibs,
-                                 NSMutableArray **_md5OfParsedString)
+static void VMachine_initialize(VMachineService *self)
 {
-    *_md5OfParsedString = [[NSMutableArray alloc] init];
+    self->_md5OfParsedString = [[NSMutableArray alloc] init];
     
     NSMutableDictionary *libs = [[NSMutableDictionary alloc] init];
     _luaEngine_initlibs(libs);
-    *_luaEngineLibs = libs;
     
-    LuaEngineAttributesRef internal = calloc(1, sizeof(LuaEngineAttributes));
+    self->_luaEngineLibs = libs;
+    
+    //initialize the internal
+    //
+    VMachineAttributesRef internal = calloc(1, sizeof(VMachineAttributes));
     
     //init parser state
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
     
     LuaObjCLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
-    LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
+    LuaLibraryInformationRegisterToState(libs, VMachineParserSupport, parserStateRef);
     
     internal->parserState = parserStateRef;
     
@@ -169,7 +173,7 @@ static void LuaEngine_initialize(VMachineService *self,
     //
     LuaStateRef luaStateRef = _luaEngine_createLuaState();
     
-    LuaLibraryInformationRegisterToState(libs, LuaEngineUIKitSupport, luaStateRef);
+    LuaLibraryInformationRegisterToState(libs, VMachineUIKitSupport, luaStateRef);
     
     internal->luaState = luaStateRef;
     
@@ -191,13 +195,13 @@ static void LuaEngine_initialize(VMachineService *self,
     
     [sourceCode release];
     
-    dispatch_queue_t garbageQueue = dispatch_queue_create(LuaEngineGarbadgeCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t garbageQueue = dispatch_queue_create(VMachineGarbageCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
     internal->garbageCollectionQueue = garbageQueue;
     
-    dispatch_source_t garbageCollectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_current_queue());
+    dispatch_source_t garbageCollectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, garbageQueue);
     internal->garbageCollectTimer = garbageCollectTimer;
     
-    NSTimeInterval collectInterval = 5 * NSEC_PER_SEC;
+    NSTimeInterval collectInterval = VMachineGarbageCollectInterval * NSEC_PER_SEC;
     
     dispatch_source_set_timer(garbageCollectTimer, dispatch_time(DISPATCH_TIME_NOW, collectInterval), collectInterval, 0);
     dispatch_source_set_event_handler(garbageCollectTimer,
@@ -207,9 +211,7 @@ static void LuaEngine_initialize(VMachineService *self,
                                            
                                        }));
     
-    *_internal = internal;
-    
-    g_engine = self;
+    self->_internal = internal;
 }
 
 + (void)load
@@ -221,14 +223,14 @@ static void LuaEngine_initialize(VMachineService *self,
 {
     if ((self = [super init]))
     {
-        LuaEngine_initialize(self, &_internal, &_luaEngineLibs, &_md5OfParsedString);
+        VMachine_initialize(self);
         
         dispatch_resume(_internal->garbageCollectTimer);
-
-//        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
-//                                                                                                                 ofType: @"lua"]];
-//        
-//        NSLog(@"%@", [data base64EncodedString]);
+        
+        //        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
+        //                                                                                                                 ofType: @"lua"]];
+        //
+        //        NSLog(@"%@", [data base64EncodedString]);
         
         [self initServiceCallbackFunctions];
         
@@ -246,8 +248,6 @@ static void LuaEngine_initialize(VMachineService *self,
     
     free(_internal);
     
-    g_engine = nil;
-    
     [_luaEngineLibs release];
     [_md5OfParsedString release];
     
@@ -255,7 +255,7 @@ static void LuaEngine_initialize(VMachineService *self,
 }
 
 - (void)initServiceCallbackFunctions
-{    
+{
     __block id fakeSelf = self;
     
     [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
@@ -266,12 +266,12 @@ static void LuaEngine_initialize(VMachineService *self,
                                   callback(action, arguments);
                               }
                           })
-              forAction: LuaEngineServiceActionDoSourceCode];
+              forAction: VMachineServiceDoSourceCodeAction];
     
     [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
                           {
                               LuaStateRef L = _internal->luaState;
-
+                              
                               [arguments enumerateObjectsUsingBlock: (^(NSArray *obj, NSUInteger idx, BOOL *stop)
                                                                       {
                                                                           NSInteger value = [[obj objectAtIndex: 0] intValue];
@@ -281,7 +281,7 @@ static void LuaEngine_initialize(VMachineService *self,
                                                                           lua_setglobal(L, [name UTF8String]);
                                                                       })];
                           })
-              forAction: LuaEngineServiceActionRegisterGlobalConstants];
+              forAction: VMachineServiceRegisterGlobalConstantsAction];   
 }
 
 - (const char *)parseString: (NSString *)sourceCode
@@ -388,7 +388,7 @@ static void LuaEngine_initialize(VMachineService *self,
             
             //clear up the return value
             //
-            lua_pop(luaStateRef, 1);            
+            lua_pop(luaStateRef, 1);
         }
     }else
     {
@@ -427,28 +427,26 @@ static void LuaEngine_initialize(VMachineService *self,
 
 + (id)identity
 {
-    return LuaEngineServiceID;
+    return VMachineServiceID;
 }
 
 @end
 
 #pragma mark - engine id
 
-NSString * const LuaEngineServiceID = @"com.veritas.service.lua-engine";
+NSString * const VMachineServiceID = @"com.veritas.service.lua-engine";
 
-NSString * const LuaEngineObjCSupport = @"lua-engine.feature.objc";
+NSString * const VMachineObjCSupport = @"lua-engine.feature.objc";
 
-NSString * const LuaEngineUIKitSupport = @"lua-engine.feature.uikit";
+NSString * const VMachineUIKitSupport = @"lua-engine.feature.uikit";
 
-NSString * const LuaEngineParserSupport = @"lua-engine.feature.lpeg";
+NSString * const VMachineParserSupport = @"lua-engine.feature.lpeg";
 
 #pragma mark - engine supported actions
 
-NSString * const LuaEngineServiceActionDoSourceCode = @"lua-engine.action.doSourceCode";
+NSString * const VMachineServiceDoSourceCodeAction = @"lua-engine.action.doSourceCode";
 
-NSString * const LuaEngineServiceActionRegisterGlobalConstants = @"lua-engine.action.registerGlobalConstatns";
-
-NSString * const LuaEngineDumpSourceCodeToFile = @"lua-engine.action.dumpSourceCode";
+NSString * const VMachineServiceRegisterGlobalConstantsAction = @"lua-engine.action.registerGlobalConstatns";
 
 void LuaCall(NSString *sourceCode,
              NSString *functionName,
@@ -458,11 +456,11 @@ void LuaCall(NSString *sourceCode,
              LuaObjCBlock completion
              )
 {
-    [(VMachineService *)[VMetaService serviceByID: LuaEngineServiceID] executeFunctionName: functionName
-                                                                              inSourceCode: sourceCode
-                                                                         argumentPassBlock: start
-                                                                             argumentCount: argumentCount
-                                                                               returnCount: returnCount
-                                                                                completion: completion];
+    [(VMachineService *)[VMetaService serviceByID: VMachineServiceID] executeFunctionName: functionName
+                                                                             inSourceCode: sourceCode
+                                                                        argumentPassBlock: start
+                                                                            argumentCount: argumentCount
+                                                                              returnCount: returnCount
+                                                                               completion: completion];
 }
 

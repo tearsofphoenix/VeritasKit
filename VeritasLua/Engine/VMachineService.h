@@ -18,23 +18,23 @@ typedef void (^LuaObjCBlock)(struct lua_State *);
 
 //IDs of Supported Features
 //
-extern NSString * const LuaEngineObjCSupport;
+extern NSString * const VMachineObjCSupport;
 
-extern NSString * const LuaEngineUIKitSupport;
+extern NSString * const VMachineUIKitSupport;
 
-extern NSString * const LuaEngineParserSupport;
+extern NSString * const VMachineParserSupport;
 
 //Service ID
 //
-extern NSString * const LuaEngineServiceID;
+extern NSString * const VMachineServiceID;
 
 //Service Actions
 //
-extern NSString * const LuaEngineServiceActionDoSourceCode;
+extern NSString * const VMachineServiceDoSourceCodeAction;
 
 #pragma mark - internal use
 
-extern NSString * const LuaEngineServiceActionRegisterGlobalConstants;
+extern NSString * const VMachineServiceRegisterGlobalConstantsAction;
 
 __BEGIN_DECLS
 

@@ -193,14 +193,14 @@ int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L)
 
 #pragma mark - objc
 
-void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
+void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef functorRef,
                                NSArray *argumentTypeEncodings,
                                const char *returnEncoding)
 {
-    if (returnValue)
+    if (functorRef)
     {
         uint argumentCount = (uint)[argumentTypeEncodings count];
-        returnValue->_argumentCount = argumentCount;
+        functorRef->_argumentCount = argumentCount;
         if (argumentCount > 0)
         {
             ffi_type ** argumentTypes = malloc(sizeof(ffi_type *) * argumentCount);
@@ -212,39 +212,39 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef returnValue,
                                                                     argumentTypes[idx] = _luaBridgeInternal_typeOfEncoding(encodingLooper);
                                                                     args[idx] = malloc(argumentTypes[idx]->size);
                                                                 })];
-            returnValue->_arguments = args;
-            returnValue->_argumentTypes = argumentTypes;
-            returnValue->_argumentTypeEncodings = [argumentTypeEncodings retain];
+            functorRef->_arguments = args;
+            functorRef->_argumentTypes = argumentTypes;
+            functorRef->_argumentTypeEncodings = [argumentTypeEncodings retain];
         }else
         {
-            returnValue->_arguments = NULL;
-            returnValue->_argumentTypes = NULL;
-            returnValue->_argumentTypes[0] = &ffi_type_void;
+            functorRef->_arguments = NULL;
+            functorRef->_argumentTypes[0] = &ffi_type_void;
+            functorRef->_argumentTypeEncodings = @[@"v"];
         }
         
         if (!returnEncoding)
         {
-            returnValue->_returnType = &ffi_type_void;
-            returnValue->_returnValue = NULL;
-            returnValue->_returnCount = 0;
-            returnValue->_returnValueEncoding = NULL;
+            functorRef->_returnType = &ffi_type_void;
+            functorRef->_returnValue = NULL;
+            functorRef->_returnCount = 0;
+            functorRef->_returnValueEncoding = NULL;
         }else
         {
-            returnValue->_returnValueEncoding = strdup(returnEncoding);
-            returnValue->_returnType = _luaBridgeInternal_typeOfEncoding(returnEncoding);
-            returnValue->_returnValue = malloc(returnValue->_returnType->size);
-            returnValue->_returnCount = 1;
-            if (returnValue->_returnType == &ffi_type_void)
+            functorRef->_returnValueEncoding = strdup(returnEncoding);
+            functorRef->_returnType = _luaBridgeInternal_typeOfEncoding(returnEncoding);
+            functorRef->_returnValue = malloc(functorRef->_returnType->size);
+            functorRef->_returnCount = 1;
+            if (functorRef->_returnType == &ffi_type_void)
             {
-                returnValue->_returnCount = 0;
+                functorRef->_returnCount = 0;
             }
         }
         
-        ffi_status status = ffi_prep_cif(&(returnValue->_cif),
+        ffi_status status = ffi_prep_cif(&(functorRef->_cif),
                                          FFI_DEFAULT_ABI,
                                          argumentCount,
-                                         returnValue->_returnType,
-                                         returnValue->_argumentTypes);
+                                         functorRef->_returnType,
+                                         functorRef->_argumentTypes);
         if (status != FFI_OK)
         {
             printf("fail to create c interface.\n");

@@ -24,7 +24,7 @@
 
 #import "LuaNSRange.h"
 
-#import "LuaBridgeSupport.h"
+#import "VBridgeService.h"
 
 #import "LuaBridgeFunctor.h"
 
@@ -299,7 +299,8 @@ static int luaObjC_import_file(lua_State *L)
 {
     const char *name = lua_tostring(L, 1);
     
-    [LuaBridgeSupport importFramework: [NSString stringWithUTF8String: name]];
+    VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ [NSString  stringWithUTF8String: name] ]);
+    //[VBridgeService importFramework: [NSString stringWithUTF8String: name]];
     
     NSString *realPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat: @"/%s", name];
     lua_pushstring(L, [realPath UTF8String]);
@@ -318,22 +319,26 @@ static int _luaEngine_resolveName(lua_State *L)
     if (theClass)
     {
         LuaObjCPushObject(L, theClass, false, true);
-        
-        return 1;
     }else
     {
         //this maybe a function, such as glEnable(...)
         //
-        if ([LuaBridgeSupport resolveName: [NSString stringWithUTF8String: name]
-                             intoLuaState: L])
-        {
-            return 1;
-        }else
-        {
-            printf("fail to revolve name: %s!\n", name);
-            return 0;
-        }
+        VSC(VBridgeServiceIdentifier,
+            VBridgeServiceResolveNameIntoStateAction,
+            nil,
+            @[ [NSString stringWithUTF8String: name], [NSValue valueWithPointer: L] ]);
+//        if ([VBridgeService resolveName: [NSString stringWithUTF8String: name]
+//                             intoLuaState: L])
+//        {
+//            return 1;
+//        }else
+//        {
+//            printf("fail to revolve name: %s!\n", name);
+//            return 0;
+//        }
     }
+    
+    return 1;
 }
 
 

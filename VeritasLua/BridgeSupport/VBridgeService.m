@@ -1,66 +1,93 @@
 //
-//  LuaBridgeSupport.m
+//  VBridgeService.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 7/9/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaBridgeSupport.h"
+#import "VBridgeService.h"
 #import "LuaBridgeSupportFileParser.h"
 #import "lua.h"
 #import "LuaBridgeInfo.h"
 
 static NSMutableDictionary *__registeredFrameworks = nil;
 
-@implementation LuaBridgeSupport
+@implementation VBridgeService
 
 + (void)load
 {
-    if (!__registeredFrameworks)
+    [super registerService: self];
+}
+
++ (id)identity
+{
+    return VBridgeServiceIdentifier;
+}
+
+- (id)init
+{
+    if ((self = [super init]))
     {
         __registeredFrameworks = [[NSMutableDictionary alloc] init];
-    }    
-}
-
-+ (void)importFramework: (NSString *)frameworkName
-{
-    if (! CFDictionaryGetValue((CFDictionaryRef)__registeredFrameworks, frameworkName) )
-    {
-        NSString *bridgeFilePath = [[NSBundle bundleForClass: self] pathForResource: frameworkName
-                                                                             ofType: @"bridgesupport"];
-        NSError *error = nil;
-        NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath
-                                                                encoding: NSUTF8StringEncoding
-                                                                   error: &error];
-        if (error)
-        {
-#if DEBUG
-            //NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
-#endif
-        }else
-        {
-            [__registeredFrameworks setObject: [LuaBridgeSupportFileParser parseFileContents: bridgeFileContent]
-                                       forKey: frameworkName];
-        }
+        
+        [self initServerProcessors];
     }
+    
+    return self;
 }
 
-+ (BOOL)resolveName: (NSString *)name
-       intoLuaState: (struct lua_State *)state
+- (void)initServerProcessors
 {
-    __block BOOL succeed = NO;
+    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
+                          {
+                              NSString *frameworkName = [arguments objectAtIndex: 0];
+                              
+                              if (! CFDictionaryGetValue((CFDictionaryRef)__registeredFrameworks, frameworkName) )
+                              {
+                                  NSString *bridgeFilePath = [[NSBundle bundleForClass: [self class]] pathForResource: frameworkName
+                                                                                                               ofType: @"bridgesupport"];
+                                  NSError *error = nil;
+                                  NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath
+                                                                                          encoding: NSUTF8StringEncoding
+                                                                                             error: &error];
+                                  if (error)
+                                  {
+#if DEBUG
+                                      //NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
+#endif
+                                  }else
+                                  {
+                                      [__registeredFrameworks setObject: [LuaBridgeSupportFileParser parseFileContents: bridgeFileContent]
+                                                                 forKey: frameworkName];
+                                  }
+                              }
+                          })
+              forAction: VBridgeServiceImportFrameworkAction];
     
-    [__registeredFrameworks enumerateKeysAndObjectsUsingBlock: (^(NSString *frameworkName, NSDictionary *framework, BOOL *stop)
-                                                                {
-                                                                    LuaBridgeInfo *info = [framework objectForKey: name];
-                                                                    if (info)
-                                                                    {
-                                                                        *stop = YES;
-                                                                        succeed = [info resolveIntoLuaState: state];
-                                                                    }
-                                                                })];
-    return succeed;
+    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
+                          {
+                              NSString *name = [arguments objectAtIndex: 0];
+                              lua_State *state = [[arguments objectAtIndex: 1] pointerValue];
+                              
+                              [__registeredFrameworks enumerateKeysAndObjectsUsingBlock: (^(NSString *frameworkName, NSDictionary *framework, BOOL *stop)
+                                                                                          {
+                                                                                              LuaBridgeInfo *info = [framework objectForKey: name];
+                                                                                              if (info)
+                                                                                              {
+                                                                                                  *stop = YES;
+                                                                                                  [info resolveIntoLuaState: state];
+                                                                                              }
+                                                                                          })];
+                          })
+              forAction: VBridgeServiceResolveNameIntoStateAction];
 }
 
 @end
+
+NSString * const VBridgeServiceIdentifier = @"com.veritas.service.bridge-support";
+
+NSString * const VBridgeServiceImportFrameworkAction = @"lua-engine.action.importFramework";
+
+NSString * const VBridgeServiceResolveNameIntoStateAction = @"lua-engine.action.resolveNameIntoState";
+
