@@ -46,19 +46,21 @@ static NSMutableDictionary *__registeredFrameworks = nil;
     }
 }
 
-+ (void)tryToResolveName: (NSString *)name
-            intoLuaState: (struct lua_State *)state
++ (BOOL)resolveName: (NSString *)name
+       intoLuaState: (struct lua_State *)state
 {
+    __block BOOL succeed = NO;
+    
     [__registeredFrameworks enumerateKeysAndObjectsUsingBlock: (^(NSString *frameworkName, NSDictionary *framework, BOOL *stop)
                                                                 {
                                                                     LuaBridgeInfo *info = [framework objectForKey: name];
                                                                     if (info)
                                                                     {
                                                                         *stop = YES;
-                                                                        [info resolveIntoLuaState: state];
+                                                                        succeed = [info resolveIntoLuaState: state];
                                                                     }
                                                                 })];
-    
+    return succeed;
 }
 
 @end

@@ -53,7 +53,7 @@ static inline void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *
 	lua_pop(L, 1);
 }
 
-static inline void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* tableID, const char* key)
+static void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* tableID, const char* key)
 {
     lua_getfield(L, LUA_REGISTRYINDEX, tableID);
 	lua_getfield(L, -1, key);

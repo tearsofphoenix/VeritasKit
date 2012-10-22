@@ -25,14 +25,7 @@ static int lua_NSMakeRange(lua_State *L)
     NSUInteger loc = lua_tointeger(L, 1);
     NSUInteger len = lua_tointeger(L, 2);
     
-    NSRange *range = lua_newuserdata(L, sizeof(NSRange));
-    range->location = loc;
-    range->length = len;
-    
-    luaL_getmetatable(L, LUA_NSRange_METANAME);
-    lua_setmetatable(L, -2);
-    return 1;
-
+    return lua_pushNSRange(L, NSMakeRange(loc, len));
 }
 
 static int lua_NSMaxRange(lua_State *L) 

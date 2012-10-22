@@ -12,7 +12,7 @@ struct lua_State;
 
 + (void)importFramework: (NSString *)frameworkName;
 
-+ (void)tryToResolveName: (NSString *)name
-            intoLuaState: (struct lua_State *)state;
++ (BOOL)resolveName: (NSString *)name
+       intoLuaState: (struct lua_State *)state;
 
 @end

@@ -327,17 +327,25 @@ static int _luaEngine_resolveName(lua_State *L)
             
             luaObjC_addValueInCacheTable(L, objRef, name);
             
+            return 1;
         }else
         {
             //this maybe a function, such as glEnable(...)
-            [LuaBridgeSupport tryToResolveName: [NSString stringWithUTF8String: name]
-                                  intoLuaState: L];
+            if ([LuaBridgeSupport resolveName: [NSString stringWithUTF8String: name]
+                             intoLuaState: L])
+            {
+                return 1;
+            }else
+            {
+                //
+                printf("fail to revolve name: %s!\n", name);
+                return 0;
+            }
         }
+    }else
+    {
+        return 1;
     }
-    
-    //stackDump(L);
-    
-    return 1;
 }
 
 

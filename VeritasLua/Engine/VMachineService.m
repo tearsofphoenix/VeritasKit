@@ -44,10 +44,8 @@ typedef struct
     NSString *path;
     LuaStateRef luaState;
     LuaStateRef parserState;
-    dispatch_queue_t frameworkImportQueue;
     dispatch_queue_t garbageCollectionQueue;
     dispatch_source_t garbageCollectTimer;
-    
     
 }LuaEngineAttributes;
 
@@ -192,12 +190,10 @@ static void LuaEngine_initialize(VMachineService *self,
     
     [sourceCode release];
     
-    internal->frameworkImportQueue = dispatch_queue_create(LuaEngineFrameworkImportQueueIdentifier, DISPATCH_QUEUE_CONCURRENT);
-    
     dispatch_queue_t garbageQueue = dispatch_queue_create(LuaEngineGarbadgeCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
     internal->garbageCollectionQueue = garbageQueue;
     
-    dispatch_source_t garbageCollectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, garbageQueue);
+    dispatch_source_t garbageCollectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_current_queue());
     internal->garbageCollectTimer = garbageCollectTimer;
     
     NSTimeInterval collectInterval = 5 * NSEC_PER_SEC;
@@ -206,7 +202,7 @@ static void LuaEngine_initialize(VMachineService *self,
     dispatch_source_set_event_handler(garbageCollectTimer,
                                       (^
                                        {
-                                           lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
+                                           //lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
                                            
                                        }));
     

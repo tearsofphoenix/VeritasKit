@@ -116,23 +116,20 @@ const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
     return charLooper;
 }
 
-
-static const char * dumpScript =  "function dump(o)\n"
-                                            "if type(o) == 'table' then\n"
-                                            "    local s = '{ '\n"
-                                            "    for k,v in pairs(o) do\n"
-                                            "        if type(k) ~= 'number' then\n"
-                                            "              k = '\"'..k..'\"'\n"
-                                            "        end\n"
-                                            "        s = s .. '['..k..'] = ' .. dump(v) .. ','\n"
-                                            "    end\n"
-                                            "    return s .. '} '\n"
-                                            "else\n"
-                                            "    return tostring(o)\n"
-                                            "end\n"
-                                 "end\n";
-
-
-void lua_dumpTable(struct lua_State *L)
+const char* lua_getCurrentLineSource(lua_Debug *ar)
 {
+    if (ar)
+    {
+        const char* source = ar->source;
+        
+        NSString *theString = [NSString stringWithUTF8String: source];
+        
+        NSArray *result = [theString componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
+        
+        NSString *theLineSource = [result objectAtIndex: ar->currentline];
+        
+        return [theLineSource UTF8String];
+    }
+    
+    return NULL;
 }

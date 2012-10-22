@@ -26,6 +26,15 @@
 
 static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
 {
+ 
+#if DEBUG
+    lua_Debug debugInfo;
+    lua_getstack(L, 1, &debugInfo);
+    lua_getinfo(L, "Sl", &debugInfo);
+    printf("in line: %d %s\n", debugInfo.currentline, lua_getCurrentLineSource(&debugInfo));
+#else
+    
+#endif
     
     LuaObjectRef anObj = lua_touserdata(L, 1);
     //optimize for nil object call
