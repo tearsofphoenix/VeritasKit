@@ -90,7 +90,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
                                            [NSString stringWithUTF8String: LUA_UIKITLIBNAME],
                                            LuaObjCOpenUIKit,
                                            1,
-                                           [NSArray arrayWithObject:  VMachineObjCSupport]);
+                                           @[ VMachineObjCSupport ]);
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
 #endif
@@ -127,7 +127,6 @@ static LuaStateRef _luaEngine_createLuaState(void)
 
 static int _luaEngine_compileTimeInteraction(lua_State *L)
 {
-    //VMachineService *service = LuaObjCCheckObject(L, 1);
     const char *message = lua_tostring(L, 2);
     if (!strcmp(message, "import"))
     {
@@ -135,7 +134,6 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
         frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
         
         VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ frameworkName ]);
-        //[VBridgeService importFramework: frameworkName];
     }
     
     return 0;

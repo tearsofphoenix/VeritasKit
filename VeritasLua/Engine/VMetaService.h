@@ -16,10 +16,6 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSString *action, NSArra
 - (void)registerBlock: (VServiceBlock)serviceBlock
             forAction: (NSString *)action;
 
-- (void)callForAction: (NSString *)action
-            arguments: (NSArray *)arguments
-         withCallback: (VCallbackBlock)callbackBlock;
-
 @end
 
 @interface VMetaService : NSObject<VMetaService>
@@ -35,10 +31,5 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSString *action, NSArra
 
 extern NSString * const ERGeneralMetaServiceID;
 
-static inline void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments)
-{
-    [[VMetaService serviceByID: serviceID] callForAction: action
-                                                arguments: arguments
-                                             withCallback: callback];
-}
+extern void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments);
 

@@ -170,6 +170,7 @@ static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
         if (!__LuaBridgeRegisteredNodeParsers)
         {
             __LuaBridgeRegisteredNodeParsers = [[NSMutableDictionary alloc] init];
+            
             [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeConstantNodeParser]
                                                  forKey: @"constant"];
             [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeEnumNodeParser]
@@ -195,7 +196,7 @@ static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
             while (nodeLooper)
             {
                 NSString *typeName = [nodeLooper elementName];
-                LuaBridgeNodeParserBlock block = [[__LuaBridgeRegisteredNodeParsers objectForKey: typeName] pointerValue];
+                LuaBridgeNodeParserBlock block = [(id)CFDictionaryGetValue((CFDictionaryRef)__LuaBridgeRegisteredNodeParsers, typeName) pointerValue];
                 if (block)
                 {
                     block(nodeLooper, result);

@@ -7,6 +7,7 @@
 //
 
 #import "VMetaService.h"
+#import <objc/message.h>
 
 @interface VMetaService ()
 {
@@ -20,6 +21,7 @@
 
 static NSMutableDictionary *__resgiteredServices = nil;
 static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
+static IMP _VMetaServiceCallforActionIMP = NULL;
 
 + (void)load
 {
@@ -30,6 +32,11 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
     if (!__registeredCallbackOnDidLoadOfService)
     {
         __registeredCallbackOnDidLoadOfService = [[NSMutableDictionary alloc] init];
+    }
+    
+    if (!_VMetaServiceCallforActionIMP)
+    {
+        _VMetaServiceCallforActionIMP = class_getMethodImplementation(self, @selector(callForAction:arguments:withCallback:));
     }
     
     [self registerService: self];
@@ -76,7 +83,6 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 }
 
 
-
 + (void)registerService: (Class)serviceClass
 {
     
@@ -88,16 +94,16 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
     
     [service release];
     
-    VCallbackBlock block = [__registeredCallbackOnDidLoadOfService objectForKey: serviceID];
+    VCallbackBlock block = CFDictionaryGetValue((CFDictionaryRef)__registeredCallbackOnDidLoadOfService, serviceID);
     if (block)
     {
-        block(nil, [NSArray arrayWithObject: serviceID]);
+        block(nil, @[ serviceID ]);
     }
 }
 
 + (id<VMetaService>)serviceByID: (NSString *)serviceID
 {
-    return [__resgiteredServices objectForKey: serviceID];
+    return (id<VMetaService>)CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID);
 }
 
 + (void)registerBlock: (VCallbackBlock)block
@@ -110,7 +116,7 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
         //
         if (CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID))
         {
-            block(nil, [NSArray arrayWithObject: serviceID]);
+            block(nil, @[ serviceID ]);
             
         }else
         {
@@ -122,6 +128,12 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
             Block_release(block);
         }
     }
+}
+
+void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments)
+{
+    id<VMetaService> service = (id<VMetaService>)CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID);
+    _VMetaServiceCallforActionIMP(service, @selector(callForAction:arguments:withCallback:), action, arguments, callback);
 }
 
 @end
