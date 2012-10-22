@@ -10,6 +10,6 @@
 
 __BEGIN_DECLS
 
-LUAMOD_API int (luaopen_objc_profile)(struct lua_State *L);
+LUAMOD_API int LuaObjCOpenProfileSupport(struct lua_State *L);
 
 __END_DECLS

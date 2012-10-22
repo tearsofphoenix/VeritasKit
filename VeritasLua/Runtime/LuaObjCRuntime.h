@@ -17,10 +17,10 @@ enum
 
 typedef int LuaClosureType;
 
-VK_EXPORT LuaClosureType luaObjC_getClosureIDOfBlock(id block);
+VK_EXPORT LuaClosureType LuaInternalGetClosureIDOfBlock(id block);
 
 #define LUA_NSLIBNAME       "NS"    
 
-LUAMOD_API int luaObjC_openFoundationSupport(struct lua_State *L);
+LUAMOD_API int LuaObjCOpenFoundationSupport(struct lua_State *L);
 
 __END_DECLS

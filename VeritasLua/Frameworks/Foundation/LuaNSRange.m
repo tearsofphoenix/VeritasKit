@@ -10,7 +10,7 @@
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCFrameworkFunctions.h"
 
-int lua_pushNSRange(lua_State *L, NSRange r)
+int LuaObjCPushNSRange(lua_State *L, NSRange r)
 {
     NSRange *range = lua_newuserdata(L, sizeof(NSRange));
     *range = r;
@@ -25,7 +25,7 @@ static int lua_NSMakeRange(lua_State *L)
     NSUInteger loc = lua_tointeger(L, 1);
     NSUInteger len = lua_tointeger(L, 2);
     
-    return lua_pushNSRange(L, NSMakeRange(loc, len));
+    return LuaObjCPushNSRange(L, NSMakeRange(loc, len));
 }
 
 static int lua_NSMaxRange(lua_State *L) 
@@ -57,7 +57,7 @@ static int lua_NSUnionRange(lua_State *L)
     NSRange *range1 = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
     NSRange *range2 = luaL_checkudata(L, 2, LUA_NSRange_METANAME);
     
-    lua_pushNSRange(L, NSUnionRange(*range1, *range2));
+    LuaObjCPushNSRange(L, NSUnionRange(*range1, *range2));
     return 1;
 }
  static int lua_NSIntersectionRange(lua_State *L)
@@ -65,21 +65,21 @@ static int lua_NSUnionRange(lua_State *L)
     NSRange *range1 = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
     NSRange *range2 = luaL_checkudata(L, 2, LUA_NSRange_METANAME);
     
-    lua_pushNSRange(L, NSIntersectionRange(*range1, *range2));
+    LuaObjCPushNSRange(L, NSIntersectionRange(*range1, *range2));
     return 1;
 }
  
 static int lua_NSStringFromRange(lua_State *L)
 {
     NSRange *range = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
-    luaObjC_pushNSObject(L, NSStringFromRange(*range), true, false);
+    LuaObjCPushObject(L, NSStringFromRange(*range), true, false);
     return 1;
 }
 
 static int lua_NSRangeFromString(lua_State *L)
 {
-    NSString *aString = luaObjC_checkNSObject(L, 1);
-    lua_pushNSRange(L, NSRangeFromString(aString));
+    NSString *aString = LuaObjCCheckObject(L, 1);
+    LuaObjCPushNSRange(L, NSRangeFromString(aString));
     return 1;
 }
 
@@ -117,7 +117,7 @@ static int lua_NSRangeNewIndex(lua_State *L)
 
 static const luaL_Reg __luaNSRangeMetaMethods[] =
 {
-    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__gc", LuaInternalStructGarbageCollection},
     {"__index", lua_NSRangeIndex},
     {"__newindex", lua_NSRangeNewIndex},
     {NULL, NULL},
@@ -135,11 +135,11 @@ static const luaL_Reg __luaNSRangeAPIs[] = {
     {NULL, NULL},
 };
 
-int LuaOpenNSRange(lua_State *L)
+int LuaObjCOpenNSRange(lua_State *L)
 {
-    luaObjC_createMetatable(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
 
-    luaObjC_loadGlobalFunctions(L, __luaNSRangeAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaNSRangeAPIs);
     
     return 0;
 }

@@ -20,89 +20,11 @@
 
 #import <objc/runtime.h>
 
-#pragma mark - cache table in lua state
-
-static void _luaObjC_createTableWithID(lua_State *L, const char *tableID, bool isWeakTable)
-{
-	lua_pushstring(L, tableID);
-	
-	lua_newtable(L);
-	lua_pushvalue(L, -1);  // table is its own metatable
-	lua_setmetatable(L, -2);
-    
-    if (isWeakTable)
-    {
-        lua_pushliteral(L, "__mode");
-        lua_pushliteral(L, "kv"); // make values weak, I don't think lightuserdata is strong ref'd so 'k' is optional.
-        lua_settable(L, -3);   // metatable.__mode = "v"
-    }
-	
-	// Now that we've created a new table, put it in the global registry
-	lua_settable(L, LUA_REGISTRYINDEX);
-	
-}
-
-static inline void _luaObjC_insertObjectInTableWithID(lua_State *L, const char *tableID, void *object, const char *key)
-{
-    lua_getfield(L, LUA_REGISTRYINDEX, tableID); // puts the global weak table on top of the stack
-	
-	lua_pushlightuserdata(L, object); // stack: [object table]
-	lua_setfield(L, -2, key);
-	
-	// table is still on top of stack. Don't forget to pop it now that we are done with it
-	lua_pop(L, 1);
-}
-
-static void* _luaObjC_getObjectInTableWithID(lua_State *L, const char* tableID, const char* key)
-{
-    lua_getfield(L, LUA_REGISTRYINDEX, tableID);
-	lua_getfield(L, -1, key);
-    
-	if(lua_isnil(L, -1))
-	{
-		return NULL;
-        
-	}else
-	{
-		return lua_touserdata(L, -1);
-	}
-}
-
-static const char* LuaObjCGlobalCacheTableID = "com.veritas.lua-objc.global.cachetable";
-static NSRecursiveLock *_cacheTableLock = nil;
-
-void luaObjC_initializeCacheTable(lua_State* L)
-{
-    _luaObjC_createTableWithID(L, LuaObjCGlobalCacheTableID, false);
-    _cacheTableLock = [[NSRecursiveLock alloc] init];
-}
-
-void luaObjC_addValueInCacheTable(lua_State* L, void* object, const char *key)
-{
-    [_cacheTableLock lock];
-    
-    _luaObjC_insertObjectInTableWithID(L, LuaObjCGlobalCacheTableID, object, key);
-    
-    [_cacheTableLock unlock];
-}
-
-void* luaObjC_getValueInCacheTable(lua_State* L, const char* key)
-{
-    [_cacheTableLock lock];
-    
-    void *value = _luaObjC_getObjectInTableWithID(L, LuaObjCGlobalCacheTableID, key);
-    
-    [_cacheTableLock unlock];
-    
-    return value;
-}
-
-
 #pragma mark - type encoding support
 
 CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks = {
-    .equal=luaInternal_CStringEqual,
-    .release=luaInternal_freeCallback,
+    .equal=LuaInternalCStringEqual,
+    .release=LuaInternalFreeCallback,
     .hash=(CFDictionaryHashCallBack)strlen
 };
 
@@ -142,7 +64,7 @@ static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef di
 
 static inline void LuaObjCTypeEncodingInitialize(void)
 {
-    __LuaObjC_ValueCallbacks.equal = luaInternal_CStringEqual;
+    __LuaObjC_ValueCallbacks.equal = LuaInternalCStringEqual;
     
     __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
                                                                  &kLuaObjCCStringKeyCallBacks,
@@ -151,7 +73,7 @@ static inline void LuaObjCTypeEncodingInitialize(void)
     
 }
 
-void luaObjC_addEncodingForPredeclearClass(const char *className)
+void LuaObjCAddEncodingForPredeclearClass(const char *className)
 {
     if (!__LuaObjC_TypeEncodingDictionary)
     {
@@ -172,12 +94,12 @@ const char * LuaObjCTypeEncodingOfType(const char *typeName)
     return typeEncoding;
 }
 
-void luaInternal_freeCallback(CFAllocatorRef allocator, const void *value)
+void LuaInternalFreeCallback(CFAllocatorRef allocator, const void *value)
 {
     free((void *)value);
 }
 
-Boolean luaInternal_CStringEqual(const void *value1, const void *value2)
+Boolean LuaInternalCStringEqual(const void *value1, const void *value2)
 {
     const char *str1 = value1;
     const char *str2 = value2;
@@ -215,7 +137,7 @@ static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *
     
 }
 
-void luaObjC_allocateClass(struct lua_State *L, Class theClass, const char *className)
+void LuaInternalAllocateClass(struct lua_State *L, Class theClass, const char *className)
 {
     CFDictionaryAddValue(__LuaObjC_ClassDictionary, strdup(className), theClass);
     
@@ -228,25 +150,21 @@ void luaObjC_allocateClass(struct lua_State *L, Class theClass, const char *clas
     _luaClassAttachDictionaryToClass(theClass, &__LuaObjC_KeyForClassMethods);
 }
 
-struct lua_State *luaObjC_getLuaStateOfClass(Class theClass)
+struct lua_State *LuaInternalGetLuaStateOfClass(Class theClass)
 {
     return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
 }
 
-Class luaObjC_getClass(const char *className)
+Class LuaInternalGetClass(const char *className)
 {
     return CFDictionaryGetValue(__LuaObjC_ClassDictionary, className);
 }
 
-int luaObjC_classInitialize(lua_State *L)
+int LuaObjCClassInitialize(lua_State *L)
 {
     __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,
                                                           &kLuaObjCCStringKeyCallBacks,
                                                           &kCFTypeDictionaryValueCallBacks);
-    
-    //LuaObjCTypeEncodingInitialize();
-    luaObjC_initializeCacheTable(L);
-    
     return 1;
 }
 
@@ -323,7 +241,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     bool isClassMethod = (theClass == obj);
     
     LuaClosureType clouserID = luaObjC_getClosureIDOfSelector(theClass, sel, isClassMethod);
-    lua_State *luaState = luaObjC_getLuaStateOfClass(theClass);
+    lua_State *luaState = LuaInternalGetLuaStateOfClass(theClass);
     
     if (clouserID != LuaObjCInvalidClouserID)
     {
@@ -351,11 +269,11 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         
         //push 'self' argument first
         //
-        luaObjC_pushNSObject(luaState, obj, true, false);
+        LuaObjCPushObject(luaState, obj, true, false);
         
         //push '_cmd' argument next
         //
-        luaObjC_pushSelector(luaState, sel);
+        LuaObjCPushSelector(luaState, sel);
         
         //push real arguments
         //
@@ -396,28 +314,28 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
                 case _C_ID:
                 {
                     id argLooper = va_arg(ap,  id);
-                    luaObjC_pushNSObject(luaState, argLooper, true, false);
+                    LuaObjCPushObject(luaState, argLooper, true, false);
                     break;
                 }
                 case _C_SEL:
                 {
                     SEL sel = va_arg(ap, SEL);
-                    luaObjC_pushSelector(luaState, sel);
+                    LuaObjCPushSelector(luaState, sel);
                     break;
                 }
                 case _C_STRUCT_B:
                 {
                     if (!strncmp(typeLooper, @encode(CGRect), strlen(@encode(CGRect))))
                     {
-                        lua_pushCGRect(luaState, va_arg(ap, CGRect));
+                        LuaObjCPushCGRect(luaState, va_arg(ap, CGRect));
                         
                     }else if (!strncmp(typeLooper, @encode(CGPoint), strlen(@encode(CGPoint))))
                     {
-                        lua_pushCGPoint(luaState, va_arg(ap, CGPoint));
+                        LuaObjCPushCGPoint(luaState, va_arg(ap, CGPoint));
                         
                     }else if (!strncmp(typeLooper, @encode(CGSize), strlen(@encode(CGSize))))
                     {
-                        lua_pushCGSize(luaState, va_arg(ap, CGSize));
+                        LuaObjCPushCGSize(luaState, va_arg(ap, CGSize));
                     }
                     break;
                 }
@@ -449,7 +367,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     IMP imp = class_getMethodImplementation(theClass, sel);
     if (imp)
     {
-        luaObjC_pushNSObject(luaState, imp(obj, sel, luaObjC_checkNSObject(luaState, 1)), true, false);
+        LuaObjCPushObject(luaState, imp(obj, sel, LuaObjCCheckObject(luaState, 1)), true, false);
         
     }else
     {
@@ -536,7 +454,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 {
     __LuaClassPreprocess(obj, sel, L);
     
-    return luaObjC_checkNSObject(L, -1);
+    return LuaObjCCheckObject(L, -1);
 }
 
 #undef __LuaClassPreprocess
@@ -546,14 +464,13 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     int argCount = lua_gettop(L);
     
     const char * className = lua_tostring(L, 1);
-    const char* selectorName = luaObjC_checkString(L, 2);
+    const char* selectorName = LuaObjCCheckString(L, 2);
     
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
     
-    //printf("add method: %s\n", selectorName);
     //return type
     //
-    const char* typeLooper = luaObjC_checkString(L, 3);
+    const char* typeLooper = LuaObjCCheckString(L, 3);
     const char* returnType = LuaObjCTypeEncodingOfType(typeLooper);
     
     [typeEncoding appendFormat: @"%s", LuaObjCTypeEncodingOfType(typeLooper)];
@@ -564,7 +481,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     
     for (int iLooper = 4; iLooper < argCount; ++iLooper)
     {
-        typeLooper = luaObjC_checkString(L, iLooper);
+        typeLooper = LuaObjCCheckString(L, iLooper);
         
         [typeEncoding appendFormat: @"%s", LuaObjCTypeEncodingOfType(typeLooper)];
     }
@@ -572,7 +489,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     
     SEL sel = sel_registerName(selectorName);
     
-    Class theClass = luaObjC_getClass(className);
+    Class theClass = LuaInternalGetClass(className);
     Class classToAddClosure = theClass;
     
     if (!isObjectMethod)

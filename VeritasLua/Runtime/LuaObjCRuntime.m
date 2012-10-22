@@ -61,7 +61,7 @@ static inline void luaObjC_addClosureIDForBlock(LuaClosureType clouserID, id blo
     }
 }
 
-LuaClosureType luaObjC_getClosureIDOfBlock(id block)
+LuaClosureType LuaInternalGetClosureIDOfBlock(id block)
 {
     LuaClosureType closureID = (LuaClosureType) CFDictionaryGetValue(__LuaObjC_clouserBlockDictionary, block);
     
@@ -89,20 +89,20 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
         return 0;
     }
     
-    Class registeredClass = luaObjC_getClass(newClassName);
+    Class registeredClass = LuaInternalGetClass(newClassName);
     //has registered, put it into state
     //
     if (registeredClass)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        luaObjC_pushNSObject(L, registeredClass, true, true);
+        LuaObjCPushObject(L, registeredClass, true, true);
         
     }else
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
-        luaObjC_allocateClass(L, theNewClass, newClassName);
-        luaObjC_pushNSObject(L, theNewClass, true, true);
+        LuaInternalAllocateClass(L, theNewClass, newClassName);
+        LuaObjCPushObject(L, theNewClass, true, true);
     }
     return 1;
 }
@@ -225,25 +225,25 @@ static int luaObjC_createBlockObject(lua_State *L)
                     case LuaObjCCGRectType:
                     {
                         CGRect rect = va_arg(ap, CGRect);
-                        lua_pushCGRect(L, rect);
+                        LuaObjCPushCGRect(L, rect);
                         break;
                     }
                     case LuaObjCCGSizeType:
                     {
                         CGSize size = va_arg(ap, CGSize);
-                        lua_pushCGSize(L, size);
+                        LuaObjCPushCGSize(L, size);
                         break;
                     }
                     case LuaObjCCGPointType:
                     {
                         CGPoint point = va_arg(ap, CGPoint);
-                        lua_pushCGPoint(L, point);
+                        LuaObjCPushCGPoint(L, point);
                         break;
                     }
                     case LuaObjCNSRangeType:
                     {
                         NSRange range = va_arg(ap, NSRange);
-                        lua_pushNSRange(L, range);
+                        LuaObjCPushNSRange(L, range);
                         break;
                     }
                     default:
@@ -265,16 +265,16 @@ static int luaObjC_createBlockObject(lua_State *L)
     
     luaObjC_addClosureIDForBlock(clouserID, block);
     
-    luaObjC_pushNSObject(L, block, true, false);
+    LuaObjCPushObject(L, block, true, false);
     
     return 1;
 }
 
 static int luaObjC_registerClassPair(lua_State *L)
 {
-    const char* className = luaObjC_checkString(L, 1);
+    const char* className = LuaObjCCheckString(L, 1);
     
-    Class theClass = luaObjC_getClass(className);
+    Class theClass = LuaInternalGetClass(className);
     
     if (theClass)
     {
@@ -290,7 +290,7 @@ static int luaObjC_classPredeclearation(lua_State *L)
     
     for (int iLooper = 1; iLooper < argCount + 1; ++iLooper)
     {
-        luaObjC_addEncodingForPredeclearClass(lua_tostring(L, iLooper));
+        LuaObjCAddEncodingForPredeclearClass(lua_tostring(L, iLooper));
     }
     return 0;
 }
@@ -314,25 +314,22 @@ static int _luaEngine_resolveName(lua_State *L)
     const char* name = lua_tostring(L, 2);
     
     
-    //printf("not in cache table, in function: %s line: %d name: %s\n", __func__, __LINE__, name);
     Class theClass = objc_getClass(name);
     if (theClass)
     {
-//        LuaObjectCreate(L, theClass, true);
-        luaObjC_pushNSObject(L, theClass, false, true);
-        //luaObjC_addValueInCacheTable(L, objRef, name);
+        LuaObjCPushObject(L, theClass, false, true);
         
         return 1;
     }else
     {
         //this maybe a function, such as glEnable(...)
+        //
         if ([LuaBridgeSupport resolveName: [NSString stringWithUTF8String: name]
                              intoLuaState: L])
         {
             return 1;
         }else
         {
-            //
             printf("fail to revolve name: %s!\n", name);
             return 0;
         }
@@ -386,7 +383,7 @@ static int luaObjC_objc_throw(lua_State *L)
         }
         case LUA_TUSERDATA:
         {
-            id obj = luaObjC_checkNSObject(L, 1);
+            id obj = LuaObjCCheckObject(L, 1);
             luaL_error(L, "@throw object:%s value!", [[obj description] UTF8String]);
             break;
         }
@@ -427,7 +424,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
     {
         lua_rawgeti(L, LUA_REGISTRYINDEX, catchBlock);
         
-        luaObjC_pushNSObject(L, exception, true, false);
+        LuaObjCPushObject(L, exception, true, false);
         
         printf("catch in objc, line:%d\n", __LINE__);
         
@@ -457,7 +454,7 @@ static int luaObjC_objc_UUIDString(lua_State *L)
 
 static int luaObjC_objc_NSFastEnumerate(lua_State *L)
 {
-    id obj = luaObjC_checkNSObject(L, 1);
+    id obj = LuaObjCCheckObject(L, 1);
     if (obj)
     {
         //if the object does not support fast enumerate, it will cause a runtime exception
@@ -481,14 +478,14 @@ static int luaObjC_createLiteralArray(lua_State *L)
     
     for (int iLooper = 1; iLooper < count + 1; ++iLooper)
     {
-        [array addObject: luaObjC_checkNSObject(L, iLooper)];
+        [array addObject: LuaObjCCheckObject(L, iLooper)];
     }
     
     NSArray *value = [NSArray arrayWithArray: array];
     
     CFArrayAppendValue(_LuaObjCLiteralStorage, value);
     
-    luaObjC_pushNSObject(L, value, true, false);
+    LuaObjCPushObject(L, value, true, false);
     
     return 1;
 }
@@ -503,8 +500,8 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     
     for (int iLooper = 1; iLooper < halfIndex + 1; ++iLooper)
     {
-        [keys addObject: luaObjC_checkNSObject(L, iLooper)];
-        [values addObject: luaObjC_checkNSObject(L, halfIndex + iLooper)];
+        [keys addObject: LuaObjCCheckObject(L, iLooper)];
+        [values addObject: LuaObjCCheckObject(L, halfIndex + iLooper)];
     }
     
     
@@ -517,7 +514,7 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     [keys release];
     [values release];
     
-    luaObjC_pushNSObject(L, dict, true, false);
+    LuaObjCPushObject(L, dict, true, false);
     
     return 1;
 }
@@ -528,7 +525,7 @@ static inline int luaObjC_createConstantNumber(lua_State *L)
     CFArrayAppendValue(_LuaObjCLiteralStorage, number);
     [number release];
     
-    luaObjC_pushNSObject(L, number, true, false);
+    LuaObjCPushObject(L, number, true, false);
     
     return 1;
 }
@@ -581,16 +578,16 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
     return 1;
 }
 
-int luaObjC_openFoundationSupport(lua_State *L)
+int LuaObjCOpenFoundationSupport(lua_State *L)
 {
     if (!_LuaObjCLiteralStorage)
     {
         _LuaObjCLiteralStorage = CFArrayCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeArrayCallBacks);
     }
     
-    luaObjC_classInitialize(L);
+    LuaObjCClassInitialize(L);
     
-    luaObjC_loadGlobalFunctions(L, luaObjC_runtimeFunctions);
+    LuaObjCLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
     
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
     
@@ -607,19 +604,19 @@ int luaObjC_openFoundationSupport(lua_State *L)
     //    lua_remove(L, -2);
     //    lua_rawset(L, -3);
     //
-    //    stackDump(L);
+    //    LuaInternalDumpLuaStack(L);
     
     static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName})";
     
 	luaL_loadstring(L, s_ResolveNameMetaTable);
 	lua_pcall(L, 0, 0, 0);
     
-    luaObjC_openNSObjectExtensionSupport(L);
+    LuaObjCOpenNSObjectExtensionSupport(L);
     
-    luaopen_objc_profile(L);
-    luaObjCInternal_openBridgeFunctor(L);
+    LuaObjCOpenProfileSupport(L);
+    LuaInternalOpenBridgeFunctorSupport(L);
     
-    LuaOpenFoundation(L);
+    LuaObjCOpenFoundation(L);
     
     return 1;
     

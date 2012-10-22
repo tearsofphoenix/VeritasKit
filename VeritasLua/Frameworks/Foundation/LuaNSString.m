@@ -13,7 +13,7 @@ static int lua_NSConstantStringCreate(lua_State *L)
 {
     const char* str = lua_tostring(L, 1);
     NSString *constantString = [[[NSString alloc] initWithUTF8String: str] autorelease];
-    luaObjC_pushNSObject(L, constantString, true, false);
+    LuaObjCPushObject(L, constantString, true, false);
     return 1;
 }
 
@@ -23,8 +23,8 @@ static const luaL_Reg __LuaNSStringFunctions[] =
     {NULL, NULL},
 };
 
-int LuaOpenNSString(lua_State *L)
+int LuaObjCOpenNSString(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __LuaNSStringFunctions);
+    LuaObjCLoadGlobalFunctions(L, __LuaNSStringFunctions);
     return 0;
 }

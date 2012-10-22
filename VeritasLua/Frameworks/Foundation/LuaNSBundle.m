@@ -11,37 +11,37 @@
 
 static int lua_NSLocalizedString(lua_State *L)
 {
-    luaObjC_pushNSObject(L, NSLocalizedString(luaObjC_checkNSObject(L, 1),
-                                              luaObjC_checkNSObject(L, 2)), true, false);
+    LuaObjCPushObject(L, NSLocalizedString(LuaObjCCheckObject(L, 1),
+                                              LuaObjCCheckObject(L, 2)), true, false);
     return 1;
 }
 
 static int lua_NSLocalizedStringFromTable(lua_State *L)
 {    
-    luaObjC_pushNSObject(L, NSLocalizedStringFromTable(luaObjC_checkNSObject(L, 1), 
-                                                    luaObjC_checkNSObject(L, 2),
-                                                    luaObjC_checkNSObject(L, 3)), true, false);
+    LuaObjCPushObject(L, NSLocalizedStringFromTable(LuaObjCCheckObject(L, 1), 
+                                                    LuaObjCCheckObject(L, 2),
+                                                    LuaObjCCheckObject(L, 3)), true, false);
 
     return 1;
 }
 
 static int lua_NSLocalizedStringFromTableInBundle(lua_State *L)
 {    
-    luaObjC_pushNSObject(L, NSLocalizedStringFromTableInBundle(luaObjC_checkNSObject(L, 1), 
-                                                            luaObjC_checkNSObject(L, 2),
-                                                            luaObjC_checkNSObject(L, 3),
-                                                            luaObjC_checkNSObject(L, 4)), true, false);
+    LuaObjCPushObject(L, NSLocalizedStringFromTableInBundle(LuaObjCCheckObject(L, 1), 
+                                                            LuaObjCCheckObject(L, 2),
+                                                            LuaObjCCheckObject(L, 3),
+                                                            LuaObjCCheckObject(L, 4)), true, false);
     
     return 1;
 }
 
 static int lua_NSLocalizedStringWithDefaultValue(lua_State *L)
 {    
-    luaObjC_pushNSObject(L, NSLocalizedStringWithDefaultValue(luaObjC_checkNSObject(L, 1), 
-                                                            luaObjC_checkNSObject(L, 2),
-                                                            luaObjC_checkNSObject(L, 3),
-                                                            luaObjC_checkNSObject(L, 4),
-                                                            luaObjC_checkNSObject(L, 5)), true, false);
+    LuaObjCPushObject(L, NSLocalizedStringWithDefaultValue(LuaObjCCheckObject(L, 1), 
+                                                            LuaObjCCheckObject(L, 2),
+                                                            LuaObjCCheckObject(L, 3),
+                                                            LuaObjCCheckObject(L, 4),
+                                                            LuaObjCCheckObject(L, 5)), true, false);
     
     return 1;
 }
@@ -55,8 +55,8 @@ static const luaL_Reg __luaNSBundleAPIs[] =
     {NULL, NULL},
 };
 
-int LuaOpenNSBundle(lua_State *L)
+int LuaObjCOpenNSBundle(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __luaNSBundleAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaNSBundleAPIs);
     return 0;
 }

@@ -184,10 +184,10 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
     {NULL, NULL}
 };
 
-int luaObjCInternal_openBridgeFunctor(struct lua_State *L)
+int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L)
 {
     luaL_newlib(L, __LuaObjCBridgeSupportFunctions);
-    luaObjC_createMetatable(L, LuaBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LuaBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
     return 1;
 }
 
@@ -350,17 +350,17 @@ void LuaObjCInvoke(struct lua_State *L,
             case _C_SEL:
             {
                 SEL selector = *(SEL *)ref->_returnValue;
-                luaObjC_pushSelector(L, selector);
+                LuaObjCPushSelector(L, selector);
                 break;
             }
             case _C_CLASS:
             {
-                luaObjC_pushNSObject(L, *(id *)ref->_returnValue, true, true);
+                LuaObjCPushObject(L, *(id *)ref->_returnValue, true, true);
                 break;
             }
             case _C_ID:
             {
-                luaObjC_pushNSObject(L, *(id *)ref->_returnValue, true, false);
+                LuaObjCPushObject(L, *(id *)ref->_returnValue, true, false);
                 break;
             }
             case _C_PTR:
@@ -390,9 +390,7 @@ void LuaObjCInvoke(struct lua_State *L,
 void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
 {
     if (ref)
-    {
-        printf("in function: %s line: %d\n", __func__, __LINE__);
-        
+    {        
         free(ref->_argumentTypes);
         
         void **arguments = ref->_arguments;
@@ -504,12 +502,12 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
         }
         case _C_CLASS:
         {
-            *(id *)arguments[iLooper] = luaObjC_checkNSObject(L, index);
+            *(id *)arguments[iLooper] = LuaObjCCheckObject(L, index);
             break;
         }
         case _C_ID:
         {
-            id obj = luaObjC_checkNSObject(L, index);
+            id obj = LuaObjCCheckObject(L, index);
             *(id *)arguments[iLooper] = [obj retain];
             break;
         }

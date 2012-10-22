@@ -7,23 +7,9 @@
 //
 
 #import <VeritasVM/VeritasVM.h>
-#import "LuaObjCInternal.h"
-#import <Block.h>
-@interface FakeBlock : NSObject
-
-
-
-@end
-
-static void test_call(id block)
-{
-    ((dispatch_block_t)block)();
-}
+#import "NSData+Base64.h"
 
 int main(int argc, char *argv[])
 {
-    //objc_dumpClass([UIPopoverController class]);
-    //id string = @"xx";
-   // test_call(string);
     LuaCall(@"Main.v", @"main", nil, 0, 1, nil);
 }

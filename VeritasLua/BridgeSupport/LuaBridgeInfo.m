@@ -51,11 +51,8 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         {
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
-            LuaObjectRef classRef = LuaObjectCreate(state, theClass, true);
             
-            NSLog(@"in func: %s %@ %s", __func__, theClass, className);
-            
-            //luaObjC_addValueInCacheTable(state, classRef, className);
+            LuaObjCPushObject(state, theClass, true, true);
             
             return YES;
         }
@@ -66,13 +63,9 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         }
         case LuaBridgeConstantType:
         {
-            const char *className = [_name UTF8String];
             id value = [_info objectForKey: @"value"];
-            LuaObjectRef classRef = LuaObjectCreate(state, value, false);
             
-            NSLog(@"in func: %s %@ %s", __func__, value, className);
-
-            //luaObjC_addValueInCacheTable(state, classRef, className);
+            LuaObjCPushObject(state, value, true, false);
 
             return YES;
         }
@@ -88,13 +81,10 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             
             const char *returnTypeEncoding = [[_info objectForKey: @"retval"] UTF8String];
             
-            LuaBridgeFuncotrRef functorRef = LuaBridgeFunctorCreate(state, _name, encodings, returnTypeEncoding);
-            
-            NSLog(@"in func: %s %@", __func__, _name);
-
-            //luaObjC_addValueInCacheTable(state, functorRef, [_name UTF8String]);
+            LuaBridgeFunctorCreate(state, _name, encodings, returnTypeEncoding);
             
             [encodings release];
+            
             return YES;
         }
         default:

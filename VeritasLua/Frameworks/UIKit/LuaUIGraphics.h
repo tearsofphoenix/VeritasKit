@@ -10,6 +10,6 @@
 
 __BEGIN_DECLS
 
-LUAMOD_API int LuaOpenUIGraphics(struct lua_State *L);
+LUAMOD_API int LuaObjCOpenUIGraphics(struct lua_State *L);
 
 __END_DECLS

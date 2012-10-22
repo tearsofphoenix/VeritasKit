@@ -21,7 +21,7 @@
 int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
                                     IMP impRef, id obj, SEL selector)
 {
-    returnType = LuaObjCInternal_jumpoverEncodingDecorator(returnType);
+    returnType = LuaInternalJumpoverEncodingDecorator(returnType);
     switch (*returnType)
     {
         case _C_CHR:
@@ -56,7 +56,7 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_CLASS:
         {
             id result = impRef(obj, selector);
-            luaObjC_pushNSObject(L, result, true, true);
+            LuaObjCPushObject(L, result, true, true);
             return 1;
         }
         case _C_ID:
@@ -66,11 +66,11 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             if (sel_isEqual(selector, @selector(alloc)))
             {
 
-                luaObjC_pushNSObject(L, result, false, false);
+                LuaObjCPushObject(L, result, false, false);
                 
             }else
             {
-                luaObjC_pushNSObject(L, result, true, false);
+                LuaObjCPushObject(L, result, true, false);
             }
             
             return 1;
@@ -78,7 +78,7 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_SEL:
         {
             typedef SEL (* _IMP_T)(id, SEL);
-            luaObjC_pushSelector(L, ((_IMP_T)impRef)(obj, selector));
+            LuaObjCPushSelector(L, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
         case _C_STRUCT_B:
@@ -86,32 +86,32 @@ int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             if (!strcmp(returnType, @encode(CGRect)))
             {
                 typedef CGRect (* _IMP_T)(id, SEL);
-                lua_pushCGRect(L, ((_IMP_T)impRef)(obj, selector));
+                LuaObjCPushCGRect(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGPoint)))
             {
                 typedef CGPoint (* _IMP_T)(id, SEL);
-                lua_pushCGPoint(L, ((_IMP_T)impRef)(obj, selector));
+                LuaObjCPushCGPoint(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGSize)))
             {
                 typedef CGSize (* _IMP_T)(id, SEL);
-                lua_pushCGSize(L, ((_IMP_T)impRef)(obj, selector));
+                LuaObjCPushCGSize(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(NSRange)))
             {
                 typedef NSRange (* _IMP_T)(id, SEL);
-                lua_pushNSRange(L, ((_IMP_T)impRef)(obj, selector));
+                LuaObjCPushNSRange(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CATransform3D)))
             {
                 typedef CATransform3D (* _IMP_T)(id, SEL);
-                lua_pushCATransform3D(L, ((_IMP_T)impRef)(obj, selector));
+                LuaObjCPushCATransform3D(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGAffineTransform)))
             {
                 typedef CGAffineTransform (* _IMP_T)(id, SEL);
-                lua_pushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector));
+                LuaObjCPushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector));
             }
             return 1;
         }
@@ -146,7 +146,7 @@ static inline void LuaObjCAcceleratorInitialize(void)
     __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 64, NULL, &kCFTypeDictionaryValueCallBacks);
 }
 
-void luaObjC_registerAccelerator(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
+void LuaObjCRegisterAccelerator(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
 {
     if (!__preAccelerators)
     {
@@ -168,7 +168,7 @@ void luaObjC_registerAccelerator(Class theClass, SEL selector, LuaObjCAccelerato
     
 }
 
-LuaObjCAcceleratorIMP luaObjC_getAcceleratorIMPOfSelector(Class theClass, SEL selector)
+LuaObjCAcceleratorIMP LuaObjCGetRegisterIMPOfSelector(Class theClass, SEL selector)
 {
     CFMutableDictionaryRef classAccelerators = (CFMutableDictionaryRef)CFDictionaryGetValue(__preAccelerators, theClass);
     if (classAccelerators)

@@ -11,7 +11,7 @@
 static int luaUIKit_UIAccessibilityZoomFocusChanged(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 2);
-    UIAccessibilityZoomFocusChanged(luaL_checkunsigned(L, 1), *rect, luaObjC_checkNSObject(L, 3));
+    UIAccessibilityZoomFocusChanged(luaL_checkunsigned(L, 1), *rect, LuaObjCCheckObject(L, 3));
     return 0;
 }
 
@@ -21,8 +21,8 @@ static const luaL_Reg __LuaUIAccessibilityAPIs[] =
     {NULL, NULL},
 };
 
-int LuaOpenUIAccessibility(lua_State *L)
+int LuaObjCOpenUIAccessibility(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __LuaUIAccessibilityAPIs);
+    LuaObjCLoadGlobalFunctions(L, __LuaUIAccessibilityAPIs);
     return 0;
 }

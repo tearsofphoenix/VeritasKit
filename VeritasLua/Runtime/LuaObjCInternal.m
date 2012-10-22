@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-void objc_dumpClass(Class theClass)
+void LuaInternalDumpObjCClass(Class theClass)
 {
     if (theClass)
     {
@@ -48,7 +48,7 @@ void objc_dumpClass(Class theClass)
     }
 }
 
-void stackDump (lua_State *L) 
+void LuaInternalDumpLuaStack (lua_State *L) 
 {
     int nargs = lua_gettop(L);
     printf(" ----------------  Stack Dump ----------------\n" );
@@ -91,7 +91,7 @@ void stackDump (lua_State *L)
     printf("--------------- Stack Dump Finished ---------------\n" );
 }
 
-const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
+const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper)
 {
     if (charLooper)
     {
@@ -116,7 +116,7 @@ const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper)
     return charLooper;
 }
 
-const char* lua_getCurrentLineSource(lua_Debug *ar)
+const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
 {
     if (ar)
     {

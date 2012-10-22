@@ -12,13 +12,13 @@
 #import "LuaNSString.h"
 #import "LuaNSCollection.h"
 
-int LuaOpenFoundation(struct lua_State *L)
+int LuaObjCOpenFoundation(struct lua_State *L)
 {    
-    LuaOpenNSBundle(L);
+    LuaObjCOpenNSBundle(L);
    
-    LuaOpenNSRange(L);
-    LuaOpenNSString(L);
-    LuaOpenNSColletion(L);
+    LuaObjCOpenNSRange(L);
+    LuaObjCOpenNSString(L);
+    LuaObjCOpenNSColletion(L);
     
     return 0;
 }

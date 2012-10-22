@@ -73,7 +73,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //
     infoLooper = LuaLibraryInformationMake(LuaEngineObjCSupport,
                                            [NSString stringWithUTF8String: LUA_NSLIBNAME],
-                                           luaObjC_openFoundationSupport,
+                                           LuaObjCOpenFoundationSupport,
                                            1,
                                            nil);
     
@@ -85,7 +85,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
     infoLooper = LuaLibraryInformationMake(LuaEngineUIKitSupport,
                                            [NSString stringWithUTF8String: LUA_UIKITLIBNAME],
-                                           LuaOpenUIKit,
+                                           LuaObjCOpenUIKit,
                                            1,
                                            [NSArray arrayWithObject:  LuaEngineObjCSupport]);
     [_libs setObject: infoLooper
@@ -107,7 +107,8 @@ static LuaStateRef _luaEngine_createLuaState(void)
     LuaStateRef luaStateRef = luaL_newstate();
     if (luaStateRef == NULL)
     {
-        NSLog(@"cannot create state: not enough memory");
+        printf("cannot create state: not enough memory!\n");
+        
         exit(EXIT_FAILURE);
     }
     
@@ -123,7 +124,7 @@ static LuaStateRef _luaEngine_createLuaState(void)
 
 static int _luaEngine_compileTimeInteraction(lua_State *L)
 {
-    //VMachineService *service = luaObjC_checkNSObject(L, 1);
+    //VMachineService *service = LuaObjCCheckObject(L, 1);
     const char *message = lua_tostring(L, 2);
     if (!strcmp(message, "import"))
     {
@@ -159,7 +160,7 @@ static void LuaEngine_initialize(VMachineService *self,
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
     
-    luaObjC_loadGlobalFunctions(parserStateRef, __compileTimeFunctions);
+    LuaObjCLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
     LuaLibraryInformationRegisterToState(libs, LuaEngineParserSupport, parserStateRef);
     
     internal->parserState = parserStateRef;
@@ -223,6 +224,11 @@ static void LuaEngine_initialize(VMachineService *self,
         LuaEngine_initialize(self, &_internal, &_luaEngineLibs, &_md5OfParsedString);
         
         dispatch_resume(_internal->garbageCollectTimer);
+
+//        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
+//                                                                                                                 ofType: @"lua"]];
+//        
+//        NSLog(@"%@", [data base64EncodedString]);
 
     }
     return self;
@@ -290,7 +296,7 @@ static void LuaEngine_initialize(VMachineService *self,
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
-        printf("parsed: %s\n", ret);
+        //printf("parsed: %s\n", ret);
         ///TODO: is here right?
         //
         return strdup(ret);

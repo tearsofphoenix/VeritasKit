@@ -71,7 +71,7 @@ static int lua_CGAffineTransformNewIndex(lua_State *L)
     return 0;
 }
 
-int lua_pushCGAffineTransform(lua_State *L, CGAffineTransform t)
+int LuaObjCPushCGAffineTransform(lua_State *L, CGAffineTransform t)
 {
     CGAffineTransform *trans = lua_newuserdata(L, sizeof(CGAffineTransform));
     trans->a = t.a;
@@ -89,7 +89,7 @@ int lua_pushCGAffineTransform(lua_State *L, CGAffineTransform t)
 
 static int lua_CGAffineTransformMake(lua_State *L)
 {
-   lua_pushCGAffineTransform(L, CGAffineTransformMake(lua_tonumber(L, 1), 
+   LuaObjCPushCGAffineTransform(L, CGAffineTransformMake(lua_tonumber(L, 1), 
                                                       lua_tonumber(L, 2), 
                                                       lua_tonumber(L, 3),
                                                       lua_tonumber(L, 4), 
@@ -100,21 +100,21 @@ static int lua_CGAffineTransformMake(lua_State *L)
 
 static int lua_CGAffineTransformMakeTranslation(lua_State *L)
 {
-   lua_pushCGAffineTransform(L,  CGAffineTransformMakeTranslation(lua_tonumber(L, 1), 
+   LuaObjCPushCGAffineTransform(L,  CGAffineTransformMakeTranslation(lua_tonumber(L, 1), 
                                                                   lua_tonumber(L, 2)));
     return 1;
 }
 
 static int lua_CGAffineTransformMakeScale(lua_State *L)
 {
-    lua_pushCGAffineTransform(L, CGAffineTransformMakeScale(lua_tonumber(L, 1),
+    LuaObjCPushCGAffineTransform(L, CGAffineTransformMakeScale(lua_tonumber(L, 1),
                                                             lua_tonumber(L, 2)));
     return 1;
 }
 
 static int lua_CGAffineTransformMakeRotation(lua_State *L)
 {
-   lua_pushCGAffineTransform(L, CGAffineTransformMakeRotation(lua_tonumber(L, 1)));
+   LuaObjCPushCGAffineTransform(L, CGAffineTransformMakeRotation(lua_tonumber(L, 1)));
     return 1;
 }
 
@@ -129,28 +129,28 @@ static int lua_CGAffineTransformTranslate(lua_State *L)
 {
     CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
 
-   lua_pushCGAffineTransform(L, CGAffineTransformTranslate(*t, lua_tonumber(L, 2), lua_tonumber(L, 3)));
+   LuaObjCPushCGAffineTransform(L, CGAffineTransformTranslate(*t, lua_tonumber(L, 2), lua_tonumber(L, 3)));
     return 1;
 }
 
 static int lua_CGAffineTransformScale(lua_State *L)
 {
     CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
-   lua_pushCGAffineTransform(L, CGAffineTransformScale(*t, lua_tonumber(L, 2), lua_tonumber(L, 3)));
+   LuaObjCPushCGAffineTransform(L, CGAffineTransformScale(*t, lua_tonumber(L, 2), lua_tonumber(L, 3)));
     return 1;
 }
 
 static int lua_CGAffineTransformRotate(lua_State *L)
 {
     CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
-    lua_pushCGAffineTransform(L, CGAffineTransformRotate(*t, lua_tonumber(L, 2)));
+    LuaObjCPushCGAffineTransform(L, CGAffineTransformRotate(*t, lua_tonumber(L, 2)));
     return 1;
 }
 
 static int lua_CGAffineTransformInvert(lua_State *L)
 {
     CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
-    lua_pushCGAffineTransform(L, CGAffineTransformInvert(*t));
+    LuaObjCPushCGAffineTransform(L, CGAffineTransformInvert(*t));
     return 1;
 }
 
@@ -159,7 +159,7 @@ static int lua_CGAffineTransformConcat(lua_State *L)
     CGAffineTransform *t1 = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
     CGAffineTransform *t2 = luaL_checkudata(L, 2, LUA_CGAffineTransform_METANAME);
 
-    lua_pushCGAffineTransform(L, CGAffineTransformConcat(*t1, *t2));
+    LuaObjCPushCGAffineTransform(L, CGAffineTransformConcat(*t1, *t2));
     return 1;
 }
 
@@ -177,7 +177,7 @@ static int lua_CGPointApplyAffineTransform(lua_State *L)
     CGPoint *p = luaL_checkudata(L, 1, LUA_CGPoint_METANAME);
     CGAffineTransform *t = luaL_checkudata(L, 2, LUA_CGAffineTransform_METANAME);
 
-    lua_pushCGPoint(L, CGPointApplyAffineTransform(*p, *t));
+    LuaObjCPushCGPoint(L, CGPointApplyAffineTransform(*p, *t));
     return 1;
 }
 
@@ -185,7 +185,7 @@ static int lua_CGSizeApplyAffineTransform(lua_State *L)
 {
     CGSize *size = luaL_checkudata(L, 1, LUA_CGSize_METANAME);
     CGAffineTransform *t = luaL_checkudata(L, 2, LUA_CGAffineTransform_METANAME);
-    lua_pushCGSize(L, CGSizeApplyAffineTransform(*size, *t));
+    LuaObjCPushCGSize(L, CGSizeApplyAffineTransform(*size, *t));
     return 1;
 }
 
@@ -193,7 +193,7 @@ static int lua_CGRectApplyAffineTransform(lua_State *L)
 {
     CGRect *rect = luaL_checkudata(L, 1, LUA_CGRect_METANAME);
     CGAffineTransform *t = luaL_checkudata(L, 2, LUA_CGAffineTransform_METANAME);
-    lua_pushCGRect(L, CGRectApplyAffineTransform(*rect, *t));
+    LuaObjCPushCGRect(L, CGRectApplyAffineTransform(*rect, *t));
     return 1;
 }
 
@@ -218,17 +218,17 @@ static const luaL_Reg __luaCGAffineTransformAPIs[] =
 
 static const luaL_Reg __luaCGAffineTransformMetaMethods[] =
 {
-    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__gc", LuaInternalStructGarbageCollection},
     {"__index", lua_CGAffineTransformIndex},
     {"__newindex", lua_CGAffineTransformNewIndex},
     {NULL, NULL},
 };
 
-int LuaOpenCGAffineTransform(lua_State *L)
+int LuaObjCOpenCGAffineTransform(lua_State *L)
 {
-    luaObjC_createMetatable(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
 
-    luaObjC_loadGlobalFunctions(L, __luaCGAffineTransformAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGAffineTransformAPIs);
     
     return 0;
 }

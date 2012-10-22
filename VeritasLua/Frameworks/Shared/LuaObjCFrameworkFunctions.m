@@ -9,7 +9,7 @@
 #import "LuaObjCFrameworkFunctions.h"
 #import "lua.h"
 
-int luaObjCInternal_StructGarbageCollection(struct lua_State *L)
+int LuaInternalStructGarbageCollection(struct lua_State *L)
 {
     void *structObj = lua_touserdata(L, 1);
     if (structObj)

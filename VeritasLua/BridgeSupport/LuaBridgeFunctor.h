@@ -23,7 +23,7 @@ extern void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef ref,
                                        NSArray *argumentTypes,
                                        const char *returnEncoding);
 
-extern int luaObjCInternal_openBridgeFunctor(struct lua_State *L);
+extern int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L);
 
 #pragma mark - for message sending
 

@@ -13,13 +13,13 @@
 
 __BEGIN_DECLS
 
-VK_EXPORT void objc_dumpClass(Class theClass);
+VK_EXPORT void LuaInternalDumpObjCClass(Class theClass);
 
-VK_EXPORT void stackDump(struct lua_State *L);
+VK_EXPORT void LuaInternalDumpLuaStack(struct lua_State *L);
 
-VK_EXPORT const char* lua_getCurrentLineSource(lua_Debug *ar);
+VK_EXPORT const char* LuaInternalGetCurrentLineSource(lua_Debug *ar);
 
-VK_EXPORT const char* LuaObjCInternal_jumpoverEncodingDecorator(const char* charLooper);
+VK_EXPORT const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper);
 
 /*
  *   internal api of IMP imeplementation, you should never use them directly.

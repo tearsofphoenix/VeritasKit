@@ -18,7 +18,7 @@
 
 static int luaObjC_NSLog(lua_State *L)
 {
-    const char* charLooper = luaObjC_checkString(L, 1);
+    const char* charLooper = LuaObjCCheckString(L, 1);
     
     NSMutableString *logString = [NSMutableString string];
     int iLooper = 2;
@@ -83,7 +83,7 @@ static int luaObjC_NSLog(lua_State *L)
                     }
                     case '@':
                     {
-                        id obj = luaObjC_checkNSObject(L, iLooper);
+                        id obj = LuaObjCCheckObject(L, iLooper);
                         [logString appendFormat: @"%@", obj];
                         ++iLooper;
                         break;
@@ -176,15 +176,15 @@ static int luaObjC_description(lua_State *L)
 
 static int luaObjC_isEqual(lua_State *L)
 {
-    id obj1 = luaObjC_checkNSObject(L, 1);
-    id obj2 = luaObjC_checkNSObject(L, 2);
+    id obj1 = LuaObjCCheckObject(L, 1);
+    id obj2 = LuaObjCCheckObject(L, 2);
     lua_pushboolean(L, [obj1 isEqual: obj2]);
     return 1;
 }
 
 static int luaObjC_indexCollection(lua_State *L)
 {
-    id obj = luaObjC_checkNSObject(L, 1);
+    id obj = LuaObjCCheckObject(L, 1);
     
     if ([obj respondsToSelector: @selector(indexObjectWithState:)])
     {
@@ -200,7 +200,7 @@ static int luaObjC_indexCollection(lua_State *L)
 
 static int luaObjC_addObjectToCollection(lua_State *L)
 {
-    id obj = luaObjC_checkNSObject(L, 1);
+    id obj = LuaObjCCheckObject(L, 1);
     
     if ([obj respondsToSelector: @selector(addObjectAtIndexWithState:)])
     {
@@ -216,7 +216,7 @@ static int luaObjC_addObjectToCollection(lua_State *L)
 
 static int luaObjC_getLengthOfObject(lua_State *L)
 {
-    id obj = luaObjC_checkNSObject(L, 1);
+    id obj = LuaObjCCheckObject(L, 1);
     if ([obj respondsToSelector: @selector(getLengthOfObjectWithState:)])
     {
         [obj getLengthOfObjectWithState: L];
@@ -239,7 +239,7 @@ static int luaObjC_subtractCollection(lua_State *L)
 
 static int luaObjC_concatCollection(lua_State *L)
 {
-    id obj = luaObjC_checkNSObject(L, 1);
+    id obj = LuaObjCCheckObject(L, 1);
     
     if ([obj respondsToSelector: @selector(concatObjectWithState:)])
     {
@@ -257,11 +257,11 @@ static int luaObjC_callBlockObject(lua_State *L)
     //
     int argCount = lua_gettop(L);
     int returnCount = 1;
-    id block = luaObjC_checkNSObject(L, 1);
+    id block = LuaObjCCheckObject(L, 1);
     
     if ([block isKindOfClass: objc_getClass("NSBlock")])
     {
-        LuaClosureType clouserID = luaObjC_getClosureIDOfBlock(block);
+        LuaClosureType clouserID = LuaInternalGetClosureIDOfBlock(block);
         lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);
         for (int iLooper = 2; iLooper < argCount + 1; ++iLooper)
         {
@@ -367,7 +367,7 @@ static const luaL_Reg luaNS_functions[] =
     {NULL, NULL}
 };
 
-int luaObjC_openNSObjectExtensionSupport(lua_State *L)
+int LuaObjCOpenNSObjectExtensionSupport(lua_State *L)
 {
     if (!__LuaObjCRuntimePool)
     {
@@ -379,11 +379,11 @@ int luaObjC_openNSObjectExtensionSupport(lua_State *L)
         __LuaObjCRuntimePoolLock = [[NSRecursiveLock alloc] init];
     }
     
-    luaObjC_loadGlobalFunctions(L, luaNS_functions);
+    LuaObjCLoadGlobalFunctions(L, luaNS_functions);
     luaL_newlib(L, luaNS_functions);
-    luaObjC_createMetatable(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_NSOBJECT_METATABLENAME, LuaNS_ObjectMethods);
     
-    luaObjC_createMetatable(L, LUA_CLASS_METATABLENAME, LuaNS_ClassMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_CLASS_METATABLENAME, LuaNS_ClassMethods);
     
     return 0;
 }

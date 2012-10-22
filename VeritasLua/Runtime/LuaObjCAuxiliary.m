@@ -14,7 +14,7 @@ const char * LUA_NSOBJECT_METATABLENAME = "com.veritas.vm.meta.NSObject";
 
 const char * LUA_CLASS_METATABLENAME = "com.veritas.vm.meta.Class";
 
-id luaObjC_checkNSObject(lua_State *L, int index)
+id LuaObjCCheckObject(lua_State *L, int index)
 {
     switch (lua_type(L, index))
     {
@@ -39,7 +39,7 @@ id luaObjC_checkNSObject(lua_State *L, int index)
     }
 }
 
-NSInteger luaObjC_checkInteger(lua_State *L, int index)
+NSInteger LuaObjCCheckInteger(lua_State *L, int index)
 {
     switch (lua_type(L, index))
     {
@@ -63,7 +63,7 @@ NSInteger luaObjC_checkInteger(lua_State *L, int index)
     }
 }
 
-const char* luaObjC_checkString(lua_State *L, int index)
+const char* LuaObjCCheckString(lua_State *L, int index)
 {
     switch (lua_type(L, index))
     {
@@ -87,7 +87,7 @@ const char* luaObjC_checkString(lua_State *L, int index)
     }
 }
 
-int luaObjC_pushNSObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClass)
+int LuaObjCPushObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClass)
 {
     if (nsObject)
     {
@@ -106,7 +106,7 @@ int luaObjC_pushNSObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool
     return 1;
 }
 
-void luaObjC_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
+void LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
 {
     if (functions)
     {
@@ -121,7 +121,7 @@ void luaObjC_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *fun
     }
 }
 
-void luaObjC_loadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], NSUInteger count)
+void LuaObjCLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], NSUInteger count)
 {
     NSUInteger iLooper = 0;
     luaL_Reg reg;
@@ -136,7 +136,7 @@ void luaObjC_loadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg function
     }
 }
 
-void luaObjC_createMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
+void LuaObjCLoadCreateMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
 {
     luaL_newmetatable(L, name);
     lua_pushvalue(L, -1);  /* push metatable */

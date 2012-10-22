@@ -10,7 +10,7 @@
 #import "LuaCGGeometry.h"
 #import "LuaObjCFrameworkFunctions.h"
 
-int lua_pushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
+int LuaObjCPushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
 {
     UIEdgeInsets *e = lua_newuserdata(L, sizeof(UIEdgeInsets));
     *e = edgeInsets;
@@ -21,7 +21,7 @@ int lua_pushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
 }
 static int lua_UIEdgeInsetsMake(lua_State *L) 
 {
-    lua_pushUIEdgeInsets(L, UIEdgeInsetsMake(lua_tonumber(L, 1),
+    LuaObjCPushUIEdgeInsets(L, UIEdgeInsetsMake(lua_tonumber(L, 1),
                                              lua_tonumber(L, 2),
                                              lua_tonumber(L, 3),
                                              lua_tonumber(L, 4)));
@@ -32,11 +32,11 @@ static int lua_UIEdgeInsetsInsetRect(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
     UIEdgeInsets *insets = lua_touserdata(L, 2);
-    lua_pushCGRect(L, UIEdgeInsetsInsetRect(*rect, *insets));
+    LuaObjCPushCGRect(L, UIEdgeInsetsInsetRect(*rect, *insets));
     return 1;
 }
 
-int lua_pushUIOffset(lua_State *L, UIOffset offset)
+int LuaObjCPushUIOffset(lua_State *L, UIOffset offset)
 {
     UIOffset *o = lua_newuserdata(L, sizeof(UIOffset));
     *o = offset;
@@ -48,7 +48,7 @@ int lua_pushUIOffset(lua_State *L, UIOffset offset)
 
 static int lua_UIOffsetMake(lua_State *L)
 {
-    lua_pushUIOffset(L, UIOffsetMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
+    LuaObjCPushUIOffset(L, UIOffsetMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
     return 1;
 }
 
@@ -134,7 +134,7 @@ static int _luaUIEdgeInsetNewIndex(lua_State *L)
 
 static const luaL_Reg __LuaUIEdgeInsetMetaMethods[] =
 {
-    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__gc", LuaInternalStructGarbageCollection},
     {"__index", _luaUIEdgeInsetIndex},
     {"__newindex", _luaUIEdgeInsetNewIndex},
     {NULL, NULL},
@@ -177,21 +177,21 @@ static int _luaUIGeometryUIOffsetNewIndex(lua_State *L)
 
 static const luaL_Reg __LuaUIOffsetMetaMethods[] =
 {
-    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__gc", LuaInternalStructGarbageCollection},
     {"__index", _luaUIGeometryUIOffsetIndex},
     {"__newindex", _luaUIGeometryUIOffsetNewIndex},
     {NULL, NULL},
 };
 
-int LuaOpenUIGeometry(lua_State *L)
+int LuaObjCOpenUIGeometry(lua_State *L)
 {
-    luaObjC_createMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
 
-    luaObjC_createMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
 
-    luaObjC_loadGlobalFunctions(L, __LuaUIGeometryAPIs);
+    LuaObjCLoadGlobalFunctions(L, __LuaUIGeometryAPIs);
 
-    luaObjC_loadGlobalFunctions(L, __LuaUIOffsetAPIs);
+    LuaObjCLoadGlobalFunctions(L, __LuaUIOffsetAPIs);
     
     return 0;
 }

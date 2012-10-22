@@ -12,8 +12,8 @@ __BEGIN_DECLS
 
 #define LUA_CGAffineTransform_METANAME	"CGAffineTransform"
     
-    VK_EXPORT int lua_pushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
+    VK_EXPORT int LuaObjCPushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
     
-    LUAMOD_API int LuaOpenCGAffineTransform(struct lua_State *L);
+    LUAMOD_API int LuaObjCOpenCGAffineTransform(struct lua_State *L);
 
 __END_DECLS

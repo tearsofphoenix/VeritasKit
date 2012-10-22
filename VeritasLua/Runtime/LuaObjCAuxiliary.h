@@ -14,21 +14,21 @@ extern const char * LUA_CLASS_METATABLENAME;
 
 __BEGIN_DECLS
 
-VK_EXPORT id luaObjC_checkNSObject(struct lua_State *L, int index);
+VK_EXPORT id LuaObjCCheckObject(struct lua_State *L, int index);
 
-VK_EXPORT int luaObjC_pushNSObject(struct lua_State *L, id obj, bool shouldStoreInPool, bool isClass);
+VK_EXPORT int LuaObjCPushObject(struct lua_State *L, id obj, bool shouldStoreInPool, bool isClass);
 
-VK_EXPORT const char* luaObjC_checkString(struct lua_State *L, int index);
+VK_EXPORT const char* LuaObjCCheckString(struct lua_State *L, int index);
 
-VK_EXPORT NSInteger luaObjC_checkInteger(struct lua_State *L, int index);
+VK_EXPORT NSInteger LuaObjCCheckInteger(struct lua_State *L, int index);
 
-#define luaObjC_pushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
+#define LuaObjCPushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
 
 
-VK_EXPORT void luaObjC_loadGlobalFunctionsWithLength(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
+VK_EXPORT void LuaObjCLoadGlobalFunctionsWithLength(struct lua_State *L, const struct luaL_Reg *functions, NSUInteger count);
 
-VK_EXPORT void luaObjC_loadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions);
+VK_EXPORT void LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions);
 
-VK_EXPORT void luaObjC_createMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
+VK_EXPORT void LuaObjCLoadCreateMetatable(struct lua_State *L, const char *name, const struct luaL_Reg *methods);
 
 __END_DECLS

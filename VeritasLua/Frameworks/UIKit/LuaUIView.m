@@ -93,15 +93,15 @@ static int _luaObjC_UIView_animateWithDuration_delay_options_animations_completi
     return 0;
 }
 
-int LuaOpenUIView(lua_State *L)
+int LuaObjCOpenUIView(lua_State *L)
 {    
     //UIView animation accelerators
     //
-    luaObjC_registerAccelerator([UIView class], @selector(animateWithDuration:animations:),
+    LuaObjCRegisterAccelerator([UIView class], @selector(animateWithDuration:animations:),
                                 _luaObjC_UIView_animateWithDuration_animations);
-    luaObjC_registerAccelerator([UIView class], @selector(animateWithDuration:animations:completion:),
+    LuaObjCRegisterAccelerator([UIView class], @selector(animateWithDuration:animations:completion:),
                                 _luaObjC_UIView_animateWithDuration_animations_completion);
-    luaObjC_registerAccelerator([UIView class], @selector(animateWithDuration:delay:options:animations:completion:),
+    LuaObjCRegisterAccelerator([UIView class], @selector(animateWithDuration:delay:options:animations:completion:),
                                 _luaObjC_UIView_animateWithDuration_delay_options_animations_completion);
     
     return 0;

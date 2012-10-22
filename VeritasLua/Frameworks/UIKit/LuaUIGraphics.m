@@ -54,7 +54,7 @@ static int lua_UIGraphicsBeginPDFPageWithInfo(lua_State *L)
 
 static int lua_UIGraphicsGetPDFContextBounds(lua_State *L)
 {
-    lua_pushCGRect(L, UIGraphicsGetPDFContextBounds());
+    LuaObjCPushCGRect(L, UIGraphicsGetPDFContextBounds());
     return 1;
 }
 
@@ -134,8 +134,8 @@ static const luaL_Reg __LuaUIGraphicsAPIs[] =
     {NULL, NULL},
 };
 
-int LuaOpenUIGraphics(lua_State *L)
+int LuaObjCOpenUIGraphics(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __LuaUIGraphicsAPIs);
+    LuaObjCLoadGlobalFunctions(L, __LuaUIGraphicsAPIs);
     return 0;
 }

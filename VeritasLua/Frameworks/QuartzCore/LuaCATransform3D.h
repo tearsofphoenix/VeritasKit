@@ -14,8 +14,8 @@ __BEGIN_DECLS
 
 #define LUA_CATransform3D_METANAME	"CATransform3D"
 
-    VK_EXPORT int lua_pushCATransform3D(struct lua_State *L, CATransform3D t);
+    VK_EXPORT int LuaObjCPushCATransform3D(struct lua_State *L, CATransform3D t);
 
-    LUAMOD_API int LuaOpenCATransform3D(struct lua_State *L);
+    LUAMOD_API int LuaObjCOpenCATransform3D(struct lua_State *L);
 
 __END_DECLS

@@ -153,7 +153,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     objc_property_attribute_t backingivar  = {"V", propertyName};
     objc_property_attribute_t attrs[] = {atomicAttribute, type, ownership, backingivar};
     
-    Class theClass = luaObjC_getClass( className );
+    Class theClass = LuaInternalGetClass( className );
     
     NSUInteger typeSize;
     NSGetSizeAndAlignment(type.value, &typeSize, NULL);
@@ -239,14 +239,14 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
 int LuaIMPAddPropertyToClass(struct lua_State *L)
 {
     
-    const char* className = luaObjC_checkString(L, 1);
-    const char* atomic = luaObjC_checkString(L, 2);
-    const char* ownershipName = luaObjC_checkString(L, 3);
-    const char* getterName = luaObjC_checkString(L, 4);
-    const char* setterName = luaObjC_checkString(L, 5);
-    const char* typeName = luaObjC_checkString(L, 6);
-    const char* propertyName = luaObjC_checkString(L, 7);
-    //const char* propertyInternalName = luaObjC_checkString(L, 8);
+    const char* className = LuaObjCCheckString(L, 1);
+    const char* atomic = LuaObjCCheckString(L, 2);
+    const char* ownershipName = LuaObjCCheckString(L, 3);
+    const char* getterName = LuaObjCCheckString(L, 4);
+    const char* setterName = LuaObjCCheckString(L, 5);
+    const char* typeName = LuaObjCCheckString(L, 6);
+    const char* propertyName = LuaObjCCheckString(L, 7);
+    //const char* propertyInternalName = LuaObjCCheckString(L, 8);
     LuaIMPAddPropertyToClassOrigin(className, atomic, ownershipName, getterName,
                                    setterName, typeName, propertyName);
     

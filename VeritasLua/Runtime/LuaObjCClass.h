@@ -10,34 +10,26 @@
 
 __BEGIN_DECLS
 
-#pragma mark - cache table
-
-VK_EXPORT	void luaObjC_initializeCacheTable(struct lua_State* L);
-
-VK_EXPORT	void luaObjC_addValueInCacheTable(struct lua_State* L, void* object, const char *key);
-
-VK_EXPORT	void *luaObjC_getValueInCacheTable(struct lua_State* L, const char* key);
-
 #pragma mark - type encoding
 
 VK_EXPORT const char * LuaObjCTypeEncodingOfType(const char *typeName);
 
-VK_EXPORT void luaObjC_addEncodingForPredeclearClass(const char *className);
+VK_EXPORT void LuaObjCAddEncodingForPredeclearClass(const char *className);
 
 #pragma mark - project api
 
-VK_EXPORT Boolean luaInternal_CStringEqual(const void *value1, const void *value2);
+VK_EXPORT Boolean LuaInternalCStringEqual(const void *value1, const void *value2);
 
-VK_EXPORT void luaInternal_freeCallback(CFAllocatorRef allocator, const void *value);
+VK_EXPORT void LuaInternalFreeCallback(CFAllocatorRef allocator, const void *value);
 
 //register class
 //
-VK_EXPORT Class luaObjC_getClass(const char *className);
+VK_EXPORT Class LuaInternalGetClass(const char *className);
 
-VK_EXPORT void luaObjC_allocateClass(struct lua_State *L, Class theClass, const char *className);
+VK_EXPORT void LuaInternalAllocateClass(struct lua_State *L, Class theClass, const char *className);
 
-VK_EXPORT struct lua_State *luaObjC_getLuaStateOfClass(Class theClass);
+VK_EXPORT struct lua_State *LuaInternalGetLuaStateOfClass(Class theClass);
 
-LUAMOD_API int luaObjC_classInitialize(struct lua_State *L);
+LUAMOD_API int LuaObjCClassInitialize(struct lua_State *L);
 
 __END_DECLS

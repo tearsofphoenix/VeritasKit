@@ -10,6 +10,6 @@
 
 __BEGIN_DECLS
 
-    LUAMOD_API int LuaOpenFoundation(struct lua_State *L);
+    LUAMOD_API int LuaObjCOpenFoundation(struct lua_State *L);
 
 __END_DECLS

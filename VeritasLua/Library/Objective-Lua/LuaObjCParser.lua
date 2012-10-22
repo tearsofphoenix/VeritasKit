@@ -979,7 +979,6 @@ local function leaf(t)
 rvalueleaf = function()
                 local t = tokens[pos]
                 if (t.type == 'keyword') then
-                    print(983)
                     if (t.text == "nil") or (t.text == "true") or (t.text == "false") then
                         pos = pos + 1
                         return leaf(t)
@@ -998,7 +997,6 @@ rvalueleaf = function()
                         pos = pos + 1
                         return olua_objc_enumerator()
                     elseif (t.text == "@[") then
-                        print(1000)
                         pos = pos + 1
                         return olua_objc_literalArray()
                     elseif (t.text == "@{") then
@@ -1032,9 +1030,7 @@ rvalueleaf = function()
                     pos = pos + 1
                     return t
                 end
-
-                print(1025)
-                unexpectederror(t)	
+                unexpectederror(t)
             end
 
 lvaluelist = function(e)
@@ -2076,7 +2072,7 @@ local typetable =
     olua_property_declearation = function(ast)
         local className = ast.class.text
         local propertyAttribute = ast.attribute
-        print('setter', propertyAttribute.setter)
+
         emit(" class_addProperty('" .. className .. "', '" .. propertyAttribute.atomic .. "','")
         emit(propertyAttribute.ownership .. "','" .. propertyAttribute.getter .. "','" .. propertyAttribute.setter .. "','")
         emit(propertyAttribute.type .. "','" .. propertyAttribute.name .. "','" .. propertyAttribute.internalName .. "')" )

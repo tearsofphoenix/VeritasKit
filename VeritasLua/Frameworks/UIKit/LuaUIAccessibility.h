@@ -10,6 +10,6 @@
 
 __BEGIN_DECLS
 
-LUAMOD_API int LuaOpenUIAccessibility(struct lua_State *L);
+LUAMOD_API int LuaObjCOpenUIAccessibility(struct lua_State *L);
 
 __END_DECLS

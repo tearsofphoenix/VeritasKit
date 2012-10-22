@@ -20,6 +20,6 @@ VK_EXPORT void LuaObjectStoreInPool(struct lua_State *L, id obj);
 
 VK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
 
-VK_EXPORT int luaObjC_openNSObjectExtensionSupport(struct lua_State *L);
+VK_EXPORT int LuaObjCOpenNSObjectExtensionSupport(struct lua_State *L);
 
 __END_DECLS

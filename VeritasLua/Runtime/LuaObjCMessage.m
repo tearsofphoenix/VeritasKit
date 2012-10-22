@@ -28,10 +28,12 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
 {
  
 #if DEBUG
+    /*
     lua_Debug debugInfo;
     lua_getstack(L, 1, &debugInfo);
     lua_getinfo(L, "Sl", &debugInfo);
-    printf("in line: %d %s\n", debugInfo.currentline, lua_getCurrentLineSource(&debugInfo));
+    printf("in line: %d %s\n", debugInfo.currentline, LuaInternalGetCurrentLineSource(&debugInfo));
+     */
 #else
     
 #endif
@@ -46,7 +48,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     }
     
     const char *selectorName = lua_tostring(L, 2);
-    //printf("SEL: %s\n", selectorName);
+
     SEL selector = sel_getUid(selectorName);
     
     //deside object
@@ -64,7 +66,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     
     Class objClass = object_getClass(obj);
     
-    IMP impRef = (IMP)luaObjC_getAcceleratorIMPOfSelector(objClass, selector);
+    IMP impRef = (IMP)LuaObjCGetRegisterIMPOfSelector(objClass, selector);
     if (impRef)
     {
         return ((LuaObjCAcceleratorIMP)impRef)(obj, selector, L);
@@ -87,17 +89,13 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             NSException *exception = [NSException exceptionWithName: @"LuaObjCInvalidArgument"
                                                              reason: [NSString stringWithFormat: @"[#ERROR#] line: %d nil method signature for SEL:%s for: %@\n", __LINE__, selectorName, obj]
                                                            userInfo: nil];
-            
-            NSLog(@"callback: %@", [NSThread callStackSymbols]);
-            
+                        
             @throw exception;
         }
         
         NSUInteger numberOfArguments = [methodSignature numberOfArguments];
         const char* returnType = [methodSignature methodReturnType];
-        
-        //printf("SEL: %s\n", (const char*)selector);
-        
+                
         if (numberOfArguments == 2)
         {
             return LuaObjCAcceleratorForNoArgument(L, returnType, impRef, obj, selector);
@@ -111,7 +109,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         for (int iLooper = 2; iLooper < numberOfArguments; ++iLooper)
         {
             const char* argType = [methodSignature getArgumentTypeAtIndex: iLooper];
-            argType = LuaObjCInternal_jumpoverEncodingDecorator(argType);
+            argType = LuaInternalJumpoverEncodingDecorator(argType);
             switch (*argType)
             {
                 case _C_CHR:
@@ -126,7 +124,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_ULNG_LNG:
                 case _C_BOOL:
                 {
-                    lua_Integer integerPara = luaObjC_checkInteger(L,  iLooper + 1);
+                    lua_Integer integerPara = LuaObjCCheckInteger(L,  iLooper + 1);
                     [invokation setArgument: &integerPara
                                     atIndex: iLooper];
                     break;
@@ -149,7 +147,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_CLASS:
                 case _C_ID:
                 {
-                    id argLooper = luaObjC_checkNSObject(L,  iLooper + 1);
+                    id argLooper = LuaObjCCheckObject(L,  iLooper + 1);
                     [invokation setArgument: &argLooper
                                     atIndex: iLooper];
                     break;
@@ -237,7 +235,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                 
-                luaObjC_pushNSObject(L, obj, true, true);
+                LuaObjCPushObject(L, obj, true, true);
                 
                 return 1;
 
@@ -247,7 +245,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                
-                luaObjC_pushNSObject(L, obj, true, false);
+                LuaObjCPushObject(L, obj, true, false);
                 
                 return 1;
             }
@@ -255,7 +253,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             {
                 SEL sel = NULL;
                 [invokation getReturnValue: &sel];
-                luaObjC_pushSelector(L, sel);
+                LuaObjCPushSelector(L, sel);
                 return 1;
             }
             case _C_STRUCT_B:
@@ -265,19 +263,19 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 {
                     CGRect cgRect ;
                     [invokation getReturnValue: &cgRect];
-                    lua_pushCGRect(L, cgRect);
+                    LuaObjCPushCGRect(L, cgRect);
                     
                 }else if (!strcmp(returnType, @encode(CGPoint)))
                 {
                     CGPoint cgPoint;
                     [invokation getReturnValue: &cgPoint];
-                    lua_pushCGPoint(L, cgPoint);
+                    LuaObjCPushCGPoint(L, cgPoint);
                     
                 }else if (!strcmp(returnType, @encode(CGSize)))
                 {
                     CGSize cgSize;
                     [invokation getReturnValue: &cgSize];
-                    lua_pushCGSize(L, cgSize);
+                    LuaObjCPushCGSize(L, cgSize);
                 }
                 return 1;
             }

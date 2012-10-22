@@ -9,7 +9,7 @@
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCFrameworkFunctions.h"
 
-int lua_pushCGPoint(lua_State *L, CGPoint p)
+int LuaObjCPushCGPoint(lua_State *L, CGPoint p)
 {
     CGPoint *point = lua_newuserdata(L, sizeof(CGPoint));
     point->x = p.x;
@@ -21,7 +21,7 @@ int lua_pushCGPoint(lua_State *L, CGPoint p)
 
 }
 
-int lua_pushCGSize(lua_State *L, CGSize s)
+int LuaObjCPushCGSize(lua_State *L, CGSize s)
 {
     CGSize *size = lua_newuserdata(L, sizeof(CGSize));
     size->width = s.width;
@@ -32,7 +32,7 @@ int lua_pushCGSize(lua_State *L, CGSize s)
     return 1;
 }
 
-int lua_pushCGRect(lua_State *L, CGRect r)
+int LuaObjCPushCGRect(lua_State *L, CGRect r)
 {
     CGRect *rect = lua_newuserdata(L, sizeof(CGRect));
     rect->origin = r.origin;
@@ -49,21 +49,21 @@ int lua_pushCGRect(lua_State *L, CGRect r)
 
 static int lua_CGPointMake(lua_State *L)
 {
-    return lua_pushCGPoint(L, CGPointMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
+    return LuaObjCPushCGPoint(L, CGPointMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
 }
 
 /* Make a size from `(width, height)'. */
 
 static int lua_CGSizeMake(lua_State *L)
 {
-    return lua_pushCGSize(L, CGSizeMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
+    return LuaObjCPushCGSize(L, CGSizeMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
 }
 
 /* Make a rect from `(x, y; width, height)'. */
 
 static int lua_CGRectMake(lua_State *L)
 {
-    return lua_pushCGRect(L, CGRectMake(lua_tonumber(L, 1), 
+    return LuaObjCPushCGRect(L, CGRectMake(lua_tonumber(L, 1), 
                                         lua_tonumber(L, 2),
                                         lua_tonumber(L, 3),
                                         lua_tonumber(L, 4)));
@@ -77,11 +77,11 @@ static int lua_CGRectIndex(lua_State *L)
     const char *fieldName = lua_tostring(L, 2);
     if (!strcmp(fieldName, "origin"))
     {
-        lua_pushCGPoint(L, r->origin);
+        LuaObjCPushCGPoint(L, r->origin);
         return 1;
     }else if (!strcmp(fieldName, "size"))
     {
-        lua_pushCGSize(L, r->size);
+        LuaObjCPushCGSize(L, r->size);
         return 1;
     }else
     {
@@ -316,7 +316,7 @@ static int lua_CGRectEqualToRect(lua_State *L)
 static int lua_CGRectStandardize(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    lua_pushCGRect(L,  CGRectStandardize(*rect));
+    LuaObjCPushCGRect(L,  CGRectStandardize(*rect));
     return 1;
 }
 
@@ -358,7 +358,7 @@ static int lua_CGRectIsInfinite(lua_State *L)
 static int lua_CGRectInset(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    lua_pushCGRect(L, CGRectInset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
+    LuaObjCPushCGRect(L, CGRectInset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
     return 1;
 }
 
@@ -369,7 +369,7 @@ static int lua_CGRectInset(lua_State *L)
 static int lua_CGRectIntegral(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    lua_pushCGRect(L, CGRectIntegral(*rect));
+    LuaObjCPushCGRect(L, CGRectIntegral(*rect));
     return 1;
 }
 
@@ -380,7 +380,7 @@ static int lua_CGRectUnion(lua_State *L)
 {
     CGRect *r1 = lua_touserdata(L, 1);
     CGRect *r2 = lua_touserdata(L, 2);
-    lua_pushCGRect(L, CGRectUnion(*r1, *r2));
+    LuaObjCPushCGRect(L, CGRectUnion(*r1, *r2));
     return 1;
 }
 
@@ -391,7 +391,7 @@ static int lua_CGRectIntersection(lua_State *L)
 {
     CGRect *r1 = lua_touserdata(L, 1);
     CGRect *r2 = lua_touserdata(L, 2);
-    lua_pushCGRect(L, CGRectIntersection(*r1, *r2));
+    LuaObjCPushCGRect(L, CGRectIntersection(*r1, *r2));
     return 1;
 }
 
@@ -401,7 +401,7 @@ static int lua_CGRectIntersection(lua_State *L)
 static int lua_CGRectOffset(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    lua_pushCGRect(L, CGRectOffset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
+    LuaObjCPushCGRect(L, CGRectOffset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
     return 1;
 }
 
@@ -421,8 +421,8 @@ static int lua_CGRectDivide(lua_State *L)
     CGRect slice;
     CGRect remainder;
     CGRectDivide(*rect, &slice, &remainder, amount, edge);
-    lua_pushCGRect(L, slice);
-    lua_pushCGRect(L, remainder);
+    LuaObjCPushCGRect(L, slice);
+    LuaObjCPushCGRect(L, remainder);
     return 2;    
 }
 
@@ -507,7 +507,7 @@ static const luaL_Reg __luaCGRectAPIs[] =
 
 static const luaL_Reg __lua_CGRectMetaMethods[] =
 {
-    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__gc", LuaInternalStructGarbageCollection},
     {"__index", lua_CGRectIndex},
     {"__newindex", lua_CGRectNewIndex},
     {"__tostring", lua_CGRectToString},
@@ -516,7 +516,7 @@ static const luaL_Reg __lua_CGRectMetaMethods[] =
 
 static const luaL_Reg __lua_CGPointMetaMethods[] =
 {
-    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__gc", LuaInternalStructGarbageCollection},
     {"__index", lua_CGPointIndex},
     {"__newindex", lua_CGPointNewIndex},
     {"__tostring", lua_CGPointToString},
@@ -526,7 +526,7 @@ static const luaL_Reg __lua_CGPointMetaMethods[] =
 
 static const luaL_Reg __lua_CGSizeMetaMethods[] =
 {
-    {"__gc", luaObjCInternal_StructGarbageCollection},
+    {"__gc", LuaInternalStructGarbageCollection},
     {"__index", lua_CGSizeIndex},
     {"__newindex", lua_CGSizeNewIndex},
     {"__tostring", lua_CGSizeToString},
@@ -534,19 +534,19 @@ static const luaL_Reg __lua_CGSizeMetaMethods[] =
 };
 
 
-int LuaOpenCGGeometry(lua_State *L)
+int LuaObjCOpenCGGeometry(lua_State *L)
 {
-    luaObjC_createMetatable(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
 
-    luaObjC_createMetatable(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
 
-    luaObjC_createMetatable(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
+    LuaObjCLoadCreateMetatable(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
 
-    luaObjC_loadGlobalFunctions(L, __luaCGPointAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGPointAPIs);
     
-    luaObjC_loadGlobalFunctions(L, __luaCGSizeAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGSizeAPIs);
 
-    luaObjC_loadGlobalFunctions(L, __luaCGRectAPIs);
+    LuaObjCLoadGlobalFunctions(L, __luaCGRectAPIs);
 
     return 0;
 }

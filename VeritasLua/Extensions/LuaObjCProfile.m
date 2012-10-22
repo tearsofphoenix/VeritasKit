@@ -82,8 +82,8 @@ static const luaL_Reg __luaObjCProfileFunctions [] =
 };
 
 
-int luaopen_objc_profile(lua_State *L)
+int LuaObjCOpenProfileSupport(lua_State *L)
 {
-    luaObjC_loadGlobalFunctions(L, __luaObjCProfileFunctions);
+    LuaObjCLoadGlobalFunctions(L, __luaObjCProfileFunctions);
     return 1;
 }

@@ -21,8 +21,8 @@
 
 static int lua_UIApplicationMain(lua_State *L)
 {
-    NSString *principalClassName = luaObjC_checkNSObject(L, 3);
-    NSString *delegateClassName = luaObjC_checkNSObject(L, 4);
+    NSString *principalClassName = LuaObjCCheckObject(L, 3);
+    NSString *delegateClassName = LuaObjCCheckObject(L, 4);
     return UIApplicationMain(0, NULL, principalClassName, delegateClassName);
 }
 
@@ -32,19 +32,19 @@ static const luaL_Reg __LuaUIKitFunctions[] =
     {NULL, NULL}
 };
 
-int LuaOpenUIKit(struct lua_State *L)
+int LuaObjCOpenUIKit(struct lua_State *L)
 {
     //load CoreGraphics
     //
-    luaObjC_loadGlobalFunctions(L, __LuaUIKitFunctions);
-    LuaOpenCGAffineTransform(L);
-    LuaOpenCGGeometry(L);
+    LuaObjCLoadGlobalFunctions(L, __LuaUIKitFunctions);
+    LuaObjCOpenCGAffineTransform(L);
+    LuaObjCOpenCGGeometry(L);
         
-    LuaOpenUIAccessibility(L);
-    LuaOpenUIGeometry(L);
-    LuaOpenUIGraphics(L);
+    LuaObjCOpenUIAccessibility(L);
+    LuaObjCOpenUIGeometry(L);
+    LuaObjCOpenUIGraphics(L);
 
-    LuaOpenUIView(L);
+    LuaObjCOpenUIView(L);
 
     return 0;
 }
