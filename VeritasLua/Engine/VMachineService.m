@@ -229,7 +229,9 @@ static void LuaEngine_initialize(VMachineService *self,
 //                                                                                                                 ofType: @"lua"]];
 //        
 //        NSLog(@"%@", [data base64EncodedString]);
-
+        
+        [self initServiceCallbackFunctions];
+        
     }
     return self;
 }
@@ -253,9 +255,7 @@ static void LuaEngine_initialize(VMachineService *self,
 }
 
 - (void)initServiceCallbackFunctions
-{
-    [super initServiceCallbackFunctions];
-    
+{    
     __block id fakeSelf = self;
     
     [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)

@@ -35,17 +35,11 @@ static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
     [self registerService: self];
 }
 
-- (void)initServiceCallbackFunctions
-{
-    
-}
-
 - (id)init
 {
     if ((self = [super init]))
     {
         _registeredProcessors = [[NSMutableDictionary alloc] init];
-        [self initServiceCallbackFunctions];
     }
     return self;
 }

@@ -13,8 +13,6 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSString *action, NSArra
 
 + (id)identity;
 
-- (void)initServiceCallbackFunctions;
-
 - (void)registerBlock: (VServiceBlock)serviceBlock
             forAction: (NSString *)action;
 
