@@ -1,16 +1,14 @@
 VeritasKit
 ==========
 
-Lua wrapper for Objective-C, implemented most Objective-C features
+Lua bind for Objective-C, implemented most Objective-C features
 
 
 TODOs
 -
-1. memory management, gc of lua;
-2. support for `@property', it has been implemented, but not tested yet;
-3. support for class-ivar, you can not access to ivar by name (for example, _ivarName) in 
+1. support for class-ivar, you can not access to ivar by name (for example, _ivarName) in 
    method block
-4. full support of block, block is almost fully supported excepted some wired condition
+2. full support of block, block is almost fully supported excepted some wired condition
 
 Features
 -
@@ -24,9 +22,8 @@ Features
 
 Known Bugs
 -
-1. memory can not be collected yet, but middle-vars can be gc now, so memory will not be a big problem
-2. no try-catch-final, @throw implemented, but not that good, recommanded not to use this feature;
-3. will not support dot-operator (.) on instance, which is my decision;
+1. no try-catch-final, @throw implemented, but not that good, recommanded not to use this feature;
+2. will not support dot-operator (.) on instance, which is my decision;
 
 What we know
 -
