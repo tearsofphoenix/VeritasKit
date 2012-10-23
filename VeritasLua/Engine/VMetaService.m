@@ -37,9 +37,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
     if (!_VMetaServiceCallforActionIMP)
     {
         _VMetaServiceCallforActionIMP = class_getMethodImplementation(self, @selector(callForAction:arguments:withCallback:));
-    }
-    
-    [self registerService: self];
+    }    
 }
 
 - (id)init
@@ -79,7 +77,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
 
 + (id)identity
 {
-    return ERGeneralMetaServiceID;
+    return nil;
 }
 
 
@@ -137,5 +135,3 @@ void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray
 }
 
 @end
-
-NSString * const ERGeneralMetaServiceID = @"com.ereach.metaservice.meta";

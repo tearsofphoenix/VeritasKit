@@ -300,7 +300,6 @@ static int luaObjC_import_file(lua_State *L)
     const char *name = lua_tostring(L, 1);
     
     VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ [NSString  stringWithUTF8String: name] ]);
-    //[VBridgeService importFramework: [NSString stringWithUTF8String: name]];
     
     NSString *realPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat: @"/%s", name];
     lua_pushstring(L, [realPath UTF8String]);

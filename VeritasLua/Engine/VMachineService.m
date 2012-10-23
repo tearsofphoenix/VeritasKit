@@ -28,7 +28,6 @@
 
 #import "LuaObjCAuxiliary.h"
 #import "VBridgeService.h"
-#import "LuaBridgeSupportFileParser.h"
 #import "LuaObjCParser.h"
 #import "NSData+Base64.h"
 
@@ -75,7 +74,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //`Foundation' lib
     //
     infoLooper = LuaLibraryInformationMake(VMachineObjCSupport,
-                                           [NSString stringWithUTF8String: LUA_NSLIBNAME],
+                                           @LUA_NSLIBNAME,
                                            LuaObjCOpenFoundationSupport,
                                            1,
                                            nil);
@@ -87,7 +86,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
     infoLooper = LuaLibraryInformationMake(VMachineUIKitSupport,
-                                           [NSString stringWithUTF8String: LUA_UIKITLIBNAME],
+                                           @LUA_UIKITLIBNAME,
                                            LuaObjCOpenUIKit,
                                            1,
                                            @[ VMachineObjCSupport ]);
@@ -97,7 +96,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //`lpeg' lib
     //
     infoLooper = LuaLibraryInformationMake(VMachineParserSupport,
-                                           [NSString stringWithUTF8String: LUA_LPEGLIBNAME],
+                                           @LUA_LPEGLIBNAME,
                                            luaopen_lpeg,
                                            1,
                                            nil);

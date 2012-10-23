@@ -29,7 +29,5 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSString *action, NSArra
 
 @end
 
-extern NSString * const ERGeneralMetaServiceID;
-
 extern void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments);
 

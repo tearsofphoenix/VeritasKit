@@ -10,7 +10,7 @@
 
 #include "LuaObjCBase.h"
 
-typedef void (^LuaObjCBlock)(struct lua_State *);
+typedef void (^LuaObjCBlock)(struct lua_State *L);
 
 @interface VMachineService : VMetaService
 
