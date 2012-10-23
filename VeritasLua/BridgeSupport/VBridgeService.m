@@ -70,15 +70,15 @@ static NSMutableDictionary *__registeredFrameworks = nil;
                               NSString *name = [arguments objectAtIndex: 0];
                               lua_State *state = [[arguments objectAtIndex: 1] pointerValue];
                               
-                              [__registeredFrameworks enumerateKeysAndObjectsUsingBlock: (^(NSString *frameworkName, NSDictionary *framework, BOOL *stop)
-                                                                                          {
-                                                                                              LuaBridgeInfo *info = [framework objectForKey: name];
-                                                                                              if (info)
-                                                                                              {
-                                                                                                  *stop = YES;
-                                                                                                  [info resolveIntoLuaState: state];
-                                                                                              }
-                                                                                          })];
+                              for (NSDictionary *framework in [__registeredFrameworks allValues])
+                              {
+                                  LuaBridgeInfo *info = CFDictionaryGetValue((CFDictionaryRef)framework, name);
+                                  if (info)
+                                  {
+                                      [info resolveIntoLuaState: state];
+                                      break;
+                                  }
+                              }
                           })
               forAction: VBridgeServiceResolveNameIntoStateAction];
 }

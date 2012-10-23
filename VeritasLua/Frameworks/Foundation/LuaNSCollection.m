@@ -102,6 +102,7 @@ static int _luaObjC_NSSet_setWithObjects(id obj, SEL selector, lua_State *L)
 static int _luaObjC_NSCollection_enumerateObjectsUsingBlock(id obj, SEL selector, lua_State *L)
 {
     int functionID = luaL_ref(L, LUA_REGISTRYINDEX);
+    
     [obj enumerateObjectsUsingBlock: (^(id obj, NSUInteger idx, BOOL *stop) 
                                       {
                                           lua_rawgeti(L, LUA_REGISTRYINDEX, functionID);

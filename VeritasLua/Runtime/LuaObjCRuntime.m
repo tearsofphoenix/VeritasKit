@@ -257,7 +257,10 @@ static int luaObjC_createBlockObject(lua_State *L)
             va_end(ap);
         }
         
-        lua_pcall(L, argumentTypesCount, 0, 0);
+        if(lua_pcall(L, argumentTypesCount, 0, 0) != LUA_OK)
+        {
+            lua_error(L);
+        }
         //check return object
     };
     
@@ -313,7 +316,7 @@ static int luaObjC_import_file(lua_State *L)
     return 1;
 }
 
-static int _luaEngine_resolveName(lua_State *L)
+static int luaObjC_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
         
@@ -565,7 +568,7 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
 
 static const luaL_Reg luaObjC_resolveNameFunctions[] =
 {
-    {"resolveName", _luaEngine_resolveName},
+    {"resolveName", luaObjC_resolveName},
     
     {NULL, NULL},
 };

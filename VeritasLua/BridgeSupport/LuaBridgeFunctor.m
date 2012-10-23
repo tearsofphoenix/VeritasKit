@@ -154,10 +154,11 @@ static int LuaBridgeFunctorInvoke(lua_State *L)
 {
     LuaBridgeFuncotrRef ref = luaL_checkudata(L, 1, LuaBridgeFuncotrMetaName);
     
-    [ref->_argumentTypeEncodings enumerateObjectsUsingBlock: (^(NSString *encoding, NSUInteger idx, BOOL *stop)
-                                                              {
-                                                                  LuaObjCInvocationSetArgumentFromLuaStateAtInex(ref, L, (int)idx + 1 + 1, [encoding UTF8String], idx);
-                                                              })];
+    [ref->_argumentTypeEncodings enumerateObjectsUsingBlock:
+     (^(NSString *encoding, NSUInteger idx, BOOL *stop)
+      {
+          LuaObjCInvocationSetArgumentFromLuaStateAtInex(ref, L, (int)idx + 1 + 1, [encoding UTF8String], idx);
+      })];
     
     LuaObjCInvoke(L, ref);
     return ref->_returnCount;
@@ -194,8 +195,8 @@ int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L)
 #pragma mark - objc
 
 void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef functorRef,
-                               NSArray *argumentTypeEncodings,
-                               const char *returnEncoding)
+                                NSArray *argumentTypeEncodings,
+                                const char *returnEncoding)
 {
     if (functorRef)
     {
@@ -249,7 +250,7 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef functorRef,
         {
             printf("fail to create c interface.\n");
         }
-
+        
     }
 }
 
@@ -390,7 +391,7 @@ void LuaObjCInvoke(struct lua_State *L,
 void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
 {
     if (ref)
-    {        
+    {
         free(ref->_argumentTypes);
         
         void **arguments = ref->_arguments;
@@ -407,9 +408,9 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
         [ref->_argumentTypeEncodings release];
         
         free(ref->_returnValue);
-
+        
         free((void *)ref->_returnValueEncoding);
-
+        
     }
 }
 

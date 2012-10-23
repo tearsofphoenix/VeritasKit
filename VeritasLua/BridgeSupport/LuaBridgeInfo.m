@@ -66,7 +66,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             id value = [_info objectForKey: @"value"];
             
             LuaObjCPushObject(state, value, true, false);
-
+            
             return YES;
         }
         case LuaBridgeFunctionType:
@@ -74,10 +74,10 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             NSArray *args = [_info objectForKey: @"arg"];
             NSMutableArray *encodings = [[NSMutableArray alloc] init];
             
-            [args enumerateObjectsUsingBlock: (^(LuaBridgeArgumentInfo *obj, NSUInteger idx, BOOL *stop)
-                                               {
-                                                   [encodings addObject: [obj type]];
-                                               })];
+            for (LuaBridgeArgumentInfo *obj in args)
+            {
+                [encodings addObject: [obj type]];
+            }
             
             const char *returnTypeEncoding = [[_info objectForKey: @"retval"] UTF8String];
             

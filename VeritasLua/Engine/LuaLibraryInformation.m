@@ -28,12 +28,12 @@
 - (void)registerIntoLuaState: (lua_State *)luaState
                    libraries: (NSDictionary *)dict
 {
-    [_dependentLibNames enumerateObjectsUsingBlock: (^(NSString *iLooper, NSUInteger idx, BOOL *stop) 
-                                                     {
-                                                         LuaLibraryInformation *libLooper = [dict objectForKey: iLooper];
-                                                         [libLooper registerIntoLuaState: luaState
-                                                                               libraries: dict];
-                                                     })];
+    for (NSString *iLooper in _dependentLibNames)
+    {        
+        LuaLibraryInformation *libLooper = [dict objectForKey: iLooper];
+        [libLooper registerIntoLuaState: luaState
+                              libraries: dict];
+    }
     
     luaL_requiref(luaState, [_libName cStringUsingEncoding: NSUTF8StringEncoding],
                   _loadFunction, _numberOfUpvalues);
@@ -44,11 +44,11 @@
 
 
 
- LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
-                                      NSString *libName,
-                                      lua_CFunction loadFunction,
-                                      int numberOfUpvalues,
-                                      NSArray *dependentLibNames)
+LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
+                                                  NSString *libName,
+                                                  lua_CFunction loadFunction,
+                                                  int numberOfUpvalues,
+                                                  NSArray *dependentLibNames)
 {
     LuaLibraryInformation *ret = [[LuaLibraryInformation alloc] init];
     [ret setFeatureID: fetureID];
@@ -63,5 +63,5 @@
 void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs, NSString * libraryID, lua_State *luaState)
 {
     [[_luaEngineLibs objectForKey: libraryID] registerIntoLuaState: luaState
-                                                         libraries: _luaEngineLibs];   
+                                                         libraries: _luaEngineLibs];
 }

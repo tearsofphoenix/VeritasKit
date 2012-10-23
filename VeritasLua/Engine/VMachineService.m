@@ -269,16 +269,16 @@ static void VMachine_initialize(VMachineService *self)
                           {
                               LuaStateRef L = _internal->luaState;
                               
-                              [arguments enumerateObjectsUsingBlock: (^(NSArray *obj, NSUInteger idx, BOOL *stop)
-                                                                      {
-                                                                          NSInteger value = [[obj objectAtIndex: 0] intValue];
-                                                                          NSString *name = [obj objectAtIndex: 1];
-                                                                          
-                                                                          lua_pushinteger(L, value);
-                                                                          lua_setglobal(L, [name UTF8String]);
-                                                                      })];
+                              for (NSArray *obj in arguments)
+                              {
+                                  NSInteger value = [[obj objectAtIndex: 0] intValue];
+                                  NSString *name = [obj objectAtIndex: 1];
+                                  
+                                  lua_pushinteger(L, value);
+                                  lua_setglobal(L, [name UTF8String]);
+                              }
                           })
-              forAction: VMachineServiceRegisterGlobalConstantsAction];   
+              forAction: VMachineServiceRegisterGlobalConstantsAction];
 }
 
 - (const char *)parseString: (NSString *)sourceCode
