@@ -301,9 +301,13 @@ static int luaObjC_import_file(lua_State *L)
     
     VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ [NSString  stringWithUTF8String: name] ]);
     
+    lua_getfield(L, LUA_REGISTRYINDEX, "require");
+    
     NSString *realPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat: @"/%s", name];
     lua_pushstring(L, [realPath UTF8String]);
-    lua_getfield(L, LUA_REGISTRYINDEX, "require");
+
+    //just ignore error here
+    //
     lua_pcall(L, 1, 1, 0);
     
     return 1;
@@ -464,7 +468,7 @@ static int luaObjC_objc_NSFastEnumerate(lua_State *L)
 
 #pragma mark - literal object support, i.e. @{}, @[], @1
 
-static CFMutableArrayRef _LuaObjCLiteralStorage = NULL;
+static CFMutableSetRef _LuaObjCLiteralStorage = NULL;
 
 static int luaObjC_createLiteralArray(lua_State *L)
 {
@@ -479,7 +483,7 @@ static int luaObjC_createLiteralArray(lua_State *L)
     
     NSArray *value = [NSArray arrayWithArray: array];
     
-    CFArrayAppendValue(_LuaObjCLiteralStorage, value);
+    CFSetAddValue(_LuaObjCLiteralStorage, value);
     
     LuaObjCPushObject(L, value, true, false);
     
@@ -503,7 +507,7 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     
     NSDictionary *dict = [[NSDictionary alloc] initWithObjects: values
                                                        forKeys: keys];
-    CFArrayAppendValue(_LuaObjCLiteralStorage, dict);
+    CFSetAddValue(_LuaObjCLiteralStorage, dict);
     
     [dict release];
     
@@ -518,7 +522,7 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
 static inline int luaObjC_createConstantNumber(lua_State *L)
 {
     NSNumber *number = [[NSNumber alloc] initWithDouble: lua_tonumber(L, 1)];
-    CFArrayAppendValue(_LuaObjCLiteralStorage, number);
+    CFSetAddValue(_LuaObjCLiteralStorage, number);
     [number release];
     
     LuaObjCPushObject(L, number, true, false);
@@ -576,7 +580,7 @@ int LuaObjCOpenFoundationSupport(lua_State *L)
 {
     if (!_LuaObjCLiteralStorage)
     {
-        _LuaObjCLiteralStorage = CFArrayCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeArrayCallBacks);
+        _LuaObjCLiteralStorage = CFSetCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeSetCallBacks);
     }
     
     LuaObjCClassInitialize(L);
