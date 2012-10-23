@@ -150,7 +150,8 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            --[[local value = [[NSString alloc] initWithUTF8String: "value--string"];
+            ---[[
+            local value = [[NSString alloc] initWithUTF8String: "value--string"];
 
             local block = (^
                             {
@@ -159,6 +160,6 @@ main = function()
             [value release];
             
             block();
-            ]]--
+            --]]
             return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
         end
