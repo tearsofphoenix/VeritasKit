@@ -55,7 +55,7 @@ void LuaInternalDumpLuaStack (lua_State *L)
     
     int t = 0;
 
-    for (int i = -1; i <= nargs; ++i)
+    for (int i = 1; i <= nargs; ++i)
     {
         t = lua_type(L, i);
         switch (t)

@@ -313,12 +313,13 @@ static int luaObjC_import_file(lua_State *L)
 static int _luaEngine_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
-    
-    
+        
     Class theClass = objc_getClass(name);
+
     if (theClass)
     {
         LuaObjCPushObject(L, theClass, false, true);
+        
     }else
     {
         //this maybe a function, such as glEnable(...)
@@ -327,15 +328,6 @@ static int _luaEngine_resolveName(lua_State *L)
             VBridgeServiceResolveNameIntoStateAction,
             nil,
             @[ [NSString stringWithUTF8String: name], [NSValue valueWithPointer: L] ]);
-//        if ([VBridgeService resolveName: [NSString stringWithUTF8String: name]
-//                             intoLuaState: L])
-//        {
-//            return 1;
-//        }else
-//        {
-//            printf("fail to revolve name: %s!\n", name);
-//            return 0;
-//        }
     }
     
     return 1;
@@ -564,9 +556,7 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"objc_createLiteralDictionary", luaObjC_createLiteralDictionary},
     
     {"__NSConstantNumber", luaObjC_createConstantNumber},
-    
-    //    {"resolveName", _luaEngine_resolveName},
-    
+        
     {NULL, NULL}
 };
 
@@ -595,26 +585,23 @@ int LuaObjCOpenFoundationSupport(lua_State *L)
     LuaObjCLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
     
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
+        
+    static const char* s_ResolveNameMetaTable = "local _VMachineGlobalCache = {}"
+                                                "setmetatable(_G, "
+                                                "            {"
+                                                "              __index = function(t, name) "
+                                                "                           local value = _VMachineGlobalCache[name]"
+                                                "                           if value then"
+                                                "                              return value"
+                                                "                           else"
+                                                "                              value = ObjC.resolveName(t, name)"
+                                                "                               _VMachineGlobalCache[name] = value"
+                                                "                              return value"
+                                                "                           end"
+                                                "                         end"
+                                                "             })";
     
-    //    luaL_getsubtable(L, LUA_REGISTRYINDEX, "_G");
-    //    lua_newtable(L);
-    //    lua_pushliteral(L, "__index");
-    //
-    //    luaL_getsubtable(L, LUA_REGISTRYINDEX, "_LOADED");
-    //    lua_pushliteral(L, "ObjC");
-    //    lua_gettable(L, -2);
-    //
-    //    lua_pushliteral(L, "resolveName");
-    //    lua_gettable(L, -2);
-    //    lua_remove(L, -2);
-    //    lua_rawset(L, -3);
-    //
-    //    LuaInternalDumpLuaStack(L);
-    
-    static const char* s_ResolveNameMetaTable = "setmetatable(_G, { __index = ObjC.resolveName})";
-    
-	luaL_loadstring(L, s_ResolveNameMetaTable);
-	lua_pcall(L, 0, 0, 0);
+	luaL_dostring(L, s_ResolveNameMetaTable);
     
     LuaObjCOpenNSObjectExtensionSupport(L);
     
