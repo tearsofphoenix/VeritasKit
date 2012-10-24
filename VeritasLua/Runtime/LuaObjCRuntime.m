@@ -308,7 +308,7 @@ static int luaObjC_import_file(lua_State *L)
     
     NSString *realPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat: @"/%s", name];
     lua_pushstring(L, [realPath UTF8String]);
-
+    
     //just ignore error here
     //
     lua_pcall(L, 1, 1, 0);
@@ -319,9 +319,9 @@ static int luaObjC_import_file(lua_State *L)
 static int luaObjC_resolveName(lua_State *L)
 {
     const char* name = lua_tostring(L, 2);
-        
+    
     Class theClass = objc_getClass(name);
-
+    
     if (theClass)
     {
         LuaObjCPushObject(L, theClass, false, true);
@@ -347,47 +347,47 @@ static int luaObjC_objc_throw(lua_State *L)
         case LUA_TNIL:
         case LUA_TNONE:
         {
-            luaL_error(L, "@throw nil value!");
+            luaL_error(L, "@throw nil!");
             break;
         }
         case LUA_TBOOLEAN:
         {
             BOOL value = lua_toboolean(L, 1);
-            luaL_error(L,  "@throw BOOL:%s value!", value ? "YES" : "NO");
+            luaL_error(L,  "@throw BOOL:%s!", value ? "YES" : "NO");
             break;
         }
         case LUA_TLIGHTUSERDATA:
         {
             void* p = lua_touserdata(L, 1);
-            luaL_error(L, "@throw pointer:%p value!", p);
+            luaL_error(L, "@throw pointer:%p!", p);
             break;
         }
         case LUA_TNUMBER:
         {
             lua_Number number = lua_tonumber(L, 1);
-            luaL_error(L, "@throw number:%f value!", number);
+            luaL_error(L, "@throw number:%f!", number);
             break;
         }
         case LUA_TSTRING:
         {
             const char* str = lua_tostring(L, 1);
-            luaL_error(L, "@throw string:%s value!", str);
+            luaL_error(L, "@throw string:%s!", str);
             break;
         }
         case LUA_TTABLE:
         {
-            luaL_error(L, "@throw table value!");
+            luaL_error(L, "@throw table!");
             break;
         }
         case LUA_TFUNCTION:
         {
-            luaL_error(L, "@throw function value!");
+            luaL_error(L, "@throw function!");
             break;
         }
         case LUA_TUSERDATA:
         {
             id obj = LuaObjCCheckObject(L, 1);
-            luaL_error(L, "@throw object:%s value!", [[obj description] UTF8String]);
+            luaL_error(L, "@throw object:%s!", [[obj description] UTF8String]);
             break;
         }
         case LUA_TTHREAD:
@@ -410,50 +410,51 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
     int finallyBlock = luaL_ref(L, LUA_REGISTRYINDEX);
     int catchBlock = luaL_ref(L, LUA_REGISTRYINDEX);
     int tryBlock = luaL_ref(L, LUA_REGISTRYINDEX);
-    @try
+    
+    
+    lua_rawgeti(L, LUA_REGISTRYINDEX, tryBlock);
+    
+    int status = lua_pcallk(L, 0, 0, 0, 0, LuaInternalDumpLuaStack);
+    if(status != LUA_OK)
     {
-        lua_rawgeti(L, LUA_REGISTRYINDEX, tryBlock);
+        const char* errorString = luaL_checkstring(L, 1);
         
-        printf("try in objc, line:%d\n", __LINE__);
-        if(lua_pcall(L, 0, 0, 0) != LUA_OK)
-        {
-            printf("1st in try\n");
-            luaL_error(L, "error in @try");
-        }
-        
-        
-    }
-    @catch (NSException *exception)
-    {
         lua_rawgeti(L, LUA_REGISTRYINDEX, catchBlock);
         
-        LuaObjCPushObject(L, exception, true, false);
-        
-        printf("catch in objc, line:%d\n", __LINE__);
-        
-        if(lua_pcall(L, 1, 0, 0) != LUA_OK)
+        lua_pushstring(L, errorString);
+
+        lua_remove(L, 1);
+
+        status = lua_pcall(L, 1, 0, 0);
+        if(status != LUA_OK)
         {
-            printf("1st in catch\n");
+            //@throw again in @catch
+            //
+            if (finallyBlock != LuaObjCInvalidClouserID)
+            {
+                lua_rawgeti(L, LUA_REGISTRYINDEX, finallyBlock);
+                lua_pcall(L, 0, 0, 0);                
+            }
             
-            luaL_error(L, "error in @catch");
+            lua_error(L);
+            
+        }else
+        {
+            if (finallyBlock != LuaObjCInvalidClouserID)
+            {
+                lua_rawgeti(L, LUA_REGISTRYINDEX, finallyBlock);
+                status = lua_pcall(L, 0, 0, 0);
+                if (status != LUA_OK)
+                {
+                    lua_error(L);
+                }
+            }
         }
     }
-    @finally
-    {
-        printf("finally in objc, line:%d\n", __LINE__);
-        
-        lua_rawgeti(L, LUA_REGISTRYINDEX, finallyBlock);
-        lua_pcall(L, 0, 0, 0);
-    }
+    
     return 1;
 }
 
-static int luaObjC_objc_UUIDString(lua_State *L)
-{
-    NSString *uuidString = [[NSString UUID] stringByReplacingOccurrencesOfString: @"-" withString: @"_"];
-    lua_pushstring(L, [uuidString UTF8String]);
-    return 1;
-}
 
 static int luaObjC_objc_NSFastEnumerate(lua_State *L)
 {
@@ -556,13 +557,12 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     
     {"objc_tryCatchFinally", luaObjC_objc_tryCatchFinally},
     {"objc_throw", luaObjC_objc_throw},
-    {"objc_UUIDString", luaObjC_objc_UUIDString},
     {"objc_NSFastEnumerate", luaObjC_objc_NSFastEnumerate},
     {"objc_createLiteralArray", luaObjC_createLiteralArray},
     {"objc_createLiteralDictionary", luaObjC_createLiteralDictionary},
     
     {"__NSConstantNumber", luaObjC_createConstantNumber},
-        
+    
     {NULL, NULL}
 };
 
@@ -591,21 +591,21 @@ int LuaObjCOpenFoundationSupport(lua_State *L)
     LuaObjCLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
     
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
-        
+    
     static const char* s_ResolveNameMetaTable = "local _VMachineGlobalCache = {}"
-                                                "setmetatable(_G, "
-                                                "            {"
-                                                "              __index = function(t, name) "
-                                                "                           local value = _VMachineGlobalCache[name]"
-                                                "                           if value then"
-                                                "                              return value"
-                                                "                           else"
-                                                "                              value = ObjC.resolveName(t, name)"
-                                                "                               _VMachineGlobalCache[name] = value"
-                                                "                              return value"
-                                                "                           end"
-                                                "                         end"
-                                                "             })";
+    "setmetatable(_G, "
+    "            {"
+    "              __index = function(t, name) "
+    "                           local value = _VMachineGlobalCache[name]"
+    "                           if value then"
+    "                              return value"
+    "                           else"
+    "                              value = ObjC.resolveName(t, name)"
+    "                               _VMachineGlobalCache[name] = value"
+    "                              return value"
+    "                           end"
+    "                         end"
+    "             })";
     
 	luaL_dostring(L, s_ResolveNameMetaTable);
     

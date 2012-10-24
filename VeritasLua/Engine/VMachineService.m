@@ -29,6 +29,7 @@
 #import "LuaObjCAuxiliary.h"
 #import "VBridgeService.h"
 #import "LuaObjCParser.h"
+#import "NSString+LuaObjCIndex.h"
 #import "NSData+Base64.h"
 
 static char * const VMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
@@ -66,6 +67,13 @@ typedef VMachineAttributes *VMachineAttributesRef;
 
 
 @implementation VMachineService
+
+static int luaObjC_objc_UUIDString(lua_State *L)
+{
+    NSString *uuidString = [[NSString UUID] stringByReplacingOccurrencesOfString: @"-" withString: @"_"];
+    lua_pushstring(L, [uuidString UTF8String]);
+    return 1;
+}
 
 static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 {
@@ -140,6 +148,7 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
 
 static const luaL_Reg __compileTimeFunctions [] =
 {
+    {"objc_UUIDString", luaObjC_objc_UUIDString},
     {"compileTimeInteraction", _luaEngine_compileTimeInteraction},
     {NULL, NULL},
 };
@@ -184,10 +193,10 @@ static void VMachine_initialize(VMachineService *self)
                                                            encoding: NSUTF8StringEncoding
                                                               error: NULL];
 #endif
-    //int status = luaL_dostring(parserStateRef, [parserSourceCode UTF8String]);
+    
     if (luaL_dostring(parserStateRef, [sourceCode UTF8String]) != LUA_OK)
     {
-        luaL_error(luaStateRef, "error in do string");
+        lua_error(luaStateRef);
     }
     
     [sourceCode release];
@@ -224,10 +233,10 @@ static void VMachine_initialize(VMachineService *self)
         
         dispatch_resume(_internal->garbageCollectTimer);
         
-        //        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
-        //                                                                                                                 ofType: @"lua"]];
-        //
-        //        NSLog(@"%@", [data base64EncodedString]);
+//        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
+//                                                                                                                 ofType: @"lua"]];
+//        
+//        NSLog(@"%@", [data base64EncodedString]);
         
         [self initServiceCallbackFunctions];
         
@@ -293,13 +302,13 @@ static void VMachine_initialize(VMachineService *self)
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
-        //printf("parsed: %s\n", ret);
+        printf("parsed: %s\n", ret);
         ///TODO: is here right?
         //
         return strdup(ret);
     }else
     {
-        luaL_error(luaStateRef, "error in parse string");
+        lua_error(luaStateRef);
     }
     
     return NULL;
@@ -368,7 +377,7 @@ static void VMachine_initialize(VMachineService *self)
             
             if (status != LUA_OK)
             {
-                luaL_error(luaStateRef, "error run");
+                lua_error(luaStateRef);
             }
             
             //deal return value

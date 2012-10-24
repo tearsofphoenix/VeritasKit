@@ -48,7 +48,7 @@ void LuaInternalDumpObjCClass(Class theClass)
     }
 }
 
-void LuaInternalDumpLuaStack (lua_State *L) 
+int LuaInternalDumpLuaStack (lua_State *L)
 {
     int nargs = lua_gettop(L);
     printf(" ----------------  Stack Dump ----------------\n" );
@@ -89,6 +89,8 @@ void LuaInternalDumpLuaStack (lua_State *L)
     }
     
     printf("--------------- Stack Dump Finished ---------------\n" );
+    
+    return 0;
 }
 
 const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper)

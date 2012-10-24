@@ -2153,25 +2153,26 @@ local typetable =
     end,
     
     olua_objc_trycatchfinally = function(ast)
-                                emit([==[do 
-                                            local __tryBlock__func=function()
-                                            ]==]
-                                    )
-                                             recursivelyunparse(ast.tryBlock)
-                                             emit("\nend\n")
+                                             local tryFunctionName = '__tryBlock_func_' ..  objc_UUIDString()
+                                             local catchFunctionName = '__catchBlock_func_' .. objc_UUIDString()
+                                             local finallyFunctionName = '__finallyBlock_func_' .. objc_UUIDString()
 
-                                             emit(" local __catchBlock__func=function(" .. ast.catchBlock.arg .. ')')
+                                             emit('do local ' .. tryFunctionName .. ' =function()')
+                                             recursivelyunparse(ast.tryBlock)
+                                             emit('\nend\n')
+
+                                             emit(' local ' ..  catchFunctionName .. '=function(' .. ast.catchBlock.arg .. ')')
                                              recursivelyunparse(ast.catchBlock.chunk)
-                                             emit("\nend")
+                                             emit('\nend')
                                              
-                                             emit(" local __fianllyBlock__func\n")
+                                             emit(' local ' .. finallyFunctionName)
                                              if ast.finallyBlock then
-                                                emit("=function()")
+                                                emit('=function()')
                                                     recursivelyunparse(ast.finallyBlock)
-                                                emit("\nend\n")
+                                                emit('\nend\n')
                                              end
                                              
-                                             emit(" objc_tryCatchFinally(__tryBlock__func, __catchBlock__func, __fianllyBlock__func)")
+                                             emit(' objc_tryCatchFinally(' .. tryFunctionName .. ',' .. catchFunctionName .. ',' .. finallyFunctionName .. ')')
 
                                  emit("\nend")
     end,    

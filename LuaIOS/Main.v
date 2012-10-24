@@ -150,7 +150,30 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            ---[[
+            @try
+            {
+                @try
+                {   
+                    print("in lua @try")
+                    @throw "ok"
+                }
+                @catch (value)
+                {
+                    print("in lua @catch")
+                    print(value)
+                    @throw "from @catch"
+                }
+                @finally
+                {
+                    print("finally")
+                    @throw "from inner @finally"
+                }
+
+            }@catch(errorMsg)
+            {
+                print(errorMsg)
+            }
+            --[[
             local value = [[NSString alloc] initWithUTF8String: "value--string"];
 
             local block = (^

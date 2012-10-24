@@ -15,7 +15,7 @@ __BEGIN_DECLS
 
 VK_EXPORT void LuaInternalDumpObjCClass(Class theClass);
 
-VK_EXPORT void LuaInternalDumpLuaStack(struct lua_State *L);
+VK_EXPORT int LuaInternalDumpLuaStack(struct lua_State *L);
 
 VK_EXPORT const char* LuaInternalGetCurrentLineSource(lua_Debug *ar);
 
