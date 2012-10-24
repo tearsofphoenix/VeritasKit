@@ -17,4 +17,3 @@ extern NSString * const VBridgeServiceIdentifier;
 extern NSString * const VBridgeServiceImportFrameworkAction;
 
 extern NSString * const VBridgeServiceResolveNameIntoStateAction;
-

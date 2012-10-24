@@ -68,8 +68,6 @@
 		E13C8E6416168B0C00A72BEF /* LuaBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6B16168B0C00A72BEF /* LuaBridgeInfo.m */; };
 		E13C8E6516168B0C00A72BEF /* VBridgeService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D6C16168B0C00A72BEF /* VBridgeService.h */; };
 		E13C8E6616168B0C00A72BEF /* VBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6D16168B0C00A72BEF /* VBridgeService.m */; };
-		E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */; };
-		E13C8E6816168B0C00A72BEF /* LuaBridgeSupportFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */; };
 		E13C8E6C16168B0C00A72BEF /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* VMetaService.h */; settings = {ATTRIBUTES = (); }; };
 		E13C8E6D16168B0C00A72BEF /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7516168B0C00A72BEF /* VMetaService.m */; };
 		E13C8E6E16168B0C00A72BEF /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7616168B0C00A72BEF /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -315,8 +313,6 @@
 		E13C8D6B16168B0C00A72BEF /* LuaBridgeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeInfo.m; sourceTree = "<group>"; };
 		E13C8D6C16168B0C00A72BEF /* VBridgeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBridgeService.h; sourceTree = "<group>"; };
 		E13C8D6D16168B0C00A72BEF /* VBridgeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBridgeService.m; sourceTree = "<group>"; };
-		E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridgeSupportFileParser.h; sourceTree = "<group>"; };
-		E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeSupportFileParser.m; sourceTree = "<group>"; };
 		E13C8D7416168B0C00A72BEF /* VMetaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMetaService.h; sourceTree = "<group>"; };
 		E13C8D7516168B0C00A72BEF /* VMetaService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMetaService.m; sourceTree = "<group>"; };
 		E13C8D7616168B0C00A72BEF /* VMachineService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMachineService.h; sourceTree = "<group>"; };
@@ -601,8 +597,6 @@
 				E13C8D6B16168B0C00A72BEF /* LuaBridgeInfo.m */,
 				E13C8D6C16168B0C00A72BEF /* VBridgeService.h */,
 				E13C8D6D16168B0C00A72BEF /* VBridgeService.m */,
-				E13C8D6E16168B0C00A72BEF /* LuaBridgeSupportFileParser.h */,
-				E13C8D6F16168B0C00A72BEF /* LuaBridgeSupportFileParser.m */,
 			);
 			path = BridgeSupport;
 			sourceTree = "<group>";
@@ -966,7 +960,6 @@
 				E13C8E6116168B0C00A72BEF /* LuaBridgeFunctor.h in Headers */,
 				E13C8E6316168B0C00A72BEF /* LuaBridgeInfo.h in Headers */,
 				E13C8E6516168B0C00A72BEF /* VBridgeService.h in Headers */,
-				E13C8E6716168B0C00A72BEF /* LuaBridgeSupportFileParser.h in Headers */,
 				E13C8E7016168B0C00A72BEF /* LuaLibraryInformation.h in Headers */,
 				E13C8E7416168B0C00A72BEF /* LuaObjCIndexing.h in Headers */,
 				E13C8E7516168B0C00A72BEF /* LuaObjCProfile.h in Headers */,
@@ -1184,7 +1177,6 @@
 				E13C8E6216168B0C00A72BEF /* LuaBridgeFunctor.m in Sources */,
 				E13C8E6416168B0C00A72BEF /* LuaBridgeInfo.m in Sources */,
 				E13C8E6616168B0C00A72BEF /* VBridgeService.m in Sources */,
-				E13C8E6816168B0C00A72BEF /* LuaBridgeSupportFileParser.m in Sources */,
 				E13C8E6D16168B0C00A72BEF /* VMetaService.m in Sources */,
 				E13C8E6F16168B0C00A72BEF /* VMachineService.m in Sources */,
 				E13C8E7116168B0C00A72BEF /* LuaLibraryInformation.m in Sources */,
