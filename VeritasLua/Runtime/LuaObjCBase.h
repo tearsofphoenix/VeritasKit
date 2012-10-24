@@ -35,6 +35,4 @@
     #endif
 #endif
 
-struct luaL_Reg;
-
 #endif

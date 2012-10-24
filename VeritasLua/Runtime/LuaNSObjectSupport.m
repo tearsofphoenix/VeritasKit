@@ -11,7 +11,6 @@
 #import "LuaObjCClass.h"
 #import "LuaObjCAuxiliary.h"
 #import "LuaObjCIndexing.h"
-#import "LuaObjCInternal.h"
 #import "LuaObjCRuntime.h"
 
 #import <objc/runtime.h>

@@ -7,6 +7,7 @@
 //
 
 #import "LuaBridgeFunctor.h"
+#import "LuaObjCBase.h"
 
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
 #import "ffi.h"
@@ -14,11 +15,9 @@
 #import <ffi.h>
 #endif
 
-#import "lua.h"
-#import "lauxlib.h"
 #import "LuaBridgeInfo.h"
 #import "LuaObjCAuxiliary.h"
-#import "LuaObjCInternal.h"
+
 #import <dlfcn.h>
 #import <objc/runtime.h>
 

@@ -14,13 +14,29 @@
 
 #import "LuaCGGeometry.h"
 
-#import "LuaObjCInternal.h"
-
 #import "LuaNSObjectSupport.h"
 
 #import <objc/runtime.h>
 
 #pragma mark - type encoding support
+
+static Boolean LuaInternalCStringEqual(const void *value1, const void *value2)
+{
+    const char *str1 = value1;
+    const char *str2 = value2;
+    
+    if(!strcmp(str1, str2))
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+static void LuaInternalFreeCallback(CFAllocatorRef allocator, const void *value)
+{
+    free((void *)value);
+}
 
 CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks = {
     .equal=LuaInternalCStringEqual,
@@ -92,24 +108,6 @@ const char * LuaObjCTypeEncodingOfType(const char *typeName)
     }
     
     return typeEncoding;
-}
-
-void LuaInternalFreeCallback(CFAllocatorRef allocator, const void *value)
-{
-    free((void *)value);
-}
-
-Boolean LuaInternalCStringEqual(const void *value1, const void *value2)
-{
-    const char *str1 = value1;
-    const char *str2 = value2;
-    
-    if(!strcmp(str1, str2))
-    {
-        return YES;
-    }
-    
-    return NO;
 }
 
 #pragma mark - class
@@ -377,10 +375,10 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
 }
 
 #define __LuaClassPreprocess(obj, sel, state)     va_list ap;\
-va_start(ap, sel);\
-lua_State *state = NULL;\
-__luaClass_IMP_preprocess(&state, obj, sel, ap);\
-va_end(ap);
+                                                  va_start(ap, sel);\
+                                                  lua_State *state = NULL;\
+                                                  __luaClass_IMP_preprocess(&state, obj, sel, ap);\
+                                                  va_end(ap);
 
 static NSInteger __luaClass_IMP_integer_return(id obj, SEL sel, ...)
 {

@@ -12,7 +12,9 @@
 
 #import "LuaObjCClass.h"
 
-#import "LuaObjCInternal.h"
+#import "LuaObjCMessage.h"
+
+#import "LuaObjCProperty.h"
 
 #import "LuaCGGeometry.h"
 
@@ -414,7 +416,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
     
     lua_rawgeti(L, LUA_REGISTRYINDEX, tryBlock);
     
-    int status = lua_pcallk(L, 0, 0, 0, 0, LuaInternalDumpLuaStack);
+    int status = lua_pcall(L, 0, 0, 0);
     if(status != LUA_OK)
     {
         const char* errorString = luaL_checkstring(L, 1);

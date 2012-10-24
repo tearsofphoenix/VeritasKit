@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIView.h"
-#import "LuaObjCInternal.h"
 
-#import "LuaObjCAccelerator.h"
+#import "LuaObjCMessage.h"
 
 static int _luaObjC_UIView_animateWithDuration_animations(id obj, SEL selector, lua_State *luaState)
 {    

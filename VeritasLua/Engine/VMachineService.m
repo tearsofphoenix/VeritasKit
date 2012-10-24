@@ -22,8 +22,6 @@
 
 #import "lpeg.h"
 
-#import "LuaObjCInternal.h"
-
 #import "LuaLibraryInformation.h"
 
 #import "LuaObjCAuxiliary.h"

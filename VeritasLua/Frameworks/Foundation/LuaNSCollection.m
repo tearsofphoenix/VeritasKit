@@ -7,8 +7,7 @@
 //
 
 #import "LuaNSCollection.h"
-#import "LuaObjCAccelerator.h"
-#import "LuaObjCInternal.h"
+#import "LuaObjCMessage.h"
 #import "LuaObjCAuxiliary.h"
 
 static NSMutableArray *__luaObjC_getArrayFromState(lua_State *L)
