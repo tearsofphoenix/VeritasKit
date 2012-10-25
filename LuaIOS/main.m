@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <VeritasVM/VeritasVM.h>
+#import <VeritasMachineIOS/VeritasMachine.h>
 
 int main(int argc, char *argv[])
 {
