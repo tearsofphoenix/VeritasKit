@@ -84,7 +84,6 @@
 		22A7B7571638EED10067B98A /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 22A7B7501638EED10067B98A /* ffitarget_x86_64.h */; };
 		22A7B75F1638EF2B0067B98A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A7B75E1638EF2B0067B98A /* QuartzCore.framework */; };
 		22A7B7621638EF320067B98A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A7B7611638EF320067B98A /* libxml2.dylib */; };
-		22A7B7641638EF380067B98A /* libffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A7B7631638EF380067B98A /* libffi.dylib */; };
 		22A7B7651638EF9D0067B98A /* VeritasMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 22A7B6F01638EBF80067B98A /* VeritasMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22A7B78E1638F1D10067B98A /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E13C8DDA16168B0C00A72BEF /* LuaCParser.lua */; };
 		22A7B78F1638F1D10067B98A /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E13C8DDB16168B0C00A72BEF /* LuaObjCParser.lua */; };
@@ -157,7 +156,7 @@
 		E13C8E6416168B0C00A72BEF /* LuaBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6B16168B0C00A72BEF /* LuaBridgeInfo.m */; };
 		E13C8E6516168B0C00A72BEF /* VBridgeService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D6C16168B0C00A72BEF /* VBridgeService.h */; };
 		E13C8E6616168B0C00A72BEF /* VBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D6D16168B0C00A72BEF /* VBridgeService.m */; };
-		E13C8E6C16168B0C00A72BEF /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* VMetaService.h */; settings = {ATTRIBUTES = (); }; };
+		E13C8E6C16168B0C00A72BEF /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6D16168B0C00A72BEF /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7516168B0C00A72BEF /* VMetaService.m */; };
 		E13C8E6E16168B0C00A72BEF /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7616168B0C00A72BEF /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8E6F16168B0C00A72BEF /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8D7716168B0C00A72BEF /* VMachineService.m */; };
@@ -227,7 +226,7 @@
 		E13C8ECB16168B0D00A72BEF /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DE416168B0C00A72BEF /* lapi.c */; };
 		E13C8ECC16168B0D00A72BEF /* lapi.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DE516168B0C00A72BEF /* lapi.h */; };
 		E13C8ECD16168B0D00A72BEF /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DE616168B0C00A72BEF /* lauxlib.c */; };
-		E13C8ECE16168B0D00A72BEF /* lauxlib.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DE716168B0C00A72BEF /* lauxlib.h */; };
+		E13C8ECE16168B0D00A72BEF /* lauxlib.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DE716168B0C00A72BEF /* lauxlib.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8ECF16168B0D00A72BEF /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DE816168B0C00A72BEF /* lbaselib.c */; };
 		E13C8ED016168B0D00A72BEF /* lbitlib.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DE916168B0C00A72BEF /* lbitlib.c */; };
 		E13C8ED116168B0D00A72BEF /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8DEA16168B0C00A72BEF /* lcode.c */; };
@@ -271,9 +270,9 @@
 		E13C8EF716168B0D00A72BEF /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E1016168B0C00A72BEF /* ltablib.c */; };
 		E13C8EF816168B0D00A72BEF /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E1116168B0C00A72BEF /* ltm.c */; };
 		E13C8EF916168B0D00A72BEF /* ltm.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1216168B0C00A72BEF /* ltm.h */; };
-		E13C8EFA16168B0D00A72BEF /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1316168B0C00A72BEF /* lua.h */; };
+		E13C8EFA16168B0D00A72BEF /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1316168B0C00A72BEF /* lua.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8EFB16168B0D00A72BEF /* lua.hpp in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1416168B0C00A72BEF /* lua.hpp */; };
-		E13C8EFC16168B0D00A72BEF /* luaconf.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1516168B0C00A72BEF /* luaconf.h */; };
+		E13C8EFC16168B0D00A72BEF /* luaconf.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1516168B0C00A72BEF /* luaconf.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E13C8EFD16168B0D00A72BEF /* lualib.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1616168B0C00A72BEF /* lualib.h */; };
 		E13C8EFE16168B0D00A72BEF /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E1716168B0C00A72BEF /* lundump.c */; };
 		E13C8EFF16168B0D00A72BEF /* lundump.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1816168B0C00A72BEF /* lundump.h */; };
@@ -295,9 +294,15 @@
 		E13C8F1916168B0D00A72BEF /* LuaObjCRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E3316168B0C00A72BEF /* LuaObjCRuntime.h */; };
 		E13C8F1A16168B0D00A72BEF /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3416168B0C00A72BEF /* LuaObjCRuntime.m */; };
 		E13C8F1D16168B0D00A72BEF /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */; };
-		E19827261616A4A10076399B /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827251616A4A10076399B /* LuaObjCBase.h */; };
+		E19827261616A4A10076399B /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827251616A4A10076399B /* LuaObjCBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E19827291616D6440076399B /* LuaFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827271616D6430076399B /* LuaFoundation.h */; };
 		E198272A1616D6440076399B /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E19827281616D6430076399B /* LuaFoundation.m */; };
+		E1BF3C3116397B68001570DF /* libffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A7B7631638EF380067B98A /* libffi.dylib */; };
+		E1BF3C3B16397C88001570DF /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8D7416168B0C00A72BEF /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1BF3C3C16397CBD001570DF /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827251616A4A10076399B /* LuaObjCBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1BF3C3D16397CD2001570DF /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1316168B0C00A72BEF /* lua.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1BF3C3E16397CD7001570DF /* lauxlib.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8DE716168B0C00A72BEF /* lauxlib.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1BF3C3F16397CFF001570DF /* luaconf.h in Headers */ = {isa = PBXBuildFile; fileRef = E13C8E1516168B0C00A72BEF /* luaconf.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -590,7 +595,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A7B7641638EF380067B98A /* libffi.dylib in Frameworks */,
+				E1BF3C3116397B68001570DF /* libffi.dylib in Frameworks */,
 				22A7B7621638EF320067B98A /* libxml2.dylib in Frameworks */,
 				22A7B75F1638EF2B0067B98A /* QuartzCore.framework in Frameworks */,
 				22A7B73D1638EC570067B98A /* Cocoa.framework in Frameworks */,
@@ -1170,6 +1175,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A7B7651638EF9D0067B98A /* VeritasMachine.h in Headers */,
+				E1BF3C3F16397CFF001570DF /* luaconf.h in Headers */,
+				E1BF3C3E16397CD7001570DF /* lauxlib.h in Headers */,
+				E1BF3C3D16397CD2001570DF /* lua.h in Headers */,
+				E1BF3C3C16397CBD001570DF /* LuaObjCBase.h in Headers */,
+				E1BF3C3B16397C88001570DF /* VMetaService.h in Headers */,
 				22A7B73E1638ECAB0067B98A /* VMachineService.h in Headers */,
 				22A7B73F1638ECAB0067B98A /* LuaObjCAuxiliary.h in Headers */,
 				22A7B7401638ECAB0067B98A /* LuaObjCMessage.h in Headers */,
@@ -1187,10 +1197,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D834CD1615AAEF00C9F07C /* VeritasMachine.h in Headers */,
+				E19827261616A4A10076399B /* LuaObjCBase.h in Headers */,
+				E13C8ECE16168B0D00A72BEF /* lauxlib.h in Headers */,
+				E13C8EFC16168B0D00A72BEF /* luaconf.h in Headers */,
+				E13C8EFA16168B0D00A72BEF /* lua.h in Headers */,
+				E13C8E6C16168B0C00A72BEF /* VMetaService.h in Headers */,
 				E13C8F0816168B0D00A72BEF /* LuaObjCAuxiliary.h in Headers */,
 				E13C8F0616168B0D00A72BEF /* LuaObjCMessage.h in Headers */,
 				E13C8E6E16168B0C00A72BEF /* VMachineService.h in Headers */,
-				E13C8E6C16168B0C00A72BEF /* VMetaService.h in Headers */,
 				E13C8E6116168B0C00A72BEF /* LuaBridgeFunctor.h in Headers */,
 				E13C8E6316168B0C00A72BEF /* LuaBridgeInfo.h in Headers */,
 				E13C8E6516168B0C00A72BEF /* VBridgeService.h in Headers */,
@@ -1229,7 +1243,6 @@
 				E13C8EC716168B0D00A72BEF /* XMLNode.h in Headers */,
 				E13C8EC916168B0D00A72BEF /* XMLPathProcessor.h in Headers */,
 				E13C8ECC16168B0D00A72BEF /* lapi.h in Headers */,
-				E13C8ECE16168B0D00A72BEF /* lauxlib.h in Headers */,
 				E13C8ED216168B0D00A72BEF /* lcode.h in Headers */,
 				E13C8ED516168B0D00A72BEF /* lctype.h in Headers */,
 				E13C8ED816168B0D00A72BEF /* ldebug.h in Headers */,
@@ -1246,9 +1259,7 @@
 				E13C8EF316168B0D00A72BEF /* lstring.h in Headers */,
 				E13C8EF616168B0D00A72BEF /* ltable.h in Headers */,
 				E13C8EF916168B0D00A72BEF /* ltm.h in Headers */,
-				E13C8EFA16168B0D00A72BEF /* lua.h in Headers */,
 				E13C8EFB16168B0D00A72BEF /* lua.hpp in Headers */,
-				E13C8EFC16168B0D00A72BEF /* luaconf.h in Headers */,
 				E13C8EFD16168B0D00A72BEF /* lualib.h in Headers */,
 				E13C8EFF16168B0D00A72BEF /* lundump.h in Headers */,
 				E13C8F0116168B0D00A72BEF /* lvm.h in Headers */,
@@ -1258,7 +1269,6 @@
 				E13C8F1216168B0D00A72BEF /* LuaObjCProperty.h in Headers */,
 				E13C8F1616168B0D00A72BEF /* LuaObjCParser.h in Headers */,
 				E13C8F1916168B0D00A72BEF /* LuaObjCRuntime.h in Headers */,
-				E19827261616A4A10076399B /* LuaObjCBase.h in Headers */,
 				E19827291616D6440076399B /* LuaFoundation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1745,10 +1755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "VeritasMachineMac/VeritasMachine-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/VeritasLua/Library/libffi-3.0.11/MacOSX\"",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1780,10 +1787,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "VeritasMachineMac/VeritasMachine-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/VeritasLua/Library/libffi-3.0.11/MacOSX\"",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
@@ -1970,6 +1974,7 @@
 				22A7B7B3163903550067B98A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22D834BD1615AA3D00C9F07C /* Build configuration list for PBXNativeTarget "VeritasMachineIOS" */ = {
 			isa = XCConfigurationList;
