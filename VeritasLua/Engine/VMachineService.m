@@ -262,17 +262,17 @@ static void VMachine_initialize(VMachineService *self)
 {
     __block id fakeSelf = self;
     
-    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
+    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
                               [fakeSelf doString: [arguments objectAtIndex: 0]];
                               if (callback)
                               {
-                                  callback(action, arguments);
+                                  callback( arguments);
                               }
                           })
               forAction: VMachineServiceDoSourceCodeAction];
     
-    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
+    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
                               LuaStateRef L = _internal->luaState;
                               

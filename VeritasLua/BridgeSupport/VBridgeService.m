@@ -244,7 +244,7 @@ static NSMutableDictionary *__registeredFrameworks = nil;
 
 - (void)initServerProcessors
 {
-    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
+    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
                               NSString *frameworkName = [arguments objectAtIndex: 0];
                               
@@ -270,7 +270,7 @@ static NSMutableDictionary *__registeredFrameworks = nil;
                           })
               forAction: VBridgeServiceImportFrameworkAction];
     
-    [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
+    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
                               NSString *name = [arguments objectAtIndex: 0];
                               struct lua_State *state = [[arguments objectAtIndex: 1] pointerValue];

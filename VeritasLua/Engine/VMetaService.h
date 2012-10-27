@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-typedef void (^ VCallbackBlock)(NSString *action, NSArray *arguments);
-typedef void (^ VServiceBlock)(VCallbackBlock callback, NSString *action, NSArray *arguments);
+typedef void (^ VCallbackBlock)( NSArray *arguments);
+typedef void (^ VServiceBlock)(VCallbackBlock callback, NSArray *arguments);
 
 @protocol VMetaService <NSObject>
 

@@ -22,6 +22,7 @@
 static NSMutableDictionary *__resgiteredServices = nil;
 static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
 static IMP _VMetaServiceCallforActionIMP = NULL;
+static SEL _VMetaServiceCallforActionSEL = NULL;
 
 + (void)load
 {
@@ -34,9 +35,11 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
         __registeredCallbackOnDidLoadOfService = [[NSMutableDictionary alloc] init];
     }
     
+    _VMetaServiceCallforActionSEL = @selector(callForAction:arguments:withCallback:);
+    
     if (!_VMetaServiceCallforActionIMP)
     {
-        _VMetaServiceCallforActionIMP = class_getMethodImplementation(self, @selector(callForAction:arguments:withCallback:));
+        _VMetaServiceCallforActionIMP = class_getMethodImplementation(self, _VMetaServiceCallforActionSEL);
     }
 }
 
@@ -78,7 +81,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
     
     if (serviceBlock)
     {
-        serviceBlock(callbackBlock, action, arguments);
+        serviceBlock(callbackBlock, arguments);
     }
 }
 
@@ -102,7 +105,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
     VCallbackBlock block = CFDictionaryGetValue((CFDictionaryRef)__registeredCallbackOnDidLoadOfService, serviceID);
     if (block)
     {
-        block(nil, @[ serviceID ]);
+        block(@[ serviceID ]);
     }
 }
 
@@ -121,7 +124,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
         //
         if (CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID))
         {
-            block(nil, @[ serviceID ]);
+            block(@[ serviceID ]);
             
         }else
         {
@@ -138,7 +141,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
 void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments)
 {
     id<VMetaService> service = (id<VMetaService>)CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID);
-    _VMetaServiceCallforActionIMP(service, @selector(callForAction:arguments:withCallback:), action, arguments, callback);
+    _VMetaServiceCallforActionIMP(service, _VMetaServiceCallforActionSEL, action, arguments, callback);
 }
 
 @end
