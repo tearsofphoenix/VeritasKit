@@ -13,7 +13,6 @@
 {
 @private
     NSMutableDictionary *_registeredProcessors;
-    NSMutableDictionary *_observerBlocks;
 }
 
 @end
@@ -45,36 +44,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
 {
     if ((self = [super init]))
     {
-        _registeredProcessors = [[NSMutableDictionary alloc] init];
-        _observerBlocks = [[NSMutableDictionary alloc] init];
-        
-        [self registerBlock: (^(VCallbackBlock callback, NSString *action, NSArray *arguments)
-                              {
-                                  VCallbackBlock observerBlock = [arguments objectAtIndex: 0];
-                                  NSString *observedAction = [arguments objectAtIndex: 1];
-                                  
-                                  if (observerBlock && observedAction)
-                                  {
-                                      
-                                      NSMutableArray *observers = CFDictionaryGetValue((CFDictionaryRef)_observerBlocks, observedAction);
-                                      if (!observers)
-                                      {
-                                          observers = [[NSMutableArray alloc] init];
-                                          
-                                          [_observerBlocks setObject: observers
-                                                              forKey: observedAction];
-                                          
-                                          [observers release];
-                                      }
-                                      
-                                      observerBlock = Block_copy(observerBlock);
-                                      
-                                      CFArrayAppendValue((CFMutableArrayRef)observers, observerBlock);
-                                      
-                                      Block_release(observerBlock);
-                                  }
-                              })
-                  forAction: VMetaServiceRegisterObserverBlockForAction];
+        _registeredProcessors = [[NSMutableDictionary alloc] init];        
     }
     return self;
 }
@@ -82,7 +52,6 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
 - (void)dealloc
 {
     [_registeredProcessors release];
-    [_observerBlocks release];
     
     [super dealloc];
 }
@@ -109,27 +78,7 @@ static IMP _VMetaServiceCallforActionIMP = NULL;
     
     if (serviceBlock)
     {
-        CFArrayRef observers = CFDictionaryGetValue((CFDictionaryRef)_observerBlocks, action);
-        
-        if ( CFArrayGetCount(observers) > 0)
-        {
-            serviceBlock((^(NSString *innerAction, NSArray *innerArguments)
-                          {
-                              if (callbackBlock)
-                              {
-                                  callbackBlock(innerAction, innerArguments);
-                              }
-                              
-                              for (VCallbackBlock block in (NSArray *)observers)
-                              {
-                                  block(innerAction, innerArguments);
-                              }
-                              
-                          }), action, arguments);
-        }else
-        {
-            serviceBlock(callbackBlock, action, arguments);
-        }
+        serviceBlock(callbackBlock, action, arguments);
     }
 }
 
@@ -193,6 +142,4 @@ void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray
 }
 
 @end
-
-NSString * const VMetaServiceRegisterObserverBlockForAction = @"com.veritas.service.meta.action.registerObserverBlockForAction";
 

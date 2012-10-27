@@ -30,5 +30,3 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSString *action, NSArra
 @end
 
 extern void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments);
-
-extern NSString * const VMetaServiceRegisterObserverBlockForAction;
