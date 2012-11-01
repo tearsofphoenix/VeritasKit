@@ -16,9 +16,15 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSArray *arguments);
 - (void)registerBlock: (VServiceBlock)serviceBlock
             forAction: (NSString *)action;
 
+- (void)initProcessors;
+
 @end
 
 @interface VMetaService : NSObject<VMetaService>
+{
+@protected
+    dispatch_queue_t _queue;
+}
 
 + (void)registerService: (Class)serviceClass;
 
@@ -30,3 +36,5 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSArray *arguments);
 @end
 
 extern void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments);
+
+extern void VSQC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments);

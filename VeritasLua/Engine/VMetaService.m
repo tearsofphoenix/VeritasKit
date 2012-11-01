@@ -12,15 +12,15 @@
 @interface VMetaService ()
 {
 @private
-    NSMutableDictionary *_registeredProcessors;
+    CFMutableDictionaryRef _registeredProcessors;
 }
 
 @end
 
 @implementation VMetaService
 
-static NSMutableDictionary *__resgiteredServices = nil;
-static NSMutableDictionary *__registeredCallbackOnDidLoadOfService = nil;
+static CFMutableDictionaryRef __resgiteredServices = nil;
+static CFMutableDictionaryRef __registeredCallbackOnDidLoadOfService = nil;
 static IMP _VMetaServiceCallforActionIMP = NULL;
 static SEL _VMetaServiceCallforActionSEL = NULL;
 
@@ -28,14 +28,14 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
 {
     if (!__resgiteredServices)
     {
-        __resgiteredServices = [[NSMutableDictionary alloc] init];
+        __resgiteredServices = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] init];
     }
     if (!__registeredCallbackOnDidLoadOfService)
     {
-        __registeredCallbackOnDidLoadOfService = [[NSMutableDictionary alloc] init];
+        __registeredCallbackOnDidLoadOfService = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] init];
     }
     
-    _VMetaServiceCallforActionSEL = @selector(callForAction:arguments:withCallback:);
+    _VMetaServiceCallforActionSEL = @selector(callForAction:arguments:callback:onQueue:);
     
     if (!_VMetaServiceCallforActionIMP)
     {
@@ -47,16 +47,22 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
 {
     if ((self = [super init]))
     {
-        _registeredProcessors = [[NSMutableDictionary alloc] init];        
+        _registeredProcessors = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_registeredProcessors release];
+    CFRelease(_registeredProcessors);
+    dispatch_release(_queue);
     
     [super dealloc];
+}
+
+- (void)initProcessors
+{
+    
 }
 
 - (void)registerBlock: (VServiceBlock)serviceBlock
@@ -66,8 +72,8 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
     {
         serviceBlock = Block_copy(serviceBlock);
         
-        [_registeredProcessors setObject: serviceBlock
-                                  forKey: action];
+        [(NSMutableDictionary *)_registeredProcessors setObject: serviceBlock
+                                                         forKey: action];
         
         Block_release(serviceBlock);
     }
@@ -75,13 +81,23 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
 
 - (void)callForAction: (NSString *)action
             arguments: (NSArray *)arguments
-         withCallback: (VCallbackBlock)callbackBlock
+             callback: (VCallbackBlock)callbackBlock
+              onQueue: (BOOL)isOnQueue
 {
-    VServiceBlock serviceBlock = CFDictionaryGetValue((CFDictionaryRef)_registeredProcessors, action);
+    VServiceBlock serviceBlock = CFDictionaryGetValue(_registeredProcessors, action);
     
     if (serviceBlock)
     {
-        serviceBlock(callbackBlock, arguments);
+        if (isOnQueue)
+        {
+            dispatch_async(_queue, (^
+                                    {
+                                        serviceBlock(callbackBlock, arguments);                                        
+                                    }));
+        }else
+        {
+            serviceBlock(callbackBlock, arguments);
+        }
     }
 }
 
@@ -94,24 +110,28 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
 + (void)registerService: (Class)serviceClass
 {
     
-    id<VMetaService> service = [[serviceClass alloc] init];
+    VMetaService* service = [[serviceClass alloc] init];
     id serviceID = [serviceClass identity];
+    service->_queue = dispatch_queue_create([serviceID UTF8String], DISPATCH_QUEUE_CONCURRENT);
+    [service initProcessors];
     
-    [__resgiteredServices setObject: service
-                             forKey: serviceID];
+    [(NSMutableDictionary *)__resgiteredServices setObject: service
+                                                    forKey: serviceID];
     
     [service release];
     
-    VCallbackBlock block = CFDictionaryGetValue((CFDictionaryRef)__registeredCallbackOnDidLoadOfService, serviceID);
+    VCallbackBlock block = CFDictionaryGetValue(__registeredCallbackOnDidLoadOfService, serviceID);
     if (block)
     {
         block(@[ serviceID ]);
+        
+        CFDictionaryRemoveValue(__registeredCallbackOnDidLoadOfService, serviceID);
     }
 }
 
 + (id<VMetaService>)serviceByID: (NSString *)serviceID
 {
-    return (id<VMetaService>)CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID);
+    return CFDictionaryGetValue(__resgiteredServices, serviceID);
 }
 
 + (void)registerBlock: (VCallbackBlock)block
@@ -122,7 +142,7 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
     {
         //has registered, so just call it
         //
-        if (CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID))
+        if (CFDictionaryGetValue(__resgiteredServices, serviceID))
         {
             block(@[ serviceID ]);
             
@@ -130,8 +150,8 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
         {
             block = Block_copy(block);
             
-            [__registeredCallbackOnDidLoadOfService setObject: block
-                                                       forKey: serviceID];
+            [(NSMutableDictionary *)__registeredCallbackOnDidLoadOfService setObject: block
+                                                                              forKey: serviceID];
             
             Block_release(block);
         }
@@ -140,8 +160,14 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
 
 void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments)
 {
-    id<VMetaService> service = (id<VMetaService>)CFDictionaryGetValue((CFDictionaryRef)__resgiteredServices, serviceID);
-    _VMetaServiceCallforActionIMP(service, _VMetaServiceCallforActionSEL, action, arguments, callback);
+    id<VMetaService> service = CFDictionaryGetValue(__resgiteredServices, serviceID);
+    _VMetaServiceCallforActionIMP(service, _VMetaServiceCallforActionSEL, action, arguments, callback, NO);
+}
+
+void VSQC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments)
+{
+    id<VMetaService> service = CFDictionaryGetValue(__resgiteredServices, serviceID);
+    _VMetaServiceCallforActionIMP(service, _VMetaServiceCallforActionSEL, action, arguments, callback, YES);
 }
 
 @end

@@ -235,9 +235,7 @@ static void VMachine_initialize(VMachineService *self)
 //                                                                                                                 ofType: @"lua"]];
 //        
 //        NSLog(@"%@", [data base64EncodedString]);
-        
-        [self initServiceCallbackFunctions];
-        
+                
     }
     return self;
 }
@@ -258,7 +256,7 @@ static void VMachine_initialize(VMachineService *self)
     [super dealloc];
 }
 
-- (void)initServiceCallbackFunctions
+- (void)initProcessors
 {
     __block id fakeSelf = self;
     
