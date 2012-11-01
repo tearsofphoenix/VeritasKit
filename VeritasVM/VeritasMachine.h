@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <VeritasMachineIOS/VMachineService.h>
-#import <VeritasMachineIOS/LuaObjCMessage.h>
-#import <VeritasMachineIOS/LuaObjCAuxiliary.h>
+#import <VeritasMachine/VMachineService.h>
+#import <VeritasMachine/LuaObjCMessage.h>
+#import <VeritasMachine/LuaObjCAuxiliary.h>

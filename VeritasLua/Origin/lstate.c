@@ -88,7 +88,7 @@ typedef struct LG {
 
 static unsigned int makeseed (lua_State *L) {
   char buff[4 * sizeof(size_t)];
-  unsigned int h = luai_makeseed();
+  unsigned int h = (unsigned int)luai_makeseed();
   int p = 0;
   addbuff(buff, p, L);  /* heap variable */
   addbuff(buff, p, &h);  /* local variable */

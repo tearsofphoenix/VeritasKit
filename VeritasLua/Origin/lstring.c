@@ -49,7 +49,7 @@ int luaS_eqstr (TString *a, TString *b) {
 
 
 unsigned int luaS_hash (const char *str, size_t l, unsigned int seed) {
-  unsigned int h = seed ^ l;
+  unsigned int h = (unsigned int)(seed ^ l);
   size_t l1;
   size_t step = (l >> LUAI_HASHLIMIT) + 1;
   for (l1 = l; l1 >= step; l1 -= step)

@@ -45,9 +45,11 @@ static int luaObjC_NSLog(lua_State *L)
                     case 'u':
                     {
                         lua_Integer value = lua_tointeger(L, iLooper);
-                        
+#if TARGET_OS_IPHONE
                         [logString appendFormat: @"%d", (NSInteger)value];
-                        
+#else
+                        [logString appendFormat: @"%ld", (NSInteger)value];
+#endif
                         ++iLooper;
                         break;
                     }

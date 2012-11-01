@@ -1213,7 +1213,7 @@ static Instruction *fix_l (lua_State *L, int t) {
   /* correct calls */
   for (i = 0; i < totalsize; i += sizei(p + i)) {
     if (p[i].i.code == IOpenCall) {
-      int pos = getposition(L, base + 1, p[i].i.offset);
+      int pos = (int)getposition(L, base + 1, p[i].i.offset);
       p[i].i.code = (p[target(p, i + 1)].i.code == IRet) ? IJmp : ICall;
       p[i].i.offset = pos - i;
     }
@@ -1232,7 +1232,7 @@ static Instruction *any (lua_State *L, int n, int extra, int *offsetp) {
   for (; n > UCHAR_MAX; n -= UCHAR_MAX)
     setinstaux(p1++, IAny, 0, UCHAR_MAX);
   setinstaux(p1++, IAny, 0, n);
-  if (offsetp) *offsetp = p1 - p;
+  if (offsetp) *offsetp = (int)(p1 - p);
   return p;
 }
 
