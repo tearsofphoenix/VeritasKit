@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <VeritasMachineMac/VeritasMachine.h>
+#import <VeritasMachine/VeritasMachine.h>
 
 @implementation AppDelegate
 

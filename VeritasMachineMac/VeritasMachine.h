@@ -6,6 +6,6 @@
 //
 //
 
-#import <VeritasMachineMac/VMachineService.h>
-#import <VeritasMachineMac/LuaObjCMessage.h>
-#import <VeritasMachineMac/LuaObjCAuxiliary.h>
+#import <VeritasMachine/VMachineService.h>
+#import <VeritasMachine/LuaObjCMessage.h>
+#import <VeritasMachine/LuaObjCAuxiliary.h>
