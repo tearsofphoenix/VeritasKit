@@ -9,8 +9,8 @@
 #ifndef LuaIOS_LuaObjCBase_h
 #define LuaIOS_LuaObjCBase_h
 
-#include "lua.h"
-#include "lauxlib.h"
+#import <LuaCore/lua.h>
+#import <LuaCore/lauxlib.h>
 
 #define VK_EXPORT LUAMOD_API
 
