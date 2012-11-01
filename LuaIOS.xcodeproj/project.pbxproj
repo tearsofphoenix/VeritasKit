@@ -283,6 +283,8 @@
 		E13C8F1816168B0D00A72BEF /* LuaObjCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3216168B0C00A72BEF /* LuaObjCProperty.m */; };
 		E13C8F1A16168B0D00A72BEF /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E13C8E3416168B0C00A72BEF /* LuaObjCRuntime.m */; };
 		E13C8F1D16168B0D00A72BEF /* VeritasKit-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */; };
+		E16FC4D116427B6B00A47A8D /* luac.c in Sources */ = {isa = PBXBuildFile; fileRef = E16FC4D016427B6B00A47A8D /* luac.c */; };
+		E16FC4D216427B6B00A47A8D /* luac.c in Sources */ = {isa = PBXBuildFile; fileRef = E16FC4D016427B6B00A47A8D /* luac.c */; };
 		E19827261616A4A10076399B /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E19827251616A4A10076399B /* LuaObjCBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E198272A1616D6440076399B /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E19827281616D6430076399B /* LuaFoundation.m */; };
 		E1BF3C3116397B68001570DF /* libffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A7B7631638EF380067B98A /* libffi.dylib */; };
@@ -584,6 +586,7 @@
 		E13C8E3316168B0C00A72BEF /* LuaObjCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCRuntime.h; sourceTree = "<group>"; };
 		E13C8E3416168B0C00A72BEF /* LuaObjCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaObjCRuntime.m; sourceTree = "<group>"; };
 		E13C8E3816168B0C00A72BEF /* VeritasKit-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VeritasKit-LICENSE"; sourceTree = "<group>"; };
+		E16FC4D016427B6B00A47A8D /* luac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luac.c; sourceTree = "<group>"; };
 		E19827251616A4A10076399B /* LuaObjCBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaObjCBase.h; sourceTree = "<group>"; };
 		E19827271616D6430076399B /* LuaFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFoundation.h; sourceTree = "<group>"; };
 		E19827281616D6430076399B /* LuaFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaFoundation.m; sourceTree = "<group>"; };
@@ -1147,6 +1150,7 @@
 		E13C8DE316168B0C00A72BEF /* Origin */ = {
 			isa = PBXGroup;
 			children = (
+				E16FC4D016427B6B00A47A8D /* luac.c */,
 				E13C8DE416168B0C00A72BEF /* lapi.c */,
 				E13C8DE516168B0C00A72BEF /* lapi.h */,
 				E13C8DE616168B0C00A72BEF /* lauxlib.c */,
@@ -1685,6 +1689,7 @@
 				22BFE28A16410E9100F07A98 /* lundump.c in Sources */,
 				22BFE28B16410E9100F07A98 /* lvm.c in Sources */,
 				22BFE28C16410E9100F07A98 /* lzio.c in Sources */,
+				E16FC4D116427B6B00A47A8D /* luac.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1725,6 +1730,7 @@
 				22BFE3031641103100F07A98 /* lundump.c in Sources */,
 				22BFE3041641103100F07A98 /* lvm.c in Sources */,
 				22BFE3051641103100F07A98 /* lzio.c in Sources */,
+				E16FC4D216427B6B00A47A8D /* luac.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2233,6 +2239,7 @@
 				22BFE26916410E0E00F07A98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22BFE2C716410FB800F07A98 /* Build configuration list for PBXNativeTarget "LuaCoreMac" */ = {
 			isa = XCConfigurationList;
@@ -2241,6 +2248,7 @@
 				22BFE2C916410FB800F07A98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22D834BD1615AA3D00C9F07C /* Build configuration list for PBXNativeTarget "VeritasMachineIOS" */ = {
 			isa = XCConfigurationList;

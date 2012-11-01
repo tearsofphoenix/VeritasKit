@@ -36,6 +36,7 @@ extern NSString * const VMachineServiceDoSourceCodeAction;
 
 extern NSString * const VMachineServiceRegisterGlobalConstantsAction;
 
+extern NSString * const VMachineServiceDumpSourceCodeToPathAction;
 __BEGIN_DECLS
 
 extern void LuaCall(NSString *sourceCode,

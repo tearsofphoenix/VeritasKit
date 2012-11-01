@@ -30,6 +30,8 @@
 #import "NSString+LuaObjCIndex.h"
 #import "NSData+Base64.h"
 
+extern int lua_dumpSourceCode(lua_State* L, const char *sourceCode, const char* outputPath);
+
 static char * const VMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
 static char * const VMachineGarbageCollectionQueueIdentifier = "com.veritas.lua-engine.garbage-colletion.queue";
@@ -284,6 +286,20 @@ static void VMachine_initialize(VMachineService *self)
                               }
                           })
               forAction: VMachineServiceRegisterGlobalConstantsAction];
+    
+    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
+                          {
+                              NSString *sourceCode = [arguments objectAtIndex: 0];
+                              NSString *filePath = [arguments objectAtIndex: 1];
+                              
+                              const char *parsedCode = [self parseString: sourceCode];
+                              LuaStateRef luaStateRef = _internal->parserState;
+
+                              lua_dumpSourceCode(luaStateRef, parsedCode, [filePath UTF8String]);
+                              
+
+                          })
+              forAction: VMachineServiceDumpSourceCodeToPathAction];
 }
 
 - (const char *)parseString: (NSString *)sourceCode
@@ -416,6 +432,7 @@ static void VMachine_initialize(VMachineService *self)
         //parse source code to lua code
         //
         const char* parsedString = [self parseString: sourceCode];
+        
         //printf("string: %s\n", parsedString);
         //load source code
         //
@@ -446,9 +463,11 @@ NSString * const VMachineParserSupport = @"lua-engine.feature.lpeg";
 
 #pragma mark - engine supported actions
 
-NSString * const VMachineServiceDoSourceCodeAction = @"lua-engine.action.doSourceCode";
+NSString * const VMachineServiceDoSourceCodeAction = @"action.doSourceCode";
 
-NSString * const VMachineServiceRegisterGlobalConstantsAction = @"lua-engine.action.registerGlobalConstatns";
+NSString * const VMachineServiceRegisterGlobalConstantsAction = @"action.registerGlobalConstatns";
+
+NSString * const VMachineServiceDumpSourceCodeToPathAction = @"action.dumpSourceCodeToPath";
 
 void LuaCall(NSString *sourceCode,
              NSString *functionName,
