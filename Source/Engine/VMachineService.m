@@ -303,10 +303,13 @@ static void VMachine_initialize(VMachineService *self)
     [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
                               LuaStateRef luaStateRef = _internal->luaState;
-                              for (NSString *sourceCodeLooper in arguments)
+                              
+                              NSArray *sourceCodes = [arguments objectAtIndex: 0];
+                              
+                              for (NSString *sourceCodeLooper in sourceCodes)
                               {
                                   const char*parsedCode = [self parseString: sourceCodeLooper];
-                                  if(luaL_loadstring(luaStateRef, parsedCode) != LUA_OK)
+                                  if(luaL_dostring(luaStateRef, parsedCode) != LUA_OK)
                                   {
                                       lua_error(luaStateRef);
                                       return ;
