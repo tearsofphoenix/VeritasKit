@@ -37,13 +37,13 @@ extern NSString * const VMachineServiceDoSourceCodeAction;
 extern NSString * const VMachineServiceRegisterGlobalConstantsAction;
 
 extern NSString * const VMachineServiceDumpSourceCodeToPathAction;
+
+extern NSString * const VMachineServiceDebugSourceFilesAction;
+
 __BEGIN_DECLS
 
-extern void LuaCall(NSString *sourceCode,
-                    NSString *functionName,
-                    LuaObjCBlock start,
-                    int argumentCount,
-                    int returnCount,
-                    LuaObjCBlock completion);
+extern void LuaCall(NSString *sourceCode, NSString *functionName,
+                    LuaObjCBlock start, int argumentCount,
+                    int returnCount,  LuaObjCBlock completion);
 
 __END_DECLS

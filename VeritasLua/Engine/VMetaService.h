@@ -30,9 +30,6 @@ typedef void (^ VServiceBlock)(VCallbackBlock callback, NSArray *arguments);
 
 + (id<VMetaService>)serviceByID: (NSString *)serviceID;
 
-+ (void)registerBlock: (VCallbackBlock)block
-   onDidLoadOfService: (id)serviceID;
-
 @end
 
 extern void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments);

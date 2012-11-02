@@ -233,11 +233,11 @@ static void VMachine_initialize(VMachineService *self)
         
         dispatch_resume(_internal->garbageCollectTimer);
         
-//        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
-//                                                                                                                 ofType: @"lua"]];
-//        
-//        NSLog(@"%@", [data base64EncodedString]);
-                
+        //        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
+        //                                                                                                                 ofType: @"lua"]];
+        //
+        //        NSLog(@"%@", [data base64EncodedString]);
+        
     }
     return self;
 }
@@ -294,12 +294,33 @@ static void VMachine_initialize(VMachineService *self)
                               
                               const char *parsedCode = [self parseString: sourceCode];
                               LuaStateRef luaStateRef = _internal->parserState;
-
+                              
                               lua_dumpSourceCode(luaStateRef, parsedCode, [filePath UTF8String]);
                               
-
                           })
               forAction: VMachineServiceDumpSourceCodeToPathAction];
+    
+    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
+                          {
+                              LuaStateRef luaStateRef = _internal->luaState;
+                              for (NSString *sourceCodeLooper in arguments)
+                              {
+                                  const char*parsedCode = [self parseString: sourceCodeLooper];
+                                  if(luaL_loadstring(luaStateRef, parsedCode) != LUA_OK)
+                                  {
+                                      lua_error(luaStateRef);
+                                      return ;
+                                  }
+                              }
+                              
+                              lua_getglobal(luaStateRef, "main");
+                              
+                              if(lua_pcall(luaStateRef, 0, 0, 0) != LUA_OK)
+                              {
+                                  lua_error(luaStateRef);
+                              }
+                          })
+              forAction: VMachineServiceDebugSourceFilesAction];
 }
 
 - (const char *)parseString: (NSString *)sourceCode
@@ -469,12 +490,9 @@ NSString * const VMachineServiceRegisterGlobalConstantsAction = @"action.registe
 
 NSString * const VMachineServiceDumpSourceCodeToPathAction = @"action.dumpSourceCodeToPath";
 
-void LuaCall(NSString *sourceCode,
-             NSString *functionName,
-             LuaObjCBlock start,
-             int argumentCount,
-             int returnCount,
-             LuaObjCBlock completion
+NSString * const VMachineServiceDebugSourceFilesAction = @"action.debugSourceFiles";
+
+void LuaCall(NSString *sourceCode, NSString *functionName, LuaObjCBlock start, int argumentCount, int returnCount, LuaObjCBlock completion
              )
 {
     [(VMachineService *)[VMetaService serviceByID: VMachineServiceID] executeFunctionName: functionName

@@ -20,7 +20,7 @@
 @implementation VMetaService
 
 static CFMutableDictionaryRef __resgiteredServices = nil;
-static CFMutableDictionaryRef __registeredCallbackOnDidLoadOfService = nil;
+
 static IMP _VMetaServiceCallforActionIMP = NULL;
 static SEL _VMetaServiceCallforActionSEL = NULL;
 
@@ -30,11 +30,7 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
     {
         __resgiteredServices = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] init];
     }
-    if (!__registeredCallbackOnDidLoadOfService)
-    {
-        __registeredCallbackOnDidLoadOfService = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] init];
-    }
-    
+
     _VMetaServiceCallforActionSEL = @selector(callForAction:arguments:callback:onQueue:);
     
     if (!_VMetaServiceCallforActionIMP)
@@ -120,42 +116,11 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
     
     [service release];
     
-    VCallbackBlock block = CFDictionaryGetValue(__registeredCallbackOnDidLoadOfService, serviceID);
-    if (block)
-    {
-        block(@[ serviceID ]);
-        
-        CFDictionaryRemoveValue(__registeredCallbackOnDidLoadOfService, serviceID);
-    }
 }
 
 + (id<VMetaService>)serviceByID: (NSString *)serviceID
 {
     return CFDictionaryGetValue(__resgiteredServices, serviceID);
-}
-
-+ (void)registerBlock: (VCallbackBlock)block
-   onDidLoadOfService: (id)serviceID
-{
-    
-    if (block && serviceID)
-    {
-        //has registered, so just call it
-        //
-        if (CFDictionaryGetValue(__resgiteredServices, serviceID))
-        {
-            block(@[ serviceID ]);
-            
-        }else
-        {
-            block = Block_copy(block);
-            
-            [(NSMutableDictionary *)__registeredCallbackOnDidLoadOfService setObject: block
-                                                                              forKey: serviceID];
-            
-            Block_release(block);
-        }
-    }
 }
 
 void VSC(NSString *serviceID, NSString *action, VCallbackBlock callback, NSArray *arguments)
