@@ -1,0 +1,11 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<enum value='5' name='ACErrorAccountAlreadyExists'/>
+<enum value='3' name='ACErrorAccountAuthenticationFailed'/>
+<enum value='2' name='ACErrorAccountMissingRequiredProperty'/>
+<enum value='6' name='ACErrorAccountNotFound'/>
+<enum value='4' name='ACErrorAccountTypeInvalid'/>
+<enum value='7' name='ACErrorPermissionDenied'/>
+<enum value='1' name='ACErrorUnknown'/>
+</signatures>

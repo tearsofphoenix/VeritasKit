@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<constant type='@' name='ADErrorDomain'/>
+<class name='NSObject'>
+<method selector='bannerViewActionShouldBegin:willLeaveApplication:'>
+<arg type='B' index='1'/>
+<retval type='B'/>
+</method>
+<method selector='interstitialAdActionShouldBegin:willLeaveApplication:'>
+<arg type='B' index='1'/>
+<retval type='B'/>
+</method>
+</class>
+<informal_protocol name='ADBannerViewDelegate'>
+<method type='v16@0:4@8@12' type64='v32@0:8@16@24' selector='bannerView:didFailToReceiveAdWithError:'/>
+<method type='v12@0:4@8' type64='v24@0:8@16' selector='bannerViewActionDidFinish:'/>
+<method type='B16@0:4@8B12' type64='B28@0:8@16B24' selector='bannerViewActionShouldBegin:willLeaveApplication:'/>
+<method type='v12@0:4@8' type64='v24@0:8@16' selector='bannerViewDidLoadAd:'/>
+</informal_protocol>
+<informal_protocol name='ADInterstitialAdDelegate'>
+<method type='v16@0:4@8@12' type64='v32@0:8@16@24' selector='interstitialAd:didFailWithError:'/>
+<method type='v12@0:4@8' type64='v24@0:8@16' selector='interstitialAdActionDidFinish:'/>
+<method type='B16@0:4@8B12' type64='B28@0:8@16B24' selector='interstitialAdActionShouldBegin:willLeaveApplication:'/>
+<method type='v12@0:4@8' type64='v24@0:8@16' selector='interstitialAdDidLoad:'/>
+<method type='v12@0:4@8' type64='v24@0:8@16' selector='interstitialAdDidUnload:'/>
+</informal_protocol>
+</signatures>

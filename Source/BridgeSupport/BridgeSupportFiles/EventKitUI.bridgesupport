@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='1.0'>
+<enum name='EKCalendarChooserDisplayAllCalendars' value='0'/>
+<enum name='EKCalendarChooserDisplayWritableCalendarsOnly' value='1'/>
+<enum name='EKCalendarChooserSelectionStyleMultiple' value='1'/>
+<enum name='EKCalendarChooserSelectionStyleSingle' value='0'/>
+<enum name='EKEventEditViewActionCanceled' value='0'/>
+<enum name='EKEventEditViewActionCancelled' value='0'/>
+<enum name='EKEventEditViewActionDeleted' value='2'/>
+<enum name='EKEventEditViewActionSaved' value='1'/>
+<enum name='EKEventViewActionDeleted' value='2'/>
+<enum name='EKEventViewActionDone' value='0'/>
+<enum name='EKEventViewActionResponded' value='1'/>
+<informal_protocol name='EKCalendarChooserDelegate'>
+<method type64='v24@0:8@16' selector='calendarChooserDidCancel:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='calendarChooserDidFinish:' type='v12@0:4@8'/>
+<method type64='v24@0:8@16' selector='calendarChooserSelectionDidChange:' type='v12@0:4@8'/>
+</informal_protocol>
+<informal_protocol name='EKEventEditViewDelegate'>
+<method type64='v28@0:8@16i24' selector='eventEditViewController:didCompleteWithAction:' type='v16@0:4@8i12'/>
+<method type64='@24@0:8@16' selector='eventEditViewControllerDefaultCalendarForNewEvents:' type='@12@0:4@8'/>
+</informal_protocol>
+</signatures>

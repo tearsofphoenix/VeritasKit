@@ -1,0 +1,1415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E14A34C41643A64F00B8EB6E /* libffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34C31643A64F00B8EB6E /* libffi.dylib */; };
+		E14A34E11643A77F00B8EB6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E01643A77F00B8EB6E /* UIKit.framework */; };
+		E14A34E31643A77F00B8EB6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E21643A77F00B8EB6E /* Foundation.framework */; };
+		E14A34E51643A77F00B8EB6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */; };
+		E14A34EB1643A77F00B8EB6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E14A34E91643A77F00B8EB6E /* InfoPlist.strings */; };
+		E14A34ED1643A77F00B8EB6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E14A34EC1643A77F00B8EB6E /* main.m */; };
+		E14A34F31643A77F00B8EB6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E14A34F21643A77F00B8EB6E /* Default.png */; };
+		E14A34F51643A77F00B8EB6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14A34F41643A77F00B8EB6E /* Default@2x.png */; };
+		E14A34F71643A77F00B8EB6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14A34F61643A77F00B8EB6E /* Default-568h@2x.png */; };
+		E14A34FC1643A79D00B8EB6E /* Main.v in Resources */ = {isa = PBXBuildFile; fileRef = E14A34FB1643A79D00B8EB6E /* Main.v */; };
+		E14A35271643A83A00B8EB6E /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000C1643993300F8AE92 /* LuaCParser.lua */; };
+		E14A35281643A83A00B8EB6E /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */; };
+		E14A35291643A86500B8EB6E /* VeritasMachineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */; };
+		E14A352A1643A8B100B8EB6E /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8C1643993300F8AE92 /* Accelerate.bridgesupport */; };
+		E14A352B1643A8B100B8EB6E /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8D1643993300F8AE92 /* Accounts.bridgesupport */; };
+		E14A352C1643A8B100B8EB6E /* AddressBook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8E1643993300F8AE92 /* AddressBook.bridgesupport */; };
+		E14A352D1643A8B100B8EB6E /* AddressBookUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8F1643993300F8AE92 /* AddressBookUI.bridgesupport */; };
+		E14A352E1643A8B100B8EB6E /* AssetsLibrary.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF901643993300F8AE92 /* AssetsLibrary.bridgesupport */; };
+		E14A352F1643A8B100B8EB6E /* AudioToolbox.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF911643993300F8AE92 /* AudioToolbox.bridgesupport */; };
+		E14A35301643A8B100B8EB6E /* AudioUnit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF921643993300F8AE92 /* AudioUnit.bridgesupport */; };
+		E14A35311643A8B100B8EB6E /* AVFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF931643993300F8AE92 /* AVFoundation.bridgesupport */; };
+		E14A35321643A8B100B8EB6E /* CoreAudio.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF941643993300F8AE92 /* CoreAudio.bridgesupport */; };
+		E14A35331643A8B100B8EB6E /* CoreBluetooth.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF951643993300F8AE92 /* CoreBluetooth.bridgesupport */; };
+		E14A35341643A8B100B8EB6E /* CoreData.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF961643993300F8AE92 /* CoreData.bridgesupport */; };
+		E14A35351643A8B100B8EB6E /* CoreFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF971643993300F8AE92 /* CoreFoundation.bridgesupport */; };
+		E14A35361643A8B100B8EB6E /* CoreImage.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF981643993300F8AE92 /* CoreImage.bridgesupport */; };
+		E14A35371643A8B100B8EB6E /* CoreLocation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF991643993300F8AE92 /* CoreLocation.bridgesupport */; };
+		E14A35381643A8B100B8EB6E /* CoreMedia.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9A1643993300F8AE92 /* CoreMedia.bridgesupport */; };
+		E14A35391643A8B100B8EB6E /* CoreMIDI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9B1643993300F8AE92 /* CoreMIDI.bridgesupport */; };
+		E14A353A1643A8B100B8EB6E /* CoreMotion.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9C1643993300F8AE92 /* CoreMotion.bridgesupport */; };
+		E14A353B1643A8B100B8EB6E /* CoreTelephony.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9D1643993300F8AE92 /* CoreTelephony.bridgesupport */; };
+		E14A353C1643A8B100B8EB6E /* CoreVideo.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9E1643993300F8AE92 /* CoreVideo.bridgesupport */; };
+		E14A353D1643A8B100B8EB6E /* EventKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9F1643993300F8AE92 /* EventKit.bridgesupport */; };
+		E14A353E1643A8B100B8EB6E /* EventKitUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA01643993300F8AE92 /* EventKitUI.bridgesupport */; };
+		E14A353F1643A8B100B8EB6E /* ExternalAccessory.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA11643993300F8AE92 /* ExternalAccessory.bridgesupport */; };
+		E14A35401643A8B100B8EB6E /* Foundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA21643993300F8AE92 /* Foundation.bridgesupport */; };
+		E14A35411643A8B100B8EB6E /* GameKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA31643993300F8AE92 /* GameKit.bridgesupport */; };
+		E14A35421643A8B100B8EB6E /* GSS.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA41643993300F8AE92 /* GSS.bridgesupport */; };
+		E14A35431643A8B100B8EB6E /* iAd.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA51643993300F8AE92 /* iAd.bridgesupport */; };
+		E14A35441643A8B100B8EB6E /* MapKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA61643993300F8AE92 /* MapKit.bridgesupport */; };
+		E14A35451643A8B100B8EB6E /* MediaPlayer.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA71643993300F8AE92 /* MediaPlayer.bridgesupport */; };
+		E14A35461643A8B100B8EB6E /* MessageUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA81643993300F8AE92 /* MessageUI.bridgesupport */; };
+		E14A35471643A8B100B8EB6E /* MobileCoreServices.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA91643993300F8AE92 /* MobileCoreServices.bridgesupport */; };
+		E14A35481643A8B100B8EB6E /* NewsstandKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAA1643993300F8AE92 /* NewsstandKit.bridgesupport */; };
+		E14A35491643A8B100B8EB6E /* OpenAL.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAB1643993300F8AE92 /* OpenAL.bridgesupport */; };
+		E14A354A1643A8B100B8EB6E /* OpenGLES.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAC1643993300F8AE92 /* OpenGLES.bridgesupport */; };
+		E14A354B1643A8B100B8EB6E /* QuartzCore.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAD1643993300F8AE92 /* QuartzCore.bridgesupport */; };
+		E14A354C1643A8B100B8EB6E /* QuickLook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAE1643993300F8AE92 /* QuickLook.bridgesupport */; };
+		E14A354D1643A8B100B8EB6E /* Security.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAF1643993300F8AE92 /* Security.bridgesupport */; };
+		E14A354E1643A8B100B8EB6E /* StoreKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB01643993300F8AE92 /* StoreKit.bridgesupport */; };
+		E14A354F1643A8B100B8EB6E /* SystemConfiguration.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB11643993300F8AE92 /* SystemConfiguration.bridgesupport */; };
+		E14A35501643A8B100B8EB6E /* Twitter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB21643993300F8AE92 /* Twitter.bridgesupport */; };
+		E14A35511643A8B100B8EB6E /* UIKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB31643993300F8AE92 /* UIKit.bridgesupport */; };
+		E14A35521643A8BF00B8EB6E /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000C1643993300F8AE92 /* LuaCParser.lua */; };
+		E14A35531643A8BF00B8EB6E /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */; };
+		E15713A31643A34C00F6EAAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A21643A34C00F6EAAB /* UIKit.framework */; };
+		E15713A51643A39500F6EAAB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A41643A39500F6EAAB /* libxml2.2.dylib */; };
+		E15713A71643A40B00F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A61643A40B00F6EAAB /* QuartzCore.framework */; };
+		E15713A81643A43500F6EAAB /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4002F1643995D00F8AE92 /* LuaKit.framework */; };
+		E15713A91643A45A00F6EAAB /* libffi_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A400001643993300F8AE92 /* libffi_ios.a */; };
+		E15713AB1643A47000F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AA1643A47000F6EAAB /* CoreGraphics.framework */; };
+		E15713AD1643A47900F6EAAB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AC1643A47900F6EAAB /* OpenGLES.framework */; };
+		E15713AF1643A51F00F6EAAB /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400041643993300F8AE92 /* ffi.h */; };
+		E15713B01643A51F00F6EAAB /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400051643993300F8AE92 /* ffi_i386.h */; };
+		E15713B11643A51F00F6EAAB /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400061643993300F8AE92 /* ffi_x86_64.h */; };
+		E15713B21643A51F00F6EAAB /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400071643993300F8AE92 /* ffitarget.h */; };
+		E15713B31643A51F00F6EAAB /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400081643993300F8AE92 /* ffitarget_i386.h */; };
+		E15713B41643A51F00F6EAAB /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400091643993300F8AE92 /* ffitarget_x86_64.h */; };
+		E15713B51643A5B000F6EAAB /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4002F1643995D00F8AE92 /* LuaKit.framework */; };
+		E15713B71643A5B700F6EAAB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713B61643A5B700F6EAAB /* libxml2.2.dylib */; };
+		E15713B91643A5BE00F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */; };
+		E15713BB1643A5C300F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713BA1643A5C300F6EAAB /* QuartzCore.framework */; };
+		E1A4006616439A7900F8AE92 /* LuaBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB51643993300F8AE92 /* LuaBridgeFunctor.m */; };
+		E1A4006716439A7900F8AE92 /* LuaBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* LuaBridgeInfo.m */; };
+		E1A4006816439A7900F8AE92 /* VBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VBridgeService.m */; };
+		E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
+		E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
+		E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
+		E1A4006C16439A7900F8AE92 /* LuaObjCProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */; };
+		E1A4006D16439A7900F8AE92 /* NSArray+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */; };
+		E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
+		E1A4006F16439A7900F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */; };
+		E1A4007016439A7900F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */; };
+		E1A4007116439A7900F8AE92 /* NSString+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */; };
+		E1A4007216439A7900F8AE92 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */; };
+		E1A4007316439A7900F8AE92 /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */; };
+		E1A4007416439A7900F8AE92 /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD71643993300F8AE92 /* LuaFoundation.m */; };
+		E1A4007516439A7900F8AE92 /* LuaNSBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD91643993300F8AE92 /* LuaNSBundle.m */; };
+		E1A4007616439A7900F8AE92 /* LuaNSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDB1643993300F8AE92 /* LuaNSCollection.m */; };
+		E1A4007716439A7900F8AE92 /* LuaNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */; };
+		E1A4007816439A7900F8AE92 /* LuaNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.m */; };
+		E1A4007A16439A7900F8AE92 /* LuaCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */; };
+		E1A4007B16439A7900F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */; };
+		E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.m */; };
+		E1A4008216439A7900F8AE92 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.m */; };
+		E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
+		E1A4008416439A7900F8AE92 /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */; };
+		E1A4008516439A7900F8AE92 /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */; };
+		E1A4008616439A7900F8AE92 /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* LuaObjCClass.m */; };
+		E1A4008716439A7900F8AE92 /* LuaObjCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */; };
+		E1A4008816439A7900F8AE92 /* LuaObjCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* LuaObjCProperty.m */; };
+		E1A4008916439A7900F8AE92 /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* LuaObjCRuntime.m */; };
+		E1A4008A16439A9F00F8AE92 /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008B16439A9F00F8AE92 /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBF1643993300F8AE92 /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008C16439A9F00F8AE92 /* LuaObjCAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008D16439A9F00F8AE92 /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* LuaObjCBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008E16439AAF00F8AE92 /* VeritasMachineKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400461643996C00F8AE92 /* VeritasMachineKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1A4008F16439AF100F8AE92 /* LuaObjCMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4009016439B4600F8AE92 /* LuaBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB51643993300F8AE92 /* LuaBridgeFunctor.m */; };
+		E1A4009116439B4600F8AE92 /* LuaBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* LuaBridgeInfo.m */; };
+		E1A4009216439B4600F8AE92 /* VBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VBridgeService.m */; };
+		E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
+		E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
+		E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
+		E1A4009616439B4600F8AE92 /* LuaObjCProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */; };
+		E1A4009716439B4600F8AE92 /* NSArray+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */; };
+		E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
+		E1A4009916439B4600F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */; };
+		E1A4009A16439B4600F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */; };
+		E1A4009B16439B4600F8AE92 /* NSString+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */; };
+		E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */; };
+		E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */; };
+		E1A4009E16439B4600F8AE92 /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD71643993300F8AE92 /* LuaFoundation.m */; };
+		E1A4009F16439B4600F8AE92 /* LuaNSBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD91643993300F8AE92 /* LuaNSBundle.m */; };
+		E1A400A016439B4600F8AE92 /* LuaNSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDB1643993300F8AE92 /* LuaNSCollection.m */; };
+		E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */; };
+		E1A400A216439B4600F8AE92 /* LuaNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.m */; };
+		E1A400A316439B4600F8AE92 /* LuaEAGL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE21643993300F8AE92 /* LuaEAGL.m */; };
+		E1A400A416439B4600F8AE92 /* LuaCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */; };
+		E1A400A516439B4600F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */; };
+		E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */; };
+		E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEE1643993300F8AE92 /* LuaUIGeometry.m */; };
+		E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF01643993300F8AE92 /* LuaUIGraphics.m */; };
+		E1A400A916439B4600F8AE92 /* LuaUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF21643993300F8AE92 /* LuaUIKit.m */; };
+		E1A400AA16439B4600F8AE92 /* LuaUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF41643993300F8AE92 /* LuaUIView.m */; };
+		E1A400AB16439B4600F8AE92 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.m */; };
+		E1A400AC16439B4600F8AE92 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.m */; };
+		E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
+		E1A400AE16439B4600F8AE92 /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */; };
+		E1A400AF16439B4600F8AE92 /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */; };
+		E1A400B016439B4600F8AE92 /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* LuaObjCClass.m */; };
+		E1A400B116439B4600F8AE92 /* LuaObjCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */; };
+		E1A400B216439B4600F8AE92 /* LuaObjCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* LuaObjCProperty.m */; };
+		E1A400B316439B4600F8AE92 /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* LuaObjCRuntime.m */; };
+		E1A400B416439B6900F8AE92 /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B516439B6900F8AE92 /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBF1643993300F8AE92 /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B616439B6900F8AE92 /* LuaObjCAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B716439B6900F8AE92 /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* LuaObjCBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B816439B6900F8AE92 /* LuaObjCMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4005E16439A1D00F8AE92 /* VeritasMachineKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1A400BC16439BEC00F8AE92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A400BA16439BAA00F8AE92 /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E14A34FD1643A7BA00B8EB6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34E8A16714D24C82000F9EB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1A4005316439A1C00F8AE92;
+			remoteInfo = VeritasMachineKitiOS;
+		};
+		E1A4002E1643995D00F8AE92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E1A4FE8A1643959600F8AE92;
+			remoteInfo = LuaKit;
+		};
+		E1A400301643995D00F8AE92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E1A4FEA71643961600F8AE92;
+			remoteInfo = LuaKitiOS;
+		};
+		E1A4004D16439A0C00F8AE92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E1A4FE891643959600F8AE92;
+			remoteInfo = LuaKit;
+		};
+		E1A4006416439A6600F8AE92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E1A4FEA61643961600F8AE92;
+			remoteInfo = LuaKitiOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E14A34C31643A64F00B8EB6E /* libffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libffi.dylib; sourceTree = DEVELOPER_DIR; };
+		E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasMahineIOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E14A34E01643A77F00B8EB6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E14A34E21643A77F00B8EB6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E14A34E81643A77F00B8EB6E /* VeritasMahineIOSDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VeritasMahineIOSDemo-Info.plist"; sourceTree = "<group>"; };
+		E14A34EA1643A77F00B8EB6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E14A34EC1643A77F00B8EB6E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E14A34F21643A77F00B8EB6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E14A34F41643A77F00B8EB6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E14A34F61643A77F00B8EB6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E14A34FB1643A79D00B8EB6E /* Main.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Main.v; sourceTree = "<group>"; };
+		E15713A21643A34C00F6EAAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E15713A41643A39500F6EAAB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		E15713A61643A40B00F6EAAB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E15713AA1643A47000F6EAAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E15713AC1643A47900F6EAAB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E15713B61643A5B700F6EAAB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libxml2.2.dylib; sourceTree = DEVELOPER_DIR; };
+		E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		E15713BA1643A5C300F6EAAB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		E1A400001643993300F8AE92 /* libffi_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_ios.a; sourceTree = "<group>"; };
+		E1A400011643993300F8AE92 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		E1A400041643993300F8AE92 /* ffi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		E1A400051643993300F8AE92 /* ffi_i386.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		E1A400061643993300F8AE92 /* ffi_x86_64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
+		E1A400071643993300F8AE92 /* ffitarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		E1A400081643993300F8AE92 /* ffitarget_i386.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		E1A400091643993300F8AE92 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
+		E1A4000A1643993300F8AE92 /* libffi_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_OSX.a; sourceTree = "<group>"; };
+		E1A4000C1643993300F8AE92 /* LuaCParser.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = LuaCParser.lua; sourceTree = "<group>"; };
+		E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = LuaObjCParser.lua; sourceTree = "<group>"; };
+		E1A4000F1643993300F8AE92 /* XMLDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLDocument.h; sourceTree = "<group>"; };
+		E1A400101643993300F8AE92 /* XMLDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLDocument.m; sourceTree = "<group>"; };
+		E1A400111643993300F8AE92 /* XMLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLNode.h; sourceTree = "<group>"; };
+		E1A400121643993300F8AE92 /* XMLNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLNode.m; sourceTree = "<group>"; };
+		E1A400131643993300F8AE92 /* XMLPathProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLPathProcessor.h; sourceTree = "<group>"; };
+		E1A400141643993300F8AE92 /* XMLPathProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLPathProcessor.m; sourceTree = "<group>"; };
+		E1A400161643993300F8AE92 /* LuaNSObjectSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSObjectSupport.h; sourceTree = "<group>"; };
+		E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSObjectSupport.m; sourceTree = "<group>"; };
+		E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCAuxiliary.h; sourceTree = "<group>"; };
+		E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCAuxiliary.m; sourceTree = "<group>"; };
+		E1A4001A1643993300F8AE92 /* LuaObjCBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCBase.h; sourceTree = "<group>"; };
+		E1A4001B1643993300F8AE92 /* LuaObjCClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCClass.h; sourceTree = "<group>"; };
+		E1A4001C1643993300F8AE92 /* LuaObjCClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCClass.m; sourceTree = "<group>"; };
+		E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCMessage.h; sourceTree = "<group>"; };
+		E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCMessage.m; sourceTree = "<group>"; };
+		E1A4001F1643993300F8AE92 /* LuaObjCParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCParser.h; sourceTree = "<group>"; };
+		E1A400201643993300F8AE92 /* LuaObjCProperty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCProperty.h; sourceTree = "<group>"; };
+		E1A400211643993300F8AE92 /* LuaObjCProperty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCProperty.m; sourceTree = "<group>"; };
+		E1A400221643993300F8AE92 /* LuaObjCRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCRuntime.h; sourceTree = "<group>"; };
+		E1A400231643993300F8AE92 /* LuaObjCRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCRuntime.m; sourceTree = "<group>"; };
+		E1A400251643993300F8AE92 /* VeritasKit-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "VeritasKit-LICENSE"; sourceTree = "<group>"; };
+		E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
+		E1A400371643996C00F8AE92 /* VeritasMachineKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeritasMachineKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A400411643996C00F8AE92 /* VeritasMachineKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "VeritasMachineKit-Info.plist"; path = "VeritasMachineKit/VeritasMachineKit-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E1A400451643996C00F8AE92 /* VeritasMachineKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "VeritasMachineKit-Prefix.pch"; path = "VeritasMachineKit/VeritasMachineKit-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		E1A400461643996C00F8AE92 /* VeritasMachineKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VeritasMachineKit.h; path = VeritasMachineKit/VeritasMachineKit.h; sourceTree = SOURCE_ROOT; };
+		E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeritasMachineKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A4005916439A1D00F8AE92 /* VeritasMachineKitiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VeritasMachineKitiOS-Info.plist"; sourceTree = "<group>"; };
+		E1A4005D16439A1D00F8AE92 /* VeritasMachineKitiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeritasMachineKitiOS-Prefix.pch"; sourceTree = "<group>"; };
+		E1A4005E16439A1D00F8AE92 /* VeritasMachineKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasMachineKit.h; sourceTree = "<group>"; };
+		E1A400BA16439BAA00F8AE92 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		E1A4FF8C1643993300F8AE92 /* Accelerate.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Accelerate.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF8D1643993300F8AE92 /* Accounts.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Accounts.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF8E1643993300F8AE92 /* AddressBook.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AddressBook.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF8F1643993300F8AE92 /* AddressBookUI.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AddressBookUI.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF901643993300F8AE92 /* AssetsLibrary.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetsLibrary.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF911643993300F8AE92 /* AudioToolbox.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AudioToolbox.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF921643993300F8AE92 /* AudioUnit.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AudioUnit.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF931643993300F8AE92 /* AVFoundation.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AVFoundation.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF941643993300F8AE92 /* CoreAudio.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreAudio.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF951643993300F8AE92 /* CoreBluetooth.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreBluetooth.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF961643993300F8AE92 /* CoreData.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreData.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF971643993300F8AE92 /* CoreFoundation.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreFoundation.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF981643993300F8AE92 /* CoreImage.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreImage.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF991643993300F8AE92 /* CoreLocation.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreLocation.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF9A1643993300F8AE92 /* CoreMedia.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreMedia.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF9B1643993300F8AE92 /* CoreMIDI.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreMIDI.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF9C1643993300F8AE92 /* CoreMotion.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreMotion.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF9D1643993300F8AE92 /* CoreTelephony.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreTelephony.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF9E1643993300F8AE92 /* CoreVideo.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreVideo.bridgesupport; sourceTree = "<group>"; };
+		E1A4FF9F1643993300F8AE92 /* EventKit.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = EventKit.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA01643993300F8AE92 /* EventKitUI.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = EventKitUI.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA11643993300F8AE92 /* ExternalAccessory.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ExternalAccessory.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA21643993300F8AE92 /* Foundation.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Foundation.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA31643993300F8AE92 /* GameKit.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GameKit.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA41643993300F8AE92 /* GSS.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GSS.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA51643993300F8AE92 /* iAd.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iAd.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA61643993300F8AE92 /* MapKit.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MapKit.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA71643993300F8AE92 /* MediaPlayer.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MediaPlayer.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA81643993300F8AE92 /* MessageUI.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MessageUI.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFA91643993300F8AE92 /* MobileCoreServices.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MobileCoreServices.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFAA1643993300F8AE92 /* NewsstandKit.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NewsstandKit.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFAB1643993300F8AE92 /* OpenAL.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OpenAL.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFAC1643993300F8AE92 /* OpenGLES.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OpenGLES.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFAD1643993300F8AE92 /* QuartzCore.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = QuartzCore.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFAE1643993300F8AE92 /* QuickLook.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = QuickLook.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFAF1643993300F8AE92 /* Security.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Security.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFB01643993300F8AE92 /* StoreKit.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StoreKit.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFB11643993300F8AE92 /* SystemConfiguration.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SystemConfiguration.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFB21643993300F8AE92 /* Twitter.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Twitter.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFB31643993300F8AE92 /* UIKit.bridgesupport */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UIKit.bridgesupport; sourceTree = "<group>"; };
+		E1A4FFB41643993300F8AE92 /* LuaBridgeFunctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaBridgeFunctor.h; sourceTree = "<group>"; };
+		E1A4FFB51643993300F8AE92 /* LuaBridgeFunctor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeFunctor.m; sourceTree = "<group>"; };
+		E1A4FFB61643993300F8AE92 /* LuaBridgeInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaBridgeInfo.h; sourceTree = "<group>"; };
+		E1A4FFB71643993300F8AE92 /* LuaBridgeInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaBridgeInfo.m; sourceTree = "<group>"; };
+		E1A4FFB81643993300F8AE92 /* VBridgeService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBridgeService.h; sourceTree = "<group>"; };
+		E1A4FFB91643993300F8AE92 /* VBridgeService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBridgeService.m; sourceTree = "<group>"; };
+		E1A4FFBB1643993300F8AE92 /* LuaLibraryInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaLibraryInformation.h; sourceTree = "<group>"; };
+		E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaLibraryInformation.m; sourceTree = "<group>"; };
+		E1A4FFBD1643993300F8AE92 /* VMachineService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMachineService.h; sourceTree = "<group>"; };
+		E1A4FFBE1643993300F8AE92 /* VMachineService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMachineService.m; sourceTree = "<group>"; };
+		E1A4FFBF1643993300F8AE92 /* VMetaService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMetaService.h; sourceTree = "<group>"; };
+		E1A4FFC01643993300F8AE92 /* VMetaService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMetaService.m; sourceTree = "<group>"; };
+		E1A4FFC21643993300F8AE92 /* LuaObjCIndexing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCIndexing.h; sourceTree = "<group>"; };
+		E1A4FFC31643993300F8AE92 /* LuaObjCProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCProfile.h; sourceTree = "<group>"; };
+		E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCProfile.m; sourceTree = "<group>"; };
+		E1A4FFC51643993300F8AE92 /* NSArray+LuaObjCIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LuaObjCIndex.h"; sourceTree = "<group>"; };
+		E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LuaObjCIndex.m"; sourceTree = "<group>"; };
+		E1A4FFC71643993300F8AE92 /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		E1A4FFC81643993300F8AE92 /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		E1A4FFC91643993300F8AE92 /* NSDictionary+LuaObjCIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LuaObjCIndex.h"; sourceTree = "<group>"; };
+		E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LuaObjCIndex.m"; sourceTree = "<group>"; };
+		E1A4FFCB1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+argumentsEncodings.h"; sourceTree = "<group>"; };
+		E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+argumentsEncodings.m"; sourceTree = "<group>"; };
+		E1A4FFCD1643993300F8AE92 /* NSString+LuaObjCIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LuaObjCIndex.h"; sourceTree = "<group>"; };
+		E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LuaObjCIndex.m"; sourceTree = "<group>"; };
+		E1A4FFD11643993300F8AE92 /* LuaCGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCGAffineTransform.h; sourceTree = "<group>"; };
+		E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaCGAffineTransform.m; sourceTree = "<group>"; };
+		E1A4FFD31643993300F8AE92 /* LuaCGGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCGGeometry.h; sourceTree = "<group>"; };
+		E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaCGGeometry.m; sourceTree = "<group>"; };
+		E1A4FFD61643993300F8AE92 /* LuaFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaFoundation.h; sourceTree = "<group>"; };
+		E1A4FFD71643993300F8AE92 /* LuaFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaFoundation.m; sourceTree = "<group>"; };
+		E1A4FFD81643993300F8AE92 /* LuaNSBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSBundle.h; sourceTree = "<group>"; };
+		E1A4FFD91643993300F8AE92 /* LuaNSBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSBundle.m; sourceTree = "<group>"; };
+		E1A4FFDA1643993300F8AE92 /* LuaNSCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSCollection.h; sourceTree = "<group>"; };
+		E1A4FFDB1643993300F8AE92 /* LuaNSCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSCollection.m; sourceTree = "<group>"; };
+		E1A4FFDC1643993300F8AE92 /* LuaNSRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSRange.h; sourceTree = "<group>"; };
+		E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSRange.m; sourceTree = "<group>"; };
+		E1A4FFDE1643993300F8AE92 /* LuaNSString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSString.h; sourceTree = "<group>"; };
+		E1A4FFDF1643993300F8AE92 /* LuaNSString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSString.m; sourceTree = "<group>"; };
+		E1A4FFE11643993300F8AE92 /* LuaEAGL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaEAGL.h; sourceTree = "<group>"; };
+		E1A4FFE21643993300F8AE92 /* LuaEAGL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaEAGL.m; sourceTree = "<group>"; };
+		E1A4FFE41643993300F8AE92 /* LuaCATransform3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCATransform3D.h; sourceTree = "<group>"; };
+		E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaCATransform3D.m; sourceTree = "<group>"; };
+		E1A4FFE71643993300F8AE92 /* LuaObjCFrameworkFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCFrameworkFunctions.h; sourceTree = "<group>"; };
+		E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCFrameworkFunctions.m; sourceTree = "<group>"; };
+		E1A4FFE91643993300F8AE92 /* LuaObjCStructs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCStructs.h; sourceTree = "<group>"; };
+		E1A4FFEB1643993300F8AE92 /* LuaUIAccessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIAccessibility.h; sourceTree = "<group>"; };
+		E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaUIAccessibility.m; sourceTree = "<group>"; };
+		E1A4FFED1643993300F8AE92 /* LuaUIGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIGeometry.h; sourceTree = "<group>"; };
+		E1A4FFEE1643993300F8AE92 /* LuaUIGeometry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaUIGeometry.m; sourceTree = "<group>"; };
+		E1A4FFEF1643993300F8AE92 /* LuaUIGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIGraphics.h; sourceTree = "<group>"; };
+		E1A4FFF01643993300F8AE92 /* LuaUIGraphics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaUIGraphics.m; sourceTree = "<group>"; };
+		E1A4FFF11643993300F8AE92 /* LuaUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIKit.h; sourceTree = "<group>"; };
+		E1A4FFF21643993300F8AE92 /* LuaUIKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaUIKit.m; sourceTree = "<group>"; };
+		E1A4FFF31643993300F8AE92 /* LuaUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIView.h; sourceTree = "<group>"; };
+		E1A4FFF41643993300F8AE92 /* LuaUIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaUIView.m; sourceTree = "<group>"; };
+		E1A4FFF91643993300F8AE92 /* ffi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		E1A4FFFA1643993300F8AE92 /* ffi_armv7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi_armv7.h; sourceTree = "<group>"; };
+		E1A4FFFB1643993300F8AE92 /* ffi_i386.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		E1A4FFFC1643993300F8AE92 /* ffitarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		E1A4FFFD1643993300F8AE92 /* ffitarget_arm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm.h; sourceTree = "<group>"; };
+		E1A4FFFE1643993300F8AE92 /* ffitarget_armv7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
+		E1A4FFFF1643993300F8AE92 /* ffitarget_i386.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E14A34DB1643A77F00B8EB6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14A35291643A86500B8EB6E /* VeritasMachineKit.framework in Frameworks */,
+				E14A34E11643A77F00B8EB6E /* UIKit.framework in Frameworks */,
+				E14A34E31643A77F00B8EB6E /* Foundation.framework in Frameworks */,
+				E14A34E51643A77F00B8EB6E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A400331643996C00F8AE92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14A34C41643A64F00B8EB6E /* libffi.dylib in Frameworks */,
+				E15713BB1643A5C300F6EAAB /* QuartzCore.framework in Frameworks */,
+				E15713B91643A5BE00F6EAAB /* CoreGraphics.framework in Frameworks */,
+				E15713B71643A5B700F6EAAB /* libxml2.2.dylib in Frameworks */,
+				E15713B51643A5B000F6EAAB /* LuaKit.framework in Frameworks */,
+				E1A400BC16439BEC00F8AE92 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A4005016439A1C00F8AE92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E15713AD1643A47900F6EAAB /* OpenGLES.framework in Frameworks */,
+				E15713AB1643A47000F6EAAB /* CoreGraphics.framework in Frameworks */,
+				E15713A91643A45A00F6EAAB /* libffi_ios.a in Frameworks */,
+				E15713A81643A43500F6EAAB /* LuaKit.framework in Frameworks */,
+				E15713A71643A40B00F6EAAB /* QuartzCore.framework in Frameworks */,
+				E15713A51643A39500F6EAAB /* libxml2.2.dylib in Frameworks */,
+				E15713A31643A34C00F6EAAB /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		34E8A16514D24C82000F9EB1 = {
+			isa = PBXGroup;
+			children = (
+				E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */,
+				E1A4FF891643993300F8AE92 /* Source */,
+				E1A4003F1643996C00F8AE92 /* VeritasMachineKit */,
+				E1A4005716439A1D00F8AE92 /* VeritasMachineKitiOS */,
+				E14A34E61643A77F00B8EB6E /* VeritasMahineIOSDemo */,
+				E1A400381643996C00F8AE92 /* Frameworks */,
+				E1A4004C164399BF00F8AE92 /* Products */,
+				E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */,
+				E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */,
+			);
+			sourceTree = "<group>";
+		};
+		E14A34E61643A77F00B8EB6E /* VeritasMahineIOSDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E14A34E71643A77F00B8EB6E /* Supporting Files */,
+			);
+			path = VeritasMahineIOSDemo;
+			sourceTree = "<group>";
+		};
+		E14A34E71643A77F00B8EB6E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E14A34FB1643A79D00B8EB6E /* Main.v */,
+				E14A34E81643A77F00B8EB6E /* VeritasMahineIOSDemo-Info.plist */,
+				E14A34E91643A77F00B8EB6E /* InfoPlist.strings */,
+				E14A34EC1643A77F00B8EB6E /* main.m */,
+				E14A34F21643A77F00B8EB6E /* Default.png */,
+				E14A34F41643A77F00B8EB6E /* Default@2x.png */,
+				E14A34F61643A77F00B8EB6E /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1A400021643993300F8AE92 /* MacOSX */ = {
+			isa = PBXGroup;
+			children = (
+				E1A400031643993300F8AE92 /* include */,
+				E1A4000A1643993300F8AE92 /* libffi_OSX.a */,
+			);
+			path = MacOSX;
+			sourceTree = "<group>";
+		};
+		E1A400031643993300F8AE92 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E1A400041643993300F8AE92 /* ffi.h */,
+				E1A400051643993300F8AE92 /* ffi_i386.h */,
+				E1A400061643993300F8AE92 /* ffi_x86_64.h */,
+				E1A400071643993300F8AE92 /* ffitarget.h */,
+				E1A400081643993300F8AE92 /* ffitarget_i386.h */,
+				E1A400091643993300F8AE92 /* ffitarget_x86_64.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		E1A4000B1643993300F8AE92 /* Objective-Lua */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4000C1643993300F8AE92 /* LuaCParser.lua */,
+				E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */,
+			);
+			path = "Objective-Lua";
+			sourceTree = "<group>";
+		};
+		E1A4000E1643993300F8AE92 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4000F1643993300F8AE92 /* XMLDocument.h */,
+				E1A400101643993300F8AE92 /* XMLDocument.m */,
+				E1A400111643993300F8AE92 /* XMLNode.h */,
+				E1A400121643993300F8AE92 /* XMLNode.m */,
+				E1A400131643993300F8AE92 /* XMLPathProcessor.h */,
+				E1A400141643993300F8AE92 /* XMLPathProcessor.m */,
+			);
+			path = XML;
+			sourceTree = "<group>";
+		};
+		E1A400151643993300F8AE92 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				E1A400161643993300F8AE92 /* LuaNSObjectSupport.h */,
+				E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */,
+				E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */,
+				E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */,
+				E1A4001A1643993300F8AE92 /* LuaObjCBase.h */,
+				E1A4001B1643993300F8AE92 /* LuaObjCClass.h */,
+				E1A4001C1643993300F8AE92 /* LuaObjCClass.m */,
+				E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */,
+				E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */,
+				E1A4001F1643993300F8AE92 /* LuaObjCParser.h */,
+				E1A400201643993300F8AE92 /* LuaObjCProperty.h */,
+				E1A400211643993300F8AE92 /* LuaObjCProperty.m */,
+				E1A400221643993300F8AE92 /* LuaObjCRuntime.h */,
+				E1A400231643993300F8AE92 /* LuaObjCRuntime.m */,
+			);
+			path = Runtime;
+			sourceTree = "<group>";
+		};
+		E1A400241643993300F8AE92 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E1A400251643993300F8AE92 /* VeritasKit-LICENSE */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		E1A400271643995C00F8AE92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4002F1643995D00F8AE92 /* LuaKit.framework */,
+				E1A400311643995D00F8AE92 /* LuaKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1A400381643996C00F8AE92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1A400BA16439BAA00F8AE92 /* Cocoa.framework */,
+				E14A34E01643A77F00B8EB6E /* UIKit.framework */,
+				E14A34E21643A77F00B8EB6E /* Foundation.framework */,
+				E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1A4003F1643996C00F8AE92 /* VeritasMachineKit */ = {
+			isa = PBXGroup;
+			children = (
+				E1A400461643996C00F8AE92 /* VeritasMachineKit.h */,
+				E1A400401643996C00F8AE92 /* Supporting Files */,
+			);
+			path = VeritasMachineKit;
+			sourceTree = "<group>";
+		};
+		E1A400401643996C00F8AE92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E14A34C31643A64F00B8EB6E /* libffi.dylib */,
+				E15713B61643A5B700F6EAAB /* libxml2.2.dylib */,
+				E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */,
+				E15713BA1643A5C300F6EAAB /* QuartzCore.framework */,
+				E1A400451643996C00F8AE92 /* VeritasMachineKit-Prefix.pch */,
+				E1A400411643996C00F8AE92 /* VeritasMachineKit-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1A4004C164399BF00F8AE92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1A400371643996C00F8AE92 /* VeritasMachineKit.framework */,
+			);
+			name = Products;
+			path = VeritasMachineKit;
+			sourceTree = "<group>";
+		};
+		E1A4005716439A1D00F8AE92 /* VeritasMachineKitiOS */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4005E16439A1D00F8AE92 /* VeritasMachineKit.h */,
+				E1A4005816439A1D00F8AE92 /* Supporting Files */,
+			);
+			path = VeritasMachineKitiOS;
+			sourceTree = "<group>";
+		};
+		E1A4005816439A1D00F8AE92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4005916439A1D00F8AE92 /* VeritasMachineKitiOS-Info.plist */,
+				E1A4005D16439A1D00F8AE92 /* VeritasMachineKitiOS-Prefix.pch */,
+				E15713AC1643A47900F6EAAB /* OpenGLES.framework */,
+				E15713AA1643A47000F6EAAB /* CoreGraphics.framework */,
+				E15713A61643A40B00F6EAAB /* QuartzCore.framework */,
+				E15713A41643A39500F6EAAB /* libxml2.2.dylib */,
+				E15713A21643A34C00F6EAAB /* UIKit.framework */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1A4FF891643993300F8AE92 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FF8A1643993300F8AE92 /* BridgeSupport */,
+				E1A4FFBA1643993300F8AE92 /* Engine */,
+				E1A4FFC11643993300F8AE92 /* Extensions */,
+				E1A4FFCF1643993300F8AE92 /* Frameworks */,
+				E1A4FFF51643993300F8AE92 /* Library */,
+				E1A400151643993300F8AE92 /* Runtime */,
+				E1A400241643993300F8AE92 /* Shared */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		E1A4FF8A1643993300F8AE92 /* BridgeSupport */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FF8B1643993300F8AE92 /* BridgeSupportFiles */,
+				E1A4FFB41643993300F8AE92 /* LuaBridgeFunctor.h */,
+				E1A4FFB51643993300F8AE92 /* LuaBridgeFunctor.m */,
+				E1A4FFB61643993300F8AE92 /* LuaBridgeInfo.h */,
+				E1A4FFB71643993300F8AE92 /* LuaBridgeInfo.m */,
+				E1A4FFB81643993300F8AE92 /* VBridgeService.h */,
+				E1A4FFB91643993300F8AE92 /* VBridgeService.m */,
+			);
+			path = BridgeSupport;
+			sourceTree = "<group>";
+		};
+		E1A4FF8B1643993300F8AE92 /* BridgeSupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FF8C1643993300F8AE92 /* Accelerate.bridgesupport */,
+				E1A4FF8D1643993300F8AE92 /* Accounts.bridgesupport */,
+				E1A4FF8E1643993300F8AE92 /* AddressBook.bridgesupport */,
+				E1A4FF8F1643993300F8AE92 /* AddressBookUI.bridgesupport */,
+				E1A4FF901643993300F8AE92 /* AssetsLibrary.bridgesupport */,
+				E1A4FF911643993300F8AE92 /* AudioToolbox.bridgesupport */,
+				E1A4FF921643993300F8AE92 /* AudioUnit.bridgesupport */,
+				E1A4FF931643993300F8AE92 /* AVFoundation.bridgesupport */,
+				E1A4FF941643993300F8AE92 /* CoreAudio.bridgesupport */,
+				E1A4FF951643993300F8AE92 /* CoreBluetooth.bridgesupport */,
+				E1A4FF961643993300F8AE92 /* CoreData.bridgesupport */,
+				E1A4FF971643993300F8AE92 /* CoreFoundation.bridgesupport */,
+				E1A4FF981643993300F8AE92 /* CoreImage.bridgesupport */,
+				E1A4FF991643993300F8AE92 /* CoreLocation.bridgesupport */,
+				E1A4FF9A1643993300F8AE92 /* CoreMedia.bridgesupport */,
+				E1A4FF9B1643993300F8AE92 /* CoreMIDI.bridgesupport */,
+				E1A4FF9C1643993300F8AE92 /* CoreMotion.bridgesupport */,
+				E1A4FF9D1643993300F8AE92 /* CoreTelephony.bridgesupport */,
+				E1A4FF9E1643993300F8AE92 /* CoreVideo.bridgesupport */,
+				E1A4FF9F1643993300F8AE92 /* EventKit.bridgesupport */,
+				E1A4FFA01643993300F8AE92 /* EventKitUI.bridgesupport */,
+				E1A4FFA11643993300F8AE92 /* ExternalAccessory.bridgesupport */,
+				E1A4FFA21643993300F8AE92 /* Foundation.bridgesupport */,
+				E1A4FFA31643993300F8AE92 /* GameKit.bridgesupport */,
+				E1A4FFA41643993300F8AE92 /* GSS.bridgesupport */,
+				E1A4FFA51643993300F8AE92 /* iAd.bridgesupport */,
+				E1A4FFA61643993300F8AE92 /* MapKit.bridgesupport */,
+				E1A4FFA71643993300F8AE92 /* MediaPlayer.bridgesupport */,
+				E1A4FFA81643993300F8AE92 /* MessageUI.bridgesupport */,
+				E1A4FFA91643993300F8AE92 /* MobileCoreServices.bridgesupport */,
+				E1A4FFAA1643993300F8AE92 /* NewsstandKit.bridgesupport */,
+				E1A4FFAB1643993300F8AE92 /* OpenAL.bridgesupport */,
+				E1A4FFAC1643993300F8AE92 /* OpenGLES.bridgesupport */,
+				E1A4FFAD1643993300F8AE92 /* QuartzCore.bridgesupport */,
+				E1A4FFAE1643993300F8AE92 /* QuickLook.bridgesupport */,
+				E1A4FFAF1643993300F8AE92 /* Security.bridgesupport */,
+				E1A4FFB01643993300F8AE92 /* StoreKit.bridgesupport */,
+				E1A4FFB11643993300F8AE92 /* SystemConfiguration.bridgesupport */,
+				E1A4FFB21643993300F8AE92 /* Twitter.bridgesupport */,
+				E1A4FFB31643993300F8AE92 /* UIKit.bridgesupport */,
+			);
+			path = BridgeSupportFiles;
+			sourceTree = "<group>";
+		};
+		E1A4FFBA1643993300F8AE92 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFBB1643993300F8AE92 /* LuaLibraryInformation.h */,
+				E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */,
+				E1A4FFBD1643993300F8AE92 /* VMachineService.h */,
+				E1A4FFBE1643993300F8AE92 /* VMachineService.m */,
+				E1A4FFBF1643993300F8AE92 /* VMetaService.h */,
+				E1A4FFC01643993300F8AE92 /* VMetaService.m */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		E1A4FFC11643993300F8AE92 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFC21643993300F8AE92 /* LuaObjCIndexing.h */,
+				E1A4FFC31643993300F8AE92 /* LuaObjCProfile.h */,
+				E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */,
+				E1A4FFC51643993300F8AE92 /* NSArray+LuaObjCIndex.h */,
+				E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */,
+				E1A4FFC71643993300F8AE92 /* NSData+Base64.h */,
+				E1A4FFC81643993300F8AE92 /* NSData+Base64.m */,
+				E1A4FFC91643993300F8AE92 /* NSDictionary+LuaObjCIndex.h */,
+				E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */,
+				E1A4FFCB1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.h */,
+				E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */,
+				E1A4FFCD1643993300F8AE92 /* NSString+LuaObjCIndex.h */,
+				E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E1A4FFCF1643993300F8AE92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFD01643993300F8AE92 /* CoreGraphics */,
+				E1A4FFD51643993300F8AE92 /* Foundation */,
+				E1A4FFE01643993300F8AE92 /* OpenGLES */,
+				E1A4FFE31643993300F8AE92 /* QuartzCore */,
+				E1A4FFE61643993300F8AE92 /* Shared */,
+				E1A4FFEA1643993300F8AE92 /* UIKit */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1A4FFD01643993300F8AE92 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFD11643993300F8AE92 /* LuaCGAffineTransform.h */,
+				E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */,
+				E1A4FFD31643993300F8AE92 /* LuaCGGeometry.h */,
+				E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		E1A4FFD51643993300F8AE92 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFD61643993300F8AE92 /* LuaFoundation.h */,
+				E1A4FFD71643993300F8AE92 /* LuaFoundation.m */,
+				E1A4FFD81643993300F8AE92 /* LuaNSBundle.h */,
+				E1A4FFD91643993300F8AE92 /* LuaNSBundle.m */,
+				E1A4FFDA1643993300F8AE92 /* LuaNSCollection.h */,
+				E1A4FFDB1643993300F8AE92 /* LuaNSCollection.m */,
+				E1A4FFDC1643993300F8AE92 /* LuaNSRange.h */,
+				E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */,
+				E1A4FFDE1643993300F8AE92 /* LuaNSString.h */,
+				E1A4FFDF1643993300F8AE92 /* LuaNSString.m */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		E1A4FFE01643993300F8AE92 /* OpenGLES */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFE11643993300F8AE92 /* LuaEAGL.h */,
+				E1A4FFE21643993300F8AE92 /* LuaEAGL.m */,
+			);
+			path = OpenGLES;
+			sourceTree = "<group>";
+		};
+		E1A4FFE31643993300F8AE92 /* QuartzCore */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFE41643993300F8AE92 /* LuaCATransform3D.h */,
+				E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */,
+			);
+			path = QuartzCore;
+			sourceTree = "<group>";
+		};
+		E1A4FFE61643993300F8AE92 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFE71643993300F8AE92 /* LuaObjCFrameworkFunctions.h */,
+				E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */,
+				E1A4FFE91643993300F8AE92 /* LuaObjCStructs.h */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		E1A4FFEA1643993300F8AE92 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFEB1643993300F8AE92 /* LuaUIAccessibility.h */,
+				E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */,
+				E1A4FFED1643993300F8AE92 /* LuaUIGeometry.h */,
+				E1A4FFEE1643993300F8AE92 /* LuaUIGeometry.m */,
+				E1A4FFEF1643993300F8AE92 /* LuaUIGraphics.h */,
+				E1A4FFF01643993300F8AE92 /* LuaUIGraphics.m */,
+				E1A4FFF11643993300F8AE92 /* LuaUIKit.h */,
+				E1A4FFF21643993300F8AE92 /* LuaUIKit.m */,
+				E1A4FFF31643993300F8AE92 /* LuaUIView.h */,
+				E1A4FFF41643993300F8AE92 /* LuaUIView.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		E1A4FFF51643993300F8AE92 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFF61643993300F8AE92 /* libffi-3.0.11 */,
+				E1A4000B1643993300F8AE92 /* Objective-Lua */,
+				E1A4000E1643993300F8AE92 /* XML */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		E1A4FFF61643993300F8AE92 /* libffi-3.0.11 */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFF71643993300F8AE92 /* iOS */,
+				E1A400011643993300F8AE92 /* LICENSE */,
+				E1A400021643993300F8AE92 /* MacOSX */,
+			);
+			path = "libffi-3.0.11";
+			sourceTree = "<group>";
+		};
+		E1A4FFF71643993300F8AE92 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFF81643993300F8AE92 /* include */,
+				E1A400001643993300F8AE92 /* libffi_ios.a */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		E1A4FFF81643993300F8AE92 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4FFF91643993300F8AE92 /* ffi.h */,
+				E1A4FFFA1643993300F8AE92 /* ffi_armv7.h */,
+				E1A4FFFB1643993300F8AE92 /* ffi_i386.h */,
+				E1A4FFFC1643993300F8AE92 /* ffitarget.h */,
+				E1A4FFFD1643993300F8AE92 /* ffitarget_arm.h */,
+				E1A4FFFE1643993300F8AE92 /* ffitarget_armv7.h */,
+				E1A4FFFF1643993300F8AE92 /* ffitarget_i386.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E1A400341643996C00F8AE92 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A4008E16439AAF00F8AE92 /* VeritasMachineKit.h in Headers */,
+				E1A4008F16439AF100F8AE92 /* LuaObjCMessage.h in Headers */,
+				E1A4008A16439A9F00F8AE92 /* VMachineService.h in Headers */,
+				E1A4008B16439A9F00F8AE92 /* VMetaService.h in Headers */,
+				E1A4008C16439A9F00F8AE92 /* LuaObjCAuxiliary.h in Headers */,
+				E1A4008D16439A9F00F8AE92 /* LuaObjCBase.h in Headers */,
+				E15713AF1643A51F00F6EAAB /* ffi.h in Headers */,
+				E15713B01643A51F00F6EAAB /* ffi_i386.h in Headers */,
+				E15713B11643A51F00F6EAAB /* ffi_x86_64.h in Headers */,
+				E15713B21643A51F00F6EAAB /* ffitarget.h in Headers */,
+				E15713B31643A51F00F6EAAB /* ffitarget_i386.h in Headers */,
+				E15713B41643A51F00F6EAAB /* ffitarget_x86_64.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A4005116439A1C00F8AE92 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */,
+				E1A400B416439B6900F8AE92 /* VMachineService.h in Headers */,
+				E1A400B516439B6900F8AE92 /* VMetaService.h in Headers */,
+				E1A400B616439B6900F8AE92 /* LuaObjCAuxiliary.h in Headers */,
+				E1A400B716439B6900F8AE92 /* LuaObjCBase.h in Headers */,
+				E1A400B816439B6900F8AE92 /* LuaObjCMessage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E14A34DD1643A77F00B8EB6E /* VeritasMahineIOSDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E14A34F81643A77F00B8EB6E /* Build configuration list for PBXNativeTarget "VeritasMahineIOSDemo" */;
+			buildPhases = (
+				E14A34DA1643A77F00B8EB6E /* Sources */,
+				E14A34DB1643A77F00B8EB6E /* Frameworks */,
+				E14A34DC1643A77F00B8EB6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E14A34FE1643A7BA00B8EB6E /* PBXTargetDependency */,
+			);
+			name = VeritasMahineIOSDemo;
+			productName = VeritasMahineIOSDemo;
+			productReference = E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E1A400361643996C00F8AE92 /* VeritasMachineKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1A400491643996C00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit" */;
+			buildPhases = (
+				E1A400321643996C00F8AE92 /* Sources */,
+				E1A400331643996C00F8AE92 /* Frameworks */,
+				E1A400341643996C00F8AE92 /* Headers */,
+				E1A400351643996C00F8AE92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1A4004E16439A0C00F8AE92 /* PBXTargetDependency */,
+			);
+			name = VeritasMachineKit;
+			productName = VeritasMachineKit;
+			productReference = E1A400371643996C00F8AE92 /* VeritasMachineKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E1A4005316439A1C00F8AE92 /* VeritasMachineKitiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKitiOS" */;
+			buildPhases = (
+				E1A4004F16439A1C00F8AE92 /* Sources */,
+				E1A4005016439A1C00F8AE92 /* Frameworks */,
+				E1A4005116439A1C00F8AE92 /* Headers */,
+				E1A4005216439A1C00F8AE92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1A4006516439A6600F8AE92 /* PBXTargetDependency */,
+			);
+			name = VeritasMachineKitiOS;
+			productName = VeritasMachineKitiOS;
+			productReference = E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34E8A16714D24C82000F9EB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 34E8A16A14D24C82000F9EB1 /* Build configuration list for PBXProject "VeritasMachineKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 34E8A16514D24C82000F9EB1;
+			productRefGroup = 34E8A16514D24C82000F9EB1;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E1A400271643995C00F8AE92 /* Products */;
+					ProjectRef = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E1A400361643996C00F8AE92 /* VeritasMachineKit */,
+				E1A4005316439A1C00F8AE92 /* VeritasMachineKitiOS */,
+				E14A34DD1643A77F00B8EB6E /* VeritasMahineIOSDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E1A4002F1643995D00F8AE92 /* LuaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LuaKit.framework;
+			remoteRef = E1A4002E1643995D00F8AE92 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E1A400311643995D00F8AE92 /* LuaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LuaKit.framework;
+			remoteRef = E1A400301643995D00F8AE92 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E14A34DC1643A77F00B8EB6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14A34EB1643A77F00B8EB6E /* InfoPlist.strings in Resources */,
+				E14A34F31643A77F00B8EB6E /* Default.png in Resources */,
+				E14A34F51643A77F00B8EB6E /* Default@2x.png in Resources */,
+				E14A34F71643A77F00B8EB6E /* Default-568h@2x.png in Resources */,
+				E14A34FC1643A79D00B8EB6E /* Main.v in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A400351643996C00F8AE92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14A35271643A83A00B8EB6E /* LuaCParser.lua in Resources */,
+				E14A35281643A83A00B8EB6E /* LuaObjCParser.lua in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A4005216439A1C00F8AE92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14A35521643A8BF00B8EB6E /* LuaCParser.lua in Resources */,
+				E14A35531643A8BF00B8EB6E /* LuaObjCParser.lua in Resources */,
+				E14A352A1643A8B100B8EB6E /* Accelerate.bridgesupport in Resources */,
+				E14A352B1643A8B100B8EB6E /* Accounts.bridgesupport in Resources */,
+				E14A352C1643A8B100B8EB6E /* AddressBook.bridgesupport in Resources */,
+				E14A352D1643A8B100B8EB6E /* AddressBookUI.bridgesupport in Resources */,
+				E14A352E1643A8B100B8EB6E /* AssetsLibrary.bridgesupport in Resources */,
+				E14A352F1643A8B100B8EB6E /* AudioToolbox.bridgesupport in Resources */,
+				E14A35301643A8B100B8EB6E /* AudioUnit.bridgesupport in Resources */,
+				E14A35311643A8B100B8EB6E /* AVFoundation.bridgesupport in Resources */,
+				E14A35321643A8B100B8EB6E /* CoreAudio.bridgesupport in Resources */,
+				E14A35331643A8B100B8EB6E /* CoreBluetooth.bridgesupport in Resources */,
+				E14A35341643A8B100B8EB6E /* CoreData.bridgesupport in Resources */,
+				E14A35351643A8B100B8EB6E /* CoreFoundation.bridgesupport in Resources */,
+				E14A35361643A8B100B8EB6E /* CoreImage.bridgesupport in Resources */,
+				E14A35371643A8B100B8EB6E /* CoreLocation.bridgesupport in Resources */,
+				E14A35381643A8B100B8EB6E /* CoreMedia.bridgesupport in Resources */,
+				E14A35391643A8B100B8EB6E /* CoreMIDI.bridgesupport in Resources */,
+				E14A353A1643A8B100B8EB6E /* CoreMotion.bridgesupport in Resources */,
+				E14A353B1643A8B100B8EB6E /* CoreTelephony.bridgesupport in Resources */,
+				E14A353C1643A8B100B8EB6E /* CoreVideo.bridgesupport in Resources */,
+				E14A353D1643A8B100B8EB6E /* EventKit.bridgesupport in Resources */,
+				E14A353E1643A8B100B8EB6E /* EventKitUI.bridgesupport in Resources */,
+				E14A353F1643A8B100B8EB6E /* ExternalAccessory.bridgesupport in Resources */,
+				E14A35401643A8B100B8EB6E /* Foundation.bridgesupport in Resources */,
+				E14A35411643A8B100B8EB6E /* GameKit.bridgesupport in Resources */,
+				E14A35421643A8B100B8EB6E /* GSS.bridgesupport in Resources */,
+				E14A35431643A8B100B8EB6E /* iAd.bridgesupport in Resources */,
+				E14A35441643A8B100B8EB6E /* MapKit.bridgesupport in Resources */,
+				E14A35451643A8B100B8EB6E /* MediaPlayer.bridgesupport in Resources */,
+				E14A35461643A8B100B8EB6E /* MessageUI.bridgesupport in Resources */,
+				E14A35471643A8B100B8EB6E /* MobileCoreServices.bridgesupport in Resources */,
+				E14A35481643A8B100B8EB6E /* NewsstandKit.bridgesupport in Resources */,
+				E14A35491643A8B100B8EB6E /* OpenAL.bridgesupport in Resources */,
+				E14A354A1643A8B100B8EB6E /* OpenGLES.bridgesupport in Resources */,
+				E14A354B1643A8B100B8EB6E /* QuartzCore.bridgesupport in Resources */,
+				E14A354C1643A8B100B8EB6E /* QuickLook.bridgesupport in Resources */,
+				E14A354D1643A8B100B8EB6E /* Security.bridgesupport in Resources */,
+				E14A354E1643A8B100B8EB6E /* StoreKit.bridgesupport in Resources */,
+				E14A354F1643A8B100B8EB6E /* SystemConfiguration.bridgesupport in Resources */,
+				E14A35501643A8B100B8EB6E /* Twitter.bridgesupport in Resources */,
+				E14A35511643A8B100B8EB6E /* UIKit.bridgesupport in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E14A34DA1643A77F00B8EB6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14A34ED1643A77F00B8EB6E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A400321643996C00F8AE92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A4006616439A7900F8AE92 /* LuaBridgeFunctor.m in Sources */,
+				E1A4006716439A7900F8AE92 /* LuaBridgeInfo.m in Sources */,
+				E1A4006816439A7900F8AE92 /* VBridgeService.m in Sources */,
+				E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */,
+				E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */,
+				E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */,
+				E1A4006C16439A7900F8AE92 /* LuaObjCProfile.m in Sources */,
+				E1A4006D16439A7900F8AE92 /* NSArray+LuaObjCIndex.m in Sources */,
+				E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */,
+				E1A4006F16439A7900F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */,
+				E1A4007016439A7900F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */,
+				E1A4007116439A7900F8AE92 /* NSString+LuaObjCIndex.m in Sources */,
+				E1A4007216439A7900F8AE92 /* LuaCGAffineTransform.m in Sources */,
+				E1A4007316439A7900F8AE92 /* LuaCGGeometry.m in Sources */,
+				E1A4007416439A7900F8AE92 /* LuaFoundation.m in Sources */,
+				E1A4007516439A7900F8AE92 /* LuaNSBundle.m in Sources */,
+				E1A4007616439A7900F8AE92 /* LuaNSCollection.m in Sources */,
+				E1A4007716439A7900F8AE92 /* LuaNSRange.m in Sources */,
+				E1A4007816439A7900F8AE92 /* LuaNSString.m in Sources */,
+				E1A4007A16439A7900F8AE92 /* LuaCATransform3D.m in Sources */,
+				E1A4007B16439A7900F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */,
+				E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */,
+				E1A4008216439A7900F8AE92 /* XMLNode.m in Sources */,
+				E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */,
+				E1A4008416439A7900F8AE92 /* LuaNSObjectSupport.m in Sources */,
+				E1A4008516439A7900F8AE92 /* LuaObjCAuxiliary.m in Sources */,
+				E1A4008616439A7900F8AE92 /* LuaObjCClass.m in Sources */,
+				E1A4008716439A7900F8AE92 /* LuaObjCMessage.m in Sources */,
+				E1A4008816439A7900F8AE92 /* LuaObjCProperty.m in Sources */,
+				E1A4008916439A7900F8AE92 /* LuaObjCRuntime.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A4004F16439A1C00F8AE92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A4009016439B4600F8AE92 /* LuaBridgeFunctor.m in Sources */,
+				E1A4009116439B4600F8AE92 /* LuaBridgeInfo.m in Sources */,
+				E1A4009216439B4600F8AE92 /* VBridgeService.m in Sources */,
+				E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */,
+				E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */,
+				E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */,
+				E1A4009616439B4600F8AE92 /* LuaObjCProfile.m in Sources */,
+				E1A4009716439B4600F8AE92 /* NSArray+LuaObjCIndex.m in Sources */,
+				E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */,
+				E1A4009916439B4600F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */,
+				E1A4009A16439B4600F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */,
+				E1A4009B16439B4600F8AE92 /* NSString+LuaObjCIndex.m in Sources */,
+				E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.m in Sources */,
+				E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */,
+				E1A4009E16439B4600F8AE92 /* LuaFoundation.m in Sources */,
+				E1A4009F16439B4600F8AE92 /* LuaNSBundle.m in Sources */,
+				E1A400A016439B4600F8AE92 /* LuaNSCollection.m in Sources */,
+				E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */,
+				E1A400A216439B4600F8AE92 /* LuaNSString.m in Sources */,
+				E1A400A316439B4600F8AE92 /* LuaEAGL.m in Sources */,
+				E1A400A416439B4600F8AE92 /* LuaCATransform3D.m in Sources */,
+				E1A400A516439B4600F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */,
+				E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */,
+				E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */,
+				E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */,
+				E1A400A916439B4600F8AE92 /* LuaUIKit.m in Sources */,
+				E1A400AA16439B4600F8AE92 /* LuaUIView.m in Sources */,
+				E1A400AB16439B4600F8AE92 /* XMLDocument.m in Sources */,
+				E1A400AC16439B4600F8AE92 /* XMLNode.m in Sources */,
+				E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */,
+				E1A400AE16439B4600F8AE92 /* LuaNSObjectSupport.m in Sources */,
+				E1A400AF16439B4600F8AE92 /* LuaObjCAuxiliary.m in Sources */,
+				E1A400B016439B4600F8AE92 /* LuaObjCClass.m in Sources */,
+				E1A400B116439B4600F8AE92 /* LuaObjCMessage.m in Sources */,
+				E1A400B216439B4600F8AE92 /* LuaObjCProperty.m in Sources */,
+				E1A400B316439B4600F8AE92 /* LuaObjCRuntime.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E14A34FE1643A7BA00B8EB6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1A4005316439A1C00F8AE92 /* VeritasMachineKitiOS */;
+			targetProxy = E14A34FD1643A7BA00B8EB6E /* PBXContainerItemProxy */;
+		};
+		E1A4004E16439A0C00F8AE92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LuaKit;
+			targetProxy = E1A4004D16439A0C00F8AE92 /* PBXContainerItemProxy */;
+		};
+		E1A4006516439A6600F8AE92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LuaKitiOS;
+			targetProxy = E1A4006416439A6600F8AE92 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E14A34E91643A77F00B8EB6E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E14A34EA1643A77F00B8EB6E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		34E8A18614D24C82000F9EB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34E8A18714D24C82000F9EB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E14A34F91643A77F00B8EB6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "VeritasMahineIOSDemo/VeritasMahineIOSDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E14A34FA1643A77F00B8EB6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "VeritasMahineIOSDemo/VeritasMahineIOSDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E1A4004A1643996C00F8AE92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeritasMachineKit/VeritasMachineKit-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "VeritasMachineKit/VeritasMachineKit-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		E1A4004B1643996C00F8AE92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeritasMachineKit/VeritasMachineKit-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "VeritasMachineKit/VeritasMachineKit-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		E1A4006216439A1D00F8AE92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeritasMachineKitiOS/VeritasMachineKitiOS-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
+				INFOPLIST_FILE = "VeritasMachineKitiOS/VeritasMachineKitiOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Source/Library/libffi-3.0.11/iOS\"",
+				);
+				PRODUCT_NAME = VeritasMachineKit;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		E1A4006316439A1D00F8AE92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeritasMachineKitiOS/VeritasMachineKitiOS-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
+				INFOPLIST_FILE = "VeritasMachineKitiOS/VeritasMachineKitiOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Source/Library/libffi-3.0.11/iOS\"",
+				);
+				PRODUCT_NAME = VeritasMachineKit;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34E8A16A14D24C82000F9EB1 /* Build configuration list for PBXProject "VeritasMachineKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34E8A18614D24C82000F9EB1 /* Debug */,
+				34E8A18714D24C82000F9EB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E14A34F81643A77F00B8EB6E /* Build configuration list for PBXNativeTarget "VeritasMahineIOSDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E14A34F91643A77F00B8EB6E /* Debug */,
+				E14A34FA1643A77F00B8EB6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E1A400491643996C00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A4004A1643996C00F8AE92 /* Debug */,
+				E1A4004B1643996C00F8AE92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKitiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A4006216439A1D00F8AE92 /* Debug */,
+				E1A4006316439A1D00F8AE92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34E8A16714D24C82000F9EB1 /* Project object */;
+}

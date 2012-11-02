@@ -6,8 +6,6 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-
-@interface VeritasMachineKit : NSObject
-
-@end
+#import <VeritasMachineKit/VMachineService.h>
+#import <VeritasMachineKit/LuaObjCMessage.h>
+#import <VeritasMachineKit/LuaObjCAuxiliary.h>

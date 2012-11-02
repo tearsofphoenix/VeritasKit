@@ -6,8 +6,6 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface VeritasMachineKitiOS : NSObject
-
-@end
+#import <VeritasMachineKit/VMachineService.h>
+#import <VeritasMachineKit/LuaObjCMessage.h>
+#import <VeritasMachineKit/LuaObjCAuxiliary.h>

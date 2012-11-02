@@ -6,13 +6,9 @@
 //
 //
 
-#import <UIKit/UIKit.h>
-
-#import "AppDelegate.h"
+#import <VeritasMachineKit/VeritasMachineKit.h>
 
 int main(int argc, char *argv[])
 {
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
+    LuaCall(@"Main.v", @"main", nil, 0, 0, nil);
 }
