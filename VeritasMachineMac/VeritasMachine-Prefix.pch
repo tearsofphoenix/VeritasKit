@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'VeritasMachineMac' target in the 'VeritasMachineMac' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
