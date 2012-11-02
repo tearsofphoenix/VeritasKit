@@ -32,6 +32,8 @@ extern NSString * const VMachineServiceID;
 //
 extern NSString * const VMachineServiceDoSourceCodeAction;
 
+extern NSString * const VMachineServiceParseSourceCodeAction;
+
 #pragma mark - internal use
 
 extern NSString * const VMachineServiceRegisterGlobalConstantsAction;

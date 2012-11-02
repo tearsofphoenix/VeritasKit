@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^ VCallbackBlock)( NSArray *arguments);
+typedef void (^ VCallbackBlock)( NSArray *callbackArguments);
 typedef void (^ VServiceBlock)(VCallbackBlock callback, NSArray *arguments);
 
 @protocol VMetaService <NSObject>
