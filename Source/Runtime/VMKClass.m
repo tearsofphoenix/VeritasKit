@@ -14,7 +14,7 @@
 
 #import "LuaCGGeometry.h"
 
-#import "LuaNSObjectSupport.h"
+#import "VMKObject.h"
 
 #import <objc/runtime.h>
 

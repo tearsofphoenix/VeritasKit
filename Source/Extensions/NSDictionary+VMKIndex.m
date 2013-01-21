@@ -8,7 +8,7 @@
 
 #import "NSDictionary+VMKIndex.h"
 #import "VMKAuxiliary.h"
-#import "LuaNSObjectSupport.h"
+#import "VMKObject.h"
 
 @implementation NSDictionary (VMKIndex)
 

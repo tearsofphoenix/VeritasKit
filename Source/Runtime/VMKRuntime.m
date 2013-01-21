@@ -30,7 +30,7 @@
 
 #import "LuaBridgeFunctor.h"
 
-#import "LuaNSObjectSupport.h"
+#import "VMKObject.h"
 
 #import "NSString+VMKIndex.h"
 

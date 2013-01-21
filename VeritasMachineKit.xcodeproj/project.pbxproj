@@ -85,7 +85,7 @@
 		E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
 		E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
 		E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
-		E1A4006C16439A7900F8AE92 /* VMKProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.m */; };
+		E1A4006C16439A7900F8AE92 /* VMKProfile.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.c */; };
 		E1A4006D16439A7900F8AE92 /* NSArray+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */; };
 		E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
 		E1A4006F16439A7900F8AE92 /* NSDictionary+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */; };
@@ -103,7 +103,7 @@
 		E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.m */; };
 		E1A4008216439A7900F8AE92 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.m */; };
 		E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
-		E1A4008416439A7900F8AE92 /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */; };
+		E1A4008416439A7900F8AE92 /* VMKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* VMKObject.m */; };
 		E1A4008516439A7900F8AE92 /* VMKAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* VMKAuxiliary.m */; };
 		E1A4008616439A7900F8AE92 /* VMKClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* VMKClass.m */; };
 		E1A4008716439A7900F8AE92 /* VMKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* VMKMessage.m */; };
@@ -121,7 +121,7 @@
 		E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
 		E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
 		E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
-		E1A4009616439B4600F8AE92 /* VMKProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.m */; };
+		E1A4009616439B4600F8AE92 /* VMKProfile.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.c */; };
 		E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */; };
 		E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
 		E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */; };
@@ -145,7 +145,7 @@
 		E1A400AB16439B4600F8AE92 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.m */; };
 		E1A400AC16439B4600F8AE92 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.m */; };
 		E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
-		E1A400AE16439B4600F8AE92 /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */; };
+		E1A400AE16439B4600F8AE92 /* VMKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* VMKObject.m */; };
 		E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* VMKAuxiliary.m */; };
 		E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* VMKClass.m */; };
 		E1A400B116439B4600F8AE92 /* VMKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* VMKMessage.m */; };
@@ -238,8 +238,8 @@
 		E1A400121643993300F8AE92 /* XMLNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLNode.m; sourceTree = "<group>"; };
 		E1A400131643993300F8AE92 /* XMLPathProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLPathProcessor.h; sourceTree = "<group>"; };
 		E1A400141643993300F8AE92 /* XMLPathProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLPathProcessor.m; sourceTree = "<group>"; };
-		E1A400161643993300F8AE92 /* LuaNSObjectSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSObjectSupport.h; sourceTree = "<group>"; };
-		E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSObjectSupport.m; sourceTree = "<group>"; };
+		E1A400161643993300F8AE92 /* VMKObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKObject.h; sourceTree = "<group>"; };
+		E1A400171643993300F8AE92 /* VMKObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKObject.m; sourceTree = "<group>"; };
 		E1A400181643993300F8AE92 /* VMKAuxiliary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKAuxiliary.h; sourceTree = "<group>"; };
 		E1A400191643993300F8AE92 /* VMKAuxiliary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKAuxiliary.m; sourceTree = "<group>"; };
 		E1A4001A1643993300F8AE92 /* VMKBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKBase.h; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 		E1A4FFC01643993300F8AE92 /* VMetaService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMetaService.m; sourceTree = "<group>"; };
 		E1A4FFC21643993300F8AE92 /* VMKIndexing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKIndexing.h; sourceTree = "<group>"; };
 		E1A4FFC31643993300F8AE92 /* VMKProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKProfile.h; sourceTree = "<group>"; };
-		E1A4FFC41643993300F8AE92 /* VMKProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKProfile.m; sourceTree = "<group>"; };
+		E1A4FFC41643993300F8AE92 /* VMKProfile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = VMKProfile.c; sourceTree = "<group>"; };
 		E1A4FFC51643993300F8AE92 /* NSArray+VMKIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+VMKIndex.h"; sourceTree = "<group>"; };
 		E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+VMKIndex.m"; sourceTree = "<group>"; };
 		E1A4FFC71643993300F8AE92 /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -494,8 +494,8 @@
 		E1A400151643993300F8AE92 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
-				E1A400161643993300F8AE92 /* LuaNSObjectSupport.h */,
-				E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */,
+				E1A400161643993300F8AE92 /* VMKObject.h */,
+				E1A400171643993300F8AE92 /* VMKObject.m */,
 				E1A400181643993300F8AE92 /* VMKAuxiliary.h */,
 				E1A400191643993300F8AE92 /* VMKAuxiliary.m */,
 				E1A4001A1643993300F8AE92 /* VMKBase.h */,
@@ -687,7 +687,7 @@
 			children = (
 				E1A4FFC21643993300F8AE92 /* VMKIndexing.h */,
 				E1A4FFC31643993300F8AE92 /* VMKProfile.h */,
-				E1A4FFC41643993300F8AE92 /* VMKProfile.m */,
+				E1A4FFC41643993300F8AE92 /* VMKProfile.c */,
 				E1A4FFC51643993300F8AE92 /* NSArray+VMKIndex.h */,
 				E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */,
 				E1A4FFC71643993300F8AE92 /* NSData+Base64.h */,
@@ -1069,7 +1069,7 @@
 				E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */,
 				E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */,
 				E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */,
-				E1A4006C16439A7900F8AE92 /* VMKProfile.m in Sources */,
+				E1A4006C16439A7900F8AE92 /* VMKProfile.c in Sources */,
 				E1A4006D16439A7900F8AE92 /* NSArray+VMKIndex.m in Sources */,
 				E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */,
 				E1A4006F16439A7900F8AE92 /* NSDictionary+VMKIndex.m in Sources */,
@@ -1087,7 +1087,7 @@
 				E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */,
 				E1A4008216439A7900F8AE92 /* XMLNode.m in Sources */,
 				E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */,
-				E1A4008416439A7900F8AE92 /* LuaNSObjectSupport.m in Sources */,
+				E1A4008416439A7900F8AE92 /* VMKObject.m in Sources */,
 				E1A4008516439A7900F8AE92 /* VMKAuxiliary.m in Sources */,
 				E1A4008616439A7900F8AE92 /* VMKClass.m in Sources */,
 				E1A4008716439A7900F8AE92 /* VMKMessage.m in Sources */,
@@ -1106,7 +1106,7 @@
 				E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */,
 				E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */,
 				E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */,
-				E1A4009616439B4600F8AE92 /* VMKProfile.m in Sources */,
+				E1A4009616439B4600F8AE92 /* VMKProfile.c in Sources */,
 				E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */,
 				E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */,
 				E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */,
@@ -1130,7 +1130,7 @@
 				E1A400AB16439B4600F8AE92 /* XMLDocument.m in Sources */,
 				E1A400AC16439B4600F8AE92 /* XMLNode.m in Sources */,
 				E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */,
-				E1A400AE16439B4600F8AE92 /* LuaNSObjectSupport.m in Sources */,
+				E1A400AE16439B4600F8AE92 /* VMKObject.m in Sources */,
 				E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */,
 				E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */,
 				E1A400B116439B4600F8AE92 /* VMKMessage.m in Sources */,

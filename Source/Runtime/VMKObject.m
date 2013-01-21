@@ -6,7 +6,7 @@
 //
 //
 
-#import "LuaNSObjectSupport.h"
+#import "VMKObject.h"
 
 #import "VMKClass.h"
 #import "VMKAuxiliary.h"

@@ -1,16 +1,16 @@
 //
-//  LuaNSObjectSupport.h
+//  VMKObject.h
 //  LuaIOS
 //
 //  Created by LeixSnake on 8/2/12.
 //
 //
+#ifndef __VMK_VMKOBJECT__
+#define __VMK_VMKOBJECT__ 1
 
 #include "VMKBase.h"
 
 VMK_EXTERN_C_BEGIN
-
-#pragma mark - Object observer
 
 typedef struct __LuaObject *LuaObjectRef;
 
@@ -23,3 +23,5 @@ VMK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
 VMK_EXPORT int VMKOpenNSObjectExtensionSupport(struct lua_State *L);
 
 VMK_EXTERN__C_END
+
+#endif

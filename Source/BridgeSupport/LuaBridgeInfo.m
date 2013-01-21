@@ -10,7 +10,7 @@
 #import "VMKAuxiliary.h"
 #import "LuaBridgeFunctor.h"
 #import "VMKClass.h"
-#import "LuaNSObjectSupport.h"
+#import "VMKObject.h"
 
 #import <objc/runtime.h>
 

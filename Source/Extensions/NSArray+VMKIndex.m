@@ -9,7 +9,7 @@
 #import "NSArray+VMKIndex.h"
 
 #import "VMKAuxiliary.h"
-#import "LuaNSObjectSupport.h"
+#import "VMKObject.h"
 
 @implementation NSArray (VMKIndex)
 
