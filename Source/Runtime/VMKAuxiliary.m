@@ -144,3 +144,20 @@ void VMKLoadCreateMetatable(lua_State *L, const char *name, const luaL_Reg metho
     luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
     lua_pop(L, 1);  /* pop new metatable */
 }
+
+const char *VMKCopyUTF8StringFromString(CFStringRef str)
+{
+    CFIndex length = CFStringGetLength(str);
+    
+    CFIndex maxSize = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8);
+    
+    char *buffer = (char *)malloc(maxSize);
+    
+    if(!CFStringGetCString(str, buffer, maxSize, kCFStringEncodingUTF8))
+    {
+        free(buffer);
+        buffer = NULL;
+    }
+    
+    return buffer;
+}
