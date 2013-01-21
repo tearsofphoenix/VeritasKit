@@ -18,7 +18,7 @@
         NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity: argumentCount];
         for (NSUInteger iLooper = 0; iLooper < argumentCount; ++iLooper)
         {
-            [result addObject: [NSString stringWithUTF8String: [self getArgumentTypeAtIndex: iLooper]]];
+            [result addObject: @( [self getArgumentTypeAtIndex: iLooper] )];
         }
         return [result autorelease];
     }

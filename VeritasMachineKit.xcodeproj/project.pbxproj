@@ -885,9 +885,9 @@
 			productReference = E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E1A400361643996C00F8AE92 /* VeritasMachineKit */ = {
+		E1A400361643996C00F8AE92 /* VeritasMachineKit-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E1A400491643996C00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit" */;
+			buildConfigurationList = E1A400491643996C00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-Mac" */;
 			buildPhases = (
 				E1A400321643996C00F8AE92 /* Sources */,
 				E1A400331643996C00F8AE92 /* Frameworks */,
@@ -899,14 +899,14 @@
 			dependencies = (
 				E1A4004E16439A0C00F8AE92 /* PBXTargetDependency */,
 			);
-			name = VeritasMachineKit;
+			name = "VeritasMachineKit-Mac";
 			productName = VeritasMachineKit;
 			productReference = E1A400371643996C00F8AE92 /* VeritasMachineKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E1A4005316439A1C00F8AE92 /* VeritasMachineKitiOS */ = {
+		E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKitiOS" */;
+			buildConfigurationList = E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-iOS" */;
 			buildPhases = (
 				E1A4004F16439A1C00F8AE92 /* Sources */,
 				E1A4005016439A1C00F8AE92 /* Frameworks */,
@@ -918,7 +918,7 @@
 			dependencies = (
 				E1A4006516439A6600F8AE92 /* PBXTargetDependency */,
 			);
-			name = VeritasMachineKitiOS;
+			name = "VeritasMachineKit-iOS";
 			productName = VeritasMachineKitiOS;
 			productReference = E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -949,8 +949,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				E1A400361643996C00F8AE92 /* VeritasMachineKit */,
-				E1A4005316439A1C00F8AE92 /* VeritasMachineKitiOS */,
+				E1A400361643996C00F8AE92 /* VeritasMachineKit-Mac */,
+				E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */,
 				E14A34DD1643A77F00B8EB6E /* VeritasMahineIOSDemo */,
 			);
 		};
@@ -1140,7 +1140,7 @@
 /* Begin PBXTargetDependency section */
 		E14A34FE1643A7BA00B8EB6E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E1A4005316439A1C00F8AE92 /* VeritasMachineKitiOS */;
+			target = E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */;
 			targetProxy = E14A34FD1643A7BA00B8EB6E /* PBXContainerItemProxy */;
 		};
 		E1A4004E16439A0C00F8AE92 /* PBXTargetDependency */ = {
@@ -1227,7 +1227,7 @@
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "VeritasMahineIOSDemo/VeritasMahineIOSDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1245,7 +1245,7 @@
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "VeritasMahineIOSDemo/VeritasMahineIOSDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1275,7 +1275,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "VeritasMachineKit/VeritasMachineKit-Info.plist";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = VeritasMachineKit;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = framework;
@@ -1306,7 +1306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "VeritasMachineKit/VeritasMachineKit-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = VeritasMachineKit;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = framework;
@@ -1332,7 +1332,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "VeritasMachineKitiOS/VeritasMachineKitiOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				INSTALL_PATH = "@executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Source/Library/libffi-3.0.11/iOS\"",
@@ -1361,7 +1362,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "VeritasMachineKitiOS/VeritasMachineKitiOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				INSTALL_PATH = "@executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Source/Library/libffi-3.0.11/iOS\"",
@@ -1390,8 +1392,9 @@
 				E14A34FA1643A77F00B8EB6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		E1A400491643996C00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit" */ = {
+		E1A400491643996C00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E1A4004A1643996C00F8AE92 /* Debug */,
@@ -1400,7 +1403,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKitiOS" */ = {
+		E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E1A4006216439A1D00F8AE92 /* Debug */,

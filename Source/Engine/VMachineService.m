@@ -137,7 +137,7 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
     const char *message = lua_tostring(L, 2);
     if (!strcmp(message, "import"))
     {
-        NSString *frameworkName = [NSString stringWithUTF8String: lua_tostring(L, 3)];
+        NSString *frameworkName = @( lua_tostring(L, 3) );
         frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
         
         VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ frameworkName ]);
@@ -275,13 +275,13 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
         //
         if (callback)
         {
-            callback( @[ @YES, [NSString stringWithUTF8String: strdup(ret)] ] );
+            callback( @[ @YES, @( strdup(ret) ) ] );
         }
     }else
     {
         if (callback)
         {
-            callback(@[ @NO, [NSString stringWithUTF8String: lua_tostring(luaStateRef, 1)] ]);
+            callback(@[ @NO, @( lua_tostring(luaStateRef, 1) ) ]);
             
         }else
         {

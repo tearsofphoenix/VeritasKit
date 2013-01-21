@@ -304,7 +304,7 @@ static int luaObjC_import_file(lua_State *L)
 {
     const char *name = lua_tostring(L, 1);
     
-    VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ [NSString  stringWithUTF8String: name] ]);
+    VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ @( name ) ]);
     
     lua_getfield(L, LUA_REGISTRYINDEX, "require");
     
@@ -335,7 +335,7 @@ static int luaObjC_resolveName(lua_State *L)
         VSC(VBridgeServiceIdentifier,
             VBridgeServiceResolveNameIntoStateAction,
             nil,
-            @[ [NSString stringWithUTF8String: name], [NSValue valueWithPointer: L] ]);
+            @[ @(name), [NSValue valueWithPointer: L] ]);
     }
     
     return 1;

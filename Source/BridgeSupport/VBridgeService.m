@@ -46,7 +46,7 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
             NSInteger *address = dlsym(RTLD_DEFAULT, [name UTF8String]);
             if (address)
             {
-                [constantInfo setObject: [NSNumber numberWithInteger: *address]
+                [constantInfo setObject: @(*address)
                                  forKey: @"value"];
             }
             break;
@@ -57,7 +57,7 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
             CGFloat * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
             if (address)
             {
-                [constantInfo setObject: [NSNumber numberWithDouble: *address]
+                [constantInfo setObject: @(*address)
                                  forKey: @"value"];
             }
             break;

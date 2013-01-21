@@ -216,7 +216,7 @@ static const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
     {
         const char* source = ar->source;
         
-        NSString *theString = [NSString stringWithUTF8String: source];
+        NSString *theString = @( source );
         
         NSArray *result = [theString componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
         

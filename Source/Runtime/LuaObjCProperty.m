@@ -317,10 +317,10 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
         
     }
     
-    [setters setObject: [NSString stringWithUTF8String: propertyName]
+    [setters setObject: @( propertyName )
                 forKey: [NSValue valueWithPointer: selectorOfSet]];
     
-    [getters setObject: [NSString stringWithUTF8String: propertyName]
+    [getters setObject: @( propertyName )
                 forKey: [NSValue valueWithPointer: selectorOfGet]];
 }
 

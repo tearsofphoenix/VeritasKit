@@ -24,7 +24,7 @@ id LuaObjCCheckObject(lua_State *L, int index)
         }
         case LUA_TSTRING:
         {
-            return [NSString stringWithUTF8String: lua_tostring(L, index)];
+            return @( lua_tostring(L, index) );
         }
         case LUA_TUSERDATA:
         {

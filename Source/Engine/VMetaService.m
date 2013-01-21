@@ -105,17 +105,19 @@ static SEL _VMetaServiceCallforActionSEL = NULL;
 
 + (void)registerService: (Class)serviceClass
 {
-    
-    VMetaService* service = [[serviceClass alloc] init];
     id serviceID = [serviceClass identity];
-    service->_queue = dispatch_queue_create([serviceID UTF8String], DISPATCH_QUEUE_CONCURRENT);
-    [service initProcessors];
+
+    if (serviceID && !CFDictionaryGetValue(__resgiteredServices, serviceID))
+    {
+        VMetaService* service = [[serviceClass alloc] init];
+        service->_queue = dispatch_queue_create([serviceID UTF8String], DISPATCH_QUEUE_CONCURRENT);
+        [service initProcessors];
     
-    [(NSMutableDictionary *)__resgiteredServices setObject: service
-                                                    forKey: serviceID];
+        [(NSMutableDictionary *)__resgiteredServices setObject: service
+                                                        forKey: serviceID];
     
-    [service release];
-    
+        [service release];
+    }
 }
 
 + (id<VMetaService>)serviceByID: (NSString *)serviceID
