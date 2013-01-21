@@ -19,9 +19,3 @@
 + (NSString *)UUID;
 
 @end
-
-@interface NSMutableString (VMKIndex)
-
-- (void)addObjectAtIndexWithState: (struct lua_State *)L;
-
-@end

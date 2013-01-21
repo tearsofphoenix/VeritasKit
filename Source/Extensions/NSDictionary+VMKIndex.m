@@ -54,6 +54,8 @@ static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
         return 2;
     }else 
     {
+        __keys = nil;
+        __keyIndex = 0;
         return 0;
     }
 }

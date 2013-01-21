@@ -184,5 +184,20 @@ main = function()
             
             block();
             --]]
+            local dict = [[NSMutableDictionary alloc] init];
+            [dict setObject: @"2" forKey: @"two"];
+
+            for( k, v in dict)
+            {
+                print(k, v);
+            }
+
+            dict["sd"] = @"4";
+
+            for( k, v in dict)
+            {
+                print(k, v);
+            }
+
             return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
         end

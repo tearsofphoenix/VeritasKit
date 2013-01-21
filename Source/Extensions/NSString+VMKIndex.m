@@ -62,24 +62,3 @@
 }
 
 @end
-
-@implementation NSMutableString (VMKIndex)
-
-- (void)addObjectAtIndexWithState: (lua_State *)L
-{
-    NSUInteger index = lua_tointeger(L, 2);
-    NSString *inserted = nil;
-    switch(lua_type(L, 3))
-    {
-        case LUA_TNONE:
-        case LUA_TNIL:
-        {
-            break
-            ;
-        }
-    }
-    [self insertString: inserted 
-               atIndex: index];
-}
-
-@end

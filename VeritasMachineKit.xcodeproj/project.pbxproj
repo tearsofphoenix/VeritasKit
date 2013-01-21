@@ -83,13 +83,12 @@
 		E1A4006716439A7900F8AE92 /* LuaBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* LuaBridgeInfo.m */; };
 		E1A4006816439A7900F8AE92 /* VBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VBridgeService.m */; };
 		E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
-		E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
+		E1A4006A16439A7900F8AE92 /* VMKMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMKMachineService.m */; };
 		E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
 		E1A4006C16439A7900F8AE92 /* VMKProfile.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.c */; };
 		E1A4006D16439A7900F8AE92 /* NSArray+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */; };
 		E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
 		E1A4006F16439A7900F8AE92 /* NSDictionary+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */; };
-		E1A4007016439A7900F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */; };
 		E1A4007116439A7900F8AE92 /* NSString+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */; };
 		E1A4007216439A7900F8AE92 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */; };
 		E1A4007316439A7900F8AE92 /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */; };
@@ -109,7 +108,7 @@
 		E1A4008716439A7900F8AE92 /* VMKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* VMKMessage.m */; };
 		E1A4008816439A7900F8AE92 /* VMKProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* VMKProperty.m */; };
 		E1A4008916439A7900F8AE92 /* VMKRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* VMKRuntime.m */; };
-		E1A4008A16439A9F00F8AE92 /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008A16439A9F00F8AE92 /* VMKMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMKMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A4008B16439A9F00F8AE92 /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBF1643993300F8AE92 /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A4008C16439A9F00F8AE92 /* VMKAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* VMKAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A4008D16439A9F00F8AE92 /* VMKBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* VMKBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -119,13 +118,12 @@
 		E1A4009116439B4600F8AE92 /* LuaBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* LuaBridgeInfo.m */; };
 		E1A4009216439B4600F8AE92 /* VBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VBridgeService.m */; };
 		E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
-		E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
+		E1A4009416439B4600F8AE92 /* VMKMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMKMachineService.m */; };
 		E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
 		E1A4009616439B4600F8AE92 /* VMKProfile.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.c */; };
 		E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */; };
 		E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
 		E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */; };
-		E1A4009A16439B4600F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */; };
 		E1A4009B16439B4600F8AE92 /* NSString+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */; };
 		E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */; };
 		E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */; };
@@ -134,7 +132,6 @@
 		E1A400A016439B4600F8AE92 /* LuaNSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDB1643993300F8AE92 /* LuaNSCollection.m */; };
 		E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */; };
 		E1A400A216439B4600F8AE92 /* LuaNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.m */; };
-		E1A400A316439B4600F8AE92 /* LuaEAGL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE21643993300F8AE92 /* LuaEAGL.m */; };
 		E1A400A416439B4600F8AE92 /* LuaCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */; };
 		E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.m */; };
 		E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */; };
@@ -151,7 +148,7 @@
 		E1A400B116439B4600F8AE92 /* VMKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* VMKMessage.m */; };
 		E1A400B216439B4600F8AE92 /* VMKProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* VMKProperty.m */; };
 		E1A400B316439B4600F8AE92 /* VMKRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* VMKRuntime.m */; };
-		E1A400B416439B6900F8AE92 /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B416439B6900F8AE92 /* VMKMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMKMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A400B516439B6900F8AE92 /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBF1643993300F8AE92 /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A400B616439B6900F8AE92 /* VMKAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* VMKAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A400B716439B6900F8AE92 /* VMKBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* VMKBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -310,8 +307,8 @@
 		E1A4FFB91643993300F8AE92 /* VBridgeService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VBridgeService.m; sourceTree = "<group>"; };
 		E1A4FFBB1643993300F8AE92 /* LuaLibraryInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaLibraryInformation.h; sourceTree = "<group>"; };
 		E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaLibraryInformation.m; sourceTree = "<group>"; };
-		E1A4FFBD1643993300F8AE92 /* VMachineService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMachineService.h; sourceTree = "<group>"; };
-		E1A4FFBE1643993300F8AE92 /* VMachineService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMachineService.m; sourceTree = "<group>"; };
+		E1A4FFBD1643993300F8AE92 /* VMKMachineService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKMachineService.h; sourceTree = "<group>"; };
+		E1A4FFBE1643993300F8AE92 /* VMKMachineService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKMachineService.m; sourceTree = "<group>"; };
 		E1A4FFBF1643993300F8AE92 /* VMetaService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMetaService.h; sourceTree = "<group>"; };
 		E1A4FFC01643993300F8AE92 /* VMetaService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMetaService.m; sourceTree = "<group>"; };
 		E1A4FFC21643993300F8AE92 /* VMKIndexing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKIndexing.h; sourceTree = "<group>"; };
@@ -323,8 +320,6 @@
 		E1A4FFC81643993300F8AE92 /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		E1A4FFC91643993300F8AE92 /* NSDictionary+VMKIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+VMKIndex.h"; sourceTree = "<group>"; };
 		E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+VMKIndex.m"; sourceTree = "<group>"; };
-		E1A4FFCB1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+argumentsEncodings.h"; sourceTree = "<group>"; };
-		E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+argumentsEncodings.m"; sourceTree = "<group>"; };
 		E1A4FFCD1643993300F8AE92 /* NSString+VMKIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+VMKIndex.h"; sourceTree = "<group>"; };
 		E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+VMKIndex.m"; sourceTree = "<group>"; };
 		E1A4FFD11643993300F8AE92 /* LuaCGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCGAffineTransform.h; sourceTree = "<group>"; };
@@ -341,8 +336,6 @@
 		E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSRange.m; sourceTree = "<group>"; };
 		E1A4FFDE1643993300F8AE92 /* LuaNSString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSString.h; sourceTree = "<group>"; };
 		E1A4FFDF1643993300F8AE92 /* LuaNSString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSString.m; sourceTree = "<group>"; };
-		E1A4FFE11643993300F8AE92 /* LuaEAGL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaEAGL.h; sourceTree = "<group>"; };
-		E1A4FFE21643993300F8AE92 /* LuaEAGL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaEAGL.m; sourceTree = "<group>"; };
 		E1A4FFE41643993300F8AE92 /* LuaCATransform3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCATransform3D.h; sourceTree = "<group>"; };
 		E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaCATransform3D.m; sourceTree = "<group>"; };
 		E1A4FFE71643993300F8AE92 /* VMKFrameworkFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKFrameworkFunctions.h; sourceTree = "<group>"; };
@@ -674,8 +667,8 @@
 			children = (
 				E1A4FFBB1643993300F8AE92 /* LuaLibraryInformation.h */,
 				E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */,
-				E1A4FFBD1643993300F8AE92 /* VMachineService.h */,
-				E1A4FFBE1643993300F8AE92 /* VMachineService.m */,
+				E1A4FFBD1643993300F8AE92 /* VMKMachineService.h */,
+				E1A4FFBE1643993300F8AE92 /* VMKMachineService.m */,
 				E1A4FFBF1643993300F8AE92 /* VMetaService.h */,
 				E1A4FFC01643993300F8AE92 /* VMetaService.m */,
 			);
@@ -694,8 +687,6 @@
 				E1A4FFC81643993300F8AE92 /* NSData+Base64.m */,
 				E1A4FFC91643993300F8AE92 /* NSDictionary+VMKIndex.h */,
 				E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */,
-				E1A4FFCB1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.h */,
-				E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */,
 				E1A4FFCD1643993300F8AE92 /* NSString+VMKIndex.h */,
 				E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */,
 			);
@@ -707,7 +698,6 @@
 			children = (
 				E1A4FFD01643993300F8AE92 /* CoreGraphics */,
 				E1A4FFD51643993300F8AE92 /* Foundation */,
-				E1A4FFE01643993300F8AE92 /* OpenGLES */,
 				E1A4FFE31643993300F8AE92 /* QuartzCore */,
 				E1A4FFE61643993300F8AE92 /* Shared */,
 				E1A4FFEA1643993300F8AE92 /* UIKit */,
@@ -741,15 +731,6 @@
 				E1A4FFDF1643993300F8AE92 /* LuaNSString.m */,
 			);
 			path = Foundation;
-			sourceTree = "<group>";
-		};
-		E1A4FFE01643993300F8AE92 /* OpenGLES */ = {
-			isa = PBXGroup;
-			children = (
-				E1A4FFE11643993300F8AE92 /* LuaEAGL.h */,
-				E1A4FFE21643993300F8AE92 /* LuaEAGL.m */,
-			);
-			path = OpenGLES;
 			sourceTree = "<group>";
 		};
 		E1A4FFE31643993300F8AE92 /* QuartzCore */ = {
@@ -840,7 +821,7 @@
 			files = (
 				E1A4008E16439AAF00F8AE92 /* VeritasMachineKit.h in Headers */,
 				E1A4008F16439AF100F8AE92 /* VMKMessage.h in Headers */,
-				E1A4008A16439A9F00F8AE92 /* VMachineService.h in Headers */,
+				E1A4008A16439A9F00F8AE92 /* VMKMachineService.h in Headers */,
 				E1A4008B16439A9F00F8AE92 /* VMetaService.h in Headers */,
 				E1A4008C16439A9F00F8AE92 /* VMKAuxiliary.h in Headers */,
 				E1A4008D16439A9F00F8AE92 /* VMKBase.h in Headers */,
@@ -859,7 +840,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */,
-				E1A400B416439B6900F8AE92 /* VMachineService.h in Headers */,
+				E1A400B416439B6900F8AE92 /* VMKMachineService.h in Headers */,
 				E1A400B516439B6900F8AE92 /* VMetaService.h in Headers */,
 				E1A400B616439B6900F8AE92 /* VMKAuxiliary.h in Headers */,
 				E1A400B716439B6900F8AE92 /* VMKBase.h in Headers */,
@@ -1067,13 +1048,12 @@
 				E1A4006716439A7900F8AE92 /* LuaBridgeInfo.m in Sources */,
 				E1A4006816439A7900F8AE92 /* VBridgeService.m in Sources */,
 				E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */,
-				E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */,
+				E1A4006A16439A7900F8AE92 /* VMKMachineService.m in Sources */,
 				E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */,
 				E1A4006C16439A7900F8AE92 /* VMKProfile.c in Sources */,
 				E1A4006D16439A7900F8AE92 /* NSArray+VMKIndex.m in Sources */,
 				E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */,
 				E1A4006F16439A7900F8AE92 /* NSDictionary+VMKIndex.m in Sources */,
-				E1A4007016439A7900F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */,
 				E1A4007116439A7900F8AE92 /* NSString+VMKIndex.m in Sources */,
 				E1A4007216439A7900F8AE92 /* LuaCGAffineTransform.m in Sources */,
 				E1A4007316439A7900F8AE92 /* LuaCGGeometry.m in Sources */,
@@ -1104,13 +1084,12 @@
 				E1A4009116439B4600F8AE92 /* LuaBridgeInfo.m in Sources */,
 				E1A4009216439B4600F8AE92 /* VBridgeService.m in Sources */,
 				E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */,
-				E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */,
+				E1A4009416439B4600F8AE92 /* VMKMachineService.m in Sources */,
 				E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */,
 				E1A4009616439B4600F8AE92 /* VMKProfile.c in Sources */,
 				E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */,
 				E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */,
 				E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */,
-				E1A4009A16439B4600F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */,
 				E1A4009B16439B4600F8AE92 /* NSString+VMKIndex.m in Sources */,
 				E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.m in Sources */,
 				E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */,
@@ -1119,7 +1098,6 @@
 				E1A400A016439B4600F8AE92 /* LuaNSCollection.m in Sources */,
 				E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */,
 				E1A400A216439B4600F8AE92 /* LuaNSString.m in Sources */,
-				E1A400A316439B4600F8AE92 /* LuaEAGL.m in Sources */,
 				E1A400A416439B4600F8AE92 /* LuaCATransform3D.m in Sources */,
 				E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.m in Sources */,
 				E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */,

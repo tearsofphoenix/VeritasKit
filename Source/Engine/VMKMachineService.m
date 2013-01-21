@@ -1,12 +1,12 @@
 //
-//  VMachineService.m
+//  VMKMachineService.m
 //  LuaCL
 //
 //  Created by tearsofphoenix on 2/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "VMachineService.h"
+#import "VMKMachineService.h"
 
 //#import "lualib.h"
 
@@ -29,36 +29,38 @@
 #import "VMKParser.h"
 #import "NSString+VMKIndex.h"
 #import "NSData+Base64.h"
+#import <pthread.h>
 
 extern int lua_dumpSourceCode(lua_State* L, const char *sourceCode, const char* outputPath);
 
-static char * const VMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
+static char * const VMKMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
-static char * const VMachineGarbageCollectionQueueIdentifier = "com.veritas.lua-engine.garbage-colletion.queue";
+static char * const VMKMachineGarbageCollectionQueueIdentifier = "com.veritas.lua-engine.garbage-colletion.queue";
 
 //Gardage collect time interval, in seconds
 //
-static const NSTimeInterval VMachineGarbageCollectInterval = 10;
+static const NSTimeInterval VMKMachineGarbageCollectInterval = 10;
 
 typedef struct lua_State *LuaStateRef;
 
-typedef struct
+struct __VMKMachineAttributes
 {
     NSString *path;
     LuaStateRef luaState;
     LuaStateRef parserState;
     dispatch_queue_t garbageCollectionQueue;
     dispatch_source_t garbageCollectTimer;
+    pthread_mutex_t lock;
     
-}VMachineAttributes;
+};
 
-typedef VMachineAttributes *VMachineAttributesRef;
+typedef struct __VMKMachineAttributes *VMKMachineAttributesRef;
 
 
-@interface VMachineService ()
+@interface VMKMachineService ()
 {
 @private
-    VMachineAttributesRef _internal;
+    VMKMachineAttributesRef _internal;
     NSMutableDictionary *_luaEngineLibs;
     NSMutableArray *_md5OfParsedString;
 }
@@ -66,7 +68,7 @@ typedef VMachineAttributes *VMachineAttributesRef;
 @end
 
 
-@implementation VMachineService
+@implementation VMKMachineService
 
 static int luaObjC_objc_UUIDString(lua_State *L)
 {
@@ -81,7 +83,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     
     //`Foundation' lib
     //
-    infoLooper = LuaLibraryInformationMake(VMachineObjCSupport,
+    infoLooper = LuaLibraryInformationMake(VMKMachineObjCSupport,
                                            @LUA_NSLIBNAME,
                                            VMKOpenFoundationSupport,
                                            1,
@@ -93,17 +95,17 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //`UIKit' lib
     //
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-    infoLooper = LuaLibraryInformationMake(VMachineUIKitSupport,
+    infoLooper = LuaLibraryInformationMake(VMKMachineUIKitSupport,
                                            @LUA_UIKITLIBNAME,
                                            VMKOpenUIKit,
                                            1,
-                                           @[ VMachineObjCSupport ]);
+                                           @[ VMKMachineObjCSupport ]);
     [_libs setObject: infoLooper
               forKey: [infoLooper featureID]];
 #endif
     //`lpeg' lib
     //
-    infoLooper = LuaLibraryInformationMake(VMachineParserSupport,
+    infoLooper = LuaLibraryInformationMake(VMKMachineParserSupport,
                                            @LUA_LPEGLIBNAME,
                                            luaopen_lpeg,
                                            1,
@@ -153,7 +155,7 @@ static const luaL_Reg __compileTimeFunctions [] =
     {NULL, NULL},
 };
 
-static void VMachine_initialize(VMachineService *self)
+static void VMKMachine_initialize(VMKMachineService *self)
 {
     self->_md5OfParsedString = [[NSMutableArray alloc] init];
     
@@ -164,14 +166,22 @@ static void VMachine_initialize(VMachineService *self)
     
     //initialize the internal
     //
-    VMachineAttributesRef internal = calloc(1, sizeof(VMachineAttributes));
+    VMKMachineAttributesRef internal = calloc(1, sizeof(struct __VMKMachineAttributes));
+    
+    pthread_mutexattr_t attr;
+    pthread_mutexattr_init(&attr);
+    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+    
+    pthread_mutex_init(&internal->lock, &attr);
+    
+    pthread_mutexattr_destroy(&attr);
     
     //init parser state
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
     
     VMKLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
-    LuaLibraryInformationRegisterToState(libs, VMachineParserSupport, parserStateRef);
+    LuaLibraryInformationRegisterToState(libs, VMKMachineParserSupport, parserStateRef);
     
     internal->parserState = parserStateRef;
     
@@ -179,7 +189,7 @@ static void VMachine_initialize(VMachineService *self)
     //
     LuaStateRef luaStateRef = _luaEngine_createLuaState();
     
-    LuaLibraryInformationRegisterToState(libs, VMachineUIKitSupport, luaStateRef);
+    LuaLibraryInformationRegisterToState(libs, VMKMachineUIKitSupport, luaStateRef);
     
     internal->luaState = luaStateRef;
     
@@ -201,19 +211,21 @@ static void VMachine_initialize(VMachineService *self)
     
     [sourceCode release];
     
-    dispatch_queue_t garbageQueue = dispatch_queue_create(VMachineGarbageCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t garbageQueue = dispatch_queue_create(VMKMachineGarbageCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
     internal->garbageCollectionQueue = garbageQueue;
     
     dispatch_source_t garbageCollectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, garbageQueue);
     internal->garbageCollectTimer = garbageCollectTimer;
     
-    NSTimeInterval collectInterval = VMachineGarbageCollectInterval * NSEC_PER_SEC;
+    NSTimeInterval collectInterval = VMKMachineGarbageCollectInterval * NSEC_PER_SEC;
     
     dispatch_source_set_timer(garbageCollectTimer, dispatch_time(DISPATCH_TIME_NOW, collectInterval), collectInterval, 0);
     dispatch_source_set_event_handler(garbageCollectTimer,
                                       (^
                                        {
+                                           pthread_mutex_lock(&internal->lock);
                                            lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
+                                           pthread_mutex_unlock(&internal->lock);
                                            
                                        }));
     
@@ -229,7 +241,7 @@ static void VMachine_initialize(VMachineService *self)
 {
     if ((self = [super init]))
     {
-        VMachine_initialize(self);
+        VMKMachine_initialize(self);
         
         dispatch_resume(_internal->garbageCollectTimer);
         
@@ -258,7 +270,7 @@ static void VMachine_initialize(VMachineService *self)
     [super dealloc];
 }
 
-static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sourceCode, VCallbackBlock callback)
+static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *sourceCode, VCallbackBlock callback)
 {
     LuaStateRef luaStateRef = self->_internal->parserState;
     lua_getglobal(luaStateRef, "translate");
@@ -275,7 +287,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
         //
         if (callback)
         {
-            callback( @[ @YES, @( strdup(ret) ) ] );
+            callback( @[ @YES, @(ret) ] );
         }
     }else
     {
@@ -302,7 +314,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
                                   callback( arguments);
                               }
                           })
-              forAction: VMachineServiceDoSourceCodeAction];
+              forAction: VMKMachineServiceDoSourceCodeAction];
     
     [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
@@ -317,14 +329,14 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
                                   lua_setglobal(L, [name UTF8String]);
                               }
                           })
-              forAction: VMachineServiceRegisterGlobalConstantsAction];
+              forAction: VMKMachineServiceRegisterGlobalConstantsAction];
     
     [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
                               NSString *sourceCode = [arguments objectAtIndex: 0];
                               NSString *filePath = [arguments objectAtIndex: 1];
                               
-                              VMachineServiceParseSourceCode(self,
+                              VMKMachineServiceParseSourceCode(self,
                                                              sourceCode,
                                                              (^(NSArray *callbackArguments)
                                                               {
@@ -343,7 +355,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
                                                                   }
                                                               }));
                           })
-              forAction: VMachineServiceDumpSourceCodeToPathAction];
+              forAction: VMKMachineServiceDumpSourceCodeToPathAction];
     
     [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
@@ -353,7 +365,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
                               
                               for (NSString *sourceCodeLooper in sourceCodes)
                               {
-                                  VMachineServiceParseSourceCode(self,
+                                  VMKMachineServiceParseSourceCode(self,
                                                                  sourceCodeLooper,
                                                                  (^(NSArray *callbackArguments)
                                                                   {
@@ -382,13 +394,13 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
                                   lua_error(luaStateRef);
                               }
                           })
-              forAction: VMachineServiceDebugSourceFilesAction];
+              forAction: VMKMachineServiceDebugSourceFilesAction];
     
     [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
                           {
-                              VMachineServiceParseSourceCode(self, [arguments objectAtIndex: 0], callback);
+                              VMKMachineServiceParseSourceCode(self, [arguments objectAtIndex: 0], callback);
                           })
-              forAction: VMachineServiceParseSourceCodeAction];
+              forAction: VMKMachineServiceParseSourceCodeAction];
 }
 
 - (void)executeFunctionName: (NSString *)functionName
@@ -440,7 +452,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
             {
                 if (0 == argumentCount)
                 {
-                    printf("[VMachineService] warning: push arguments to `void'-arguments-function\n");
+                    printf("[VMKMachineService] warning: push arguments to `void'-arguments-function\n");
                 }
                 
                 block(luaStateRef);
@@ -448,7 +460,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
             
             //execute
             //
-            //printf("[VMachineService] debug: will call lua function: %s\n", functionNameString);
+            //printf("[VMKMachineService] debug: will call lua function: %s\n", functionNameString);
             
             status = lua_pcall(luaStateRef, argumentCount, returnCount, 0);
             
@@ -463,7 +475,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
             {
                 if (0 == returnCount)
                 {
-                    printf("[VMachineService] warning: deal return value on `void'-return-function\n");
+                    printf("[VMKMachineService] warning: deal return value on `void'-return-function\n");
                 }
                 
                 completion(luaStateRef);
@@ -496,7 +508,7 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
         
         //parse source code to lua code
         //
-        VMachineServiceParseSourceCode(self, sourceCode,
+        VMKMachineServiceParseSourceCode(self, sourceCode,
                                        (^(NSArray *callbackArguments)
                                         {
                                             
@@ -520,37 +532,37 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
 
 + (id)identity
 {
-    return VMachineServiceID;
+    return VMKMachineServiceID;
 }
 
 @end
 
 #pragma mark - engine id
 
-NSString * const VMachineServiceID = @"com.veritas.service.lua-engine";
+NSString * const VMKMachineServiceID = @"com.veritas.service.lua-engine";
 
-NSString * const VMachineObjCSupport = @"lua-engine.feature.objc";
+NSString * const VMKMachineObjCSupport = @"lua-engine.feature.objc";
 
-NSString * const VMachineUIKitSupport = @"lua-engine.feature.uikit";
+NSString * const VMKMachineUIKitSupport = @"lua-engine.feature.uikit";
 
-NSString * const VMachineParserSupport = @"lua-engine.feature.lpeg";
+NSString * const VMKMachineParserSupport = @"lua-engine.feature.lpeg";
 
 #pragma mark - engine supported actions
 
-NSString * const VMachineServiceDoSourceCodeAction = @"action.doSourceCode";
+NSString * const VMKMachineServiceDoSourceCodeAction = @"action.doSourceCode";
 
-NSString * const VMachineServiceParseSourceCodeAction = @"action.parseSourceCode";
+NSString * const VMKMachineServiceParseSourceCodeAction = @"action.parseSourceCode";
 
-NSString * const VMachineServiceRegisterGlobalConstantsAction = @"action.registerGlobalConstatns";
+NSString * const VMKMachineServiceRegisterGlobalConstantsAction = @"action.registerGlobalConstatns";
 
-NSString * const VMachineServiceDumpSourceCodeToPathAction = @"action.dumpSourceCodeToPath";
+NSString * const VMKMachineServiceDumpSourceCodeToPathAction = @"action.dumpSourceCodeToPath";
 
-NSString * const VMachineServiceDebugSourceFilesAction = @"action.debugSourceFiles";
+NSString * const VMKMachineServiceDebugSourceFilesAction = @"action.debugSourceFiles";
 
 void LuaCall(NSString *sourceCode, NSString *functionName, VMKBlock start, int argumentCount, int returnCount, VMKBlock completion
              )
 {
-    [(VMachineService *)[VMetaService serviceByID: VMachineServiceID] executeFunctionName: functionName
+    [(VMKMachineService *)[VMetaService serviceByID: VMKMachineServiceID] executeFunctionName: functionName
                                                                              inSourceCode: sourceCode
                                                                         argumentPassBlock: start
                                                                             argumentCount: argumentCount

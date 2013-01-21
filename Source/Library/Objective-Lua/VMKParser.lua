@@ -1822,7 +1822,7 @@ local typetable =
     end,
                             
     forend = function(ast)
-        emit("for")
+        emit(" for ")
         recursivelyunparse(ast.var)
         emit('=')
         recursivelyunparse(ast.low)
@@ -1832,28 +1832,28 @@ local typetable =
             emit(',')
             recursivelyunparse(ast.step)
         end
-        emit("do")
+        emit(" do\n")
         recursivelyunparse(ast.chunk)
-        emit("end")
+        emit("end\n")
     end,
                                 
     forinend = function(ast)
-        emit("for")
+        emit(" for ")
         recursivelyunparse(ast.var)
         emit("in")
         recursivelyunparse(ast.iterator)
-        emit("do")
+        emit(" do\n")
         recursivelyunparse(ast.chunk)
-        emit("end")
+        emit("end\n")
     end,
     olua_forinend = function(ast)
-        emit("for")
+        emit(" for ")
         recursivelyunparse(ast.var)
         emit(" in objc_NSFastEnumerate(")
         recursivelyunparse(ast.iterator)
-        emit(")do")
+        emit(")do\n")
         recursivelyunparse(ast.chunk)
-        emit("end")
+        emit("end\n")
     end,
     whiledoend = function(ast)
         emit("while")
