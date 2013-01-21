@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCClass.h"
+#import "VMKClass.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
-#import "LuaObjCRuntime.h"
+#import "VMKRuntime.h"
 
 #import "LuaCGGeometry.h"
 
@@ -38,20 +38,24 @@ static void LuaInternalFreeCallback(CFAllocatorRef allocator, const void *value)
     free((void *)value);
 }
 
-CFDictionaryKeyCallBacks kLuaObjCCStringKeyCallBacks = {
-    .equal=LuaInternalCStringEqual,
-    .release=LuaInternalFreeCallback,
-    .hash=(CFDictionaryHashCallBack)strlen
+static CFDictionaryKeyCallBacks kVMKCFTypeDictionaryKeyCallBacks =
+{
+    .equal = LuaInternalCStringEqual,
+    .release = LuaInternalFreeCallback,
+    .hash = (CFDictionaryHashCallBack)strlen
 };
 
-static CFDictionaryValueCallBacks __LuaObjC_ValueCallbacks;
+static CFDictionaryValueCallBacks kVMKCFTypeDictionaryValueCallbacks =
+{
+    .equal = LuaInternalCStringEqual,
+};
 
-static CFMutableDictionaryRef __LuaObjC_TypeEncodingDictionary = NULL;
+static CFMutableDictionaryRef __sVMKTypeEncodingDictionary = NULL;
 
 static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef dict)
 {
     
-#define _AddTypeEncoding(type) CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, #type, @encode(type))
+#define _AddTypeEncoding(type) CFDictionaryAddValue(__sVMKTypeEncodingDictionary, #type, @encode(type))
     
     _AddTypeEncoding(NSInteger);
     _AddTypeEncoding(NSUInteger);
@@ -78,30 +82,26 @@ static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef di
 #undef _AddTypeEncoding
 }
 
-static inline void LuaObjCTypeEncodingInitialize(void)
+static inline void VMKTypeEncodingInitialize(void)
 {
-    __LuaObjC_ValueCallbacks.equal = LuaInternalCStringEqual;
-    
-    __LuaObjC_TypeEncodingDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 32,
-                                                                 &kLuaObjCCStringKeyCallBacks,
-                                                                 &__LuaObjC_ValueCallbacks);
-    _LuaObjC_initTypeEncodingDictionary(__LuaObjC_TypeEncodingDictionary);
+    __sVMKTypeEncodingDictionary = CFDictionaryCreateMutable(NULL, 32, &kVMKCFTypeDictionaryKeyCallBacks, &kVMKCFTypeDictionaryValueCallbacks);
+    _LuaObjC_initTypeEncodingDictionary(__sVMKTypeEncodingDictionary);
     
 }
 
-void LuaObjCAddEncodingForPredeclearClass(const char *className)
+void VMKAddEncodingForPredeclearClass(const char *className)
 {
-    if (!__LuaObjC_TypeEncodingDictionary)
+    if (!__sVMKTypeEncodingDictionary)
     {
-        LuaObjCTypeEncodingInitialize();
+        VMKTypeEncodingInitialize();
     }
     
-    CFDictionaryAddValue(__LuaObjC_TypeEncodingDictionary, strdup(className), @encode(id));
+    CFDictionaryAddValue(__sVMKTypeEncodingDictionary, strdup(className), @encode(id));
 }
 
-const char * LuaObjCTypeEncodingOfType(const char *typeName)
+const char * VMKTypeEncodingOfType(const char *typeName)
 {
-    const char *typeEncoding = CFDictionaryGetValue(__LuaObjC_TypeEncodingDictionary, typeName);
+    const char *typeEncoding = CFDictionaryGetValue(__sVMKTypeEncodingDictionary, typeName);
     if (!typeEncoding)
     {
         typeEncoding = @encode(id);
@@ -126,8 +126,7 @@ static char __LuaObjC_KeyForClassMethods;
 
 static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *key)
 {
-    CFMutableDictionaryRef classMethods = CFDictionaryCreateMutable(CFAllocatorGetDefault(),
-                                                                    16, &kLuaObjCCStringKeyCallBacks, NULL);
+    CFMutableDictionaryRef classMethods = CFDictionaryCreateMutable(NULL, 16, &kVMKCFTypeDictionaryKeyCallBacks, NULL);
     
     objc_setAssociatedObject(theClass, key, (id)classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -158,11 +157,9 @@ Class LuaInternalGetClass(const char *className)
     return CFDictionaryGetValue(__LuaObjC_ClassDictionary, className);
 }
 
-int LuaObjCClassInitialize(lua_State *L)
+int VMKClassInitialize(lua_State *L)
 {
-    __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024,
-                                                          &kLuaObjCCStringKeyCallBacks,
-                                                          &kCFTypeDictionaryValueCallBacks);
+    __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(NULL, 1024, &kVMKCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     return 1;
 }
 
@@ -180,13 +177,14 @@ static int luaObjC_getClosureIDOfSelector(Class theClass, SEL selector, bool isC
         }
         
         CFDictionaryRef methods = (CFDictionaryRef)objc_getAssociatedObject(theClass, key);
+        
         if (CFDictionaryContainsKey(methods, selector))
         {
             return (int)CFDictionaryGetValue(methods, selector);
         }
     }
     
-    return LuaObjCInvalidClouserID;
+    return VMKInvalidClouserID;
 }
 
 static void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod)
@@ -214,7 +212,7 @@ static void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const
 
 #pragma mark - IMP implementation
 
-static inline NSUInteger LuaObjCInternal_argumentCountOfSelector(SEL selector)
+static inline NSUInteger VMKInternal_argumentCountOfSelector(SEL selector)
 {
     const char* charLooper = (const char*)selector;
     NSUInteger count = 0;
@@ -241,7 +239,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     LuaClosureType clouserID = luaObjC_getClosureIDOfSelector(theClass, sel, isClassMethod);
     lua_State *luaState = LuaInternalGetLuaStateOfClass(theClass);
     
-    if (clouserID != LuaObjCInvalidClouserID)
+    if (clouserID != VMKInvalidClouserID)
     {
         //preprare arguments
         //
@@ -256,7 +254,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         //
         lua_rawgeti(luaState, LUA_REGISTRYINDEX, clouserID);
         
-        NSUInteger numberOfArgument = LuaObjCInternal_argumentCountOfSelector(sel);
+        NSUInteger numberOfArgument = VMKInternal_argumentCountOfSelector(sel);
         
         const char* methodTypeEncoding = method_getTypeEncoding(class_getInstanceMethod(theClass, sel));
         
@@ -267,11 +265,11 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         
         //push 'self' argument first
         //
-        LuaObjCPushObject(luaState, obj, true, false);
+        VMKPushObject(luaState, obj, true, false);
         
         //push '_cmd' argument next
         //
-        LuaObjCPushSelector(luaState, sel);
+        VMKPushSelector(luaState, sel);
         
         //push real arguments
         //
@@ -312,28 +310,28 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
                 case _C_ID:
                 {
                     id argLooper = va_arg(ap,  id);
-                    LuaObjCPushObject(luaState, argLooper, true, false);
+                    VMKPushObject(luaState, argLooper, true, false);
                     break;
                 }
                 case _C_SEL:
                 {
                     SEL sel = va_arg(ap, SEL);
-                    LuaObjCPushSelector(luaState, sel);
+                    VMKPushSelector(luaState, sel);
                     break;
                 }
                 case _C_STRUCT_B:
                 {
                     if (!strncmp(typeLooper, @encode(CGRect), strlen(@encode(CGRect))))
                     {
-                        LuaObjCPushCGRect(luaState, va_arg(ap, CGRect));
+                        VMKPushCGRect(luaState, va_arg(ap, CGRect));
                         
                     }else if (!strncmp(typeLooper, @encode(CGPoint), strlen(@encode(CGPoint))))
                     {
-                        LuaObjCPushCGPoint(luaState, va_arg(ap, CGPoint));
+                        VMKPushCGPoint(luaState, va_arg(ap, CGPoint));
                         
                     }else if (!strncmp(typeLooper, @encode(CGSize), strlen(@encode(CGSize))))
                     {
-                        LuaObjCPushCGSize(luaState, va_arg(ap, CGSize));
+                        VMKPushCGSize(luaState, va_arg(ap, CGSize));
                     }
                     break;
                 }
@@ -365,7 +363,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     IMP imp = class_getMethodImplementation(theClass, sel);
     if (imp)
     {
-        LuaObjCPushObject(luaState, imp(obj, sel, LuaObjCCheckObject(luaState, 1)), true, false);
+        VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), true, false);
         
     }else
     {
@@ -452,7 +450,7 @@ static id __luaClass_IMP_gerneral(id obj, SEL sel, ...)
 {
     __LuaClassPreprocess(obj, sel, L);
     
-    return LuaObjCCheckObject(L, -1);
+    return VMKCheckObject(L, -1);
 }
 
 #undef __LuaClassPreprocess
@@ -462,16 +460,16 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     int argCount = lua_gettop(L);
     
     const char * className = lua_tostring(L, 1);
-    const char* selectorName = LuaObjCCheckString(L, 2);
+    const char* selectorName = VMKCheckString(L, 2);
     
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
     
     //return type
     //
-    const char* typeLooper = LuaObjCCheckString(L, 3);
-    const char* returnType = LuaObjCTypeEncodingOfType(typeLooper);
+    const char* typeLooper = VMKCheckString(L, 3);
+    const char* returnType = VMKTypeEncodingOfType(typeLooper);
     
-    [typeEncoding appendFormat: @"%s", LuaObjCTypeEncodingOfType(typeLooper)];
+    [typeEncoding appendFormat: @"%s", VMKTypeEncodingOfType(typeLooper)];
     
     //id && selector
     //
@@ -479,9 +477,9 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
     
     for (int iLooper = 4; iLooper < argCount; ++iLooper)
     {
-        typeLooper = LuaObjCCheckString(L, iLooper);
+        typeLooper = VMKCheckString(L, iLooper);
         
-        [typeEncoding appendFormat: @"%s", LuaObjCTypeEncodingOfType(typeLooper)];
+        [typeEncoding appendFormat: @"%s", VMKTypeEncodingOfType(typeLooper)];
     }
     
     

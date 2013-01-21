@@ -12,9 +12,9 @@
     #include <Foundation/NSGeometry.h>
 #endif
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
 #define LUA_CGPoint_METANAME	"CGPoint"
 
@@ -22,12 +22,12 @@ __BEGIN_DECLS
 
 #define LUA_CGRect_METANAME	"CGRect"
     
-    VK_EXPORT int LuaObjCPushCGPoint(struct lua_State *L, CGPoint p);
+    VMK_EXPORT int VMKPushCGPoint(struct lua_State *L, CGPoint p);
     
-    VK_EXPORT int LuaObjCPushCGSize(struct lua_State *L, CGSize s);
+    VMK_EXPORT int VMKPushCGSize(struct lua_State *L, CGSize s);
     
-    VK_EXPORT int LuaObjCPushCGRect(struct lua_State *L, CGRect r);
+    VMK_EXPORT int VMKPushCGRect(struct lua_State *L, CGRect r);
     
-    LUAMOD_API int LuaObjCOpenCGGeometry(struct lua_State *L);
+    LUAMOD_API int VMKOpenCGGeometry(struct lua_State *L);
     
-__END_DECLS
+VMK_EXTERN__C_END

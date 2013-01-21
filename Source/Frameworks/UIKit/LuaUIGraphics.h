@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
-LUAMOD_API int LuaObjCOpenUIGraphics(struct lua_State *L);
+LUAMOD_API int VMKOpenUIGraphics(struct lua_State *L);
 
-__END_DECLS
+VMK_EXTERN__C_END

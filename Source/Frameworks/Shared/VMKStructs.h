@@ -1,5 +1,5 @@
 //
-//  LuaObjCStructs.h
+//  VMKStructs.h
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 7/14/12.

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIGraphics.h"
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 #import "LuaCGGeometry.h"
 
 static int lua_UIGraphicsBeginImageContext(lua_State *L)
@@ -54,7 +54,7 @@ static int lua_UIGraphicsBeginPDFPageWithInfo(lua_State *L)
 
 static int lua_UIGraphicsGetPDFContextBounds(lua_State *L)
 {
-    LuaObjCPushCGRect(L, UIGraphicsGetPDFContextBounds());
+    VMKPushCGRect(L, UIGraphicsGetPDFContextBounds());
     return 1;
 }
 
@@ -134,8 +134,8 @@ static const luaL_Reg __LuaUIGraphicsAPIs[] =
     {NULL, NULL},
 };
 
-int LuaObjCOpenUIGraphics(lua_State *L)
+int VMKOpenUIGraphics(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __LuaUIGraphicsAPIs);
+    VMKLoadGlobalFunctions(L, __LuaUIGraphicsAPIs);
     return 0;
 }

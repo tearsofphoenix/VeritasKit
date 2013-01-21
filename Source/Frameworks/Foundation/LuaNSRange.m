@@ -7,10 +7,10 @@
 //
 #import "LuaNSRange.h"
 
-#import "LuaObjCAuxiliary.h"
-#import "LuaObjCFrameworkFunctions.h"
+#import "VMKAuxiliary.h"
+#import "VMKFrameworkFunctions.h"
 
-int LuaObjCPushNSRange(lua_State *L, NSRange r)
+int VMKPushNSRange(lua_State *L, NSRange r)
 {
     NSRange *range = lua_newuserdata(L, sizeof(NSRange));
     *range = r;
@@ -25,7 +25,7 @@ static int lua_NSMakeRange(lua_State *L)
     NSUInteger loc = lua_tointeger(L, 1);
     NSUInteger len = lua_tointeger(L, 2);
     
-    return LuaObjCPushNSRange(L, NSMakeRange(loc, len));
+    return VMKPushNSRange(L, NSMakeRange(loc, len));
 }
 
 static int lua_NSMaxRange(lua_State *L) 
@@ -57,7 +57,7 @@ static int lua_NSUnionRange(lua_State *L)
     NSRange *range1 = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
     NSRange *range2 = luaL_checkudata(L, 2, LUA_NSRange_METANAME);
     
-    LuaObjCPushNSRange(L, NSUnionRange(*range1, *range2));
+    VMKPushNSRange(L, NSUnionRange(*range1, *range2));
     return 1;
 }
  static int lua_NSIntersectionRange(lua_State *L)
@@ -65,21 +65,21 @@ static int lua_NSUnionRange(lua_State *L)
     NSRange *range1 = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
     NSRange *range2 = luaL_checkudata(L, 2, LUA_NSRange_METANAME);
     
-    LuaObjCPushNSRange(L, NSIntersectionRange(*range1, *range2));
+    VMKPushNSRange(L, NSIntersectionRange(*range1, *range2));
     return 1;
 }
  
 static int lua_NSStringFromRange(lua_State *L)
 {
     NSRange *range = luaL_checkudata(L, 1, LUA_NSRange_METANAME);
-    LuaObjCPushObject(L, NSStringFromRange(*range), true, false);
+    VMKPushObject(L, NSStringFromRange(*range), true, false);
     return 1;
 }
 
 static int lua_NSRangeFromString(lua_State *L)
 {
-    NSString *aString = LuaObjCCheckObject(L, 1);
-    LuaObjCPushNSRange(L, NSRangeFromString(aString));
+    NSString *aString = VMKCheckObject(L, 1);
+    VMKPushNSRange(L, NSRangeFromString(aString));
     return 1;
 }
 
@@ -135,11 +135,11 @@ static const luaL_Reg __luaNSRangeAPIs[] = {
     {NULL, NULL},
 };
 
-int LuaObjCOpenNSRange(lua_State *L)
+int VMKOpenNSRange(lua_State *L)
 {
-    LuaObjCLoadCreateMetatable(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
+    VMKLoadCreateMetatable(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
 
-    LuaObjCLoadGlobalFunctions(L, __luaNSRangeAPIs);
+    VMKLoadGlobalFunctions(L, __luaNSRangeAPIs);
     
     return 0;
 }

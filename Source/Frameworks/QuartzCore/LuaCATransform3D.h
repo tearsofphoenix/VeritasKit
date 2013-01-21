@@ -8,14 +8,14 @@
 
 #include <QuartzCore/CATransform3D.h>
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
 #define LUA_CATransform3D_METANAME	"CATransform3D"
 
-    VK_EXPORT int LuaObjCPushCATransform3D(struct lua_State *L, CATransform3D t);
+    VMK_EXPORT int VMKPushCATransform3D(struct lua_State *L, CATransform3D t);
 
-    LUAMOD_API int LuaObjCOpenCATransform3D(struct lua_State *L);
+    LUAMOD_API int VMKOpenCATransform3D(struct lua_State *L);
 
-__END_DECLS
+VMK_EXTERN__C_END

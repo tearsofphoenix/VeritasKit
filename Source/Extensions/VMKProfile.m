@@ -1,14 +1,14 @@
 //
-//  LuaObjCProfile.m
+//  VMKProfile.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 6/28/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCProfile.h"
+#import "VMKProfile.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
 #import <mach/mach_time.h>
 
@@ -82,8 +82,8 @@ static const luaL_Reg __luaObjCProfileFunctions [] =
 };
 
 
-int LuaObjCOpenProfileSupport(lua_State *L)
+int VMKOpenProfileSupport(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __luaObjCProfileFunctions);
+    VMKLoadGlobalFunctions(L, __luaObjCProfileFunctions);
     return 1;
 }

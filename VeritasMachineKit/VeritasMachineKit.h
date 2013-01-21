@@ -7,5 +7,5 @@
 //
 
 #import <VeritasMachineKit/VMachineService.h>
-#import <VeritasMachineKit/LuaObjCMessage.h>
-#import <VeritasMachineKit/LuaObjCAuxiliary.h>
+#import <VeritasMachineKit/VMKMessage.h>
+#import <VeritasMachineKit/VMKAuxiliary.h>

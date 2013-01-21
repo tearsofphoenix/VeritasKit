@@ -1,16 +1,15 @@
 //
-//  LuaNSString.h
+//  VMKProfile.h
 //  LuaIOS
 //
-//  Created by tearsofphoenix on 5/2/12.
+//  Created by tearsofphoenix on 6/28/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//;
-
+//
 
 #include "VMKBase.h"
 
 VMK_EXTERN_C_BEGIN
 
-LUAMOD_API int VMKOpenNSString(struct lua_State *L);
+LUAMOD_API int VMKOpenProfileSupport(struct lua_State *L);
 
 VMK_EXTERN__C_END

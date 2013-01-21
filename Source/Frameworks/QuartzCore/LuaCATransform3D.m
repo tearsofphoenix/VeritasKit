@@ -7,11 +7,11 @@
 //
 #import "LuaCATransform3D.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 #import "LuaCGAffineTransform.h"
-#import "LuaObjCFrameworkFunctions.h"
+#import "VMKFrameworkFunctions.h"
 
-int LuaObjCPushCATransform3D(lua_State *L, CATransform3D t)
+int VMKPushCATransform3D(lua_State *L, CATransform3D t)
 {
     CATransform3D *result = lua_newuserdata(L, sizeof(CATransform3D));
     *result = t;
@@ -181,7 +181,7 @@ static int lua_CATransform3DEqualToTransform (lua_State *L)
 
 static int lua_CATransform3DMakeTranslation (lua_State *L)
 {    
-    LuaObjCPushCATransform3D(L, CATransform3DMakeTranslation(lua_tonumber(L, 1),
+    VMKPushCATransform3D(L, CATransform3DMakeTranslation(lua_tonumber(L, 1),
                                                           lua_tonumber(L, 2), 
                                                           lua_tonumber(L, 3)));
     return 1;
@@ -189,7 +189,7 @@ static int lua_CATransform3DMakeTranslation (lua_State *L)
 
 static int lua_CATransform3DMakeScale (lua_State *L)
 {
-    LuaObjCPushCATransform3D(L, CATransform3DMakeScale (lua_tonumber(L, 1),
+    VMKPushCATransform3D(L, CATransform3DMakeScale (lua_tonumber(L, 1),
                                                      lua_tonumber(L, 2), 
                                                      lua_tonumber(L, 3)));
     return 1;
@@ -197,7 +197,7 @@ static int lua_CATransform3DMakeScale (lua_State *L)
 
 static int lua_CATransform3DMakeRotation (lua_State *L)
 {
-    LuaObjCPushCATransform3D(L, CATransform3DMakeRotation(lua_tonumber(L, 1),
+    VMKPushCATransform3D(L, CATransform3DMakeRotation(lua_tonumber(L, 1),
                                                        lua_tonumber(L, 2), 
                                                        lua_tonumber(L, 3),
                                                        lua_tonumber(L, 4)));
@@ -207,7 +207,7 @@ static int lua_CATransform3DMakeRotation (lua_State *L)
 static int lua_CATransform3DTranslate (lua_State *L)
 {
     CATransform3D *t = lua_touserdata(L, 1);
-    LuaObjCPushCATransform3D(L, CATransform3DTranslate(*t, lua_tonumber(L, 2), 
+    VMKPushCATransform3D(L, CATransform3DTranslate(*t, lua_tonumber(L, 2), 
                                                     lua_tonumber(L, 3),
                                                     lua_tonumber(L, 4)));
     return 1;
@@ -217,7 +217,7 @@ static int lua_CATransform3DScale (lua_State *L)
 {
     CATransform3D *t = lua_touserdata(L, 1);
 
-    LuaObjCPushCATransform3D(L, CATransform3DScale(*t, lua_tonumber(L, 2), 
+    VMKPushCATransform3D(L, CATransform3DScale(*t, lua_tonumber(L, 2), 
                                                  lua_tonumber(L, 3),
                                                  lua_tonumber(L, 4)));
     return 1;
@@ -227,7 +227,7 @@ static int lua_CATransform3DRotate (lua_State *L)
 {
     CATransform3D *t = lua_touserdata(L, 1);
 
-    LuaObjCPushCATransform3D(L, CATransform3DRotate (*t, lua_tonumber(L, 2), 
+    VMKPushCATransform3D(L, CATransform3DRotate (*t, lua_tonumber(L, 2), 
                                                   lua_tonumber(L, 3),
                                                   lua_tonumber(L, 4),
                                                   lua_tonumber(L, 5)));
@@ -239,7 +239,7 @@ static int lua_CATransform3DConcat (lua_State *L)
     CATransform3D *t1 = lua_touserdata(L, 1);
     CATransform3D *t2 = lua_touserdata(L, 2);
 
-    LuaObjCPushCATransform3D(L, CATransform3DConcat (*t1, *t2));
+    VMKPushCATransform3D(L, CATransform3DConcat (*t1, *t2));
     return 1;
 }
 
@@ -247,14 +247,14 @@ static int lua_CATransform3DInvert (lua_State *L)
 {
     CATransform3D *t = lua_touserdata(L, 1);
 
-    LuaObjCPushCATransform3D(L, CATransform3DInvert (*t));
+    VMKPushCATransform3D(L, CATransform3DInvert (*t));
     return 1;
 }
 
 static int lua_CATransform3DMakeAffineTransform (lua_State *L)
 {
     CGAffineTransform *m = lua_touserdata(L, 1);
-    LuaObjCPushCATransform3D(L, CATransform3DMakeAffineTransform (*m));
+    VMKPushCATransform3D(L, CATransform3DMakeAffineTransform (*m));
     return 1;
 }
 
@@ -270,7 +270,7 @@ static int lua_CATransform3DGetAffineTransform (lua_State *L)
 {
     CATransform3D *t = lua_touserdata(L, 1);
 
-    LuaObjCPushCGAffineTransform(L, CATransform3DGetAffineTransform (*t));
+    VMKPushCGAffineTransform(L, CATransform3DGetAffineTransform (*t));
     return 1;
 }
 
@@ -300,11 +300,11 @@ static const luaL_Reg __LuaCATransform3DAPIs[] =
     {NULL, NULL},
 };
 
-int LuaObjCOpenCATransform3D(lua_State *L)
+int VMKOpenCATransform3D(lua_State *L)
 {
-    LuaObjCLoadCreateMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
+    VMKLoadCreateMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
     
-    LuaObjCLoadGlobalFunctions(L, __LuaCATransform3DAPIs);
+    VMKLoadGlobalFunctions(L, __LuaCATransform3DAPIs);
     
     return 0;
 }

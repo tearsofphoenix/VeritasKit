@@ -7,7 +7,7 @@
 //
 
 #import "LuaBridgeFunctor.h"
-#import "LuaObjCBase.h"
+#import "VMKBase.h"
 
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
 #import "ffi.h"
@@ -16,7 +16,7 @@
 #endif
 
 #import "LuaBridgeInfo.h"
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
 #import <dlfcn.h>
 #import <objc/runtime.h>
@@ -156,17 +156,17 @@ static int LuaBridgeFunctorInvoke(lua_State *L)
     [ref->_argumentTypeEncodings enumerateObjectsUsingBlock:
      (^(NSString *encoding, NSUInteger idx, BOOL *stop)
       {
-          LuaObjCInvocationSetArgumentFromLuaStateAtInex(ref, L, (int)idx + 1 + 1, [encoding UTF8String], idx);
+          VMKInvocationSetArgumentFromLuaStateAtInex(ref, L, (int)idx + 1 + 1, [encoding UTF8String], idx);
       })];
     
-    LuaObjCInvoke(L, ref);
+    VMKInvoke(L, ref);
     return ref->_returnCount;
 }
 
 static int LuaBridgeFunctorFinalize(lua_State *L)
 {
     LuaBridgeFuncotrRef ref = luaL_checkudata(L, 1, LuaBridgeFuncotrMetaName);
-    LuaObjCFunctorFinalize(ref);
+    VMKFunctorFinalize(ref);
     return 0;
 }
 
@@ -187,7 +187,7 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
 int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L)
 {
     luaL_newlib(L, __LuaObjCBridgeSupportFunctions);
-    LuaObjCLoadCreateMetatable(L, LuaBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
+    VMKLoadCreateMetatable(L, LuaBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
     return 1;
 }
 
@@ -253,14 +253,14 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef functorRef,
     }
 }
 
-LuaBridgeFuncotrRef LuaObjCInvocationCreate(void *functionPointer)
+LuaBridgeFuncotrRef VMKInvocationCreate(void *functionPointer)
 {
     LuaBridgeFuncotrRef functor = malloc(sizeof(struct LuaBridgeFuncotr));
     functor->_functionPointer = functionPointer;
     return functor;
 }
 
-void LuaObjCInvoke(struct lua_State *L,
+void VMKInvoke(struct lua_State *L,
                    LuaBridgeFuncotrRef ref)
 {
     if (ref)
@@ -350,17 +350,17 @@ void LuaObjCInvoke(struct lua_State *L,
             case _C_SEL:
             {
                 SEL selector = *(SEL *)ref->_returnValue;
-                LuaObjCPushSelector(L, selector);
+                VMKPushSelector(L, selector);
                 break;
             }
             case _C_CLASS:
             {
-                LuaObjCPushObject(L, *(id *)ref->_returnValue, true, true);
+                VMKPushObject(L, *(id *)ref->_returnValue, true, true);
                 break;
             }
             case _C_ID:
             {
-                LuaObjCPushObject(L, *(id *)ref->_returnValue, true, false);
+                VMKPushObject(L, *(id *)ref->_returnValue, true, false);
                 break;
             }
             case _C_PTR:
@@ -387,7 +387,7 @@ void LuaObjCInvoke(struct lua_State *L,
     }
 }
 
-void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
+void VMKFunctorFinalize(LuaBridgeFuncotrRef ref)
 {
     if (ref)
     {
@@ -413,12 +413,12 @@ void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef ref)
     }
 }
 
-void LuaObjCInvocationSetArgumentAtInex(LuaBridgeFuncotrRef ref, int index, void *value)
+void VMKInvocationSetArgumentAtInex(LuaBridgeFuncotrRef ref, int index, void *value)
 {
     *(void **)ref->_arguments[index] = value;
 }
 
-void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
+void VMKInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
                                                     struct lua_State *L,
                                                     int index,
                                                     const char *encoding,
@@ -502,12 +502,12 @@ void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
         }
         case _C_CLASS:
         {
-            *(id *)arguments[iLooper] = LuaObjCCheckObject(L, index);
+            *(id *)arguments[iLooper] = VMKCheckObject(L, index);
             break;
         }
         case _C_ID:
         {
-            id obj = LuaObjCCheckObject(L, index);
+            id obj = VMKCheckObject(L, index);
             *(id *)arguments[iLooper] = [obj retain];
             break;
         }

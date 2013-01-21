@@ -1,5 +1,5 @@
 //
-//  LuaObjCIndexing.h
+//  VMKIndexing.h
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 5/20/12.
@@ -10,7 +10,7 @@
 
 struct lua_State;
 
-@interface NSObject (LuaObjCIndexing)
+@interface NSObject (VMKIndexing)
 
 - (void)indexObjectWithState: (struct lua_State *)state;
 
@@ -18,13 +18,13 @@ struct lua_State;
 
 @end
 
-@interface NSObject (LuaObjCConcating)
+@interface NSObject (VMKConcating)
 
 - (void)concatObjectWithState: (struct lua_State *)state;
 
 @end
 
-@interface NSObject (LuaObjCMeasurable)
+@interface NSObject (VMKMeasurable)
 
 - (void)getLengthOfObjectWithState: (struct lua_State *)state;
 

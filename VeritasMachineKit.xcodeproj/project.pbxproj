@@ -18,7 +18,7 @@
 		E14A34F71643A77F00B8EB6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14A34F61643A77F00B8EB6E /* Default-568h@2x.png */; };
 		E14A34FC1643A79D00B8EB6E /* Main.v in Resources */ = {isa = PBXBuildFile; fileRef = E14A34FB1643A79D00B8EB6E /* Main.v */; };
 		E14A35271643A83A00B8EB6E /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000C1643993300F8AE92 /* LuaCParser.lua */; };
-		E14A35281643A83A00B8EB6E /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */; };
+		E14A35281643A83A00B8EB6E /* VMKParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* VMKParser.lua */; };
 		E14A35291643A86500B8EB6E /* VeritasMachineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */; };
 		E14A352A1643A8B100B8EB6E /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8C1643993300F8AE92 /* Accelerate.bridgesupport */; };
 		E14A352B1643A8B100B8EB6E /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8D1643993300F8AE92 /* Accounts.bridgesupport */; };
@@ -61,7 +61,7 @@
 		E14A35501643A8B100B8EB6E /* Twitter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB21643993300F8AE92 /* Twitter.bridgesupport */; };
 		E14A35511643A8B100B8EB6E /* UIKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB31643993300F8AE92 /* UIKit.bridgesupport */; };
 		E14A35521643A8BF00B8EB6E /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000C1643993300F8AE92 /* LuaCParser.lua */; };
-		E14A35531643A8BF00B8EB6E /* LuaObjCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */; };
+		E14A35531643A8BF00B8EB6E /* VMKParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* VMKParser.lua */; };
 		E15713A31643A34C00F6EAAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A21643A34C00F6EAAB /* UIKit.framework */; };
 		E15713A51643A39500F6EAAB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A41643A39500F6EAAB /* libxml2.2.dylib */; };
 		E15713A71643A40B00F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A61643A40B00F6EAAB /* QuartzCore.framework */; };
@@ -85,12 +85,12 @@
 		E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
 		E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
 		E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
-		E1A4006C16439A7900F8AE92 /* LuaObjCProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */; };
-		E1A4006D16439A7900F8AE92 /* NSArray+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */; };
+		E1A4006C16439A7900F8AE92 /* VMKProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.m */; };
+		E1A4006D16439A7900F8AE92 /* NSArray+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */; };
 		E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
-		E1A4006F16439A7900F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */; };
+		E1A4006F16439A7900F8AE92 /* NSDictionary+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */; };
 		E1A4007016439A7900F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */; };
-		E1A4007116439A7900F8AE92 /* NSString+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */; };
+		E1A4007116439A7900F8AE92 /* NSString+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */; };
 		E1A4007216439A7900F8AE92 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */; };
 		E1A4007316439A7900F8AE92 /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */; };
 		E1A4007416439A7900F8AE92 /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD71643993300F8AE92 /* LuaFoundation.m */; };
@@ -99,34 +99,34 @@
 		E1A4007716439A7900F8AE92 /* LuaNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */; };
 		E1A4007816439A7900F8AE92 /* LuaNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.m */; };
 		E1A4007A16439A7900F8AE92 /* LuaCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */; };
-		E1A4007B16439A7900F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */; };
+		E1A4007B16439A7900F8AE92 /* VMKFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.m */; };
 		E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.m */; };
 		E1A4008216439A7900F8AE92 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.m */; };
 		E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
 		E1A4008416439A7900F8AE92 /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */; };
-		E1A4008516439A7900F8AE92 /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */; };
-		E1A4008616439A7900F8AE92 /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* LuaObjCClass.m */; };
-		E1A4008716439A7900F8AE92 /* LuaObjCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */; };
-		E1A4008816439A7900F8AE92 /* LuaObjCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* LuaObjCProperty.m */; };
-		E1A4008916439A7900F8AE92 /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* LuaObjCRuntime.m */; };
+		E1A4008516439A7900F8AE92 /* VMKAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* VMKAuxiliary.m */; };
+		E1A4008616439A7900F8AE92 /* VMKClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* VMKClass.m */; };
+		E1A4008716439A7900F8AE92 /* VMKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* VMKMessage.m */; };
+		E1A4008816439A7900F8AE92 /* VMKProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* VMKProperty.m */; };
+		E1A4008916439A7900F8AE92 /* VMKRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* VMKRuntime.m */; };
 		E1A4008A16439A9F00F8AE92 /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A4008B16439A9F00F8AE92 /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBF1643993300F8AE92 /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A4008C16439A9F00F8AE92 /* LuaObjCAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A4008D16439A9F00F8AE92 /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* LuaObjCBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008C16439A9F00F8AE92 /* VMKAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* VMKAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008D16439A9F00F8AE92 /* VMKBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* VMKBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A4008E16439AAF00F8AE92 /* VeritasMachineKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400461643996C00F8AE92 /* VeritasMachineKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1A4008F16439AF100F8AE92 /* LuaObjCMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A4008F16439AF100F8AE92 /* VMKMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* VMKMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A4009016439B4600F8AE92 /* LuaBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB51643993300F8AE92 /* LuaBridgeFunctor.m */; };
 		E1A4009116439B4600F8AE92 /* LuaBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* LuaBridgeInfo.m */; };
 		E1A4009216439B4600F8AE92 /* VBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VBridgeService.m */; };
 		E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* LuaLibraryInformation.m */; };
 		E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMachineService.m */; };
 		E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC01643993300F8AE92 /* VMetaService.m */; };
-		E1A4009616439B4600F8AE92 /* LuaObjCProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */; };
-		E1A4009716439B4600F8AE92 /* NSArray+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */; };
+		E1A4009616439B4600F8AE92 /* VMKProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.m */; };
+		E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */; };
 		E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
-		E1A4009916439B4600F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */; };
+		E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */; };
 		E1A4009A16439B4600F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */; };
-		E1A4009B16439B4600F8AE92 /* NSString+LuaObjCIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */; };
+		E1A4009B16439B4600F8AE92 /* NSString+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */; };
 		E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */; };
 		E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */; };
 		E1A4009E16439B4600F8AE92 /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD71643993300F8AE92 /* LuaFoundation.m */; };
@@ -136,7 +136,7 @@
 		E1A400A216439B4600F8AE92 /* LuaNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.m */; };
 		E1A400A316439B4600F8AE92 /* LuaEAGL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE21643993300F8AE92 /* LuaEAGL.m */; };
 		E1A400A416439B4600F8AE92 /* LuaCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */; };
-		E1A400A516439B4600F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */; };
+		E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.m */; };
 		E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */; };
 		E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEE1643993300F8AE92 /* LuaUIGeometry.m */; };
 		E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF01643993300F8AE92 /* LuaUIGraphics.m */; };
@@ -146,18 +146,20 @@
 		E1A400AC16439B4600F8AE92 /* XMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.m */; };
 		E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
 		E1A400AE16439B4600F8AE92 /* LuaNSObjectSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */; };
-		E1A400AF16439B4600F8AE92 /* LuaObjCAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */; };
-		E1A400B016439B4600F8AE92 /* LuaObjCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* LuaObjCClass.m */; };
-		E1A400B116439B4600F8AE92 /* LuaObjCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */; };
-		E1A400B216439B4600F8AE92 /* LuaObjCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* LuaObjCProperty.m */; };
-		E1A400B316439B4600F8AE92 /* LuaObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* LuaObjCRuntime.m */; };
+		E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* VMKAuxiliary.m */; };
+		E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* VMKClass.m */; };
+		E1A400B116439B4600F8AE92 /* VMKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* VMKMessage.m */; };
+		E1A400B216439B4600F8AE92 /* VMKProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* VMKProperty.m */; };
+		E1A400B316439B4600F8AE92 /* VMKRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* VMKRuntime.m */; };
 		E1A400B416439B6900F8AE92 /* VMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A400B516439B6900F8AE92 /* VMetaService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBF1643993300F8AE92 /* VMetaService.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A400B616439B6900F8AE92 /* LuaObjCAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A400B716439B6900F8AE92 /* LuaObjCBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* LuaObjCBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A400B816439B6900F8AE92 /* LuaObjCMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B616439B6900F8AE92 /* VMKAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* VMKAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B716439B6900F8AE92 /* VMKBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* VMKBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1A400B816439B6900F8AE92 /* VMKMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* VMKMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4005E16439A1D00F8AE92 /* VeritasMachineKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A400BC16439BEC00F8AE92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A400BA16439BAA00F8AE92 /* Cocoa.framework */; };
+		E1AB5B1316AD1277005F4E41 /* VMKClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E1AB5B1216AD1276005F4E41 /* VMKClass.h */; };
+		E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E1AB5B1216AD1276005F4E41 /* VMKClass.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,7 +231,7 @@
 		E1A400091643993300F8AE92 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
 		E1A4000A1643993300F8AE92 /* libffi_OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_OSX.a; sourceTree = "<group>"; };
 		E1A4000C1643993300F8AE92 /* LuaCParser.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = LuaCParser.lua; sourceTree = "<group>"; };
-		E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = LuaObjCParser.lua; sourceTree = "<group>"; };
+		E1A4000D1643993300F8AE92 /* VMKParser.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = VMKParser.lua; sourceTree = "<group>"; };
 		E1A4000F1643993300F8AE92 /* XMLDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLDocument.h; sourceTree = "<group>"; };
 		E1A400101643993300F8AE92 /* XMLDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLDocument.m; sourceTree = "<group>"; };
 		E1A400111643993300F8AE92 /* XMLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLNode.h; sourceTree = "<group>"; };
@@ -238,19 +240,18 @@
 		E1A400141643993300F8AE92 /* XMLPathProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLPathProcessor.m; sourceTree = "<group>"; };
 		E1A400161643993300F8AE92 /* LuaNSObjectSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaNSObjectSupport.h; sourceTree = "<group>"; };
 		E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaNSObjectSupport.m; sourceTree = "<group>"; };
-		E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCAuxiliary.h; sourceTree = "<group>"; };
-		E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCAuxiliary.m; sourceTree = "<group>"; };
-		E1A4001A1643993300F8AE92 /* LuaObjCBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCBase.h; sourceTree = "<group>"; };
-		E1A4001B1643993300F8AE92 /* LuaObjCClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCClass.h; sourceTree = "<group>"; };
-		E1A4001C1643993300F8AE92 /* LuaObjCClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCClass.m; sourceTree = "<group>"; };
-		E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCMessage.h; sourceTree = "<group>"; };
-		E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCMessage.m; sourceTree = "<group>"; };
-		E1A4001F1643993300F8AE92 /* LuaObjCParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCParser.h; sourceTree = "<group>"; };
-		E1A400201643993300F8AE92 /* LuaObjCProperty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCProperty.h; sourceTree = "<group>"; };
-		E1A400211643993300F8AE92 /* LuaObjCProperty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCProperty.m; sourceTree = "<group>"; };
-		E1A400221643993300F8AE92 /* LuaObjCRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCRuntime.h; sourceTree = "<group>"; };
-		E1A400231643993300F8AE92 /* LuaObjCRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCRuntime.m; sourceTree = "<group>"; };
-		E1A400251643993300F8AE92 /* VeritasKit-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "VeritasKit-LICENSE"; sourceTree = "<group>"; };
+		E1A400181643993300F8AE92 /* VMKAuxiliary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKAuxiliary.h; sourceTree = "<group>"; };
+		E1A400191643993300F8AE92 /* VMKAuxiliary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKAuxiliary.m; sourceTree = "<group>"; };
+		E1A4001A1643993300F8AE92 /* VMKBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKBase.h; sourceTree = "<group>"; };
+		E1A4001C1643993300F8AE92 /* VMKClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKClass.m; sourceTree = "<group>"; };
+		E1A4001D1643993300F8AE92 /* VMKMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKMessage.h; sourceTree = "<group>"; };
+		E1A4001E1643993300F8AE92 /* VMKMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKMessage.m; sourceTree = "<group>"; };
+		E1A4001F1643993300F8AE92 /* VMKParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKParser.h; sourceTree = "<group>"; };
+		E1A400201643993300F8AE92 /* VMKProperty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKProperty.h; sourceTree = "<group>"; };
+		E1A400211643993300F8AE92 /* VMKProperty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKProperty.m; sourceTree = "<group>"; };
+		E1A400221643993300F8AE92 /* VMKRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKRuntime.h; sourceTree = "<group>"; };
+		E1A400231643993300F8AE92 /* VMKRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKRuntime.m; sourceTree = "<group>"; };
+		E1A400251643993300F8AE92 /* VMK-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "VMK-LICENSE"; sourceTree = "<group>"; };
 		E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 		E1A400371643996C00F8AE92 /* VeritasMachineKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeritasMachineKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A400411643996C00F8AE92 /* VeritasMachineKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "VeritasMachineKit-Info.plist"; path = "VeritasMachineKit/VeritasMachineKit-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -313,19 +314,19 @@
 		E1A4FFBE1643993300F8AE92 /* VMachineService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMachineService.m; sourceTree = "<group>"; };
 		E1A4FFBF1643993300F8AE92 /* VMetaService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMetaService.h; sourceTree = "<group>"; };
 		E1A4FFC01643993300F8AE92 /* VMetaService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMetaService.m; sourceTree = "<group>"; };
-		E1A4FFC21643993300F8AE92 /* LuaObjCIndexing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCIndexing.h; sourceTree = "<group>"; };
-		E1A4FFC31643993300F8AE92 /* LuaObjCProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCProfile.h; sourceTree = "<group>"; };
-		E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCProfile.m; sourceTree = "<group>"; };
-		E1A4FFC51643993300F8AE92 /* NSArray+LuaObjCIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LuaObjCIndex.h"; sourceTree = "<group>"; };
-		E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LuaObjCIndex.m"; sourceTree = "<group>"; };
+		E1A4FFC21643993300F8AE92 /* VMKIndexing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKIndexing.h; sourceTree = "<group>"; };
+		E1A4FFC31643993300F8AE92 /* VMKProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKProfile.h; sourceTree = "<group>"; };
+		E1A4FFC41643993300F8AE92 /* VMKProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKProfile.m; sourceTree = "<group>"; };
+		E1A4FFC51643993300F8AE92 /* NSArray+VMKIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+VMKIndex.h"; sourceTree = "<group>"; };
+		E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+VMKIndex.m"; sourceTree = "<group>"; };
 		E1A4FFC71643993300F8AE92 /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		E1A4FFC81643993300F8AE92 /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		E1A4FFC91643993300F8AE92 /* NSDictionary+LuaObjCIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LuaObjCIndex.h"; sourceTree = "<group>"; };
-		E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LuaObjCIndex.m"; sourceTree = "<group>"; };
+		E1A4FFC91643993300F8AE92 /* NSDictionary+VMKIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+VMKIndex.h"; sourceTree = "<group>"; };
+		E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+VMKIndex.m"; sourceTree = "<group>"; };
 		E1A4FFCB1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+argumentsEncodings.h"; sourceTree = "<group>"; };
 		E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+argumentsEncodings.m"; sourceTree = "<group>"; };
-		E1A4FFCD1643993300F8AE92 /* NSString+LuaObjCIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LuaObjCIndex.h"; sourceTree = "<group>"; };
-		E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LuaObjCIndex.m"; sourceTree = "<group>"; };
+		E1A4FFCD1643993300F8AE92 /* NSString+VMKIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+VMKIndex.h"; sourceTree = "<group>"; };
+		E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+VMKIndex.m"; sourceTree = "<group>"; };
 		E1A4FFD11643993300F8AE92 /* LuaCGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCGAffineTransform.h; sourceTree = "<group>"; };
 		E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaCGAffineTransform.m; sourceTree = "<group>"; };
 		E1A4FFD31643993300F8AE92 /* LuaCGGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCGGeometry.h; sourceTree = "<group>"; };
@@ -344,9 +345,9 @@
 		E1A4FFE21643993300F8AE92 /* LuaEAGL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaEAGL.m; sourceTree = "<group>"; };
 		E1A4FFE41643993300F8AE92 /* LuaCATransform3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCATransform3D.h; sourceTree = "<group>"; };
 		E1A4FFE51643993300F8AE92 /* LuaCATransform3D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaCATransform3D.m; sourceTree = "<group>"; };
-		E1A4FFE71643993300F8AE92 /* LuaObjCFrameworkFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCFrameworkFunctions.h; sourceTree = "<group>"; };
-		E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaObjCFrameworkFunctions.m; sourceTree = "<group>"; };
-		E1A4FFE91643993300F8AE92 /* LuaObjCStructs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaObjCStructs.h; sourceTree = "<group>"; };
+		E1A4FFE71643993300F8AE92 /* VMKFrameworkFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKFrameworkFunctions.h; sourceTree = "<group>"; };
+		E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKFrameworkFunctions.m; sourceTree = "<group>"; };
+		E1A4FFE91643993300F8AE92 /* VMKStructs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKStructs.h; sourceTree = "<group>"; };
 		E1A4FFEB1643993300F8AE92 /* LuaUIAccessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIAccessibility.h; sourceTree = "<group>"; };
 		E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaUIAccessibility.m; sourceTree = "<group>"; };
 		E1A4FFED1643993300F8AE92 /* LuaUIGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIGeometry.h; sourceTree = "<group>"; };
@@ -364,6 +365,7 @@
 		E1A4FFFD1643993300F8AE92 /* ffitarget_arm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm.h; sourceTree = "<group>"; };
 		E1A4FFFE1643993300F8AE92 /* ffitarget_armv7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
 		E1A4FFFF1643993300F8AE92 /* ffitarget_i386.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		E1AB5B1216AD1276005F4E41 /* VMKClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMKClass.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,7 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				E1A4000C1643993300F8AE92 /* LuaCParser.lua */,
-				E1A4000D1643993300F8AE92 /* LuaObjCParser.lua */,
+				E1A4000D1643993300F8AE92 /* VMKParser.lua */,
 			);
 			path = "Objective-Lua";
 			sourceTree = "<group>";
@@ -494,18 +496,18 @@
 			children = (
 				E1A400161643993300F8AE92 /* LuaNSObjectSupport.h */,
 				E1A400171643993300F8AE92 /* LuaNSObjectSupport.m */,
-				E1A400181643993300F8AE92 /* LuaObjCAuxiliary.h */,
-				E1A400191643993300F8AE92 /* LuaObjCAuxiliary.m */,
-				E1A4001A1643993300F8AE92 /* LuaObjCBase.h */,
-				E1A4001B1643993300F8AE92 /* LuaObjCClass.h */,
-				E1A4001C1643993300F8AE92 /* LuaObjCClass.m */,
-				E1A4001D1643993300F8AE92 /* LuaObjCMessage.h */,
-				E1A4001E1643993300F8AE92 /* LuaObjCMessage.m */,
-				E1A4001F1643993300F8AE92 /* LuaObjCParser.h */,
-				E1A400201643993300F8AE92 /* LuaObjCProperty.h */,
-				E1A400211643993300F8AE92 /* LuaObjCProperty.m */,
-				E1A400221643993300F8AE92 /* LuaObjCRuntime.h */,
-				E1A400231643993300F8AE92 /* LuaObjCRuntime.m */,
+				E1A400181643993300F8AE92 /* VMKAuxiliary.h */,
+				E1A400191643993300F8AE92 /* VMKAuxiliary.m */,
+				E1A4001A1643993300F8AE92 /* VMKBase.h */,
+				E1AB5B1216AD1276005F4E41 /* VMKClass.h */,
+				E1A4001C1643993300F8AE92 /* VMKClass.m */,
+				E1A4001D1643993300F8AE92 /* VMKMessage.h */,
+				E1A4001E1643993300F8AE92 /* VMKMessage.m */,
+				E1A4001F1643993300F8AE92 /* VMKParser.h */,
+				E1A400201643993300F8AE92 /* VMKProperty.h */,
+				E1A400211643993300F8AE92 /* VMKProperty.m */,
+				E1A400221643993300F8AE92 /* VMKRuntime.h */,
+				E1A400231643993300F8AE92 /* VMKRuntime.m */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -513,7 +515,7 @@
 		E1A400241643993300F8AE92 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				E1A400251643993300F8AE92 /* VeritasKit-LICENSE */,
+				E1A400251643993300F8AE92 /* VMK-LICENSE */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -683,19 +685,19 @@
 		E1A4FFC11643993300F8AE92 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E1A4FFC21643993300F8AE92 /* LuaObjCIndexing.h */,
-				E1A4FFC31643993300F8AE92 /* LuaObjCProfile.h */,
-				E1A4FFC41643993300F8AE92 /* LuaObjCProfile.m */,
-				E1A4FFC51643993300F8AE92 /* NSArray+LuaObjCIndex.h */,
-				E1A4FFC61643993300F8AE92 /* NSArray+LuaObjCIndex.m */,
+				E1A4FFC21643993300F8AE92 /* VMKIndexing.h */,
+				E1A4FFC31643993300F8AE92 /* VMKProfile.h */,
+				E1A4FFC41643993300F8AE92 /* VMKProfile.m */,
+				E1A4FFC51643993300F8AE92 /* NSArray+VMKIndex.h */,
+				E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */,
 				E1A4FFC71643993300F8AE92 /* NSData+Base64.h */,
 				E1A4FFC81643993300F8AE92 /* NSData+Base64.m */,
-				E1A4FFC91643993300F8AE92 /* NSDictionary+LuaObjCIndex.h */,
-				E1A4FFCA1643993300F8AE92 /* NSDictionary+LuaObjCIndex.m */,
+				E1A4FFC91643993300F8AE92 /* NSDictionary+VMKIndex.h */,
+				E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */,
 				E1A4FFCB1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.h */,
 				E1A4FFCC1643993300F8AE92 /* NSMethodSignature+argumentsEncodings.m */,
-				E1A4FFCD1643993300F8AE92 /* NSString+LuaObjCIndex.h */,
-				E1A4FFCE1643993300F8AE92 /* NSString+LuaObjCIndex.m */,
+				E1A4FFCD1643993300F8AE92 /* NSString+VMKIndex.h */,
+				E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -762,9 +764,9 @@
 		E1A4FFE61643993300F8AE92 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				E1A4FFE71643993300F8AE92 /* LuaObjCFrameworkFunctions.h */,
-				E1A4FFE81643993300F8AE92 /* LuaObjCFrameworkFunctions.m */,
-				E1A4FFE91643993300F8AE92 /* LuaObjCStructs.h */,
+				E1A4FFE71643993300F8AE92 /* VMKFrameworkFunctions.h */,
+				E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.m */,
+				E1A4FFE91643993300F8AE92 /* VMKStructs.h */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -837,17 +839,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A4008E16439AAF00F8AE92 /* VeritasMachineKit.h in Headers */,
-				E1A4008F16439AF100F8AE92 /* LuaObjCMessage.h in Headers */,
+				E1A4008F16439AF100F8AE92 /* VMKMessage.h in Headers */,
 				E1A4008A16439A9F00F8AE92 /* VMachineService.h in Headers */,
 				E1A4008B16439A9F00F8AE92 /* VMetaService.h in Headers */,
-				E1A4008C16439A9F00F8AE92 /* LuaObjCAuxiliary.h in Headers */,
-				E1A4008D16439A9F00F8AE92 /* LuaObjCBase.h in Headers */,
+				E1A4008C16439A9F00F8AE92 /* VMKAuxiliary.h in Headers */,
+				E1A4008D16439A9F00F8AE92 /* VMKBase.h in Headers */,
 				E15713AF1643A51F00F6EAAB /* ffi.h in Headers */,
 				E15713B01643A51F00F6EAAB /* ffi_i386.h in Headers */,
 				E15713B11643A51F00F6EAAB /* ffi_x86_64.h in Headers */,
 				E15713B21643A51F00F6EAAB /* ffitarget.h in Headers */,
 				E15713B31643A51F00F6EAAB /* ffitarget_i386.h in Headers */,
 				E15713B41643A51F00F6EAAB /* ffitarget_x86_64.h in Headers */,
+				E1AB5B1316AD1277005F4E41 /* VMKClass.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,9 +861,10 @@
 				E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */,
 				E1A400B416439B6900F8AE92 /* VMachineService.h in Headers */,
 				E1A400B516439B6900F8AE92 /* VMetaService.h in Headers */,
-				E1A400B616439B6900F8AE92 /* LuaObjCAuxiliary.h in Headers */,
-				E1A400B716439B6900F8AE92 /* LuaObjCBase.h in Headers */,
-				E1A400B816439B6900F8AE92 /* LuaObjCMessage.h in Headers */,
+				E1A400B616439B6900F8AE92 /* VMKAuxiliary.h in Headers */,
+				E1A400B716439B6900F8AE92 /* VMKBase.h in Headers */,
+				E1A400B816439B6900F8AE92 /* VMKMessage.h in Headers */,
+				E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -991,7 +995,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E14A35271643A83A00B8EB6E /* LuaCParser.lua in Resources */,
-				E14A35281643A83A00B8EB6E /* LuaObjCParser.lua in Resources */,
+				E14A35281643A83A00B8EB6E /* VMKParser.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,7 +1004,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E14A35521643A8BF00B8EB6E /* LuaCParser.lua in Resources */,
-				E14A35531643A8BF00B8EB6E /* LuaObjCParser.lua in Resources */,
+				E14A35531643A8BF00B8EB6E /* VMKParser.lua in Resources */,
 				E14A352A1643A8B100B8EB6E /* Accelerate.bridgesupport in Resources */,
 				E14A352B1643A8B100B8EB6E /* Accounts.bridgesupport in Resources */,
 				E14A352C1643A8B100B8EB6E /* AddressBook.bridgesupport in Resources */,
@@ -1065,12 +1069,12 @@
 				E1A4006916439A7900F8AE92 /* LuaLibraryInformation.m in Sources */,
 				E1A4006A16439A7900F8AE92 /* VMachineService.m in Sources */,
 				E1A4006B16439A7900F8AE92 /* VMetaService.m in Sources */,
-				E1A4006C16439A7900F8AE92 /* LuaObjCProfile.m in Sources */,
-				E1A4006D16439A7900F8AE92 /* NSArray+LuaObjCIndex.m in Sources */,
+				E1A4006C16439A7900F8AE92 /* VMKProfile.m in Sources */,
+				E1A4006D16439A7900F8AE92 /* NSArray+VMKIndex.m in Sources */,
 				E1A4006E16439A7900F8AE92 /* NSData+Base64.m in Sources */,
-				E1A4006F16439A7900F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */,
+				E1A4006F16439A7900F8AE92 /* NSDictionary+VMKIndex.m in Sources */,
 				E1A4007016439A7900F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */,
-				E1A4007116439A7900F8AE92 /* NSString+LuaObjCIndex.m in Sources */,
+				E1A4007116439A7900F8AE92 /* NSString+VMKIndex.m in Sources */,
 				E1A4007216439A7900F8AE92 /* LuaCGAffineTransform.m in Sources */,
 				E1A4007316439A7900F8AE92 /* LuaCGGeometry.m in Sources */,
 				E1A4007416439A7900F8AE92 /* LuaFoundation.m in Sources */,
@@ -1079,16 +1083,16 @@
 				E1A4007716439A7900F8AE92 /* LuaNSRange.m in Sources */,
 				E1A4007816439A7900F8AE92 /* LuaNSString.m in Sources */,
 				E1A4007A16439A7900F8AE92 /* LuaCATransform3D.m in Sources */,
-				E1A4007B16439A7900F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */,
+				E1A4007B16439A7900F8AE92 /* VMKFrameworkFunctions.m in Sources */,
 				E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */,
 				E1A4008216439A7900F8AE92 /* XMLNode.m in Sources */,
 				E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */,
 				E1A4008416439A7900F8AE92 /* LuaNSObjectSupport.m in Sources */,
-				E1A4008516439A7900F8AE92 /* LuaObjCAuxiliary.m in Sources */,
-				E1A4008616439A7900F8AE92 /* LuaObjCClass.m in Sources */,
-				E1A4008716439A7900F8AE92 /* LuaObjCMessage.m in Sources */,
-				E1A4008816439A7900F8AE92 /* LuaObjCProperty.m in Sources */,
-				E1A4008916439A7900F8AE92 /* LuaObjCRuntime.m in Sources */,
+				E1A4008516439A7900F8AE92 /* VMKAuxiliary.m in Sources */,
+				E1A4008616439A7900F8AE92 /* VMKClass.m in Sources */,
+				E1A4008716439A7900F8AE92 /* VMKMessage.m in Sources */,
+				E1A4008816439A7900F8AE92 /* VMKProperty.m in Sources */,
+				E1A4008916439A7900F8AE92 /* VMKRuntime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,12 +1106,12 @@
 				E1A4009316439B4600F8AE92 /* LuaLibraryInformation.m in Sources */,
 				E1A4009416439B4600F8AE92 /* VMachineService.m in Sources */,
 				E1A4009516439B4600F8AE92 /* VMetaService.m in Sources */,
-				E1A4009616439B4600F8AE92 /* LuaObjCProfile.m in Sources */,
-				E1A4009716439B4600F8AE92 /* NSArray+LuaObjCIndex.m in Sources */,
+				E1A4009616439B4600F8AE92 /* VMKProfile.m in Sources */,
+				E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */,
 				E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */,
-				E1A4009916439B4600F8AE92 /* NSDictionary+LuaObjCIndex.m in Sources */,
+				E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */,
 				E1A4009A16439B4600F8AE92 /* NSMethodSignature+argumentsEncodings.m in Sources */,
-				E1A4009B16439B4600F8AE92 /* NSString+LuaObjCIndex.m in Sources */,
+				E1A4009B16439B4600F8AE92 /* NSString+VMKIndex.m in Sources */,
 				E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.m in Sources */,
 				E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */,
 				E1A4009E16439B4600F8AE92 /* LuaFoundation.m in Sources */,
@@ -1117,7 +1121,7 @@
 				E1A400A216439B4600F8AE92 /* LuaNSString.m in Sources */,
 				E1A400A316439B4600F8AE92 /* LuaEAGL.m in Sources */,
 				E1A400A416439B4600F8AE92 /* LuaCATransform3D.m in Sources */,
-				E1A400A516439B4600F8AE92 /* LuaObjCFrameworkFunctions.m in Sources */,
+				E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.m in Sources */,
 				E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */,
 				E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */,
 				E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */,
@@ -1127,11 +1131,11 @@
 				E1A400AC16439B4600F8AE92 /* XMLNode.m in Sources */,
 				E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */,
 				E1A400AE16439B4600F8AE92 /* LuaNSObjectSupport.m in Sources */,
-				E1A400AF16439B4600F8AE92 /* LuaObjCAuxiliary.m in Sources */,
-				E1A400B016439B4600F8AE92 /* LuaObjCClass.m in Sources */,
-				E1A400B116439B4600F8AE92 /* LuaObjCMessage.m in Sources */,
-				E1A400B216439B4600F8AE92 /* LuaObjCProperty.m in Sources */,
-				E1A400B316439B4600F8AE92 /* LuaObjCRuntime.m in Sources */,
+				E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */,
+				E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */,
+				E1A400B116439B4600F8AE92 /* VMKMessage.m in Sources */,
+				E1A400B216439B4600F8AE92 /* VMKProperty.m in Sources */,
+				E1A400B316439B4600F8AE92 /* VMKRuntime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

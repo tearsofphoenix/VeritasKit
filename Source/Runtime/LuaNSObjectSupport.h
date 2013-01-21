@@ -6,20 +6,20 @@
 //
 //
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
 #pragma mark - Object observer
 
 typedef struct __LuaObject *LuaObjectRef;
 
-VK_EXPORT LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject, bool isClass);
+VMK_EXPORT LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject, bool isClass);
 
-VK_EXPORT void LuaObjectStoreInPool(struct lua_State *L, id obj);
+VMK_EXPORT void LuaObjectStoreInPool(struct lua_State *L, id obj);
 
-VK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
+VMK_EXPORT id LuaObjectGetObject(LuaObjectRef ref);
 
-VK_EXPORT int LuaObjCOpenNSObjectExtensionSupport(struct lua_State *L);
+VMK_EXPORT int VMKOpenNSObjectExtensionSupport(struct lua_State *L);
 
-__END_DECLS
+VMK_EXTERN__C_END

@@ -1,5 +1,5 @@
 //
-//  LuaObjCMessage.m
+//  VMKMessage.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 6/28/12.
@@ -8,13 +8,13 @@
 
 #import "LuaNSObjectSupport.h"
 
-#import "LuaObjCMessage.h"
+#import "VMKMessage.h"
 
 #import "LuaCGGeometry.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
-#import "LuaObjCStructs.h"
+#import "VMKStructs.h"
 
 #import <objc/message.h>
 
@@ -22,16 +22,16 @@
 
 static CFMutableDictionaryRef __preAccelerators = nil;
 
-static inline void LuaObjCAcceleratorInitialize(void)
+static inline void VMKAcceleratorInitialize(void)
 {
     __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 64, NULL, &kCFTypeDictionaryValueCallBacks);
 }
 
-void LuaObjCRegisterAccelerator(Class theClass, SEL selector, LuaObjCAcceleratorIMP imp)
+void VMKRegisterAccelerator(Class theClass, SEL selector, VMKAcceleratorIMP imp)
 {
     if (!__preAccelerators)
     {
-        LuaObjCAcceleratorInitialize();
+        VMKAcceleratorInitialize();
     }
     
     CFMutableDictionaryRef classAccelerators = (CFMutableDictionaryRef)CFDictionaryGetValue(__preAccelerators, theClass);
@@ -49,7 +49,7 @@ void LuaObjCRegisterAccelerator(Class theClass, SEL selector, LuaObjCAccelerator
     
 }
 
-LuaObjCAcceleratorIMP LuaObjCGetRegisterIMPOfSelector(Class theClass, SEL selector)
+VMKAcceleratorIMP VMKGetRegisterIMPOfSelector(Class theClass, SEL selector)
 {
     CFMutableDictionaryRef classAccelerators = (CFMutableDictionaryRef)CFDictionaryGetValue(__preAccelerators, theClass);
     if (classAccelerators)
@@ -89,7 +89,7 @@ static const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper)
 
 //accelerator for methods that have no argument
 //
-static int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
+static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
                                     IMP impRef, id obj, SEL selector)
 {
     returnType = LuaInternalJumpoverEncodingDecorator(returnType);
@@ -127,7 +127,7 @@ static int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_CLASS:
         {
             id result = impRef(obj, selector);
-            LuaObjCPushObject(L, result, true, true);
+            VMKPushObject(L, result, true, true);
             return 1;
         }
         case _C_ID:
@@ -137,11 +137,11 @@ static int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             if (sel_isEqual(selector, @selector(alloc)))
             {
                 
-                LuaObjCPushObject(L, result, false, false);
+                VMKPushObject(L, result, false, false);
                 
             }else
             {
-                LuaObjCPushObject(L, result, true, false);
+                VMKPushObject(L, result, true, false);
             }
             
             return 1;
@@ -149,7 +149,7 @@ static int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_SEL:
         {
             typedef SEL (* _IMP_T)(id, SEL);
-            LuaObjCPushSelector(L, ((_IMP_T)impRef)(obj, selector));
+            VMKPushSelector(L, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
         case _C_STRUCT_B:
@@ -157,32 +157,32 @@ static int LuaObjCAcceleratorForNoArgument(lua_State *L, const char* returnType,
             if (!strcmp(returnType, @encode(CGRect)))
             {
                 typedef CGRect (* _IMP_T)(id, SEL);
-                LuaObjCPushCGRect(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGRect(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGPoint)))
             {
                 typedef CGPoint (* _IMP_T)(id, SEL);
-                LuaObjCPushCGPoint(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGPoint(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGSize)))
             {
                 typedef CGSize (* _IMP_T)(id, SEL);
-                LuaObjCPushCGSize(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGSize(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(NSRange)))
             {
                 typedef NSRange (* _IMP_T)(id, SEL);
-                LuaObjCPushNSRange(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushNSRange(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CATransform3D)))
             {
                 typedef CATransform3D (* _IMP_T)(id, SEL);
-                LuaObjCPushCATransform3D(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCATransform3D(L, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGAffineTransform)))
             {
                 typedef CGAffineTransform (* _IMP_T)(id, SEL);
-                LuaObjCPushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector));
             }
             return 1;
         }
@@ -278,10 +278,10 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     
     Class objClass = object_getClass(obj);
     
-    IMP impRef = (IMP)LuaObjCGetRegisterIMPOfSelector(objClass, selector);
+    IMP impRef = (IMP)VMKGetRegisterIMPOfSelector(objClass, selector);
     if (impRef)
     {
-        return ((LuaObjCAcceleratorIMP)impRef)(obj, selector, L);
+        return ((VMKAcceleratorIMP)impRef)(obj, selector, L);
     }else
     {
         if (isToSelfClass)
@@ -298,7 +298,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
         
         if (!methodSignature)
         {
-            NSException *exception = [NSException exceptionWithName: @"LuaObjCInvalidArgument"
+            NSException *exception = [NSException exceptionWithName: @"VMKInvalidArgument"
                                                              reason: [NSString stringWithFormat: @"[#ERROR#] line: %d nil method signature for SEL:%s for: %@\n", __LINE__, selectorName, obj]
                                                            userInfo: nil];
                         
@@ -310,7 +310,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 
         if (numberOfArguments == 2)
         {
-            return LuaObjCAcceleratorForNoArgument(L, returnType, impRef, obj, selector);
+            return VMKAcceleratorForNoArgument(L, returnType, impRef, obj, selector);
         }
         
         NSInvocation *invokation = [NSInvocation invocationWithMethodSignature: methodSignature];
@@ -336,7 +336,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_ULNG_LNG:
                 case _C_BOOL:
                 {
-                    lua_Integer integerPara = LuaObjCCheckInteger(L,  iLooper + 1);
+                    lua_Integer integerPara = VMKCheckInteger(L,  iLooper + 1);
                     [invokation setArgument: &integerPara
                                     atIndex: iLooper];
                     break;
@@ -359,7 +359,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_CLASS:
                 case _C_ID:
                 {
-                    id argLooper = LuaObjCCheckObject(L,  iLooper + 1);
+                    id argLooper = VMKCheckObject(L,  iLooper + 1);
                     [invokation setArgument: &argLooper
                                     atIndex: iLooper];
                     break;
@@ -447,7 +447,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                 
-                LuaObjCPushObject(L, obj, true, true);
+                VMKPushObject(L, obj, true, true);
                 
                 return 1;
 
@@ -457,7 +457,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                
-                LuaObjCPushObject(L, obj, true, false);
+                VMKPushObject(L, obj, true, false);
                 
                 return 1;
             }
@@ -465,7 +465,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             {
                 SEL sel = NULL;
                 [invokation getReturnValue: &sel];
-                LuaObjCPushSelector(L, sel);
+                VMKPushSelector(L, sel);
                 return 1;
             }
             case _C_STRUCT_B:
@@ -475,19 +475,19 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 {
                     CGRect cgRect ;
                     [invokation getReturnValue: &cgRect];
-                    LuaObjCPushCGRect(L, cgRect);
+                    VMKPushCGRect(L, cgRect);
                     
                 }else if (!strcmp(returnType, @encode(CGPoint)))
                 {
                     CGPoint cgPoint;
                     [invokation getReturnValue: &cgPoint];
-                    LuaObjCPushCGPoint(L, cgPoint);
+                    VMKPushCGPoint(L, cgPoint);
                     
                 }else if (!strcmp(returnType, @encode(CGSize)))
                 {
                     CGSize cgSize;
                     [invokation getReturnValue: &cgSize];
-                    LuaObjCPushCGSize(L, cgSize);
+                    VMKPushCGSize(L, cgSize);
                 }
                 return 1;
             }
@@ -512,12 +512,12 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     return 1;
 }
 
-int LuaObjCMessageSend(lua_State *L)
+int VMKMessageSend(lua_State *L)
 {
     return _luaObjC_objc_messageSendGeneral(L, YES);
 }
 
-int LuaObjCMessageSendSuper(lua_State *L)
+int VMKMessageSendSuper(lua_State *L)
 {
     return _luaObjC_objc_messageSendGeneral(L, NO);
 }

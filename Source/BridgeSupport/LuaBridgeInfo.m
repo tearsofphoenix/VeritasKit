@@ -7,9 +7,9 @@
 //
 
 #import "LuaBridgeInfo.h"
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 #import "LuaBridgeFunctor.h"
-#import "LuaObjCClass.h"
+#import "VMKClass.h"
 #import "LuaNSObjectSupport.h"
 
 #import <objc/runtime.h>
@@ -52,7 +52,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
             
-            LuaObjCPushObject(state, theClass, true, true);
+            VMKPushObject(state, theClass, true, true);
             
             return YES;
         }
@@ -65,7 +65,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
         {
             id value = [_info objectForKey: @"value"];
             
-            LuaObjCPushObject(state, value, true, false);
+            VMKPushObject(state, value, true, false);
             
             return YES;
         }

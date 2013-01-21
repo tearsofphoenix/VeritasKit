@@ -7,7 +7,7 @@
 //
 #import "LuaEAGL.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 #include <OpenGLES/EAGL.h>
 
 static int _luaObjC_EAGLGetVersion(lua_State *L)
@@ -27,9 +27,9 @@ static const luaL_Reg __luaObjC_EAGL_Functions[] =
     {NULL, NULL},
 };
 
-int LuaObjCOpenEAGL(lua_State *L)
+int VMKOpenEAGL(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __luaObjC_EAGL_Functions);
+    VMKLoadGlobalFunctions(L, __luaObjC_EAGL_Functions);
     
     return 0;
 }

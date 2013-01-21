@@ -1,26 +1,26 @@
 //
-//  LuaObjCRuntime.m
+//  VMKRuntime.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 3/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCRuntime.h"
+#import "VMKRuntime.h"
 
 #import <objc/runtime.h>
 
-#import "LuaObjCClass.h"
+#import "VMKClass.h"
 
-#import "LuaObjCMessage.h"
+#import "VMKMessage.h"
 
-#import "LuaObjCProperty.h"
+#import "VMKProperty.h"
 
 #import "LuaCGGeometry.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
-#import "LuaObjCProfile.h"
+#import "VMKProfile.h"
 
 #import "LuaFoundation.h"
 
@@ -32,16 +32,16 @@
 
 #import "LuaNSObjectSupport.h"
 
-#import "NSString+LuaObjCIndex.h"
+#import "NSString+VMKIndex.h"
 
-#import "NSArray+LuaObjCIndex.h"
+#import "NSArray+VMKIndex.h"
 
 #pragma mark - block support
 
 
 static CFMutableDictionaryRef __LuaObjC_clouserBlockDictionary = NULL;
 
-static inline void LuaObjCBlockSupportInitialize(void)
+static inline void VMKBlockSupportInitialize(void)
 {
     
     __LuaObjC_clouserBlockDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(),
@@ -54,7 +54,7 @@ static inline void luaObjC_addClosureIDForBlock(LuaClosureType clouserID, id blo
 {
     if (!__LuaObjC_clouserBlockDictionary)
     {
-        LuaObjCBlockSupportInitialize();
+        VMKBlockSupportInitialize();
     }
     
     if (block)
@@ -71,7 +71,7 @@ LuaClosureType LuaInternalGetClosureIDOfBlock(id block)
     {
         return closureID;
     }
-    return LuaObjCInvalidClouserID;
+    return VMKInvalidClouserID;
 }
 
 #pragma mark - class support
@@ -97,14 +97,14 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     if (registeredClass)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        LuaObjCPushObject(L, registeredClass, true, true);
+        VMKPushObject(L, registeredClass, true, true);
         
     }else
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
         LuaInternalAllocateClass(L, theNewClass, newClassName);
-        LuaObjCPushObject(L, theNewClass, true, true);
+        VMKPushObject(L, theNewClass, true, true);
     }
     return 1;
 }
@@ -140,21 +140,21 @@ static int luaObjC_retainBeforeReturnFromAutoreleasePool(lua_State *L)
 
 typedef enum
 {
-    LuaObjCIntegerType,
-    LuaObjCFloatType,
-    LuaObjCBOOLType,
-    LuaObjCPointerType,
-    LuaObjCCGRectType,
-    LuaObjCCGPointType,
-    LuaObjCCGSizeType,
-    LuaObjCNSRangeType,
-}LuaObjCValueType;
+    VMKIntegerType,
+    VMKFloatType,
+    VMKBOOLType,
+    VMKPointerType,
+    VMKCGRectType,
+    VMKCGPointType,
+    VMKCGSizeType,
+    VMKNSRangeType,
+}VMKValueType;
 
-static LuaObjCValueType luaObjCGetTypeOfTypeName(const char* typeName)
+static VMKValueType luaObjCGetTypeOfTypeName(const char* typeName)
 {
     if (strchr(typeName, '*'))
     {
-        return LuaObjCPointerType;
+        return VMKPointerType;
     }
     if (!strcmp(typeName, "CGFloat")
         || !strcmp(typeName, "float")
@@ -162,14 +162,14 @@ static LuaObjCValueType luaObjCGetTypeOfTypeName(const char* typeName)
         || !strcmp(typeName, "NSTimeInterval")
         )
     {
-        return LuaObjCFloatType;
+        return VMKFloatType;
     }
     if (!strcmp(typeName, "BOOL"))
     {
-        return LuaObjCBOOLType;
+        return VMKBOOLType;
     }
     
-    return LuaObjCIntegerType;
+    return VMKIntegerType;
 }
 
 static int luaObjC_createBlockObject(lua_State *L)
@@ -206,46 +206,46 @@ static int luaObjC_createBlockObject(lua_State *L)
                 argumentLooper = argumentTypes[iLooper];
                 switch (luaObjCGetTypeOfTypeName(argumentLooper))
                 {
-                    case LuaObjCBOOLType:
+                    case VMKBOOLType:
                     {
                         BOOL boolArg = va_arg(ap, int);
                         lua_pushboolean(L, boolArg);
                         break;
                     }
-                    case LuaObjCFloatType:
+                    case VMKFloatType:
                     {
                         CGFloat floatArg = va_arg(ap, double);
                         lua_pushnumber(L, floatArg);
                         break;
                     }
-                    case LuaObjCPointerType:
+                    case VMKPointerType:
                     {
                         void *pointerArg = va_arg(ap, void*);
                         lua_pushlightuserdata(L, pointerArg);
                         break;
                     }
-                    case LuaObjCCGRectType:
+                    case VMKCGRectType:
                     {
                         CGRect rect = va_arg(ap, CGRect);
-                        LuaObjCPushCGRect(L, rect);
+                        VMKPushCGRect(L, rect);
                         break;
                     }
-                    case LuaObjCCGSizeType:
+                    case VMKCGSizeType:
                     {
                         CGSize size = va_arg(ap, CGSize);
-                        LuaObjCPushCGSize(L, size);
+                        VMKPushCGSize(L, size);
                         break;
                     }
-                    case LuaObjCCGPointType:
+                    case VMKCGPointType:
                     {
                         CGPoint point = va_arg(ap, CGPoint);
-                        LuaObjCPushCGPoint(L, point);
+                        VMKPushCGPoint(L, point);
                         break;
                     }
-                    case LuaObjCNSRangeType:
+                    case VMKNSRangeType:
                     {
                         NSRange range = va_arg(ap, NSRange);
-                        LuaObjCPushNSRange(L, range);
+                        VMKPushNSRange(L, range);
                         break;
                     }
                     default:
@@ -270,14 +270,14 @@ static int luaObjC_createBlockObject(lua_State *L)
     
     luaObjC_addClosureIDForBlock(clouserID, block);
     
-    LuaObjCPushObject(L, block, true, false);
+    VMKPushObject(L, block, true, false);
     
     return 1;
 }
 
 static int luaObjC_registerClassPair(lua_State *L)
 {
-    const char* className = LuaObjCCheckString(L, 1);
+    const char* className = VMKCheckString(L, 1);
     
     Class theClass = LuaInternalGetClass(className);
     
@@ -295,7 +295,7 @@ static int luaObjC_classPredeclearation(lua_State *L)
     
     for (int iLooper = 1; iLooper < argCount + 1; ++iLooper)
     {
-        LuaObjCAddEncodingForPredeclearClass(lua_tostring(L, iLooper));
+        VMKAddEncodingForPredeclearClass(lua_tostring(L, iLooper));
     }
     return 0;
 }
@@ -326,7 +326,7 @@ static int luaObjC_resolveName(lua_State *L)
     
     if (theClass)
     {
-        LuaObjCPushObject(L, theClass, false, true);
+        VMKPushObject(L, theClass, false, true);
         
     }else
     {
@@ -388,7 +388,7 @@ static int luaObjC_objc_throw(lua_State *L)
         }
         case LUA_TUSERDATA:
         {
-            id obj = LuaObjCCheckObject(L, 1);
+            id obj = VMKCheckObject(L, 1);
             luaL_error(L, "@throw object:%s!", [[obj description] UTF8String]);
             break;
         }
@@ -432,7 +432,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
         {
             //@throw again in @catch
             //
-            if (finallyBlock != LuaObjCInvalidClouserID)
+            if (finallyBlock != VMKInvalidClouserID)
             {
                 lua_rawgeti(L, LUA_REGISTRYINDEX, finallyBlock);
                 lua_pcall(L, 0, 0, 0);                
@@ -442,7 +442,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
             
         }else
         {
-            if (finallyBlock != LuaObjCInvalidClouserID)
+            if (finallyBlock != VMKInvalidClouserID)
             {
                 lua_rawgeti(L, LUA_REGISTRYINDEX, finallyBlock);
                 status = lua_pcall(L, 0, 0, 0);
@@ -460,7 +460,7 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
 
 static int luaObjC_objc_NSFastEnumerate(lua_State *L)
 {
-    id obj = LuaObjCCheckObject(L, 1);
+    id obj = VMKCheckObject(L, 1);
     if (obj)
     {
         //if the object does not support fast enumerate, it will cause a runtime exception
@@ -484,14 +484,14 @@ static int luaObjC_createLiteralArray(lua_State *L)
     
     for (int iLooper = 1; iLooper < count + 1; ++iLooper)
     {
-        [array addObject: LuaObjCCheckObject(L, iLooper)];
+        [array addObject: VMKCheckObject(L, iLooper)];
     }
     
     NSArray *value = [NSArray arrayWithArray: array];
     
     CFSetAddValue(_LuaObjCLiteralStorage, value);
     
-    LuaObjCPushObject(L, value, true, false);
+    VMKPushObject(L, value, true, false);
     
     return 1;
 }
@@ -506,8 +506,8 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     
     for (int iLooper = 1; iLooper < halfIndex + 1; ++iLooper)
     {
-        [keys addObject: LuaObjCCheckObject(L, iLooper)];
-        [values addObject: LuaObjCCheckObject(L, halfIndex + iLooper)];
+        [keys addObject: VMKCheckObject(L, iLooper)];
+        [values addObject: VMKCheckObject(L, halfIndex + iLooper)];
     }
     
     
@@ -520,7 +520,7 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     [keys release];
     [values release];
     
-    LuaObjCPushObject(L, dict, true, false);
+    VMKPushObject(L, dict, true, false);
     
     return 1;
 }
@@ -531,7 +531,7 @@ static inline int luaObjC_createConstantNumber(lua_State *L)
     CFSetAddValue(_LuaObjCLiteralStorage, number);
     [number release];
     
-    LuaObjCPushObject(L, number, true, false);
+    VMKPushObject(L, number, true, false);
     
     return 1;
 }
@@ -548,8 +548,8 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"class_addInstanceMethod", LuaIMPAddInstanceMethod},
     {"class_addClassMethod", LuaIMPAddClassMethod},
     {"objc_registerClassPair", luaObjC_registerClassPair},
-    {"objc_msgSendSuper", LuaObjCMessageSendSuper},
-    {"objc_msgSend", LuaObjCMessageSend},
+    {"objc_msgSendSuper", VMKMessageSendSuper},
+    {"objc_msgSend", VMKMessageSend},
     
     {"objc_import_file", luaObjC_import_file},
     
@@ -581,16 +581,16 @@ static int _luaObjC_openRuntimeSupport(lua_State *L)
     return 1;
 }
 
-int LuaObjCOpenFoundationSupport(lua_State *L)
+int VMKOpenFoundationSupport(lua_State *L)
 {
     if (!_LuaObjCLiteralStorage)
     {
         _LuaObjCLiteralStorage = CFSetCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeSetCallBacks);
     }
     
-    LuaObjCClassInitialize(L);
+    VMKClassInitialize(L);
     
-    LuaObjCLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
+    VMKLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
     
     luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
     
@@ -611,12 +611,12 @@ int LuaObjCOpenFoundationSupport(lua_State *L)
     
 	luaL_dostring(L, s_ResolveNameMetaTable);
     
-    LuaObjCOpenNSObjectExtensionSupport(L);
+    VMKOpenNSObjectExtensionSupport(L);
     
-    LuaObjCOpenProfileSupport(L);
+    VMKOpenProfileSupport(L);
     LuaInternalOpenBridgeFunctorSupport(L);
     
-    LuaObjCOpenFoundation(L);
+    VMKOpenFoundation(L);
     
     return 1;
     

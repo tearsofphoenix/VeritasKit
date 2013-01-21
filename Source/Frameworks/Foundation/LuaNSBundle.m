@@ -7,41 +7,41 @@
 //
 #import "LuaNSBundle.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
 static int lua_NSLocalizedString(lua_State *L)
 {
-    LuaObjCPushObject(L, NSLocalizedString(LuaObjCCheckObject(L, 1),
-                                              LuaObjCCheckObject(L, 2)), true, false);
+    VMKPushObject(L, NSLocalizedString(VMKCheckObject(L, 1),
+                                              VMKCheckObject(L, 2)), true, false);
     return 1;
 }
 
 static int lua_NSLocalizedStringFromTable(lua_State *L)
 {    
-    LuaObjCPushObject(L, NSLocalizedStringFromTable(LuaObjCCheckObject(L, 1), 
-                                                    LuaObjCCheckObject(L, 2),
-                                                    LuaObjCCheckObject(L, 3)), true, false);
+    VMKPushObject(L, NSLocalizedStringFromTable(VMKCheckObject(L, 1), 
+                                                    VMKCheckObject(L, 2),
+                                                    VMKCheckObject(L, 3)), true, false);
 
     return 1;
 }
 
 static int lua_NSLocalizedStringFromTableInBundle(lua_State *L)
 {    
-    LuaObjCPushObject(L, NSLocalizedStringFromTableInBundle(LuaObjCCheckObject(L, 1), 
-                                                            LuaObjCCheckObject(L, 2),
-                                                            LuaObjCCheckObject(L, 3),
-                                                            LuaObjCCheckObject(L, 4)), true, false);
+    VMKPushObject(L, NSLocalizedStringFromTableInBundle(VMKCheckObject(L, 1), 
+                                                            VMKCheckObject(L, 2),
+                                                            VMKCheckObject(L, 3),
+                                                            VMKCheckObject(L, 4)), true, false);
     
     return 1;
 }
 
 static int lua_NSLocalizedStringWithDefaultValue(lua_State *L)
 {    
-    LuaObjCPushObject(L, NSLocalizedStringWithDefaultValue(LuaObjCCheckObject(L, 1), 
-                                                            LuaObjCCheckObject(L, 2),
-                                                            LuaObjCCheckObject(L, 3),
-                                                            LuaObjCCheckObject(L, 4),
-                                                            LuaObjCCheckObject(L, 5)), true, false);
+    VMKPushObject(L, NSLocalizedStringWithDefaultValue(VMKCheckObject(L, 1), 
+                                                            VMKCheckObject(L, 2),
+                                                            VMKCheckObject(L, 3),
+                                                            VMKCheckObject(L, 4),
+                                                            VMKCheckObject(L, 5)), true, false);
     
     return 1;
 }
@@ -55,8 +55,8 @@ static const luaL_Reg __luaNSBundleAPIs[] =
     {NULL, NULL},
 };
 
-int LuaObjCOpenNSBundle(lua_State *L)
+int VMKOpenNSBundle(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __luaNSBundleAPIs);
+    VMKLoadGlobalFunctions(L, __luaNSBundleAPIs);
     return 0;
 }

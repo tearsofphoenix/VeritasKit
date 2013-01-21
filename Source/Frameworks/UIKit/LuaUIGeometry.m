@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIGeometry.h"
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 #import "LuaCGGeometry.h"
-#import "LuaObjCFrameworkFunctions.h"
+#import "VMKFrameworkFunctions.h"
 
-int LuaObjCPushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
+int VMKPushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
 {
     UIEdgeInsets *e = lua_newuserdata(L, sizeof(UIEdgeInsets));
     *e = edgeInsets;
@@ -21,7 +21,7 @@ int LuaObjCPushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
 }
 static int lua_UIEdgeInsetsMake(lua_State *L) 
 {
-    LuaObjCPushUIEdgeInsets(L, UIEdgeInsetsMake(lua_tonumber(L, 1),
+    VMKPushUIEdgeInsets(L, UIEdgeInsetsMake(lua_tonumber(L, 1),
                                              lua_tonumber(L, 2),
                                              lua_tonumber(L, 3),
                                              lua_tonumber(L, 4)));
@@ -32,11 +32,11 @@ static int lua_UIEdgeInsetsInsetRect(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
     UIEdgeInsets *insets = lua_touserdata(L, 2);
-    LuaObjCPushCGRect(L, UIEdgeInsetsInsetRect(*rect, *insets));
+    VMKPushCGRect(L, UIEdgeInsetsInsetRect(*rect, *insets));
     return 1;
 }
 
-int LuaObjCPushUIOffset(lua_State *L, UIOffset offset)
+int VMKPushUIOffset(lua_State *L, UIOffset offset)
 {
     UIOffset *o = lua_newuserdata(L, sizeof(UIOffset));
     *o = offset;
@@ -48,7 +48,7 @@ int LuaObjCPushUIOffset(lua_State *L, UIOffset offset)
 
 static int lua_UIOffsetMake(lua_State *L)
 {
-    LuaObjCPushUIOffset(L, UIOffsetMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
+    VMKPushUIOffset(L, UIOffsetMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
     return 1;
 }
 
@@ -183,15 +183,15 @@ static const luaL_Reg __LuaUIOffsetMetaMethods[] =
     {NULL, NULL},
 };
 
-int LuaObjCOpenUIGeometry(lua_State *L)
+int VMKOpenUIGeometry(lua_State *L)
 {
-    LuaObjCLoadCreateMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
+    VMKLoadCreateMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
 
-    LuaObjCLoadCreateMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
+    VMKLoadCreateMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
 
-    LuaObjCLoadGlobalFunctions(L, __LuaUIGeometryAPIs);
+    VMKLoadGlobalFunctions(L, __LuaUIGeometryAPIs);
 
-    LuaObjCLoadGlobalFunctions(L, __LuaUIOffsetAPIs);
+    VMKLoadGlobalFunctions(L, __LuaUIOffsetAPIs);
     
     return 0;
 }

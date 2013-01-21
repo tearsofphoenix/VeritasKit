@@ -10,9 +10,9 @@
 
 //#import "lualib.h"
 
-#import "LuaObjCClass.h"
+#import "VMKClass.h"
 
-#import "LuaObjCRuntime.h"
+#import "VMKRuntime.h"
 
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
 
@@ -24,10 +24,10 @@
 
 #import "LuaLibraryInformation.h"
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 #import "VBridgeService.h"
-#import "LuaObjCParser.h"
-#import "NSString+LuaObjCIndex.h"
+#import "VMKParser.h"
+#import "NSString+VMKIndex.h"
 #import "NSData+Base64.h"
 
 extern int lua_dumpSourceCode(lua_State* L, const char *sourceCode, const char* outputPath);
@@ -83,7 +83,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //
     infoLooper = LuaLibraryInformationMake(VMachineObjCSupport,
                                            @LUA_NSLIBNAME,
-                                           LuaObjCOpenFoundationSupport,
+                                           VMKOpenFoundationSupport,
                                            1,
                                            nil);
     
@@ -95,7 +95,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
     infoLooper = LuaLibraryInformationMake(VMachineUIKitSupport,
                                            @LUA_UIKITLIBNAME,
-                                           LuaObjCOpenUIKit,
+                                           VMKOpenUIKit,
                                            1,
                                            @[ VMachineObjCSupport ]);
     [_libs setObject: infoLooper
@@ -170,7 +170,7 @@ static void VMachine_initialize(VMachineService *self)
     //
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
     
-    LuaObjCLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
+    VMKLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
     LuaLibraryInformationRegisterToState(libs, VMachineParserSupport, parserStateRef);
     
     internal->parserState = parserStateRef;
@@ -187,7 +187,7 @@ static void VMachine_initialize(VMachineService *self)
     NSString *sourceCode = [[NSString alloc] initWithData: [NSData dataFromBase64String: kLuaObjCParserString]
                                                  encoding: NSUTF8StringEncoding];
 #else
-    NSString *luaObjCParserPath = [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
+    NSString *luaObjCParserPath = [[NSBundle bundleForClass: [self class]] pathForResource: @"VMKParser"
                                                                                     ofType: @"lua"];
     NSString *sourceCode = [[NSString alloc] initWithContentsOfFile: luaObjCParserPath
                                                            encoding: NSUTF8StringEncoding
@@ -233,7 +233,7 @@ static void VMachine_initialize(VMachineService *self)
         
         dispatch_resume(_internal->garbageCollectTimer);
         
-        //        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"LuaObjCParser"
+        //        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"VMKParser"
         //                                                                                                                 ofType: @"lua"]];
         //
         //        NSLog(@"%@", [data base64EncodedString]);
@@ -393,10 +393,10 @@ static void VMachineServiceParseSourceCode(VMachineService *self, NSString *sour
 
 - (void)executeFunctionName: (NSString *)functionName
                inSourceCode: (NSString *) sourceCode
-          argumentPassBlock: (LuaObjCBlock)block
+          argumentPassBlock: (VMKBlock)block
               argumentCount: (int)argumentCount
                 returnCount: (int)returnCount
-                 completion: (LuaObjCBlock)completion
+                 completion: (VMKBlock)completion
 {
     LuaStateRef luaStateRef = _internal->luaState;
     lua_Integer status;
@@ -547,7 +547,7 @@ NSString * const VMachineServiceDumpSourceCodeToPathAction = @"action.dumpSource
 
 NSString * const VMachineServiceDebugSourceFilesAction = @"action.debugSourceFiles";
 
-void LuaCall(NSString *sourceCode, NSString *functionName, LuaObjCBlock start, int argumentCount, int returnCount, LuaObjCBlock completion
+void LuaCall(NSString *sourceCode, NSString *functionName, VMKBlock start, int argumentCount, int returnCount, VMKBlock completion
              )
 {
     [(VMachineService *)[VMetaService serviceByID: VMachineServiceID] executeFunctionName: functionName

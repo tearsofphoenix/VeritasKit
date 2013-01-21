@@ -8,9 +8,9 @@
 
 #import "VMetaService.h"
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
-typedef void (^LuaObjCBlock)(struct lua_State *L);
+typedef void (^VMKBlock)(struct lua_State *L);
 
 @interface VMachineService : VMetaService
 
@@ -42,10 +42,10 @@ extern NSString * const VMachineServiceDumpSourceCodeToPathAction;
 
 extern NSString * const VMachineServiceDebugSourceFilesAction;
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
 extern void LuaCall(NSString *sourceCode, NSString *functionName,
-                    LuaObjCBlock start, int argumentCount,
-                    int returnCount,  LuaObjCBlock completion);
+                    VMKBlock start, int argumentCount,
+                    int returnCount,  VMKBlock completion);
 
-__END_DECLS
+VMK_EXTERN__C_END

@@ -16,13 +16,13 @@
 #import "LuaUIGeometry.h"
 #import "LuaUIGraphics.h"
 #import "LuaUIView.h"
-#import "LuaObjCFrameworkFunctions.h"
-#import "LuaObjCAuxiliary.h"
+#import "VMKFrameworkFunctions.h"
+#import "VMKAuxiliary.h"
 
 static int lua_UIApplicationMain(lua_State *L)
 {
-    NSString *principalClassName = LuaObjCCheckObject(L, 3);
-    NSString *delegateClassName = LuaObjCCheckObject(L, 4);
+    NSString *principalClassName = VMKCheckObject(L, 3);
+    NSString *delegateClassName = VMKCheckObject(L, 4);
     return UIApplicationMain(0, NULL, principalClassName, delegateClassName);
 }
 
@@ -32,19 +32,19 @@ static const luaL_Reg __LuaUIKitFunctions[] =
     {NULL, NULL}
 };
 
-int LuaObjCOpenUIKit(struct lua_State *L)
+int VMKOpenUIKit(struct lua_State *L)
 {
     //load CoreGraphics
     //
-    LuaObjCLoadGlobalFunctions(L, __LuaUIKitFunctions);
-    LuaObjCOpenCGAffineTransform(L);
-    LuaObjCOpenCGGeometry(L);
+    VMKLoadGlobalFunctions(L, __LuaUIKitFunctions);
+    VMKOpenCGAffineTransform(L);
+    VMKOpenCGGeometry(L);
         
-    LuaObjCOpenUIAccessibility(L);
-    LuaObjCOpenUIGeometry(L);
-    LuaObjCOpenUIGraphics(L);
+    VMKOpenUIAccessibility(L);
+    VMKOpenUIGeometry(L);
+    VMKOpenUIGraphics(L);
 
-    LuaObjCOpenUIView(L);
+    VMKOpenUIView(L);
 
     return 0;
 }

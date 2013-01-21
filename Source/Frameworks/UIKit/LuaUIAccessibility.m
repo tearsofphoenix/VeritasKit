@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaUIAccessibility.h"
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
 static int luaUIKit_UIAccessibilityZoomFocusChanged(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 2);
-    UIAccessibilityZoomFocusChanged(luaL_checkunsigned(L, 1), *rect, LuaObjCCheckObject(L, 3));
+    UIAccessibilityZoomFocusChanged(luaL_checkunsigned(L, 1), *rect, VMKCheckObject(L, 3));
     return 0;
 }
 
@@ -21,8 +21,8 @@ static const luaL_Reg __LuaUIAccessibilityAPIs[] =
     {NULL, NULL},
 };
 
-int LuaObjCOpenUIAccessibility(lua_State *L)
+int VMKOpenUIAccessibility(lua_State *L)
 {
-    LuaObjCLoadGlobalFunctions(L, __LuaUIAccessibilityAPIs);
+    VMKLoadGlobalFunctions(L, __LuaUIAccessibilityAPIs);
     return 0;
 }

@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
 #define LUA_CGAffineTransform_METANAME	"CGAffineTransform"
     
-    VK_EXPORT int LuaObjCPushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
+    VMK_EXPORT int VMKPushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
     
-    LUAMOD_API int LuaObjCOpenCGAffineTransform(struct lua_State *L);
+    LUAMOD_API int VMKOpenCGAffineTransform(struct lua_State *L);
 
-__END_DECLS
+VMK_EXTERN__C_END

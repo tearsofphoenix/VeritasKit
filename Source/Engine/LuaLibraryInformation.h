@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
 @interface LuaLibraryInformation : NSObject
 
@@ -21,16 +21,16 @@
 
 @end
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
-VK_EXPORT LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
+VMK_EXPORT LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
                                                             NSString *libName,
                                                             lua_CFunction loadFunction,
                                                             int numberOfUpvalues,
                                                             NSArray *dependentLibNames);
 
-VK_EXPORT void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs,
+VMK_EXPORT void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs,
                                                     NSString * libraryID,
                                                     lua_State *luaState);
 
-__END_DECLS
+VMK_EXTERN__C_END

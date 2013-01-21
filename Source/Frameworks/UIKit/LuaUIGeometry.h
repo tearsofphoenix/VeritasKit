@@ -6,18 +6,18 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 
-#include "LuaObjCBase.h"
+#include "VMKBase.h"
 
-__BEGIN_DECLS
+VMK_EXTERN_C_BEGIN
 
     #define LUA_UIEdgeInsets_METANAME "UIEdgeInsets"
     
-    VK_EXPORT int LuaObjCPushUIEdgeInsets(struct lua_State *L, UIEdgeInsets edgeInsets);
+    VMK_EXPORT int VMKPushUIEdgeInsets(struct lua_State *L, UIEdgeInsets edgeInsets);
     
     #define LUA_UIOffset_METANAME "UIOffset"
     
-    VK_EXPORT int LuaObjCPushUIOffset(struct lua_State *L, UIOffset offset);
+    VMK_EXPORT int VMKPushUIOffset(struct lua_State *L, UIOffset offset);
     
-    LUAMOD_API int LuaObjCOpenUIGeometry(struct lua_State *L);
+    LUAMOD_API int VMKOpenUIGeometry(struct lua_State *L);
 
-__END_DECLS
+VMK_EXTERN__C_END

@@ -1,21 +1,18 @@
 //
-//  LuaObjCProperty.m
+//  VMKProperty.m
 //  LuaIOS
 //
 //  Created by LeixSnake on 8/9/12.
 //
 //
 
-#import "LuaObjCClass.h"
-
-#import "LuaObjCAuxiliary.h"
-
-#import "LuaObjCProperty.h"
-
-#import <objc/runtime.h>
+#include "VMKClass.h"
+#include "VMKAuxiliary.h"
+#include "VMKProperty.h"
+#include <objc/runtime.h>
+#include <CoreFoundation/CoreFoundation.h>
 
 #pragma mark - helper functions
-
 
 void LuaInternalDumpObjCClass(Class theClass)
 {
@@ -110,9 +107,12 @@ static char __LuaObjC_KeyForGetterProperties;
 
 static inline const char *LuaClassGetPropertyNameWithGetter(Class theClass, SEL getter)
 {
-    NSMutableDictionary *getters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties);
-    NSString *propertyName = [getters objectForKey: [NSValue valueWithPointer: getter]];
-    return [propertyName UTF8String];
+    CFMutableDictionaryRef getters = (CFMutableDictionaryRef)objc_getAssociatedObject((id)theClass, &__LuaObjC_KeyForGetterProperties);
+    CFNumberRef address = CFNumberCreate(NULL, kCFNumberLongType, getter);
+    CFStringRef propertyName = CFDictionaryGetValue(getters, address);
+    CFRelease(address);
+    
+    return [(NSString *)propertyName UTF8String];
 }
 
 static inline const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter)
@@ -135,36 +135,34 @@ static id __luaObjc_PropertyGetter(id obj, SEL selector)
     __LuaObjC_propertyGetterWithType(id, obj, selector);
 }
 
-static NSInteger __luaObjC_propertyGetterIntegerReturn(id obj, SEL selector)
+static CFIndex __luaObjC_propertyGetterIntegerReturn(id obj, SEL selector)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
-    NSInteger returnValue = 0;
+    CFIndex returnValue = 0;
     
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
     if (ivar)
     {
-        returnValue = *((NSInteger *)obj + ivar_getOffset(ivar));
+        returnValue = *((CFIndex *)obj + ivar_getOffset(ivar));
     }
     
     return returnValue;
 }
 
-static CGFloat __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
+static Float32 __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
-    CGFloat returnValue = 0.0;
+    Float32 returnValue = 0.0;
     
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
     if (ivar)
     {
-        returnValue = *((CGFloat *)obj + ivar_getOffset(ivar));
+        returnValue = *((Float32 *)obj + ivar_getOffset(ivar));
     }
     
-    return returnValue;
-    
-    //__LuaObjC_propertyGetterWithType(CGFloat, obj, selector);
+    return returnValue;    
 }
 
 #undef __LuaObjC_propertyGetterWithType
@@ -185,27 +183,27 @@ static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
     //    object_setInstanceVariable(obj, propertyName, newValue);
 }
 
-static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, CGFloat newValue)
+static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, Float32 newValue)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
     if (ivar)
     {
-        CGFloat *value = (CGFloat *)obj + ivar_getOffset(ivar);
+        Float32 *value = (Float32 *)obj + ivar_getOffset(ivar);
         *value = newValue;
     }
-    //__LuaObjC_propertySetterWithType(CGFloat, obj, selector, newValue);
+    //__LuaObjC_propertySetterWithType(Float32, obj, selector, newValue);
 }
 
-static void __luaObjC_PropertySetter_integerValue(id obj, SEL selector, NSInteger newValue)
+static void __luaObjC_PropertySetter_integerValue(id obj, SEL selector, CFIndex newValue)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
     if (ivar)
     {
-        NSInteger *value = (NSInteger *)obj + ivar_getOffset(ivar);
+        CFIndex *value = (CFIndex *)obj + ivar_getOffset(ivar);
         *value = newValue;
     }
 }
@@ -224,7 +222,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     }
     
     objc_property_attribute_t type = { "T", "@" };
-    const char* typeEncoding = LuaObjCTypeEncodingOfType(typeName);
+    const char* typeEncoding = VMKTypeEncodingOfType(typeName);
     type.value =  typeEncoding;
     
     
@@ -327,14 +325,14 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
 int LuaIMPAddPropertyToClass(struct lua_State *L)
 {
     
-    const char* className = LuaObjCCheckString(L, 1);
-    const char* atomic = LuaObjCCheckString(L, 2);
-    const char* ownershipName = LuaObjCCheckString(L, 3);
-    const char* getterName = LuaObjCCheckString(L, 4);
-    const char* setterName = LuaObjCCheckString(L, 5);
-    const char* typeName = LuaObjCCheckString(L, 6);
-    const char* propertyName = LuaObjCCheckString(L, 7);
-    //const char* propertyInternalName = LuaObjCCheckString(L, 8);
+    const char* className = VMKCheckString(L, 1);
+    const char* atomic = VMKCheckString(L, 2);
+    const char* ownershipName = VMKCheckString(L, 3);
+    const char* getterName = VMKCheckString(L, 4);
+    const char* setterName = VMKCheckString(L, 5);
+    const char* typeName = VMKCheckString(L, 6);
+    const char* propertyName = VMKCheckString(L, 7);
+    //const char* propertyInternalName = VMKCheckString(L, 8);
     LuaIMPAddPropertyToClassOrigin(className, atomic, ownershipName, getterName,
                                    setterName, typeName, propertyName);
     

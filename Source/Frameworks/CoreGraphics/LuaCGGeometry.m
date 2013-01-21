@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "LuaCGGeometry.h"
-#import "LuaObjCAuxiliary.h"
-#import "LuaObjCFrameworkFunctions.h"
+#import "VMKAuxiliary.h"
+#import "VMKFrameworkFunctions.h"
 
-int LuaObjCPushCGPoint(lua_State *L, CGPoint p)
+int VMKPushCGPoint(lua_State *L, CGPoint p)
 {
     CGPoint *point = lua_newuserdata(L, sizeof(CGPoint));
     point->x = p.x;
@@ -21,7 +21,7 @@ int LuaObjCPushCGPoint(lua_State *L, CGPoint p)
 
 }
 
-int LuaObjCPushCGSize(lua_State *L, CGSize s)
+int VMKPushCGSize(lua_State *L, CGSize s)
 {
     CGSize *size = lua_newuserdata(L, sizeof(CGSize));
     size->width = s.width;
@@ -32,7 +32,7 @@ int LuaObjCPushCGSize(lua_State *L, CGSize s)
     return 1;
 }
 
-int LuaObjCPushCGRect(lua_State *L, CGRect r)
+int VMKPushCGRect(lua_State *L, CGRect r)
 {
     CGRect *rect = lua_newuserdata(L, sizeof(CGRect));
     rect->origin = r.origin;
@@ -49,21 +49,21 @@ int LuaObjCPushCGRect(lua_State *L, CGRect r)
 
 static int lua_CGPointMake(lua_State *L)
 {
-    return LuaObjCPushCGPoint(L, CGPointMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
+    return VMKPushCGPoint(L, CGPointMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
 }
 
 /* Make a size from `(width, height)'. */
 
 static int lua_CGSizeMake(lua_State *L)
 {
-    return LuaObjCPushCGSize(L, CGSizeMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
+    return VMKPushCGSize(L, CGSizeMake(lua_tonumber(L, 1), lua_tonumber(L, 2)));
 }
 
 /* Make a rect from `(x, y; width, height)'. */
 
 static int lua_CGRectMake(lua_State *L)
 {
-    return LuaObjCPushCGRect(L, CGRectMake(lua_tonumber(L, 1), 
+    return VMKPushCGRect(L, CGRectMake(lua_tonumber(L, 1), 
                                         lua_tonumber(L, 2),
                                         lua_tonumber(L, 3),
                                         lua_tonumber(L, 4)));
@@ -77,11 +77,11 @@ static int lua_CGRectIndex(lua_State *L)
     const char *fieldName = lua_tostring(L, 2);
     if (!strcmp(fieldName, "origin"))
     {
-        LuaObjCPushCGPoint(L, r->origin);
+        VMKPushCGPoint(L, r->origin);
         return 1;
     }else if (!strcmp(fieldName, "size"))
     {
-        LuaObjCPushCGSize(L, r->size);
+        VMKPushCGSize(L, r->size);
         return 1;
     }else
     {
@@ -316,7 +316,7 @@ static int lua_CGRectEqualToRect(lua_State *L)
 static int lua_CGRectStandardize(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    LuaObjCPushCGRect(L,  CGRectStandardize(*rect));
+    VMKPushCGRect(L,  CGRectStandardize(*rect));
     return 1;
 }
 
@@ -358,7 +358,7 @@ static int lua_CGRectIsInfinite(lua_State *L)
 static int lua_CGRectInset(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    LuaObjCPushCGRect(L, CGRectInset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
+    VMKPushCGRect(L, CGRectInset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
     return 1;
 }
 
@@ -369,7 +369,7 @@ static int lua_CGRectInset(lua_State *L)
 static int lua_CGRectIntegral(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    LuaObjCPushCGRect(L, CGRectIntegral(*rect));
+    VMKPushCGRect(L, CGRectIntegral(*rect));
     return 1;
 }
 
@@ -380,7 +380,7 @@ static int lua_CGRectUnion(lua_State *L)
 {
     CGRect *r1 = lua_touserdata(L, 1);
     CGRect *r2 = lua_touserdata(L, 2);
-    LuaObjCPushCGRect(L, CGRectUnion(*r1, *r2));
+    VMKPushCGRect(L, CGRectUnion(*r1, *r2));
     return 1;
 }
 
@@ -391,7 +391,7 @@ static int lua_CGRectIntersection(lua_State *L)
 {
     CGRect *r1 = lua_touserdata(L, 1);
     CGRect *r2 = lua_touserdata(L, 2);
-    LuaObjCPushCGRect(L, CGRectIntersection(*r1, *r2));
+    VMKPushCGRect(L, CGRectIntersection(*r1, *r2));
     return 1;
 }
 
@@ -401,7 +401,7 @@ static int lua_CGRectIntersection(lua_State *L)
 static int lua_CGRectOffset(lua_State *L)
 {
     CGRect *rect = lua_touserdata(L, 1);
-    LuaObjCPushCGRect(L, CGRectOffset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
+    VMKPushCGRect(L, CGRectOffset(*rect, lua_tonumber(L, 2), lua_tonumber(L, 3)));
     return 1;
 }
 
@@ -421,8 +421,8 @@ static int lua_CGRectDivide(lua_State *L)
     CGRect slice;
     CGRect remainder;
     CGRectDivide(*rect, &slice, &remainder, amount, edge);
-    LuaObjCPushCGRect(L, slice);
-    LuaObjCPushCGRect(L, remainder);
+    VMKPushCGRect(L, slice);
+    VMKPushCGRect(L, remainder);
     return 2;    
 }
 
@@ -534,19 +534,19 @@ static const luaL_Reg __lua_CGSizeMetaMethods[] =
 };
 
 
-int LuaObjCOpenCGGeometry(lua_State *L)
+int VMKOpenCGGeometry(lua_State *L)
 {
-    LuaObjCLoadCreateMetatable(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
+    VMKLoadCreateMetatable(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
 
-    LuaObjCLoadCreateMetatable(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
+    VMKLoadCreateMetatable(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
 
-    LuaObjCLoadCreateMetatable(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
+    VMKLoadCreateMetatable(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
 
-    LuaObjCLoadGlobalFunctions(L, __luaCGPointAPIs);
+    VMKLoadGlobalFunctions(L, __luaCGPointAPIs);
     
-    LuaObjCLoadGlobalFunctions(L, __luaCGSizeAPIs);
+    VMKLoadGlobalFunctions(L, __luaCGSizeAPIs);
 
-    LuaObjCLoadGlobalFunctions(L, __luaCGRectAPIs);
+    VMKLoadGlobalFunctions(L, __luaCGRectAPIs);
 
     return 0;
 }

@@ -27,18 +27,18 @@ extern int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L);
 
 #pragma mark - for message sending
 
-extern LuaBridgeFuncotrRef LuaObjCInvocationCreate(void *functionPointer);
+extern LuaBridgeFuncotrRef VMKInvocationCreate(void *functionPointer);
 
-extern void LuaObjCInvoke(struct lua_State *L,
+extern void VMKInvoke(struct lua_State *L,
                                  LuaBridgeFuncotrRef functor);
 
-extern void LuaObjCFunctorFinalize(LuaBridgeFuncotrRef functor);
+extern void VMKFunctorFinalize(LuaBridgeFuncotrRef functor);
 
-extern void LuaObjCInvocationSetArgumentAtInex(LuaBridgeFuncotrRef ref,
+extern void VMKInvocationSetArgumentAtInex(LuaBridgeFuncotrRef ref,
                                                int index,
                                                 void *value);
 
-extern void LuaObjCInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
+extern void VMKInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
                                                struct lua_State *L,
                                                int index,
                                                const char *encoding,

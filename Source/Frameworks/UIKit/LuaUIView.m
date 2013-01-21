@@ -7,11 +7,11 @@
 //
 #import "LuaUIView.h"
 
-#import "LuaObjCMessage.h"
+#import "VMKMessage.h"
 
 static int _luaObjC_UIView_animateWithDuration_animations(id obj, SEL selector, lua_State *luaState)
 {    
-    NSTimeInterval duration = luaL_checknumber(luaState, LuaObjCArgumentStart);
+    NSTimeInterval duration = luaL_checknumber(luaState, VMKArgumentStart);
     int clouserID = luaL_ref(luaState, LUA_REGISTRYINDEX);
     
     [UIView animateWithDuration: duration
@@ -30,7 +30,7 @@ static int _luaObjC_UIView_animateWithDuration_animations(id obj, SEL selector, 
 
 static int _luaObjC_UIView_animateWithDuration_animations_completion(id obj, SEL selector, lua_State *luaState)
 {
-    NSTimeInterval duration = luaL_checknumber(luaState, LuaObjCArgumentStart);
+    NSTimeInterval duration = luaL_checknumber(luaState, VMKArgumentStart);
     int completionID = luaL_ref(luaState, LUA_REGISTRYINDEX);
     int animationID = luaL_ref(luaState, LUA_REGISTRYINDEX);
     
@@ -60,9 +60,9 @@ static int _luaObjC_UIView_animateWithDuration_animations_completion(id obj, SEL
 
 static int _luaObjC_UIView_animateWithDuration_delay_options_animations_completion(id obj, SEL selector, lua_State *luaState)
 {
-    NSTimeInterval delay = luaL_checknumber(luaState, LuaObjCArgumentStart);
-    UIViewAnimationOptions options = lua_tointeger(luaState, LuaObjCArgumentStart + 1);
-    NSTimeInterval duration = lua_tonumber(luaState, LuaObjCArgumentStart + 2);
+    NSTimeInterval delay = luaL_checknumber(luaState, VMKArgumentStart);
+    UIViewAnimationOptions options = lua_tointeger(luaState, VMKArgumentStart + 1);
+    NSTimeInterval duration = lua_tonumber(luaState, VMKArgumentStart + 2);
     int completionID = luaL_ref(luaState, LUA_REGISTRYINDEX);
     int clouserID = luaL_ref(luaState, LUA_REGISTRYINDEX);
     
@@ -92,15 +92,15 @@ static int _luaObjC_UIView_animateWithDuration_delay_options_animations_completi
     return 0;
 }
 
-int LuaObjCOpenUIView(lua_State *L)
+int VMKOpenUIView(lua_State *L)
 {    
     //UIView animation accelerators
     //
-    LuaObjCRegisterAccelerator([UIView class], @selector(animateWithDuration:animations:),
+    VMKRegisterAccelerator([UIView class], @selector(animateWithDuration:animations:),
                                 _luaObjC_UIView_animateWithDuration_animations);
-    LuaObjCRegisterAccelerator([UIView class], @selector(animateWithDuration:animations:completion:),
+    VMKRegisterAccelerator([UIView class], @selector(animateWithDuration:animations:completion:),
                                 _luaObjC_UIView_animateWithDuration_animations_completion);
-    LuaObjCRegisterAccelerator([UIView class], @selector(animateWithDuration:delay:options:animations:completion:),
+    VMKRegisterAccelerator([UIView class], @selector(animateWithDuration:delay:options:animations:completion:),
                                 _luaObjC_UIView_animateWithDuration_delay_options_animations_completion);
     
     return 0;

@@ -1,17 +1,17 @@
 //
-//  NSString+LuaObjCIndex.m
+//  NSString+VMKIndex.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 5/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NSString+LuaObjCIndex.h"
+#import "NSString+VMKIndex.h"
 
-#import "LuaObjCAuxiliary.h"
-#import "LuaObjCClass.h"
+#import "VMKAuxiliary.h"
+#import "VMKClass.h"
 
-@implementation NSString (LuaObjCIndex)
+@implementation NSString (VMKIndex)
 
 - (void)indexObjectWithState: (lua_State *)L
 {
@@ -27,14 +27,14 @@
         {
             const char* str = lua_tostring(state, 2);
             NSString *ret = [self stringByAppendingFormat: @"%s", str];
-            LuaObjCPushObject(state, ret, true, false);
+            VMKPushObject(state, ret, true, false);
             break;
         }   
         case LUA_TUSERDATA:
         {
-            NSString *str = LuaObjCCheckObject(state, 2);
+            NSString *str = VMKCheckObject(state, 2);
             NSString *ret = [self stringByAppendingString: str];
-            LuaObjCPushObject(state, ret, true, false);
+            VMKPushObject(state, ret, true, false);
             break;
         }
         default:
@@ -63,7 +63,7 @@
 
 @end
 
-@implementation NSMutableString (LuaObjCIndex)
+@implementation NSMutableString (VMKIndex)
 
 - (void)addObjectAtIndexWithState: (lua_State *)L
 {

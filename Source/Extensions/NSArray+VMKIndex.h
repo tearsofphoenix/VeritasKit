@@ -1,15 +1,16 @@
 //
-//  NSDictionary+LuaObjCIndex.h
+//  NSArray+VMKIndex.h
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 5/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCIndexing.h"
-#import "LuaObjCBase.h"
+#import "VMKIndexing.h"
 
-@interface NSDictionary (LuaObjCIndex)
+#import "VMKBase.h"
+
+@interface NSArray (VMKIndex)
 
 - (void)indexObjectWithState: (struct lua_State *)L;
 
@@ -21,7 +22,7 @@
 
 @end
 
-@interface NSMutableDictionary (LuaObjCIndex)
+@interface NSMutableArray (VMKIndex)
 
 - (void)addObjectAtIndexWithState: (struct lua_State *)L;
 

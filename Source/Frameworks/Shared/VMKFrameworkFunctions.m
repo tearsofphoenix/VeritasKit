@@ -1,12 +1,12 @@
 //
-//  LuaObjCFrameworkFunctions.m
+//  VMKFrameworkFunctions.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 7/13/12.
 //
 //
 
-#import "LuaObjCFrameworkFunctions.h"
+#import "VMKFrameworkFunctions.h"
 
 int LuaInternalStructGarbageCollection(struct lua_State *L)
 {

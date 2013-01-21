@@ -1,14 +1,14 @@
 //
-//  NSString+LuaObjCIndex.h
+//  NSString+VMKIndex.h
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 5/20/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCIndexing.h"
+#import "VMKIndexing.h"
 
-@interface NSString (LuaObjCIndex)
+@interface NSString (VMKIndex)
 
 - (void)indexObjectWithState: (struct lua_State *)L;
 
@@ -20,7 +20,7 @@
 
 @end
 
-@interface NSMutableString (LuaObjCIndex)
+@interface NSMutableString (VMKIndex)
 
 - (void)addObjectAtIndexWithState: (struct lua_State *)L;
 

@@ -1,20 +1,20 @@
 //
-//  LuaObjCAuxiliary.m
+//  VMKAuxiliary.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 6/28/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaObjCAuxiliary.h"
+#import "VMKAuxiliary.h"
 
 #import "LuaNSObjectSupport.h"
 
-const char * LUA_NSOBJECT_METATABLENAME = "com.veritas.vm.meta.NSObject";
+const char * kVMKNSObjectMetaTableName = "com.veritas.vm.meta.NSObject";
 
-const char * LUA_CLASS_METATABLENAME = "com.veritas.vm.meta.Class";
+const char * kVMKClassMetaTableName = "com.veritas.vm.meta.Class";
 
-id LuaObjCCheckObject(lua_State *L, int index)
+id VMKCheckObject(lua_State *L, int index)
 {
     switch (lua_type(L, index))
     {
@@ -39,7 +39,7 @@ id LuaObjCCheckObject(lua_State *L, int index)
     }
 }
 
-NSInteger LuaObjCCheckInteger(lua_State *L, int index)
+CFIndex VMKCheckInteger(lua_State *L, int index)
 {
     switch (lua_type(L, index))
     {
@@ -63,7 +63,7 @@ NSInteger LuaObjCCheckInteger(lua_State *L, int index)
     }
 }
 
-const char* LuaObjCCheckString(lua_State *L, int index)
+const char* VMKCheckString(lua_State *L, int index)
 {
     switch (lua_type(L, index))
     {
@@ -87,7 +87,7 @@ const char* LuaObjCCheckString(lua_State *L, int index)
     }
 }
 
-int LuaObjCPushObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClass)
+int VMKPushObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClass)
 {
     if (nsObject)
     {
@@ -106,7 +106,7 @@ int LuaObjCPushObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool is
     return 1;
 }
 
-void LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
+void VMKLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
 {
     if (functions)
     {
@@ -121,7 +121,7 @@ void LuaObjCLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *func
     }
 }
 
-void LuaObjCLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], NSUInteger count)
+void VMKLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], CFIndex count)
 {
     NSUInteger iLooper = 0;
     luaL_Reg reg;
@@ -136,7 +136,7 @@ void LuaObjCLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions
     }
 }
 
-void LuaObjCLoadCreateMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
+void VMKLoadCreateMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
 {
     luaL_newmetatable(L, name);
     lua_pushvalue(L, -1);  /* push metatable */
