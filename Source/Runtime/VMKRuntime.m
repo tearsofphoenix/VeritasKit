@@ -129,11 +129,11 @@ static int luaObjC_getProtocol(lua_State *L)
 
 static int luaObjC_retainBeforeReturnFromAutoreleasePool(lua_State *L)
 {
-    LuaObjectRef objRef = lua_touserdata(L, 1);
+    VMKObjectRef objRef = lua_touserdata(L, 1);
     if (objRef)
     {
         //is NSObject instance
-        CFRetain(LuaObjectGetObject(objRef));
+        CFRetain(VMKObjectGetObject(objRef));
     }
     return 1;
 }

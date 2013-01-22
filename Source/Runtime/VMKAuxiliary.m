@@ -30,7 +30,7 @@ id VMKCheckObject(lua_State *L, int index)
         {
             void* obj = lua_touserdata(L, index);
             
-            return LuaObjectGetObject(obj);
+            return VMKObjectGetObject(obj);
         }
         default:
         {
@@ -77,8 +77,8 @@ const char* VMKCheckString(lua_State *L, int index)
         }
         case LUA_TUSERDATA:
         {
-            LuaObjectRef obj = lua_touserdata(L, index);
-            return [LuaObjectGetObject(obj) UTF8String];
+            VMKObjectRef obj = lua_touserdata(L, index);
+            return [VMKObjectGetObject(obj) UTF8String];
         }
         default:
         {
@@ -91,11 +91,11 @@ int VMKPushObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClas
 {
     if (nsObject)
     {
-        LuaObjectCreate(L, nsObject, isClass);
+        VMKObjectCreate(L, nsObject, isClass);
         
         if (shouldStoreInPool)
         {
-            LuaObjectStoreInPool(L, nsObject);
+            VMKObjectStoreInPool(L, nsObject);
         }
         
     }else

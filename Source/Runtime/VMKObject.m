@@ -113,22 +113,22 @@ static int luaObjC_NSLog(lua_State *L)
 
 #pragma mark - Object observer
 
-static CFSetCallBacks __LuaObjCRuntimePoolCallBacks;
+static CFSetCallBacks __VMKRuntimePoolCallBacks;
 
-static CFMutableSetRef __LuaObjCRuntimePool = NULL;
-static NSRecursiveLock *__LuaObjCRuntimePoolLock = nil;
+static CFMutableSetRef __VMKRuntimePool = NULL;
+static NSRecursiveLock *__VMKRuntimePoolLock = nil;
 
 #pragma mark - object api
 
-struct __LuaObject
+struct __VMKObject
 {
     id _obj;
     lua_State *_luaState;
 };
 
-LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject, bool isClass)
+VMKObjectRef VMKObjectCreate(struct lua_State *L, id rawObject, bool isClass)
 {
-    LuaObjectRef objRef = lua_newuserdata(L, sizeof(struct __LuaObject));
+    VMKObjectRef objRef = lua_newuserdata(L, sizeof(struct __VMKObject));
     
     objRef->_luaState = L;
     objRef->_obj = rawObject;
@@ -146,17 +146,17 @@ LuaObjectRef LuaObjectCreate(struct lua_State *L, id rawObject, bool isClass)
     return objRef;
 }
 
-void LuaObjectStoreInPool(struct lua_State *L, id obj)
+void VMKObjectStoreInPool(struct lua_State *L, id obj)
 {
-    [__LuaObjCRuntimePoolLock lock];
+    [__VMKRuntimePoolLock lock];
     
-    CFSetAddValue(__LuaObjCRuntimePool, obj);
+    CFSetAddValue(__VMKRuntimePool, obj);
     
-    [__LuaObjCRuntimePoolLock unlock];
+    [__VMKRuntimePoolLock unlock];
     
 }
 
-id LuaObjectGetObject(LuaObjectRef ref)
+id VMKObjectGetObject(VMKObjectRef ref)
 {
     if (ref)
     {
@@ -169,8 +169,8 @@ id LuaObjectGetObject(LuaObjectRef ref)
 
 static int luaObjC_description(lua_State *L)
 {
-    LuaObjectRef obj = lua_touserdata(L, 1);
-    NSString *description = [LuaObjectGetObject(obj) description];
+    VMKObjectRef obj = lua_touserdata(L, 1);
+    NSString *description = [VMKObjectGetObject(obj) description];
     lua_pushstring(L, [description UTF8String]);
     return 1;
 }
@@ -322,17 +322,17 @@ static int luaObjC_callBlockObject(lua_State *L)
 
 static int luaObjC_garbageCollection(lua_State *L)
 {
-    LuaObjectRef objRef = lua_touserdata(L, 1);
+    VMKObjectRef objRef = lua_touserdata(L, 1);
         
     if (objRef)
     {
         const void *obj = objRef->_obj;
         
-        [__LuaObjCRuntimePoolLock lock];
+        [__VMKRuntimePoolLock lock];
         
-        CFSetRemoveValue(__LuaObjCRuntimePool, obj);
+        CFSetRemoveValue(__VMKRuntimePool, obj);
         
-        [__LuaObjCRuntimePoolLock unlock];
+        [__VMKRuntimePoolLock unlock];
     }
     
     return 0;
@@ -370,14 +370,14 @@ static const luaL_Reg luaNS_functions[] =
 
 int VMKOpenNSObjectExtensionSupport(lua_State *L)
 {
-    if (!__LuaObjCRuntimePool)
+    if (!__VMKRuntimePool)
     {
-        __LuaObjCRuntimePoolCallBacks = kCFTypeSetCallBacks;
-        __LuaObjCRuntimePoolCallBacks.equal = NULL;
-        __LuaObjCRuntimePoolCallBacks.hash = NULL;
+        __VMKRuntimePoolCallBacks = kCFTypeSetCallBacks;
+        __VMKRuntimePoolCallBacks.equal = NULL;
+        __VMKRuntimePoolCallBacks.hash = NULL;
         
-        __LuaObjCRuntimePool = CFSetCreateMutable(CFAllocatorGetDefault(), 4096, &__LuaObjCRuntimePoolCallBacks);
-        __LuaObjCRuntimePoolLock = [[NSRecursiveLock alloc] init];
+        __VMKRuntimePool = CFSetCreateMutable(CFAllocatorGetDefault(), 4096, &__VMKRuntimePoolCallBacks);
+        __VMKRuntimePoolLock = [[NSRecursiveLock alloc] init];
     }
     
     VMKLoadGlobalFunctions(L, luaNS_functions);

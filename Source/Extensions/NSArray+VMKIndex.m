@@ -32,8 +32,8 @@
 
 static int luaObjC_NSArray_luaEnumerator(lua_State *L)
 {
-    LuaObjectRef obj = lua_touserdata(L, lua_upvalueindex(1));
-    NSArray *array = LuaObjectGetObject(obj);
+    VMKObjectRef obj = lua_touserdata(L, lua_upvalueindex(1));
+    NSArray *array = VMKObjectGetObject(obj);
     static NSInteger index = 0;
     if (index < [array count])
     {

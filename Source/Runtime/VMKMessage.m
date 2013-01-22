@@ -250,7 +250,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     
 #endif
     
-    LuaObjectRef anObj = lua_touserdata(L, 1);
+    VMKObjectRef anObj = lua_touserdata(L, 1);
     //optimize for nil object call
     //
     if (!anObj)
@@ -266,7 +266,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     //deside object
     //
     
-    id obj = LuaObjectGetObject(anObj);
+    id obj = VMKObjectGetObject(anObj);
     
     //optimize for nil object call
     //
