@@ -65,7 +65,6 @@
 		E15713A31643A34C00F6EAAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A21643A34C00F6EAAB /* UIKit.framework */; };
 		E15713A51643A39500F6EAAB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A41643A39500F6EAAB /* libxml2.2.dylib */; };
 		E15713A71643A40B00F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A61643A40B00F6EAAB /* QuartzCore.framework */; };
-		E15713A81643A43500F6EAAB /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4002F1643995D00F8AE92 /* LuaKit.framework */; };
 		E15713A91643A45A00F6EAAB /* libffi_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A400001643993300F8AE92 /* libffi_ios.a */; };
 		E15713AB1643A47000F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AA1643A47000F6EAAB /* CoreGraphics.framework */; };
 		E15713AD1643A47900F6EAAB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AC1643A47900F6EAAB /* OpenGLES.framework */; };
@@ -75,7 +74,6 @@
 		E15713B21643A51F00F6EAAB /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400071643993300F8AE92 /* ffitarget.h */; };
 		E15713B31643A51F00F6EAAB /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400081643993300F8AE92 /* ffitarget_i386.h */; };
 		E15713B41643A51F00F6EAAB /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400091643993300F8AE92 /* ffitarget_x86_64.h */; };
-		E15713B51643A5B000F6EAAB /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4002F1643995D00F8AE92 /* LuaKit.framework */; };
 		E15713B71643A5B700F6EAAB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713B61643A5B700F6EAAB /* libxml2.2.dylib */; };
 		E15713B91643A5BE00F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */; };
 		E15713BB1643A5C300F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713BA1643A5C300F6EAAB /* QuartzCore.framework */; };
@@ -157,6 +155,8 @@
 		E1A400BC16439BEC00F8AE92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A400BA16439BAA00F8AE92 /* Cocoa.framework */; };
 		E1AB5B1316AD1277005F4E41 /* VMKClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E1AB5B1216AD1276005F4E41 /* VMKClass.h */; };
 		E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E1AB5B1216AD1276005F4E41 /* VMKClass.h */; };
+		E1D62E7116AE20BF00DE39BF /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1D62E6B16AE20A900DE39BF /* LuaKit.framework */; };
+		E1D62E7216AE20C400DE39BF /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1D62E6D16AE20A900DE39BF /* LuaKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,33 +167,33 @@
 			remoteGlobalIDString = E1A4005316439A1C00F8AE92;
 			remoteInfo = VeritasMachineKitiOS;
 		};
-		E1A4002E1643995D00F8AE92 /* PBXContainerItemProxy */ = {
+		E1D62E6A16AE20A900DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E1A4FE8A1643959600F8AE92;
-			remoteInfo = LuaKit;
+			remoteInfo = "LuaKit-Mac";
 		};
-		E1A400301643995D00F8AE92 /* PBXContainerItemProxy */ = {
+		E1D62E6C16AE20A900DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E1A4FEA71643961600F8AE92;
-			remoteInfo = LuaKitiOS;
+			remoteInfo = "LuaKit-iOS";
 		};
-		E1A4004D16439A0C00F8AE92 /* PBXContainerItemProxy */ = {
+		E1D62E6F16AE20B600DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = E1A4FE891643959600F8AE92;
-			remoteInfo = LuaKit;
+			remoteInfo = "LuaKit-Mac";
 		};
-		E1A4006416439A6600F8AE92 /* PBXContainerItemProxy */ = {
+		E1D62E7316AE20CA00DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = E1A4FEA61643961600F8AE92;
-			remoteInfo = LuaKitiOS;
+			remoteInfo = "LuaKit-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -249,7 +249,6 @@
 		E1A400221643993300F8AE92 /* VMKRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKRuntime.h; sourceTree = "<group>"; };
 		E1A400231643993300F8AE92 /* VMKRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKRuntime.m; sourceTree = "<group>"; };
 		E1A400251643993300F8AE92 /* VMK-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "VMK-LICENSE"; sourceTree = "<group>"; };
-		E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 		E1A400371643996C00F8AE92 /* VeritasMachineKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeritasMachineKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A400411643996C00F8AE92 /* VeritasMachineKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "VeritasMachineKit-Info.plist"; path = "VeritasMachineKit/VeritasMachineKit-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E1A400451643996C00F8AE92 /* VeritasMachineKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "VeritasMachineKit-Prefix.pch"; path = "VeritasMachineKit/VeritasMachineKit-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -359,6 +358,7 @@
 		E1A4FFFE1643993300F8AE92 /* ffitarget_armv7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
 		E1A4FFFF1643993300F8AE92 /* ffitarget_i386.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
 		E1AB5B1216AD1276005F4E41 /* VMKClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMKClass.h; sourceTree = "<group>"; };
+		E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,11 +377,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1D62E7116AE20BF00DE39BF /* LuaKit.framework in Frameworks */,
 				E14A34C41643A64F00B8EB6E /* libffi.dylib in Frameworks */,
 				E15713BB1643A5C300F6EAAB /* QuartzCore.framework in Frameworks */,
 				E15713B91643A5BE00F6EAAB /* CoreGraphics.framework in Frameworks */,
 				E15713B71643A5B700F6EAAB /* libxml2.2.dylib in Frameworks */,
-				E15713B51643A5B000F6EAAB /* LuaKit.framework in Frameworks */,
 				E1A400BC16439BEC00F8AE92 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,10 +390,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1D62E7216AE20C400DE39BF /* LuaKit.framework in Frameworks */,
 				E15713AD1643A47900F6EAAB /* OpenGLES.framework in Frameworks */,
 				E15713AB1643A47000F6EAAB /* CoreGraphics.framework in Frameworks */,
 				E15713A91643A45A00F6EAAB /* libffi_ios.a in Frameworks */,
-				E15713A81643A43500F6EAAB /* LuaKit.framework in Frameworks */,
 				E15713A71643A40B00F6EAAB /* QuartzCore.framework in Frameworks */,
 				E15713A51643A39500F6EAAB /* libxml2.2.dylib in Frameworks */,
 				E15713A31643A34C00F6EAAB /* UIKit.framework in Frameworks */,
@@ -406,7 +406,7 @@
 		34E8A16514D24C82000F9EB1 = {
 			isa = PBXGroup;
 			children = (
-				E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */,
+				E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */,
 				E1A4FF891643993300F8AE92 /* Source */,
 				E1A4003F1643996C00F8AE92 /* VeritasMachineKit */,
 				E1A4005716439A1D00F8AE92 /* VeritasMachineKitiOS */,
@@ -511,15 +511,6 @@
 				E1A400251643993300F8AE92 /* VMK-LICENSE */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		E1A400271643995C00F8AE92 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E1A4002F1643995D00F8AE92 /* LuaKit.framework */,
-				E1A400311643995D00F8AE92 /* LuaKit.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E1A400381643996C00F8AE92 /* Frameworks */ = {
@@ -812,6 +803,15 @@
 			path = include;
 			sourceTree = "<group>";
 		};
+		E1D62E6316AE20A800DE39BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1D62E6B16AE20A900DE39BF /* LuaKit.framework */,
+				E1D62E6D16AE20A900DE39BF /* LuaKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -882,7 +882,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				E1A4004E16439A0C00F8AE92 /* PBXTargetDependency */,
+				E1D62E7016AE20B600DE39BF /* PBXTargetDependency */,
 			);
 			name = "VeritasMachineKit-Mac";
 			productName = VeritasMachineKit;
@@ -901,7 +901,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				E1A4006516439A6600F8AE92 /* PBXTargetDependency */,
+				E1D62E7416AE20CA00DE39BF /* PBXTargetDependency */,
 			);
 			name = "VeritasMachineKit-iOS";
 			productName = VeritasMachineKitiOS;
@@ -928,8 +928,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E1A400271643995C00F8AE92 /* Products */;
-					ProjectRef = E1A400261643995C00F8AE92 /* LuaKit.xcodeproj */;
+					ProductGroup = E1D62E6316AE20A800DE39BF /* Products */;
+					ProjectRef = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -942,18 +942,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E1A4002F1643995D00F8AE92 /* LuaKit.framework */ = {
+		E1D62E6B16AE20A900DE39BF /* LuaKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LuaKit.framework;
-			remoteRef = E1A4002E1643995D00F8AE92 /* PBXContainerItemProxy */;
+			remoteRef = E1D62E6A16AE20A900DE39BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E1A400311643995D00F8AE92 /* LuaKit.framework */ = {
+		E1D62E6D16AE20A900DE39BF /* LuaKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LuaKit.framework;
-			remoteRef = E1A400301643995D00F8AE92 /* PBXContainerItemProxy */;
+			remoteRef = E1D62E6C16AE20A900DE39BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1125,15 +1125,15 @@
 			target = E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */;
 			targetProxy = E14A34FD1643A7BA00B8EB6E /* PBXContainerItemProxy */;
 		};
-		E1A4004E16439A0C00F8AE92 /* PBXTargetDependency */ = {
+		E1D62E7016AE20B600DE39BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = LuaKit;
-			targetProxy = E1A4004D16439A0C00F8AE92 /* PBXContainerItemProxy */;
+			name = "LuaKit-Mac";
+			targetProxy = E1D62E6F16AE20B600DE39BF /* PBXContainerItemProxy */;
 		};
-		E1A4006516439A6600F8AE92 /* PBXTargetDependency */ = {
+		E1D62E7416AE20CA00DE39BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = LuaKitiOS;
-			targetProxy = E1A4006416439A6600F8AE92 /* PBXContainerItemProxy */;
+			name = "LuaKit-iOS";
+			targetProxy = E1D62E7316AE20CA00DE39BF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
