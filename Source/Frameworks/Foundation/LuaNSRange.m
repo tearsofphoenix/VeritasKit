@@ -5,10 +5,10 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "LuaNSRange.h"
+#include "LuaNSRange.h"
 
-#import "VMKAuxiliary.h"
-#import "VMKFrameworkFunctions.h"
+#include "VMKAuxiliary.h"
+#include "VMKFrameworkFunctions.h"
 
 int VMKPushNSRange(lua_State *L, NSRange r)
 {

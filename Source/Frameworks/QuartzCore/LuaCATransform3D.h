@@ -6,9 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //;
 
-#include <QuartzCore/CATransform3D.h>
+#ifndef __VMK_LUACATRANSFORM3D__
+#define __VMK_LUACATRANSFORM3D__ 1
 
 #include "VMKBase.h"
+
+#include <QuartzCore/CATransform3D.h>
 
 VMK_EXTERN_C_BEGIN
 
@@ -19,3 +22,5 @@ VMK_EXTERN_C_BEGIN
     LUAMOD_API int VMKOpenCATransform3D(struct lua_State *L);
 
 VMK_EXTERN__C_END
+
+#endif

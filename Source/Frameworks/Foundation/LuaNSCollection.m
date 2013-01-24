@@ -15,9 +15,10 @@ static NSMutableArray *__luaObjC_getArrayFromState(lua_State *L)
     NSMutableArray *array = [NSMutableArray array];
     int iLooper = VMKArgumentStart;
     id argLooper = VMKCheckObject(L, iLooper);
+    
     while (argLooper)
     {
-        [array addObject: argLooper];
+        CFArrayAppendValue((CFMutableArrayRef)array, argLooper);
         ++iLooper;
         argLooper = VMKCheckObject(L, iLooper);
     }

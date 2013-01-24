@@ -1,27 +1,27 @@
 //
-//  VBridgeService.m
+//  VMKBridgeService.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 7/9/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "VBridgeService.h"
-#import "LuaBridgeInfo.h"
+#import "VMKBridgeService.h"
+#import "VMKBridgeInfo.h"
 #import "XMLDocument.h"
 #import <dlfcn.h>
 #import <objc/runtime.h>
 
 #pragma mark - parser support
 
-typedef void (* LuaBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
+typedef void (* VMKBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
 
 static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *result)
 {
     NSString *name = [node attributeWithName: @"name"];
-    LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
+    VMKBridgeInfo *info = [[VMKBridgeInfo alloc] init];
     
-    [info setType: LuaBridgeConstantType];
+    [info setType: VMKBridgeConstantType];
     [info setName: name];
     
     NSMutableDictionary *constantInfo = [[NSMutableDictionary alloc] init];
@@ -95,9 +95,9 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
 static void _luaBridgeEnumNodeParser(XMLNode *node, NSMutableDictionary *result)
 {
     NSString *name = [node attributeWithName: @"name"];
-    LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
+    VMKBridgeInfo *info = [[VMKBridgeInfo alloc] init];
     
-    [info setType: LuaBridgeEnumType];
+    [info setType: VMKBridgeEnumType];
     [info setName: name];
     
     NSString *value = [node attributeWithName: @"value"];
@@ -116,9 +116,9 @@ static void _luaBridgeEnumNodeParser(XMLNode *node, NSMutableDictionary *result)
 static void _luaBridgeFunctionNodeParser(XMLNode *node, NSMutableDictionary *result)
 {
     NSString *name = [node attributeWithName: @"name"];
-    LuaBridgeInfo *info = [[LuaBridgeInfo alloc] init];
+    VMKBridgeInfo *info = [[VMKBridgeInfo alloc] init];
     
-    [info setType: LuaBridgeFunctionType];
+    [info setType: VMKBridgeFunctionType];
     [info setName: name];
     
     NSMutableDictionary *functionInfos = [[NSMutableDictionary alloc] init];
@@ -132,7 +132,7 @@ static void _luaBridgeFunctionNodeParser(XMLNode *node, NSMutableDictionary *res
         elementnameLooper = [argNode elementName];
         if ([elementnameLooper isEqualToString: @"arg"])
         {
-            LuaBridgeArgumentInfo *argInfo = [[LuaBridgeArgumentInfo alloc] init];
+            VMKBridgeArgumentInfo *argInfo = [[VMKBridgeArgumentInfo alloc] init];
             [argInfo setType: [argNode attributeWithName: @"type"]];
             [argInfo setType64: [argNode attributeWithName: @"type64"]];
             
@@ -162,9 +162,9 @@ static void _luaBridgeFunctionNodeParser(XMLNode *node, NSMutableDictionary *res
     [info release];
 };
 
-static NSMutableDictionary *__LuaBridgeRegisteredNodeParsers = nil;
+static CFMutableDictionaryRef __VMKBridgeRegisteredNodeParsers = NULL;
 
-static NSDictionary *LuaBridgeSupportParseFileContents(NSString *fileContents)
+static NSDictionary *VMKBridgeSupportParseFileContents(NSString *fileContents)
 {
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
     @autoreleasepool
@@ -179,7 +179,7 @@ static NSDictionary *LuaBridgeSupportParseFileContents(NSString *fileContents)
             while (nodeLooper)
             {
                 NSString *typeName = [nodeLooper elementName];
-                LuaBridgeNodeParserBlock block = [(id)CFDictionaryGetValue((CFDictionaryRef)__LuaBridgeRegisteredNodeParsers, typeName) pointerValue];
+                VMKBridgeNodeParserBlock block = [(id)CFDictionaryGetValue(__VMKBridgeRegisteredNodeParsers, typeName) pointerValue];
                 if (block)
                 {
                     block(nodeLooper, result);
@@ -201,98 +201,84 @@ static NSDictionary *LuaBridgeSupportParseFileContents(NSString *fileContents)
 
 #pragma mark - service
 
-static NSMutableDictionary *__registeredFrameworks = nil;
+static CFMutableDictionaryRef __registeredFrameworks = nil;
 
-@implementation VBridgeService
+@implementation VMKBridgeService
 
-+ (void)load
++ (void)initialize
 {
     @autoreleasepool
     {
-        if (!__LuaBridgeRegisteredNodeParsers)
+        if (!__VMKBridgeRegisteredNodeParsers)
         {
-            __LuaBridgeRegisteredNodeParsers = [[NSMutableDictionary alloc] init];
+            __VMKBridgeRegisteredNodeParsers = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] initWithCapacity: 3];
             
-            [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeConstantNodeParser]
-                                                 forKey: @"constant"];
-            [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeEnumNodeParser]
-                                                 forKey: @"enum"];
-            [__LuaBridgeRegisteredNodeParsers setObject: [NSValue valueWithPointer: _luaBridgeFunctionNodeParser]
-                                                 forKey: @"function"];
+            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"constant", [NSValue valueWithPointer: _luaBridgeConstantNodeParser]);
+            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"enum", [NSValue valueWithPointer: _luaBridgeEnumNodeParser]);
+            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"function", [NSValue valueWithPointer: _luaBridgeFunctionNodeParser]);
         }
     }
     
-    [super registerService: self];
-}
-
-+ (id)identity
-{
-    return VBridgeServiceIdentifier;
 }
 
 - (id)init
 {
     if ((self = [super init]))
     {
-        __registeredFrameworks = [[NSMutableDictionary alloc] init];
-        
-        [self initServerProcessors];
+        __registeredFrameworks = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] init];
     }
     
     return self;
 }
 
-- (void)initServerProcessors
+static VMKBridgeService *s_SharedService = nil;
+
++ (id)sharedService
 {
-    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
-                          {
-                              NSString *frameworkName = [arguments objectAtIndex: 0];
-                              
-                              if (! CFDictionaryGetValue((CFDictionaryRef)__registeredFrameworks, frameworkName) )
-                              {
-                                  NSString *bridgeFilePath = [[NSBundle bundleForClass: [self class]] pathForResource: frameworkName
-                                                                                                               ofType: @"bridgesupport"];
-                                  NSError *error = nil;
-                                  NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath
-                                                                                          encoding: NSUTF8StringEncoding
-                                                                                             error: &error];
-                                  if (error)
-                                  {
-#if DEBUG
-                                      //NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
-#endif
-                                  }else
-                                  {
-                                      [__registeredFrameworks setObject: LuaBridgeSupportParseFileContents( bridgeFileContent )
-                                                                 forKey: frameworkName];
-                                  }
-                              }
-                          })
-              forAction: VBridgeServiceImportFrameworkAction];
+    if (!s_SharedService)
+    {
+        s_SharedService = [[[self class] alloc] init];
+    }
     
-    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
-                          {
-                              NSString *name = [arguments objectAtIndex: 0];
-                              struct lua_State *state = [[arguments objectAtIndex: 1] pointerValue];
-                              
-                              for (NSDictionary *framework in [__registeredFrameworks allValues])
-                              {
-                                  LuaBridgeInfo *info = CFDictionaryGetValue((CFDictionaryRef)framework, name);
-                                  if (info)
-                                  {
-                                      [info resolveIntoLuaState: state];
-                                      break;
-                                  }
-                              }
-                          })
-              forAction: VBridgeServiceResolveNameIntoStateAction];
+    return s_SharedService;
+}
+
+- (void)importFramework: (NSString *)frameworkName
+{
+    
+    if (! CFDictionaryContainsKey(__registeredFrameworks, frameworkName) )
+    {
+        NSString *bridgeFilePath = [[NSBundle bundleForClass: [self class]] pathForResource: frameworkName
+                                                                                     ofType: @"bridgesupport"];
+        NSError *error = nil;
+        NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath
+                                                                encoding: NSUTF8StringEncoding
+                                                                   error: &error];
+        if (error)
+        {
+#if DEBUG
+            //NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
+#endif
+        }else
+        {
+            CFDictionaryAddValue(__registeredFrameworks, frameworkName, VMKBridgeSupportParseFileContents( bridgeFileContent ));
+        }
+    }
+}
+
+- (void)resolveName: (NSString *)name
+          intoState: (struct lua_State *)state
+{
+    for (NSDictionary *framework in [(NSDictionary *)__registeredFrameworks allValues])
+    {
+        VMKBridgeInfo *info = CFDictionaryGetValue((CFDictionaryRef)framework, name);
+        if (info)
+        {
+            [info resolveIntoLuaState: state];
+            break;
+        }
+    }
 }
 
 @end
-
-NSString * const VBridgeServiceIdentifier = @"com.veritas.service.bridge-support";
-
-NSString * const VBridgeServiceImportFrameworkAction = @"lua-engine.action.importFramework";
-
-NSString * const VBridgeServiceResolveNameIntoStateAction = @"lua-engine.action.resolveNameIntoState";
 

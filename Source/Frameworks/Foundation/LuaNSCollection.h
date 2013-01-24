@@ -6,11 +6,17 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#ifndef __VMK_LUANSCOLLECTION___
+#define __VMK_LUANSCOLLECTION___ 1
+
 #include "VMKBase.h"
 
 VMK_EXTERN_C_BEGIN
 
 
-    LUAMOD_API int VMKOpenNSColletion(struct lua_State *L);
+LUAMOD_API int VMKOpenNSColletion(struct lua_State *L);
 
 VMK_EXTERN__C_END
+
+#endif
+

@@ -5,9 +5,10 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "LuaUIGraphics.h"
-#import "VMKAuxiliary.h"
-#import "LuaCGGeometry.h"
+#include "LuaUIGraphics.h"
+#include "VMKAuxiliary.h"
+#include "LuaCGGeometry.h"
+#include <UIKit/UIGraphics.h>
 
 static int lua_UIGraphicsBeginImageContext(lua_State *L)
 {

@@ -5,10 +5,11 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "LuaCGAffineTransform.h"
-#import "VMKAuxiliary.h"
-#import "LuaCGGeometry.h"
-#import "VMKFrameworkFunctions.h"
+#include "LuaCGAffineTransform.h"
+#include "VMKAuxiliary.h"
+#include "LuaCGGeometry.h"
+#include "VMKFrameworkFunctions.h"
+#include <string.h>
 
 static int lua_CGAffineTransformIndex(lua_State *L)
 {

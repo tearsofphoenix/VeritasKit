@@ -5,8 +5,11 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "LuaUIAccessibility.h"
-#import "VMKAuxiliary.h"
+
+#include "LuaUIAccessibility.h"
+#include "VMKAuxiliary.h"
+#include <CoreGraphics/CGGeometry.h>
+#include <UIKit/UIAccessibility.h>
 
 static int luaUIKit_UIAccessibilityZoomFocusChanged(lua_State *L)
 {

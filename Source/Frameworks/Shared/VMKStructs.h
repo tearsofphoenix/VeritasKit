@@ -6,7 +6,7 @@
 //
 //
 
-#import "LuaCGAffineTransform.h"
-#import "LuaCGGeometry.h"
-#import "LuaNSRange.h"
-#import "LuaCATransform3D.h"
+#include "LuaCGAffineTransform.h"
+#include "LuaCGGeometry.h"
+#include "LuaNSRange.h"
+#include "LuaCATransform3D.h"

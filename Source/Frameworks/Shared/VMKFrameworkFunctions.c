@@ -6,14 +6,15 @@
 //
 //
 
-#import "VMKFrameworkFunctions.h"
+#include "VMKFrameworkFunctions.h"
+#include <stdlib.h>
 
 int LuaInternalStructGarbageCollection(struct lua_State *L)
 {
     void *structObj = lua_touserdata(L, 1);
     if (structObj)
     {
-        //free(structObj);
+        free(structObj);
     }
     return 0;
 }

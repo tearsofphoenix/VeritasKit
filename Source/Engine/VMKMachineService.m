@@ -22,10 +22,10 @@
 
 #import <LuaKit/LuaKit.h>
 
-#import "LuaLibraryInformation.h"
+#import "VMKLibraryInformation.h"
 
 #import "VMKAuxiliary.h"
-#import "VBridgeService.h"
+#import "VMKBridgeService.h"
 #import "VMKParser.h"
 #import "NSString+VMKIndex.h"
 #import "NSData+Base64.h"
@@ -79,11 +79,11 @@ static int luaObjC_objc_UUIDString(lua_State *L)
 
 static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 {
-    LuaLibraryInformation *infoLooper = nil;
+    VMKLibraryInformation *infoLooper = nil;
     
     //`Foundation' lib
     //
-    infoLooper = LuaLibraryInformationMake(VMKMachineObjCSupport,
+    infoLooper = VMKLibraryInformationMake(VMKMachineObjCSupport,
                                            @LUA_NSLIBNAME,
                                            VMKOpenFoundationSupport,
                                            1,
@@ -95,7 +95,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
     //`UIKit' lib
     //
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-    infoLooper = LuaLibraryInformationMake(VMKMachineUIKitSupport,
+    infoLooper = VMKLibraryInformationMake(VMKMachineUIKitSupport,
                                            @LUA_UIKITLIBNAME,
                                            VMKOpenUIKit,
                                            1,
@@ -105,7 +105,7 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
 #endif
     //`lpeg' lib
     //
-    infoLooper = LuaLibraryInformationMake(VMKMachineParserSupport,
+    infoLooper = VMKLibraryInformationMake(VMKMachineParserSupport,
                                            @LUA_LPEGLIBNAME,
                                            luaopen_lpeg,
                                            1,
@@ -142,7 +142,7 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
         NSString *frameworkName = @( lua_tostring(L, 3) );
         frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
         
-        VSC(VBridgeServiceIdentifier, VBridgeServiceImportFrameworkAction, nil, @[ frameworkName ]);
+        [[VMKBridgeService sharedService] importFramework: frameworkName];
     }
     
     return 0;
@@ -181,7 +181,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
     LuaStateRef parserStateRef = _luaEngine_createLuaState();
     
     VMKLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
-    LuaLibraryInformationRegisterToState(libs, VMKMachineParserSupport, parserStateRef);
+    VMKLibraryInformationRegisterToState(libs, VMKMachineParserSupport, parserStateRef);
     
     internal->parserState = parserStateRef;
     
@@ -189,7 +189,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
     //
     LuaStateRef luaStateRef = _luaEngine_createLuaState();
     
-    LuaLibraryInformationRegisterToState(libs, VMKMachineUIKitSupport, luaStateRef);
+    VMKLibraryInformationRegisterToState(libs, VMKMachineUIKitSupport, luaStateRef);
     
     internal->luaState = luaStateRef;
     
@@ -232,9 +232,16 @@ static void VMKMachine_initialize(VMKMachineService *self)
     self->_internal = internal;
 }
 
-+ (void)load
+static VMKMachineService *sSharedService = nil;
+
++ (id)sharedService
 {
-    [super registerService: self];
+    if (!sSharedService)
+    {
+        sSharedService = [[self alloc] init];
+    }
+    
+    return sSharedService;
 }
 
 - (id)init
@@ -302,105 +309,82 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
     }
 }
 
-- (void)initProcessors
+- (void)registerGlobalConstants: (NSArray *)constants
 {
-    __block id fakeSelf = self;
+    LuaStateRef L = _internal->luaState;
     
-    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
-                          {
-                              [fakeSelf doString: [arguments objectAtIndex: 0]];
-                              if (callback)
-                              {
-                                  callback( arguments);
-                              }
-                          })
-              forAction: VMKMachineServiceDoSourceCodeAction];
+    for (NSArray *obj in constants)
+    {
+        NSInteger value = [[obj objectAtIndex: 0] intValue];
+        NSString *name = [obj objectAtIndex: 1];
+        
+        lua_pushinteger(L, value);
+        lua_setglobal(L, [name UTF8String]);
+    }
+}
+
+- (void)dumpSourceCode: (NSString *)sourceCode
+                toPath: (NSString *)filePath
+{
+    VMKMachineServiceParseSourceCode(self,
+                                     sourceCode,
+                                     (^(NSArray *callbackArguments)
+                                      {
+                                          NSNumber *success = [callbackArguments objectAtIndex: 0];
+                                          NSString *arg = [callbackArguments objectAtIndex: 1];
+                                          
+                                          if ([success boolValue])
+                                          {
+                                              LuaStateRef luaStateRef = _internal->parserState;
+                                              
+                                              lua_dumpSourceCode(luaStateRef, [arg UTF8String], [filePath UTF8String]);
+                                              
+                                          }else
+                                          {
+                                              NSLog(@"in func: %s error: %@", __func__, arg);
+                                          }
+                                      }));
+}
+
+- (void)debugSourceFile: (NSArray *)sourceCodes
+{
+    LuaStateRef luaStateRef = _internal->luaState;
     
-    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
-                          {
-                              LuaStateRef L = _internal->luaState;
-                              
-                              for (NSArray *obj in arguments)
-                              {
-                                  NSInteger value = [[obj objectAtIndex: 0] intValue];
-                                  NSString *name = [obj objectAtIndex: 1];
-                                  
-                                  lua_pushinteger(L, value);
-                                  lua_setglobal(L, [name UTF8String]);
-                              }
-                          })
-              forAction: VMKMachineServiceRegisterGlobalConstantsAction];
+    for (NSString *sourceCodeLooper in sourceCodes)
+    {
+        VMKMachineServiceParseSourceCode(self,
+                                         sourceCodeLooper,
+                                         (^(NSArray *callbackArguments)
+                                          {
+                                              NSNumber *success = [callbackArguments objectAtIndex: 0];
+                                              NSString *arg = [callbackArguments objectAtIndex: 1];
+                                              
+                                              if ([success boolValue])
+                                              {
+                                                  if(luaL_dostring(luaStateRef, [arg UTF8String]) != LUA_OK)
+                                                  {
+                                                      lua_error(luaStateRef);
+                                                      return ;
+                                                  }
+                                                  
+                                              }else
+                                              {
+                                                  NSLog(@"in func: %s error: %@", __func__, arg);
+                                              }
+                                          }));
+    }
     
-    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
-                          {
-                              NSString *sourceCode = [arguments objectAtIndex: 0];
-                              NSString *filePath = [arguments objectAtIndex: 1];
-                              
-                              VMKMachineServiceParseSourceCode(self,
-                                                             sourceCode,
-                                                             (^(NSArray *callbackArguments)
-                                                              {
-                                                                  NSNumber *success = [callbackArguments objectAtIndex: 0];
-                                                                  NSString *arg = [callbackArguments objectAtIndex: 1];
-                                                                  
-                                                                  if ([success boolValue])
-                                                                  {
-                                                                      LuaStateRef luaStateRef = _internal->parserState;
-                                                                      
-                                                                      lua_dumpSourceCode(luaStateRef, [arg UTF8String], [filePath UTF8String]);
-                                                                      
-                                                                  }else
-                                                                  {
-                                                                      NSLog(@"in func: %s error: %@", __func__, arg);
-                                                                  }
-                                                              }));
-                          })
-              forAction: VMKMachineServiceDumpSourceCodeToPathAction];
+    lua_getglobal(luaStateRef, "main");
     
-    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
-                          {
-                              LuaStateRef luaStateRef = _internal->luaState;
-                              
-                              NSArray *sourceCodes = [arguments objectAtIndex: 0];
-                              
-                              for (NSString *sourceCodeLooper in sourceCodes)
-                              {
-                                  VMKMachineServiceParseSourceCode(self,
-                                                                 sourceCodeLooper,
-                                                                 (^(NSArray *callbackArguments)
-                                                                  {
-                                                                      NSNumber *success = [callbackArguments objectAtIndex: 0];
-                                                                      NSString *arg = [callbackArguments objectAtIndex: 1];
-                                                                      
-                                                                      if ([success boolValue])
-                                                                      {
-                                                                          if(luaL_dostring(luaStateRef, [arg UTF8String]) != LUA_OK)
-                                                                          {
-                                                                              lua_error(luaStateRef);
-                                                                              return ;
-                                                                          }
-                                                                          
-                                                                      }else
-                                                                      {
-                                                                          NSLog(@"in func: %s error: %@", __func__, arg);
-                                                                      }
-                                                                  }));
-                              }
-                              
-                              lua_getglobal(luaStateRef, "main");
-                              
-                              if(lua_pcall(luaStateRef, 0, 0, 0) != LUA_OK)
-                              {
-                                  lua_error(luaStateRef);
-                              }
-                          })
-              forAction: VMKMachineServiceDebugSourceFilesAction];
-    
-    [self registerBlock: (^(VCallbackBlock callback, NSArray *arguments)
-                          {
-                              VMKMachineServiceParseSourceCode(self, [arguments objectAtIndex: 0], callback);
-                          })
-              forAction: VMKMachineServiceParseSourceCodeAction];
+    if(lua_pcall(luaStateRef, 0, 0, 0) != LUA_OK)
+    {
+        lua_error(luaStateRef);
+    }
+}
+
+- (void)parseSourceCode: (NSString *)sourceCode
+{
+    VMKMachineServiceParseSourceCode(self, sourceCode, nil);
 }
 
 - (void)executeFunctionName: (NSString *)functionName
@@ -429,7 +413,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
     
     if (sourceCode)
     {
-        [self doString: sourceCode];
+        [self doSourceCode: sourceCode];
     }
     
     if (functionName)
@@ -498,7 +482,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
     }
 }
 
-- (void)doString: (NSString *)sourceCode
+- (void)doSourceCode: (NSString *)sourceCode
 {
     if ([_md5OfParsedString indexOfObject: sourceCode] == NSNotFound)
     {
@@ -509,37 +493,30 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
         //parse source code to lua code
         //
         VMKMachineServiceParseSourceCode(self, sourceCode,
-                                       (^(NSArray *callbackArguments)
-                                        {
-                                            
-                                            NSNumber *success = [callbackArguments objectAtIndex: 0];
-                                            NSString *arg = [callbackArguments objectAtIndex: 1];
-                                            
-                                            if ([success boolValue])
-                                            {
-                                                
-                                                if (luaL_dostring(luaStateRef, [arg UTF8String]) != LUA_OK)
-                                                {
-                                                    lua_error(luaStateRef);
-                                                }
-                                            }else
-                                            {
-                                                
-                                            }
-                                        }));
+                                         (^(NSArray *callbackArguments)
+                                          {
+                                              
+                                              NSNumber *success = [callbackArguments objectAtIndex: 0];
+                                              NSString *arg = [callbackArguments objectAtIndex: 1];
+                                              
+                                              if ([success boolValue])
+                                              {
+                                                  
+                                                  if (luaL_dostring(luaStateRef, [arg UTF8String]) != LUA_OK)
+                                                  {
+                                                      lua_error(luaStateRef);
+                                                  }
+                                              }else
+                                              {
+                                                  
+                                              }
+                                          }));
     }
-}
-
-+ (id)identity
-{
-    return VMKMachineServiceID;
 }
 
 @end
 
 #pragma mark - engine id
-
-NSString * const VMKMachineServiceID = @"com.veritas.service.lua-engine";
 
 NSString * const VMKMachineObjCSupport = @"lua-engine.feature.objc";
 
@@ -547,26 +524,14 @@ NSString * const VMKMachineUIKitSupport = @"lua-engine.feature.uikit";
 
 NSString * const VMKMachineParserSupport = @"lua-engine.feature.lpeg";
 
-#pragma mark - engine supported actions
-
-NSString * const VMKMachineServiceDoSourceCodeAction = @"action.doSourceCode";
-
-NSString * const VMKMachineServiceParseSourceCodeAction = @"action.parseSourceCode";
-
-NSString * const VMKMachineServiceRegisterGlobalConstantsAction = @"action.registerGlobalConstatns";
-
-NSString * const VMKMachineServiceDumpSourceCodeToPathAction = @"action.dumpSourceCodeToPath";
-
-NSString * const VMKMachineServiceDebugSourceFilesAction = @"action.debugSourceFiles";
-
 void LuaCall(NSString *sourceCode, NSString *functionName, VMKBlock start, int argumentCount, int returnCount, VMKBlock completion
              )
 {
-    [(VMKMachineService *)[VMetaService serviceByID: VMKMachineServiceID] executeFunctionName: functionName
-                                                                             inSourceCode: sourceCode
-                                                                        argumentPassBlock: start
-                                                                            argumentCount: argumentCount
-                                                                              returnCount: returnCount
-                                                                               completion: completion];
+    [[VMKMachineService sharedService] executeFunctionName: functionName
+                                              inSourceCode: sourceCode
+                                         argumentPassBlock: start
+                                             argumentCount: argumentCount
+                                               returnCount: returnCount
+                                                completion: completion];
 }
 

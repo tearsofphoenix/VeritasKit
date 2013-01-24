@@ -5,15 +5,20 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "LuaNSString.h"
+#include "LuaNSString.h"
 
-#import "VMKAuxiliary.h"
+#include "VMKAuxiliary.h"
+
+#include <CoreFoundation/CFString.h>
 
 static int lua_NSConstantStringCreate(lua_State *L)
 {
     const char* str = lua_tostring(L, 1);
-    NSString *constantString = [[[NSString alloc] initWithUTF8String: str] autorelease];
-    VMKPushObject(L, constantString, true, false);
+    
+    CFStringRef constantString =  CFStringCreateWithCString(NULL, str, kCFStringEncodingUTF8);
+    CFMakeCollectable(constantString);
+    
+    VMKPushObject(L, (id)constantString, true, false);
     return 1;
 }
 

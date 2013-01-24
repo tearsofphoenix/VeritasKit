@@ -6,13 +6,24 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "VMetaService.h"
+#import "VMKBase.h"
+#import <Foundation/Foundation.h>
 
-#include "VMKBase.h"
+typedef void (^ VMKBlock)(struct lua_State *L);
+typedef void (^ VCallbackBlock)(NSArray *callbackArguments) ;
 
-typedef void (^VMKBlock)(struct lua_State *L);
+@interface VMKMachineService : NSObject
 
-@interface VMKMachineService : VMetaService
++ (id)sharedService;
+
+- (void)doSourceCode: (NSString *)sourceCode;
+
+- (void)parseSourceCode: (NSString *)sourceCode;
+
+- (void)registerGlobalConstants: (NSArray *)constants;
+
+- (void)dumpSourceCode: (NSString *)sourceCode
+                toPath: (NSString *)path;
 
 @end
 
@@ -24,23 +35,6 @@ extern NSString * const VMKMachineUIKitSupport;
 
 extern NSString * const VMKMachineParserSupport;
 
-//Service ID
-//
-extern NSString * const VMKMachineServiceID;
-
-//Service Actions
-//
-extern NSString * const VMKMachineServiceDoSourceCodeAction;
-
-extern NSString * const VMKMachineServiceParseSourceCodeAction;
-
-#pragma mark - internal use
-
-extern NSString * const VMKMachineServiceRegisterGlobalConstantsAction;
-
-extern NSString * const VMKMachineServiceDumpSourceCodeToPathAction;
-
-extern NSString * const VMKMachineServiceDebugSourceFilesAction;
 
 VMK_EXTERN_C_BEGIN
 

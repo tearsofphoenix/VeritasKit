@@ -1,14 +1,14 @@
 //
-//  LuaLibraryInformation.m
+//  VMKLibraryInformation.m
 //  AZenecaExhibit
 //
 //  Created by tearsofphoenix on 6/1/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaLibraryInformation.h"
+#import "VMKLibraryInformation.h"
 
-@implementation LuaLibraryInformation
+@implementation VMKLibraryInformation
 
 @synthesize libaName = _libName;
 @synthesize loadFunction = _loadFunction;
@@ -30,7 +30,7 @@
 {
     for (NSString *iLooper in _dependentLibNames)
     {        
-        LuaLibraryInformation *libLooper = [dict objectForKey: iLooper];
+        VMKLibraryInformation *libLooper = [dict objectForKey: iLooper];
         [libLooper registerIntoLuaState: luaState
                               libraries: dict];
     }
@@ -44,13 +44,13 @@
 
 
 
-LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
+VMKLibraryInformation * VMKLibraryInformationMake(NSString *fetureID,
                                                   NSString *libName,
                                                   lua_CFunction loadFunction,
                                                   int numberOfUpvalues,
                                                   NSArray *dependentLibNames)
 {
-    LuaLibraryInformation *ret = [[LuaLibraryInformation alloc] init];
+    VMKLibraryInformation *ret = [[VMKLibraryInformation alloc] init];
     [ret setFeatureID: fetureID];
     [ret setLibaName: libName];
     [ret setLoadFunction: loadFunction];
@@ -60,7 +60,7 @@ LuaLibraryInformation * LuaLibraryInformationMake(NSString *fetureID,
     return [ret autorelease];
 }
 
-void LuaLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs, NSString * libraryID, lua_State *luaState)
+void VMKLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs, NSString * libraryID, lua_State *luaState)
 {
     [[_luaEngineLibs objectForKey: libraryID] registerIntoLuaState: luaState
                                                          libraries: _luaEngineLibs];

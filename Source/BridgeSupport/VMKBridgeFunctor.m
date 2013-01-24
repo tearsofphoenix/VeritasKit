@@ -1,12 +1,12 @@
 //
-//  LuaBridgeFunctor.m
+//  VMKBridgeFunctor.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix tearsofphoenix on 7/9/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaBridgeFunctor.h"
+#import "VMKBridgeFunctor.h"
 #import "VMKBase.h"
 
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
@@ -15,7 +15,7 @@
 #import <ffi/ffi.h>
 #endif
 
-#import "LuaBridgeInfo.h"
+#import "VMKBridgeInfo.h"
 #import "VMKAuxiliary.h"
 
 #import <dlfcn.h>
@@ -105,9 +105,9 @@ static ffi_type * _luaBridgeInternal_typeOfEncoding(const char *encoding)
     }
 }
 
-const char * LuaBridgeFuncotrMetaName = "com.veritas.luaobjc.internal.bridge-functor";
+const char * VMKBridgeFuncotrMetaName = "com.veritas.luaobjc.internal.bridge-functor";
 
-struct LuaBridgeFuncotr
+struct VMKBridgeFuncotr
 {
     //real function pointer
     //
@@ -133,25 +133,25 @@ struct LuaBridgeFuncotr
     
 };
 
-LuaBridgeFuncotrRef LuaBridgeFunctorCreate(lua_State *L,
+VMKBridgeFuncotrRef VMKBridgeFunctorCreate(lua_State *L,
                                            NSString * name,
                                            NSArray *argumentTypeEncodings,
                                            const char *returnEncoding)
 {
-    LuaBridgeFuncotrRef returnValue = lua_newuserdata(L, sizeof(struct LuaBridgeFuncotr));
+    VMKBridgeFuncotrRef returnValue = lua_newuserdata(L, sizeof(struct VMKBridgeFuncotr));
     returnValue->_functionPointer = dlsym(RTLD_DEFAULT, [name UTF8String]);
     
-    LuaBridgeFunctorInitialize(returnValue, argumentTypeEncodings, returnEncoding);
+    VMKBridgeFunctorInitialize(returnValue, argumentTypeEncodings, returnEncoding);
     
-    luaL_getmetatable(L, LuaBridgeFuncotrMetaName);
+    luaL_getmetatable(L, VMKBridgeFuncotrMetaName);
     lua_setmetatable(L, -2);
     
     return returnValue;
 }
 
-static int LuaBridgeFunctorInvoke(lua_State *L)
+static int VMKBridgeFunctorInvoke(lua_State *L)
 {
-    LuaBridgeFuncotrRef ref = luaL_checkudata(L, 1, LuaBridgeFuncotrMetaName);
+    VMKBridgeFuncotrRef ref = luaL_checkudata(L, 1, VMKBridgeFuncotrMetaName);
     
     [ref->_argumentTypeEncodings enumerateObjectsUsingBlock:
      (^(NSString *encoding, NSUInteger idx, BOOL *stop)
@@ -163,9 +163,9 @@ static int LuaBridgeFunctorInvoke(lua_State *L)
     return ref->_returnCount;
 }
 
-static int LuaBridgeFunctorFinalize(lua_State *L)
+static int VMKBridgeFunctorFinalize(lua_State *L)
 {
-    LuaBridgeFuncotrRef ref = luaL_checkudata(L, 1, LuaBridgeFuncotrMetaName);
+    VMKBridgeFuncotrRef ref = luaL_checkudata(L, 1, VMKBridgeFuncotrMetaName);
     VMKFunctorFinalize(ref);
     return 0;
 }
@@ -179,21 +179,21 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
 {
     //not gc bridge functor yet
     //
-    //{"__gc", LuaBridgeFunctorFinalize},
-    {"__call", LuaBridgeFunctorInvoke},
+    //{"__gc", VMKBridgeFunctorFinalize},
+    {"__call", VMKBridgeFunctorInvoke},
     {NULL, NULL}
 };
 
 int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L)
 {
     luaL_newlib(L, __LuaObjCBridgeSupportFunctions);
-    VMKLoadCreateMetatable(L, LuaBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
+    VMKLoadCreateMetatable(L, VMKBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
     return 1;
 }
 
 #pragma mark - objc
 
-void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef functorRef,
+void VMKBridgeFunctorInitialize(VMKBridgeFuncotrRef functorRef,
                                 NSArray *argumentTypeEncodings,
                                 const char *returnEncoding)
 {
@@ -253,15 +253,15 @@ void LuaBridgeFunctorInitialize(LuaBridgeFuncotrRef functorRef,
     }
 }
 
-LuaBridgeFuncotrRef VMKInvocationCreate(void *functionPointer)
+VMKBridgeFuncotrRef VMKInvocationCreate(void *functionPointer)
 {
-    LuaBridgeFuncotrRef functor = malloc(sizeof(struct LuaBridgeFuncotr));
+    VMKBridgeFuncotrRef functor = malloc(sizeof(struct VMKBridgeFuncotr));
     functor->_functionPointer = functionPointer;
     return functor;
 }
 
 void VMKInvoke(struct lua_State *L,
-                   LuaBridgeFuncotrRef ref)
+                   VMKBridgeFuncotrRef ref)
 {
     if (ref)
     {
@@ -387,7 +387,7 @@ void VMKInvoke(struct lua_State *L,
     }
 }
 
-void VMKFunctorFinalize(LuaBridgeFuncotrRef ref)
+void VMKFunctorFinalize(VMKBridgeFuncotrRef ref)
 {
     if (ref)
     {
@@ -413,12 +413,12 @@ void VMKFunctorFinalize(LuaBridgeFuncotrRef ref)
     }
 }
 
-void VMKInvocationSetArgumentAtInex(LuaBridgeFuncotrRef ref, int index, void *value)
+void VMKInvocationSetArgumentAtInex(VMKBridgeFuncotrRef ref, int index, void *value)
 {
     *(void **)ref->_arguments[index] = value;
 }
 
-void VMKInvocationSetArgumentFromLuaStateAtInex(LuaBridgeFuncotrRef ref,
+void VMKInvocationSetArgumentFromLuaStateAtInex(VMKBridgeFuncotrRef ref,
                                                     struct lua_State *L,
                                                     int index,
                                                     const char *encoding,

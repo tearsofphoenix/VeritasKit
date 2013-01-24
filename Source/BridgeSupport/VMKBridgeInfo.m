@@ -1,43 +1,43 @@
 //
-//  LuaBridgeInfo.m
+//  VMKBridgeInfo.m
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 7/9/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LuaBridgeInfo.h"
+#import "VMKBridgeInfo.h"
 #import "VMKAuxiliary.h"
-#import "LuaBridgeFunctor.h"
+#import "VMKBridgeFunctor.h"
 #import "VMKClass.h"
 #import "VMKObject.h"
 
 #import <objc/runtime.h>
 
 
-LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
+VMKBridgeType VMKBridgeTypeFromString(NSString *aString)
 {
     if ([aString isEqualToString: @"constant"])
     {
-        return LuaBridgeConstantType;
+        return VMKBridgeConstantType;
     }
     if ([aString isEqualToString: @"enum"])
     {
-        return LuaBridgeEnumType;
+        return VMKBridgeEnumType;
     }
     if ([aString isEqualToString: @"function"])
     {
-        return LuaBridgeFunctionType;
+        return VMKBridgeFunctionType;
     }
     if ([aString isEqualToString: @"class"])
     {
-        return LuaBridgeClassType;
+        return VMKBridgeClassType;
     }
     
-    return LuaBridgeInvalidType;
+    return VMKBridgeInvalidType;
 }
 
-@implementation LuaBridgeInfo
+@implementation VMKBridgeInfo
 
 @synthesize type = _type;
 @synthesize name = _name;
@@ -47,7 +47,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
 {
     switch (_type)
     {
-        case LuaBridgeClassType:
+        case VMKBridgeClassType:
         {
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
@@ -56,12 +56,12 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             
             return YES;
         }
-        case LuaBridgeEnumType:
+        case VMKBridgeEnumType:
         {
             lua_pushinteger(state, [[_info objectForKey: @"value"] intValue]);
             return YES;
         }
-        case LuaBridgeConstantType:
+        case VMKBridgeConstantType:
         {
             id value = [_info objectForKey: @"value"];
             
@@ -69,19 +69,19 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
             
             return YES;
         }
-        case LuaBridgeFunctionType:
+        case VMKBridgeFunctionType:
         {
             NSArray *args = [_info objectForKey: @"arg"];
             NSMutableArray *encodings = [[NSMutableArray alloc] init];
             
-            for (LuaBridgeArgumentInfo *obj in args)
+            for (VMKBridgeArgumentInfo *obj in args)
             {
                 [encodings addObject: [obj type]];
             }
             
             const char *returnTypeEncoding = [[_info objectForKey: @"retval"] UTF8String];
             
-            LuaBridgeFunctorCreate(state, _name, encodings, returnTypeEncoding);
+            VMKBridgeFunctorCreate(state, _name, encodings, returnTypeEncoding);
             
             [encodings release];
             
@@ -97,7 +97,7 @@ LuaBridgeType LuaBridgeTypeFromString(NSString *aString)
 @end
 
 
-@implementation LuaBridgeArgumentInfo
+@implementation VMKBridgeArgumentInfo
 
 @synthesize type = _type;
 @synthesize type64 = _type64;

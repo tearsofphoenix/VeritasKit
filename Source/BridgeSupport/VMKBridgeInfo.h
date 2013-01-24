@@ -1,5 +1,5 @@
 //
-//  LuaBridgeInfo.h
+//  VMKBridgeInfo.h
 //  LuaIOS
 //
 //  Created by tearsofphoenix on 7/9/12.
@@ -10,20 +10,20 @@ struct lua_State;
                                         
 enum 
 {
-    LuaBridgeInvalidType = -1,
-    LuaBridgeConstantType = 0,
-    LuaBridgeEnumType,
-    LuaBridgeFunctionType,
-    LuaBridgeClassType,
+    VMKBridgeInvalidType = -1,
+    VMKBridgeConstantType = 0,
+    VMKBridgeEnumType,
+    VMKBridgeFunctionType,
+    VMKBridgeClassType,
 };
 
-typedef NSInteger LuaBridgeType;
+typedef NSInteger VMKBridgeType;
 
-extern LuaBridgeType LuaBridgeTypeFromString(NSString *aString);
+extern VMKBridgeType VMKBridgeTypeFromString(NSString *aString);
 
-@protocol LuaBridgeInfo <NSObject>
+@protocol VMKBridgeInfo <NSObject>
 
-@property (nonatomic) LuaBridgeType type;
+@property (nonatomic) VMKBridgeType type;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) id info;
 
@@ -31,12 +31,12 @@ extern LuaBridgeType LuaBridgeTypeFromString(NSString *aString);
 
 @end
 
-@interface LuaBridgeInfo : NSObject<LuaBridgeInfo>
+@interface VMKBridgeInfo : NSObject<VMKBridgeInfo>
 
 
 @end
 
-@interface LuaBridgeArgumentInfo : NSObject
+@interface VMKBridgeArgumentInfo : NSObject
 
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *type64;

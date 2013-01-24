@@ -14,6 +14,7 @@
 #import "VMKRuntime.h"
 
 #import <objc/runtime.h>
+#include <pthread.h>
 
 static int luaObjC_NSLog(lua_State *L)
 {
@@ -116,7 +117,7 @@ static int luaObjC_NSLog(lua_State *L)
 static CFSetCallBacks __VMKRuntimePoolCallBacks;
 
 static CFMutableSetRef __VMKRuntimePool = NULL;
-static NSRecursiveLock *__VMKRuntimePoolLock = nil;
+static pthread_mutex_t __VMKRuntimePoolLock;
 
 #pragma mark - object api
 
@@ -148,11 +149,11 @@ VMKObjectRef VMKObjectCreate(struct lua_State *L, id rawObject, bool isClass)
 
 void VMKObjectStoreInPool(struct lua_State *L, id obj)
 {
-    [__VMKRuntimePoolLock lock];
+    pthread_mutex_lock(&__VMKRuntimePoolLock);
     
     CFSetAddValue(__VMKRuntimePool, obj);
     
-    [__VMKRuntimePoolLock unlock];
+    pthread_mutex_unlock(&__VMKRuntimePoolLock);
     
 }
 
@@ -328,11 +329,11 @@ static int luaObjC_garbageCollection(lua_State *L)
     {
         const void *obj = objRef->_obj;
         
-        [__VMKRuntimePoolLock lock];
+        pthread_mutex_lock(&__VMKRuntimePoolLock);
         
         CFSetRemoveValue(__VMKRuntimePool, obj);
         
-        [__VMKRuntimePoolLock unlock];
+        pthread_mutex_unlock(&__VMKRuntimePoolLock);
     }
     
     return 0;
@@ -377,7 +378,14 @@ int VMKOpenNSObjectExtensionSupport(lua_State *L)
         __VMKRuntimePoolCallBacks.hash = NULL;
         
         __VMKRuntimePool = CFSetCreateMutable(CFAllocatorGetDefault(), 4096, &__VMKRuntimePoolCallBacks);
-        __VMKRuntimePoolLock = [[NSRecursiveLock alloc] init];
+        
+        pthread_mutexattr_t attr;
+        pthread_mutexattr_init(&attr);
+        pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+        
+        pthread_mutex_init(&__VMKRuntimePoolLock, &attr);
+        
+        pthread_mutexattr_destroy(&attr);
     }
     
     VMKLoadGlobalFunctions(L, luaNS_functions);

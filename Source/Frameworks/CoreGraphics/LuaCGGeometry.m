@@ -5,9 +5,9 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "LuaCGGeometry.h"
-#import "VMKAuxiliary.h"
-#import "VMKFrameworkFunctions.h"
+#include "LuaCGGeometry.h"
+#include "VMKAuxiliary.h"
+#include "VMKFrameworkFunctions.h"
 
 int VMKPushCGPoint(lua_State *L, CGPoint p)
 {

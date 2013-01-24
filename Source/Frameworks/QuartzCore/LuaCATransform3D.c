@@ -5,11 +5,11 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-#import "LuaCATransform3D.h"
+#include "LuaCATransform3D.h"
 
-#import "VMKAuxiliary.h"
-#import "LuaCGAffineTransform.h"
-#import "VMKFrameworkFunctions.h"
+#include "VMKAuxiliary.h"
+#include "LuaCGAffineTransform.h"
+#include "VMKFrameworkFunctions.h"
 
 int VMKPushCATransform3D(lua_State *L, CATransform3D t)
 {
