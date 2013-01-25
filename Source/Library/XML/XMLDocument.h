@@ -4,6 +4,9 @@
 
 #include "XMLNode.h"
 
+#include <CoreFoundation/CFData.h>
+#include <CoreFoundation/CFArray.h>
+#include <CoreFoundation/CFDictionary.h>
 #include <libxml/tree.h>
 
 typedef struct __VMKXMLDocument *VMKXMLDocumentRef;

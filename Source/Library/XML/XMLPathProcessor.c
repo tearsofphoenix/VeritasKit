@@ -3,6 +3,7 @@
 #include "CFRuntime.h"
 #include "VMKInternal.h"
 #include <libxml/xpathInternals.h>
+#include <assert.h>
 
 struct __VMKXMLPathProcessor
 {

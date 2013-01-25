@@ -102,9 +102,9 @@
 		E1A4007816439A7900F8AE92 /* LuaNSString.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.c */; };
 		E1A4007A16439A7900F8AE92 /* LuaCATransform3D.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.c */; };
 		E1A4007B16439A7900F8AE92 /* VMKFrameworkFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.c */; };
-		E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.m */; };
+		E1A4008116439A7900F8AE92 /* XMLDocument.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.c */; };
 		E1A4008216439A7900F8AE92 /* XMLNode.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.c */; };
-		E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
+		E1A4008316439A7900F8AE92 /* XMLPathProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.c */; };
 		E1A4008416439A7900F8AE92 /* VMKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* VMKObject.m */; };
 		E1A4008516439A7900F8AE92 /* VMKAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* VMKAuxiliary.m */; };
 		E1A4008616439A7900F8AE92 /* VMKClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* VMKClass.m */; };
@@ -140,9 +140,9 @@
 		E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF01643993300F8AE92 /* LuaUIGraphics.m */; };
 		E1A400A916439B4600F8AE92 /* LuaUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF21643993300F8AE92 /* LuaUIKit.m */; };
 		E1A400AA16439B4600F8AE92 /* LuaUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF41643993300F8AE92 /* LuaUIView.m */; };
-		E1A400AB16439B4600F8AE92 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.m */; };
+		E1A400AB16439B4600F8AE92 /* XMLDocument.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.c */; };
 		E1A400AC16439B4600F8AE92 /* XMLNode.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.c */; };
-		E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.m */; };
+		E1A400AD16439B4600F8AE92 /* XMLPathProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.c */; };
 		E1A400AE16439B4600F8AE92 /* VMKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* VMKObject.m */; };
 		E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* VMKAuxiliary.m */; };
 		E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* VMKClass.m */; };
@@ -235,11 +235,11 @@
 		E1A4000C1643993300F8AE92 /* LuaCParser.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = LuaCParser.lua; sourceTree = "<group>"; };
 		E1A4000D1643993300F8AE92 /* VMKParser.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = VMKParser.lua; sourceTree = "<group>"; };
 		E1A4000F1643993300F8AE92 /* XMLDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLDocument.h; sourceTree = "<group>"; };
-		E1A400101643993300F8AE92 /* XMLDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLDocument.m; sourceTree = "<group>"; };
+		E1A400101643993300F8AE92 /* XMLDocument.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = XMLDocument.c; sourceTree = "<group>"; };
 		E1A400111643993300F8AE92 /* XMLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLNode.h; sourceTree = "<group>"; };
 		E1A400121643993300F8AE92 /* XMLNode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = XMLNode.c; sourceTree = "<group>"; };
 		E1A400131643993300F8AE92 /* XMLPathProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLPathProcessor.h; sourceTree = "<group>"; };
-		E1A400141643993300F8AE92 /* XMLPathProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLPathProcessor.m; sourceTree = "<group>"; };
+		E1A400141643993300F8AE92 /* XMLPathProcessor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = XMLPathProcessor.c; sourceTree = "<group>"; };
 		E1A400161643993300F8AE92 /* VMKObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKObject.h; sourceTree = "<group>"; };
 		E1A400171643993300F8AE92 /* VMKObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VMKObject.m; sourceTree = "<group>"; };
 		E1A400181643993300F8AE92 /* VMKAuxiliary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKAuxiliary.h; sourceTree = "<group>"; };
@@ -488,11 +488,11 @@
 			isa = PBXGroup;
 			children = (
 				E1A4000F1643993300F8AE92 /* XMLDocument.h */,
-				E1A400101643993300F8AE92 /* XMLDocument.m */,
+				E1A400101643993300F8AE92 /* XMLDocument.c */,
 				E1A400111643993300F8AE92 /* XMLNode.h */,
 				E1A400121643993300F8AE92 /* XMLNode.c */,
 				E1A400131643993300F8AE92 /* XMLPathProcessor.h */,
-				E1A400141643993300F8AE92 /* XMLPathProcessor.m */,
+				E1A400141643993300F8AE92 /* XMLPathProcessor.c */,
 			);
 			path = XML;
 			sourceTree = "<group>";
@@ -1077,9 +1077,9 @@
 				E1A4007816439A7900F8AE92 /* LuaNSString.c in Sources */,
 				E1A4007A16439A7900F8AE92 /* LuaCATransform3D.c in Sources */,
 				E1A4007B16439A7900F8AE92 /* VMKFrameworkFunctions.c in Sources */,
-				E1A4008116439A7900F8AE92 /* XMLDocument.m in Sources */,
+				E1A4008116439A7900F8AE92 /* XMLDocument.c in Sources */,
 				E1A4008216439A7900F8AE92 /* XMLNode.c in Sources */,
-				E1A4008316439A7900F8AE92 /* XMLPathProcessor.m in Sources */,
+				E1A4008316439A7900F8AE92 /* XMLPathProcessor.c in Sources */,
 				E1A4008416439A7900F8AE92 /* VMKObject.m in Sources */,
 				E1A4008516439A7900F8AE92 /* VMKAuxiliary.m in Sources */,
 				E1A4008616439A7900F8AE92 /* VMKClass.m in Sources */,
@@ -1118,9 +1118,9 @@
 				E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */,
 				E1A400A916439B4600F8AE92 /* LuaUIKit.m in Sources */,
 				E1A400AA16439B4600F8AE92 /* LuaUIView.m in Sources */,
-				E1A400AB16439B4600F8AE92 /* XMLDocument.m in Sources */,
+				E1A400AB16439B4600F8AE92 /* XMLDocument.c in Sources */,
 				E1A400AC16439B4600F8AE92 /* XMLNode.c in Sources */,
-				E1A400AD16439B4600F8AE92 /* XMLPathProcessor.m in Sources */,
+				E1A400AD16439B4600F8AE92 /* XMLPathProcessor.c in Sources */,
 				E1A400AE16439B4600F8AE92 /* VMKObject.m in Sources */,
 				E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */,
 				E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */,

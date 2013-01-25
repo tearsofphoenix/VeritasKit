@@ -3,6 +3,8 @@
 #include "XMLPathProcessor.h"
 #include "CFRuntime.h"
 #include "VMKInternal.h"
+#include <CoreFoundation/CFString.h>
+#include <assert.h>
 
 struct __VMKXMLDocument
 {
