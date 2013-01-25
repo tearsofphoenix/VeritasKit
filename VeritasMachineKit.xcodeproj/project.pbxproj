@@ -77,6 +77,8 @@
 		E15713B71643A5B700F6EAAB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713B61643A5B700F6EAAB /* libxml2.2.dylib */; };
 		E15713B91643A5BE00F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */; };
 		E15713BB1643A5C300F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713BA1643A5C300F6EAAB /* QuartzCore.framework */; };
+		E172CF6A16B19DF800B5E035 /* CFRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = E172CF6916B19DF800B5E035 /* CFRuntime.h */; };
+		E172CF6B16B19DF800B5E035 /* CFRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = E172CF6916B19DF800B5E035 /* CFRuntime.h */; };
 		E1A4006616439A7900F8AE92 /* VMKBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB51643993300F8AE92 /* VMKBridgeFunctor.m */; };
 		E1A4006716439A7900F8AE92 /* VMKBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* VMKBridgeInfo.m */; };
 		E1A4006816439A7900F8AE92 /* VMKBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VMKBridgeService.m */; };
@@ -214,6 +216,7 @@
 		E15713B61643A5B700F6EAAB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libxml2.2.dylib; sourceTree = DEVELOPER_DIR; };
 		E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		E15713BA1643A5C300F6EAAB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		E172CF6916B19DF800B5E035 /* CFRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFRuntime.h; sourceTree = "<group>"; };
 		E1A400001643993300F8AE92 /* libffi_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_ios.a; sourceTree = "<group>"; };
 		E1A400011643993300F8AE92 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E1A400041643993300F8AE92 /* ffi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
@@ -481,6 +484,7 @@
 		E1A400151643993300F8AE92 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
+				E172CF6916B19DF800B5E035 /* CFRuntime.h */,
 				E1A400161643993300F8AE92 /* VMKObject.h */,
 				E1A400171643993300F8AE92 /* VMKObject.m */,
 				E1A400181643993300F8AE92 /* VMKAuxiliary.h */,
@@ -823,6 +827,7 @@
 				E15713B31643A51F00F6EAAB /* ffitarget_i386.h in Headers */,
 				E15713B41643A51F00F6EAAB /* ffitarget_x86_64.h in Headers */,
 				E1AB5B1316AD1277005F4E41 /* VMKClass.h in Headers */,
+				E172CF6A16B19DF800B5E035 /* CFRuntime.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +841,7 @@
 				E1A400B716439B6900F8AE92 /* VMKBase.h in Headers */,
 				E1A400B816439B6900F8AE92 /* VMKMessage.h in Headers */,
 				E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */,
+				E172CF6B16B19DF800B5E035 /* CFRuntime.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

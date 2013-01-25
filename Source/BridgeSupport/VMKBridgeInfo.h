@@ -21,18 +21,13 @@ typedef NSInteger VMKBridgeType;
 
 extern VMKBridgeType VMKBridgeTypeFromString(NSString *aString);
 
-@protocol VMKBridgeInfo <NSObject>
+@interface VMKBridgeInfo : NSObject
 
 @property (nonatomic) VMKBridgeType type;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) id info;
 
 - (BOOL)resolveIntoLuaState: (struct lua_State *)state;
-
-@end
-
-@interface VMKBridgeInfo : NSObject<VMKBridgeInfo>
-
 
 @end
 

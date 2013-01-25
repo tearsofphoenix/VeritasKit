@@ -42,12 +42,8 @@
 static CFMutableDictionaryRef __LuaObjC_clouserBlockDictionary = NULL;
 
 static inline void VMKBlockSupportInitialize(void)
-{
-    
-    __LuaObjC_clouserBlockDictionary = CFDictionaryCreateMutable(CFAllocatorGetDefault(),
-                                                                 1024,
-                                                                 &kCFTypeDictionaryKeyCallBacks,
-                                                                 NULL);
+{    
+    __LuaObjC_clouserBlockDictionary = CFDictionaryCreateMutable(NULL, 1024, &kCFTypeDictionaryKeyCallBacks, NULL);
 }
 
 static inline void luaObjC_addClosureIDForBlock(LuaClosureType clouserID, id block)
@@ -587,7 +583,7 @@ int VMKOpenFoundationSupport(lua_State *L)
 {
     if (!_LuaObjCLiteralStorage)
     {
-        _LuaObjCLiteralStorage = CFSetCreateMutable(CFAllocatorGetDefault(), 64, &kCFTypeSetCallBacks);
+        _LuaObjCLiteralStorage = CFSetCreateMutable(NULL, 64, &kCFTypeSetCallBacks);
     }
     
     VMKClassInitialize(L);

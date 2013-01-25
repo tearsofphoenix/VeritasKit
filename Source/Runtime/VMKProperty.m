@@ -101,25 +101,34 @@ int LuaInternalDumpLuaStack (lua_State *L)
 
 //keys for setter & getter properties of the Class defined by Objective-Lua
 //
-static char __LuaObjC_KeyForSetterProperties;
+static char __VMKSetterPropertiesKey;
 
-static char __LuaObjC_KeyForGetterProperties;
+static char __VMKGetterPropertiesKey;
 
 static inline const char *LuaClassGetPropertyNameWithGetter(Class theClass, SEL getter)
 {
-    CFMutableDictionaryRef getters = (CFMutableDictionaryRef)objc_getAssociatedObject((id)theClass, &__LuaObjC_KeyForGetterProperties);
-    CFNumberRef address = CFNumberCreate(NULL, kCFNumberLongType, getter);
-    CFStringRef propertyName = CFDictionaryGetValue(getters, address);
-    CFRelease(address);
+    CFDictionaryRef getters = (CFDictionaryRef)objc_getAssociatedObject((id)theClass, &__VMKGetterPropertiesKey);
+    if (getters)
+    {
+        CFStringRef propertyName = CFDictionaryGetValue(getters, getter);
     
-    return [(NSString *)propertyName UTF8String];
+        return [(NSString *)propertyName UTF8String];
+    }
+    
+    return NULL;
 }
 
 static inline const char *LuaClassGetPropertyNameWithSetter(Class theClass, SEL setter)
 {
-    NSMutableDictionary *setters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForSetterProperties);
-    NSString *propertyName = [setters objectForKey: [NSValue valueWithPointer: setter]];
-    return [propertyName UTF8String];
+    CFDictionaryRef setters = (CFDictionaryRef)objc_getAssociatedObject(theClass, &__VMKSetterPropertiesKey);
+    if (setters)
+    {
+        NSString *propertyName = CFDictionaryGetValue(setters, setter);
+        
+        return [propertyName UTF8String];
+    }
+    
+    return NULL;
 }
 
 #pragma mark - property
@@ -130,12 +139,12 @@ Type returnValue;\
 object_getInstanceVariable(obj, propertyName, (void **)&returnValue);\
 return returnValue;
 
-static id __luaObjc_PropertyGetter(id obj, SEL selector)
+static id __VMKPropertyGetterIMP(id obj, SEL selector)
 {
     __LuaObjC_propertyGetterWithType(id, obj, selector);
 }
 
-static CFIndex __luaObjC_propertyGetterIntegerReturn(id obj, SEL selector)
+static CFIndex __VMKPropertyGetterIntegerReturnIMP(id obj, SEL selector)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
@@ -150,7 +159,7 @@ static CFIndex __luaObjC_propertyGetterIntegerReturn(id obj, SEL selector)
     return returnValue;
 }
 
-static Float32 __luaObjC_propertyGetterFloatReturn(id obj, SEL selector)
+static Float32 __VMKPropertyGetterFloatReturnIMP(id obj, SEL selector)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
@@ -176,14 +185,14 @@ object_setInstanceVariable(obj, propertyName, &value);
 
 //TODO
 //
-static void __luaObjc_PropertySetter(id obj, SEL selector, id newValue)
+static void __VMKPropertySetterIMP(id obj, SEL selector, id newValue)
 {
     //    Class objClass = object_getClass(obj);
     //    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
     //    object_setInstanceVariable(obj, propertyName, newValue);
 }
 
-static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, Float32 newValue)
+static void __VMKPropertySetterFloatReturnIMP(id obj, SEL selector, Float32 newValue)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
@@ -196,7 +205,7 @@ static void __luaObjC_PropertySetter_floatValue(id obj, SEL selector, Float32 ne
     //__LuaObjC_propertySetterWithType(Float32, obj, selector, newValue);
 }
 
-static void __luaObjC_PropertySetter_integerValue(id obj, SEL selector, CFIndex newValue)
+static void __VMKPropertySetterIntegerReturnIMP(id obj, SEL selector, CFIndex newValue)
 {
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
@@ -265,61 +274,69 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
         case _C_ID:
         case _C_CLASS:
         {
-            getterIMP = (IMP)__luaObjc_PropertyGetter;
-            setterIMP = (IMP)__luaObjc_PropertySetter;
+            getterIMP = (IMP)__VMKPropertyGetterIMP;
+            setterIMP = (IMP)__VMKPropertySetterIMP;
             break;
         }
         case _C_FLT:
         case _C_DBL:
         {
-            getterIMP = (IMP)__luaObjC_propertyGetterFloatReturn;
-            setterIMP = (IMP)__luaObjC_PropertySetter_floatValue;
+            getterIMP = (IMP)__VMKPropertyGetterFloatReturnIMP;
+            setterIMP = (IMP)__VMKPropertySetterFloatReturnIMP;
             break;
         }
         default:
         {
-            getterIMP = (IMP)__luaObjC_propertyGetterIntegerReturn;
-            setterIMP = (IMP)__luaObjC_PropertySetter_integerValue;
+            getterIMP = (IMP)__VMKPropertyGetterIntegerReturnIMP;
+            setterIMP = (IMP)__VMKPropertySetterIntegerReturnIMP;
             break;
         }
     }
     
-    if(!class_addMethod(theClass, selectorOfGet, getterIMP, [[NSString stringWithFormat: @"%s@:", typeEncoding] UTF8String]))
+    int length = strlen(typeEncoding) + MAX(strlen("@:"), strlen("v@:")) + 1;
+    char *fullEncodingString = calloc(length, sizeof(char));
+    strcpy(fullEncodingString, typeEncoding);
+    strcat(fullEncodingString, "@:");
+    
+    if(!class_addMethod(theClass, selectorOfGet, getterIMP, fullEncodingString))
     {
         printf("Failed add Property Getter:%s to Class:%s OK!\n", (const char*)selectorOfGet, className);
     }
     
-    if(!class_addMethod(theClass, selectorOfSet, setterIMP, [[NSString stringWithFormat: @"v@:%s", typeEncoding] UTF8String]))
+    memset(fullEncodingString, '\0', sizeof(char) * length);
+    
+    strcpy(fullEncodingString, "v@:");
+    strcat(fullEncodingString, typeEncoding);
+    
+    if(!class_addMethod(theClass, selectorOfSet, setterIMP, fullEncodingString))
     {
         printf("Failed add Property Setter:%s to Class:%s OK!\n", (const char*)selectorOfSet, className);
     }
     
-    NSMutableDictionary *setters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForSetterProperties);
+    free(fullEncodingString);
+    
+    CFMutableDictionaryRef setters = (CFMutableDictionaryRef)objc_getAssociatedObject(theClass, &__VMKSetterPropertiesKey);
     if (!setters)
     {
-        setters = [[NSMutableDictionary alloc] init];
+        setters = CFDictionaryCreateMutable(NULL, 0, NULL, &kCFTypeDictionaryValueCallBacks);
         
-        objc_setAssociatedObject(theClass, &__LuaObjC_KeyForSetterProperties, setters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
-        [setters release];
+        objc_setAssociatedObject(theClass, &__VMKSetterPropertiesKey, (id)setters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+        CFRelease(setters);
     }
     
-    NSMutableDictionary *getters = objc_getAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties);
+    CFMutableDictionaryRef getters = (CFMutableDictionaryRef)objc_getAssociatedObject(theClass, &__VMKGetterPropertiesKey);
     if (!getters)
     {
-        getters = [[NSMutableDictionary alloc] init];
+        getters = CFDictionaryCreateMutable(NULL, 0, NULL, &kCFTypeDictionaryValueCallBacks);
         
-        objc_setAssociatedObject(theClass, &__LuaObjC_KeyForGetterProperties, getters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(theClass, &__VMKGetterPropertiesKey, (id)getters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
-        [getters release];
-        
+        CFRelease(getters);        
     }
     
-    [setters setObject: @( propertyName )
-                forKey: [NSValue valueWithPointer: selectorOfSet]];
-    
-    [getters setObject: @( propertyName )
-                forKey: [NSValue valueWithPointer: selectorOfGet]];
+    CFDictionaryAddValue(setters, selectorOfSet, @( propertyName ));
+    CFDictionaryAddValue(getters, selectorOfGet, @( propertyName ));
 }
 
 int LuaIMPAddPropertyToClass(struct lua_State *L)

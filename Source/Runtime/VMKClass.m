@@ -38,7 +38,7 @@ static void LuaInternalFreeCallback(CFAllocatorRef allocator, const void *value)
     free((void *)value);
 }
 
-static CFDictionaryKeyCallBacks kVMKCFTypeDictionaryKeyCallBacks =
+CFDictionaryKeyCallBacks kVMKCStringDictionaryKeyCallBacks =
 {
     .equal = LuaInternalCStringEqual,
     .release = LuaInternalFreeCallback,
@@ -84,7 +84,7 @@ static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef di
 
 static inline void VMKTypeEncodingInitialize(void)
 {
-    __sVMKTypeEncodingDictionary = CFDictionaryCreateMutable(NULL, 32, &kVMKCFTypeDictionaryKeyCallBacks, &kVMKCFTypeDictionaryValueCallbacks);
+    __sVMKTypeEncodingDictionary = CFDictionaryCreateMutable(NULL, 32, &kVMKCStringDictionaryKeyCallBacks, &kVMKCFTypeDictionaryValueCallbacks);
     _LuaObjC_initTypeEncodingDictionary(__sVMKTypeEncodingDictionary);
     
 }
@@ -126,7 +126,7 @@ static char __LuaObjC_KeyForClassMethods;
 
 static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *key)
 {
-    CFMutableDictionaryRef classMethods = CFDictionaryCreateMutable(NULL, 16, &kVMKCFTypeDictionaryKeyCallBacks, NULL);
+    CFMutableDictionaryRef classMethods = CFDictionaryCreateMutable(NULL, 16, &kVMKCStringDictionaryKeyCallBacks, NULL);
     
     objc_setAssociatedObject(theClass, key, (id)classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -159,7 +159,7 @@ Class LuaInternalGetClass(const char *className)
 
 int VMKClassInitialize(lua_State *L)
 {
-    __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(NULL, 1024, &kVMKCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    __LuaObjC_ClassDictionary = CFDictionaryCreateMutable(NULL, 1024, &kVMKCStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     return 1;
 }
 
@@ -367,8 +367,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         
     }else
     {
-        NSLog(@"call stack:%@", [NSThread callStackSymbols]);
-        [obj doesNotRecognizeSelector: sel];
+        luaL_error(luaState, "fail to find @property IMP for : %s", (const char*)sel);
     }
 }
 
@@ -415,6 +414,7 @@ static CGFloat __luaClass_IMP_float_return(id obj, SEL sel, ...)
     return lua_tonumber(L, -1);
 }
 
+///TODO
 static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
 {
     __LuaClassPreprocess(obj, sel, L);
@@ -435,10 +435,10 @@ static void __luaClass_IMP_struct_return(id obj, SEL sel, ...)
         method = class_getInstanceMethod(objClass, sel);
     }
     
-    char* returnType = method_copyReturnType(method);
+//    char* returnType = method_copyReturnType(method);
     
-    NSUInteger size;
-    NSGetSizeAndAlignment(returnType, &size, NULL);
+//    NSUInteger size;
+//    NSGetSizeAndAlignment(returnType, &size, NULL);
     
     //free(returnType);
     

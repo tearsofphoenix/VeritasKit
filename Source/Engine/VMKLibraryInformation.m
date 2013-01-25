@@ -10,12 +10,6 @@
 
 @implementation VMKLibraryInformation
 
-@synthesize libaName = _libName;
-@synthesize loadFunction = _loadFunction;
-@synthesize numberOfUpvalues = _numberOfUpvalues;
-@synthesize dependentLibNames = _dependentLibNames;
-@synthesize featureID = _featureID;
-
 - (void)dealloc
 {
     [_libName release];
@@ -35,7 +29,7 @@
                               libraries: dict];
     }
     
-    luaL_requiref(luaState, [_libName cStringUsingEncoding: NSUTF8StringEncoding],
+    luaL_requiref(luaState, [_libName UTF8String],
                   _loadFunction, _numberOfUpvalues);
     lua_pop(luaState, 1);
 }
@@ -52,7 +46,7 @@ VMKLibraryInformation * VMKLibraryInformationMake(NSString *fetureID,
 {
     VMKLibraryInformation *ret = [[VMKLibraryInformation alloc] init];
     [ret setFeatureID: fetureID];
-    [ret setLibaName: libName];
+    [ret setLibName: libName];
     [ret setLoadFunction: loadFunction];
     [ret setNumberOfUpvalues: numberOfUpvalues];
     [ret setDependentLibNames: dependentLibNames];

@@ -10,7 +10,7 @@
 
 @interface VMKLibraryInformation : NSObject
 
-@property (nonatomic, retain) NSString *libaName;
+@property (nonatomic, retain) NSString *libName;
 @property (nonatomic) lua_CFunction loadFunction;
 @property (nonatomic) int numberOfUpvalues;
 @property (nonatomic, retain) NSArray *dependentLibNames;

@@ -37,6 +37,7 @@ VMK_EXPORT int LuaIMPAddClassMethod(struct lua_State *L);
 
 LUAMOD_API int VMKClassInitialize(struct lua_State *L);
 
+VMK_EXPORT CFDictionaryKeyCallBacks kVMKCStringDictionaryKeyCallBacks;
 
 VMK_EXPORT const char * kVMKTypeEncodingBOOL;
 VMK_EXPORT const char * kVMKTypeEncodingSEL;

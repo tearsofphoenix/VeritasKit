@@ -377,7 +377,7 @@ int VMKOpenNSObjectExtensionSupport(lua_State *L)
         __VMKRuntimePoolCallBacks.equal = NULL;
         __VMKRuntimePoolCallBacks.hash = NULL;
         
-        __VMKRuntimePool = CFSetCreateMutable(CFAllocatorGetDefault(), 4096, &__VMKRuntimePoolCallBacks);
+        __VMKRuntimePool = CFSetCreateMutable(NULL, 4096, &__VMKRuntimePoolCallBacks);
         
         pthread_mutexattr_t attr;
         pthread_mutexattr_init(&attr);
@@ -389,7 +389,9 @@ int VMKOpenNSObjectExtensionSupport(lua_State *L)
     }
     
     VMKLoadGlobalFunctions(L, luaNS_functions);
+    
     luaL_newlib(L, luaNS_functions);
+    
     VMKLoadCreateMetatable(L, kVMKNSObjectMetaTableName, LuaNS_ObjectMethods);
     
     VMKLoadCreateMetatable(L, kVMKClassMetaTableName, LuaNS_ClassMethods);

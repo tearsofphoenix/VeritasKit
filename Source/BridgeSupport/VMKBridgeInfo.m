@@ -39,10 +39,6 @@ VMKBridgeType VMKBridgeTypeFromString(NSString *aString)
 
 @implementation VMKBridgeInfo
 
-@synthesize type = _type;
-@synthesize name = _name;
-@synthesize info = _info;
-
 - (BOOL)resolveIntoLuaState: (struct lua_State *)state
 {
     switch (_type)
