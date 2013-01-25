@@ -46,4 +46,7 @@ CF_EXPORT void *VMKTypeCreateInstance_(CFAllocatorRef allocator, CFTypeID typeID
                                              CFRetain(target);\
                                           }\
                                       }while( 0 )
+
+#define VMKCStringEqual(str1, str2) (!strcmp(str1, str2))
+
 #endif

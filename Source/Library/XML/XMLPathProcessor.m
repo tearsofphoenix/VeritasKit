@@ -1,63 +1,73 @@
-#import "XMLPathProcessor.h"
 
-#import <libxml/xpathInternals.h>
+#include "XMLPathProcessor.h"
+#include "CFRuntime.h"
+#include "VMKInternal.h"
+#include <libxml/xpathInternals.h>
 
-@implementation XMLPathProcessor
-
-@synthesize rawXMLPathContext = _rawXMLPathContext;
-
-- (XMLPathProcessor *)initWithNamespaces: (NSDictionary *)namespaces
-                     inDocument: (XMLDocument *)document
+struct __VMKXMLPathProcessor
 {
-    
-    self = [super init];
-    if (self)
-    {
-        
-        _rawXMLPathContext = xmlXPathNewContext([document rawDocument]);     
-        
-        
-        NSEnumerator *enumerator = [namespaces keyEnumerator];
-        NSString *key;
-        
-        while ((key = (NSString *)[enumerator nextObject])) 
-        {
-            [self registerNamespace: [namespaces objectForKey: key] withPrefix: key];
-        }
-                
-    }
-    
-    return self;
-    
+    CFRuntimeBase base;
+    xmlXPathContextPtr _rawXMLPathContext;
+};
+
+
+CFTypeID VMKXMLPathProcessorGetTypeID(void);
+
+xmlXPathContextPtr VMKXMLPathProcessorGetRawXMLPathContext(VMKXMLPathProcessorRef processor)
+{
+    assert(processor);
+    return processor->_rawXMLPathContext;
 }
 
-- (void)registerNamespace: (NSString *)theNamespace withPrefix:(NSString *)prefix
+VMKXMLPathProcessorRef VMKXMLPathProcessorCreate(CFDictionaryRef namespaces, VMKXMLDocumentRef document)
 {
-    xmlXPathRegisterNs(_rawXMLPathContext, (const xmlChar *)[prefix UTF8String], (const xmlChar *)[theNamespace UTF8String]);
+    VMKXMLPathProcessorRef processor = _VMKCreateInstance2(VMKXMLDocumentGetTypeID(), processor);
+    
+    processor->_rawXMLPathContext = xmlXPathNewContext(VMKXMLDocumentGetRawDocument(document));
+    
+    
+//    NSEnumerator *enumerator = [namespaces keyEnumerator];
+//    NSString *key;
+//    
+//    while ((key = (NSString *)[enumerator nextObject]))
+//    {
+//        [self registerNamespace: [namespaces objectForKey: key] withPrefix: key];
+//    }
+
+    return processor;
 }
 
-- (NSArray *)evaluateExpression: (NSString *)expression
+void VMKXMLPathProcessorRegisterNamespace(VMKXMLPathProcessorRef processor,
+                                          const char *theNamespace,
+                                          const char *prefix)
 {
+    assert(processor);
+    xmlXPathRegisterNs(processor->_rawXMLPathContext, (const xmlChar *)prefix, (const xmlChar *)theNamespace);
+}
+
+CFArrayRef VMKXMLPathProcessorEvaluateExpression(VMKXMLPathProcessorRef processor, const char *expression)
+{
+    assert(processor);
     
-    xmlXPathObjectPtr xpathObject; 
-        
-    xpathObject = xmlXPathEvalExpression((xmlChar *)[expression UTF8String], _rawXMLPathContext);
+    xmlXPathObjectPtr xpathObject = xmlXPathEvalExpression((xmlChar *)expression, processor->_rawXMLPathContext);
 	
 	xmlNodeSetPtr nodes = xpathObject->nodesetval;
 	
-    NSMutableArray * results = nil;
+    CFMutableArrayRef results = NULL;
     
     if (nodes)
     {
         
-        results = [[[NSMutableArray alloc] init] autorelease];
+        results = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
         
         int looper = 0;
         while (looper < nodes->nodeNr)
         {
+            VMKXMLNodeRef node = VMKXMLNodeCreate(nodes->nodeTab[looper]);
             
-            XMLNode *node = [[[XMLNode alloc] initWithRawNode:nodes->nodeTab[looper]] autorelease];
-            [results addObject: node];
+            CFArrayAppendValue(results, node);
+            
+            CFRelease(node);
             
             ++looper;
         }
@@ -65,8 +75,8 @@
     }
     
     xmlXPathFreeObject(xpathObject);
-        
+    
+    CFMakeCollectable(results);
+    
     return results;
 }
-
-@end

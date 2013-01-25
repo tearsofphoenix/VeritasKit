@@ -1,20 +1,21 @@
-#import <Foundation/Foundation.h>
 
-#import "XMLNode.h"
+#ifndef __VMK_VMKXMLDOCUMENT__
+#define __VMK_VMKXMLDOCUMENT__ 1
+
+#include "XMLNode.h"
 
 #include <libxml/tree.h>
 
-@interface XMLDocument : NSObject 
-{
-}
+typedef struct __VMKXMLDocument *VMKXMLDocumentRef;
 
-@property (nonatomic, readonly) xmlDocPtr rawDocument;
+CFTypeID VMKXMLDocumentGetTypeID(void);
 
-- (XMLDocument *)initWithData: (NSData *)data;
+VMKXMLDocumentRef VMKXMLDocumentCreateWithData(CFDataRef data);
 
-- (XMLNode *)rootNode;
+xmlDocPtr VMKXMLDocumentGetRawDocument(VMKXMLDocumentRef document);
 
-- (NSArray *)evaluateXPathExpression: (NSString *)expression 
-                    withNamespaces: (NSDictionary *)namespaces;
+VMKXMLNodeRef VMKXMLDocumentGetRootNode(VMKXMLDocumentRef document);
 
-@end
+CFArrayRef VMKXMLDocumentEvaluateXPathExpression(VMKXMLDocumentRef document, const char *expression, CFDictionaryRef namespaces);
+
+#endif

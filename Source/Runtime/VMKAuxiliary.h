@@ -15,8 +15,6 @@ VMK_EXTERN_C_BEGIN
 
 #define VMKPushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
 
-#define VMKCStringEqual(str1, str2) (!strcmp(str1, str2))
-
 VMK_EXPORT const char * kVMKNSObjectMetaTableName;
 
 VMK_EXPORT const char * kVMKClassMetaTableName;

@@ -8,6 +8,7 @@
 #include "LuaCGGeometry.h"
 #include "VMKAuxiliary.h"
 #include "VMKFrameworkFunctions.h"
+#include "VMKInternal.h"
 
 int VMKPushCGPoint(lua_State *L, CGPoint p)
 {

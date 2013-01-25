@@ -9,6 +9,7 @@
 
 #include "VMKAuxiliary.h"
 #include "VMKFrameworkFunctions.h"
+#include "VMKInternal.h"
 
 int VMKPushNSRange(lua_State *L, NSRange r)
 {

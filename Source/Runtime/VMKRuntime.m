@@ -8,33 +8,26 @@
 
 #import "VMKRuntime.h"
 
-#import <objc/runtime.h>
-
+#include "VMKInternal.h"
 #import "VMKClass.h"
-
 #import "VMKMessage.h"
-
 #import "VMKProperty.h"
 
 #import "LuaCGGeometry.h"
-
 #import "VMKAuxiliary.h"
-
 #import "VMKProfile.h"
 
 #import "LuaFoundation.h"
-
 #import "LuaNSRange.h"
 
 #import "VMKBridgeService.h"
-
 #import "VMKBridgeFunctor.h"
-
 #import "VMKObject.h"
 
 #import "NSString+VMKIndex.h"
-
 #import "NSArray+VMKIndex.h"
+
+#import <objc/runtime.h>
 
 #pragma mark - block support
 

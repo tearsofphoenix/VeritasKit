@@ -7,15 +7,11 @@
 //
 
 #import "VMKObject.h"
-
 #import "VMKMessage.h"
-
 #import "LuaCGGeometry.h"
-
 #import "VMKAuxiliary.h"
-
 #import "VMKStructs.h"
-
+#include "VMKInternal.h"
 #import <objc/message.h>
 
 #pragma mark - support for extend accelerator

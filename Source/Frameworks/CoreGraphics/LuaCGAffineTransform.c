@@ -9,6 +9,7 @@
 #include "VMKAuxiliary.h"
 #include "LuaCGGeometry.h"
 #include "VMKFrameworkFunctions.h"
+#include "VMKInternal.h"
 #include <string.h>
 
 static int lua_CGAffineTransformIndex(lua_State *L)

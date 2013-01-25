@@ -10,6 +10,7 @@
 #include "VMKAuxiliary.h"
 #include "LuaCGAffineTransform.h"
 #include "VMKFrameworkFunctions.h"
+#include "VMKInternal.h"
 
 int VMKPushCATransform3D(lua_State *L, CATransform3D t)
 {

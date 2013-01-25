@@ -11,28 +11,28 @@
 #import "XMLDocument.h"
 #include "VMKInternal.h"
 #include "CFRuntime.h"
-
+#include "VMKClass.h"
 #import <dlfcn.h>
 #import <objc/runtime.h>
 
 #pragma mark - parser support
 
-typedef void (* VMKBridgeNodeParserBlock)(XMLNode *node, NSMutableDictionary *result);
+typedef void (* VMKBridgeNodeParserBlock)(VMKXMLNodeRef node, NSMutableDictionary *result);
 
-static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *result)
+static void _luaBridgeConstantNodeParser(VMKXMLNodeRef node, NSMutableDictionary *result)
 {
-    NSString *name = [node attributeWithName: @"name"];
+    const char *name = VMKXMLNodeGetAttributeWithName(node, "name");
     VMKBridgeInfo *info = [[VMKBridgeInfo alloc] init];
     
     [info setType: VMKBridgeConstantType];
-    [info setName: name];
+    [info setName: @(name)];
     
     NSMutableDictionary *constantInfo = [[NSMutableDictionary alloc] init];
-    NSString *type = [node attributeWithName: @"type"];
-    [constantInfo setObject: type
+    const char *type = VMKXMLNodeGetAttributeWithName(node, "type");
+    [constantInfo setObject: @(type)
                      forKey: @"type"];
     
-    switch(*[type UTF8String])
+    switch(*type)
     {
         case _C_CHR:
         case _C_INT:
@@ -46,7 +46,7 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
         case _C_ULNG_LNG:
         case _C_BOOL:
         {
-            NSInteger *address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+            NSInteger *address = dlsym(RTLD_DEFAULT, name);
             if (address)
             {
                 [constantInfo setObject: @(*address)
@@ -57,7 +57,7 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
         case _C_FLT:
         case _C_DBL:
         {
-            CGFloat * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+            CGFloat * address = dlsym(RTLD_DEFAULT, name);
             if (address)
             {
                 [constantInfo setObject: @(*address)
@@ -67,7 +67,7 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
         }
         case _C_ID:
         {
-            id * address = dlsym(RTLD_DEFAULT, [name UTF8String]);
+            id * address = dlsym(RTLD_DEFAULT, name);
             if (address && *address)
             {
                 [constantInfo setObject: *address
@@ -90,66 +90,66 @@ static void _luaBridgeConstantNodeParser(XMLNode *node, NSMutableDictionary *res
     [constantInfo release];
     
     [result setObject: info
-               forKey: name];
+               forKey: @(name)];
     
     [info release];
 }
 
-static void _luaBridgeEnumNodeParser(XMLNode *node, NSMutableDictionary *result)
+static void _luaBridgeEnumNodeParser(VMKXMLNodeRef node, NSMutableDictionary *result)
 {
-    NSString *name = [node attributeWithName: @"name"];
+    const char *name = VMKXMLNodeGetAttributeWithName(node, "name");
     VMKBridgeInfo *info = [[VMKBridgeInfo alloc] init];
     
     [info setType: VMKBridgeEnumType];
-    [info setName: name];
+    [info setName: @(name)];
     
-    NSString *value = [node attributeWithName: @"value"];
+    const char *value = VMKXMLNodeGetAttributeWithName(node, "value");
     if (value)
     {
-        [info setInfo: @{@"value" : value}];
+        [info setInfo: @{@"value" : @(value)}];
     }
     
     [result setObject: info
-               forKey: name];
+               forKey: @(name)];
     
     [info release];
 }
 
 
-static void _luaBridgeFunctionNodeParser(XMLNode *node, NSMutableDictionary *result)
+static void _luaBridgeFunctionNodeParser(VMKXMLNodeRef node, NSMutableDictionary *result)
 {
-    NSString *name = [node attributeWithName: @"name"];
+    const char *name = VMKXMLNodeGetAttributeWithName(node, "name");
     VMKBridgeInfo *info = [[VMKBridgeInfo alloc] init];
     
     [info setType: VMKBridgeFunctionType];
-    [info setName: name];
+    [info setName: @(name)];
     
     NSMutableDictionary *functionInfos = [[NSMutableDictionary alloc] init];
     NSMutableArray *arguments = [[NSMutableArray alloc] init];
     
-    XMLNode *argNode = [node firstChild];
-    NSString *elementnameLooper = nil;
+    VMKXMLNodeRef argNode = VMKXMLNodeGetFirstChild(node);
+    const char *elementnameLooper = NULL;
     
     while(argNode)
     {
-        elementnameLooper = [argNode elementName];
-        if ([elementnameLooper isEqualToString: @"arg"])
+        elementnameLooper = VMKXMLNodeGetElementName(argNode);
+        if (VMKCStringEqual(elementnameLooper, "arg"))
         {
             VMKBridgeArgumentInfo *argInfo = [[VMKBridgeArgumentInfo alloc] init];
-            [argInfo setType: [argNode attributeWithName: @"type"]];
-            [argInfo setType64: [argNode attributeWithName: @"type64"]];
+            [argInfo setType: @(VMKXMLNodeGetAttributeWithName(argNode, "type"))];
+            [argInfo setType64: @(VMKXMLNodeGetAttributeWithName(argNode, "type64") ?: "")];
             
             [arguments addObject: argInfo];
             [argInfo release];
         }
         
-        if ([elementnameLooper isEqualToString: @"retval"])
+        if (VMKCStringEqual(elementnameLooper, "retval"))
         {
-            [functionInfos setObject: [argNode attributeWithName: @"type"]
-                              forKey: elementnameLooper];
+            [functionInfos setObject: @(VMKXMLNodeGetAttributeWithName(argNode, "type"))
+                              forKey: @(elementnameLooper)];
         }
         
-        argNode = [argNode nextSibling];
+        argNode = VMKXMLNodeGetNextSibling(argNode);
     }
     
     [functionInfos setObject: arguments
@@ -160,7 +160,7 @@ static void _luaBridgeFunctionNodeParser(XMLNode *node, NSMutableDictionary *res
     [functionInfos release];
     
     [result setObject: info
-               forKey: name];
+               forKey: @(name)];
     
     [info release];
 };
@@ -172,16 +172,16 @@ static NSDictionary *VMKBridgeSupportParseFileContents(NSString *fileContents)
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
     @autoreleasepool
     {
-        XMLDocument *document = [[XMLDocument alloc] initWithData: [fileContents dataUsingEncoding: NSUTF8StringEncoding]];
-        NSArray *signaturesNodes = [document evaluateXPathExpression: @"/signatures"
-                                                      withNamespaces: nil];
+        VMKXMLDocumentRef document = VMKXMLDocumentCreateWithData( (CFDataRef)[fileContents dataUsingEncoding: NSUTF8StringEncoding]);
+        NSArray *signaturesNodes = (NSArray *)VMKXMLDocumentEvaluateXPathExpression(document, "/signatures", NULL);
+        
         if ([signaturesNodes count] > 0)
         {
-            XMLNode *signatureNode = [signaturesNodes objectAtIndex: 0];
-            XMLNode *nodeLooper = [signatureNode firstChild];
+            VMKXMLNodeRef signatureNode = (VMKXMLNodeRef)[signaturesNodes objectAtIndex: 0];
+            VMKXMLNodeRef nodeLooper = VMKXMLNodeGetFirstChild(signatureNode);
             while (nodeLooper)
             {
-                NSString *typeName = [nodeLooper elementName];
+                const char *typeName = VMKXMLNodeGetElementName(nodeLooper);
                 
                 VMKBridgeNodeParserBlock block = CFDictionaryGetValue(__VMKBridgeRegisteredNodeParsers, typeName);
                 
@@ -190,11 +190,11 @@ static NSDictionary *VMKBridgeSupportParseFileContents(NSString *fileContents)
                     block(nodeLooper, result);
                 }
                 
-                nodeLooper = [nodeLooper nextSibling];
+                nodeLooper = VMKXMLNodeGetNextSibling(nodeLooper);
             }
         }
         
-        [document release];
+        //[document release];
     }
     
     NSDictionary *returnValue = [NSDictionary dictionaryWithDictionary: result];
@@ -214,11 +214,11 @@ static CFMutableDictionaryRef __registeredFrameworks = nil;
 {
     if ((self = [super init]))
     {
-        __VMKBridgeRegisteredNodeParsers = CFDictionaryCreateMutable(NULL, 3, &kCFTypeDictionaryKeyCallBacks, NULL);
+        __VMKBridgeRegisteredNodeParsers = CFDictionaryCreateMutable(NULL, 3, &kVMKCStringDictionaryKeyCallBacks, NULL);
         
-        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"constant", _luaBridgeConstantNodeParser);
-        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"enum", _luaBridgeEnumNodeParser);
-        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"function", _luaBridgeFunctionNodeParser);
+        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, "constant", _luaBridgeConstantNodeParser);
+        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, "enum", _luaBridgeEnumNodeParser);
+        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, "function", _luaBridgeFunctionNodeParser);
 
         __registeredFrameworks = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     }

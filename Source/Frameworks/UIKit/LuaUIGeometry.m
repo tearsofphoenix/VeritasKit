@@ -9,6 +9,7 @@
 #include "VMKAuxiliary.h"
 #include "LuaCGGeometry.h"
 #include "VMKFrameworkFunctions.h"
+#include "VMKInternal.h"
 #include <UIKit/UIGeometry.h>
 
 int VMKPushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)

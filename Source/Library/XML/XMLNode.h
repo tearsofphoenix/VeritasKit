@@ -1,35 +1,40 @@
-#import <Foundation/Foundation.h>
 
-//#import "XMLDocument.h"
+#ifndef __VMK_VMKXMLNODE__
+#define __VMK_VMKXMLNODE__ 1
 
 #include <libxml/tree.h>
+#include <CoreFoundation/CFBase.h>
 
-@interface XMLNode : NSObject 
-{
-    xmlNodePtr _rawNode;
-}
+typedef struct __VMKXMLNode *VMKXMLNodeRef;
 
-@property (nonatomic, readonly) xmlNodePtr rawNode;
+CFTypeID VMKXMLNodeGetTypeID(void);
 
-- (XMLNode *)initWithRawNode: (xmlNodePtr)rawNode;
+VMKXMLNodeRef VMKXMLNodeCreate(xmlNodePtr rawNode);
 
-- (NSString *)elementName;
-- (NSString *)attributeWithName: (NSString *)name;
-- (NSString *)attributeWithNamespace: (NSString *)theNamespace andName: (NSString *)name;
+const char *VMKXMLNodeGetElementName(VMKXMLNodeRef node);
 
-- (BOOL)isTheSameNode: (XMLNode *)node;
+const char *VMKXMLNodeGetAttributeWithName(VMKXMLNodeRef node, const char *name);
 
-- (NSString *)theNamespace;
-- (NSString *)namespacePrefix;
+const char *VMKXMLNodeGetAttributeWithNamespace(VMKXMLNodeRef node, const char *theNamespace, const char *name);
 
-- (XMLNode *)firstChild;
-- (XMLNode *)nextSibling;
-- (XMLNode *)parentNode;
+Boolean VMKXMLNodeIsTheSameNode(VMKXMLNodeRef node, VMKXMLNodeRef node1);
 
-- (NSString *)nodeValue;
-- (NSString *)textContent;
+const char *VMKXMLNodeGetNamespace(VMKXMLNodeRef node);
 
-- (XMLNode *)childWithName: (NSString *)name;
+const char *XMKXMLNodeGetNamespacePrefix(VMKXMLNodeRef node);
 
-- (NSString *) getTextContentWithChildNodeName: (NSString *)name;
-@end
+VMKXMLNodeRef VMKXMLNodeGetFirstChild(VMKXMLNodeRef node);
+
+VMKXMLNodeRef VMKXMLNodeGetNextSibling(VMKXMLNodeRef node);
+
+VMKXMLNodeRef VMKXMLNodeGetParentNode(VMKXMLNodeRef node);
+
+const char *VMKXMLNodeGetValue(VMKXMLNodeRef node);
+
+const char *VMKXMLNodeGetTextContent(VMKXMLNodeRef node);
+
+VMKXMLNodeRef VMKXMLNodeGetChildWithName(VMKXMLNodeRef node, const char *name);
+
+const char *VMKXMLNodeGetTextContentWithChildNodeName(VMKXMLNodeRef node, const char *name);
+
+#endif

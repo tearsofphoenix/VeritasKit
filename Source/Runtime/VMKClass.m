@@ -7,15 +7,11 @@
 //
 
 #import "VMKClass.h"
-
 #import "VMKAuxiliary.h"
-
 #import "VMKRuntime.h"
-
 #import "LuaCGGeometry.h"
-
 #import "VMKObject.h"
-
+#include "VMKInternal.h"
 #import <objc/runtime.h>
 
 #pragma mark - type encoding support

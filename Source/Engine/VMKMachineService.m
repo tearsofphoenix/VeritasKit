@@ -8,25 +8,20 @@
 
 #import "VMKMachineService.h"
 
-//#import "lualib.h"
-
 #import "VMKClass.h"
-
 #import "VMKRuntime.h"
 
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-
 #import "LuaUIKit.h"
-
 #endif
 
 #import <LuaKit/LuaKit.h>
 
 #import "VMKLibraryInformation.h"
-
 #import "VMKAuxiliary.h"
 #import "VMKBridgeService.h"
 #import "VMKParser.h"
+#include "VMKInternal.h"
 #import "NSString+VMKIndex.h"
 #import "NSData+Base64.h"
 #import <pthread.h>
