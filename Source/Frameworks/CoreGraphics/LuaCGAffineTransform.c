@@ -15,27 +15,27 @@ static int lua_CGAffineTransformIndex(lua_State *L)
 {
     CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
     const char *fieldName = lua_tostring(L, 2);
-    if (!strcmp(fieldName, "a"))
+    if (VMKCStringEqual(fieldName, "a"))
     {
         lua_pushnumber(L, t->a);
         return 1;
-    }else if (!strcmp(fieldName, "b"))
+    }else if (VMKCStringEqual(fieldName, "b"))
     {
         lua_pushnumber(L, t->b);
         return 1;
-    }else if (!strcmp(fieldName, "c"))
+    }else if (VMKCStringEqual(fieldName, "c"))
     {
         lua_pushnumber(L, t->c);
         return 1;
-    }else if (!strcmp(fieldName, "d"))
+    }else if (VMKCStringEqual(fieldName, "d"))
     {
         lua_pushnumber(L, t->d);
         return 1;
-    }else if (!strcmp(fieldName, "tx"))
+    }else if (VMKCStringEqual(fieldName, "tx"))
     {
         lua_pushnumber(L, t->tx);
         return 1;
-    }else if (!strcmp(fieldName, "ty"))
+    }else if (VMKCStringEqual(fieldName, "ty"))
     {
         lua_pushnumber(L, t->ty);
         return 1;
@@ -48,23 +48,23 @@ static int lua_CGAffineTransformNewIndex(lua_State *L)
 {
     CGAffineTransform *t = luaL_checkudata(L, 1, LUA_CGAffineTransform_METANAME);
     const char *fieldName = lua_tostring(L, 2);
-    if (!strcmp(fieldName, "a"))
+    if (VMKCStringEqual(fieldName, "a"))
     {
         t->a = lua_tonumber(L, 3);
         
-    }else if (!strcmp(fieldName, "b"))
+    }else if (VMKCStringEqual(fieldName, "b"))
     {
         t->b = lua_tonumber(L, 3);
-    }else if (!strcmp(fieldName, "c"))
+    }else if (VMKCStringEqual(fieldName, "c"))
     {
         t->c = lua_tonumber(L, 3);
-    }else if (!strcmp(fieldName, "d"))
+    }else if (VMKCStringEqual(fieldName, "d"))
     {
         t->d = lua_tonumber(L, 3);
-    }else if (!strcmp(fieldName, "tx"))
+    }else if (VMKCStringEqual(fieldName, "tx"))
     {
         t->tx = lua_tonumber(L, 3);
-    }else if (!strcmp(fieldName, "ty"))
+    }else if (VMKCStringEqual(fieldName, "ty"))
     {
         t->ty = lua_tonumber(L, 3);
     }

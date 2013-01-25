@@ -20,3 +20,21 @@ struct lua_State;
           intoState: (struct lua_State *)state;
 
 @end
+
+#ifndef __VMK_VMKBRIDGESERVICE__
+#define __VMK_VMKBRIDGESERVICE__ 1
+
+#include "VMKBase.h"
+
+typedef struct __VMKBridgeService *VMKBridgeServiceRef;
+
+VMK_EXPORT CFTypeID VMKBridgeServiceGetTypeID(void);
+
+VMK_EXPORT VMKBridgeServiceRef VMKBridgeServiceGetSharedService(void);
+
+VMK_EXPORT void VMKBridgeServiceImportFrameworkWithName(VMKBridgeServiceRef service, CFStringRef frameworkName);
+
+VMK_EXPORT void VMKBridgeServiceResolveNameIntoState(VMKBridgeServiceRef service, CFStringRef name, struct lua_State *state);
+
+
+#endif

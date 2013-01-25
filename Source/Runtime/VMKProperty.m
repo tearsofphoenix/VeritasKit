@@ -225,7 +225,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
 {
     
     objc_property_attribute_t atomicAttribute = {"", ""};
-    if (!strcmp(atomic, "nonatomic"))
+    if (VMKCStringEqual(atomic, "nonatomic"))
     {
         atomicAttribute.name = "N";
     }
@@ -236,11 +236,11 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     
     
     objc_property_attribute_t ownership = { "", "" }; // C = copy, & = retain
-    if (!strcmp(ownershipName, "copy"))
+    if (VMKCStringEqual(ownershipName, "copy"))
     {
         ownership.name = "C";
         
-    }else if (!strcmp(ownershipName, "retain"))
+    }else if (VMKCStringEqual(ownershipName, "retain"))
     {
         ownership.name = "&";
     }

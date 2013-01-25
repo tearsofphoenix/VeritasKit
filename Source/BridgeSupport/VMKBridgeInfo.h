@@ -6,6 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#ifndef __VMK_VMKBRIDGEINFO__
+#define __VMK_VMKBRIDGEINFO__ 1
+
+#include "VMKBase.h"
+
 struct lua_State;
                                         
 enum 
@@ -17,9 +22,9 @@ enum
     VMKBridgeClassType,
 };
 
-typedef NSInteger VMKBridgeType;
+typedef int VMKBridgeType;
 
-extern VMKBridgeType VMKBridgeTypeFromString(NSString *aString);
+typedef struct __VMKBridgeInfo *VMKBridgeInfoRef;
 
 @interface VMKBridgeInfo : NSObject
 
@@ -29,6 +34,20 @@ extern VMKBridgeType VMKBridgeTypeFromString(NSString *aString);
 
 - (BOOL)resolveIntoLuaState: (struct lua_State *)state;
 
+VMK_EXPORT VMKBridgeType VMKBridgeInfoGetType(VMKBridgeInfoRef info);
+
+VMK_EXPORT void VMKBridgeInfoSetType(VMKBridgeInfoRef info, VMKBridgeType type);
+
+VMK_EXPORT CFStringRef VMKBridgeInfoGetName(VMKBridgeInfoRef info);
+
+VMK_EXPORT void VMKBridgeInfoSetName(VMKBridgeInfoRef info, CFStringRef name);
+
+VMK_EXPORT id VMKBridgeInfoGetInfo(VMKBridgeInfoRef info);
+
+VMK_EXPORT void VMKBridgeInfoSetInfo(VMKBridgeInfoRef info, id value);
+
+VMK_EXPORT Boolean VMKBridgeInfoResolveIntoLuaState(VMKBridgeInfoRef info, struct lua_State *state);
+
 @end
 
 @interface VMKBridgeArgumentInfo : NSObject
@@ -37,3 +56,5 @@ extern VMKBridgeType VMKBridgeTypeFromString(NSString *aString);
 @property (nonatomic, retain) NSString *type64;
 
 @end
+
+#endif

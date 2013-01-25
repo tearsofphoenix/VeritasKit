@@ -9,6 +9,9 @@
 #import "VMKBridgeService.h"
 #import "VMKBridgeInfo.h"
 #import "XMLDocument.h"
+#include "VMKInternal.h"
+#include "CFRuntime.h"
+
 #import <dlfcn.h>
 #import <objc/runtime.h>
 
@@ -179,7 +182,9 @@ static NSDictionary *VMKBridgeSupportParseFileContents(NSString *fileContents)
             while (nodeLooper)
             {
                 NSString *typeName = [nodeLooper elementName];
-                VMKBridgeNodeParserBlock block = [(id)CFDictionaryGetValue(__VMKBridgeRegisteredNodeParsers, typeName) pointerValue];
+                
+                VMKBridgeNodeParserBlock block = CFDictionaryGetValue(__VMKBridgeRegisteredNodeParsers, typeName);
+                
                 if (block)
                 {
                     block(nodeLooper, result);
@@ -205,27 +210,17 @@ static CFMutableDictionaryRef __registeredFrameworks = nil;
 
 @implementation VMKBridgeService
 
-+ (void)initialize
-{
-    @autoreleasepool
-    {
-        if (!__VMKBridgeRegisteredNodeParsers)
-        {
-            __VMKBridgeRegisteredNodeParsers = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] initWithCapacity: 3];
-            
-            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"constant", [NSValue valueWithPointer: _luaBridgeConstantNodeParser]);
-            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"enum", [NSValue valueWithPointer: _luaBridgeEnumNodeParser]);
-            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"function", [NSValue valueWithPointer: _luaBridgeFunctionNodeParser]);
-        }
-    }
-    
-}
-
 - (id)init
 {
     if ((self = [super init]))
     {
-        __registeredFrameworks = (CFMutableDictionaryRef)[[NSMutableDictionary alloc] init];
+        __VMKBridgeRegisteredNodeParsers = CFDictionaryCreateMutable(NULL, 3, &kCFTypeDictionaryKeyCallBacks, NULL);
+        
+        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"constant", _luaBridgeConstantNodeParser);
+        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"enum", _luaBridgeEnumNodeParser);
+        CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"function", _luaBridgeFunctionNodeParser);
+
+        __registeredFrameworks = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     }
     
     return self;
@@ -237,7 +232,7 @@ static VMKBridgeService *s_SharedService = nil;
 {
     if (!s_SharedService)
     {
-        s_SharedService = [[[self class] alloc] init];
+        s_SharedService = [[self alloc] init];
     }
     
     return s_SharedService;
@@ -261,7 +256,7 @@ static VMKBridgeService *s_SharedService = nil;
 #endif
         }else
         {
-            CFDictionaryAddValue(__registeredFrameworks, frameworkName, VMKBridgeSupportParseFileContents( bridgeFileContent ));
+            CFDictionarySetValue(__registeredFrameworks, frameworkName, VMKBridgeSupportParseFileContents( bridgeFileContent ));
         }
     }
 }
@@ -281,4 +276,111 @@ static VMKBridgeService *s_SharedService = nil;
 }
 
 @end
+
+struct __VMKBridgeService
+{
+    CFRuntimeBase base;
+    
+};
+
+
+static CFStringRef _VMKBridgeServiceCFCopyDebugDescription(CFTypeRef cf)
+{
+    return CFStringCreateWithFormat(CFGetAllocator(cf), NULL, CFSTR("<VMKBridgeService %p>"), cf);
+}
+static CFStringRef _VMKBridgeServiceCFCopyFormatDescription(CFTypeRef cf, CFDictionaryRef formatOptions)
+{
+    return CFStringCreateWithFormat(CFGetAllocator(cf), formatOptions, CFSTR("<VMKBridgeService %p>"), cf);
+}
+static Boolean _VMKBridgeServiceCFEqual(CFTypeRef cf1, CFTypeRef cf2)
+{
+    return cf1 == cf2;
+}
+static void _VMKBridgeServiceCFFinalize(CFTypeRef cf)
+{
+    //Done
+}
+
+static CFHashCode _VMKBridgeServiceCFHash(CFTypeRef cf)
+{
+    return (CFHashCode)cf;
+}
+static void _VMKBridgeServiceCFInit(CFTypeRef cf)
+{
+    
+}
+static CFRuntimeClass kVMKBridgeServiceContextClass =
+{
+    .version = 0,
+    .className = "VMKBridgeService",
+    .init = _VMKBridgeServiceCFInit,
+    .copy = NULL,
+    .finalize = _VMKBridgeServiceCFFinalize,
+    .equal = _VMKBridgeServiceCFEqual,
+    .hash = _VMKBridgeServiceCFHash,
+    .copyFormattingDesc = _VMKBridgeServiceCFCopyFormatDescription,
+    .copyDebugDesc = _VMKBridgeServiceCFCopyDebugDescription,
+    
+};
+CFTypeID VMKBridgeServiceGetTypeID(void)
+{
+    _VMKGetTypeID(kVMKBridgeServiceContextClass);
+}
+
+VMKBridgeServiceRef sSharedService = NULL;
+
+VMKBridgeServiceRef VMKBridgeServiceGetSharedService(void)
+{
+    if (!sSharedService)
+    {
+        sSharedService = _VMKCreateInstance2(VMKBridgeServiceGetTypeID(), sSharedService);
+        
+        if (!__VMKBridgeRegisteredNodeParsers)
+        {
+            __VMKBridgeRegisteredNodeParsers = CFDictionaryCreateMutable(NULL, 3, &kCFTypeDictionaryKeyCallBacks, NULL);
+            
+            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"constant", _luaBridgeConstantNodeParser);
+            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"enum", _luaBridgeEnumNodeParser);
+            CFDictionaryAddValue(__VMKBridgeRegisteredNodeParsers, @"function", _luaBridgeFunctionNodeParser);
+        }
+
+    }
+    
+    return sSharedService;
+}
+
+void VMKBridgeServiceImportFrameworkWithName(VMKBridgeServiceRef service, CFStringRef frameworkName)
+{
+//    if (! CFDictionaryContainsKey(__registeredFrameworks, frameworkName) )
+//    {
+//        NSString *bridgeFilePath = [[NSBundle bundleForClass: [self class]] pathForResource: frameworkName
+//                                                                                     ofType: @"bridgesupport"];
+//        NSError *error = nil;
+//        NSString *bridgeFileContent = [NSString stringWithContentsOfFile: bridgeFilePath
+//                                                                encoding: NSUTF8StringEncoding
+//                                                                   error: &error];
+//        if (error)
+//        {
+//#if DEBUG
+//            //NSLog(@"in func error: %@ framework name: %@", error, frameworkName);
+//#endif
+//        }else
+//        {
+//            CFDictionaryAddValue(__registeredFrameworks, frameworkName, VMKBridgeSupportParseFileContents( bridgeFileContent ));
+//        }
+//    }
+}
+
+void VMKBridgeServiceResolveNameIntoState(VMKBridgeServiceRef service, CFStringRef name, struct lua_State *state)
+{
+    for (NSDictionary *framework in [(NSDictionary *)__registeredFrameworks allValues])
+    {
+        VMKBridgeInfo *info = CFDictionaryGetValue((CFDictionaryRef)framework, name);
+        if (info)
+        {
+            [info resolveIntoLuaState: state];
+            break;
+        }
+    }
+}
 

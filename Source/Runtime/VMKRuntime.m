@@ -152,15 +152,15 @@ static VMKValueType luaObjCGetTypeOfTypeName(const char* typeName)
     {
         return VMKPointerType;
     }
-    if (!strcmp(typeName, "CGFloat")
-        || !strcmp(typeName, "float")
-        || !strcmp(typeName, "double")
-        || !strcmp(typeName, "NSTimeInterval")
+    if (VMKCStringEqual(typeName, "CGFloat")
+        || VMKCStringEqual(typeName, "float")
+        || VMKCStringEqual(typeName, "double")
+        || VMKCStringEqual(typeName, "NSTimeInterval")
         )
     {
         return VMKFloatType;
     }
-    if (!strcmp(typeName, "BOOL"))
+    if (VMKCStringEqual(typeName, "BOOL"))
     {
         return VMKBOOLType;
     }

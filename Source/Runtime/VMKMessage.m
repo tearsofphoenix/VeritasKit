@@ -154,32 +154,32 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
         }
         case _C_STRUCT_B:
         {
-            if (!strcmp(returnType, @encode(CGRect)))
+            if (VMKCStringEqual(returnType, @encode(CGRect)))
             {
                 typedef CGRect (* _IMP_T)(id, SEL);
                 VMKPushCGRect(L, ((_IMP_T)impRef)(obj, selector));
                 
-            }else if (!strcmp(returnType, @encode(CGPoint)))
+            }else if (VMKCStringEqual(returnType, @encode(CGPoint)))
             {
                 typedef CGPoint (* _IMP_T)(id, SEL);
                 VMKPushCGPoint(L, ((_IMP_T)impRef)(obj, selector));
                 
-            }else if (!strcmp(returnType, @encode(CGSize)))
+            }else if (VMKCStringEqual(returnType, @encode(CGSize)))
             {
                 typedef CGSize (* _IMP_T)(id, SEL);
                 VMKPushCGSize(L, ((_IMP_T)impRef)(obj, selector));
                 
-            }else if (!strcmp(returnType, @encode(NSRange)))
+            }else if (VMKCStringEqual(returnType, @encode(NSRange)))
             {
                 typedef NSRange (* _IMP_T)(id, SEL);
                 VMKPushNSRange(L, ((_IMP_T)impRef)(obj, selector));
                 
-            }else if (!strcmp(returnType, @encode(CATransform3D)))
+            }else if (VMKCStringEqual(returnType, @encode(CATransform3D)))
             {
                 typedef CATransform3D (* _IMP_T)(id, SEL);
                 VMKPushCATransform3D(L, ((_IMP_T)impRef)(obj, selector));
                 
-            }else if (!strcmp(returnType, @encode(CGAffineTransform)))
+            }else if (VMKCStringEqual(returnType, @encode(CGAffineTransform)))
             {
                 typedef CGAffineTransform (* _IMP_T)(id, SEL);
                 VMKPushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector));
@@ -471,19 +471,19 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             case _C_STRUCT_B:
             {
                 
-                if (!strcmp(returnType, @encode(CGRect)))
+                if (VMKCStringEqual(returnType, @encode(CGRect)))
                 {
                     CGRect cgRect ;
                     [invokation getReturnValue: &cgRect];
                     VMKPushCGRect(L, cgRect);
                     
-                }else if (!strcmp(returnType, @encode(CGPoint)))
+                }else if (VMKCStringEqual(returnType, @encode(CGPoint)))
                 {
                     CGPoint cgPoint;
                     [invokation getReturnValue: &cgPoint];
                     VMKPushCGPoint(L, cgPoint);
                     
-                }else if (!strcmp(returnType, @encode(CGSize)))
+                }else if (VMKCStringEqual(returnType, @encode(CGSize)))
                 {
                     CGSize cgSize;
                     [invokation getReturnValue: &cgSize];

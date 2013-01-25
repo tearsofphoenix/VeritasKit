@@ -25,7 +25,7 @@ static Boolean LuaInternalCStringEqual(const void *value1, const void *value2)
     const char *str1 = value1;
     const char *str2 = value2;
     
-    if(!strcmp(str1, str2))
+    if(VMKCStringEqual(str1, str2))
     {
         return YES;
     }
