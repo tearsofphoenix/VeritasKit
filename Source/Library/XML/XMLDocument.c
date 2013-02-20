@@ -30,7 +30,6 @@ static void _VMKXMLDocumentCFFinalize(CFTypeRef cf)
 {
     //Done
     VMKXMLDocumentRef document = (VMKXMLDocumentRef)cf;
-    
     xmlFreeDoc(document->_rawDocument);
     document->_rawDocument = NULL;
     

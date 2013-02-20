@@ -15,9 +15,7 @@ xmlXPathContextPtr VMKXMLPathProcessorGetRawXMLPathContext(VMKXMLPathProcessorRe
 
 VMKXMLPathProcessorRef VMKXMLPathProcessorCreate(CFDictionaryRef namespaces, VMKXMLDocumentRef document);
 
-void VMKXMLPathProcessorRegisterNamespace(VMKXMLPathProcessorRef processord,
-                                          const char *theNamespace,
-                                          const char *prefix);
+void VMKXMLPathProcessorRegisterNamespace(VMKXMLPathProcessorRef processor, const char *theNamespace, const char *prefix);
 
 CFArrayRef VMKXMLPathProcessorEvaluateExpression(VMKXMLPathProcessorRef processor, const char *expression);
 

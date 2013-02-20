@@ -54,7 +54,7 @@ id VMKBridgeInfoGetInfo(VMKBridgeInfoRef info)
 void VMKBridgeInfoSetInfo(VMKBridgeInfoRef info, id value)
 {
     assert(info);
-    _VMKCFSetValue(info->_info, value);
+    _VMKCFSetValue(info->_info, (CFDictionaryRef)value);
 }
 
 
