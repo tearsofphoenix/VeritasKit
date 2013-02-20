@@ -72,10 +72,10 @@ LuaClosureType LuaInternalGetClosureIDOfBlock(id block)
 
 #pragma mark - class support
 
-static int luaObjC_createClassWithSuperClass(lua_State *L)
+static int luaObjC_createClassWithSuperClass(VMKLuaStateRef state)
 {
-    const char *newClassName = lua_tostring(L, 1);
-    const char *superClassName = lua_tostring(L, 2);
+    const char *newClassName = lua_tostring(state, 1);
+    const char *superClassName = lua_tostring(state, 2);
     
     //super Class must be registered in runtime
     //
@@ -93,25 +93,25 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     if (registeredClass)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        VMKPushObject(L, registeredClass, true, true);
+        VMKPushObject(state, registeredClass, true, true);
         
     }else
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
-        LuaInternalAllocateClass(L, theNewClass, newClassName);
-        VMKPushObject(L, theNewClass, true, true);
+        LuaInternalAllocateClass(state, theNewClass, newClassName);
+        VMKPushObject(state, theNewClass, true, true);
     }
     return 1;
 }
 
 
-static int luaObjC_createNSSelector(lua_State *L)
+static int luaObjC_createNSSelector(VMKLuaStateRef state)
 {
     //deal SEL as c-string
     //
-    const char *selectorName = lua_tostring(L, 1);
-    lua_pushstring(L, selectorName);
+    const char *selectorName = lua_tostring(state, 1);
+    lua_pushstring(state, selectorName);
     
     return 1;
 }

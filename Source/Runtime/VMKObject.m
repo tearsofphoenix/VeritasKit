@@ -16,9 +16,9 @@
 #import <objc/runtime.h>
 #include <pthread.h>
 
-static int luaObjC_NSLog(lua_State *L)
+static int luaObjC_NSLog(VMKLuaStateRef state)
 {
-    const char* charLooper = VMKCheckString(L, 1);
+    const char* charLooper = VMKCheckString(state, 1);
     
     NSMutableString *logString = [NSMutableString string];
     int iLooper = 2;
@@ -45,7 +45,7 @@ static int luaObjC_NSLog(lua_State *L)
                     case 'i':
                     case 'u':
                     {
-                        lua_Integer value = lua_tointeger(L, iLooper);
+                        lua_Integer value = lua_tointeger(state, iLooper);
 #if TARGET_OS_IPHONE
                         [logString appendFormat: @"%d", (NSInteger)value];
 #else
@@ -57,35 +57,35 @@ static int luaObjC_NSLog(lua_State *L)
                     case 'f':
                     case 'F':
                     {
-                        double value = lua_tonumber(L, iLooper);
+                        double value = lua_tonumber(state, iLooper);
                         [logString appendFormat: @"%f", value];
                         ++iLooper;
                         break;
                     }
                     case 's':
                     {
-                        const char *s = lua_tostring(L, iLooper);
+                        const char *s = lua_tostring(state, iLooper);
                         [logString appendFormat: @"%s", s];
                         ++iLooper;
                         break;
                     }
                     case 'p':
                     {
-                        void* value = lua_touserdata(L, iLooper);
+                        void* value = lua_touserdata(state, iLooper);
                         [logString appendFormat: @"%p", value];
                         ++iLooper;
                         break;
                     }
                     case 'c':
                     {
-                        char c = lua_tointeger(L, iLooper);
+                        char c = lua_tointeger(state, iLooper);
                         [logString appendFormat: @"%c", c];
                         ++iLooper;
                         break;
                     }
                     case '@':
                     {
-                        id obj = VMKCheckObject(L, iLooper);
+                        id obj = VMKCheckObject(state, iLooper);
                         [logString appendFormat: @"%@", obj];
                         ++iLooper;
                         break;
@@ -127,27 +127,27 @@ struct __VMKObject
     lua_State *_luaState;
 };
 
-VMKObjectRef VMKObjectCreate(struct lua_State *L, id rawObject, bool isClass)
+VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass)
 {
-    VMKObjectRef objRef = lua_newuserdata(L, sizeof(struct __VMKObject));
+    VMKObjectRef objRef = lua_newuserdata(state, sizeof(struct __VMKObject));
     
-    objRef->_luaState = L;
+    objRef->_luaState = state;
     objRef->_obj = rawObject;
     
     if (isClass)
     {
-        luaL_getmetatable(L, kVMKClassMetaTableName);
+        luaL_getmetatable(state, kVMKClassMetaTableName);
     }else
     {
-        luaL_getmetatable(L, kVMKNSObjectMetaTableName);
+        luaL_getmetatable(state, kVMKNSObjectMetaTableName);
     }
     
-    lua_setmetatable(L, -2);
+    lua_setmetatable(state, -2);
     
     return objRef;
 }
 
-void VMKObjectStoreInPool(struct lua_State *L, id obj)
+void VMKObjectStoreInPool(VMKLuaStateRef state, id obj)
 {
     pthread_mutex_lock(&__VMKRuntimePoolLock);
     
@@ -168,84 +168,89 @@ id VMKObjectGetObject(VMKObjectRef ref)
 
 #pragma mark - meta methods of object observer
 
-static int luaObjC_description(lua_State *L)
+static int luaObjC_description(VMKLuaStateRef state)
 {
-    VMKObjectRef obj = lua_touserdata(L, 1);
+    VMKObjectRef obj = lua_touserdata(state, 1);
     NSString *description = [VMKObjectGetObject(obj) description];
-    lua_pushstring(L, [description UTF8String]);
+    lua_pushstring(state, [description UTF8String]);
+    
     return 1;
 }
 
-static int luaObjC_isEqual(lua_State *L)
+static int luaObjC_isEqual(VMKLuaStateRef state)
 {
-    id obj1 = VMKCheckObject(L, 1);
-    id obj2 = VMKCheckObject(L, 2);
-    lua_pushboolean(L, [obj1 isEqual: obj2]);
+    id obj1 = VMKCheckObject(state, 1);
+    id obj2 = VMKCheckObject(state, 2);
+    lua_pushboolean(state, [obj1 isEqual: obj2]);
+    
     return 1;
 }
 
-static int luaObjC_indexCollection(lua_State *L)
+static int luaObjC_indexCollection(VMKLuaStateRef state)
 {
-    id obj = VMKCheckObject(L, 1);
+    id obj = VMKCheckObject(state, 1);
     
     if ([obj respondsToSelector: @selector(indexObjectWithState:)])
     {
-        [obj indexObjectWithState: L];
+        [obj indexObjectWithState: state];
         return 1;
+        
     }else
     {
-        luaL_error(L, "exception: unsupported __index operation on object: %p!", obj);
+        luaL_error(state, "exception: unsupported __index operation on object: %p!", obj);
         
         return 0;
     }
 }
 
-static int luaObjC_addObjectToCollection(lua_State *L)
+static int luaObjC_addObjectToCollection(VMKLuaStateRef state)
 {
-    id obj = VMKCheckObject(L, 1);
+    id obj = VMKCheckObject(state, 1);
     
     if ([obj respondsToSelector: @selector(addObjectAtIndexWithState:)])
     {
-        [obj addObjectAtIndexWithState: L];
+        [obj addObjectAtIndexWithState: state];
         return 0;
     }else
     {
-        luaL_error(L, "exception: unsupported __add operation on object: %p!", obj);
+        luaL_error(state, "exception: unsupported __add operation on object: %p!", obj);
         
         return 0;
     }
 }
 
-static int luaObjC_getLengthOfObject(lua_State *L)
+static int luaObjC_getLengthOfObject(VMKLuaStateRef state)
 {
-    id obj = VMKCheckObject(L, 1);
+    id obj = VMKCheckObject(state, 1);
+    
     if ([obj respondsToSelector: @selector(getLengthOfObjectWithState:)])
     {
-        [obj getLengthOfObjectWithState: L];
+        [obj getLengthOfObjectWithState: state];
         return 1;
+        
     }else
     {
         return 0;
     }
 }
 
-static int luaObjC_unionCollection(lua_State *L)
+static int luaObjC_unionCollection(VMKLuaStateRef state)
 {
     return 1;
 }
 
-static int luaObjC_subtractCollection(lua_State *L)
+static int luaObjC_subtractCollection(VMKLuaStateRef state)
 {
     return 1;
 }
 
-static int luaObjC_concatCollection(lua_State *L)
+static int luaObjC_concatCollection(VMKLuaStateRef state)
 {
-    id obj = VMKCheckObject(L, 1);
+    id obj = VMKCheckObject(state, 1);
     
     if ([obj respondsToSelector: @selector(concatObjectWithState:)])
     {
-        [obj concatObjectWithState: L];
+        [obj concatObjectWithState: state];
         return 1;
     }else
     {
@@ -253,53 +258,56 @@ static int luaObjC_concatCollection(lua_State *L)
     }
 }
 
-static int luaObjC_callBlockObject(lua_State *L)
+static int luaObjC_callBlockObject(VMKLuaStateRef state)
 {
     //include the block
     //
-    int argCount = lua_gettop(L);
+    int argCount = lua_gettop(state);
     int returnCount = 1;
-    id block = VMKCheckObject(L, 1);
+    
+    id block = VMKCheckObject(state, 1);
     
     if ([block isKindOfClass: objc_getClass("NSBlock")])
     {
         LuaClosureType clouserID = LuaInternalGetClosureIDOfBlock(block);
-        lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);
+        
+        lua_rawgeti(state, LUA_REGISTRYINDEX, clouserID);
+        
         for (int iLooper = 2; iLooper < argCount + 1; ++iLooper)
         {
-            switch (lua_type(L, iLooper))
+            switch (lua_type(state, iLooper))
             {
                 case LUA_TNIL:
                 {
-                    lua_pushnil(L);
+                    lua_pushnil(state);
                     break;
                 }
                 case LUA_TBOOLEAN:
                 {
-                    lua_pushboolean(L, lua_toboolean(L, iLooper));
+                    lua_pushboolean(state, lua_toboolean(state, iLooper));
                     break;
                 }
                 case LUA_TLIGHTUSERDATA:
                 case LUA_TUSERDATA:
                 {
-                    lua_pushlightuserdata(L, lua_touserdata(L, iLooper));
+                    lua_pushlightuserdata(state, lua_touserdata(state, iLooper));
                     break;
                 }
                 case LUA_TNUMBER:
                 {
-                    lua_pushnumber(L, lua_tonumber(L, iLooper));
+                    lua_pushnumber(state, lua_tonumber(state, iLooper));
                     break;
                 }
                 case LUA_TSTRING:
                 {
-                    lua_pushstring(L, lua_tostring(L, iLooper));
+                    lua_pushstring(state, lua_tostring(state, iLooper));
                     break;
                 }
                 case LUA_TTABLE:
                 case LUA_TFUNCTION:
                 case LUA_TTHREAD:
                 {
-                    lua_pushvalue(L, iLooper);
+                    lua_pushvalue(state, iLooper);
                     break;
                 }
                 default:
@@ -309,21 +317,21 @@ static int luaObjC_callBlockObject(lua_State *L)
             }
         }
         
-        if(lua_pcall(L, argCount - 1, returnCount, 0) != LUA_OK)
+        if(lua_pcall(state, argCount - 1, returnCount, 0) != LUA_OK)
         {
-            luaL_error(L, "error in call block object: %p", block);
+            luaL_error(state, "error in call block object: %p", block);
         }
         
     }else
     {
-        luaL_error(L, "exception: expect block object: %p!", block);
+        luaL_error(state, "exception: expect block object: %p!", block);
     }
     return returnCount;
 }
 
-static int luaObjC_garbageCollection(lua_State *L)
+static int luaObjC_garbageCollection(VMKLuaStateRef state)
 {
-    VMKObjectRef objRef = lua_touserdata(L, 1);
+    VMKObjectRef objRef = lua_touserdata(state, 1);
         
     if (objRef)
     {
@@ -369,7 +377,7 @@ static const luaL_Reg luaNS_functions[] =
     {NULL, NULL}
 };
 
-int VMKOpenNSObjectExtensionSupport(lua_State *L)
+int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state)
 {
     if (!__VMKRuntimePool)
     {
@@ -388,13 +396,13 @@ int VMKOpenNSObjectExtensionSupport(lua_State *L)
         pthread_mutexattr_destroy(&attr);
     }
     
-    VMKLoadGlobalFunctions(L, luaNS_functions);
+    VMKLoadGlobalFunctions(state, luaNS_functions);
     
-    luaL_newlib(L, luaNS_functions);
+    luaL_newlib(state, luaNS_functions);
     
-    VMKLoadCreateMetatable(L, kVMKNSObjectMetaTableName, LuaNS_ObjectMethods);
+    VMKLoadCreateMetatable(state, kVMKNSObjectMetaTableName, LuaNS_ObjectMethods);
     
-    VMKLoadCreateMetatable(L, kVMKClassMetaTableName, LuaNS_ClassMethods);
+    VMKLoadCreateMetatable(state, kVMKClassMetaTableName, LuaNS_ClassMethods);
     
     return 0;
 }

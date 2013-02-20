@@ -52,31 +52,31 @@ void LuaInternalDumpObjCClass(Class theClass)
     }
 }
 
-int LuaInternalDumpLuaStack (lua_State *L)
+int LuaInternalDumpLuaStack (VMKLuaStateRef state)
 {
-    int nargs = lua_gettop(L);
+    int nargs = lua_gettop(state);
     printf(" ----------------  Stack Dump ----------------\n" );
     
     int t = 0;
     
     for (int i = 1; i <= nargs; ++i)
     {
-        t = lua_type(L, i);
+        t = lua_type(state, i);
         switch (t)
         {
             case LUA_TSTRING:
             {
-                printf("%d:`%s'\n", i, lua_tostring(L, i));
+                printf("%d:`%s'\n", i, lua_tostring(state, i));
                 break;
             }
             case LUA_TBOOLEAN:
             {
-                printf("%d: %s\n", i, lua_toboolean(L, i) ? "true" : "false");
+                printf("%d: %s\n", i, lua_toboolean(state, i) ? "true" : "false");
                 break;
             }
             case LUA_TNUMBER:
             {
-                printf("%d: %g\n",  i, lua_tonumber(L, i));
+                printf("%d: %g\n",  i, lua_tonumber(state, i));
                 break;
             }
             case LUA_TNIL:
@@ -86,7 +86,7 @@ int LuaInternalDumpLuaStack (lua_State *L)
             }
             default:
             {
-                printf("%d: %p %s\n", i, lua_topointer(L, t), lua_typename(L, t));
+                printf("%d: %p %s\n", i, lua_topointer(state, t), lua_typename(state, t));
                 break;
             }
         }
@@ -339,16 +339,16 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     CFDictionaryAddValue(getters, selectorOfGet, @( propertyName ));
 }
 
-int LuaIMPAddPropertyToClass(struct lua_State *L)
+int LuaIMPAddPropertyToClass(VMKLuaStateRef state)
 {
     
-    const char* className = VMKCheckString(L, 1);
-    const char* atomic = VMKCheckString(L, 2);
-    const char* ownershipName = VMKCheckString(L, 3);
-    const char* getterName = VMKCheckString(L, 4);
-    const char* setterName = VMKCheckString(L, 5);
-    const char* typeName = VMKCheckString(L, 6);
-    const char* propertyName = VMKCheckString(L, 7);
+    const char* className = VMKCheckString(state, 1);
+    const char* atomic = VMKCheckString(state, 2);
+    const char* ownershipName = VMKCheckString(state, 3);
+    const char* getterName = VMKCheckString(state, 4);
+    const char* setterName = VMKCheckString(state, 5);
+    const char* typeName = VMKCheckString(state, 6);
+    const char* propertyName = VMKCheckString(state, 7);
     //const char* propertyInternalName = VMKCheckString(L, 8);
     LuaIMPAddPropertyToClassOrigin(className, atomic, ownershipName, getterName,
                                    setterName, typeName, propertyName);

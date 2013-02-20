@@ -24,7 +24,7 @@ static CFMutableDictionaryRef __preAccelerators = nil;
 
 static inline void VMKAcceleratorInitialize(void)
 {
-    __preAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 64, NULL, &kCFTypeDictionaryValueCallBacks);
+    __preAccelerators = CFDictionaryCreateMutable(NULL, 64, NULL, &kCFTypeDictionaryValueCallBacks);
 }
 
 void VMKRegisterAccelerator(Class theClass, SEL selector, VMKAcceleratorIMP imp)
@@ -89,7 +89,7 @@ static const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper)
 
 //accelerator for methods that have no argument
 //
-static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
+static int VMKAcceleratorForNoArgument(VMKLuaStateRef state, const char* returnType,
                                     IMP impRef, id obj, SEL selector)
 {
     returnType = LuaInternalJumpoverEncodingDecorator(returnType);
@@ -108,26 +108,26 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_BOOL:
         {
             typedef NSInteger (* _IMP_T)(id, SEL);
-            lua_pushinteger(L, ((_IMP_T)impRef)(obj, selector));
+            lua_pushinteger(state, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
         case _C_FLT:
         case _C_DBL:
         {
             typedef float (* _IMP_T)(id, SEL);
-            lua_pushnumber(L, ((_IMP_T)impRef)(obj, selector));
+            lua_pushnumber(state, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
         case _C_CHARPTR:
         {
             typedef const char* (* _IMP_T)(id, SEL);
-            lua_pushstring(L, ((_IMP_T)impRef)(obj, selector));
+            lua_pushstring(state, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
         case _C_CLASS:
         {
             id result = impRef(obj, selector);
-            VMKPushObject(L, result, true, true);
+            VMKPushObject(state, result, true, true);
             return 1;
         }
         case _C_ID:
@@ -137,11 +137,11 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
             if (sel_isEqual(selector, @selector(alloc)))
             {
                 
-                VMKPushObject(L, result, false, false);
+                VMKPushObject(state, result, false, false);
                 
             }else
             {
-                VMKPushObject(L, result, true, false);
+                VMKPushObject(state, result, true, false);
             }
             
             return 1;
@@ -149,7 +149,7 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_SEL:
         {
             typedef SEL (* _IMP_T)(id, SEL);
-            VMKPushSelector(L, ((_IMP_T)impRef)(obj, selector));
+            VMKPushSelector(state, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
         case _C_STRUCT_B:
@@ -157,32 +157,32 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
             if (!strcmp(returnType, @encode(CGRect)))
             {
                 typedef CGRect (* _IMP_T)(id, SEL);
-                VMKPushCGRect(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGRect(state, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGPoint)))
             {
                 typedef CGPoint (* _IMP_T)(id, SEL);
-                VMKPushCGPoint(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGPoint(state, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGSize)))
             {
                 typedef CGSize (* _IMP_T)(id, SEL);
-                VMKPushCGSize(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGSize(state, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(NSRange)))
             {
                 typedef NSRange (* _IMP_T)(id, SEL);
-                VMKPushNSRange(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushNSRange(state, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CATransform3D)))
             {
                 typedef CATransform3D (* _IMP_T)(id, SEL);
-                VMKPushCATransform3D(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCATransform3D(state, ((_IMP_T)impRef)(obj, selector));
                 
             }else if (!strcmp(returnType, @encode(CGAffineTransform)))
             {
                 typedef CGAffineTransform (* _IMP_T)(id, SEL);
-                VMKPushCGAffineTransform(L, ((_IMP_T)impRef)(obj, selector));
+                VMKPushCGAffineTransform(state, ((_IMP_T)impRef)(obj, selector));
             }
             return 1;
         }
@@ -191,7 +191,7 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
         {
             typedef void* (* _IMP_T)(id, SEL);
             void *p = ((_IMP_T)impRef)(obj, selector);
-            lua_pushlightuserdata(L, p);
+            lua_pushlightuserdata(state, p);
             return 1;
         }
         case _C_VOID:
@@ -236,7 +236,7 @@ static const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
 
 @end
 
-static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
+static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfClass)
 {
  
 #if DEBUG
@@ -250,16 +250,16 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     
 #endif
     
-    VMKObjectRef anObj = lua_touserdata(L, 1);
+    VMKObjectRef anObj = lua_touserdata(state, 1);
     //optimize for nil object call
     //
     if (!anObj)
     {
-        lua_pushnil(L);
+        lua_pushnil(state);
         return 0;
     }
     
-    const char *selectorName = lua_tostring(L, 2);
+    const char *selectorName = lua_tostring(state, 2);
 
     SEL selector = sel_getUid(selectorName);
     
@@ -272,7 +272,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     //
     if (!obj)
     {
-        lua_pushnil(L);
+        lua_pushnil(state);
         return 0;
     }
     
@@ -281,7 +281,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     IMP impRef = (IMP)VMKGetRegisterIMPOfSelector(objClass, selector);
     if (impRef)
     {
-        return ((VMKAcceleratorIMP)impRef)(obj, selector, L);
+        return ((VMKAcceleratorIMP)impRef)(obj, selector, state);
     }else
     {
         if (isToSelfClass)
@@ -310,7 +310,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 
         if (numberOfArguments == 2)
         {
-            return VMKAcceleratorForNoArgument(L, returnType, impRef, obj, selector);
+            return VMKAcceleratorForNoArgument(state, returnType, impRef, obj, selector);
         }
         
         NSInvocation *invokation = [NSInvocation invocationWithMethodSignature: methodSignature];
@@ -336,7 +336,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_ULNG_LNG:
                 case _C_BOOL:
                 {
-                    lua_Integer integerPara = VMKCheckInteger(L,  iLooper + 1);
+                    lua_Integer integerPara = VMKCheckInteger(state,  iLooper + 1);
                     [invokation setArgument: &integerPara
                                     atIndex: iLooper];
                     break;
@@ -344,14 +344,14 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_FLT:
                 case _C_DBL:
                 {
-                    CGFloat doublePara = lua_tonumber(L,  iLooper + 1);
+                    CGFloat doublePara = lua_tonumber(state,  iLooper + 1);
                     [invokation setArgument: &doublePara
                                     atIndex: iLooper];
                     break;
                 }
                 case _C_CHARPTR:
                 {
-                    const char *str = lua_tostring(L,  iLooper + 1);
+                    const char *str = lua_tostring(state,  iLooper + 1);
                     [invokation setArgument: &str
                                     atIndex: iLooper];
                     break;
@@ -359,14 +359,14 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_CLASS:
                 case _C_ID:
                 {
-                    id argLooper = VMKCheckObject(L,  iLooper + 1);
+                    id argLooper = VMKCheckObject(state,  iLooper + 1);
                     [invokation setArgument: &argLooper
                                     atIndex: iLooper];
                     break;
                 }
                 case _C_SEL:
                 {
-                    const char *str = lua_tostring(L,  iLooper + 1);
+                    const char *str = lua_tostring(state,  iLooper + 1);
                     SEL sel = sel_getUid(str);
 
                     [invokation setArgument: &sel
@@ -376,7 +376,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 }
                 case _C_STRUCT_B:
                 {
-                    void *structValue = lua_touserdata(L,  iLooper + 1);
+                    void *structValue = lua_touserdata(state,  iLooper + 1);
                     [invokation setArgument: structValue
                                     atIndex: iLooper];
                     
@@ -385,7 +385,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 case _C_PTR:
                 case _C_ARY_B:
                 {
-                    void *p = lua_touserdata(L,  iLooper + 1);
+                    void *p = lua_touserdata(state,  iLooper + 1);
                     [invokation setArgument: &p
                                     atIndex: iLooper];
                     break;
@@ -424,7 +424,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             {
                 NSInteger integerPara = 0;
                 [invokation getReturnValue: &integerPara];
-                lua_pushinteger(L, integerPara);
+                lua_pushinteger(state, integerPara);
                 return 1;
             }
             case _C_FLT:
@@ -432,14 +432,14 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             {
                 CGFloat doublePara = 0;
                 [invokation getReturnValue: &doublePara];
-                lua_pushnumber(L, doublePara);
+                lua_pushnumber(state, doublePara);
                 return 1;
             }
             case _C_CHARPTR:
             {
                 const char *str = NULL;
                 [invokation getReturnValue: &str];
-                lua_pushstring(L, str);
+                lua_pushstring(state, str);
                 return 1;
             }
             case _C_CLASS:
@@ -447,7 +447,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                 
-                VMKPushObject(L, obj, true, true);
+                VMKPushObject(state, obj, true, true);
                 
                 return 1;
 
@@ -457,7 +457,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                
-                VMKPushObject(L, obj, true, false);
+                VMKPushObject(state, obj, true, false);
                 
                 return 1;
             }
@@ -465,7 +465,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             {
                 SEL sel = NULL;
                 [invokation getReturnValue: &sel];
-                VMKPushSelector(L, sel);
+                VMKPushSelector(state, sel);
                 return 1;
             }
             case _C_STRUCT_B:
@@ -475,19 +475,19 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 {
                     CGRect cgRect ;
                     [invokation getReturnValue: &cgRect];
-                    VMKPushCGRect(L, cgRect);
+                    VMKPushCGRect(state, cgRect);
                     
                 }else if (!strcmp(returnType, @encode(CGPoint)))
                 {
                     CGPoint cgPoint;
                     [invokation getReturnValue: &cgPoint];
-                    VMKPushCGPoint(L, cgPoint);
+                    VMKPushCGPoint(state, cgPoint);
                     
                 }else if (!strcmp(returnType, @encode(CGSize)))
                 {
                     CGSize cgSize;
                     [invokation getReturnValue: &cgSize];
-                    VMKPushCGSize(L, cgSize);
+                    VMKPushCGSize(state, cgSize);
                 }
                 return 1;
             }
@@ -496,7 +496,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
             {
                 void *p = NULL;
                 [invokation getReturnValue: &p];
-                lua_pushlightuserdata(L, p);
+                lua_pushlightuserdata(state, p);
                 return 1;
             }
             case _C_VOID:
@@ -512,12 +512,12 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     return 1;
 }
 
-int VMKMessageSend(lua_State *L)
+int VMKMessageSend(VMKLuaStateRef state)
 {
-    return _luaObjC_objc_messageSendGeneral(L, YES);
+    return _luaObjC_objc_messageSendGeneral(state, YES);
 }
 
-int VMKMessageSendSuper(lua_State *L)
+int VMKMessageSendSuper(VMKLuaStateRef state)
 {
-    return _luaObjC_objc_messageSendGeneral(L, NO);
+    return _luaObjC_objc_messageSendGeneral(state, NO);
 }

@@ -14,13 +14,13 @@ VMK_EXTERN_C_BEGIN
 
 typedef struct __VMKObject *VMKObjectRef;
 
-VMK_EXPORT VMKObjectRef VMKObjectCreate(struct lua_State *L, id rawObject, bool isClass);
+VMK_EXPORT VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass);
 
-VMK_EXPORT void VMKObjectStoreInPool(struct lua_State *L, id obj);
+VMK_EXPORT void VMKObjectStoreInPool(VMKLuaStateRef state, id obj);
 
-VMK_EXPORT id VMKObjectGetObject(VMKObjectRef ref);
+VMK_EXPORT id VMKObjectGetObject(VMKObjectRef object);
 
-VMK_EXPORT int VMKOpenNSObjectExtensionSupport(struct lua_State *L);
+VMK_EXPORT int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state);
 
 VMK_EXTERN__C_END
 

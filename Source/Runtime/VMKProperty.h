@@ -17,14 +17,14 @@ VMK_EXTERN_C_BEGIN
 
 VMK_EXPORT void LuaInternalDumpObjCClass(Class theClass);
 
-VMK_EXPORT int LuaInternalDumpLuaStack(struct lua_State *L);
+VMK_EXPORT int LuaInternalDumpLuaStack(VMKLuaStateRef state);
 
 /*
  *   internal api of @property syntax support, they are used to contribute the virtal machine only.
  *   lua function <---> Objective-C property bridge
  */
 
-VMK_EXPORT int LuaIMPAddPropertyToClass(struct lua_State *L);
+VMK_EXPORT int LuaIMPAddPropertyToClass(VMKLuaStateRef state);
 
 VMK_EXTERN__C_END
 

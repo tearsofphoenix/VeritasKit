@@ -14,9 +14,9 @@ const char * kVMKNSObjectMetaTableName = "com.veritas.vm.meta.NSObject";
 
 const char * kVMKClassMetaTableName = "com.veritas.vm.meta.Class";
 
-id VMKCheckObject(lua_State *L, int index)
+id VMKCheckObject(VMKLuaStateRef state, int index)
 {
-    switch (lua_type(L, index))
+    switch (lua_type(state, index))
     {
         case LUA_TNIL:
         {
@@ -24,11 +24,11 @@ id VMKCheckObject(lua_State *L, int index)
         }
         case LUA_TSTRING:
         {
-            return @( lua_tostring(L, index) );
+            return @( lua_tostring(state, index) );
         }
         case LUA_TUSERDATA:
         {
-            void* obj = lua_touserdata(L, index);
+            void* obj = lua_touserdata(state, index);
             
             return VMKObjectGetObject(obj);
         }
@@ -39,9 +39,9 @@ id VMKCheckObject(lua_State *L, int index)
     }
 }
 
-CFIndex VMKCheckInteger(lua_State *L, int index)
+CFIndex VMKCheckInteger(VMKLuaStateRef state, int index)
 {
-    switch (lua_type(L, index))
+    switch (lua_type(state, index))
     {
         case LUA_TNIL:
         {
@@ -49,23 +49,23 @@ CFIndex VMKCheckInteger(lua_State *L, int index)
         }
         case LUA_TBOOLEAN:
         {
-            return lua_toboolean(L, index);
+            return lua_toboolean(state, index);
         }
         case LUA_TNUMBER:
         {
-            return lua_tointeger(L, index);
+            return lua_tointeger(state, index);
         }
         default:
         {
-            lua_error(L);
+            lua_error(state);
             return 0;
         }
     }
 }
 
-const char* VMKCheckString(lua_State *L, int index)
+const char* VMKCheckString(VMKLuaStateRef state, int index)
 {
-    switch (lua_type(L, index))
+    switch (lua_type(state, index))
     {
         case LUA_TNIL:
         {
@@ -73,11 +73,11 @@ const char* VMKCheckString(lua_State *L, int index)
         }
         case LUA_TSTRING:
         {
-            return lua_tostring(L, index);
+            return lua_tostring(state, index);
         }
         case LUA_TUSERDATA:
         {
-            VMKObjectRef obj = lua_touserdata(L, index);
+            VMKObjectRef obj = lua_touserdata(state, index);
             return [VMKObjectGetObject(obj) UTF8String];
         }
         default:
@@ -87,26 +87,26 @@ const char* VMKCheckString(lua_State *L, int index)
     }
 }
 
-int VMKPushObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClass)
+int VMKPushObject(VMKLuaStateRef state, id nsObject, bool shouldStoreInPool, bool isClass)
 {
     if (nsObject)
     {
-        VMKObjectCreate(L, nsObject, isClass);
+        VMKObjectCreate(state, nsObject, isClass);
         
         if (shouldStoreInPool)
         {
-            VMKObjectStoreInPool(L, nsObject);
+            VMKObjectStoreInPool(state, nsObject);
         }
         
     }else
     {
-        lua_pushnil(L);
+        lua_pushnil(state);
     }
     
     return 1;
 }
 
-void VMKLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *functions)
+void VMKLoadGlobalFunctions(VMKLuaStateRef state, const struct luaL_Reg *functions)
 {
     if (functions)
     {
@@ -114,14 +114,14 @@ void VMKLoadGlobalFunctions(struct lua_State *L, const struct luaL_Reg *function
         NSInteger iLooper = 0;
         while ((regLooper = functions[iLooper], regLooper.func && regLooper.name))
         {
-            lua_pushcfunction(L, regLooper.func);
-            lua_setglobal(L, regLooper.name);
+            lua_pushcfunction(state, regLooper.func);
+            lua_setglobal(state, regLooper.name);
             ++iLooper;
         }
     }
 }
 
-void VMKLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], CFIndex count)
+void VMKLoadGlobalFunctionsWithLength(VMKLuaStateRef state, const luaL_Reg functions[], CFIndex count)
 {
     NSUInteger iLooper = 0;
     luaL_Reg reg;
@@ -130,19 +130,19 @@ void VMKLoadGlobalFunctionsWithLength(lua_State *L, const luaL_Reg functions[], 
         reg = functions[iLooper];
         if (reg.func && reg.name)
         {
-            lua_pushcfunction(L, reg.func);
-            lua_setglobal(L, reg.name);
+            lua_pushcfunction(state, reg.func);
+            lua_setglobal(state, reg.name);
         }
     }
 }
 
-void VMKLoadCreateMetatable(lua_State *L, const char *name, const luaL_Reg methods[])
+void VMKLoadCreateMetatable(VMKLuaStateRef state, const char *name, const luaL_Reg methods[])
 {
-    luaL_newmetatable(L, name);
-    lua_pushvalue(L, -1);  /* push metatable */
-    lua_setfield(L, -2, "__index");  /* metatable.__index = metatable */
-    luaL_setfuncs(L, methods, 0);  /* add file methods to new metatable */
-    lua_pop(L, 1);  /* pop new metatable */
+    luaL_newmetatable(state, name);
+    lua_pushvalue(state, -1);  /* push metatable */
+    lua_setfield(state, -2, "__index");  /* metatable.__index = metatable */
+    luaL_setfuncs(state, methods, 0);  /* add file methods to new metatable */
+    lua_pop(state, 1);  /* pop new metatable */
 }
 
 const char *VMKCopyUTF8StringFromString(CFStringRef str)

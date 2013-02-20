@@ -14,8 +14,10 @@
 #include <LuaKit/lua.h>
 #include <LuaKit/lauxlib.h>
 
-#define VMK_EXPORT LUAMOD_API
+#define VMK_EXPORT CF_EXPORT
 #define VMK_EXTERN_C_BEGIN  __BEGIN_DECLS
 #define VMK_EXTERN__C_END   __END_DECLS
+
+typedef struct lua_State *VMKLuaStateRef;
 
 #endif

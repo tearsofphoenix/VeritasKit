@@ -21,9 +21,9 @@ VMK_EXPORT void VMKAddEncodingForPredeclearClass(const char *className);
 //register class
 //
 
-VMK_EXPORT void LuaInternalAllocateClass(struct lua_State *L, id theClass, const char *className);
+VMK_EXPORT void LuaInternalAllocateClass(VMKLuaStateRef state, id theClass, const char *className);
 
-VMK_EXPORT struct lua_State *LuaInternalGetLuaStateOfClass(id theClass);
+VMK_EXPORT VMKLuaStateRef LuaInternalGetLuaStateOfClass(id theClass);
 
 VMK_EXPORT id LuaInternalGetClass(const char *className);
 
@@ -31,11 +31,11 @@ VMK_EXPORT id LuaInternalGetClass(const char *className);
  *   internal api of IMP imeplementation, you should never use them directly.
  */
 
-VMK_EXPORT int LuaIMPAddInstanceMethod(struct lua_State *L);
+VMK_EXPORT int LuaIMPAddInstanceMethod(VMKLuaStateRef state);
 
-VMK_EXPORT int LuaIMPAddClassMethod(struct lua_State *L);
+VMK_EXPORT int LuaIMPAddClassMethod(VMKLuaStateRef state);
 
-LUAMOD_API int VMKClassInitialize(struct lua_State *L);
+LUAMOD_API int VMKClassInitialize(VMKLuaStateRef state);
 
 VMK_EXPORT CFDictionaryKeyCallBacks kVMKCStringDictionaryKeyCallBacks;
 
