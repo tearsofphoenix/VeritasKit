@@ -26,6 +26,6 @@ VMK_EXPORT LuaClosureType LuaInternalGetClosureIDOfBlock(id block);
 
 VMK_EXPORT int VMKOpenFoundationSupport(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

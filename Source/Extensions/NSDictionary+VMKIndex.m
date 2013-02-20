@@ -12,33 +12,34 @@
 
 @implementation NSDictionary (VMKIndex)
 
-- (void)indexObjectWithState: (lua_State *)L
+- (void)indexObjectWithState: (VMKLuaStateRef)state
 {
-    id key = VMKCheckObject(L, 2);
-    VMKPushObject(L, [self objectForKey: key], true, false);
+    id key = VMKCheckObject(state, 2);
+    VMKPushObject(state, CFDictionaryGetValue((CFDictionaryRef)self, key), true, false);
 }
 
-- (void)concatObjectWithState: (lua_State *)state
+- (void)concatObjectWithState: (VMKLuaStateRef)state
 {
     NSDictionary *dict = VMKCheckObject(state, 2);
     
     NSMutableDictionary *ret = [[[NSMutableDictionary alloc] initWithDictionary: self] autorelease];
     [ret addEntriesFromDictionary: dict];
+    
     VMKPushObject(state, ret, true, false);
 }
 
-- (void)getLengthOfObjectWithState: (lua_State *)state
+- (void)getLengthOfObjectWithState: (VMKLuaStateRef)state
 {
-    lua_pushinteger(state, [self count]);
+    lua_pushinteger(state, CFDictionaryGetCount((CFDictionaryRef)self) );
 }
 
 
 static NSArray * __keys = nil;
 static NSInteger __keyIndex = 0;
 
-static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
+static int luaObjC_NSDictionary_luaEnumerator(VMKLuaStateRef state)
 {
-    VMKObjectRef obj = lua_touserdata(L, lua_upvalueindex(1));
+    VMKObjectRef obj = lua_touserdata(state, lua_upvalueindex(1));
     NSDictionary *dict = VMKObjectGetObject(obj);
     if (!__keys)
     {
@@ -47,10 +48,14 @@ static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
     
     if (__keyIndex < [__keys count])
     {
-        id key = [__keys objectAtIndex: __keyIndex];
-        VMKPushObject(L, key, true, false);
-        VMKPushObject(L, [dict objectForKey: key], true, false);
+        id key = CFArrayGetValueAtIndex((CFArrayRef)__keys, __keyIndex);
+        
+        VMKPushObject(state, key, true, false);
+        
+        VMKPushObject(state, CFDictionaryGetValue((CFDictionaryRef)dict, key), true, false);
+        
         ++__keyIndex;
+        
         return 2;
     }else 
     {
@@ -69,11 +74,11 @@ static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
 
 @implementation NSMutableDictionary (VMKIndex)
 
-- (void)addObjectAtIndexWithState: (lua_State *)L
+- (void)addObjectAtIndexWithState: (VMKLuaStateRef)state
 {
-    id key = VMKCheckObject(L, 2);
-    id value = VMKCheckObject(L, 3);
-    [self setObject: value 
-             forKey: key];
+    id key = VMKCheckObject(state, 2);
+    id value = VMKCheckObject(state, 3);
+    
+    CFDictionarySetValue((CFMutableDictionaryRef)self, key, value);
 }
 @end

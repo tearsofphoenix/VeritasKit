@@ -17,10 +17,10 @@ VMK_EXTERN_C_BEGIN
 
 #define LUA_CATransform3D_METANAME	"CATransform3D"
 
-    VMK_EXPORT int VMKPushCATransform3D(struct lua_State *L, CATransform3D t);
+    VMK_EXPORT int VMKPushCATransform3D(VMKLuaStateRef state, CATransform3D t);
 
-    LUAMOD_API int VMKOpenCATransform3D(struct lua_State *L);
+    LUAMOD_API int VMKOpenCATransform3D(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

@@ -36,6 +36,6 @@ VMK_EXPORT void VMKLoadCreateMetatable(VMKLuaStateRef state, const char *name, c
 
 VMK_EXPORT const char *VMKCopyUTF8StringFromString(CFStringRef str);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-struct lua_State;
+#import "VMKBase.h"
 
 @interface VMKBridgeService : NSObject
 
@@ -17,6 +16,6 @@ struct lua_State;
 - (void)importFramework: (NSString *)frameworkName;
 
 - (void)resolveName: (NSString *)name
-          intoState: (struct lua_State *)state;
+          intoState: (VMKLuaStateRef)state;
 
 @end

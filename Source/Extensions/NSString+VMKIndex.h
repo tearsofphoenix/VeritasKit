@@ -10,11 +10,11 @@
 
 @interface NSString (VMKIndex)
 
-- (void)indexObjectWithState: (struct lua_State *)L;
+- (void)indexObjectWithState: (VMKLuaStateRef)state;
 
-- (void)concatObjectWithState: (struct lua_State *)state;
+- (void)concatObjectWithState: (VMKLuaStateRef)state;
 
-- (void)getLengthOfObjectWithState: (struct lua_State *)state;
+- (void)getLengthOfObjectWithState: (VMKLuaStateRef)state;
 
 + (NSString *)UUID;
 

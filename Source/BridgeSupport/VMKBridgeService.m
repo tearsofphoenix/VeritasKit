@@ -267,7 +267,7 @@ static VMKBridgeService *s_SharedService = nil;
 }
 
 - (void)resolveName: (NSString *)name
-          intoState: (struct lua_State *)state
+          intoState: (VMKLuaStateRef)state
 {
     for (NSDictionary *framework in [(NSDictionary *)__registeredFrameworks allValues])
     {

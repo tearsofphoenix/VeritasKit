@@ -12,8 +12,8 @@
 
 VMK_EXTERN_C_BEGIN
 
-LUAMOD_API int VMKOpenProfileSupport(struct lua_State *L);
+LUAMOD_API int VMKOpenProfileSupport(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

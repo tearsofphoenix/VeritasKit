@@ -16,10 +16,10 @@ VMK_EXTERN_C_BEGIN
 
 #define LUA_NSRange_METANAME	"NSRange"
 
-VMK_EXPORT int VMKPushNSRange(struct lua_State *L, NSRange range);
+VMK_EXPORT int VMKPushNSRange(VMKLuaStateRef state, NSRange range);
     
-LUAMOD_API int VMKOpenNSRange(struct lua_State *L);
+LUAMOD_API int VMKOpenNSRange(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

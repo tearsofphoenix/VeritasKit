@@ -12,11 +12,11 @@
 
 @interface NSArray (VMKIndex)
 
-- (void)indexObjectWithState: (struct lua_State *)L;
+- (void)indexObjectWithState: (VMKLuaStateRef)state;
 
-- (void)concatObjectWithState: (struct lua_State *)state;
+- (void)concatObjectWithState: (VMKLuaStateRef)state;
 
-- (void)getLengthOfObjectWithState: (struct lua_State *)state;
+- (void)getLengthOfObjectWithState: (VMKLuaStateRef)state;
 
 - (lua_CFunction)luaEnumerator;
 
@@ -24,6 +24,6 @@
 
 @interface NSMutableArray (VMKIndex)
 
-- (void)addObjectAtIndexWithState: (struct lua_State *)L;
+- (void)addObjectAtIndexWithState: (VMKLuaStateRef)state;
 
 @end

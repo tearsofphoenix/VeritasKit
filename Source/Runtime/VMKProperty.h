@@ -26,7 +26,7 @@ VMK_EXPORT int LuaInternalDumpLuaStack(VMKLuaStateRef state);
 
 VMK_EXPORT int LuaIMPAddPropertyToClass(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 
 #endif

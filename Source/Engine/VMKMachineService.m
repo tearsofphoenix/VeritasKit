@@ -7,28 +7,20 @@
 //
 
 #import "VMKMachineService.h"
-
-//#import "lualib.h"
-
 #import "VMKClass.h"
-
 #import "VMKRuntime.h"
 
 #if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
-
 #import "LuaUIKit.h"
-
 #endif
 
-#import <LuaKit/LuaKit.h>
-
 #import "VMKLibraryInformation.h"
-
 #import "VMKAuxiliary.h"
 #import "VMKBridgeService.h"
 #import "VMKParser.h"
 #import "NSString+VMKIndex.h"
 #import "NSData+Base64.h"
+#import <LuaKit/LuaKit.h>
 #import <pthread.h>
 
 extern int lua_dumpSourceCode(lua_State* L, const char *sourceCode, const char* outputPath);

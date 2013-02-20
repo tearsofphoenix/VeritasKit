@@ -17,10 +17,10 @@ VMK_EXTERN_C_BEGIN
 
 #define LUA_CGAffineTransform_METANAME	"CGAffineTransform"
 
-VMK_EXPORT int VMKPushCGAffineTransform(struct lua_State *L, CGAffineTransform t);
+VMK_EXPORT int VMKPushCGAffineTransform(VMKLuaStateRef state, CGAffineTransform t);
 
-LUAMOD_API int VMKOpenCGAffineTransform(struct lua_State *L);
+LUAMOD_API int VMKOpenCGAffineTransform(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

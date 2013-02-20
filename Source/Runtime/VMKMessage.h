@@ -34,6 +34,6 @@ VMK_EXPORT int VMKMessageSend(VMKLuaStateRef state);
 
 VMK_EXPORT int VMKMessageSendSuper(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

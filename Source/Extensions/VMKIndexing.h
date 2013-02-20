@@ -7,26 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-
-struct lua_State;
+#include "VMKBase.h"
 
 @interface NSObject (VMKIndexing)
 
-- (void)indexObjectWithState: (struct lua_State *)state;
+- (void)indexObjectWithState: (VMKLuaStateRef)state;
 
-- (void)addObjectAtIndexWithState: (struct lua_State *)state;
+- (void)addObjectAtIndexWithState: (VMKLuaStateRef)state;
 
 @end
 
 @interface NSObject (VMKConcating)
 
-- (void)concatObjectWithState: (struct lua_State *)state;
+- (void)concatObjectWithState: (VMKLuaStateRef)state;
 
 @end
 
 @interface NSObject (VMKMeasurable)
 
-- (void)getLengthOfObjectWithState: (struct lua_State *)state;
+- (void)getLengthOfObjectWithState: (VMKLuaStateRef)state;
 
 @end
 

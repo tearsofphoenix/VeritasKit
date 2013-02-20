@@ -22,6 +22,6 @@ VMK_EXPORT id VMKObjectGetObject(VMKObjectRef object);
 
 VMK_EXPORT int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

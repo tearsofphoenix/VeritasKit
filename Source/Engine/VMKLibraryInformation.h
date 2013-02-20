@@ -33,4 +33,4 @@ VMK_EXPORT void VMKLibraryInformationRegisterToState(NSDictionary *_luaEngineLib
                                                     NSString * libraryID,
                                                     lua_State *luaState);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END

@@ -13,32 +13,32 @@
 
 @implementation NSArray (VMKIndex)
 
-- (void)indexObjectWithState: (lua_State *)L
+- (void)indexObjectWithState: (VMKLuaStateRef)state
 {
-    NSUInteger index = lua_tointeger(L, 2);
-    VMKPushObject(L, [self objectAtIndex: index], true, false);
+    NSUInteger index = lua_tointeger(state, 2);
+    VMKPushObject(state, [self objectAtIndex: index], true, false);
 }
 
-- (void)concatObjectWithState: (lua_State *)state
+- (void)concatObjectWithState: (VMKLuaStateRef)state
 {
     NSArray *other = VMKCheckObject(state, 2);
     VMKPushObject(state, [self arrayByAddingObjectsFromArray: other], true, false);
 }
 
-- (void)getLengthOfObjectWithState: (lua_State *)state
+- (void)getLengthOfObjectWithState: (VMKLuaStateRef)state
 {
     lua_pushinteger(state, [self count]);
 }
 
-static int luaObjC_NSArray_luaEnumerator(lua_State *L)
+static int luaObjC_NSArray_luaEnumerator(VMKLuaStateRef state)
 {
-    VMKObjectRef obj = lua_touserdata(L, lua_upvalueindex(1));
+    VMKObjectRef obj = lua_touserdata(state, lua_upvalueindex(1));
     NSArray *array = VMKObjectGetObject(obj);
     static NSInteger index = 0;
     if (index < [array count])
     {
-        VMKPushObject(L, [array objectAtIndex: index], true, false);
-        lua_pushinteger(L, index);
+        VMKPushObject(state, [array objectAtIndex: index], true, false);
+        lua_pushinteger(state, index);
         ++index;
         return 2;
     }else 
@@ -56,10 +56,10 @@ static int luaObjC_NSArray_luaEnumerator(lua_State *L)
 
 @implementation NSMutableArray (VMKIndex)
 
-- (void)addObjectAtIndexWithState: (lua_State *)L
+- (void)addObjectAtIndexWithState: (VMKLuaStateRef)state
 {
-    NSUInteger index = lua_tointeger(L, 2);
-    id obj = VMKCheckObject(L, 3);
+    NSUInteger index = lua_tointeger(state, 2);
+    id obj = VMKCheckObject(state, 3);
     [self insertObject: obj
                atIndex: index];
 }

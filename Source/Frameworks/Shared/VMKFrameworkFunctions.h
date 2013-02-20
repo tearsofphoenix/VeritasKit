@@ -12,8 +12,8 @@
 
 VMK_EXTERN_C_BEGIN
 
-VMK_EXPORT int LuaInternalStructGarbageCollection(struct lua_State *L);
+VMK_EXPORT int LuaInternalStructGarbageCollection(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

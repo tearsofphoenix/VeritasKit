@@ -12,11 +12,11 @@
 
 #import <mach/mach_time.h>
 
-static int luaObjc_nano_timeinterval(lua_State *L)
+static int luaObjc_nano_timeinterval(VMKLuaStateRef state)
 {
-    lua_Number timeinterval = luaL_checknumber(L, 1);
+    lua_Number timeinterval = luaL_checknumber(state, 1);
     
-    static mach_timebase_info_data_t    sTimebaseInfo;
+    static mach_timebase_info_data_t sTimebaseInfo;
     
     // Convert to nanoseconds.
     
@@ -33,17 +33,17 @@ static int luaObjc_nano_timeinterval(lua_State *L)
     // Do the maths. We hope that the multiplication doesn't 
     // overflow; the price you pay for working in fixed point.
     
-    lua_pushnumber(L,  timeinterval * sTimebaseInfo.numer / sTimebaseInfo.denom);
+    lua_pushnumber(state,  timeinterval * sTimebaseInfo.numer / sTimebaseInfo.denom);
     
     return 1;
 }
 
 
-static int luaObjc_micro_timeinterval(lua_State *L)
+static int luaObjc_micro_timeinterval(VMKLuaStateRef state)
 {
-    lua_Number timeinterval = luaL_checknumber(L, 1);
+    lua_Number timeinterval = luaL_checknumber(state, 1);
     
-    static mach_timebase_info_data_t    sTimebaseInfo;
+    static mach_timebase_info_data_t sTimebaseInfo;
     
     // Convert to nanoseconds.
     
@@ -60,14 +60,14 @@ static int luaObjc_micro_timeinterval(lua_State *L)
     // Do the maths. We hope that the multiplication doesn't 
     // overflow; the price you pay for working in fixed point.
     
-    lua_pushnumber(L,  timeinterval * sTimebaseInfo.numer / (sTimebaseInfo.denom * 1000000));
+    lua_pushnumber(state,  timeinterval * sTimebaseInfo.numer / (sTimebaseInfo.denom * 1000000));
     
     return 1;
 }
 
-static int luaObjc_mach_time(lua_State *L)
+static int luaObjc_mach_time(VMKLuaStateRef state)
 {
-    lua_pushnumber(L,  mach_absolute_time());
+    lua_pushnumber(state,  mach_absolute_time());
     return 1;
 }
 
@@ -82,8 +82,8 @@ static const luaL_Reg __luaObjCProfileFunctions [] =
 };
 
 
-int VMKOpenProfileSupport(lua_State *L)
+int VMKOpenProfileSupport(VMKLuaStateRef state)
 {
-    VMKLoadGlobalFunctions(L, __luaObjCProfileFunctions);
+    VMKLoadGlobalFunctions(state, __luaObjCProfileFunctions);
     return 1;
 }

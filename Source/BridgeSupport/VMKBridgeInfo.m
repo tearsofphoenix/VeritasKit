@@ -39,7 +39,7 @@ VMKBridgeType VMKBridgeTypeFromString(NSString *aString)
 
 @implementation VMKBridgeInfo
 
-- (BOOL)resolveIntoLuaState: (struct lua_State *)state
+- (BOOL)resolveIntoLuaState: (VMKLuaStateRef)state
 {
     switch (_type)
     {

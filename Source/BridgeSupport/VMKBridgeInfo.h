@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-struct lua_State;
+#import "VMKBase.h"
                                         
 enum 
 {
@@ -27,7 +27,7 @@ extern VMKBridgeType VMKBridgeTypeFromString(NSString *aString);
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) id info;
 
-- (BOOL)resolveIntoLuaState: (struct lua_State *)state;
+- (BOOL)resolveIntoLuaState: (VMKLuaStateRef)state;
 
 @end
 

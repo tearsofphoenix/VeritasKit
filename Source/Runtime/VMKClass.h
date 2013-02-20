@@ -63,6 +63,6 @@ VMK_EXPORT const char * kVMKTypeEncodingid;
 
 VMK_EXPORT const char * kVMKTypeEncodingClass;
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

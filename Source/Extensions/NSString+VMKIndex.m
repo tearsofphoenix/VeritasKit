@@ -13,13 +13,13 @@
 
 @implementation NSString (VMKIndex)
 
-- (void)indexObjectWithState: (lua_State *)L
+- (void)indexObjectWithState: (VMKLuaStateRef)state
 {
-    NSUInteger index = lua_tointeger(L, 2);
-    lua_pushinteger(L, [self characterAtIndex: index]);    
+    NSUInteger index = lua_tointeger(state, 2);
+    lua_pushinteger(state, [self characterAtIndex: index]);
 }
 
-- (void)concatObjectWithState:(lua_State *)state
+- (void)concatObjectWithState: (VMKLuaStateRef)state
 {
     switch (lua_type(state, 2)) 
     {
@@ -44,7 +44,7 @@
     }    
 }
 
-- (void)getLengthOfObjectWithState: (lua_State *)state
+- (void)getLengthOfObjectWithState: (VMKLuaStateRef)state
 {
     lua_pushinteger(state, [self length]);
 }
@@ -57,7 +57,7 @@
     uuid = CFUUIDCreate( NULL );
     string = CFUUIDCreateString( NULL, uuid );
     CFRelease(uuid);
-    //CFShow( string );
+
     return [(id)string autorelease];
 }
 

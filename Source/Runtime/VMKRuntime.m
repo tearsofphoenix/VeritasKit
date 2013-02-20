@@ -42,7 +42,7 @@
 static CFMutableDictionaryRef __LuaObjC_clouserBlockDictionary = NULL;
 
 static inline void VMKBlockSupportInitialize(void)
-{    
+{
     __LuaObjC_clouserBlockDictionary = CFDictionaryCreateMutable(NULL, 1024, &kCFTypeDictionaryKeyCallBacks, NULL);
 }
 
@@ -116,16 +116,17 @@ static int luaObjC_createNSSelector(VMKLuaStateRef state)
     return 1;
 }
 
-static int luaObjC_getProtocol(lua_State *L)
+static int luaObjC_getProtocol(VMKLuaStateRef state)
 {
-    const char *protocolName = lua_tostring(L, 1);
-    lua_pushlightuserdata(L, objc_getProtocol(protocolName));
+    const char *protocolName = lua_tostring(state, 1);
+    lua_pushlightuserdata(state, objc_getProtocol(protocolName));
+    
     return 1;
 }
 
-static int luaObjC_retainBeforeReturnFromAutoreleasePool(lua_State *L)
+static int luaObjC_retainBeforeReturnFromAutoreleasePool(VMKLuaStateRef state)
 {
-    VMKObjectRef objRef = lua_touserdata(L, 1);
+    VMKObjectRef objRef = lua_touserdata(state, 1);
     if (objRef)
     {
         //is NSObject instance
@@ -168,10 +169,10 @@ static VMKValueType luaObjCGetTypeOfTypeName(const char* typeName)
     return VMKIntegerType;
 }
 
-static int luaObjC_createBlockObject(lua_State *L)
+static int luaObjC_createBlockObject(VMKLuaStateRef state)
 {
-    int argumentTypesCount = lua_gettop(L) - 1;
-    LuaClosureType clouserID = luaL_ref(L, LUA_REGISTRYINDEX);
+    int argumentTypesCount = lua_gettop(state) - 1;
+    LuaClosureType clouserID = luaL_ref(state, LUA_REGISTRYINDEX);
     const char** argumentTypes = NULL;
     
     if (argumentTypesCount > 0)
@@ -180,100 +181,100 @@ static int luaObjC_createBlockObject(lua_State *L)
         
         for (int iLooper = 0; iLooper < argumentTypesCount; ++iLooper)
         {
-            argumentTypes[iLooper] = lua_tostring(L, iLooper + 1);
+            argumentTypes[iLooper] = lua_tostring(state, iLooper + 1);
         }
         
     }
     
-    void (^block)(id selfObject, ...) = ^(id selfObject, ...)
-    {
-        lua_rawgeti(L, LUA_REGISTRYINDEX, clouserID);
-        
-        if (argumentTypesCount > 0)
-        {
-            
-            va_list ap;
-            va_start(ap, selfObject);
-            
-            const char* argumentLooper = NULL;
-            
-            for (NSUInteger iLooper = 0; iLooper < argumentTypesCount; ++iLooper)
-            {
-                argumentLooper = argumentTypes[iLooper];
-                switch (luaObjCGetTypeOfTypeName(argumentLooper))
-                {
-                    case VMKBOOLType:
-                    {
-                        BOOL boolArg = va_arg(ap, int);
-                        lua_pushboolean(L, boolArg);
-                        break;
-                    }
-                    case VMKFloatType:
-                    {
-                        CGFloat floatArg = va_arg(ap, double);
-                        lua_pushnumber(L, floatArg);
-                        break;
-                    }
-                    case VMKPointerType:
-                    {
-                        void *pointerArg = va_arg(ap, void*);
-                        lua_pushlightuserdata(L, pointerArg);
-                        break;
-                    }
-                    case VMKCGRectType:
-                    {
-                        CGRect rect = va_arg(ap, CGRect);
-                        VMKPushCGRect(L, rect);
-                        break;
-                    }
-                    case VMKCGSizeType:
-                    {
-                        CGSize size = va_arg(ap, CGSize);
-                        VMKPushCGSize(L, size);
-                        break;
-                    }
-                    case VMKCGPointType:
-                    {
-                        CGPoint point = va_arg(ap, CGPoint);
-                        VMKPushCGPoint(L, point);
-                        break;
-                    }
-                    case VMKNSRangeType:
-                    {
-                        NSRange range = va_arg(ap, NSRange);
-                        VMKPushNSRange(L, range);
-                        break;
-                    }
-                    default:
-                    {
-                        NSInteger intArg = va_arg(ap, NSInteger);
-                        lua_pushinteger(L, intArg);
-                        break;
-                    }
-                }
-            }
-            va_end(ap);
-        }
-        
-        if(lua_pcall(L, argumentTypesCount, 0, 0) != LUA_OK)
-        {
-            lua_error(L);
-        }
-        //check return object
-    };
+    void (^block)(id selfObject, ...) = (^(id selfObject, ...)
+                                         {
+                                             lua_rawgeti(state, LUA_REGISTRYINDEX, clouserID);
+                                             
+                                             if (argumentTypesCount > 0)
+                                             {
+                                                 
+                                                 va_list ap;
+                                                 va_start(ap, selfObject);
+                                                 
+                                                 const char* argumentLooper = NULL;
+                                                 
+                                                 for (NSUInteger iLooper = 0; iLooper < argumentTypesCount; ++iLooper)
+                                                 {
+                                                     argumentLooper = argumentTypes[iLooper];
+                                                     switch (luaObjCGetTypeOfTypeName(argumentLooper))
+                                                     {
+                                                         case VMKBOOLType:
+                                                         {
+                                                             BOOL boolArg = va_arg(ap, int);
+                                                             lua_pushboolean(state, boolArg);
+                                                             break;
+                                                         }
+                                                         case VMKFloatType:
+                                                         {
+                                                             CGFloat floatArg = va_arg(ap, double);
+                                                             lua_pushnumber(state, floatArg);
+                                                             break;
+                                                         }
+                                                         case VMKPointerType:
+                                                         {
+                                                             void *pointerArg = va_arg(ap, void*);
+                                                             lua_pushlightuserdata(state, pointerArg);
+                                                             break;
+                                                         }
+                                                         case VMKCGRectType:
+                                                         {
+                                                             CGRect rect = va_arg(ap, CGRect);
+                                                             VMKPushCGRect(state, rect);
+                                                             break;
+                                                         }
+                                                         case VMKCGSizeType:
+                                                         {
+                                                             CGSize size = va_arg(ap, CGSize);
+                                                             VMKPushCGSize(state, size);
+                                                             break;
+                                                         }
+                                                         case VMKCGPointType:
+                                                         {
+                                                             CGPoint point = va_arg(ap, CGPoint);
+                                                             VMKPushCGPoint(state, point);
+                                                             break;
+                                                         }
+                                                         case VMKNSRangeType:
+                                                         {
+                                                             NSRange range = va_arg(ap, NSRange);
+                                                             VMKPushNSRange(state, range);
+                                                             break;
+                                                         }
+                                                         default:
+                                                         {
+                                                             NSInteger intArg = va_arg(ap, NSInteger);
+                                                             lua_pushinteger(state, intArg);
+                                                             break;
+                                                         }
+                                                     }
+                                                 }
+                                                 va_end(ap);
+                                             }
+                                             
+                                             if(lua_pcall(state, argumentTypesCount, 0, 0) != LUA_OK)
+                                             {
+                                                 lua_error(state);
+                                             }
+                                             //check return object
+                                         });
     
     block = Block_copy(block);
     
     luaObjC_addClosureIDForBlock(clouserID, block);
     
-    VMKPushObject(L, block, true, false);
+    VMKPushObject(state, block, true, false);
     
     return 1;
 }
 
-static int luaObjC_registerClassPair(lua_State *L)
+static int luaObjC_registerClassPair(VMKLuaStateRef state)
 {
-    const char* className = VMKCheckString(L, 1);
+    const char* className = VMKCheckString(state, 1);
     
     Class theClass = LuaInternalGetClass(className);
     
@@ -285,115 +286,115 @@ static int luaObjC_registerClassPair(lua_State *L)
     return 0;
 }
 
-static int luaObjC_classPredeclearation(lua_State *L)
+static int luaObjC_classPredeclearation(VMKLuaStateRef state)
 {
-    int argCount = lua_gettop(L);
+    int argCount = lua_gettop(state);
     
     for (int iLooper = 1; iLooper < argCount + 1; ++iLooper)
     {
-        VMKAddEncodingForPredeclearClass(lua_tostring(L, iLooper));
+        VMKAddEncodingForPredeclearClass(lua_tostring(state, iLooper));
     }
     return 0;
 }
 
-static int luaObjC_import_file(lua_State *L)
+static int luaObjC_import_file(VMKLuaStateRef state)
 {
-    const char *name = lua_tostring(L, 1);
+    const char *name = lua_tostring(state, 1);
     
     [[VMKBridgeService sharedService] importFramework: @(name)];
     
-    lua_getfield(L, LUA_REGISTRYINDEX, "require");
+    lua_getfield(state, LUA_REGISTRYINDEX, "require");
     
     NSString *realPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat: @"/%s", name];
-    lua_pushstring(L, [realPath UTF8String]);
+    lua_pushstring(state, [realPath UTF8String]);
     
     //just ignore error here
     //
-    lua_pcall(L, 1, 1, 0);
+    lua_pcall(state, 1, 1, 0);
     
     return 1;
 }
 
-static int luaObjC_resolveName(lua_State *L)
+static int luaObjC_resolveName(VMKLuaStateRef state)
 {
-    const char* name = lua_tostring(L, 2);
+    const char* name = lua_tostring(state, 2);
     
     Class theClass = objc_getClass(name);
     
     if (theClass)
     {
-        VMKPushObject(L, theClass, false, true);
+        VMKPushObject(state, theClass, false, true);
         
     }else
     {
         //this maybe a function, such as glEnable(...)
         //
         [[VMKBridgeService sharedService] resolveName: @(name)
-                                          intoState: L];
+                                            intoState: state];
     }
     
     return 1;
 }
 
 
-static int luaObjC_objc_throw(lua_State *L)
+static int luaObjC_objc_throw(VMKLuaStateRef state)
 {
-    switch (lua_type(L, 1))
+    switch (lua_type(state, 1))
     {
         case LUA_TNIL:
         case LUA_TNONE:
         {
-            luaL_error(L, "@throw nil!");
+            luaL_error(state, "@throw nil!");
             break;
         }
         case LUA_TBOOLEAN:
         {
-            BOOL value = lua_toboolean(L, 1);
-            luaL_error(L,  "@throw BOOL:%s!", value ? "YES" : "NO");
+            Boolean value = lua_toboolean(state, 1);
+            luaL_error(state,  "@throw BOOL:%s!", value ? "YES" : "NO");
             break;
         }
         case LUA_TLIGHTUSERDATA:
         {
-            void* p = lua_touserdata(L, 1);
-            luaL_error(L, "@throw pointer:%p!", p);
+            void* p = lua_touserdata(state, 1);
+            luaL_error(state, "@throw pointer:%p!", p);
             break;
         }
         case LUA_TNUMBER:
         {
-            lua_Number number = lua_tonumber(L, 1);
-            luaL_error(L, "@throw number:%f!", number);
+            lua_Number number = lua_tonumber(state, 1);
+            luaL_error(state, "@throw number:%f!", number);
             break;
         }
         case LUA_TSTRING:
         {
-            const char* str = lua_tostring(L, 1);
-            luaL_error(L, "@throw string:%s!", str);
+            const char* str = lua_tostring(state, 1);
+            luaL_error(state, "@throw string:%s!", str);
             break;
         }
         case LUA_TTABLE:
         {
-            luaL_error(L, "@throw table!");
+            luaL_error(state, "@throw table!");
             break;
         }
         case LUA_TFUNCTION:
         {
-            luaL_error(L, "@throw function!");
+            luaL_error(state, "@throw function!");
             break;
         }
         case LUA_TUSERDATA:
         {
-            id obj = VMKCheckObject(L, 1);
-            luaL_error(L, "@throw object:%s!", [[obj description] UTF8String]);
+            id obj = VMKCheckObject(state, 1);
+            luaL_error(state, "@throw object:%s!", [[obj description] UTF8String]);
             break;
         }
         case LUA_TTHREAD:
         {
-            luaL_error(L, "@throw thread value!");
+            luaL_error(state, "@throw thread value!");
             break;
         }
         default:
         {
-            luaL_error(L, "@throw (unknown) type!");
+            luaL_error(state, "@throw (unknown) type!");
             break;
         }
     }
@@ -401,48 +402,48 @@ static int luaObjC_objc_throw(lua_State *L)
     return 0;
 }
 
-static int luaObjC_objc_tryCatchFinally(lua_State *L)
+static int luaObjC_objc_tryCatchFinally(VMKLuaStateRef state)
 {
-    int finallyBlock = luaL_ref(L, LUA_REGISTRYINDEX);
-    int catchBlock = luaL_ref(L, LUA_REGISTRYINDEX);
-    int tryBlock = luaL_ref(L, LUA_REGISTRYINDEX);
+    int finallyBlock = luaL_ref(state, LUA_REGISTRYINDEX);
+    int catchBlock = luaL_ref(state, LUA_REGISTRYINDEX);
+    int tryBlock = luaL_ref(state, LUA_REGISTRYINDEX);
     
     
-    lua_rawgeti(L, LUA_REGISTRYINDEX, tryBlock);
+    lua_rawgeti(state, LUA_REGISTRYINDEX, tryBlock);
     
-    int status = lua_pcall(L, 0, 0, 0);
+    int status = lua_pcall(state, 0, 0, 0);
     if(status != LUA_OK)
     {
-        const char* errorString = luaL_checkstring(L, 1);
+        const char* errorString = luaL_checkstring(state, 1);
         
-        lua_rawgeti(L, LUA_REGISTRYINDEX, catchBlock);
+        lua_rawgeti(state, LUA_REGISTRYINDEX, catchBlock);
         
-        lua_pushstring(L, errorString);
-
-        lua_remove(L, 1);
-
-        status = lua_pcall(L, 1, 0, 0);
+        lua_pushstring(state, errorString);
+        
+        lua_remove(state, 1);
+        
+        status = lua_pcall(state, 1, 0, 0);
         if(status != LUA_OK)
         {
             //@throw again in @catch
             //
             if (finallyBlock != VMKInvalidClouserID)
             {
-                lua_rawgeti(L, LUA_REGISTRYINDEX, finallyBlock);
-                lua_pcall(L, 0, 0, 0);                
+                lua_rawgeti(state, LUA_REGISTRYINDEX, finallyBlock);
+                lua_pcall(state, 0, 0, 0);
             }
             
-            lua_error(L);
+            lua_error(state);
             
         }else
         {
             if (finallyBlock != VMKInvalidClouserID)
             {
-                lua_rawgeti(L, LUA_REGISTRYINDEX, finallyBlock);
-                status = lua_pcall(L, 0, 0, 0);
+                lua_rawgeti(state, LUA_REGISTRYINDEX, finallyBlock);
+                status = lua_pcall(state, 0, 0, 0);
                 if (status != LUA_OK)
                 {
-                    lua_error(L);
+                    lua_error(state);
                 }
             }
         }
@@ -452,15 +453,15 @@ static int luaObjC_objc_tryCatchFinally(lua_State *L)
 }
 
 
-static int luaObjC_objc_NSFastEnumerate(lua_State *L)
+static int luaObjC_objc_NSFastEnumerate(VMKLuaStateRef state)
 {
-    id obj = VMKCheckObject(L, 1);
+    id obj = VMKCheckObject(state, 1);
     if (obj)
     {
         //if the object does not support fast enumerate, it will cause a runtime exception
         //
         lua_CFunction enumerator = [obj luaEnumerator];
-        lua_pushcclosure(L, enumerator, 1);
+        lua_pushcclosure(state, enumerator, 1);
         return 1;
     }
     return 0;
@@ -470,15 +471,15 @@ static int luaObjC_objc_NSFastEnumerate(lua_State *L)
 
 static CFMutableSetRef _LuaObjCLiteralStorage = NULL;
 
-static int luaObjC_createLiteralArray(lua_State *L)
+static int luaObjC_createLiteralArray(VMKLuaStateRef state)
 {
-    int count = lua_gettop(L);
+    int count = lua_gettop(state);
     
     CFMutableArrayRef array = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
     
     for (int iLooper = 1; iLooper < count + 1; ++iLooper)
     {
-        CFArrayAppendValue(array, VMKCheckObject(L, iLooper));
+        CFArrayAppendValue(array, VMKCheckObject(state, iLooper));
     }
     
     CFArrayRef value = CFArrayCreateCopy(CFGetAllocator(array), array);
@@ -489,21 +490,21 @@ static int luaObjC_createLiteralArray(lua_State *L)
     
     CFMakeCollectable(value);
     
-    VMKPushObject(L, (id)value, true, false);
+    VMKPushObject(state, (id)value, true, false);
     
     return 1;
 }
 
-static int luaObjC_createLiteralDictionary(lua_State *L)
+static int luaObjC_createLiteralDictionary(VMKLuaStateRef state)
 {
-    int count = lua_gettop(L);
+    int count = lua_gettop(state);
     int halfIndex = count / 2;
     
     CFMutableDictionaryRef dict = CFDictionaryCreateMutable(NULL, halfIndex, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-
+    
     for (int iLooper = 1; iLooper < halfIndex + 1; ++iLooper)
     {
-        CFDictionaryAddValue(dict, VMKCheckObject(L, iLooper), VMKCheckObject(L, halfIndex + iLooper));
+        CFDictionaryAddValue(dict, VMKCheckObject(state, iLooper), VMKCheckObject(state, halfIndex + iLooper));
     }
     
     CFDictionaryRef result = CFDictionaryCreateCopy(CFGetAllocator(dict), dict);
@@ -513,15 +514,15 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     CFSetAddValue(_LuaObjCLiteralStorage, result);
     
     CFMakeCollectable(result);
-
-    VMKPushObject(L, (id)result, true, false);
+    
+    VMKPushObject(state, (id)result, true, false);
     
     return 1;
 }
 
-static inline int luaObjC_createConstantNumber(lua_State *L)
+static inline int luaObjC_createConstantNumber(VMKLuaStateRef state)
 {
-    lua_Number value = lua_tonumber(L, 1);
+    lua_Number value = lua_tonumber(state, 1);
     
     CFNumberRef number = CFNumberCreate(NULL, kCFNumberDoubleType, &value);
     
@@ -529,7 +530,7 @@ static inline int luaObjC_createConstantNumber(lua_State *L)
     
     CFMakeCollectable(number);
     
-    VMKPushObject(L, (id)number, true, false);
+    VMKPushObject(state, (id)number, true, false);
     
     return 1;
 }
@@ -573,24 +574,24 @@ static const luaL_Reg luaObjC_resolveNameFunctions[] =
     {NULL, NULL},
 };
 
-static int _luaObjC_openRuntimeSupport(lua_State *L)
+static int _luaObjC_openRuntimeSupport(VMKLuaStateRef state)
 {
-    luaL_newlib(L, luaObjC_resolveNameFunctions);
+    luaL_newlib(state, luaObjC_resolveNameFunctions);
     return 1;
 }
 
-int VMKOpenFoundationSupport(lua_State *L)
+int VMKOpenFoundationSupport(VMKLuaStateRef state)
 {
     if (!_LuaObjCLiteralStorage)
     {
         _LuaObjCLiteralStorage = CFSetCreateMutable(NULL, 64, &kCFTypeSetCallBacks);
     }
     
-    VMKClassInitialize(L);
+    VMKClassInitialize(state);
     
-    VMKLoadGlobalFunctions(L, luaObjC_runtimeFunctions);
+    VMKLoadGlobalFunctions(state, luaObjC_runtimeFunctions);
     
-    luaL_requiref(L, "ObjC", _luaObjC_openRuntimeSupport, 1);
+    luaL_requiref(state, "ObjC", _luaObjC_openRuntimeSupport, 1);
     
     static const char* s_ResolveNameMetaTable = "local _VMachineGlobalCache = {}"
     "setmetatable(_G, "
@@ -607,14 +608,14 @@ int VMKOpenFoundationSupport(lua_State *L)
     "                         end"
     "             })";
     
-	luaL_dostring(L, s_ResolveNameMetaTable);
+	luaL_dostring(state, s_ResolveNameMetaTable);
     
-    VMKOpenNSObjectExtensionSupport(L);
+    VMKOpenNSObjectExtensionSupport(state);
     
-    VMKOpenProfileSupport(L);
-    LuaInternalOpenBridgeFunctorSupport(L);
+    VMKOpenProfileSupport(state);
+    LuaInternalOpenBridgeFunctorSupport(state);
     
-    VMKOpenFoundation(L);
+    VMKOpenFoundation(state);
     
     return 1;
     

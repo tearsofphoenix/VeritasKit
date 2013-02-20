@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-struct lua_State;
+#import "VMKBase.h"
 
 typedef struct VMKBridgeFuncotr *VMKBridgeFuncotrRef;
 
 extern const char * VMKBridgeFuncotrMetaName;
 
-extern VMKBridgeFuncotrRef VMKBridgeFunctorCreate(struct lua_State *L,
+extern VMKBridgeFuncotrRef VMKBridgeFunctorCreate(VMKLuaStateRef state,
                                                   NSString * name, 
                                                   NSArray *argumentTypes, 
                                                   const char *returnEncoding);
@@ -29,8 +29,7 @@ extern int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L);
 
 extern VMKBridgeFuncotrRef VMKInvocationCreate(void *functionPointer);
 
-extern void VMKInvoke(struct lua_State *L,
-                                 VMKBridgeFuncotrRef functor);
+extern void VMKInvoke(VMKLuaStateRef state, VMKBridgeFuncotrRef functor);
 
 extern void VMKFunctorFinalize(VMKBridgeFuncotrRef functor);
 
@@ -39,7 +38,7 @@ extern void VMKInvocationSetArgumentAtInex(VMKBridgeFuncotrRef ref,
                                                 void *value);
 
 extern void VMKInvocationSetArgumentFromLuaStateAtInex(VMKBridgeFuncotrRef ref,
-                                               struct lua_State *L,
+                                               VMKLuaStateRef state,
                                                int index,
                                                const char *encoding,
                                                NSUInteger argumentIndex);

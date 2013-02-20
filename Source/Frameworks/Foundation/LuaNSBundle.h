@@ -10,6 +10,6 @@
 
 VMK_EXTERN_C_BEGIN
     
-    LUAMOD_API int VMKOpenNSBundle(struct lua_State *L);
+    LUAMOD_API int VMKOpenNSBundle(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END

@@ -42,4 +42,4 @@ extern void LuaCall(NSString *sourceCode, NSString *functionName,
                     VMKBlock start, int argumentCount,
                     int returnCount,  VMKBlock completion);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END

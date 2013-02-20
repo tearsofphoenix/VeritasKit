@@ -13,8 +13,8 @@
 
 VMK_EXTERN_C_BEGIN
 
-LUAMOD_API int VMKOpenUIView(struct lua_State *L);
+LUAMOD_API int VMKOpenUIView(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif

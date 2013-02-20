@@ -12,6 +12,6 @@ VMK_EXTERN_C_BEGIN
 
 #define LUA_UIKITLIBNAME	"UIKit"
 
-LUAMOD_API int VMKOpenUIKit(struct lua_State *L);
+LUAMOD_API int VMKOpenUIKit(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END

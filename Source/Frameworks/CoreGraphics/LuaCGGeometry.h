@@ -25,14 +25,14 @@ VMK_EXTERN_C_BEGIN
 
 #define LUA_CGRect_METANAME	"CGRect"
 
-VMK_EXPORT int VMKPushCGPoint(struct lua_State *L, CGPoint p);
+VMK_EXPORT int VMKPushCGPoint(VMKLuaStateRef state, CGPoint p);
 
-VMK_EXPORT int VMKPushCGSize(struct lua_State *L, CGSize s);
+VMK_EXPORT int VMKPushCGSize(VMKLuaStateRef state, CGSize s);
 
-VMK_EXPORT int VMKPushCGRect(struct lua_State *L, CGRect r);
+VMK_EXPORT int VMKPushCGRect(VMKLuaStateRef state, CGRect r);
 
-LUAMOD_API int VMKOpenCGGeometry(struct lua_State *L);
+LUAMOD_API int VMKOpenCGGeometry(VMKLuaStateRef state);
 
-VMK_EXTERN__C_END
+VMK_EXTERN_C_END
 
 #endif
