@@ -261,7 +261,7 @@ static int luaObjC_garbageCollection(VMKLuaStateRef state)
         const void *obj = objRef->_obj;
         
         pthread_mutex_lock(&__VMKRuntimePoolLock);
-        
+                
         CFSetRemoveValue(__VMKRuntimePool, obj);
         
         pthread_mutex_unlock(&__VMKRuntimePoolLock);

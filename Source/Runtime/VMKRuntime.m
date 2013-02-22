@@ -481,7 +481,7 @@ static int luaObjC_createLiteralArray(VMKLuaStateRef state)
     
     CFSetAddValue(_LuaObjCLiteralStorage, value);
     
-    CFMakeCollectable(value);
+    CFRelease(value);
     
     VMKPushObject(state, (id)value, true, false);
     
@@ -506,7 +506,7 @@ static int luaObjC_createLiteralDictionary(VMKLuaStateRef state)
     
     CFSetAddValue(_LuaObjCLiteralStorage, result);
     
-    CFMakeCollectable(result);
+    CFRelease(result);
     
     VMKPushObject(state, (id)result, true, false);
     
@@ -521,7 +521,7 @@ static inline int luaObjC_createConstantNumber(VMKLuaStateRef state)
     
     CFSetAddValue(_LuaObjCLiteralStorage, number);
     
-    CFMakeCollectable(number);
+    CFRelease(number);
     
     VMKPushObject(state, (id)number, true, false);
     

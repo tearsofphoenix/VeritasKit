@@ -21,7 +21,6 @@
 #import "NSString+VMKIndex.h"
 #import "NSData+Base64.h"
 #import <LuaKit/LuaKit.h>
-#import <pthread.h>
 
 extern int lua_dumpSourceCode(VMKLuaStateRef state, const char *sourceCode, const char* outputPath);
 
@@ -31,7 +30,7 @@ static char * const VMKMachineGarbageCollectionQueueIdentifier = "com.veritas.lu
 
 //Gardage collect time interval, in seconds
 //
-static const NSTimeInterval VMKMachineGarbageCollectInterval = 10;
+static const NSTimeInterval VMKMachineGarbageCollectInterval = 5;
 
 struct __VMKMachineAttributes
 {
@@ -39,9 +38,7 @@ struct __VMKMachineAttributes
     VMKLuaStateRef luaState;
     VMKLuaStateRef parserState;
     dispatch_queue_t garbageCollectionQueue;
-    dispatch_source_t garbageCollectTimer;
-    pthread_mutex_t lock;
-    
+    dispatch_source_t garbageCollectTimer;    
 };
 
 typedef struct __VMKMachineAttributes *VMKMachineAttributesRef;
@@ -157,15 +154,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
     //initialize the internal
     //
     VMKMachineAttributesRef internal = calloc(1, sizeof(struct __VMKMachineAttributes));
-    
-    pthread_mutexattr_t attr;
-    pthread_mutexattr_init(&attr);
-    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-    
-    pthread_mutex_init(&internal->lock, &attr);
-    
-    pthread_mutexattr_destroy(&attr);
-    
+        
     //init parser state
     //
     VMKLuaStateRef parserStateRef = _luaEngine_createLuaState();
@@ -276,10 +265,7 @@ static VMKMachineService *sSharedService = nil;
 
 - (void)_gabageCollectByTimer: (NSTimer *)timer
 {
-    pthread_mutex_lock(&_internal->lock);
     lua_gc(_internal->luaState, LUA_GCCOLLECT, 0);
-    pthread_mutex_unlock(&_internal->lock);
-
 }
 
 static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *sourceCode, VCallbackBlock callback)
