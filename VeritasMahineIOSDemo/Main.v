@@ -198,6 +198,19 @@ main = function()
             {
                 print(k, v);
             }
+            --[[
+            local array = @[ @"as", @1 ];
 
+            for (iLooper in array)
+            {
+                print(iLooper);
+            }
+
+            array = @[ @"ss", @"x------xx", @[] ];
+            for (iLooper in array)
+            {
+                print(iLooper);
+            }
+            --]]
             return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
         end

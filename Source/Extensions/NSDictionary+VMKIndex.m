@@ -43,7 +43,7 @@ static int luaObjC_NSDictionary_luaEnumerator(VMKLuaStateRef state)
     NSDictionary *dict = VMKObjectGetObject(obj);
     if (!__keys)
     {
-        __keys = [dict allKeys];
+        __keys = [[dict allKeys] retain];
     }
     
     if (__keyIndex < [__keys count])
@@ -59,6 +59,7 @@ static int luaObjC_NSDictionary_luaEnumerator(VMKLuaStateRef state)
         return 2;
     }else 
     {
+        [__keys release];
         __keys = nil;
         __keyIndex = 0;
         return 0;

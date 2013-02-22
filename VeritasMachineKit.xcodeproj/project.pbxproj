@@ -109,6 +109,7 @@
 		E1A400B816439B6900F8AE92 /* VMKMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* VMKMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4005E16439A1D00F8AE92 /* VeritasMachineKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E1AB5B1216AD1276005F4E41 /* VMKClass.h */; };
+		E1D571FA16D6F91000A255DC /* VMKPrivateFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = E1D571F916D6F91000A255DC /* VMKPrivateFunctions.h */; };
 		E1D62E7216AE20C400DE39BF /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1D62E6D16AE20A900DE39BF /* LuaKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -319,6 +320,7 @@
 		E1A4FFFE1643993300F8AE92 /* ffitarget_armv7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
 		E1A4FFFF1643993300F8AE92 /* ffitarget_i386.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
 		E1AB5B1216AD1276005F4E41 /* VMKClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMKClass.h; sourceTree = "<group>"; };
+		E1D571F916D6F91000A255DC /* VMKPrivateFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMKPrivateFunctions.h; sourceTree = "<group>"; };
 		E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -435,6 +437,7 @@
 		E1A400151643993300F8AE92 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
+				E1D571F916D6F91000A255DC /* VMKPrivateFunctions.h */,
 				E172CF6916B19DF800B5E035 /* CFRuntime.h */,
 				E1A400161643993300F8AE92 /* VMKObject.h */,
 				E1A400171643993300F8AE92 /* VMKObject.m */,
@@ -774,6 +777,7 @@
 				E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */,
 				E172CF6B16B19DF800B5E035 /* CFRuntime.h in Headers */,
 				2208703F16D5EAAD00C05335 /* VMKFunctions.h in Headers */,
+				E1D571FA16D6F91000A255DC /* VMKPrivateFunctions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

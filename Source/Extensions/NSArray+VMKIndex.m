@@ -35,14 +35,20 @@ static int luaObjC_NSArray_luaEnumerator(VMKLuaStateRef state)
     VMKObjectRef obj = lua_touserdata(state, lua_upvalueindex(1));
     NSArray *array = VMKObjectGetObject(obj);
     static NSInteger index = 0;
+
     if (index < [array count])
     {
         VMKPushObject(state, [array objectAtIndex: index], true, false);
+        
         lua_pushinteger(state, index);
+    
         ++index;
+        
         return 2;
+        
     }else 
     {
+        index = 0;
         return 0;
     }
 }

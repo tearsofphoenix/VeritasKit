@@ -21,11 +21,6 @@
     
 }
 
-- (BOOL)isTheSameDocument: (XMLDocument *)document
-{
-    return [document rawDocument] == _rawDocument;
-}
-
 - (XMLNode *)rootNode
 {
     return [[[XMLNode alloc] initWithRawNode: xmlDocGetRootElement(_rawDocument)] autorelease];

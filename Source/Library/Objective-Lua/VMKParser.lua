@@ -1711,10 +1711,7 @@ olua_methoddefinition = function()
 
 olua_objc_literalArray = function()
                             local args
-                            print(1717)
-
                             if optionalexpect('operator', ']') then
-                                print(1719)
                                 optionalexpect('operator', ';')
                                 args = {}
                                 return
@@ -1723,7 +1720,6 @@ olua_objc_literalArray = function()
                                     args = args,
                                 }
                             end
-                            print(1727)
                             args = rvaluelist()
                             expect('operator', ']')
                             optionalexpect('operator', ';')
@@ -2189,7 +2185,6 @@ local typetable =
     end,
     olua_objc_literalArray = function(ast)
                                 emit(" objc_createLiteralArray(")
-                                print(2190)
                                 if #ast.args > 0 then
                                     recursivelyunparse(ast.args)
                                 end
