@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSArray *dependentLibNames;
 @property (nonatomic, retain) NSString *featureID;
 
-- (void)registerIntoLuaState: (lua_State *)luaState
+- (void)registerIntoLuaState: (VMKLuaStateRef)state
                    libraries: (NSDictionary *)dict;
 
 @end
@@ -31,6 +31,6 @@ VMK_EXPORT VMKLibraryInformation * VMKLibraryInformationMake(NSString *fetureID,
 
 VMK_EXPORT void VMKLibraryInformationRegisterToState(NSDictionary *_luaEngineLibs,
                                                     NSString * libraryID,
-                                                    lua_State *luaState);
+                                                    VMKLuaStateRef state);
 
 VMK_EXTERN_C_END

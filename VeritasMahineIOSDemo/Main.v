@@ -173,7 +173,7 @@ main = function()
             {
                 print(errorMsg)
             }
-            --[[
+            ---[[
             local value = [[NSString alloc] initWithUTF8String: "value--string"];
 
             local block = (^

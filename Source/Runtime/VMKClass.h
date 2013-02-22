@@ -13,6 +13,7 @@
 VMK_EXTERN_C_BEGIN
 
 #include <objc/objc.h>
+#include <CoreFoundation/CFDictionary.h>
 
 VMK_EXPORT const char * VMKTypeEncodingOfType(const char *typeName);
 

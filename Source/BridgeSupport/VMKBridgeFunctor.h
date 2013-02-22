@@ -23,7 +23,7 @@ extern void VMKBridgeFunctorInitialize(VMKBridgeFuncotrRef ref,
                                        NSArray *argumentTypes,
                                        const char *returnEncoding);
 
-extern int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L);
+extern int LuaInternalOpenBridgeFunctorSupport(VMKLuaStateRef state);
 
 #pragma mark - for message sending
 

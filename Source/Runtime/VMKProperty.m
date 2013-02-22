@@ -9,6 +9,7 @@
 #include "VMKClass.h"
 #include "VMKAuxiliary.h"
 #include "VMKProperty.h"
+
 #include <objc/runtime.h>
 #include <CoreFoundation/CoreFoundation.h>
 

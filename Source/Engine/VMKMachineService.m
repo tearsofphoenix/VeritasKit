@@ -23,7 +23,7 @@
 #import <LuaKit/LuaKit.h>
 #import <pthread.h>
 
-extern int lua_dumpSourceCode(lua_State* L, const char *sourceCode, const char* outputPath);
+extern int lua_dumpSourceCode(VMKLuaStateRef state, const char *sourceCode, const char* outputPath);
 
 static char * const VMKMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
@@ -33,13 +33,11 @@ static char * const VMKMachineGarbageCollectionQueueIdentifier = "com.veritas.lu
 //
 static const NSTimeInterval VMKMachineGarbageCollectInterval = 10;
 
-typedef struct lua_State *LuaStateRef;
-
 struct __VMKMachineAttributes
 {
     NSString *path;
-    LuaStateRef luaState;
-    LuaStateRef parserState;
+    VMKLuaStateRef luaState;
+    VMKLuaStateRef parserState;
     dispatch_queue_t garbageCollectionQueue;
     dispatch_source_t garbageCollectTimer;
     pthread_mutex_t lock;
@@ -62,10 +60,10 @@ typedef struct __VMKMachineAttributes *VMKMachineAttributesRef;
 
 @implementation VMKMachineService
 
-static int luaObjC_objc_UUIDString(lua_State *L)
+static int luaObjC_objc_UUIDString(VMKLuaStateRef state)
 {
     NSString *uuidString = [[NSString UUID] stringByReplacingOccurrencesOfString: @"-" withString: @"_"];
-    lua_pushstring(L, [uuidString UTF8String]);
+    lua_pushstring(state, [uuidString UTF8String]);
     return 1;
 }
 
@@ -106,9 +104,9 @@ static void _luaEngine_initlibs(NSMutableDictionary *_libs)
               forKey: [infoLooper featureID]];
 }
 
-static LuaStateRef _luaEngine_createLuaState(void)
+static VMKLuaStateRef _luaEngine_createLuaState(void)
 {
-    LuaStateRef luaStateRef = luaL_newstate();
+    VMKLuaStateRef luaStateRef = luaL_newstate();
     if (luaStateRef == NULL)
     {
         printf("cannot create state: not enough memory!\n");
@@ -126,12 +124,12 @@ static LuaStateRef _luaEngine_createLuaState(void)
     return luaStateRef;
 }
 
-static int _luaEngine_compileTimeInteraction(lua_State *L)
+static int _luaEngine_compileTimeInteraction(VMKLuaStateRef state)
 {
-    const char *message = lua_tostring(L, 2);
+    const char *message = lua_tostring(state, 2);
     if (!strcmp(message, "import"))
     {
-        NSString *frameworkName = @( lua_tostring(L, 3) );
+        NSString *frameworkName = @( lua_tostring(state, 3) );
         frameworkName = [frameworkName substringWithRange: NSMakeRange(1, [frameworkName length] - 2)];
         
         [[VMKBridgeService sharedService] importFramework: frameworkName];
@@ -170,7 +168,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
     
     //init parser state
     //
-    LuaStateRef parserStateRef = _luaEngine_createLuaState();
+    VMKLuaStateRef parserStateRef = _luaEngine_createLuaState();
     
     VMKLoadGlobalFunctions(parserStateRef, __compileTimeFunctions);
     VMKLibraryInformationRegisterToState(libs, VMKMachineParserSupport, parserStateRef);
@@ -179,7 +177,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
     
     //init runtime state
     //
-    LuaStateRef luaStateRef = _luaEngine_createLuaState();
+    VMKLuaStateRef luaStateRef = _luaEngine_createLuaState();
     
     VMKLibraryInformationRegisterToState(libs, VMKMachineUIKitSupport, luaStateRef);
     
@@ -203,6 +201,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
     
     [sourceCode release];
     
+    /*
     dispatch_queue_t garbageQueue = dispatch_queue_create(VMKMachineGarbageCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
     internal->garbageCollectionQueue = garbageQueue;
     
@@ -219,7 +218,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
                                            lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
                                            pthread_mutex_unlock(&internal->lock);
                                            
-                                       }));
+                                       }));*/
     
     self->_internal = internal;
 }
@@ -242,7 +241,13 @@ static VMKMachineService *sSharedService = nil;
     {
         VMKMachine_initialize(self);
         
-        dispatch_resume(_internal->garbageCollectTimer);
+        [NSTimer scheduledTimerWithTimeInterval: VMKMachineGarbageCollectInterval
+                                         target: self
+                                       selector: @selector(_gabageCollectByTimer:)
+                                       userInfo: nil
+                                        repeats: YES];
+        
+        //dispatch_resume(_internal->garbageCollectTimer);
         
         //        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"VMKParser"
         //                                                                                                                 ofType: @"lua"]];
@@ -269,9 +274,17 @@ static VMKMachineService *sSharedService = nil;
     [super dealloc];
 }
 
+- (void)_gabageCollectByTimer: (NSTimer *)timer
+{
+    pthread_mutex_lock(&_internal->lock);
+    lua_gc(_internal->luaState, LUA_GCCOLLECT, 0);
+    pthread_mutex_unlock(&_internal->lock);
+
+}
+
 static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *sourceCode, VCallbackBlock callback)
 {
-    LuaStateRef luaStateRef = self->_internal->parserState;
+    VMKLuaStateRef luaStateRef = self->_internal->parserState;
     lua_getglobal(luaStateRef, "translate");
     lua_pushstring(luaStateRef, [sourceCode UTF8String]);
     
@@ -303,7 +316,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
 
 - (void)registerGlobalConstants: (NSArray *)constants
 {
-    LuaStateRef L = _internal->luaState;
+    VMKLuaStateRef L = _internal->luaState;
     
     for (NSArray *obj in constants)
     {
@@ -327,7 +340,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
                                           
                                           if ([success boolValue])
                                           {
-                                              LuaStateRef luaStateRef = _internal->parserState;
+                                              VMKLuaStateRef luaStateRef = _internal->parserState;
                                               
                                               lua_dumpSourceCode(luaStateRef, [arg UTF8String], [filePath UTF8String]);
                                               
@@ -340,7 +353,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
 
 - (void)debugSourceFile: (NSArray *)sourceCodes
 {
-    LuaStateRef luaStateRef = _internal->luaState;
+    VMKLuaStateRef luaStateRef = _internal->luaState;
     
     for (NSString *sourceCodeLooper in sourceCodes)
     {
@@ -386,7 +399,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
                 returnCount: (int)returnCount
                  completion: (VMKBlock)completion
 {
-    LuaStateRef luaStateRef = _internal->luaState;
+    VMKLuaStateRef luaStateRef = _internal->luaState;
     lua_Integer status;
     
     if ([sourceCode hasSuffix: @".v"])
@@ -480,7 +493,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
     {
         [_md5OfParsedString addObject: sourceCode];
         
-        LuaStateRef luaStateRef = _internal->luaState;
+        VMKLuaStateRef luaStateRef = _internal->luaState;
         
         //parse source code to lua code
         //

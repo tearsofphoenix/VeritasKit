@@ -11,7 +11,7 @@
 
 #include <CoreFoundation/CFString.h>
 
-static int lua_NSConstantStringCreate(lua_State *L)
+static int lua_NSConstantStringCreate(VMKLuaStateRef L)
 {
     const char* str = lua_tostring(L, 1);
     
@@ -28,7 +28,7 @@ static const luaL_Reg __LuaNSStringFunctions[] =
     {NULL, NULL},
 };
 
-int VMKOpenNSString(lua_State *L)
+int VMKOpenNSString(VMKLuaStateRef L)
 {
     VMKLoadGlobalFunctions(L, __LuaNSStringFunctions);
     return 0;

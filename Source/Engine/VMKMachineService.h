@@ -9,7 +9,7 @@
 #import "VMKBase.h"
 #import <Foundation/Foundation.h>
 
-typedef void (^ VMKBlock)(struct lua_State *L);
+typedef void (^ VMKBlock)(VMKLuaStateRef state);
 typedef void (^ VCallbackBlock)(NSArray *callbackArguments) ;
 
 @interface VMKMachineService : NSObject

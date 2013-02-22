@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "VMKAuxiliary.h"
-
-#import "VMKObject.h"
+#include "VMKAuxiliary.h"
+#include "VMKObject.h"
 
 const char * kVMKNSObjectMetaTableName = "com.veritas.vm.meta.NSObject";
 

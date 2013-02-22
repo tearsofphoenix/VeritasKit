@@ -8,33 +8,26 @@
 
 #import "VMKRuntime.h"
 
-#import <objc/runtime.h>
-
+#import "VMKObject.h"
 #import "VMKClass.h"
-
 #import "VMKMessage.h"
 
 #import "VMKProperty.h"
 
-#import "LuaCGGeometry.h"
-
 #import "VMKAuxiliary.h"
-
 #import "VMKProfile.h"
 
+#import "LuaCGGeometry.h"
 #import "LuaFoundation.h"
-
 #import "LuaNSRange.h"
 
 #import "VMKBridgeService.h"
-
 #import "VMKBridgeFunctor.h"
 
-#import "VMKObject.h"
-
 #import "NSString+VMKIndex.h"
-
 #import "NSArray+VMKIndex.h"
+
+#import <objc/runtime.h>
 
 #pragma mark - block support
 
@@ -593,20 +586,20 @@ int VMKOpenFoundationSupport(VMKLuaStateRef state)
     
     luaL_requiref(state, "ObjC", _luaObjC_openRuntimeSupport, 1);
     
-    static const char* s_ResolveNameMetaTable = "local _VMachineGlobalCache = {}"
-    "setmetatable(_G, "
-    "            {"
-    "              __index = function(t, name) "
-    "                           local value = _VMachineGlobalCache[name]"
-    "                           if value then"
-    "                              return value"
-    "                           else"
-    "                              value = ObjC.resolveName(t, name)"
-    "                               _VMachineGlobalCache[name] = value"
-    "                              return value"
-    "                           end"
-    "                         end"
-    "             })";
+    static const char* s_ResolveNameMetaTable = ("local _VMachineGlobalCache = {}"
+                                                 "setmetatable(_G, "
+                                                 "            {"
+                                                 "              __index = function(t, name) "
+                                                 "                           local value = _VMachineGlobalCache[name]"
+                                                 "                           if value then"
+                                                 "                              return value"
+                                                 "                           else"
+                                                 "                              value = ObjC.resolveName(t, name)"
+                                                 "                               _VMachineGlobalCache[name] = value"
+                                                 "                              return value"
+                                                 "                           end"
+                                                 "                         end"
+                                                 "             })");
     
 	luaL_dostring(state, s_ResolveNameMetaTable);
     

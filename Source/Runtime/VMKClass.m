@@ -7,14 +7,12 @@
 //
 
 #import "VMKClass.h"
+#import "VMKObject.h"
 
 #import "VMKAuxiliary.h"
-
 #import "VMKRuntime.h"
 
 #import "LuaCGGeometry.h"
-
-#import "VMKObject.h"
 
 #import <objc/runtime.h>
 
@@ -147,7 +145,7 @@ void LuaInternalAllocateClass(VMKLuaStateRef state, Class theClass, const char *
     _luaClassAttachDictionaryToClass(theClass, &__LuaObjC_KeyForClassMethods);
 }
 
-struct lua_State *LuaInternalGetLuaStateOfClass(Class theClass)
+VMKLuaStateRef LuaInternalGetLuaStateOfClass(Class theClass)
 {
     return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
 }
@@ -373,7 +371,7 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
 
 #define __LuaClassPreprocess(obj, sel, state)     va_list ap;\
                                                   va_start(ap, sel);\
-                                                  lua_State *state = NULL;\
+                                                  VMKLuaStateRef state = NULL;\
                                                   __luaClass_IMP_preprocess(&state, obj, sel, ap);\
                                                   va_end(ap);
 

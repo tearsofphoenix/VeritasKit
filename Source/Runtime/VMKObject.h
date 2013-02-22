@@ -12,6 +12,8 @@
 
 VMK_EXTERN_C_BEGIN
 
+#include <objc/objc.h>
+
 typedef struct __VMKObject *VMKObjectRef;
 
 VMK_EXPORT VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass);

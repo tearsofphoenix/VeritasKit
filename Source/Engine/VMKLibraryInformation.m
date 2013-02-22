@@ -19,19 +19,18 @@
     [super dealloc];
 }
 
-- (void)registerIntoLuaState: (lua_State *)luaState
+- (void)registerIntoLuaState: (VMKLuaStateRef)state
                    libraries: (NSDictionary *)dict
 {
     for (NSString *iLooper in _dependentLibNames)
     {        
         VMKLibraryInformation *libLooper = [dict objectForKey: iLooper];
-        [libLooper registerIntoLuaState: luaState
+        [libLooper registerIntoLuaState: state
                               libraries: dict];
     }
     
-    luaL_requiref(luaState, [_libName UTF8String],
-                  _loadFunction, _numberOfUpvalues);
-    lua_pop(luaState, 1);
+    luaL_requiref(state, [_libName UTF8String], _loadFunction, _numberOfUpvalues);
+    lua_pop(state, 1);
 }
 
 @end

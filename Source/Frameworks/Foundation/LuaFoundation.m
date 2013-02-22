@@ -12,7 +12,7 @@
 #include "LuaNSString.h"
 #include "LuaNSCollection.h"
 
-int VMKOpenFoundation(struct lua_State *L)
+int VMKOpenFoundation(VMKLuaStateRef L)
 {    
     VMKOpenNSBundle(L);
    

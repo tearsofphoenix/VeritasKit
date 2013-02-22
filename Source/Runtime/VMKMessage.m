@@ -7,37 +7,30 @@
 //
 
 #import "VMKObject.h"
-
 #import "VMKMessage.h"
 
-#import "LuaCGGeometry.h"
-
 #import "VMKAuxiliary.h"
-
 #import "VMKStructs.h"
+
+#import "LuaCGGeometry.h"
 
 #import <objc/message.h>
 
 #pragma mark - support for extend accelerator
 
-static CFMutableDictionaryRef __preAccelerators = nil;
-
-static inline void VMKAcceleratorInitialize(void)
-{
-    __preAccelerators = CFDictionaryCreateMutable(NULL, 64, NULL, &kCFTypeDictionaryValueCallBacks);
-}
+static CFMutableDictionaryRef __preAccelerators = NULL;
 
 void VMKRegisterAccelerator(Class theClass, SEL selector, VMKAcceleratorIMP imp)
 {
     if (!__preAccelerators)
     {
-        VMKAcceleratorInitialize();
+        __preAccelerators = CFDictionaryCreateMutable(NULL, 64, NULL, &kCFTypeDictionaryValueCallBacks);
     }
     
     CFMutableDictionaryRef classAccelerators = (CFMutableDictionaryRef)CFDictionaryGetValue(__preAccelerators, theClass);
     if (!classAccelerators)
     {
-        classAccelerators = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 1024, NULL, NULL);
+        classAccelerators = CFDictionaryCreateMutable(NULL, 1024, NULL, NULL);
         
         CFDictionaryAddValue(__preAccelerators, theClass, classAccelerators);
         

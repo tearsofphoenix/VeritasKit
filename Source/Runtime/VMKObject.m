@@ -6,111 +6,16 @@
 //
 //
 
-#import "VMKObject.h"
+#include "VMKObject.h"
 
-#import "VMKClass.h"
-#import "VMKAuxiliary.h"
-#import "VMKIndexing.h"
-#import "VMKRuntime.h"
+#include "VMKClass.h"
+#include "VMKAuxiliary.h"
+#include "VMKIndexing.h"
+#include "VMKRuntime.h"
+#include "VMKFunctions.h"
 
-#import <objc/runtime.h>
+#include <objc/runtime.h>
 #include <pthread.h>
-
-static int luaObjC_NSLog(VMKLuaStateRef state)
-{
-    const char* charLooper = VMKCheckString(state, 1);
-    
-    NSMutableString *logString = [NSMutableString string];
-    int iLooper = 2;
-    while (charLooper && *charLooper)
-    {
-        switch (*charLooper)
-        {
-            case '%':
-            {
-                ++charLooper;
-                switch (*charLooper)
-                {
-                    case 0:
-                    {
-                        //end of the format string
-                        break;
-                    }
-                    case '%':
-                    {
-                        [logString appendString: @"%@"];
-                        break;
-                    }
-                    case 'd':
-                    case 'i':
-                    case 'u':
-                    {
-                        lua_Integer value = lua_tointeger(state, iLooper);
-#if TARGET_OS_IPHONE
-                        [logString appendFormat: @"%d", (NSInteger)value];
-#else
-                        [logString appendFormat: @"%ld", (NSInteger)value];
-#endif
-                        ++iLooper;
-                        break;
-                    }
-                    case 'f':
-                    case 'F':
-                    {
-                        double value = lua_tonumber(state, iLooper);
-                        [logString appendFormat: @"%f", value];
-                        ++iLooper;
-                        break;
-                    }
-                    case 's':
-                    {
-                        const char *s = lua_tostring(state, iLooper);
-                        [logString appendFormat: @"%s", s];
-                        ++iLooper;
-                        break;
-                    }
-                    case 'p':
-                    {
-                        void* value = lua_touserdata(state, iLooper);
-                        [logString appendFormat: @"%p", value];
-                        ++iLooper;
-                        break;
-                    }
-                    case 'c':
-                    {
-                        char c = lua_tointeger(state, iLooper);
-                        [logString appendFormat: @"%c", c];
-                        ++iLooper;
-                        break;
-                    }
-                    case '@':
-                    {
-                        id obj = VMKCheckObject(state, iLooper);
-                        [logString appendFormat: @"%@", obj];
-                        ++iLooper;
-                        break;
-                    }
-                    default:
-                    {
-                        [logString appendFormat: @"%c", *charLooper];
-                        break;
-                    }
-                }
-                break;
-            }
-            default:
-            {
-                [logString appendFormat: @"%c", *charLooper];
-                break;
-            }
-        }
-        ++charLooper;
-    }
-    
-    NSLog(@"%@", logString);
-    
-    return 0;
-}
 
 #pragma mark - Object observer
 
@@ -124,7 +29,7 @@ static pthread_mutex_t __VMKRuntimePoolLock;
 struct __VMKObject
 {
     id _obj;
-    lua_State *_luaState;
+    VMKLuaStateRef _luaState;
 };
 
 VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass)
@@ -258,6 +163,24 @@ static int luaObjC_concatCollection(VMKLuaStateRef state)
     }
 }
 
+static Class sNSBlockClass = Nil;
+
+static Boolean VMKIsKindOfClass(id obj, Class theClass)
+{
+    Class iLooper = object_getClass(obj);
+    while (iLooper)
+    {
+        if (iLooper == theClass)
+        {
+            return TRUE;
+        }
+        
+        iLooper = class_getSuperclass(iLooper);
+    }
+    
+    return FALSE;
+}
+
 static int luaObjC_callBlockObject(VMKLuaStateRef state)
 {
     //include the block
@@ -267,7 +190,7 @@ static int luaObjC_callBlockObject(VMKLuaStateRef state)
     
     id block = VMKCheckObject(state, 1);
     
-    if ([block isKindOfClass: objc_getClass("NSBlock")])
+    if (VMKIsKindOfClass(block, sNSBlockClass))
     {
         LuaClosureType clouserID = LuaInternalGetClosureIDOfBlock(block);
         
@@ -371,11 +294,6 @@ static const luaL_Reg LuaNS_ClassMethods[] =
     {NULL, NULL}
 };
 
-static const luaL_Reg luaNS_functions[] =
-{
-    {"NSLog", luaObjC_NSLog},
-    {NULL, NULL}
-};
 
 int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state)
 {
@@ -394,11 +312,11 @@ int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state)
         pthread_mutex_init(&__VMKRuntimePoolLock, &attr);
         
         pthread_mutexattr_destroy(&attr);
+        
+        sNSBlockClass = objc_getClass("NSBlock");
     }
     
-    VMKLoadGlobalFunctions(state, luaNS_functions);
-    
-    luaL_newlib(state, luaNS_functions);
+    VMKOpenNSFunctions(state);
     
     VMKLoadCreateMetatable(state, kVMKNSObjectMetaTableName, LuaNS_ObjectMethods);
     

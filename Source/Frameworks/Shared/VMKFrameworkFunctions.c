@@ -9,9 +9,9 @@
 #include "VMKFrameworkFunctions.h"
 #include <stdlib.h>
 
-int LuaInternalStructGarbageCollection(struct lua_State *L)
+int LuaInternalStructGarbageCollection(VMKLuaStateRef state)
 {
-    void *structObj = lua_touserdata(L, 1);
+    void *structObj = lua_touserdata(state, 1);
     if (structObj)
     {
         free(structObj);

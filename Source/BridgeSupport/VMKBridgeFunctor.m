@@ -133,39 +133,40 @@ struct VMKBridgeFuncotr
     
 };
 
-VMKBridgeFuncotrRef VMKBridgeFunctorCreate(lua_State *L,
+VMKBridgeFuncotrRef VMKBridgeFunctorCreate(VMKLuaStateRef state,
                                            NSString * name,
                                            NSArray *argumentTypeEncodings,
                                            const char *returnEncoding)
 {
-    VMKBridgeFuncotrRef returnValue = lua_newuserdata(L, sizeof(struct VMKBridgeFuncotr));
+    VMKBridgeFuncotrRef returnValue = lua_newuserdata(state, sizeof(struct VMKBridgeFuncotr));
     returnValue->_functionPointer = dlsym(RTLD_DEFAULT, [name UTF8String]);
     
     VMKBridgeFunctorInitialize(returnValue, argumentTypeEncodings, returnEncoding);
     
-    luaL_getmetatable(L, VMKBridgeFuncotrMetaName);
-    lua_setmetatable(L, -2);
+    luaL_getmetatable(state, VMKBridgeFuncotrMetaName);
+    lua_setmetatable(state, -2);
     
     return returnValue;
 }
 
-static int VMKBridgeFunctorInvoke(lua_State *L)
+static int VMKBridgeFunctorInvoke(VMKLuaStateRef state)
 {
-    VMKBridgeFuncotrRef ref = luaL_checkudata(L, 1, VMKBridgeFuncotrMetaName);
+    VMKBridgeFuncotrRef ref = luaL_checkudata(state, 1, VMKBridgeFuncotrMetaName);
     
     [ref->_argumentTypeEncodings enumerateObjectsUsingBlock:
      (^(NSString *encoding, NSUInteger idx, BOOL *stop)
       {
-          VMKInvocationSetArgumentFromLuaStateAtInex(ref, L, (int)idx + 1 + 1, [encoding UTF8String], idx);
+          VMKInvocationSetArgumentFromLuaStateAtInex(ref, state, (int)idx + 1 + 1, [encoding UTF8String], idx);
       })];
     
-    VMKInvoke(L, ref);
+    VMKInvoke(state, ref);
+    
     return ref->_returnCount;
 }
 
-static int VMKBridgeFunctorFinalize(lua_State *L)
+static int VMKBridgeFunctorFinalize(VMKLuaStateRef state)
 {
-    VMKBridgeFuncotrRef ref = luaL_checkudata(L, 1, VMKBridgeFuncotrMetaName);
+    VMKBridgeFuncotrRef ref = luaL_checkudata(state, 1, VMKBridgeFuncotrMetaName);
     VMKFunctorFinalize(ref);
     return 0;
 }
@@ -184,10 +185,10 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
     {NULL, NULL}
 };
 
-int LuaInternalOpenBridgeFunctorSupport(struct lua_State *L)
+int LuaInternalOpenBridgeFunctorSupport(VMKLuaStateRef state)
 {
-    luaL_newlib(L, __LuaObjCBridgeSupportFunctions);
-    VMKLoadCreateMetatable(L, VMKBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
+    luaL_newlib(state, __LuaObjCBridgeSupportFunctions);
+    VMKLoadCreateMetatable(state, VMKBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
     return 1;
 }
 
@@ -260,8 +261,7 @@ VMKBridgeFuncotrRef VMKInvocationCreate(void *functionPointer)
     return functor;
 }
 
-void VMKInvoke(struct lua_State *L,
-                   VMKBridgeFuncotrRef ref)
+void VMKInvoke(VMKLuaStateRef state, VMKBridgeFuncotrRef ref)
 {
     if (ref)
     {
@@ -277,96 +277,96 @@ void VMKInvoke(struct lua_State *L,
         {
             case _C_CHR:
             {
-                lua_pushinteger(L, *(char*)ref->_returnValue);
+                lua_pushinteger(state, *(char*)ref->_returnValue);
                 break;
             }
             case _C_INT:
             {
-                lua_pushinteger(L, *(int*)ref->_returnValue);
+                lua_pushinteger(state, *(int*)ref->_returnValue);
                 break;
             }
             case _C_SHT:
             {
-                lua_pushinteger(L, *(short*)ref->_returnValue);
+                lua_pushinteger(state, *(short*)ref->_returnValue);
                 break;
             }
             case _C_LNG:
             {
-                lua_pushinteger(L, *(long*)ref->_returnValue);
+                lua_pushinteger(state, *(long*)ref->_returnValue);
                 break;
             }
             case _C_LNG_LNG:
             {
-                lua_pushnumber(L, *(long double*)ref->_returnValue);
+                lua_pushnumber(state, *(long double*)ref->_returnValue);
                 break;
             }
             case _C_UCHR:
             {
-                lua_pushinteger(L, *(unsigned char*)ref->_returnValue);
+                lua_pushinteger(state, *(unsigned char*)ref->_returnValue);
                 break;
             }
             case _C_UINT:
             {
-                lua_pushinteger(L, *(unsigned int*)ref->_returnValue);
+                lua_pushinteger(state, *(unsigned int*)ref->_returnValue);
                 break;
             }
             case _C_USHT:
             {
-                lua_pushinteger(L, *(unsigned short*)ref->_returnValue);
+                lua_pushinteger(state, *(unsigned short*)ref->_returnValue);
                 break;
             }
             case _C_ULNG:
             {
-                lua_pushinteger(L, *(unsigned long*)ref->_returnValue);
+                lua_pushinteger(state, *(unsigned long*)ref->_returnValue);
                 break;
             }
             case _C_ULNG_LNG:
             {
                 //Notice here, but this will be rarely used
                 //
-                lua_pushnumber(L, *(long double*)ref->_returnValue);
+                lua_pushnumber(state, *(long double*)ref->_returnValue);
                 break;
             }
             case _C_BOOL:
             {
-                lua_pushboolean(L, *(char*)ref->_returnValue);
+                lua_pushboolean(state, *(char*)ref->_returnValue);
                 break;
             }
             case _C_FLT:
             {
-                lua_pushnumber(L, *(float*)ref->_returnValue);
+                lua_pushnumber(state, *(float*)ref->_returnValue);
                 break;
             }
             case _C_DBL:
             {
-                lua_pushnumber(L, *(double*)ref->_returnValue);
+                lua_pushnumber(state, *(double*)ref->_returnValue);
                 break;
             }
             case _C_CHARPTR:
             {
-                lua_pushstring(L, *(const char**)ref->_returnValue);
+                lua_pushstring(state, *(const char**)ref->_returnValue);
                 break;
             }
             case _C_SEL:
             {
                 SEL selector = *(SEL *)ref->_returnValue;
-                VMKPushSelector(L, selector);
+                VMKPushSelector(state, selector);
                 break;
             }
             case _C_CLASS:
             {
-                VMKPushObject(L, *(id *)ref->_returnValue, true, true);
+                VMKPushObject(state, *(id *)ref->_returnValue, true, true);
                 break;
             }
             case _C_ID:
             {
-                VMKPushObject(L, *(id *)ref->_returnValue, true, false);
+                VMKPushObject(state, *(id *)ref->_returnValue, true, false);
                 break;
             }
             case _C_PTR:
             case _C_ARY_B:
             {
-                lua_pushlightuserdata(L,  *(void* *)ref->_returnValue);
+                lua_pushlightuserdata(state,  *(void* *)ref->_returnValue);
                 break;
             }
             case _C_STRUCT_B:
@@ -419,7 +419,7 @@ void VMKInvocationSetArgumentAtInex(VMKBridgeFuncotrRef ref, int index, void *va
 }
 
 void VMKInvocationSetArgumentFromLuaStateAtInex(VMKBridgeFuncotrRef ref,
-                                                    struct lua_State *L,
+                                                    VMKLuaStateRef state,
                                                     int index,
                                                     const char *encoding,
                                                     NSUInteger iLooper)
@@ -429,92 +429,92 @@ void VMKInvocationSetArgumentFromLuaStateAtInex(VMKBridgeFuncotrRef ref,
     {
         case _C_CHR:
         {
-            *(char*)arguments[iLooper] = lua_tointeger(L, index);
+            *(char*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_INT:
         {
-            *(int*)arguments[iLooper] = (int)lua_tointeger(L, index);
+            *(int*)arguments[iLooper] = (int)lua_tointeger(state, index);
             break;
         }
         case _C_SHT:
         {
-            *(short*)arguments[iLooper] = lua_tointeger(L, index);
+            *(short*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_LNG:
         {
-            *(long*)arguments[iLooper] = lua_tointeger(L, index);
+            *(long*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_LNG_LNG:
         {
-            *(long double*)arguments[iLooper] = lua_tointeger(L, index);
+            *(long double*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_UCHR:
         {
-            *(unsigned char*)arguments[iLooper] = lua_tointeger(L, index);
+            *(unsigned char*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_UINT:
         {
-            *(unsigned int*)arguments[iLooper] = (unsigned int)lua_tointeger(L, index);
+            *(unsigned int*)arguments[iLooper] = (unsigned int)lua_tointeger(state, index);
             break;
         }
         case _C_USHT:
         {
-            *(unsigned short*)arguments[iLooper] = lua_tointeger(L, index);
+            *(unsigned short*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_ULNG:
         {
-            *(unsigned long*)arguments[iLooper] = lua_tointeger(L, index);
+            *(unsigned long*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_ULNG_LNG:
         {
             //Notice here, but this will be rarely used
             //
-            *(long double*)arguments[iLooper] = lua_tointeger(L, index);
+            *(long double*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_BOOL:
         {
-            *(unsigned char*)arguments[iLooper] = lua_tointeger(L, index);
+            *(unsigned char*)arguments[iLooper] = lua_tointeger(state, index);
             break;
         }
         case _C_FLT:
         {
-            *(float*)arguments[iLooper] = lua_tonumber(L, index);
+            *(float*)arguments[iLooper] = lua_tonumber(state, index);
             break;
         }
         case _C_DBL:
         {
-            *(double*)arguments[iLooper] = lua_tonumber(L, index);
+            *(double*)arguments[iLooper] = lua_tonumber(state, index);
             break;
         }
         case _C_CHARPTR:
         case _C_SEL:
         {
-            *(const char **)arguments[iLooper] = lua_tostring(L, index);
+            *(const char **)arguments[iLooper] = lua_tostring(state, index);
             break;
         }
         case _C_CLASS:
         {
-            *(id *)arguments[iLooper] = VMKCheckObject(L, index);
+            *(id *)arguments[iLooper] = VMKCheckObject(state, index);
             break;
         }
         case _C_ID:
         {
-            id obj = VMKCheckObject(L, index);
+            id obj = VMKCheckObject(state, index);
             *(id *)arguments[iLooper] = [obj retain];
             break;
         }
         case _C_PTR:
         case _C_ARY_B:
         {
-            *(void **)arguments[iLooper] = lua_touserdata(L, index);
+            *(void **)arguments[iLooper] = lua_touserdata(state, index);
             break;
         }
         case _C_STRUCT_B:
