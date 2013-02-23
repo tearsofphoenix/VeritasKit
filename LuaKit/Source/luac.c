@@ -28,7 +28,7 @@ static void PrintFunction(const Proto* f, int full);
 static int listing=0;			/* list bytecodes? */
 static int dumping=1;			/* dump bytecodes? */
 static int stripping=0;			/* strip debug information? */
-static char Output[]={ OUTPUT };	/* default output file name */
+//static char Output[]={ OUTPUT };	/* default output file name */
 
 static const char* progname=PROGNAME;	/* actual program name */
 

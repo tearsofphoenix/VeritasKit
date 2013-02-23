@@ -36,7 +36,7 @@ void LuaInternalDumpObjCClass(Class theClass)
         printf("\tMethods:\n");
         for (int i=0; i<classMethodCount; ++i)
         {
-            printf("\t\tname:%s encoding:%s\n", (const char*)method_getName(methodList[i]), method_getTypeEncoding(methodList[i]));
+            printf("\t\tname:%s encoding:%s\n", sel_getName(method_getName(methodList[i])), method_getTypeEncoding(methodList[i]));
         }
         
         //free(methodList);
@@ -301,7 +301,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     
     if(!class_addMethod(theClass, selectorOfGet, getterIMP, fullEncodingString))
     {
-        printf("Failed add Property Getter:%s to Class:%s OK!\n", (const char*)selectorOfGet, className);
+        printf("Failed add Property Getter:%s to Class:%s OK!\n", sel_getName(selectorOfGet), className);
     }
     
     memset(fullEncodingString, '\0', sizeof(char) * length);
@@ -311,7 +311,7 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
     
     if(!class_addMethod(theClass, selectorOfSet, setterIMP, fullEncodingString))
     {
-        printf("Failed add Property Setter:%s to Class:%s OK!\n", (const char*)selectorOfSet, className);
+        printf("Failed add Property Setter:%s to Class:%s OK!\n", sel_getName(selectorOfSet), className);
     }
     
     free(fullEncodingString);

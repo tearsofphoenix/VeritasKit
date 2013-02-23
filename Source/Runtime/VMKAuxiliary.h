@@ -25,7 +25,7 @@ VMK_EXPORT const char* VMKCheckString(VMKLuaStateRef state, int index);
 
 VMK_EXPORT CFIndex VMKCheckInteger(VMKLuaStateRef state, int index);
 
-#define VMKPushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
+#define VMKPushSelector(L, selector) lua_pushstring((L), sel_getName(selector))
 
 
 VMK_EXPORT void VMKLoadGlobalFunctionsWithLength(VMKLuaStateRef state, const struct luaL_Reg *functions, CFIndex count);
