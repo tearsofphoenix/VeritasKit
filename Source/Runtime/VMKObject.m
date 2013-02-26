@@ -19,13 +19,6 @@
 
 #pragma mark - Object observer
 
-static CFSetCallBacks __VMKRuntimePoolCallBacks;
-
-static CFMutableSetRef __VMKRuntimePool = NULL;
-static pthread_mutex_t __VMKRuntimePoolLock;
-
-#pragma mark - object api
-
 struct __VMKObject
 {
     id _obj;
@@ -33,6 +26,7 @@ struct __VMKObject
     
 #if VMK_DEBUG
     Boolean _isClass;
+    const char *_className;
 #endif
     
 };
@@ -46,6 +40,7 @@ VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass
     
 #if VMK_DEBUG
     objRef->_isClass = isClass;
+    objRef->_className = object_getClassName(rawObject);
 #endif
     
     if (isClass)
@@ -59,16 +54,6 @@ VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass
     lua_setmetatable(state, -2);
     
     return objRef;
-}
-
-void VMKObjectStoreInPool(VMKLuaStateRef state, id obj)
-{
-    pthread_mutex_lock(&__VMKRuntimePoolLock);
-    
-    CFSetAddValue(__VMKRuntimePool, obj);
-    
-    pthread_mutex_unlock(&__VMKRuntimePoolLock);
-    
 }
 
 id VMKObjectGetObject(VMKObjectRef ref)
@@ -269,13 +254,8 @@ static int luaObjC_garbageCollection(VMKLuaStateRef state)
     {
         id obj = objRef->_obj;
 #if VMK_DEBUG
-        NSLog(@"gc object: %@ retainCount: %d isClass: %s\n", obj, [obj retainCount], objRef->_isClass ? "YES" : "NO");
+        NSLog(@"gc object: %p className: %s isClass: %s\n", obj, objRef->_className, objRef->_isClass ? "YES" : "NO");
 #endif
-        pthread_mutex_lock(&__VMKRuntimePoolLock);
-        
-        CFSetRemoveValue(__VMKRuntimePool, obj);
-        
-        pthread_mutex_unlock(&__VMKRuntimePoolLock);
     }
     
     return 0;
@@ -308,22 +288,8 @@ static const luaL_Reg LuaNS_ClassMethods[] =
 
 int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state)
 {
-    if (!__VMKRuntimePool)
-    {
-        __VMKRuntimePoolCallBacks = kCFTypeSetCallBacks;
-        __VMKRuntimePoolCallBacks.equal = NULL;
-        __VMKRuntimePoolCallBacks.hash = NULL;
-        
-        __VMKRuntimePool = CFSetCreateMutable(NULL, 4096, &__VMKRuntimePoolCallBacks);
-        
-        pthread_mutexattr_t attr;
-        pthread_mutexattr_init(&attr);
-        pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-        
-        pthread_mutex_init(&__VMKRuntimePoolLock, &attr);
-        
-        pthread_mutexattr_destroy(&attr);
-        
+    if (!sNSBlockClass)
+    {        
         sNSBlockClass = objc_getClass("NSBlock");
     }
     

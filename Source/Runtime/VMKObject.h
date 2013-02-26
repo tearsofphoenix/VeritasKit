@@ -18,8 +18,6 @@ typedef struct __VMKObject *VMKObjectRef;
 
 VMK_EXPORT VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass);
 
-VMK_EXPORT void VMKObjectStoreInPool(VMKLuaStateRef state, id obj);
-
 VMK_EXPORT id VMKObjectGetObject(VMKObjectRef object);
 
 VMK_EXPORT int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state);

@@ -7,20 +7,18 @@ GL = #import("OpenGLES")
 
 
 @implementation TestGC : NSObject
---[[
+---[[
 - (id)init
 {
+    print("ok1")
     self = [super init]
-    
-    printf("ok")
-
     return self
 }
 --]]
---[[
+---[[
 - (void)dealloc
 {
-    printf("in dealloc")
+    print("in dealloc")
     
     [super dealloc]
 }
@@ -29,27 +27,33 @@ GL = #import("OpenGLES")
 
 @implementation AppDelegate : NSObject
 
+---[[
 - (id)init
 {
     self = [super init]
     return self
 }
+--]]
 
 - (BOOL)application: (id)application didFinishLaunchingWithOptions: (id)launchOptions
 {
+
     local bounds = [[UIScreen mainScreen] bounds]
     
-    window = [[UIWindow alloc] initWithFrame: bounds]
-    [window setBackgroundColor: [UIColor whiteColor]]
-    [window makeKeyAndVisible]
-    
-    local rootViewController = [[UIViewController alloc] init]
-    [window setRootViewController: rootViewController]
-    [rootViewController release]
+    _window = [[UIWindow alloc] initWithFrame: bounds]
 
+    local viewController = [[UIViewController alloc] init]
+    [_window setRootViewController: viewController]
+    [[viewController view] setBackgroundColor: [UIColor whiteColor]]
+    [viewController release]
+    
+    [_window makeKeyAndVisible]
+
+---[[
     local t = [[TestGC alloc] init]
     
     [t release]
+--]]
     return true
 }
 

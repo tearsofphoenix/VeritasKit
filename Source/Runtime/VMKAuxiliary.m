@@ -91,10 +91,10 @@ int VMKPushObject(VMKLuaStateRef state, id nsObject, bool shouldStoreInPool, boo
     if (nsObject)
     {
         VMKObjectCreate(state, nsObject, isClass);
-        
+
         if (shouldStoreInPool)
         {
-            VMKObjectStoreInPool(state, nsObject);
+            //VMKObjectStoreInPool(state, nsObject);
         }
         
     }else

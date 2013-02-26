@@ -84,7 +84,7 @@ static const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper)
 //
 static int VMKAcceleratorForNoArgument(VMKLuaStateRef state, const char* returnType,
                                     IMP impRef, id obj, SEL selector)
-{
+{    
     returnType = LuaInternalJumpoverEncodingDecorator(returnType);
     switch (*returnType)
     {
