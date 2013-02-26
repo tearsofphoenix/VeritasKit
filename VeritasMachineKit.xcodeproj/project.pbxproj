@@ -1282,6 +1282,11 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VeritasMachineKitiOS/VeritasMachineKitiOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"VMK_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				INFOPLIST_FILE = "VeritasMachineKitiOS/VeritasMachineKitiOS-Info.plist";

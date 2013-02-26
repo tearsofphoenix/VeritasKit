@@ -5,6 +5,28 @@ GL = #import("OpenGLES")
 #import "BoCPressViewController"
 #import("os")
 
+
+@implementation TestGC : NSObject
+--[[
+- (id)init
+{
+    self = [super init]
+    
+    printf("ok")
+
+    return self
+}
+--]]
+--[[
+- (void)dealloc
+{
+    printf("in dealloc")
+    
+    [super dealloc]
+}
+--]]
+@end
+
 @implementation AppDelegate : NSObject
 
 - (id)init
@@ -15,13 +37,19 @@ GL = #import("OpenGLES")
 
 - (BOOL)application: (id)application didFinishLaunchingWithOptions: (id)launchOptions
 {
-    print("ok")
     local bounds = [[UIScreen mainScreen] bounds]
     
     window = [[UIWindow alloc] initWithFrame: bounds]
     [window setBackgroundColor: [UIColor whiteColor]]
     [window makeKeyAndVisible]
-    print("window:", window)
+    
+    local rootViewController = [[UIViewController alloc] init]
+    [window setRootViewController: rootViewController]
+    [rootViewController release]
+
+    local t = [[TestGC alloc] init]
+    
+    [t release]
     return true
 }
 

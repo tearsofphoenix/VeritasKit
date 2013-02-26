@@ -30,14 +30,23 @@ struct __VMKObject
 {
     id _obj;
     VMKLuaStateRef _luaState;
+    
+#if VMK_DEBUG
+    Boolean _isClass;
+#endif
+    
 };
 
 VMKObjectRef VMKObjectCreate(VMKLuaStateRef state, id rawObject, Boolean isClass)
 {
-    VMKObjectRef objRef = lua_newuserdata(state, sizeof(struct __VMKObject));
+    VMKObjectRef objRef = lua_newuserdata(state, sizeof *objRef );
     
     objRef->_luaState = state;
     objRef->_obj = rawObject;
+    
+#if VMK_DEBUG
+    objRef->_isClass = isClass;
+#endif
     
     if (isClass)
     {
@@ -258,10 +267,12 @@ static int luaObjC_garbageCollection(VMKLuaStateRef state)
         
     if (objRef)
     {
-        const void *obj = objRef->_obj;
-        
+        id obj = objRef->_obj;
+#if VMK_DEBUG
+        NSLog(@"gc object: %@ retainCount: %d isClass: %s\n", obj, [obj retainCount], objRef->_isClass ? "YES" : "NO");
+#endif
         pthread_mutex_lock(&__VMKRuntimePoolLock);
-                
+        
         CFSetRemoveValue(__VMKRuntimePool, obj);
         
         pthread_mutex_unlock(&__VMKRuntimePoolLock);

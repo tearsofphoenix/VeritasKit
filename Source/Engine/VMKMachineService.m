@@ -261,7 +261,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
-        //printf("parsed: %s\n", ret);
+        printf("parsed: %s\n", ret);
         ///TODO: is here right?
         //
         if (callback)

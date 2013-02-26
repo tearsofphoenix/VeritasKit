@@ -119,16 +119,6 @@ static char __LuaObjC_KeyForLuaState;
 static char __LuaObjC_KeyForMethods;
 static char __LuaObjC_KeyForClassMethods;
 
-static inline void _luaClassAttachDictionaryToClass(Class theClass, const void *key)
-{
-    CFMutableDictionaryRef classMethods = CFDictionaryCreateMutable(NULL, 16, &kVMKCStringDictionaryKeyCallBacks, NULL);
-    
-    objc_setAssociatedObject(theClass, key, (id)classMethods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    CFRelease(classMethods);
-    
-}
-
 void LuaInternalAllocateClass(VMKLuaStateRef state, Class theClass, const char *className)
 {
     CFDictionaryAddValue(__LuaObjC_ClassDictionary, strdup(className), theClass);
@@ -138,8 +128,6 @@ void LuaInternalAllocateClass(VMKLuaStateRef state, Class theClass, const char *
     //Notice: the Class has not been registerd into the objc runtime
     //at this time
     //
-    _luaClassAttachDictionaryToClass(theClass, &__LuaObjC_KeyForMethods);
-    _luaClassAttachDictionaryToClass(theClass, &__LuaObjC_KeyForClassMethods);
 }
 
 VMKLuaStateRef LuaInternalGetLuaStateOfClass(Class theClass)
@@ -182,7 +170,7 @@ static int luaObjC_getClosureIDOfSelector(Class theClass, SEL selector, bool isC
     return VMKInvalidClouserID;
 }
 
-static void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const char* selectorName, bool isClassMethod)
+static void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const char *selectorName, bool isClassMethod)
 {
     if (theClass && selectorName)
     {
@@ -193,15 +181,17 @@ static void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const
         }
         
         CFMutableDictionaryRef methods = (CFMutableDictionaryRef)objc_getAssociatedObject(theClass, key);
-        if (methods)
+        if (!methods)
         {
-            CFDictionaryAddValue(methods, strdup(selectorName), (const void *)clouserID);
-        }else
-        {
-            //this should never happen!
-            //
-            NSLog(@"warning: class %@ have no methods dictionary!", theClass);
+            methods = CFDictionaryCreateMutable(NULL, 16, &kVMKCStringDictionaryKeyCallBacks, NULL);
+            
+            objc_setAssociatedObject(theClass, key, (id)methods, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            
+            CFRelease(methods);
         }
+
+        CFDictionaryAddValue(methods, strdup(selectorName), (const void *)clouserID);
+        
     }
 }
 
@@ -229,7 +219,7 @@ static inline NSUInteger VMKInternal_argumentCountOfSelector(SEL selector)
 static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, SEL sel, va_list ap)
 {
     Class theClass = object_getClass(obj);
-    bool isClassMethod = (theClass == obj);
+    Boolean isClassMethod = (theClass == obj);
     
     LuaClosureType clouserID = luaObjC_getClosureIDOfSelector(theClass, sel, isClassMethod);
     VMKLuaStateRef luaState = LuaInternalGetLuaStateOfClass(theClass);
@@ -257,10 +247,10 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
         //
         const char* typeLooper = methodTypeEncoding + 1 + 1;
         
-        
+        Boolean isNotDealloc = (sel != sel_getUid("dealloc"));
         //push 'self' argument first
         //
-        VMKPushObject(luaState, obj, true, false);
+        VMKPushObject(luaState, obj, isNotDealloc, false);
         
         //push '_cmd' argument next
         //
@@ -344,9 +334,11 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
             }
         }
         
+        Boolean hasReturnValue = (*methodTypeEncoding != 'v');
+        
         //why +1 +1 ? we have an implicit 'self' argument and '_cmd' arguemnt for method
         //
-        int status = lua_pcall(luaState, (int)numberOfArgument + 1 + 1, 1, 0);
+        int status = lua_pcall(luaState, (int)numberOfArgument + 1 + 1, hasReturnValue ? 1 : 0, 0);
         if (status != LUA_OK)
         {
             luaL_error(luaState, "error in call @selector: %s", sel_getName(sel));
@@ -455,13 +447,13 @@ static int luaObjC_class_addMethod(VMKLuaStateRef state, BOOL isObjectMethod)
     int argCount = lua_gettop(state);
     
     const char * className = lua_tostring(state, 1);
-    const char* selectorName = VMKCheckString(state, 2);
+    const char* selectorName = lua_tostring(state, 2);
     
     NSMutableString *typeEncoding = [[NSMutableString alloc] init];
     
     //return type
     //
-    const char* typeLooper = VMKCheckString(state, 3);
+    const char* typeLooper = lua_tostring(state, 3);
     const char* returnType = VMKTypeEncodingOfType(typeLooper);
     
     [typeEncoding appendFormat: @"%s", VMKTypeEncodingOfType(typeLooper)];
@@ -546,7 +538,7 @@ static int luaObjC_class_addMethod(VMKLuaStateRef state, BOOL isObjectMethod)
             
         }else
         {
-            printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", className, sel_getName(sel), typeEncodingCString, returnType);
+            printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", className, selectorName, typeEncodingCString, returnType);
         }
     }
     
