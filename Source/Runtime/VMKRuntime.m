@@ -462,8 +462,6 @@ static int luaObjC_objc_NSFastEnumerate(VMKLuaStateRef state)
 
 #pragma mark - literal object support, i.e. @{}, @[], @1
 
-static CFMutableSetRef _LuaObjCLiteralStorage = NULL;
-
 static int luaObjC_createLiteralArray(VMKLuaStateRef state)
 {
     int count = lua_gettop(state);
@@ -479,12 +477,10 @@ static int luaObjC_createLiteralArray(VMKLuaStateRef state)
     
     CFRelease(array);
     
-    CFSetAddValue(_LuaObjCLiteralStorage, value);
-    
-    CFRelease(value);
-    
     VMKPushObject(state, (id)value, true, false);
     
+    [(id) value autorelease];
+
     return 1;
 }
 
@@ -504,12 +500,10 @@ static int luaObjC_createLiteralDictionary(VMKLuaStateRef state)
     
     CFRelease(dict);
     
-    CFSetAddValue(_LuaObjCLiteralStorage, result);
-    
-    CFRelease(result);
-    
     VMKPushObject(state, (id)result, true, false);
-    
+
+    [(id)result autorelease];
+
     return 1;
 }
 
@@ -519,12 +513,10 @@ static inline int luaObjC_createConstantNumber(VMKLuaStateRef state)
     
     CFNumberRef number = CFNumberCreate(NULL, kCFNumberDoubleType, &value);
     
-    CFSetAddValue(_LuaObjCLiteralStorage, number);
-    
-    CFRelease(number);
-    
     VMKPushObject(state, (id)number, true, false);
     
+    [(id)number autorelease];
+
     return 1;
 }
 
@@ -574,12 +566,7 @@ static int _luaObjC_openRuntimeSupport(VMKLuaStateRef state)
 }
 
 int VMKOpenFoundationSupport(VMKLuaStateRef state)
-{
-    if (!_LuaObjCLiteralStorage)
-    {
-        _LuaObjCLiteralStorage = CFSetCreateMutable(NULL, 64, &kCFTypeSetCallBacks);
-    }
-    
+{    
     VMKClassInitialize(state);
     
     VMKLoadGlobalFunctions(state, luaObjC_runtimeFunctions);

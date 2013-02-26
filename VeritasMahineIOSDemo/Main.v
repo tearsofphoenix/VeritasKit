@@ -50,9 +50,16 @@ GL = #import("OpenGLES")
     [_window makeKeyAndVisible]
 
 ---[[
-    local t = [[TestGC alloc] init]
+    @autoreleasepool
+    {
+        local t = [[TestGC alloc] init]
     
-    [t release]
+        [t release]
+        
+        print("alloc-release-dealloc tested!")
+        
+        local dict = @{};
+    }
 --]]
     return true
 }
