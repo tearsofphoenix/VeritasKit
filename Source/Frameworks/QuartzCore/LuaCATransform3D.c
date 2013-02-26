@@ -9,7 +9,6 @@
 
 #include "VMKAuxiliary.h"
 #include "LuaCGAffineTransform.h"
-#include "VMKFrameworkFunctions.h"
 
 int VMKPushCATransform3D(lua_State *L, CATransform3D t)
 {
@@ -276,7 +275,7 @@ static int lua_CATransform3DGetAffineTransform (lua_State *L)
 
 static const luaL_Reg __LuaCATransform3DMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc
     {"__index", lua_CATransform3DIndex},
     {"__newindex", lua_CATransform3DNewIndex},
     {NULL, NULL},

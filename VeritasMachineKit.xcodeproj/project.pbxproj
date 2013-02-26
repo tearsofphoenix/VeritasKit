@@ -70,6 +70,14 @@
 		E15713AB1643A47000F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AA1643A47000F6EAAB /* CoreGraphics.framework */; };
 		E15713AD1643A47900F6EAAB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AC1643A47900F6EAAB /* OpenGLES.framework */; };
 		E172CF6B16B19DF800B5E035 /* CFRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = E172CF6916B19DF800B5E035 /* CFRuntime.h */; };
+		E1A39FB716DC3A79000F8CEC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A39FB616DC3A79000F8CEC /* SenTestingKit.framework */; };
+		E1A39FB816DC3A79000F8CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E01643A77F00B8EB6E /* UIKit.framework */; };
+		E1A39FB916DC3A79000F8CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E21643A77F00B8EB6E /* Foundation.framework */; };
+		E1A39FBF16DC3A79000F8CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1A39FBD16DC3A79000F8CEC /* InfoPlist.strings */; };
+		E1A39FC216DC3A79000F8CEC /* VeritasMachineKitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A39FC116DC3A79000F8CEC /* VeritasMachineKitTest.m */; };
+		E1A39FC916DC3A9B000F8CEC /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1D62E6D16AE20A900DE39BF /* LuaKit.framework */; };
+		E1A39FCB16DC3CA9000F8CEC /* Test.v in Resources */ = {isa = PBXBuildFile; fileRef = E1A39FCA16DC3CA9000F8CEC /* Test.v */; };
+		E1A39FCC16DC3D10000F8CEC /* VeritasMachineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */; };
 		E1A4009016439B4600F8AE92 /* VMKBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB51643993300F8AE92 /* VMKBridgeFunctor.m */; };
 		E1A4009116439B4600F8AE92 /* VMKBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* VMKBridgeInfo.m */; };
 		E1A4009216439B4600F8AE92 /* VMKBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VMKBridgeService.m */; };
@@ -88,7 +96,6 @@
 		E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */; };
 		E1A400A216439B4600F8AE92 /* LuaNSString.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.c */; };
 		E1A400A416439B4600F8AE92 /* LuaCATransform3D.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.c */; };
-		E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.c */; };
 		E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */; };
 		E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEE1643993300F8AE92 /* LuaUIGeometry.m */; };
 		E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF01643993300F8AE92 /* LuaUIGraphics.m */; };
@@ -127,6 +134,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = E1A4005316439A1C00F8AE92;
 			remoteInfo = VeritasMachineKitiOS;
+		};
+		E1A39FC716DC3A85000F8CEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E1A4FEA61643961600F8AE92;
+			remoteInfo = "LuaKit-iOS";
 		};
 		E1D62E6C16AE20A900DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -183,6 +197,14 @@
 		E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		E15713BA1643A5C300F6EAAB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		E172CF6916B19DF800B5E035 /* CFRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFRuntime.h; sourceTree = "<group>"; };
+		E1A39FB516DC3A79000F8CEC /* VeritasMachineKitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VeritasMachineKitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A39FB616DC3A79000F8CEC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E1A39FBC16DC3A79000F8CEC /* VeritasMachineKitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VeritasMachineKitTest-Info.plist"; sourceTree = "<group>"; };
+		E1A39FBE16DC3A79000F8CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1A39FC016DC3A79000F8CEC /* VeritasMachineKitTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasMachineKitTest.h; sourceTree = "<group>"; };
+		E1A39FC116DC3A79000F8CEC /* VeritasMachineKitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeritasMachineKitTest.m; sourceTree = "<group>"; };
+		E1A39FC316DC3A79000F8CEC /* VeritasMachineKitTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeritasMachineKitTest-Prefix.pch"; sourceTree = "<group>"; };
+		E1A39FCA16DC3CA9000F8CEC /* Test.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.v; sourceTree = "<group>"; };
 		E1A400001643993300F8AE92 /* libffi_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi_ios.a; sourceTree = "<group>"; };
 		E1A400011643993300F8AE92 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E1A400041643993300F8AE92 /* ffi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
@@ -299,8 +321,6 @@
 		E1A4FFDF1643993300F8AE92 /* LuaNSString.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = LuaNSString.c; sourceTree = "<group>"; };
 		E1A4FFE41643993300F8AE92 /* LuaCATransform3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaCATransform3D.h; sourceTree = "<group>"; };
 		E1A4FFE51643993300F8AE92 /* LuaCATransform3D.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = LuaCATransform3D.c; sourceTree = "<group>"; };
-		E1A4FFE71643993300F8AE92 /* VMKFrameworkFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKFrameworkFunctions.h; sourceTree = "<group>"; };
-		E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = VMKFrameworkFunctions.c; sourceTree = "<group>"; };
 		E1A4FFE91643993300F8AE92 /* VMKStructs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VMKStructs.h; sourceTree = "<group>"; };
 		E1A4FFEB1643993300F8AE92 /* LuaUIAccessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaUIAccessibility.h; sourceTree = "<group>"; };
 		E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaUIAccessibility.m; sourceTree = "<group>"; };
@@ -336,6 +356,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1A39FB116DC3A79000F8CEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A39FCC16DC3D10000F8CEC /* VeritasMachineKit.framework in Frameworks */,
+				E1A39FC916DC3A9B000F8CEC /* LuaKit.framework in Frameworks */,
+				E1A39FB716DC3A79000F8CEC /* SenTestingKit.framework in Frameworks */,
+				E1A39FB816DC3A79000F8CEC /* UIKit.framework in Frameworks */,
+				E1A39FB916DC3A79000F8CEC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1A4005016439A1C00F8AE92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -361,10 +393,12 @@
 				E1A4003F1643996C00F8AE92 /* VeritasMachineKit */,
 				E1A4005716439A1D00F8AE92 /* VeritasMachineKitiOS */,
 				E14A34E61643A77F00B8EB6E /* VeritasMahineIOSDemo */,
+				E1A39FBA16DC3A79000F8CEC /* VeritasMachineKitTest */,
 				E1A400381643996C00F8AE92 /* Frameworks */,
 				E1A4004C164399BF00F8AE92 /* Products */,
 				E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */,
 				E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */,
+				E1A39FB516DC3A79000F8CEC /* VeritasMachineKitTest.octest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -386,6 +420,27 @@
 				E14A34F21643A77F00B8EB6E /* Default.png */,
 				E14A34F41643A77F00B8EB6E /* Default@2x.png */,
 				E14A34F61643A77F00B8EB6E /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1A39FBA16DC3A79000F8CEC /* VeritasMachineKitTest */ = {
+			isa = PBXGroup;
+			children = (
+				E1A39FC016DC3A79000F8CEC /* VeritasMachineKitTest.h */,
+				E1A39FC116DC3A79000F8CEC /* VeritasMachineKitTest.m */,
+				E1A39FCA16DC3CA9000F8CEC /* Test.v */,
+				E1A39FBB16DC3A79000F8CEC /* Supporting Files */,
+			);
+			path = VeritasMachineKitTest;
+			sourceTree = "<group>";
+		};
+		E1A39FBB16DC3A79000F8CEC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1A39FBC16DC3A79000F8CEC /* VeritasMachineKitTest-Info.plist */,
+				E1A39FBD16DC3A79000F8CEC /* InfoPlist.strings */,
+				E1A39FC316DC3A79000F8CEC /* VeritasMachineKitTest-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -474,6 +529,7 @@
 				E14A34E01643A77F00B8EB6E /* UIKit.framework */,
 				E14A34E21643A77F00B8EB6E /* Foundation.framework */,
 				E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */,
+				E1A39FB616DC3A79000F8CEC /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -687,8 +743,6 @@
 		E1A4FFE61643993300F8AE92 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				E1A4FFE71643993300F8AE92 /* VMKFrameworkFunctions.h */,
-				E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.c */,
 				E1A4FFE91643993300F8AE92 /* VMKStructs.h */,
 			);
 			path = Shared;
@@ -804,6 +858,25 @@
 			productReference = E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E1A39FB416DC3A79000F8CEC /* VeritasMachineKitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1A39FC616DC3A79000F8CEC /* Build configuration list for PBXNativeTarget "VeritasMachineKitTest" */;
+			buildPhases = (
+				E1A39FB016DC3A79000F8CEC /* Sources */,
+				E1A39FB116DC3A79000F8CEC /* Frameworks */,
+				E1A39FB216DC3A79000F8CEC /* Resources */,
+				E1A39FB316DC3A79000F8CEC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1A39FC816DC3A85000F8CEC /* PBXTargetDependency */,
+			);
+			name = VeritasMachineKitTest;
+			productName = VeritasMachineKitTest;
+			productReference = E1A39FB516DC3A79000F8CEC /* VeritasMachineKitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-iOS" */;
@@ -851,6 +924,7 @@
 			targets = (
 				E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */,
 				E14A34DD1643A77F00B8EB6E /* VeritasMahineIOSDemo */,
+				E1A39FB416DC3A79000F8CEC /* VeritasMachineKitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -875,6 +949,15 @@
 				E14A34F51643A77F00B8EB6E /* Default@2x.png in Resources */,
 				E14A34F71643A77F00B8EB6E /* Default-568h@2x.png in Resources */,
 				E14A34FC1643A79D00B8EB6E /* Main.v in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A39FB216DC3A79000F8CEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A39FBF16DC3A79000F8CEC /* InfoPlist.strings in Resources */,
+				E1A39FCB16DC3CA9000F8CEC /* Test.v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,12 +1012,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E1A39FB316DC3A79000F8CEC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E14A34DA1643A77F00B8EB6E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E14A34ED1643A77F00B8EB6E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1A39FB016DC3A79000F8CEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A39FC216DC3A79000F8CEC /* VeritasMachineKitTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,7 +1067,6 @@
 				E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */,
 				E1A400A216439B4600F8AE92 /* LuaNSString.c in Sources */,
 				E1A400A416439B4600F8AE92 /* LuaCATransform3D.c in Sources */,
-				E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.c in Sources */,
 				E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */,
 				E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */,
 				E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */,
@@ -992,6 +1098,11 @@
 			target = E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */;
 			targetProxy = E14A34FD1643A7BA00B8EB6E /* PBXContainerItemProxy */;
 		};
+		E1A39FC816DC3A85000F8CEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "LuaKit-iOS";
+			targetProxy = E1A39FC716DC3A85000F8CEC /* PBXContainerItemProxy */;
+		};
 		E1D62E7416AE20CA00DE39BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "LuaKit-iOS";
@@ -1004,6 +1115,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				E14A34EA1643A77F00B8EB6E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E1A39FBD16DC3A79000F8CEC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1A39FBE16DC3A79000F8CEC /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1107,6 +1226,45 @@
 			};
 			name = Release;
 		};
+		E1A39FC416DC3A79000F8CEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeritasMachineKitTest/VeritasMachineKitTest-Prefix.pch";
+				INFOPLIST_FILE = "VeritasMachineKitTest/VeritasMachineKitTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E1A39FC516DC3A79000F8CEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeritasMachineKitTest/VeritasMachineKitTest-Prefix.pch";
+				INFOPLIST_FILE = "VeritasMachineKitTest/VeritasMachineKitTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		E1A4006216439A1D00F8AE92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1189,6 +1347,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E1A39FC616DC3A79000F8CEC /* Build configuration list for PBXNativeTarget "VeritasMachineKitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A39FC416DC3A79000F8CEC /* Debug */,
+				E1A39FC516DC3A79000F8CEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-iOS" */ = {
 			isa = XCConfigurationList;

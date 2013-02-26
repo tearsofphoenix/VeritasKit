@@ -8,7 +8,6 @@
 #include "LuaCGAffineTransform.h"
 #include "VMKAuxiliary.h"
 #include "LuaCGGeometry.h"
-#include "VMKFrameworkFunctions.h"
 #include <string.h>
 
 static int lua_CGAffineTransformIndex(lua_State *L)
@@ -219,7 +218,7 @@ static const luaL_Reg __luaCGAffineTransformAPIs[] =
 
 static const luaL_Reg __luaCGAffineTransformMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc function
     {"__index", lua_CGAffineTransformIndex},
     {"__newindex", lua_CGAffineTransformNewIndex},
     {NULL, NULL},

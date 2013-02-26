@@ -7,7 +7,6 @@
 //
 #include "LuaCGGeometry.h"
 #include "VMKAuxiliary.h"
-#include "VMKFrameworkFunctions.h"
 
 int VMKPushCGPoint(lua_State *L, CGPoint p)
 {
@@ -507,7 +506,7 @@ static const luaL_Reg __luaCGRectAPIs[] =
 
 static const luaL_Reg __lua_CGRectMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc
     {"__index", lua_CGRectIndex},
     {"__newindex", lua_CGRectNewIndex},
     {"__tostring", lua_CGRectToString},
@@ -516,7 +515,7 @@ static const luaL_Reg __lua_CGRectMetaMethods[] =
 
 static const luaL_Reg __lua_CGPointMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc
     {"__index", lua_CGPointIndex},
     {"__newindex", lua_CGPointNewIndex},
     {"__tostring", lua_CGPointToString},
@@ -526,7 +525,7 @@ static const luaL_Reg __lua_CGPointMetaMethods[] =
 
 static const luaL_Reg __lua_CGSizeMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc
     {"__index", lua_CGSizeIndex},
     {"__newindex", lua_CGSizeNewIndex},
     {"__tostring", lua_CGSizeToString},

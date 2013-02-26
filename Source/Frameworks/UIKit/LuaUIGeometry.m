@@ -8,7 +8,6 @@
 #include "LuaUIGeometry.h"
 #include "VMKAuxiliary.h"
 #include "LuaCGGeometry.h"
-#include "VMKFrameworkFunctions.h"
 #include <UIKit/UIGeometry.h>
 
 int VMKPushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
@@ -135,7 +134,7 @@ static int _luaUIEdgeInsetNewIndex(lua_State *L)
 
 static const luaL_Reg __LuaUIEdgeInsetMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc
     {"__index", _luaUIEdgeInsetIndex},
     {"__newindex", _luaUIEdgeInsetNewIndex},
     {NULL, NULL},
@@ -178,7 +177,7 @@ static int _luaUIGeometryUIOffsetNewIndex(lua_State *L)
 
 static const luaL_Reg __LuaUIOffsetMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc
     {"__index", _luaUIGeometryUIOffsetIndex},
     {"__newindex", _luaUIGeometryUIOffsetNewIndex},
     {NULL, NULL},

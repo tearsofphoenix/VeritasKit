@@ -10,5 +10,16 @@
 
 int main(int argc, char *argv[])
 {
-    LuaCall(@"Main.v", @"main", nil, 0, 0, nil);
+    @autoreleasepool
+    {        
+        NSString *sourceCode = [[NSString alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"Main"
+                                                                                                         ofType: @"v"]
+                                                               encoding: NSUTF8StringEncoding
+                                                                  error: NULL];
+        
+        LuaCall(sourceCode, @"main", nil, 0, 0, nil);
+        
+        
+        [sourceCode release];
+    }
 }

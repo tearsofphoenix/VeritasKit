@@ -16,7 +16,6 @@
 #import "LuaUIGeometry.h"
 #import "LuaUIGraphics.h"
 #import "LuaUIView.h"
-#import "VMKFrameworkFunctions.h"
 #import "VMKAuxiliary.h"
 
 static int lua_UIApplicationMain(lua_State *L)

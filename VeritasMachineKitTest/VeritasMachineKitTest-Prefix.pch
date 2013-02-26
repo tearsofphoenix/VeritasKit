@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'VeritasMachineKitTest' target in the 'VeritasMachineKitTest' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif

@@ -15,6 +15,8 @@ VMK_EXTERN_C_BEGIN
 #include <objc/objc.h>
 #include <CoreFoundation/CFDictionary.h>
 
+VMK_EXPORT void VMKTypeEncodingInitialize(void);
+
 VMK_EXPORT const char * VMKTypeEncodingOfType(const char *typeName);
 
 VMK_EXPORT void VMKAddEncodingForPredeclearClass(const char *className);

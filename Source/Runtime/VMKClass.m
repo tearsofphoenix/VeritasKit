@@ -80,20 +80,17 @@ static inline void _LuaObjC_initTypeEncodingDictionary(CFMutableDictionaryRef di
 #undef _AddTypeEncoding
 }
 
-static inline void VMKTypeEncodingInitialize(void)
-{
-    __sVMKTypeEncodingDictionary = CFDictionaryCreateMutable(NULL, 32, &kVMKCStringDictionaryKeyCallBacks, &kVMKCFTypeDictionaryValueCallbacks);
-    _LuaObjC_initTypeEncodingDictionary(__sVMKTypeEncodingDictionary);
-    
-}
-
-void VMKAddEncodingForPredeclearClass(const char *className)
+void VMKTypeEncodingInitialize(void)
 {
     if (!__sVMKTypeEncodingDictionary)
     {
-        VMKTypeEncodingInitialize();
+        __sVMKTypeEncodingDictionary = CFDictionaryCreateMutable(NULL, 32, &kVMKCStringDictionaryKeyCallBacks, &kVMKCFTypeDictionaryValueCallbacks);
+        _LuaObjC_initTypeEncodingDictionary(__sVMKTypeEncodingDictionary);
     }
-    
+}
+
+void VMKAddEncodingForPredeclearClass(const char *className)
+{    
     CFDictionaryAddValue(__sVMKTypeEncodingDictionary, strdup(className), @encode(id));
 }
 

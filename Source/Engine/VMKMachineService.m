@@ -190,25 +190,6 @@ static void VMKMachine_initialize(VMKMachineService *self)
     
     [sourceCode release];
     
-    /*
-    dispatch_queue_t garbageQueue = dispatch_queue_create(VMKMachineGarbageCollectionQueueIdentifier, DISPATCH_QUEUE_SERIAL);
-    internal->garbageCollectionQueue = garbageQueue;
-    
-    dispatch_source_t garbageCollectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, garbageQueue);
-    internal->garbageCollectTimer = garbageCollectTimer;
-    
-    NSTimeInterval collectInterval = VMKMachineGarbageCollectInterval * NSEC_PER_SEC;
-    
-    dispatch_source_set_timer(garbageCollectTimer, dispatch_time(DISPATCH_TIME_NOW, collectInterval), collectInterval, 0);
-    dispatch_source_set_event_handler(garbageCollectTimer,
-                                      (^
-                                       {
-                                           pthread_mutex_lock(&internal->lock);
-                                           lua_gc(luaStateRef, LUA_GCCOLLECT, 0);
-                                           pthread_mutex_unlock(&internal->lock);
-                                           
-                                       }));*/
-    
     self->_internal = internal;
 }
 
@@ -387,20 +368,6 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
 {
     VMKLuaStateRef luaStateRef = _internal->luaState;
     lua_Integer status;
-    
-    if ([sourceCode hasSuffix: @".v"])
-    {
-        //is a path infact
-        NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: sourceCode];
-        NSError *error = nil;
-        sourceCode = [NSString stringWithContentsOfFile: filePath
-                                               encoding: NSUTF8StringEncoding
-                                                  error: &error];
-        if (error)
-        {
-            NSLog(@"in function: %s line: %d error: %@", __PRETTY_FUNCTION__, __LINE__, error);
-        }
-    }
     
     if (sourceCode)
     {

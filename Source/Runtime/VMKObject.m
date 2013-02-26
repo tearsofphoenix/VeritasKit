@@ -316,6 +316,8 @@ int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state)
         sNSBlockClass = objc_getClass("NSBlock");
     }
     
+    VMKTypeEncodingInitialize();
+    
     VMKOpenNSFunctions(state);
     
     VMKLoadCreateMetatable(state, kVMKNSObjectMetaTableName, LuaNS_ObjectMethods);

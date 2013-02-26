@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #include "LuaNSRange.h"
-
 #include "VMKAuxiliary.h"
-#include "VMKFrameworkFunctions.h"
 
 int VMKPushNSRange(lua_State *L, NSRange r)
 {
@@ -117,7 +115,7 @@ static int lua_NSRangeNewIndex(lua_State *L)
 
 static const luaL_Reg __luaNSRangeMetaMethods[] =
 {
-    {"__gc", LuaInternalStructGarbageCollection},
+    //{"__gc", }, no need gc
     {"__index", lua_NSRangeIndex},
     {"__newindex", lua_NSRangeNewIndex},
     {NULL, NULL},
