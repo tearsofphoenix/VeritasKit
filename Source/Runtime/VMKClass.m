@@ -123,7 +123,7 @@ void LuaInternalAllocateClass(VMKLuaStateRef state, Class theClass, const char *
 {
     CFDictionaryAddValue(__LuaObjC_ClassDictionary, strdup(className), theClass);
     
-    objc_setAssociatedObject(theClass, &__LuaObjC_KeyForLuaState, [NSValue valueWithPointer: state], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(theClass, &__LuaObjC_KeyForLuaState, (void *)state, OBJC_ASSOCIATION_ASSIGN);
     
     //Notice: the Class has not been registerd into the objc runtime
     //at this time
@@ -132,7 +132,7 @@ void LuaInternalAllocateClass(VMKLuaStateRef state, Class theClass, const char *
 
 VMKLuaStateRef LuaInternalGetLuaStateOfClass(Class theClass)
 {
-    return [objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState) pointerValue];
+    return (VMKLuaStateRef)objc_getAssociatedObject(theClass, &__LuaObjC_KeyForLuaState);
 }
 
 Class LuaInternalGetClass(const char *className)
