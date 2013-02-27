@@ -48,7 +48,7 @@ VMKBridgeType VMKBridgeTypeFromString(NSString *aString)
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
             
-            VMKPushObject(state, theClass, true, true);
+            VMKPushObject(state, theClass, true);
             
             return YES;
         }
@@ -61,7 +61,7 @@ VMKBridgeType VMKBridgeTypeFromString(NSString *aString)
         {
             id value = [_info objectForKey: @"value"];
             
-            VMKPushObject(state, value, true, false);
+            VMKPushObject(state, value, false);
             
             return YES;
         }

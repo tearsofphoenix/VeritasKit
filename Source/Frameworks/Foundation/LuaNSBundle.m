@@ -12,7 +12,7 @@
 static int lua_NSLocalizedString(lua_State *L)
 {
     VMKPushObject(L, NSLocalizedString(VMKCheckObject(L, 1),
-                                              VMKCheckObject(L, 2)), true, false);
+                                              VMKCheckObject(L, 2)), false);
     return 1;
 }
 
@@ -20,7 +20,7 @@ static int lua_NSLocalizedStringFromTable(lua_State *L)
 {    
     VMKPushObject(L, NSLocalizedStringFromTable(VMKCheckObject(L, 1), 
                                                     VMKCheckObject(L, 2),
-                                                    VMKCheckObject(L, 3)), true, false);
+                                                    VMKCheckObject(L, 3)), false);
 
     return 1;
 }
@@ -30,7 +30,7 @@ static int lua_NSLocalizedStringFromTableInBundle(lua_State *L)
     VMKPushObject(L, NSLocalizedStringFromTableInBundle(VMKCheckObject(L, 1), 
                                                             VMKCheckObject(L, 2),
                                                             VMKCheckObject(L, 3),
-                                                            VMKCheckObject(L, 4)), true, false);
+                                                            VMKCheckObject(L, 4)), false);
     
     return 1;
 }
@@ -41,7 +41,7 @@ static int lua_NSLocalizedStringWithDefaultValue(lua_State *L)
                                                             VMKCheckObject(L, 2),
                                                             VMKCheckObject(L, 3),
                                                             VMKCheckObject(L, 4),
-                                                            VMKCheckObject(L, 5)), true, false);
+                                                            VMKCheckObject(L, 5)), false);
     
     return 1;
 }

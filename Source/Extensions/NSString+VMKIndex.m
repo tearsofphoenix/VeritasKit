@@ -27,14 +27,14 @@
         {
             const char* str = lua_tostring(state, 2);
             NSString *ret = [self stringByAppendingFormat: @"%s", str];
-            VMKPushObject(state, ret, true, false);
+            VMKPushObject(state, ret, false);
             break;
         }   
         case LUA_TUSERDATA:
         {
             NSString *str = VMKCheckObject(state, 2);
             NSString *ret = [self stringByAppendingString: str];
-            VMKPushObject(state, ret, true, false);
+            VMKPushObject(state, ret, false);
             break;
         }
         default:

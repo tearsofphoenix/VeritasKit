@@ -19,7 +19,7 @@ VMK_EXPORT const char * kVMKClassMetaTableName;
 
 VMK_EXPORT id VMKCheckObject(VMKLuaStateRef state, int index);
 
-VMK_EXPORT int VMKPushObject(VMKLuaStateRef state, id obj, bool shouldStoreInPool, bool isClass);
+VMK_EXPORT int VMKPushObject(VMKLuaStateRef state, id obj, bool isClass);
 
 VMK_EXPORT const char* VMKCheckString(VMKLuaStateRef state, int index);
 

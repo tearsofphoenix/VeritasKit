@@ -86,14 +86,14 @@ static int luaObjC_createClassWithSuperClass(VMKLuaStateRef state)
     if (registeredClass)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        VMKPushObject(state, registeredClass, true, true);
+        VMKPushObject(state, registeredClass, true);
         
     }else
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
         LuaInternalAllocateClass(state, theNewClass, newClassName);
-        VMKPushObject(state, theNewClass, true, true);
+        VMKPushObject(state, theNewClass, true);
     }
     return 1;
 }
@@ -260,7 +260,7 @@ static int luaObjC_createBlockObject(VMKLuaStateRef state)
     
     luaObjC_addClosureIDForBlock(clouserID, block);
     
-    VMKPushObject(state, block, true, false);
+    VMKPushObject(state, block, false);
     
     return 1;
 }
@@ -316,7 +316,7 @@ static int luaObjC_resolveName(VMKLuaStateRef state)
     
     if (theClass)
     {
-        VMKPushObject(state, theClass, false, true);
+        VMKPushObject(state, theClass, true);
         
     }else
     {
@@ -477,7 +477,7 @@ static int luaObjC_createLiteralArray(VMKLuaStateRef state)
     
     CFRelease(array);
     
-    VMKPushObject(state, (id)value, true, false);
+    VMKPushObject(state, (id)value, false);
     
     [(id) value autorelease];
 
@@ -500,7 +500,7 @@ static int luaObjC_createLiteralDictionary(VMKLuaStateRef state)
     
     CFRelease(dict);
     
-    VMKPushObject(state, (id)result, true, false);
+    VMKPushObject(state, (id)result, false);
 
     [(id)result autorelease];
 
@@ -513,7 +513,7 @@ static inline int luaObjC_createConstantNumber(VMKLuaStateRef state)
     
     CFNumberRef number = CFNumberCreate(NULL, kCFNumberDoubleType, &value);
     
-    VMKPushObject(state, (id)number, true, false);
+    VMKPushObject(state, (id)number, false);
     
     [(id)number autorelease];
 

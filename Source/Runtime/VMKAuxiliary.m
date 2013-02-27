@@ -86,16 +86,11 @@ const char* VMKCheckString(VMKLuaStateRef state, int index)
     }
 }
 
-int VMKPushObject(VMKLuaStateRef state, id nsObject, bool shouldStoreInPool, bool isClass)
+int VMKPushObject(VMKLuaStateRef state, id nsObject, bool isClass)
 {
     if (nsObject)
     {
         VMKObjectCreate(state, nsObject, isClass);
-
-        if (shouldStoreInPool)
-        {
-            //VMKObjectStoreInPool(state, nsObject);
-        }
         
     }else
     {

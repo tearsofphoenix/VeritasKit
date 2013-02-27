@@ -250,7 +250,7 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
         Boolean isNotDealloc = (sel != sel_getUid("dealloc"));
         //push 'self' argument first
         //
-        VMKPushObject(luaState, obj, isNotDealloc, false);
+        VMKPushObject(luaState, obj, false);
         
         //push '_cmd' argument next
         //
@@ -295,7 +295,7 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
                 case _C_ID:
                 {
                     id argLooper = va_arg(ap,  id);
-                    VMKPushObject(luaState, argLooper, true, false);
+                    VMKPushObject(luaState, argLooper, false);
                     break;
                 }
                 case _C_SEL:
@@ -351,7 +351,7 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
     IMP imp = class_getMethodImplementation(theClass, sel);
     if (imp)
     {
-        VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), true, false);
+        VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), false);
         
     }else
     {
