@@ -247,7 +247,6 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
         //
         const char* typeLooper = methodTypeEncoding + 1 + 1;
         
-        Boolean isNotDealloc = (sel != sel_getUid("dealloc"));
         //push 'self' argument first
         //
         VMKPushObject(luaState, obj, false);

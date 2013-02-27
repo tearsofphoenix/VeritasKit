@@ -130,7 +130,7 @@ void VMKLoadGlobalFunctionsWithLength(VMKLuaStateRef state, const luaL_Reg funct
     }
 }
 
-void VMKLoadCreateMetatable(VMKLuaStateRef state, const char *name, const luaL_Reg methods[])
+void VMKCreateMetatable(VMKLuaStateRef state, const char *name, const luaL_Reg methods[])
 {
     luaL_newmetatable(state, name);
     lua_pushvalue(state, -1);  /* push metatable */

@@ -536,11 +536,11 @@ static const luaL_Reg __lua_CGSizeMetaMethods[] =
 
 int VMKOpenCGGeometry(lua_State *L)
 {
-    VMKLoadCreateMetatable(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
+    VMKCreateMetatable(L, LUA_CGRect_METANAME, __lua_CGRectMetaMethods);
 
-    VMKLoadCreateMetatable(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
+    VMKCreateMetatable(L, LUA_CGPoint_METANAME, __lua_CGPointMetaMethods);
 
-    VMKLoadCreateMetatable(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
+    VMKCreateMetatable(L, LUA_CGSize_METANAME, __lua_CGSizeMetaMethods);
 
     VMKLoadGlobalFunctions(L, __luaCGPointAPIs);
     

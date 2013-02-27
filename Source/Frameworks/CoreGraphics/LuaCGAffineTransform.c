@@ -226,7 +226,7 @@ static const luaL_Reg __luaCGAffineTransformMetaMethods[] =
 
 int VMKOpenCGAffineTransform(lua_State *L)
 {
-    VMKLoadCreateMetatable(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
+    VMKCreateMetatable(L, LUA_CGAffineTransform_METANAME, __luaCGAffineTransformMetaMethods);
 
     VMKLoadGlobalFunctions(L, __luaCGAffineTransformAPIs);
     

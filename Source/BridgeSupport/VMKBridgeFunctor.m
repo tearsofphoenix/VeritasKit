@@ -188,7 +188,7 @@ static const luaL_Reg __LuaObjCBridgeSupportMetaMethods[] =
 int LuaInternalOpenBridgeFunctorSupport(VMKLuaStateRef state)
 {
     luaL_newlib(state, __LuaObjCBridgeSupportFunctions);
-    VMKLoadCreateMetatable(state, VMKBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
+    VMKCreateMetatable(state, VMKBridgeFuncotrMetaName, __LuaObjCBridgeSupportMetaMethods);
     return 1;
 }
 

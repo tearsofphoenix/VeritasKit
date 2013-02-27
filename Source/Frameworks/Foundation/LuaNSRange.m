@@ -135,7 +135,7 @@ static const luaL_Reg __luaNSRangeAPIs[] = {
 
 int VMKOpenNSRange(lua_State *L)
 {
-    VMKLoadCreateMetatable(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
+    VMKCreateMetatable(L, LUA_NSRange_METANAME, __luaNSRangeMetaMethods);
 
     VMKLoadGlobalFunctions(L, __luaNSRangeAPIs);
     

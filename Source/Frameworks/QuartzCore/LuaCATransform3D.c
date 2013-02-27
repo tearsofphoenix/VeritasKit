@@ -301,7 +301,7 @@ static const luaL_Reg __LuaCATransform3DAPIs[] =
 
 int VMKOpenCATransform3D(lua_State *L)
 {
-    VMKLoadCreateMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
+    VMKCreateMetatable(L, LUA_CATransform3D_METANAME, __LuaCATransform3DMetaMethods);
     
     VMKLoadGlobalFunctions(L, __LuaCATransform3DAPIs);
     

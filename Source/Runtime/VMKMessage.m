@@ -223,12 +223,6 @@ static const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
 
 #pragma mark - message send routine implementation
 
-@interface NSInvocation (PrivateMethodsExpose)
-
-- (void)invokeSuper;
-
-@end
-
 static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfClass)
 {
  
@@ -397,7 +391,9 @@ static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfC
             [invokation invoke];
         }else
         {
-            [invokation invokeSuper];
+            //as `invokeSuper' is private
+            //
+            objc_msgSend(invokation, @selector(invokeSuper));
         }
         
         switch (*returnType)

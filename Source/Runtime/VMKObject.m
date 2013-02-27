@@ -83,7 +83,7 @@ static int _VMKObjectIsEqual(VMKLuaStateRef state)
 {
     id obj1 = VMKCheckObject(state, 1);
     id obj2 = VMKCheckObject(state, 2);
-    lua_pushboolean(state, [obj1 isEqual: obj2]);
+    lua_pushboolean(state, CFEqual(obj1, obj2));
     
     return 1;
 }
@@ -316,9 +316,9 @@ int VMKOpenNSObjectExtensionSupport(VMKLuaStateRef state)
     
     VMKOpenNSFunctions(state);
     
-    VMKLoadCreateMetatable(state, kVMKNSObjectMetaTableName, LuaNS_ObjectMethods);
+    VMKCreateMetatable(state, kVMKNSObjectMetaTableName, LuaNS_ObjectMethods);
     
-    VMKLoadCreateMetatable(state, kVMKClassMetaTableName, LuaNS_ClassMethods);
+    VMKCreateMetatable(state, kVMKClassMetaTableName, LuaNS_ClassMethods);
     
     return 0;
 }

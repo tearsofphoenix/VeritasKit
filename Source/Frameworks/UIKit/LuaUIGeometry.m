@@ -185,9 +185,9 @@ static const luaL_Reg __LuaUIOffsetMetaMethods[] =
 
 int VMKOpenUIGeometry(lua_State *L)
 {
-    VMKLoadCreateMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
+    VMKCreateMetatable(L, LUA_UIEdgeInsets_METANAME, __LuaUIEdgeInsetMetaMethods);
 
-    VMKLoadCreateMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
+    VMKCreateMetatable(L, LUA_UIOffset_METANAME, __LuaUIOffsetMetaMethods);
 
     VMKLoadGlobalFunctions(L, __LuaUIGeometryAPIs);
 

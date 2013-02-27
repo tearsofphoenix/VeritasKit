@@ -32,7 +32,7 @@ VMK_EXPORT void VMKLoadGlobalFunctionsWithLength(VMKLuaStateRef state, const str
 
 VMK_EXPORT void VMKLoadGlobalFunctions(VMKLuaStateRef state, const struct luaL_Reg *functions);
 
-VMK_EXPORT void VMKLoadCreateMetatable(VMKLuaStateRef state, const char *name, const struct luaL_Reg *methods);
+VMK_EXPORT void VMKCreateMetatable(VMKLuaStateRef state, const char *name, const struct luaL_Reg *methods);
 
 VMK_EXPORT const char *VMKCopyUTF8StringFromString(CFStringRef str);
 
