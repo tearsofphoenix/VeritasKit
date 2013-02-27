@@ -267,7 +267,7 @@ static int luaObjC_createBlockObject(VMKLuaStateRef state)
 
 static int luaObjC_registerClassPair(VMKLuaStateRef state)
 {
-    const char* className = VMKCheckString(state, 1);
+    const char* className = lua_tostring(state, 1);
     
     Class theClass = LuaInternalGetClass(className);
     

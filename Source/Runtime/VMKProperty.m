@@ -343,14 +343,14 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
 int LuaIMPAddPropertyToClass(VMKLuaStateRef state)
 {
     
-    const char* className = VMKCheckString(state, 1);
-    const char* atomic = VMKCheckString(state, 2);
-    const char* ownershipName = VMKCheckString(state, 3);
-    const char* getterName = VMKCheckString(state, 4);
-    const char* setterName = VMKCheckString(state, 5);
-    const char* typeName = VMKCheckString(state, 6);
-    const char* propertyName = VMKCheckString(state, 7);
-    //const char* propertyInternalName = VMKCheckString(L, 8);
+    const char* className = lua_tostring(state, 1);
+    const char* atomic = lua_tostring(state, 2);
+    const char* ownershipName = lua_tostring(state, 3);
+    const char* getterName = lua_tostring(state, 4);
+    const char* setterName = lua_tostring(state, 5);
+    const char* typeName = lua_tostring(state, 6);
+    const char* propertyName = lua_tostring(state, 7);
+    //const char* propertyInternalName = lua_tostring(L, 8);
     LuaIMPAddPropertyToClassOrigin(className, atomic, ownershipName, getterName,
                                    setterName, typeName, propertyName);
     

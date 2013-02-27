@@ -59,6 +59,8 @@ GL = #import("OpenGLES")
         print("alloc-release-dealloc tested!")
         
         local dict = @{};
+        local array = @[ dict ];
+        local a = @12;
     }
 --]]
     return true

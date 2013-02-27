@@ -84,7 +84,8 @@ static int lua_CGRectIndex(lua_State *L)
         return 1;
     }else
     {
-        luaL_error(L, "Unknow field: %s of datatype (CGRect)", fieldName);
+        printf("Unknow field: %s of datatype (CGRect)", fieldName);
+        lua_error(L);
     }
     return 0;
 }

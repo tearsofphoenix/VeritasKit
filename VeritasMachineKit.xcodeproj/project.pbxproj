@@ -1360,6 +1360,7 @@
 				E1A39FC516DC3A79000F8CEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-iOS" */ = {
 			isa = XCConfigurationList;

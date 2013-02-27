@@ -341,7 +341,8 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
         int status = lua_pcall(luaState, (int)numberOfArgument + 1 + 1, hasReturnValue ? 1 : 0, 0);
         if (status != LUA_OK)
         {
-            luaL_error(luaState, "error in call @selector: %s", sel_getName(sel));
+            printf("error in call @selector: %s", sel_getName(sel));
+            lua_error(luaState);
         }
         
         return ;
@@ -464,7 +465,7 @@ static int luaObjC_class_addMethod(VMKLuaStateRef state, BOOL isObjectMethod)
     
     for (int iLooper = 4; iLooper < argCount; ++iLooper)
     {
-        typeLooper = VMKCheckString(state, iLooper);
+        typeLooper = lua_tostring(state, iLooper);
         
         [typeEncoding appendFormat: @"%s", VMKTypeEncodingOfType(typeLooper)];
     }

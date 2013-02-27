@@ -261,7 +261,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
     {
         const char* ret = luaL_checkstring(luaStateRef, -1);
         lua_pop(luaStateRef, 1);
-        //printf("parsed: %s\n", ret);
+        printf("parsed: %s\n", ret);
         ///TODO: is here right?
         //
         if (callback)
@@ -270,14 +270,7 @@ static void VMKMachineServiceParseSourceCode(VMKMachineService *self, NSString *
         }
     }else
     {
-        if (callback)
-        {
-            callback(@[ @NO, @( lua_tostring(luaStateRef, 1) ) ]);
-            
-        }else
-        {
-            lua_error(luaStateRef);
-        }
+        lua_error(luaStateRef);
     }
 }
 
