@@ -9,15 +9,12 @@
 
 #include "LuaNSBundle.h"
 #include "LuaNSRange.h"
-#include "LuaNSString.h"
 #include "LuaNSCollection.h"
 
 int VMKOpenFoundation(VMKLuaStateRef L)
 {    
-    VMKOpenNSBundle(L);
-   
+    VMKOpenNSBundle(L);   
     VMKOpenNSRange(L);
-    VMKOpenNSString(L);
     VMKOpenNSColletion(L);
     
     return 0;

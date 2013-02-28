@@ -520,6 +520,16 @@ static inline int luaObjC_createConstantNumber(VMKLuaStateRef state)
     return 1;
 }
 
+static int lua_NSConstantStringCreate(VMKLuaStateRef L)
+{
+    const char* str = lua_tostring(L, 1);
+    
+    CFStringRef constantString =  CFStringCreateWithCString(NULL, str, kCFStringEncodingUTF8);
+    VMKPushObject(L, (id)constantString, false);
+    [(id)constantString autorelease];
+    
+    return 1;
+}
 
 static const luaL_Reg luaObjC_runtimeFunctions[] =
 {
@@ -548,7 +558,8 @@ static const luaL_Reg luaObjC_runtimeFunctions[] =
     {"objc_createLiteralDictionary", luaObjC_createLiteralDictionary},
     
     {"__NSConstantNumber", luaObjC_createConstantNumber},
-    
+    {"__NSConstantString", lua_NSConstantStringCreate},
+
     {NULL, NULL}
 };
 

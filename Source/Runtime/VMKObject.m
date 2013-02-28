@@ -271,9 +271,9 @@ static int _VMKObjectGarbageCollection(VMKLuaStateRef state)
         
     if (objRef)
     {
-        id obj = objRef->_obj;
 #if VMK_DEBUG
-        NSLog(@"gc object: %p className: %s isClass: %s\n", obj, objRef->_className, objRef->_isClass ? "YES" : "NO");
+        //id obj = objRef->_obj;
+        //NSLog(@"gc object: %p className: %s isClass: %s\n", obj, objRef->_className, objRef->_isClass ? "YES" : "NO");
 #endif
     }
     
