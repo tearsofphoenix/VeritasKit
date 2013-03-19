@@ -11,10 +11,8 @@
 
 void cleanSocket(int socket);
 
-NSData *dataOfLineFromSocket(int socket);
-
-NSDictionary *queryParametersOfURL(NSURL *url);
-
-NSDictionary *headersOfSocket(int socket);
+NSData *dataFromSocket(int socket);
 
 NSString *sockaddrToNSString(struct sockaddr *addr);
+
+NSString *stringFromCurrentTime(void);

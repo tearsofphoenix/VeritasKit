@@ -22,7 +22,6 @@
 #import "NSString+VMKIndex.h"
 #import "NSData+Base64.h"
 #import "VMKDebugServer.h"
-#import "VMKDebugRequestHandler.h"
 
 #import <LuaKit/LuaKit.h>
 
@@ -63,7 +62,8 @@ typedef struct __VMKMachineAttributes *VMKMachineAttributesRef;
 
 static int luaObjC_objc_UUIDString(VMKLuaStateRef state)
 {
-    NSString *uuidString = [[NSString UUID] stringByReplacingOccurrencesOfString: @"-" withString: @"_"];
+    NSString *uuidString = [[NSString UUID] stringByReplacingOccurrencesOfString: @"-"
+                                                                      withString: @"_"];
     lua_pushstring(state, [uuidString UTF8String]);
     return 1;
 }
@@ -175,10 +175,7 @@ static void VMKMachine_initialize(VMKMachineService *self)
     VMKLibraryInformationRegisterToState(libs, VMKMachineUIKitSupport, luaStateRef);
         
     internal->luaState = luaStateRef;
-    
-    [[VMKDebugServer sharedServer] setState: luaStateRef];
-    [[VMKDebugServer sharedServer] start];
-    
+        
 #if 0
     NSString *sourceCode = [[NSString alloc] initWithData: [NSData dataFromBase64String: kLuaObjCParserString]
                                                  encoding: NSUTF8StringEncoding];
@@ -207,6 +204,13 @@ static VMKMachineService *sSharedService = nil;
     if (!sSharedService)
     {
         sSharedService = [[self alloc] init];
+        
+        VMKDebugServer *debugServer = [VMKDebugServer sharedServer];
+        [debugServer setState: sSharedService->_internal->luaState];
+        
+        [sSharedService setDebugServer: debugServer];
+        
+        [debugServer start];
     }
     
     return sSharedService;

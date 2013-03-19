@@ -10,17 +10,12 @@
 
 @required
 
-- (BOOL)handleRequest: (NSString *)url
-          withHeaders: (NSDictionary *)headers
-                query: (NSDictionary *)query
-              address: (NSString *)address
+- (BOOL)handleRequest: (NSDictionary *)parameters
              onSocket: (int)socket;
 
 @end
 
 @interface VMKDebugRequestHandler : NSObject <HVRequestHandler>
-
-+ (id)handler;
 
 - (BOOL)writeData: (NSData *)rawData
          toSocket: (int)socket;

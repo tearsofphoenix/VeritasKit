@@ -10,14 +10,17 @@
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 
-#import "VMKFunctions.h"
+#import "VMKDebugFunctions.h"
 #import "VMKDebugServer.h"
 #import "VMKDebugRequestHandler.h"
-#import "HVBase64StaticFile.h"
 #import "VMKDebugCommandHandler.h"
-#import "VMKDebugServerBase64String.h"
-#import "VMKJqueryMinBase64String.h"
 #import "NSData+Base64.h"
+
+#import <LuaKit/LuaKit.h>
+
+@interface VMKDebugServer ()<VMKDebugCommandHandlerDelegate>
+
+@end
 
 @implementation VMKDebugServer
 
@@ -31,7 +34,7 @@ static VMKDebugServer *sSharedServer = nil;
                    {
                        sSharedServer = [[VMKDebugServer alloc] init];
                    }));
-
+    
     return sSharedServer;
 }
 
@@ -39,7 +42,8 @@ static VMKDebugServer *sSharedServer = nil;
 {
     if ((self = [super init]))
     {
-        _handlers = [[NSMutableDictionary alloc] initWithCapacity: 10];
+        _handler = [[VMKDebugCommandHandler alloc] init];
+        [_handler setDelegate: self];
     }
     
     return self;
@@ -49,78 +53,52 @@ static VMKDebugServer *sSharedServer = nil;
 {
     [self stop];
     
-    [_handlers release];
-    _handlers = nil;
+    [_handler release];
+    _handler = nil;
     
     [super dealloc];
 }
 
+- (void)setState:(VMKLuaStateRef)state
+{
+    [_handler setState: state];
+}
+
+- (VMKLuaStateRef)state
+{
+    return [_handler state];
+}
+
 - (void)handleClientConnection: (NSArray *)args
 {
- 
-    NSString *address = [args objectAtIndex:0];
-    
     int socket = [[args objectAtIndex:1] intValue];
     
     @autoreleasepool
     {
         
-        NSData *httpInitLine = dataOfLineFromSocket(socket);
+        NSData *reveicedData = dataFromSocket(socket);
         
-        if (httpInitLine)
+        if (reveicedData)
         {
-            NSString *httpInitLineString = [[[NSString alloc] initWithData: httpInitLine
-                                                                  encoding: NSASCIIStringEncoding] autorelease];
-            
-            NSLog(@"[VMKDebugServer] %@: REQUEST HTTP INIT LINE: %@", [NSDate date], httpInitLineString);
-            
-            NSArray *initLineTokens = [httpInitLineString componentsSeparatedByString: @" "];
-            
-            NSString *requestMethod = nil;
-            NSURL *requestUrl = nil;
-            
-            if ([initLineTokens count] >= 3)
+            NSError *error = nil;
+            NSDictionary *info = [NSPropertyListSerialization propertyListWithData: reveicedData
+                                                                           options: NSPropertyListImmutable
+                                                                            format: NULL
+                                                                             error: &error];
+            if (error)
             {
-                requestMethod = [initLineTokens objectAtIndex: 0];
+                NSLog(@"%@", error);
                 
-                NSString *requestUrlString = [initLineTokens objectAtIndex: 1];
-                
-                if (requestUrlString)
-                {
-                    requestUrl = [NSURL URLWithString: requestUrlString];
-                }
-            }
-            
-            NSDictionary *requestQueryParams = queryParametersOfURL(requestUrl);
-            NSDictionary *requestHeaders = headersOfSocket(socket);
-            
-            if (requestUrl)
+            }else
             {
-                NSString *relativePath = [requestUrl relativePath];
-                if (relativePath)
-                {
-                    id<HVRequestHandler> handler = nil;
-                    @synchronized (_handlers)
-                    {
-                        handler = [_handlers objectForKey: relativePath];
-                    }
-                    
-                    if (handler)
-                    {
-                        [handler handleRequest: relativePath
-                                   withHeaders: requestHeaders
-                                         query: requestQueryParams
-                                       address: address
-                                      onSocket: socket];
-                    }
-                }
+                NSLog(@"%@", info);
+                [_handler handleRequest: info
+                               onSocket: socket];
             }
         }
         
         cleanSocket(socket);
-        
-    }
-    
+    }    
 }
 
 - (void)acceptClientConnectionsLoop
@@ -132,7 +110,7 @@ static VMKDebugServer *sSharedServer = nil;
         {
             struct sockaddr clientAddr;
             unsigned int addrLen = sizeof(clientAddr);
-            const int clientSocket = accept(_listenSocket, (struct sockaddr *)&clientAddr, &addrLen);
+            int clientSocket = accept(_listenSocket, &clientAddr, &addrLen);
             
             if (clientSocket == -1)
             {
@@ -161,37 +139,14 @@ static VMKDebugServer *sSharedServer = nil;
     }
 }
 
-- (void)registerHandler: (id<HVRequestHandler>)handler
-           forURLScheme: (NSString *)url
-{
-    if (url && handler)
-    {
-        [_handlers setObject: handler
-                      forKey: url];
-    }
-}
-
-- (void)registerHandler: (id<HVRequestHandler>)handler
-          forURLSchemes: (NSArray *)urls
-{
-    if (urls && handler)
-    {
-        for (NSString *iLooper in urls)
-        {
-            [_handlers setObject: handler
-                          forKey: iLooper];
-        }
-    }
-}
-
 - (BOOL)start: (int)port
 {
     _listenPort = port;
     _done = NO;
-   
+    
     struct sockaddr_in addr;
     
-    memset(&addr, 0, sizeof addr);    
+    memset(&addr, 0, sizeof addr);
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = INADDR_ANY;
     addr.sin_port = htons(_listenPort);
@@ -237,28 +192,20 @@ static VMKDebugServer *sSharedServer = nil;
 {
     if (!_done)
     {
-        if([self start: 9449])
+        @autoreleasepool
         {
-            NSString *filePath = [[NSBundle bundleForClass: [self class]] pathForResource: @"websocketclient"
-                                                                                   ofType: @"html"];
-            NSData *HTMLData = [[NSData alloc] initWithContentsOfFile: filePath];
-            
-            [self registerHandler: [HVBase64StaticFile handler: [HTMLData base64EncodedString]]
-                    forURLSchemes: @[ @"", @"/", @"/index", @"/index.html"]];
-            
-            [HTMLData release];
-            
-            [self registerHandler: [HVBase64StaticFile handler: VMKJqueryMinBase64String]
-                     forURLScheme: @"/jquery-min.js"];
-            
-            VMKDebugCommandHandler *commandHandler = [VMKDebugCommandHandler handler];
-            [commandHandler setState: _state];
-            
-            [self registerHandler: commandHandler
-                     forURLScheme: @"/command"];
-        }else
+            if(![self start: 9449])
+            {
+                NSLog(@"Could not start server!");
+            }
+        }
+        
+        while (!_canLauch)
         {
-            NSLog(@"Could not start server!");
+            @autoreleasepool
+            {
+                [[NSRunLoop currentRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.01]];
+            }
         }
     }
 }
@@ -267,6 +214,43 @@ static VMKDebugServer *sSharedServer = nil;
 {
     _done = YES;
     cleanSocket(_listenSocket);
+}
+
+#pragma mark - VMKDebugCommandHandlerDelegate
+
+- (void)commandHandler: (VMKDebugCommandHandler *)handler
+    didReceivedCommand: (NSString *)command
+             arguments: (NSDictionary *)arguments
+{
+    if ([command isEqualToString: VMKDebugCommandLaunch])
+    {
+        _canLauch = YES;
+    }
+}
+
+- (void)commandHandler: (VMKDebugCommandHandler *)handler
+ wantToPauseForCommand: (NSString *)command
+             arguments: (NSDictionary *)arguments
+{
+    if (!_pausingForCommand)
+    {
+        _pausingForCommand = YES;
+        
+        while (_pausingForCommand)
+        {
+            @autoreleasepool
+            {
+                [[NSRunLoop currentRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow: 0.01]];
+            }
+        }
+    }
+}
+
+- (void)commandHandler: (VMKDebugCommandHandler *)handler
+wantToResumeForCommand: (NSString *)command
+             arguments: (NSDictionary *)arguments
+{
+    _pausingForCommand = NO;
 }
 
 @end

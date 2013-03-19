@@ -12,6 +12,16 @@
 typedef void (^ VMKBlock)(VMKLuaStateRef state);
 typedef void (^ VCallbackBlock)(NSArray *callbackArguments) ;
 
+@protocol VMKDebugServer <NSObject>
+
+- (void)setState: (VMKLuaStateRef)state;
+
+- (void)stop;
+
+- (void)start;
+
+@end
+
 @interface VMKMachineService : NSObject
 
 + (id)sharedService;
@@ -24,6 +34,8 @@ typedef void (^ VCallbackBlock)(NSArray *callbackArguments) ;
 
 - (void)dumpSourceCode: (NSString *)sourceCode
                 toPath: (NSString *)path;
+
+@property (nonatomic, assign) id<VMKDebugServer> debugServer;
 
 @end
 

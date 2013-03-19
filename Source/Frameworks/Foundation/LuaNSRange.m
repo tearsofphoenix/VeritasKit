@@ -114,10 +114,10 @@ static int lua_NSRangeNewIndex(lua_State *L)
 }
 
 static const luaL_Reg __luaNSRangeMetaMethods[] =
-{
+{    
     //{"__gc", }, no need gc
-    {"__index", lua_NSRangeIndex},
-    {"__newindex", lua_NSRangeNewIndex},
+    {"__index", lua_NSRangeIndex}, //range.location
+    {"__newindex", lua_NSRangeNewIndex}, //range.location = 10;
     {NULL, NULL},
 };
 

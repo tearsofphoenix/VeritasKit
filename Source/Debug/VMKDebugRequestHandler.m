@@ -9,11 +9,6 @@
 
 @implementation VMKDebugRequestHandler
 
-+ (id)handler
-{
-    return [[[[self class] alloc] init] autorelease];
-}
-
 - (BOOL)writeData: (NSData *)rawData
          toSocket: (int)socket;
 {
@@ -59,10 +54,7 @@
                   toSocket: socket];
 }
 
-- (BOOL)handleRequest: (NSString *)url
-          withHeaders: (NSDictionary *)headers
-                query: (NSDictionary *)query
-              address: (NSString *)address
+- (BOOL)handleRequest: (NSDictionary *)parameters
              onSocket: (int)socket
 {
     return [self writeOKStatus: socket];

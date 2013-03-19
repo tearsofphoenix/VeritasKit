@@ -5,31 +5,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VMKMachineService.h"
 
-struct lua_State;
+@class VMKDebugCommandHandler;
 
-@protocol HVRequestHandler;
-
-@interface VMKDebugServer : NSObject
+@interface VMKDebugServer : NSObject<VMKDebugServer>
 {
     int _listenPort;
     int _listenSocket;
     BOOL _done;
-    NSMutableDictionary *_handlers;
+    BOOL _canLauch;
+    BOOL _pausingForCommand;
+    
+    VMKDebugCommandHandler *_handler;
 }
 
-@property (nonatomic, assign) struct lua_State *state;
+@property (nonatomic, assign) VMKLuaStateRef state;
 
 + (VMKDebugServer *)sharedServer;
-
-- (void)registerHandler: (id<HVRequestHandler>)handler
-           forURLScheme: (NSString *)url;
-
-- (void)registerHandler: (id<HVRequestHandler>)handler
-          forURLSchemes: (NSArray *)urls;
-
-- (void)stop;
-
-- (void)start;
 
 @end
