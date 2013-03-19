@@ -559,3 +559,23 @@ int LuaIMPAddClassMethod(VMKLuaStateRef state)
 {
     return luaObjC_class_addMethod(state, NO);
 }
+
+void LuaInternalSetCurrentSelfAndCMD(id obj, SEL selector)
+{
+    VMKLuaStateRef state = LuaInternalGetLuaStateOfClass(object_getClass(obj));
+    VMKPushObject(state, obj, false);
+    lua_setglobal(state, "self");
+    
+    VMKPushSelector(state, selector);
+    lua_setglobal(state, "_cmd");
+}
+
+void LuaInternalClearCurrentSelfAndCMD(id obj)
+{
+    VMKLuaStateRef state = LuaInternalGetLuaStateOfClass(object_getClass(obj));
+    lua_pushnil(state);
+    lua_setglobal(state, "self");
+    
+    lua_pushnil(state);
+    lua_setglobal(state, "_cmd");
+}

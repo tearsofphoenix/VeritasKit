@@ -1099,8 +1099,7 @@ lvalueleaf = function()
                         return leaf(t)
                     end
                 end
-                print("1055")
-                unexpectederror(t)	
+                unexpectederror(t)
             end
 
 lvalueidentifier = function()
@@ -1183,6 +1182,7 @@ local function peekselel()
 
 local function getselel()
                     local b, t1, t2 = peekselel()
+
                     if b then
                         pos = pos + 2
                         return t1.text .. ":"
@@ -1316,8 +1316,43 @@ olua_implementation = function()
                             return implementation(ast)
                     end
 olua_createSelector = function()
+
                          expect('operator', '(')
-                         local sel = getselel()
+                            
+                         local sel, t1, t2
+                         local firsttime = true
+
+                         while true do
+                            t1 = tokens[pos]
+                            t2 = tokens[pos+1]
+                            print(1, t1.text, t2.text)
+
+                            if firsttime then
+                                if t1.text == ')' then
+                                    error('nil @selector')
+                                elseif t2.text == ')' and t1.type == 'identifier' then
+                                     sel = t1.text
+                                     pos = pos + 1
+                                     break
+                                elseif t1.type == 'identifier' and t2.text == ':' then
+                                    sel = t1.text .. t2.text
+                                else
+                                    error('bad @selector content')
+                                end
+                                firsttime = false
+                            else
+                                if t1.text == ')' then
+                                    break
+                                elseif t1.type == 'identifier' and t2.text == ':' then
+                                    sel = t1.text .. t2.text
+                                else
+                                    error('bad @selector content')
+                                end
+                            end
+                            
+                            pos = pos + 2
+                         end
+                                                 
                          expect('operator', ')')
                          return 
                          {
@@ -1367,11 +1402,9 @@ local olua_getTypeName = function()
                                         result = result .. "*"
                                         return result
                                     else
-                                        print(1392)
                                         unexpectederror(t)
                                     end
                                 else
-                                    print(1396)
                                     unexpectederror(t)
                                 end                            
                                 pos = pos + 1                                
@@ -1403,7 +1436,6 @@ local olua_argumentListOfFunction = function()
                 end
 
                 while true do
-                    print(tokens[pos].text)
                     if not peek('operator', ',') then
                         return ast
                     end
@@ -1529,7 +1561,7 @@ olua_objc_trycatchfinally = function()
                             end
 olua_property_declearation = function()
                                 local propertyAttribute = {}
-                                
+
                                if optionalexpect('operator', '(') then                                
                                     while true do
                                         local t = tokens[pos]
@@ -1540,7 +1572,6 @@ olua_property_declearation = function()
                                             break
                                         elseif (text == "nonatomic") then
                                             if propertyAttribute.atomic then
-                                                print(1531)
                                                 unexpectederror(t)
                                             else
                                                 propertyAttribute.atomic = "nonatomic"
@@ -1548,7 +1579,6 @@ olua_property_declearation = function()
                                             end
                                         elseif (text == "assign") or (text == "copy") or (text == "retain") then
                                             if propertyAttribute.ownership then
-                                                print(1539)
                                                 unexpectederror(t)
                                             else
                                                 propertyAttribute.ownership = text
@@ -1603,7 +1633,8 @@ olua_property_declearation = function()
                                     propertyAttribute.setter = "set" .. name:gsub("^%l", string.upper) .. ":"
                                 end
                                 optionalexpect('operator', ';')
-                                return 
+                                
+                                return
                                 {
                                     type = "olua_property_declearation",
                                     attribute=propertyAttribute,
@@ -2066,6 +2097,7 @@ local typetable =
     end,
     
     olua_property_declearation = function(ast)
+
         local className = ast.class.text
         local propertyAttribute = ast.attribute
 
@@ -2214,6 +2246,7 @@ recursivelyunparsebinop = function(ast, thisprecedence)
                             end
 
 recursivelyunparse = function(ast)
+
                         local t = typetable[ast.type]
                         if not t then
                             for k, v in pairs(ast) do

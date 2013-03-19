@@ -142,11 +142,17 @@ return returnValue;
 
 static id __VMKPropertyGetterIMP(id obj, SEL selector)
 {
+    LuaInternalSetCurrentSelfAndCMD(obj, selector);
+    
     __LuaObjC_propertyGetterWithType(id, obj, selector);
+    
+    LuaInternalClearCurrentSelfAndCMD(obj);
 }
 
 static CFIndex __VMKPropertyGetterIntegerReturnIMP(id obj, SEL selector)
 {
+    LuaInternalSetCurrentSelfAndCMD(obj, selector);
+
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
     CFIndex returnValue = 0;
@@ -157,11 +163,15 @@ static CFIndex __VMKPropertyGetterIntegerReturnIMP(id obj, SEL selector)
         returnValue = *((CFIndex *)obj + ivar_getOffset(ivar));
     }
     
+    LuaInternalClearCurrentSelfAndCMD(obj);
+
     return returnValue;
 }
 
 static Float32 __VMKPropertyGetterFloatReturnIMP(id obj, SEL selector)
 {
+    LuaInternalSetCurrentSelfAndCMD(obj, selector);
+
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithGetter(objClass, selector);
     Float32 returnValue = 0.0;
@@ -172,7 +182,9 @@ static Float32 __VMKPropertyGetterFloatReturnIMP(id obj, SEL selector)
         returnValue = *((Float32 *)obj + ivar_getOffset(ivar));
     }
     
-    return returnValue;    
+    LuaInternalClearCurrentSelfAndCMD(obj);
+
+    return returnValue;
 }
 
 #undef __LuaObjC_propertyGetterWithType
@@ -188,13 +200,20 @@ object_setInstanceVariable(obj, propertyName, &value);
 //
 static void __VMKPropertySetterIMP(id obj, SEL selector, id newValue)
 {
-    //    Class objClass = object_getClass(obj);
-    //    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
-    //    object_setInstanceVariable(obj, propertyName, newValue);
+    LuaInternalSetCurrentSelfAndCMD(obj, selector);
+
+    Class objClass = object_getClass(obj);
+    const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
+    
+    object_setInstanceVariable(obj, propertyName, newValue);
+    
+    LuaInternalClearCurrentSelfAndCMD(obj);
 }
 
-static void __VMKPropertySetterFloatReturnIMP(id obj, SEL selector, Float32 newValue)
+static void __VMKPropertySetterFloatValueIMP(id obj, SEL selector, Float32 newValue)
 {
+    LuaInternalSetCurrentSelfAndCMD(obj, selector);
+
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
@@ -204,10 +223,15 @@ static void __VMKPropertySetterFloatReturnIMP(id obj, SEL selector, Float32 newV
         *value = newValue;
     }
     //__LuaObjC_propertySetterWithType(Float32, obj, selector, newValue);
+    
+    LuaInternalClearCurrentSelfAndCMD(obj);
+
 }
 
-static void __VMKPropertySetterIntegerReturnIMP(id obj, SEL selector, CFIndex newValue)
+static void __VMKPropertySetterIntegerValueIMP(id obj, SEL selector, CFIndex newValue)
 {
+    LuaInternalSetCurrentSelfAndCMD(obj, selector);
+
     Class objClass = object_getClass(obj);
     const char *propertyName = LuaClassGetPropertyNameWithSetter(objClass, selector);
     Ivar ivar = class_getInstanceVariable(objClass, propertyName);
@@ -216,6 +240,9 @@ static void __VMKPropertySetterIntegerReturnIMP(id obj, SEL selector, CFIndex ne
         CFIndex *value = (CFIndex *)obj + ivar_getOffset(ivar);
         *value = newValue;
     }
+    
+    LuaInternalClearCurrentSelfAndCMD(obj);
+
 }
 
 #undef __LuaObjC_propertySetterWithType
@@ -283,13 +310,13 @@ static void LuaIMPAddPropertyToClassOrigin(const char* className, const char* at
         case _C_DBL:
         {
             getterIMP = (IMP)__VMKPropertyGetterFloatReturnIMP;
-            setterIMP = (IMP)__VMKPropertySetterFloatReturnIMP;
+            setterIMP = (IMP)__VMKPropertySetterFloatValueIMP;
             break;
         }
         default:
         {
             getterIMP = (IMP)__VMKPropertyGetterIntegerReturnIMP;
-            setterIMP = (IMP)__VMKPropertySetterIntegerReturnIMP;
+            setterIMP = (IMP)__VMKPropertySetterIntegerValueIMP;
             break;
         }
     }

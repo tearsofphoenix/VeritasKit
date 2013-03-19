@@ -159,6 +159,8 @@ static int lua_CGPointNewIndex(lua_State *L)
     return 0;
 }
 
+#pragma mark - CGSize apis
+
 static int lua_CGSizeIndex(lua_State *L)
 {
     CGSize *s = lua_touserdata(L, 1);
@@ -200,6 +202,8 @@ static int lua_CGSizeToString(lua_State *L)
 #endif
     return 1;
 }
+
+#pragma mark - CGRect apis
 
 static int lua_CGRectGetMinX(lua_State *L)
 {

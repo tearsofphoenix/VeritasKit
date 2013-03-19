@@ -224,19 +224,7 @@ static const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
 #pragma mark - message send routine implementation
 
 static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfClass)
-{
- 
-#if DEBUG
-    /*
-    lua_Debug debugInfo;
-    lua_getstack(L, 1, &debugInfo);
-    lua_getinfo(L, "Sl", &debugInfo);
-    printf("in line: %d %s\n", debugInfo.currentline, LuaInternalGetCurrentLineSource(&debugInfo));
-     */
-#else
-    
-#endif
-    
+{    
     VMKObjectRef anObj = lua_touserdata(state, 1);
     //optimize for nil object call
     //

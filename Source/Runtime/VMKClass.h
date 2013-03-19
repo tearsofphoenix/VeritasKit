@@ -30,6 +30,10 @@ VMK_EXPORT VMKLuaStateRef LuaInternalGetLuaStateOfClass(id theClass);
 
 VMK_EXPORT id LuaInternalGetClass(const char *className);
 
+VMK_EXPORT void LuaInternalSetCurrentSelfAndCMD(id obj, SEL selector);
+
+VMK_EXPORT void LuaInternalClearCurrentSelfAndCMD(id obj);
+
 /*
  *   internal api of IMP imeplementation, you should never use them directly.
  */

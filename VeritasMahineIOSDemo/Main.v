@@ -1,69 +1,56 @@
 NS = #import "Foundation"
 UI = #import("UIKit")
 GL = #import("OpenGLES")
-
-#import "BoCPressViewController"
 #import("os")
 
-
-@implementation TestGC : NSObject
----[[
-- (id)init
-{
-    print("ok1")
-    self = [super init]
-    return self
-}
---]]
----[[
-- (void)dealloc
-{
-    print("in dealloc")
-    
-    [super dealloc]
-}
---]]
-@end
 
 @implementation AppDelegate : NSObject
 
 ---[[
-- (id)init
-{
-    self = [super init]
-    return self
-}
+@property (nonatomic, assign) int number
+@property (nonatomic, retain) id name
 --]]
 
 - (BOOL)application: (id)application didFinishLaunchingWithOptions: (id)launchOptions
 {
-
-    local bounds = [[UIScreen mainScreen] bounds]
+--[[
+    local bounds = [ [UIScreen mainScreen] bounds]
     
-    _window = [[UIWindow alloc] initWithFrame: bounds]
+    _window = [ [UIWindow alloc] initWithFrame: bounds]
 
-    local viewController = [[UIViewController alloc] init]
+    local viewController = [ [UIViewController alloc] init]
     [_window setRootViewController: viewController]
-    [[viewController view] setBackgroundColor: [UIColor whiteColor]]
+    [ [viewController view] setBackgroundColor: [UIColor whiteColor] ]
     [viewController release]
     
     [_window makeKeyAndVisible]
-
----[[
-    @autoreleasepool
-    {
-        local t = [[TestGC alloc] init]
+    [self setNumber: 100]
+    print([self number])
     
-        [t release]
-        
-        print("alloc-release-dealloc tested!")
-        
-        local dict = @{};
-        local array = @[ dict ];
-        local a = @12;
-    }
+    local name = @"hello"
+    
+    print([name retainCount])
+
+    [self setName: name]
+    
+    print([name retainCount])
+    [NSThread detachNewThreadSelector: @selector(log:)
+                             toTarget: self
+                           withObject: self]
 --]]
+        
+    [NSTimer scheduledTimerWithTimeInterval: 10.0
+                                     target: self
+                                   selector: @selector(log:)
+                                   userInfo: nil
+                                    repeats: false];
+
     return true
+}
+
+- (void)log: (id)obj
+{
+    print("ok: ", [[self name] retainCount], obj)
 }
 
 @end
