@@ -236,9 +236,7 @@ static VMKMachineService *sSharedService = nil;
                                        selector: @selector(_gabageCollectByTimer:)
                                        userInfo: nil
                                         repeats: YES];
-        
-        //dispatch_resume(_internal->garbageCollectTimer);
-        
+                
         //        NSData *data = [[NSData alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForResource: @"VMKParser"
         //                                                                                                                 ofType: @"lua"]];
         //

@@ -142,11 +142,11 @@ return returnValue;
 
 static id __VMKPropertyGetterIMP(id obj, SEL selector)
 {
-    LuaInternalSetCurrentSelfAndCMD(obj, selector);
+    //LuaInternalSetCurrentSelfAndCMD(obj, selector);
     
     __LuaObjC_propertyGetterWithType(id, obj, selector);
     
-    LuaInternalClearCurrentSelfAndCMD(obj);
+    //LuaInternalClearCurrentSelfAndCMD(obj);
 }
 
 static CFIndex __VMKPropertyGetterIntegerReturnIMP(id obj, SEL selector)

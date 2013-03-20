@@ -9,6 +9,7 @@ GL = #import("OpenGLES")
 ---[[
 @property (nonatomic, assign) int number
 @property (nonatomic, retain) id name
+@property (nonatomic) CGFloat floatValue
 --]]
 
 - (BOOL)application: (id)application didFinishLaunchingWithOptions: (id)launchOptions
@@ -44,13 +45,15 @@ GL = #import("OpenGLES")
                                    selector: @selector(log:)
                                    userInfo: nil
                                     repeats: false];
-
+    [self setFloatValue: 100.2];
+    print([self floatValue])
+    
     return true
 }
 
 - (void)log: (id)obj
 {
-    print("ok: ", [[self name] retainCount], obj)
+    print("ok: ", self, [obj timeInterval])
 }
 
 @end

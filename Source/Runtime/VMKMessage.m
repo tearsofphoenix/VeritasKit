@@ -83,8 +83,8 @@ static const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper)
 //accelerator for methods that have no argument
 //
 static int VMKAcceleratorForNoArgument(VMKLuaStateRef state, const char* returnType,
-                                    IMP impRef, id obj, SEL selector)
-{    
+                                       IMP impRef, id obj, SEL selector)
+{
     returnType = LuaInternalJumpoverEncodingDecorator(returnType);
     switch (*returnType)
     {
@@ -105,9 +105,14 @@ static int VMKAcceleratorForNoArgument(VMKLuaStateRef state, const char* returnT
             return 1;
         }
         case _C_FLT:
-        case _C_DBL:
         {
             typedef float (* _IMP_T)(id, SEL);
+            lua_pushnumber(state, ((_IMP_T)impRef)(obj, selector));
+            return 1;
+        }
+        case _C_DBL:
+        {
+            typedef double (* _IMP_T)(id, SEL);
             lua_pushnumber(state, ((_IMP_T)impRef)(obj, selector));
             return 1;
         }
@@ -224,7 +229,7 @@ static const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
 #pragma mark - message send routine implementation
 
 static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfClass)
-{    
+{
     VMKObjectRef anObj = lua_touserdata(state, 1);
     //optimize for nil object call
     //
@@ -235,7 +240,7 @@ static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfC
     }
     
     const char *selectorName = lua_tostring(state, 2);
-
+    
     SEL selector = sel_getUid(selectorName);
     
     //deside object
@@ -276,13 +281,13 @@ static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfC
             NSException *exception = [NSException exceptionWithName: @"VMKInvalidArgument"
                                                              reason: [NSString stringWithFormat: @"[#ERROR#] line: %d nil method signature for SEL:%s for: %@\n", __LINE__, selectorName, obj]
                                                            userInfo: nil];
-                        
+            
             @throw exception;
         }
         
         NSUInteger numberOfArguments = [methodSignature numberOfArguments];
         const char* returnType = [methodSignature methodReturnType];
-                
+        
         if (numberOfArguments == 2)
         {
             return VMKAcceleratorForNoArgument(state, returnType, impRef, obj, selector);
@@ -317,9 +322,15 @@ static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfC
                     break;
                 }
                 case _C_FLT:
+                {
+                    float floatPara = lua_tonumber(state,  iLooper + 1);
+                    [invokation setArgument: &floatPara
+                                    atIndex: iLooper];
+                    break;
+                }
                 case _C_DBL:
                 {
-                    CGFloat doublePara = lua_tonumber(state,  iLooper + 1);
+                    double doublePara = lua_tonumber(state,  iLooper + 1);
                     [invokation setArgument: &doublePara
                                     atIndex: iLooper];
                     break;
@@ -343,7 +354,7 @@ static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfC
                 {
                     const char *str = lua_tostring(state,  iLooper + 1);
                     SEL sel = sel_getUid(str);
-
+                    
                     [invokation setArgument: &sel
                                     atIndex: iLooper];
                     
@@ -405,9 +416,15 @@ static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfC
                 return 1;
             }
             case _C_FLT:
+            {
+                float floatValue = 0;
+                [invokation getReturnValue: &floatValue];
+                lua_pushnumber(state, floatValue);
+                return 1;
+            }
             case _C_DBL:
             {
-                CGFloat doublePara = 0;
+                double doublePara = 0;
                 [invokation getReturnValue: &doublePara];
                 lua_pushnumber(state, doublePara);
                 return 1;
@@ -427,13 +444,13 @@ static int _luaObjC_objc_messageSendGeneral(VMKLuaStateRef state, BOOL isToSelfC
                 VMKPushObject(state, obj, true);
                 
                 return 1;
-
+                
             }
             case _C_ID:
             {
                 id obj = nil;
                 [invokation getReturnValue: &obj];
-               
+                
                 VMKPushObject(state, obj, false);
                 
                 return 1;

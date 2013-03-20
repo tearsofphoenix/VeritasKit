@@ -279,9 +279,14 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
                     break;
                 }
                 case _C_FLT:
+                {
+                    float doublePara = va_arg(ap, double);
+                    lua_pushnumber(luaState, doublePara);
+                    break;
+                }
                 case _C_DBL:
                 {
-                    CGFloat doublePara = (CGFloat)va_arg(ap, double);
+                    double doublePara = va_arg(ap, double);
                     lua_pushnumber(luaState, doublePara);
                     break;
                 }
@@ -344,17 +349,18 @@ static void __luaClass_IMP_preprocess(VMKLuaStateRef *returnedLuaState, id obj, 
             lua_error(luaState);
         }
         
-        return ;
-    }
-    /*if is property*/
-    IMP imp = class_getMethodImplementation(theClass, sel);
-    if (imp)
-    {
-        VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), false);
-        
     }else
     {
-        luaL_error(luaState, "fail to find @property IMP for : %s", sel_getName(sel));
+        /*as @property is special, it does not have a lua closur homologously*/
+        IMP imp = class_getMethodImplementation(theClass, sel);
+        if (imp)
+        {
+            VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), false);
+            
+        }else
+        {
+            luaL_error(luaState, "fail to find @property IMP for : %s", sel_getName(sel));
+        }
     }
 }
 
