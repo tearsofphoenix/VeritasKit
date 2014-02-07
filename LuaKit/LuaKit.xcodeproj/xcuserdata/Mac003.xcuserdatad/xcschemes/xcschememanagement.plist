@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>LuaKit-Mac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>LuaKitiOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>927D85F818A4DD740094ED86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>927D860718A4DD740094ED86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>927D865618A4DE880094ED86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>927D866318A4DE880094ED86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1A4FE891643959600F8AE92</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1A4FEA61643961600F8AE92</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

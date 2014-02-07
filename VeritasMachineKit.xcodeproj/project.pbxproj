@@ -19,55 +19,6 @@
 		E14A34FC1643A79D00B8EB6E /* Main.v in Resources */ = {isa = PBXBuildFile; fileRef = E14A34FB1643A79D00B8EB6E /* Main.v */; };
 		E14A35271643A83A00B8EB6E /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000C1643993300F8AE92 /* LuaCParser.lua */; };
 		E14A35281643A83A00B8EB6E /* VMKParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* VMKParser.lua */; };
-		E14A35291643A86500B8EB6E /* VeritasMachineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */; };
-		E14A352A1643A8B100B8EB6E /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8C1643993300F8AE92 /* Accelerate.bridgesupport */; };
-		E14A352B1643A8B100B8EB6E /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8D1643993300F8AE92 /* Accounts.bridgesupport */; };
-		E14A352C1643A8B100B8EB6E /* AddressBook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8E1643993300F8AE92 /* AddressBook.bridgesupport */; };
-		E14A352D1643A8B100B8EB6E /* AddressBookUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8F1643993300F8AE92 /* AddressBookUI.bridgesupport */; };
-		E14A352E1643A8B100B8EB6E /* AssetsLibrary.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF901643993300F8AE92 /* AssetsLibrary.bridgesupport */; };
-		E14A352F1643A8B100B8EB6E /* AudioToolbox.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF911643993300F8AE92 /* AudioToolbox.bridgesupport */; };
-		E14A35301643A8B100B8EB6E /* AudioUnit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF921643993300F8AE92 /* AudioUnit.bridgesupport */; };
-		E14A35311643A8B100B8EB6E /* AVFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF931643993300F8AE92 /* AVFoundation.bridgesupport */; };
-		E14A35321643A8B100B8EB6E /* CoreAudio.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF941643993300F8AE92 /* CoreAudio.bridgesupport */; };
-		E14A35331643A8B100B8EB6E /* CoreBluetooth.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF951643993300F8AE92 /* CoreBluetooth.bridgesupport */; };
-		E14A35341643A8B100B8EB6E /* CoreData.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF961643993300F8AE92 /* CoreData.bridgesupport */; };
-		E14A35351643A8B100B8EB6E /* CoreFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF971643993300F8AE92 /* CoreFoundation.bridgesupport */; };
-		E14A35361643A8B100B8EB6E /* CoreImage.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF981643993300F8AE92 /* CoreImage.bridgesupport */; };
-		E14A35371643A8B100B8EB6E /* CoreLocation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF991643993300F8AE92 /* CoreLocation.bridgesupport */; };
-		E14A35381643A8B100B8EB6E /* CoreMedia.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9A1643993300F8AE92 /* CoreMedia.bridgesupport */; };
-		E14A35391643A8B100B8EB6E /* CoreMIDI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9B1643993300F8AE92 /* CoreMIDI.bridgesupport */; };
-		E14A353A1643A8B100B8EB6E /* CoreMotion.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9C1643993300F8AE92 /* CoreMotion.bridgesupport */; };
-		E14A353B1643A8B100B8EB6E /* CoreTelephony.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9D1643993300F8AE92 /* CoreTelephony.bridgesupport */; };
-		E14A353C1643A8B100B8EB6E /* CoreVideo.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9E1643993300F8AE92 /* CoreVideo.bridgesupport */; };
-		E14A353D1643A8B100B8EB6E /* EventKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9F1643993300F8AE92 /* EventKit.bridgesupport */; };
-		E14A353E1643A8B100B8EB6E /* EventKitUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA01643993300F8AE92 /* EventKitUI.bridgesupport */; };
-		E14A353F1643A8B100B8EB6E /* ExternalAccessory.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA11643993300F8AE92 /* ExternalAccessory.bridgesupport */; };
-		E14A35401643A8B100B8EB6E /* Foundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA21643993300F8AE92 /* Foundation.bridgesupport */; };
-		E14A35411643A8B100B8EB6E /* GameKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA31643993300F8AE92 /* GameKit.bridgesupport */; };
-		E14A35421643A8B100B8EB6E /* GSS.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA41643993300F8AE92 /* GSS.bridgesupport */; };
-		E14A35431643A8B100B8EB6E /* iAd.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA51643993300F8AE92 /* iAd.bridgesupport */; };
-		E14A35441643A8B100B8EB6E /* MapKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA61643993300F8AE92 /* MapKit.bridgesupport */; };
-		E14A35451643A8B100B8EB6E /* MediaPlayer.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA71643993300F8AE92 /* MediaPlayer.bridgesupport */; };
-		E14A35461643A8B100B8EB6E /* MessageUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA81643993300F8AE92 /* MessageUI.bridgesupport */; };
-		E14A35471643A8B100B8EB6E /* MobileCoreServices.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA91643993300F8AE92 /* MobileCoreServices.bridgesupport */; };
-		E14A35481643A8B100B8EB6E /* NewsstandKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAA1643993300F8AE92 /* NewsstandKit.bridgesupport */; };
-		E14A35491643A8B100B8EB6E /* OpenAL.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAB1643993300F8AE92 /* OpenAL.bridgesupport */; };
-		E14A354A1643A8B100B8EB6E /* OpenGLES.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAC1643993300F8AE92 /* OpenGLES.bridgesupport */; };
-		E14A354B1643A8B100B8EB6E /* QuartzCore.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAD1643993300F8AE92 /* QuartzCore.bridgesupport */; };
-		E14A354C1643A8B100B8EB6E /* QuickLook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAE1643993300F8AE92 /* QuickLook.bridgesupport */; };
-		E14A354D1643A8B100B8EB6E /* Security.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAF1643993300F8AE92 /* Security.bridgesupport */; };
-		E14A354E1643A8B100B8EB6E /* StoreKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB01643993300F8AE92 /* StoreKit.bridgesupport */; };
-		E14A354F1643A8B100B8EB6E /* SystemConfiguration.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB11643993300F8AE92 /* SystemConfiguration.bridgesupport */; };
-		E14A35501643A8B100B8EB6E /* Twitter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB21643993300F8AE92 /* Twitter.bridgesupport */; };
-		E14A35511643A8B100B8EB6E /* UIKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB31643993300F8AE92 /* UIKit.bridgesupport */; };
-		E14A35521643A8BF00B8EB6E /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000C1643993300F8AE92 /* LuaCParser.lua */; };
-		E14A35531643A8BF00B8EB6E /* VMKParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* VMKParser.lua */; };
-		E15713A31643A34C00F6EAAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A21643A34C00F6EAAB /* UIKit.framework */; };
-		E15713A51643A39500F6EAAB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A41643A39500F6EAAB /* libxml2.2.dylib */; };
-		E15713A71643A40B00F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A61643A40B00F6EAAB /* QuartzCore.framework */; };
-		E15713A91643A45A00F6EAAB /* libffi_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A400001643993300F8AE92 /* libffi_ios.a */; };
-		E15713AB1643A47000F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AA1643A47000F6EAAB /* CoreGraphics.framework */; };
-		E15713AD1643A47900F6EAAB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713AC1643A47900F6EAAB /* OpenGLES.framework */; };
 		E15713AF1643A51F00F6EAAB /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400041643993300F8AE92 /* ffi.h */; };
 		E15713B01643A51F00F6EAAB /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400051643993300F8AE92 /* ffi_i386.h */; };
 		E15713B11643A51F00F6EAAB /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400061643993300F8AE92 /* ffi_x86_64.h */; };
@@ -78,11 +29,8 @@
 		E15713B91643A5BE00F6EAAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713B81643A5BE00F6EAAB /* CoreGraphics.framework */; };
 		E15713BB1643A5C300F6EAAB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713BA1643A5C300F6EAAB /* QuartzCore.framework */; };
 		E172CF8F16B215C600B5E035 /* CFRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = E172CF8A16B215C600B5E035 /* CFRuntime.h */; };
-		E172CF9016B215C600B5E035 /* CFRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = E172CF8A16B215C600B5E035 /* CFRuntime.h */; };
 		E172CF9516B215C600B5E035 /* VMKInternal.c in Sources */ = {isa = PBXBuildFile; fileRef = E172CF8D16B215C600B5E035 /* VMKInternal.c */; };
-		E172CF9616B215C600B5E035 /* VMKInternal.c in Sources */ = {isa = PBXBuildFile; fileRef = E172CF8D16B215C600B5E035 /* VMKInternal.c */; };
 		E172CF9716B215C600B5E035 /* VMKInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = E172CF8E16B215C600B5E035 /* VMKInternal.h */; };
-		E172CF9816B215C600B5E035 /* VMKInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = E172CF8E16B215C600B5E035 /* VMKInternal.h */; };
 		E1A4006616439A7900F8AE92 /* VMKBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB51643993300F8AE92 /* VMKBridgeFunctor.m */; };
 		E1A4006716439A7900F8AE92 /* VMKBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* VMKBridgeInfo.m */; };
 		E1A4006816439A7900F8AE92 /* VMKBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VMKBridgeService.m */; };
@@ -116,72 +64,18 @@
 		E1A4008D16439A9F00F8AE92 /* VMKBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* VMKBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E1A4008E16439AAF00F8AE92 /* VeritasMachineKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400461643996C00F8AE92 /* VeritasMachineKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A4008F16439AF100F8AE92 /* VMKMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* VMKMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A4009016439B4600F8AE92 /* VMKBridgeFunctor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB51643993300F8AE92 /* VMKBridgeFunctor.m */; };
-		E1A4009116439B4600F8AE92 /* VMKBridgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB71643993300F8AE92 /* VMKBridgeInfo.m */; };
-		E1A4009216439B4600F8AE92 /* VMKBridgeService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFB91643993300F8AE92 /* VMKBridgeService.m */; };
-		E1A4009316439B4600F8AE92 /* VMKLibraryInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBC1643993300F8AE92 /* VMKLibraryInformation.m */; };
-		E1A4009416439B4600F8AE92 /* VMKMachineService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFBE1643993300F8AE92 /* VMKMachineService.m */; };
-		E1A4009616439B4600F8AE92 /* VMKProfile.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC41643993300F8AE92 /* VMKProfile.c */; };
-		E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC61643993300F8AE92 /* NSArray+VMKIndex.m */; };
-		E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFC81643993300F8AE92 /* NSData+Base64.m */; };
-		E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCA1643993300F8AE92 /* NSDictionary+VMKIndex.m */; };
-		E1A4009B16439B4600F8AE92 /* NSString+VMKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFCE1643993300F8AE92 /* NSString+VMKIndex.m */; };
-		E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD21643993300F8AE92 /* LuaCGAffineTransform.c */; };
-		E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD41643993300F8AE92 /* LuaCGGeometry.m */; };
-		E1A4009E16439B4600F8AE92 /* LuaFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD71643993300F8AE92 /* LuaFoundation.m */; };
-		E1A4009F16439B4600F8AE92 /* LuaNSBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFD91643993300F8AE92 /* LuaNSBundle.m */; };
-		E1A400A016439B4600F8AE92 /* LuaNSCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDB1643993300F8AE92 /* LuaNSCollection.m */; };
-		E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDD1643993300F8AE92 /* LuaNSRange.m */; };
-		E1A400A216439B4600F8AE92 /* LuaNSString.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFDF1643993300F8AE92 /* LuaNSString.c */; };
-		E1A400A416439B4600F8AE92 /* LuaCATransform3D.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE51643993300F8AE92 /* LuaCATransform3D.c */; };
-		E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFE81643993300F8AE92 /* VMKFrameworkFunctions.c */; };
-		E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEC1643993300F8AE92 /* LuaUIAccessibility.m */; };
-		E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFEE1643993300F8AE92 /* LuaUIGeometry.m */; };
-		E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF01643993300F8AE92 /* LuaUIGraphics.m */; };
-		E1A400A916439B4600F8AE92 /* LuaUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF21643993300F8AE92 /* LuaUIKit.m */; };
-		E1A400AA16439B4600F8AE92 /* LuaUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FFF41643993300F8AE92 /* LuaUIView.m */; };
-		E1A400AB16439B4600F8AE92 /* XMLDocument.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.c */; };
-		E1A400AC16439B4600F8AE92 /* XMLNode.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.c */; };
-		E1A400AD16439B4600F8AE92 /* XMLPathProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.c */; };
-		E1A400AE16439B4600F8AE92 /* VMKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400171643993300F8AE92 /* VMKObject.m */; };
-		E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400191643993300F8AE92 /* VMKAuxiliary.m */; };
-		E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001C1643993300F8AE92 /* VMKClass.m */; };
-		E1A400B116439B4600F8AE92 /* VMKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A4001E1643993300F8AE92 /* VMKMessage.m */; };
-		E1A400B216439B4600F8AE92 /* VMKProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400211643993300F8AE92 /* VMKProperty.m */; };
-		E1A400B316439B4600F8AE92 /* VMKRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A400231643993300F8AE92 /* VMKRuntime.m */; };
-		E1A400B416439B6900F8AE92 /* VMKMachineService.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FFBD1643993300F8AE92 /* VMKMachineService.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A400B616439B6900F8AE92 /* VMKAuxiliary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A400181643993300F8AE92 /* VMKAuxiliary.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A400B716439B6900F8AE92 /* VMKBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001A1643993300F8AE92 /* VMKBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A400B816439B6900F8AE92 /* VMKMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4001D1643993300F8AE92 /* VMKMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4005E16439A1D00F8AE92 /* VeritasMachineKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A400BC16439BEC00F8AE92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A400BA16439BAA00F8AE92 /* Cocoa.framework */; };
 		E1AB5B1316AD1277005F4E41 /* VMKClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E1AB5B1216AD1276005F4E41 /* VMKClass.h */; };
-		E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */ = {isa = PBXBuildFile; fileRef = E1AB5B1216AD1276005F4E41 /* VMKClass.h */; };
 		E1D62E7116AE20BF00DE39BF /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1D62E6B16AE20A900DE39BF /* LuaKit.framework */; };
-		E1D62E7216AE20C400DE39BF /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1D62E6D16AE20A900DE39BF /* LuaKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E14A34FD1643A7BA00B8EB6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 34E8A16714D24C82000F9EB1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1A4005316439A1C00F8AE92;
-			remoteInfo = VeritasMachineKitiOS;
-		};
 		E1D62E6A16AE20A900DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E1A4FE8A1643959600F8AE92;
 			remoteInfo = "LuaKit-Mac";
-		};
-		E1D62E6C16AE20A900DE39BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E1A4FEA71643961600F8AE92;
-			remoteInfo = "LuaKit-iOS";
 		};
 		E1D62E6F16AE20B600DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -190,16 +84,10 @@
 			remoteGlobalIDString = E1A4FE891643959600F8AE92;
 			remoteInfo = "LuaKit-Mac";
 		};
-		E1D62E7316AE20CA00DE39BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E1A4FEA61643961600F8AE92;
-			remoteInfo = "LuaKit-iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		927D863318A4DE320094ED86 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E14A34C31643A64F00B8EB6E /* libffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libffi.dylib; sourceTree = DEVELOPER_DIR; };
 		E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasMahineIOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14A34E01643A77F00B8EB6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -258,7 +146,6 @@
 		E1A400411643996C00F8AE92 /* VeritasMachineKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "VeritasMachineKit-Info.plist"; path = "VeritasMachineKit/VeritasMachineKit-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E1A400451643996C00F8AE92 /* VeritasMachineKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "VeritasMachineKit-Prefix.pch"; path = "VeritasMachineKit/VeritasMachineKit-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		E1A400461643996C00F8AE92 /* VeritasMachineKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VeritasMachineKit.h; path = VeritasMachineKit/VeritasMachineKit.h; sourceTree = SOURCE_ROOT; };
-		E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeritasMachineKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A4005916439A1D00F8AE92 /* VeritasMachineKitiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VeritasMachineKitiOS-Info.plist"; sourceTree = "<group>"; };
 		E1A4005D16439A1D00F8AE92 /* VeritasMachineKitiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeritasMachineKitiOS-Prefix.pch"; sourceTree = "<group>"; };
 		E1A4005E16439A1D00F8AE92 /* VeritasMachineKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasMachineKit.h; sourceTree = "<group>"; };
@@ -369,7 +256,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E14A35291643A86500B8EB6E /* VeritasMachineKit.framework in Frameworks */,
 				E14A34E11643A77F00B8EB6E /* UIKit.framework in Frameworks */,
 				E14A34E31643A77F00B8EB6E /* Foundation.framework in Frameworks */,
 				E14A34E51643A77F00B8EB6E /* CoreGraphics.framework in Frameworks */,
@@ -389,20 +275,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1A4005016439A1C00F8AE92 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1D62E7216AE20C400DE39BF /* LuaKit.framework in Frameworks */,
-				E15713AD1643A47900F6EAAB /* OpenGLES.framework in Frameworks */,
-				E15713AB1643A47000F6EAAB /* CoreGraphics.framework in Frameworks */,
-				E15713A91643A45A00F6EAAB /* libffi_ios.a in Frameworks */,
-				E15713A71643A40B00F6EAAB /* QuartzCore.framework in Frameworks */,
-				E15713A51643A39500F6EAAB /* libxml2.2.dylib in Frameworks */,
-				E15713A31643A34C00F6EAAB /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -416,7 +288,6 @@
 				E14A34E61643A77F00B8EB6E /* VeritasMahineIOSDemo */,
 				E1A400381643996C00F8AE92 /* Frameworks */,
 				E1A4004C164399BF00F8AE92 /* Products */,
-				E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */,
 				E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */,
 			);
 			sourceTree = "<group>";
@@ -533,6 +404,7 @@
 				E14A34E01643A77F00B8EB6E /* UIKit.framework */,
 				E14A34E21643A77F00B8EB6E /* Foundation.framework */,
 				E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */,
+				927D863318A4DE320094ED86 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -819,7 +691,6 @@
 			isa = PBXGroup;
 			children = (
 				E1D62E6B16AE20A900DE39BF /* LuaKit.framework */,
-				E1D62E6D16AE20A900DE39BF /* LuaKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -848,21 +719,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1A4005116439A1C00F8AE92 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1A400B916439B8000F8AE92 /* VeritasMachineKit.h in Headers */,
-				E1A400B416439B6900F8AE92 /* VMKMachineService.h in Headers */,
-				E1A400B616439B6900F8AE92 /* VMKAuxiliary.h in Headers */,
-				E1A400B716439B6900F8AE92 /* VMKBase.h in Headers */,
-				E1A400B816439B6900F8AE92 /* VMKMessage.h in Headers */,
-				E1AB5B1416AD1277005F4E41 /* VMKClass.h in Headers */,
-				E172CF9016B215C600B5E035 /* CFRuntime.h in Headers */,
-				E172CF9816B215C600B5E035 /* VMKInternal.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -877,7 +733,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E14A34FE1643A7BA00B8EB6E /* PBXTargetDependency */,
 			);
 			name = VeritasMahineIOSDemo;
 			productName = VeritasMahineIOSDemo;
@@ -901,25 +756,6 @@
 			name = "VeritasMachineKit-Mac";
 			productName = VeritasMachineKit;
 			productReference = E1A400371643996C00F8AE92 /* VeritasMachineKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-iOS" */;
-			buildPhases = (
-				E1A4004F16439A1C00F8AE92 /* Sources */,
-				E1A4005016439A1C00F8AE92 /* Frameworks */,
-				E1A4005116439A1C00F8AE92 /* Headers */,
-				E1A4005216439A1C00F8AE92 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E1D62E7416AE20CA00DE39BF /* PBXTargetDependency */,
-			);
-			name = "VeritasMachineKit-iOS";
-			productName = VeritasMachineKitiOS;
-			productReference = E1A4005416439A1D00F8AE92 /* VeritasMachineKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -949,7 +785,6 @@
 			projectRoot = "";
 			targets = (
 				E1A400361643996C00F8AE92 /* VeritasMachineKit-Mac */,
-				E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */,
 				E14A34DD1643A77F00B8EB6E /* VeritasMahineIOSDemo */,
 			);
 		};
@@ -961,13 +796,6 @@
 			fileType = wrapper.framework;
 			path = LuaKit.framework;
 			remoteRef = E1D62E6A16AE20A900DE39BF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E1D62E6D16AE20A900DE39BF /* LuaKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = LuaKit.framework;
-			remoteRef = E1D62E6C16AE20A900DE39BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -991,55 +819,6 @@
 			files = (
 				E14A35271643A83A00B8EB6E /* LuaCParser.lua in Resources */,
 				E14A35281643A83A00B8EB6E /* VMKParser.lua in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1A4005216439A1C00F8AE92 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E14A35521643A8BF00B8EB6E /* LuaCParser.lua in Resources */,
-				E14A35531643A8BF00B8EB6E /* VMKParser.lua in Resources */,
-				E14A352A1643A8B100B8EB6E /* Accelerate.bridgesupport in Resources */,
-				E14A352B1643A8B100B8EB6E /* Accounts.bridgesupport in Resources */,
-				E14A352C1643A8B100B8EB6E /* AddressBook.bridgesupport in Resources */,
-				E14A352D1643A8B100B8EB6E /* AddressBookUI.bridgesupport in Resources */,
-				E14A352E1643A8B100B8EB6E /* AssetsLibrary.bridgesupport in Resources */,
-				E14A352F1643A8B100B8EB6E /* AudioToolbox.bridgesupport in Resources */,
-				E14A35301643A8B100B8EB6E /* AudioUnit.bridgesupport in Resources */,
-				E14A35311643A8B100B8EB6E /* AVFoundation.bridgesupport in Resources */,
-				E14A35321643A8B100B8EB6E /* CoreAudio.bridgesupport in Resources */,
-				E14A35331643A8B100B8EB6E /* CoreBluetooth.bridgesupport in Resources */,
-				E14A35341643A8B100B8EB6E /* CoreData.bridgesupport in Resources */,
-				E14A35351643A8B100B8EB6E /* CoreFoundation.bridgesupport in Resources */,
-				E14A35361643A8B100B8EB6E /* CoreImage.bridgesupport in Resources */,
-				E14A35371643A8B100B8EB6E /* CoreLocation.bridgesupport in Resources */,
-				E14A35381643A8B100B8EB6E /* CoreMedia.bridgesupport in Resources */,
-				E14A35391643A8B100B8EB6E /* CoreMIDI.bridgesupport in Resources */,
-				E14A353A1643A8B100B8EB6E /* CoreMotion.bridgesupport in Resources */,
-				E14A353B1643A8B100B8EB6E /* CoreTelephony.bridgesupport in Resources */,
-				E14A353C1643A8B100B8EB6E /* CoreVideo.bridgesupport in Resources */,
-				E14A353D1643A8B100B8EB6E /* EventKit.bridgesupport in Resources */,
-				E14A353E1643A8B100B8EB6E /* EventKitUI.bridgesupport in Resources */,
-				E14A353F1643A8B100B8EB6E /* ExternalAccessory.bridgesupport in Resources */,
-				E14A35401643A8B100B8EB6E /* Foundation.bridgesupport in Resources */,
-				E14A35411643A8B100B8EB6E /* GameKit.bridgesupport in Resources */,
-				E14A35421643A8B100B8EB6E /* GSS.bridgesupport in Resources */,
-				E14A35431643A8B100B8EB6E /* iAd.bridgesupport in Resources */,
-				E14A35441643A8B100B8EB6E /* MapKit.bridgesupport in Resources */,
-				E14A35451643A8B100B8EB6E /* MediaPlayer.bridgesupport in Resources */,
-				E14A35461643A8B100B8EB6E /* MessageUI.bridgesupport in Resources */,
-				E14A35471643A8B100B8EB6E /* MobileCoreServices.bridgesupport in Resources */,
-				E14A35481643A8B100B8EB6E /* NewsstandKit.bridgesupport in Resources */,
-				E14A35491643A8B100B8EB6E /* OpenAL.bridgesupport in Resources */,
-				E14A354A1643A8B100B8EB6E /* OpenGLES.bridgesupport in Resources */,
-				E14A354B1643A8B100B8EB6E /* QuartzCore.bridgesupport in Resources */,
-				E14A354C1643A8B100B8EB6E /* QuickLook.bridgesupport in Resources */,
-				E14A354D1643A8B100B8EB6E /* Security.bridgesupport in Resources */,
-				E14A354E1643A8B100B8EB6E /* StoreKit.bridgesupport in Resources */,
-				E14A354F1643A8B100B8EB6E /* SystemConfiguration.bridgesupport in Resources */,
-				E14A35501643A8B100B8EB6E /* Twitter.bridgesupport in Resources */,
-				E14A35511643A8B100B8EB6E /* UIKit.bridgesupport in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1090,64 +869,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1A4004F16439A1C00F8AE92 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1A4009016439B4600F8AE92 /* VMKBridgeFunctor.m in Sources */,
-				E1A4009116439B4600F8AE92 /* VMKBridgeInfo.m in Sources */,
-				E1A4009216439B4600F8AE92 /* VMKBridgeService.m in Sources */,
-				E1A4009316439B4600F8AE92 /* VMKLibraryInformation.m in Sources */,
-				E1A4009416439B4600F8AE92 /* VMKMachineService.m in Sources */,
-				E1A4009616439B4600F8AE92 /* VMKProfile.c in Sources */,
-				E1A4009716439B4600F8AE92 /* NSArray+VMKIndex.m in Sources */,
-				E1A4009816439B4600F8AE92 /* NSData+Base64.m in Sources */,
-				E1A4009916439B4600F8AE92 /* NSDictionary+VMKIndex.m in Sources */,
-				E1A4009B16439B4600F8AE92 /* NSString+VMKIndex.m in Sources */,
-				E1A4009C16439B4600F8AE92 /* LuaCGAffineTransform.c in Sources */,
-				E1A4009D16439B4600F8AE92 /* LuaCGGeometry.m in Sources */,
-				E1A4009E16439B4600F8AE92 /* LuaFoundation.m in Sources */,
-				E1A4009F16439B4600F8AE92 /* LuaNSBundle.m in Sources */,
-				E1A400A016439B4600F8AE92 /* LuaNSCollection.m in Sources */,
-				E1A400A116439B4600F8AE92 /* LuaNSRange.m in Sources */,
-				E1A400A216439B4600F8AE92 /* LuaNSString.c in Sources */,
-				E1A400A416439B4600F8AE92 /* LuaCATransform3D.c in Sources */,
-				E1A400A516439B4600F8AE92 /* VMKFrameworkFunctions.c in Sources */,
-				E1A400A616439B4600F8AE92 /* LuaUIAccessibility.m in Sources */,
-				E1A400A716439B4600F8AE92 /* LuaUIGeometry.m in Sources */,
-				E1A400A816439B4600F8AE92 /* LuaUIGraphics.m in Sources */,
-				E1A400A916439B4600F8AE92 /* LuaUIKit.m in Sources */,
-				E1A400AA16439B4600F8AE92 /* LuaUIView.m in Sources */,
-				E1A400AB16439B4600F8AE92 /* XMLDocument.c in Sources */,
-				E1A400AC16439B4600F8AE92 /* XMLNode.c in Sources */,
-				E1A400AD16439B4600F8AE92 /* XMLPathProcessor.c in Sources */,
-				E1A400AE16439B4600F8AE92 /* VMKObject.m in Sources */,
-				E1A400AF16439B4600F8AE92 /* VMKAuxiliary.m in Sources */,
-				E1A400B016439B4600F8AE92 /* VMKClass.m in Sources */,
-				E1A400B116439B4600F8AE92 /* VMKMessage.m in Sources */,
-				E1A400B216439B4600F8AE92 /* VMKProperty.m in Sources */,
-				E1A400B316439B4600F8AE92 /* VMKRuntime.m in Sources */,
-				E172CF9616B215C600B5E035 /* VMKInternal.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E14A34FE1643A7BA00B8EB6E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E1A4005316439A1C00F8AE92 /* VeritasMachineKit-iOS */;
-			targetProxy = E14A34FD1643A7BA00B8EB6E /* PBXContainerItemProxy */;
-		};
 		E1D62E7016AE20B600DE39BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "LuaKit-Mac";
 			targetProxy = E1D62E6F16AE20B600DE39BF /* PBXContainerItemProxy */;
-		};
-		E1D62E7416AE20CA00DE39BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "LuaKit-iOS";
-			targetProxy = E1D62E7316AE20CA00DE39BF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1319,68 +1047,6 @@
 			};
 			name = Release;
 		};
-		E1A4006216439A1D00F8AE92 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = armv7;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VeritasMachineKitiOS/VeritasMachineKitiOS-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
-				INFOPLIST_FILE = "VeritasMachineKitiOS/VeritasMachineKitiOS-Info.plist";
-				INSTALL_PATH = "@executable_path/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Source/Library/libffi-3.0.11/iOS\"",
-				);
-				PRODUCT_NAME = VeritasMachineKit;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Debug;
-		};
-		E1A4006316439A1D00F8AE92 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = armv7;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VeritasMachineKitiOS/VeritasMachineKitiOS-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
-				INFOPLIST_FILE = "VeritasMachineKitiOS/VeritasMachineKitiOS-Info.plist";
-				INSTALL_PATH = "@executable_path/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Source/Library/libffi-3.0.11/iOS\"",
-				);
-				PRODUCT_NAME = VeritasMachineKit;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1407,15 +1073,6 @@
 			buildConfigurations = (
 				E1A4004A1643996C00F8AE92 /* Debug */,
 				E1A4004B1643996C00F8AE92 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E1A4006116439A1D00F8AE92 /* Build configuration list for PBXNativeTarget "VeritasMachineKit-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E1A4006216439A1D00F8AE92 /* Debug */,
-				E1A4006316439A1D00F8AE92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
