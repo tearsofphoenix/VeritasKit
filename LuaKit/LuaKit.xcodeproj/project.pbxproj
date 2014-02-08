@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		9296370618A5C10B00E84853 /* LuaKitUniversal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9296370918A5C10B00E84853 /* Build configuration list for PBXAggregateTarget "LuaKitUniversal" */;
+			buildPhases = (
+				9296370C18A5C21C00E84853 /* ShellScript */,
+			);
+			dependencies = (
+				9296370B18A5C11200E84853 /* PBXTargetDependency */,
+			);
+			name = LuaKitUniversal;
+			productName = LuaKitUniversal;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		927D865818A4DE880094ED86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D85FB18A4DD740094ED86 /* Foundation.framework */; };
 		927D866518A4DE880094ED86 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D860918A4DD750094ED86 /* XCTest.framework */; };
@@ -48,6 +63,32 @@
 		927D869B18A4DF310094ED86 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEF0164396B800F8AE92 /* lundump.c */; };
 		927D869C18A4DF310094ED86 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEF2164396B800F8AE92 /* lvm.c */; };
 		927D869D18A4DF310094ED86 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEF4164396B800F8AE92 /* lzio.c */; };
+		9296370D18A5C82C00E84853 /* lapi.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEBA164396B700F8AE92 /* lapi.h */; };
+		9296370E18A5C82C00E84853 /* lauxlib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEBC164396B700F8AE92 /* lauxlib.h */; };
+		9296370F18A5C82C00E84853 /* lcode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEC0164396B700F8AE92 /* lcode.h */; };
+		9296371018A5C82C00E84853 /* lctype.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEC3164396B700F8AE92 /* lctype.h */; };
+		9296371118A5C82C00E84853 /* ldebug.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEC6164396B700F8AE92 /* ldebug.h */; };
+		9296371218A5C82C00E84853 /* ldo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEC8164396B700F8AE92 /* ldo.h */; };
+		9296371318A5C82C00E84853 /* lfunc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FECB164396B800F8AE92 /* lfunc.h */; };
+		9296371418A5C82C00E84853 /* lgc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FECD164396B800F8AE92 /* lgc.h */; };
+		9296371518A5C82C00E84853 /* llex.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FED1164396B800F8AE92 /* llex.h */; };
+		9296371618A5C82C00E84853 /* llimits.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FED2164396B800F8AE92 /* llimits.h */; };
+		9296371718A5C82C00E84853 /* lmem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FED5164396B800F8AE92 /* lmem.h */; };
+		9296371818A5C82C00E84853 /* lobject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FED8164396B800F8AE92 /* lobject.h */; };
+		9296371918A5C82C00E84853 /* lopcodes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEDA164396B800F8AE92 /* lopcodes.h */; };
+		9296371A18A5C82C00E84853 /* lparser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEDD164396B800F8AE92 /* lparser.h */; };
+		9296371B18A5C82C00E84853 /* lpeg.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEE0164396B800F8AE92 /* lpeg.h */; };
+		9296371C18A5C82C00E84853 /* lstate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEE2164396B800F8AE92 /* lstate.h */; };
+		9296371D18A5C82C00E84853 /* lstring.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEE4164396B800F8AE92 /* lstring.h */; };
+		9296371E18A5C82C00E84853 /* ltable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEE7164396B800F8AE92 /* ltable.h */; };
+		9296371F18A5C82C00E84853 /* ltm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEEA164396B800F8AE92 /* ltm.h */; };
+		9296372018A5C82C00E84853 /* lua.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEEB164396B800F8AE92 /* lua.h */; };
+		9296372118A5C82C00E84853 /* lua.hpp in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEEC164396B800F8AE92 /* lua.hpp */; };
+		9296372218A5C82C00E84853 /* luaconf.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEEE164396B800F8AE92 /* luaconf.h */; };
+		9296372318A5C82C00E84853 /* lualib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEEF164396B800F8AE92 /* lualib.h */; };
+		9296372418A5C82C00E84853 /* lundump.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEF1164396B800F8AE92 /* lundump.h */; };
+		9296372518A5C82C00E84853 /* lvm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEF3164396B800F8AE92 /* lvm.h */; };
+		9296372618A5C82C00E84853 /* lzio.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEF5164396B800F8AE92 /* lzio.h */; };
 		E1A4FEF6164396B800F8AE92 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEB9164396B700F8AE92 /* lapi.c */; };
 		E1A4FEF8164396B800F8AE92 /* lapi.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FEBA164396B700F8AE92 /* lapi.h */; };
 		E1A4FEFA164396B800F8AE92 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEBB164396B700F8AE92 /* lauxlib.c */; };
@@ -119,15 +160,48 @@
 			remoteGlobalIDString = 927D865618A4DE880094ED86;
 			remoteInfo = LuaKitiOS;
 		};
+		9296370A18A5C11200E84853 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A4FE801643959600F8AE92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 927D865618A4DE880094ED86;
+			remoteInfo = LuaKitiOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		927D865518A4DE880094ED86 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
+			dstPath = include/LuaKit;
 			dstSubfolderSpec = 16;
 			files = (
+				9296370D18A5C82C00E84853 /* lapi.h in CopyFiles */,
+				9296370E18A5C82C00E84853 /* lauxlib.h in CopyFiles */,
+				9296370F18A5C82C00E84853 /* lcode.h in CopyFiles */,
+				9296371018A5C82C00E84853 /* lctype.h in CopyFiles */,
+				9296371118A5C82C00E84853 /* ldebug.h in CopyFiles */,
+				9296371218A5C82C00E84853 /* ldo.h in CopyFiles */,
+				9296371318A5C82C00E84853 /* lfunc.h in CopyFiles */,
+				9296371418A5C82C00E84853 /* lgc.h in CopyFiles */,
+				9296371518A5C82C00E84853 /* llex.h in CopyFiles */,
+				9296371618A5C82C00E84853 /* llimits.h in CopyFiles */,
+				9296371718A5C82C00E84853 /* lmem.h in CopyFiles */,
+				9296371818A5C82C00E84853 /* lobject.h in CopyFiles */,
+				9296371918A5C82C00E84853 /* lopcodes.h in CopyFiles */,
+				9296371A18A5C82C00E84853 /* lparser.h in CopyFiles */,
+				9296371B18A5C82C00E84853 /* lpeg.h in CopyFiles */,
+				9296371C18A5C82C00E84853 /* lstate.h in CopyFiles */,
+				9296371D18A5C82C00E84853 /* lstring.h in CopyFiles */,
+				9296371E18A5C82C00E84853 /* ltable.h in CopyFiles */,
+				9296371F18A5C82C00E84853 /* ltm.h in CopyFiles */,
+				9296372018A5C82C00E84853 /* lua.h in CopyFiles */,
+				9296372118A5C82C00E84853 /* lua.hpp in CopyFiles */,
+				9296372218A5C82C00E84853 /* luaconf.h in CopyFiles */,
+				9296372318A5C82C00E84853 /* lualib.h in CopyFiles */,
+				9296372418A5C82C00E84853 /* lundump.h in CopyFiles */,
+				9296372518A5C82C00E84853 /* lvm.h in CopyFiles */,
+				9296372618A5C82C00E84853 /* lzio.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +594,7 @@
 				E1A4FE891643959600F8AE92 /* LuaKit-Mac */,
 				927D865618A4DE880094ED86 /* LuaKitiOS */,
 				927D866318A4DE880094ED86 /* LuaKitiOSTests */,
+				9296370618A5C10B00E84853 /* LuaKitUniversal */,
 			);
 		};
 /* End PBXProject section */
@@ -541,6 +616,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9296370C18A5C21C00E84853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\nTARGET_NAME=LuaKitiOS\n# Step 1. Build Device and Simulator versions\nxcodebuild -target ${TARGET_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target ${TARGET_NAME} -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${TARGET_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${TARGET_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${TARGET_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		927D865318A4DE880094ED86 /* Sources */ = {
@@ -640,6 +731,11 @@
 			isa = PBXTargetDependency;
 			target = 927D865618A4DE880094ED86 /* LuaKitiOS */;
 			targetProxy = 927D866818A4DE880094ED86 /* PBXContainerItemProxy */;
+		};
+		9296370B18A5C11200E84853 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 927D865618A4DE880094ED86 /* LuaKitiOS */;
+			targetProxy = 9296370A18A5C11200E84853 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -783,6 +879,22 @@
 			};
 			name = Release;
 		};
+		9296370718A5C10B00E84853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9296370818A5C10B00E84853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		E1A4FE9D1643959600F8AE92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -880,12 +992,22 @@
 				927D867518A4DE880094ED86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		927D867618A4DE880094ED86 /* Build configuration list for PBXNativeTarget "LuaKitiOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				927D867718A4DE880094ED86 /* Debug */,
 				927D867818A4DE880094ED86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9296370918A5C10B00E84853 /* Build configuration list for PBXAggregateTarget "LuaKitUniversal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9296370718A5C10B00E84853 /* Debug */,
+				9296370818A5C10B00E84853 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

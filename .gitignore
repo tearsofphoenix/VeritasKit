@@ -1,6 +1,7 @@
 .DS_Store
 
 *.xcodeproj/project.xcworkspace/xcuserdata
-
 *.xcodeproj/xcuserdata
-LuaIOS.xcodeproj/xcuserdata/yibindong.xcuserdatad/xcschemes/xcschememanagement.plist
+LuaIOS.xcodeproj/xcuserdata/
+LuaKit/LuaKit.xcodeproj/xcuserdata/
+LuaKit/build/
