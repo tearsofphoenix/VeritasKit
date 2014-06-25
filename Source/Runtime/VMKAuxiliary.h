@@ -13,7 +13,7 @@
 
 VMK_EXTERN_C_BEGIN
 
-#define VMKPushSelector(L, selector) lua_pushstring((L), (const char*)(selector))
+#define VMKPushSelector(L, selector) lua_pushstring((L), sel_getName(selector))
 
 VMK_EXPORT const char * kVMKNSObjectMetaTableName;
 

@@ -26,7 +26,7 @@
 		927D866518A4DE880094ED86 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D860918A4DD750094ED86 /* XCTest.framework */; };
 		927D866618A4DE880094ED86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D85FB18A4DD740094ED86 /* Foundation.framework */; };
 		927D866718A4DE880094ED86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D860C18A4DD750094ED86 /* UIKit.framework */; };
-		927D866A18A4DE880094ED86 /* libLuaKitiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D865718A4DE880094ED86 /* libLuaKitiOS.a */; };
+		927D866A18A4DE880094ED86 /* libLuaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D865718A4DE880094ED86 /* libLuaKit.a */; };
 		927D867018A4DE880094ED86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 927D866E18A4DE880094ED86 /* InfoPlist.strings */; };
 		927D867218A4DE880094ED86 /* LuaKitiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927D867118A4DE880094ED86 /* LuaKitiOSTests.m */; };
 		927D867C18A4DF310094ED86 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEB9164396B700F8AE92 /* lapi.c */; };
@@ -89,6 +89,7 @@
 		9296372418A5C82C00E84853 /* lundump.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEF1164396B800F8AE92 /* lundump.h */; };
 		9296372518A5C82C00E84853 /* lvm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEF3164396B800F8AE92 /* lvm.h */; };
 		9296372618A5C82C00E84853 /* lzio.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A4FEF5164396B800F8AE92 /* lzio.h */; };
+		9296CE56195A5FE4004D6C6F /* LuaKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 927D867A18A4DEA50094ED86 /* LuaKit.h */; };
 		E1A4FEF6164396B800F8AE92 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEB9164396B700F8AE92 /* lapi.c */; };
 		E1A4FEF8164396B800F8AE92 /* lapi.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4FEBA164396B700F8AE92 /* lapi.h */; };
 		E1A4FEFA164396B800F8AE92 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A4FEBB164396B700F8AE92 /* lauxlib.c */; };
@@ -173,9 +174,10 @@
 		927D865518A4DE880094ED86 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = include/LuaKit;
+			dstPath = LuaKit;
 			dstSubfolderSpec = 16;
 			files = (
+				9296CE56195A5FE4004D6C6F /* LuaKit.h in CopyFiles */,
 				9296370D18A5C82C00E84853 /* lapi.h in CopyFiles */,
 				9296370E18A5C82C00E84853 /* lauxlib.h in CopyFiles */,
 				9296370F18A5C82C00E84853 /* lcode.h in CopyFiles */,
@@ -211,7 +213,7 @@
 		927D85FB18A4DD740094ED86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		927D860918A4DD750094ED86 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		927D860C18A4DD750094ED86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		927D865718A4DE880094ED86 /* libLuaKitiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLuaKitiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		927D865718A4DE880094ED86 /* libLuaKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLuaKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		927D865B18A4DE880094ED86 /* LuaKitiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LuaKitiOS-Prefix.pch"; sourceTree = "<group>"; };
 		927D866418A4DE880094ED86 /* LuaKitiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuaKitiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		927D866D18A4DE880094ED86 /* LuaKitiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LuaKitiOSTests-Info.plist"; sourceTree = "<group>"; };
@@ -297,7 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				927D866518A4DE880094ED86 /* XCTest.framework in Frameworks */,
-				927D866A18A4DE880094ED86 /* libLuaKitiOS.a in Frameworks */,
+				927D866A18A4DE880094ED86 /* libLuaKit.a in Frameworks */,
 				927D866718A4DE880094ED86 /* UIKit.framework in Frameworks */,
 				927D866618A4DE880094ED86 /* Foundation.framework in Frameworks */,
 			);
@@ -383,7 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				E1A4FE8A1643959600F8AE92 /* LuaKit.framework */,
-				927D865718A4DE880094ED86 /* libLuaKitiOS.a */,
+				927D865718A4DE880094ED86 /* libLuaKit.a */,
 				927D866418A4DE880094ED86 /* LuaKitiOSTests.xctest */,
 			);
 			name = Products;
@@ -526,7 +528,7 @@
 			);
 			name = LuaKitiOS;
 			productName = LuaKitiOS;
-			productReference = 927D865718A4DE880094ED86 /* libLuaKitiOS.a */;
+			productReference = 927D865718A4DE880094ED86 /* libLuaKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		927D866318A4DE880094ED86 /* LuaKitiOSTests */ = {
@@ -571,7 +573,7 @@
 		E1A4FE801643959600F8AE92 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = tearsofphoenix;
 				TargetAttributes = {
 					927D866318A4DE880094ED86 = {
@@ -754,7 +756,6 @@
 		927D867418A4DE880094ED86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -775,7 +776,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LuaKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -784,7 +785,6 @@
 		927D867518A4DE880094ED86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -802,7 +802,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LuaKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
@@ -812,7 +812,6 @@
 		927D867718A4DE880094ED86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LuaKit.framework/Versions/A/LuaKit";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -848,7 +847,6 @@
 		927D867818A4DE880094ED86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LuaKit.framework/Versions/A/LuaKit";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1010,6 +1008,7 @@
 				9296370818A5C10B00E84853 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1A4FE831643959600F8AE92 /* Build configuration list for PBXProject "LuaKit" */ = {
 			isa = XCConfigurationList;

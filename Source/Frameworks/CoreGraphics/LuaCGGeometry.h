@@ -14,7 +14,7 @@
 #if TARGET_OS_IPHONE || TARGET_OS_EMBEDDED
 #include <CoreGraphics/CGGeometry.h>
 #else
-#include <Foundation/NSGeometry.h>
+//#import <Foundation/Foundation.h>
 #endif
 
 VMK_EXTERN_C_BEGIN

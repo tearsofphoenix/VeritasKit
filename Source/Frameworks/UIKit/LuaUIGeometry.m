@@ -5,12 +5,12 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#include <UIKit/UIGeometry.h>
 #include "LuaUIGeometry.h"
 #include "VMKAuxiliary.h"
 #include "LuaCGGeometry.h"
 #include "VMKFrameworkFunctions.h"
 #include "VMKInternal.h"
-#include <UIKit/UIGeometry.h>
 
 int VMKPushUIEdgeInsets(lua_State *L, UIEdgeInsets edgeInsets)
 {

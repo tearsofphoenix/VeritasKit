@@ -5,6 +5,9 @@
 //  Created by tearsofphoenix on 3/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 
 #import "VMKClass.h"
 #import "VMKAuxiliary.h"
@@ -210,7 +213,7 @@ static void luaObjC_addClosureIDForSelector(Class theClass, int clouserID, const
 
 static inline NSUInteger VMKInternal_argumentCountOfSelector(SEL selector)
 {
-    const char* charLooper = (const char*)selector;
+    const char* charLooper = sel_getName(selector);
     NSUInteger count = 0;
     
     while (*charLooper)
@@ -350,7 +353,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         int status = lua_pcall(luaState, (int)numberOfArgument + 1 + 1, 1, 0);
         if (status != LUA_OK)
         {
-            luaL_error(luaState, "error in call @selector: %s", (const char*)sel);
+            luaL_error(luaState, "error in call @selector: %s", sel_getName(sel));
         }
         
         return ;
@@ -363,7 +366,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         
     }else
     {
-        luaL_error(luaState, "fail to find @property IMP for : %s", (const char*)sel);
+        luaL_error(luaState, "fail to find @property IMP for : %s", sel_getName(sel));
     }
 }
 
@@ -547,7 +550,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
             
         }else
         {
-            printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", className, (const char*)sel, typeEncodingCString, returnType);
+            printf("Fail to class:%s registered method:%s typeencoding:%s return type:%s\n", className, sel_getName(sel), typeEncodingCString, returnType);
         }
     }
     

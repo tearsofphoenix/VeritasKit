@@ -8,6 +8,7 @@
 #import "LuaUIView.h"
 
 #import "VMKMessage.h"
+#import <UIKit/UIKit.h>
 
 static int _luaObjC_UIView_animateWithDuration_animations(id obj, SEL selector, lua_State *luaState)
 {    

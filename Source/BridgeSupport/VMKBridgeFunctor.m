@@ -163,12 +163,12 @@ static int VMKBridgeFunctorInvoke(lua_State *L)
     return ref->_returnCount;
 }
 
-static int VMKBridgeFunctorFinalize(lua_State *L)
-{
-    VMKBridgeFuncotrRef ref = luaL_checkudata(L, 1, VMKBridgeFuncotrMetaName);
-    VMKFunctorFinalize(ref);
-    return 0;
-}
+//static int VMKBridgeFunctorFinalize(lua_State *L)
+//{
+//    VMKBridgeFuncotrRef ref = luaL_checkudata(L, 1, VMKBridgeFuncotrMetaName);
+//    VMKFunctorFinalize(ref);
+//    return 0;
+//}
 
 static const luaL_Reg __LuaObjCBridgeSupportFunctions[] =
 {

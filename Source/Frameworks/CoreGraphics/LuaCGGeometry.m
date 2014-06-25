@@ -10,6 +10,8 @@
 #include "VMKFrameworkFunctions.h"
 #include "VMKInternal.h"
 
+@import UIKit;
+
 int VMKPushCGPoint(lua_State *L, CGPoint p)
 {
     CGPoint *point = lua_newuserdata(L, sizeof(CGPoint));

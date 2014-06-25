@@ -5,6 +5,8 @@
 //  Created by tearsofphoenix on 7/9/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 #import "VMKBridgeService.h"
 #import "VMKBridgeInfo.h"

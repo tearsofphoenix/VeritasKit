@@ -9,9 +9,10 @@
 #ifndef __VMK_LUACATRANSFORM3D__
 #define __VMK_LUACATRANSFORM3D__ 1
 
+#include <QuartzCore/QuartzCore.h>
+
 #include "VMKBase.h"
 
-#include <QuartzCore/CATransform3D.h>
 
 VMK_EXTERN_C_BEGIN
 

@@ -206,23 +206,23 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
 
 #pragma mark - helper functions
 
-static const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
-{
-    if (ar)
-    {
-        const char* source = ar->source;
-        
-        NSString *theString = @( source );
-        
-        NSArray *result = [theString componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
-        
-        NSString *theLineSource = [result objectAtIndex: ar->currentline];
-        
-        return [theLineSource UTF8String];
-    }
-    
-    return NULL;
-}
+//static const char* LuaInternalGetCurrentLineSource(lua_Debug *ar)
+//{
+//    if (ar)
+//    {
+//        const char* source = ar->source;
+//        
+//        NSString *theString = @( source );
+//        
+//        NSArray *result = [theString componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
+//        
+//        NSString *theLineSource = [result objectAtIndex: ar->currentline];
+//        
+//        return [theLineSource UTF8String];
+//    }
+//    
+//    return NULL;
+//}
 
 #pragma mark - message send routine implementation
 

@@ -28,7 +28,12 @@
 
 extern int lua_dumpSourceCode(lua_State* L, const char *sourceCode, const char* outputPath);
 
-static char * const VMKMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
+int lua_dumpSourceCode(lua_State* L, const char *sourceCode, const char* outputPath)
+{
+    return 0;
+}
+
+//static char * const VMKMachineFrameworkImportQueueIdentifier = "com.veritas.lua-engine.framework-import.queue";
 
 static char * const VMKMachineGarbageCollectionQueueIdentifier = "com.veritas.lua-engine.garbage-colletion.queue";
 
