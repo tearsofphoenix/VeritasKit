@@ -86,8 +86,10 @@ static const char* LuaInternalJumpoverEncodingDecorator(const char* charLooper)
 //accelerator for methods that have no argument
 //
 static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
-                                    IMP impRef, id obj, SEL selector)
+                                    IMP inImpRef, id obj, SEL selector)
 {
+     VMKIMP impRef = (VMKIMP)inImpRef;
+    
     returnType = LuaInternalJumpoverEncodingDecorator(returnType);
     switch (*returnType)
     {

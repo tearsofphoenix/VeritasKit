@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		922666F419594E3800DD5B48 /* libLuaKitiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 922666EF19594C0D00DD5B48 /* libLuaKitiOS.a */; };
+		922666F419594E3800DD5B48 /* libLuaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 922666EF19594C0D00DD5B48 /* libLuaKit.a */; };
 		922666FA19594E5E00DD5B48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E21643A77F00B8EB6E /* Foundation.framework */; };
 		922666FF19594E5E00DD5B48 /* VeritasKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 922666FE19594E5E00DD5B48 /* VeritasKit.h */; };
 		9226670119594E5E00DD5B48 /* VeritasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226670019594E5E00DD5B48 /* VeritasKit.m */; };
@@ -437,7 +437,7 @@
 				9296CE59195A6041004D6C6F /* libxml2.dylib in Frameworks */,
 				9296CE57195A6030004D6C6F /* QuartzCore.framework in Frameworks */,
 				9296CE4D195A5BF2004D6C6F /* libVeritasKit.a in Frameworks */,
-				922666F419594E3800DD5B48 /* libLuaKitiOS.a in Frameworks */,
+				922666F419594E3800DD5B48 /* libLuaKit.a in Frameworks */,
 				E14A34E11643A77F00B8EB6E /* UIKit.framework in Frameworks */,
 				E14A34E31643A77F00B8EB6E /* Foundation.framework in Frameworks */,
 				E14A34E51643A77F00B8EB6E /* CoreGraphics.framework in Frameworks */,
@@ -914,7 +914,7 @@
 			isa = PBXGroup;
 			children = (
 				E1D62E6B16AE20A900DE39BF /* LuaKit.framework */,
-				922666EF19594C0D00DD5B48 /* libLuaKitiOS.a */,
+				922666EF19594C0D00DD5B48 /* libLuaKit.a */,
 				922666F119594C0D00DD5B48 /* LuaKitiOSTests.xctest */,
 			);
 			name = Products;
@@ -1027,7 +1027,7 @@
 		34E8A16714D24C82000F9EB1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					9226670519594E5F00DD5B48 = {
 						TestTargetID = E1A400361643996C00F8AE92;
@@ -1061,10 +1061,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		922666EF19594C0D00DD5B48 /* libLuaKitiOS.a */ = {
+		922666EF19594C0D00DD5B48 /* libLuaKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libLuaKitiOS.a;
+			path = libLuaKit.a;
 			remoteRef = 922666EE19594C0D00DD5B48 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1312,9 +1312,11 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1348,9 +1350,11 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -359,7 +359,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         return ;
     }
     /*if is property*/
-    IMP imp = class_getMethodImplementation(theClass, sel);
+    VMKIMP imp = (VMKIMP)class_getMethodImplementation(theClass, sel);
     if (imp)
     {
         VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), true, false);
@@ -526,7 +526,7 @@ static int luaObjC_class_addMethod(lua_State *L, BOOL isObjectMethod)
         }
         default:
         {
-            imp = __luaClass_IMP_gerneral;
+            imp = (IMP)__luaClass_IMP_gerneral;
             break;
         }
             

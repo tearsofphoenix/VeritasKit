@@ -13,9 +13,12 @@
 
 #include <LuaKit/lua.h>
 #include <LuaKit/lauxlib.h>
+#include <objc/objc.h>
 
 #define VMK_EXPORT LUAMOD_API
 #define VMK_EXTERN_C_BEGIN  __BEGIN_DECLS
 #define VMK_EXTERN__C_END   __END_DECLS
+
+typedef id (* VMKIMP)(id, SEL, ...);
 
 #endif
