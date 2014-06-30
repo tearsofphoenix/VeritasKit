@@ -125,22 +125,14 @@ static int VMKAcceleratorForNoArgument(lua_State *L, const char* returnType,
         case _C_CLASS:
         {
             id result = impRef(obj, selector);
-            VMKPushObject(L, result, true, true);
+            VMKPushClass(L, result);
             return 1;
         }
         case _C_ID:
         {
             id result = impRef(obj, selector);
             
-            if (sel_isEqual(selector, @selector(alloc)))
-            {
-                
-                VMKPushObject(L, result, false, false);
-                
-            }else
-            {
-                VMKPushObject(L, result, true, false);
-            }
+            VMKPushObject(L, result, !sel_isEqual(selector, @selector(alloc)));
             
             return 1;
         }
@@ -272,6 +264,23 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
     {
         lua_pushnil(L);
         return 0;
+    }
+    
+    //arc-support, ignore for `retain', `release', `autorelease'
+    //
+    {
+        if (sel_isEqual(selector, @selector(retain)))
+        {
+            return 1;
+        }
+        if (sel_isEqual(selector, @selector(release)))
+        {
+            return 0;
+        }
+        if (sel_isEqual(selector, @selector(autorelease)))
+        {
+            return 0;
+        }
     }
     
     Class objClass = object_getClass(obj);
@@ -445,7 +454,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                 
-                VMKPushObject(L, obj, true, true);
+                VMKPushClass(L, obj);
                 
                 return 1;
 
@@ -455,7 +464,7 @@ static int _luaObjC_objc_messageSendGeneral(lua_State *L, BOOL isToSelfClass)
                 id obj = nil;
                 [invokation getReturnValue: &obj];
                
-                VMKPushObject(L, obj, true, false);
+                VMKPushObject(L, obj, true);
                 
                 return 1;
             }

@@ -79,29 +79,20 @@ GL = #import("OpenGLES")
 
 - (BOOL)application: (id)application didFinishLaunchingWithOptions: (id)launchOptions
 {
-    print("_cmd is", @{ })
     bounds = [[UIScreen mainScreen] bounds]
     
     local window = [[UIWindow alloc] initWithFrame: bounds]
-    //[window setUserInteractionEnabled: NO]
     [self setWindow: window]
-    print([self window])
-    [self setTf: 1919.1]
-    print([self tf])
-    
-    [self setTi: 123213]
-    print([self ti])
 
-    local backgroundColor = [UIColor whiteColor]
 
-    
-    [window setBackgroundColor: backgroundColor];
+    local test = [[NSString alloc] initWithUTF8String: "hhhxxxhhhxxxex"];
+
+--[[
     rootViewController = [[UIViewController alloc] init]
         
     local mainView = [rootViewController view]
     [mainView setFrame: bounds]
-    --[mainView setUserInteractionEnabled: NO]
-    
+
     tableView = [[UITableView alloc] init]
     [tableView setFrame: bounds]
     [mainView addSubview: tableView]
@@ -120,14 +111,9 @@ GL = #import("OpenGLES")
         
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self 
                                                          action: @selector(handleTapEvent:)]
-    //protocol = @protocol(pr)
-    //print(tapGesture)
     [window addGestureRecognizer: tapGesture]
     [tapGesture release]
-            
-    [self setString: @"x-----xx"]
-    print([self testString])
-    
+]]--
     return true
 }
 
@@ -150,54 +136,5 @@ GL = #import("OpenGLES")
 
  
 main = function()
-            @try
-            {
-                @try
-                {   
-                    print("in lua @try")
-                    @throw "ok"
-                }
-                @catch (value)
-                {
-                    print("in lua @catch")
-                    print(value)
-                    @throw "from @catch"
-                }
-                @finally
-                {
-                    print("finally")
-                    @throw "from inner @finally"
-                }
-
-            }@catch(errorMsg)
-            {
-                print(errorMsg)
-            }
-            --[[
-            local value = [[NSString alloc] initWithUTF8String: "value--string"];
-
-            local block = (^
-                            {
-                                print(value)
-                            })
-            [value release];
-            
-            block();
-            --]]
-            local dict = [[NSMutableDictionary alloc] init];
-            [dict setObject: @"2" forKey: @"two"];
-
-            for( k, v in dict)
-            {
-                print(k, v);
-            }
-
-            dict["sd"] = @"4";
-
-            for( k, v in dict)
-            {
-                print(k, v);
-            }
-
             return UIApplicationMain(0, nil, nil, NSStringFromClass([AppDelegate class]))
         end

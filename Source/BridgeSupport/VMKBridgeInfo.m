@@ -68,7 +68,7 @@ Boolean VMKBridgeInfoResolveIntoLuaState(VMKBridgeInfoRef info, struct lua_State
             const char *className = [(NSString *)info->_name UTF8String];
             Class theClass = objc_getClass(className);
             
-            VMKPushObject(state, theClass, true, true);
+            VMKPushClass(state, theClass);
             
             return YES;
         }
@@ -81,7 +81,7 @@ Boolean VMKBridgeInfoResolveIntoLuaState(VMKBridgeInfoRef info, struct lua_State
         {
             id value = CFDictionaryGetValue(info->_info, CFSTR("value"));
             
-            VMKPushObject(state, value, true, false);
+            VMKPushObject(state, value, true);
             
             return YES;
         }
@@ -121,7 +121,7 @@ Boolean VMKBridgeInfoResolveIntoLuaState(VMKBridgeInfoRef info, struct lua_State
             const char *className = [_name UTF8String];
             Class theClass = objc_getClass(className);
             
-            VMKPushObject(state, theClass, true, true);
+            VMKPushClass(state, theClass);
             
             return YES;
         }
@@ -134,7 +134,7 @@ Boolean VMKBridgeInfoResolveIntoLuaState(VMKBridgeInfoRef info, struct lua_State
         {
             id value = [_info objectForKey: @"value"];
             
-            VMKPushObject(state, value, true, false);
+            VMKPushObject(state, value, true);
             
             return YES;
         }

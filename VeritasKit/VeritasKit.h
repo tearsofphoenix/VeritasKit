@@ -8,6 +8,3 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VeritasKit : NSObject
-
-@end

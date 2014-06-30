@@ -139,14 +139,11 @@ static int _luaEngine_compileTimeInteraction(lua_State *L)
     const char *message = lua_tostring(L, 2);
     if (VMKCStringEqual(message, "import"))
     {
-        CFStringRef str = CFStringCreateWithCString(NULL, lua_tostring(L, 3), kCFStringEncodingUTF8);
+        NSString *str = @(lua_tostring(L, 3));
 
-        CFStringRef frameworkName = CFStringCreateWithSubstring(NULL, str, CFRangeMake(1, CFStringGetLength(str) - 2));
+        NSString *frameworkName = [str substringWithRange: NSMakeRange(1, [str length] - 2)];
         
-        [[VMKBridgeService sharedService] importFramework: (NSString *)frameworkName];
-        
-        CFRelease(str);
-        CFRelease(frameworkName);
+        [[VMKBridgeService sharedService] importFramework: frameworkName];
     }
     
     return 0;

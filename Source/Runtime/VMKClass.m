@@ -264,7 +264,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
         
         //push 'self' argument first
         //
-        VMKPushObject(luaState, obj, true, false);
+        VMKPushObject(luaState, obj, true);
         
         //push '_cmd' argument next
         //
@@ -309,7 +309,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
                 case _C_ID:
                 {
                     id argLooper = va_arg(ap,  id);
-                    VMKPushObject(luaState, argLooper, true, false);
+                    VMKPushObject(luaState, argLooper, true);
                     break;
                 }
                 case _C_SEL:
@@ -362,7 +362,7 @@ static void __luaClass_IMP_preprocess(lua_State **returnedLuaState, id obj, SEL 
     VMKIMP imp = (VMKIMP)class_getMethodImplementation(theClass, sel);
     if (imp)
     {
-        VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), true, false);
+        VMKPushObject(luaState, imp(obj, sel, VMKCheckObject(luaState, 1)), true);
         
     }else
     {

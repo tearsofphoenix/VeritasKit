@@ -355,12 +355,12 @@ void VMKInvoke(struct lua_State *L,
             }
             case _C_CLASS:
             {
-                VMKPushObject(L, *(id *)ref->_returnValue, true, true);
+                VMKPushClass(L, *(id *)ref->_returnValue);
                 break;
             }
             case _C_ID:
             {
-                VMKPushObject(L, *(id *)ref->_returnValue, true, false);
+                VMKPushObject(L, *(id *)ref->_returnValue, true);
                 break;
             }
             case _C_PTR:

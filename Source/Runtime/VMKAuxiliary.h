@@ -21,7 +21,9 @@ VMK_EXPORT const char * kVMKClassMetaTableName;
 
 VMK_EXPORT id VMKCheckObject(struct lua_State *L, int index);
 
-VMK_EXPORT int VMKPushObject(struct lua_State *L, id obj, bool shouldStoreInPool, bool isClass);
+VMK_EXPORT int VMKPushClass(struct lua_State *L, id nsObject);
+
+VMK_EXPORT int VMKPushObject(struct lua_State *L, id obj, bool shouldStoreInPool);
 
 VMK_EXPORT const char* VMKCheckString(struct lua_State *L, int index);
 

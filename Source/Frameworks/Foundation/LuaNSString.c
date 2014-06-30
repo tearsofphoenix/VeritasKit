@@ -18,7 +18,7 @@ static int lua_NSConstantStringCreate(lua_State *L)
     CFStringRef constantString =  CFStringCreateWithCString(NULL, str, kCFStringEncodingUTF8);
     CFMakeCollectable(constantString);
     
-    VMKPushObject(L, (id)constantString, true, false);
+    VMKPushObject(L, (id)constantString, true);
     return 1;
 }
 

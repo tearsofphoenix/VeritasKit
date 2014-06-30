@@ -15,7 +15,7 @@
 - (void)indexObjectWithState: (lua_State *)L
 {
     id key = VMKCheckObject(L, 2);
-    VMKPushObject(L, [self objectForKey: key], true, false);
+    VMKPushObject(L, [self objectForKey: key], true);
 }
 
 - (void)concatObjectWithState: (lua_State *)state
@@ -24,7 +24,7 @@
     
     NSMutableDictionary *ret = [[[NSMutableDictionary alloc] initWithDictionary: self] autorelease];
     [ret addEntriesFromDictionary: dict];
-    VMKPushObject(state, ret, true, false);
+    VMKPushObject(state, ret, true);
 }
 
 - (void)getLengthOfObjectWithState: (lua_State *)state
@@ -48,8 +48,8 @@ static int luaObjC_NSDictionary_luaEnumerator(lua_State *L)
     if (__keyIndex < [__keys count])
     {
         id key = [__keys objectAtIndex: __keyIndex];
-        VMKPushObject(L, key, true, false);
-        VMKPushObject(L, [dict objectForKey: key], true, false);
+        VMKPushObject(L, key, true);
+        VMKPushObject(L, dict[key], true);
         ++__keyIndex;
         return 2;
     }else 

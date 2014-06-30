@@ -86,14 +86,14 @@ static int luaObjC_createClassWithSuperClass(lua_State *L)
     if (registeredClass)
     {
         printf("Has Registerd:%s superClass:%s\n", newClassName, superClassName);
-        VMKPushObject(L, registeredClass, true, true);
+        VMKPushClass(L, registeredClass);
         
     }else
     {
         Class theNewClass = objc_allocateClassPair(superClass, newClassName, 0);
         
         LuaInternalAllocateClass(L, theNewClass, newClassName);
-        VMKPushObject(L, theNewClass, true, true);
+        VMKPushClass(L, theNewClass);
     }
     return 1;
 }
@@ -259,7 +259,7 @@ static int luaObjC_createBlockObject(lua_State *L)
     
     luaObjC_addClosureIDForBlock(clouserID, block);
     
-    VMKPushObject(L, block, true, false);
+    VMKPushObject(L, block, true);
     
     return 1;
 }
@@ -315,7 +315,7 @@ static int luaObjC_resolveName(lua_State *L)
     
     if (theClass)
     {
-        VMKPushObject(L, theClass, false, true);
+        VMKPushClass(L, theClass);
         
     }else
     {
@@ -482,7 +482,7 @@ static int luaObjC_createLiteralArray(lua_State *L)
     
     CFMakeCollectable(value);
     
-    VMKPushObject(L, (id)value, true, false);
+    VMKPushObject(L, (id)value, true);
     
     return 1;
 }
@@ -507,7 +507,7 @@ static int luaObjC_createLiteralDictionary(lua_State *L)
     
     CFMakeCollectable(result);
 
-    VMKPushObject(L, (id)result, true, false);
+    VMKPushObject(L, (id)result, true);
     
     return 1;
 }
@@ -522,7 +522,7 @@ static inline int luaObjC_createConstantNumber(lua_State *L)
     
     CFMakeCollectable(number);
     
-    VMKPushObject(L, (id)number, true, false);
+    VMKPushObject(L, (id)number, true);
     
     return 1;
 }

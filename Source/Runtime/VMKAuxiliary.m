@@ -87,11 +87,25 @@ const char* VMKCheckString(lua_State *L, int index)
     }
 }
 
-int VMKPushObject(lua_State *L, id nsObject, bool shouldStoreInPool, bool isClass)
+int VMKPushClass(lua_State *L, id nsObject)
 {
     if (nsObject)
     {
-        VMKObjectCreate(L, nsObject, isClass);
+        VMKObjectCreate(L, nsObject, true);
+        
+    }else
+    {
+        lua_pushnil(L);
+    }
+    
+    return 1;
+}
+
+int VMKPushObject(lua_State *L, id nsObject, bool shouldStoreInPool)
+{
+    if (nsObject)
+    {
+        VMKObjectCreate(L, nsObject, false);
         
         if (shouldStoreInPool)
         {

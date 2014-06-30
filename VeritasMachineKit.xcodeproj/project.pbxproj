@@ -10,7 +10,6 @@
 		922666F419594E3800DD5B48 /* libLuaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 922666EF19594C0D00DD5B48 /* libLuaKit.a */; };
 		922666FA19594E5E00DD5B48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E21643A77F00B8EB6E /* Foundation.framework */; };
 		922666FF19594E5E00DD5B48 /* VeritasKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 922666FE19594E5E00DD5B48 /* VeritasKit.h */; };
-		9226670119594E5E00DD5B48 /* VeritasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226670019594E5E00DD5B48 /* VeritasKit.m */; };
 		9226670719594E5F00DD5B48 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927D863318A4DE320094ED86 /* XCTest.framework */; };
 		9226670819594E5F00DD5B48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E21643A77F00B8EB6E /* Foundation.framework */; };
 		9226670919594E5F00DD5B48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E01643A77F00B8EB6E /* UIKit.framework */; };
@@ -47,6 +46,52 @@
 		9226674F19594EE000DD5B48 /* XMLDocument.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.c */; };
 		9226675019594EE000DD5B48 /* XMLNode.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.c */; };
 		9226675119594EE000DD5B48 /* XMLPathProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.c */; };
+		92397232195D40F2008AFCF5 /* Accelerate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8C1643993300F8AE92 /* Accelerate.bridgesupport */; };
+		92397233195D40F2008AFCF5 /* Accounts.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8D1643993300F8AE92 /* Accounts.bridgesupport */; };
+		92397234195D40F2008AFCF5 /* AddressBook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8E1643993300F8AE92 /* AddressBook.bridgesupport */; };
+		92397235195D40F2008AFCF5 /* AddressBookUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF8F1643993300F8AE92 /* AddressBookUI.bridgesupport */; };
+		92397236195D40F2008AFCF5 /* AssetsLibrary.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF901643993300F8AE92 /* AssetsLibrary.bridgesupport */; };
+		92397237195D40F2008AFCF5 /* AudioToolbox.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF911643993300F8AE92 /* AudioToolbox.bridgesupport */; };
+		92397238195D40F2008AFCF5 /* AudioUnit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF921643993300F8AE92 /* AudioUnit.bridgesupport */; };
+		92397239195D40F2008AFCF5 /* AVFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF931643993300F8AE92 /* AVFoundation.bridgesupport */; };
+		9239723A195D40F2008AFCF5 /* CoreAudio.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF941643993300F8AE92 /* CoreAudio.bridgesupport */; };
+		9239723B195D40F2008AFCF5 /* CoreBluetooth.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF951643993300F8AE92 /* CoreBluetooth.bridgesupport */; };
+		9239723C195D40F2008AFCF5 /* CoreData.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF961643993300F8AE92 /* CoreData.bridgesupport */; };
+		9239723D195D40F2008AFCF5 /* CoreFoundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF971643993300F8AE92 /* CoreFoundation.bridgesupport */; };
+		9239723E195D40F2008AFCF5 /* CoreImage.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF981643993300F8AE92 /* CoreImage.bridgesupport */; };
+		9239723F195D40F2008AFCF5 /* CoreLocation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF991643993300F8AE92 /* CoreLocation.bridgesupport */; };
+		92397240195D40F2008AFCF5 /* CoreMedia.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9A1643993300F8AE92 /* CoreMedia.bridgesupport */; };
+		92397241195D40F2008AFCF5 /* CoreMIDI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9B1643993300F8AE92 /* CoreMIDI.bridgesupport */; };
+		92397242195D40F2008AFCF5 /* CoreMotion.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9C1643993300F8AE92 /* CoreMotion.bridgesupport */; };
+		92397243195D40F2008AFCF5 /* CoreTelephony.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9D1643993300F8AE92 /* CoreTelephony.bridgesupport */; };
+		92397244195D40F2008AFCF5 /* CoreVideo.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9E1643993300F8AE92 /* CoreVideo.bridgesupport */; };
+		92397245195D40F2008AFCF5 /* EventKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FF9F1643993300F8AE92 /* EventKit.bridgesupport */; };
+		92397246195D40F2008AFCF5 /* EventKitUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA01643993300F8AE92 /* EventKitUI.bridgesupport */; };
+		92397247195D40F2008AFCF5 /* ExternalAccessory.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA11643993300F8AE92 /* ExternalAccessory.bridgesupport */; };
+		92397248195D40F2008AFCF5 /* Foundation.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA21643993300F8AE92 /* Foundation.bridgesupport */; };
+		92397249195D40F2008AFCF5 /* GameKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA31643993300F8AE92 /* GameKit.bridgesupport */; };
+		9239724A195D40F2008AFCF5 /* GSS.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA41643993300F8AE92 /* GSS.bridgesupport */; };
+		9239724B195D40F2008AFCF5 /* iAd.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA51643993300F8AE92 /* iAd.bridgesupport */; };
+		9239724C195D40F2008AFCF5 /* MapKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA61643993300F8AE92 /* MapKit.bridgesupport */; };
+		9239724D195D40F2008AFCF5 /* MediaPlayer.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA71643993300F8AE92 /* MediaPlayer.bridgesupport */; };
+		9239724E195D40F2008AFCF5 /* MessageUI.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA81643993300F8AE92 /* MessageUI.bridgesupport */; };
+		9239724F195D40F2008AFCF5 /* MobileCoreServices.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFA91643993300F8AE92 /* MobileCoreServices.bridgesupport */; };
+		92397250195D40F2008AFCF5 /* NewsstandKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAA1643993300F8AE92 /* NewsstandKit.bridgesupport */; };
+		92397251195D40F2008AFCF5 /* OpenAL.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAB1643993300F8AE92 /* OpenAL.bridgesupport */; };
+		92397252195D40F2008AFCF5 /* OpenGLES.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAC1643993300F8AE92 /* OpenGLES.bridgesupport */; };
+		92397253195D40F2008AFCF5 /* QuartzCore.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAD1643993300F8AE92 /* QuartzCore.bridgesupport */; };
+		92397254195D40F2008AFCF5 /* QuickLook.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAE1643993300F8AE92 /* QuickLook.bridgesupport */; };
+		92397255195D40F2008AFCF5 /* Security.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFAF1643993300F8AE92 /* Security.bridgesupport */; };
+		92397256195D40F2008AFCF5 /* StoreKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB01643993300F8AE92 /* StoreKit.bridgesupport */; };
+		92397257195D40F2008AFCF5 /* SystemConfiguration.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB11643993300F8AE92 /* SystemConfiguration.bridgesupport */; };
+		92397258195D40F2008AFCF5 /* Twitter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB21643993300F8AE92 /* Twitter.bridgesupport */; };
+		92397259195D40F2008AFCF5 /* UIKit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = E1A4FFB31643993300F8AE92 /* UIKit.bridgesupport */; };
+		9239725A195D4103008AFCF5 /* LuaCParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000C1643993300F8AE92 /* LuaCParser.lua */; };
+		9239725B195D4103008AFCF5 /* VMKParser.lua in Resources */ = {isa = PBXBuildFile; fileRef = E1A4000D1643993300F8AE92 /* VMKParser.lua */; };
+		9239725C195D4163008AFCF5 /* libLuaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 922666EF19594C0D00DD5B48 /* libLuaKit.a */; };
+		9239725D195D4230008AFCF5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15713A61643A40B00F6EAAB /* QuartzCore.framework */; };
+		9239725E195D423D008AFCF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */; };
+		9239725F195D424A008AFCF5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9296CE58195A6041004D6C6F /* libxml2.dylib */; };
 		9296CE4D195A5BF2004D6C6F /* libVeritasKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 922666F919594E5E00DD5B48 /* libVeritasKit.a */; };
 		9296CE50195A5D84004D6C6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E01643A77F00B8EB6E /* UIKit.framework */; };
 		9296CE51195A5D8B004D6C6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */; };
@@ -237,7 +282,6 @@
 		922666F919594E5E00DD5B48 /* libVeritasKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		922666FD19594E5E00DD5B48 /* VeritasKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeritasKit-Prefix.pch"; sourceTree = "<group>"; };
 		922666FE19594E5E00DD5B48 /* VeritasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasKit.h; sourceTree = "<group>"; };
-		9226670019594E5E00DD5B48 /* VeritasKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeritasKit.m; sourceTree = "<group>"; };
 		9226670619594E5F00DD5B48 /* VeritasKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VeritasKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9226670F19594E5F00DD5B48 /* VeritasKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VeritasKitTests-Info.plist"; sourceTree = "<group>"; };
 		9226671119594E5F00DD5B48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -423,6 +467,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9239725F195D424A008AFCF5 /* libxml2.dylib in Frameworks */,
+				9239725E195D423D008AFCF5 /* CoreGraphics.framework in Frameworks */,
+				9239725D195D4230008AFCF5 /* QuartzCore.framework in Frameworks */,
+				9239725C195D4163008AFCF5 /* libLuaKit.a in Frameworks */,
 				9226670719594E5F00DD5B48 /* XCTest.framework in Frameworks */,
 				9226670919594E5F00DD5B48 /* UIKit.framework in Frameworks */,
 				9226670819594E5F00DD5B48 /* Foundation.framework in Frameworks */,
@@ -482,7 +530,6 @@
 			isa = PBXGroup;
 			children = (
 				922666FE19594E5E00DD5B48 /* VeritasKit.h */,
-				9226670019594E5E00DD5B48 /* VeritasKit.m */,
 				922666FC19594E5E00DD5B48 /* Supporting Files */,
 			);
 			path = VeritasKit;
@@ -1089,6 +1136,48 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9239725A195D4103008AFCF5 /* LuaCParser.lua in Resources */,
+				9239725B195D4103008AFCF5 /* VMKParser.lua in Resources */,
+				92397232195D40F2008AFCF5 /* Accelerate.bridgesupport in Resources */,
+				92397233195D40F2008AFCF5 /* Accounts.bridgesupport in Resources */,
+				92397234195D40F2008AFCF5 /* AddressBook.bridgesupport in Resources */,
+				92397235195D40F2008AFCF5 /* AddressBookUI.bridgesupport in Resources */,
+				92397236195D40F2008AFCF5 /* AssetsLibrary.bridgesupport in Resources */,
+				92397237195D40F2008AFCF5 /* AudioToolbox.bridgesupport in Resources */,
+				92397238195D40F2008AFCF5 /* AudioUnit.bridgesupport in Resources */,
+				92397239195D40F2008AFCF5 /* AVFoundation.bridgesupport in Resources */,
+				9239723A195D40F2008AFCF5 /* CoreAudio.bridgesupport in Resources */,
+				9239723B195D40F2008AFCF5 /* CoreBluetooth.bridgesupport in Resources */,
+				9239723C195D40F2008AFCF5 /* CoreData.bridgesupport in Resources */,
+				9239723D195D40F2008AFCF5 /* CoreFoundation.bridgesupport in Resources */,
+				9239723E195D40F2008AFCF5 /* CoreImage.bridgesupport in Resources */,
+				9239723F195D40F2008AFCF5 /* CoreLocation.bridgesupport in Resources */,
+				92397240195D40F2008AFCF5 /* CoreMedia.bridgesupport in Resources */,
+				92397241195D40F2008AFCF5 /* CoreMIDI.bridgesupport in Resources */,
+				92397242195D40F2008AFCF5 /* CoreMotion.bridgesupport in Resources */,
+				92397243195D40F2008AFCF5 /* CoreTelephony.bridgesupport in Resources */,
+				92397244195D40F2008AFCF5 /* CoreVideo.bridgesupport in Resources */,
+				92397245195D40F2008AFCF5 /* EventKit.bridgesupport in Resources */,
+				92397246195D40F2008AFCF5 /* EventKitUI.bridgesupport in Resources */,
+				92397247195D40F2008AFCF5 /* ExternalAccessory.bridgesupport in Resources */,
+				92397248195D40F2008AFCF5 /* Foundation.bridgesupport in Resources */,
+				92397249195D40F2008AFCF5 /* GameKit.bridgesupport in Resources */,
+				9239724A195D40F2008AFCF5 /* GSS.bridgesupport in Resources */,
+				9239724B195D40F2008AFCF5 /* iAd.bridgesupport in Resources */,
+				9239724C195D40F2008AFCF5 /* MapKit.bridgesupport in Resources */,
+				9239724D195D40F2008AFCF5 /* MediaPlayer.bridgesupport in Resources */,
+				9239724E195D40F2008AFCF5 /* MessageUI.bridgesupport in Resources */,
+				9239724F195D40F2008AFCF5 /* MobileCoreServices.bridgesupport in Resources */,
+				92397250195D40F2008AFCF5 /* NewsstandKit.bridgesupport in Resources */,
+				92397251195D40F2008AFCF5 /* OpenAL.bridgesupport in Resources */,
+				92397252195D40F2008AFCF5 /* OpenGLES.bridgesupport in Resources */,
+				92397253195D40F2008AFCF5 /* QuartzCore.bridgesupport in Resources */,
+				92397254195D40F2008AFCF5 /* QuickLook.bridgesupport in Resources */,
+				92397255195D40F2008AFCF5 /* Security.bridgesupport in Resources */,
+				92397256195D40F2008AFCF5 /* StoreKit.bridgesupport in Resources */,
+				92397257195D40F2008AFCF5 /* SystemConfiguration.bridgesupport in Resources */,
+				92397258195D40F2008AFCF5 /* Twitter.bridgesupport in Resources */,
+				92397259195D40F2008AFCF5 /* UIKit.bridgesupport in Resources */,
 				9226671219594E5F00DD5B48 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1197,7 +1286,6 @@
 				9226674619594E9000DD5B48 /* VMKMessage.m in Sources */,
 				9226674719594E9000DD5B48 /* VMKProperty.m in Sources */,
 				9226674819594E9000DD5B48 /* VMKRuntime.m in Sources */,
-				9226670119594E5E00DD5B48 /* VeritasKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1436,7 +1524,7 @@
 		9226671919594E5F00DD5B48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VeritasMachineKit.framework/Versions/A/VeritasMachineKit";
+				BUNDLE_LOADER = "";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1456,8 +1544,19 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
+				);
 				INFOPLIST_FILE = "VeritasKitTests/VeritasKitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Source/Library/libffi-3.0.11/iOS";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-lffi_ios",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1467,7 +1566,7 @@
 		9226671A19594E5F00DD5B48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VeritasMachineKit.framework/Versions/A/VeritasMachineKit";
+				BUNDLE_LOADER = "";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1484,8 +1583,19 @@
 				GCC_PREFIX_HEADER = "VeritasKit/VeritasKit-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
+				);
 				INFOPLIST_FILE = "VeritasKitTests/VeritasKitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Source/Library/libffi-3.0.11/iOS";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-lffi_ios",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

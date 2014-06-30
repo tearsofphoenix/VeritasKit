@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "VeritasMachineKit.h"
 
 @interface VeritasKitTests : XCTestCase
 
@@ -28,7 +29,12 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSString *sourceCode = (@"main = function()"
+                            "           print('hello, world!')"
+                            "        end");
+    
+    LuaCall(sourceCode, @"main", nil, 0, 0, nil);
 }
 
 @end
