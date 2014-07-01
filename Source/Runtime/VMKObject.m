@@ -331,6 +331,8 @@ static int luaObjC_garbageCollection(lua_State *L)
         
         pthread_mutex_lock(&__VMKRuntimePoolLock);
         
+        NSLog(@"in func: %s pool: %@", __func__, __VMKRuntimePool);
+        
         CFSetRemoveValue(__VMKRuntimePool, obj);
         
         pthread_mutex_unlock(&__VMKRuntimePoolLock);

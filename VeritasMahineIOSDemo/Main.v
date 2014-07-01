@@ -86,6 +86,9 @@ GL = #import("OpenGLES")
 
 
     local test = [[NSString alloc] initWithUTF8String: "hhhxxxhhhxxxex"];
+    local a = [[NSString alloc] initWithUTF8String: "hhhxxxhhhxxxex"];
+    local b = [[NSString alloc] initWithUTF8String: "hhhxxxhhhxxxex"];
+    local c = [[NSString alloc] initWithUTF8String: "hhhxxxhhhxxxex"];
 
 --[[
     rootViewController = [[UIViewController alloc] init]
