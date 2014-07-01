@@ -29,7 +29,7 @@ GL = #import("OpenGLES")
     [[cell textLabel] setText: "Veritas"]
     [[cell textLabel] setBackgroundColor: [UIColor clearColor]]
     [cell setBackgroundColor: [UIColor clearColor]]
-    return [cell autorelease]
+    return cell
 }
 
 @end
@@ -72,7 +72,6 @@ GL = #import("OpenGLES")
                             cancelButtonTitle: @'好'
                             otherButtonTitles: nil]
    [alert show]
-   [alert release]
     print("end", os.clock())
    --return nil
 }
@@ -109,13 +108,12 @@ GL = #import("OpenGLES")
     [tableView setBackgroundColor: backgroundColor]
     [tableView setAlpha: 0.5]
     [window setRootViewController: rootViewController]
-    [rootViewController release]
+
     [window makeKeyAndVisible]
         
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self 
                                                          action: @selector(handleTapEvent:)]
     [window addGestureRecognizer: tapGesture]
-    [tapGesture release]
 ]]--
     return true
 }

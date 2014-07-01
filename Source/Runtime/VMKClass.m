@@ -5,9 +5,12 @@
 //  Created by tearsofphoenix on 3/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
+@import UIKit;
+#endif
+
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
-#import <UIKit/UIKit.h>
 
 #import "VMKClass.h"
 #import "VMKAuxiliary.h"

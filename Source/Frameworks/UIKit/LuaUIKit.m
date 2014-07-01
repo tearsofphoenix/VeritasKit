@@ -5,7 +5,10 @@
 //  Created by tearsofphoenix on 5/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
 @import UIKit;
+#endif
+
 #import "LuaUIKit.h"
 
 //CoreGraphics

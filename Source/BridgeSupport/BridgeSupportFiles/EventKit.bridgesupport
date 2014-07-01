@@ -57,29 +57,4 @@
 <enum name='EKThursday' value='5'/>
 <enum name='EKTuesday' value='3'/>
 <enum name='EKWednesday' value='4'/>
-<class name='EKCalendarItem'>
-<method selector='hasAlarms'>
-<retval type='B'/>
-</method>
-<method selector='hasAttendees'>
-<retval type='B'/>
-</method>
-<method selector='hasNotes'>
-<retval type='B'/>
-</method>
-<method selector='hasRecurrenceRules'>
-<retval type='B'/>
-</method>
-</class>
-<class name='EKObject'>
-<method selector='hasChanges'>
-<retval type='B'/>
-</method>
-<method selector='isNew'>
-<retval type='B'/>
-</method>
-<method selector='refresh'>
-<retval type='B'/>
-</method>
-</class>
 </signatures>

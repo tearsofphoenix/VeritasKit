@@ -111,38 +111,4 @@
 <retval type='B'/>
 </function>
 <function name='MPVolumeSettingsAlertShow'/>
-<class name='MPMoviePlayerController'>
-<method selector='allowsAirPlay'>
-<retval type='B'/>
-</method>
-<method selector='isAirPlayVideoActive'>
-<retval type='B'/>
-</method>
-<method selector='setAllowsAirPlay:'>
-<arg index='0' type='B'/>
-</method>
-</class>
-<class name='NSObject'>
-<method selector='isPreparedToPlay'>
-<retval type='B'/>
-</method>
-</class>
-<informal_protocol name='MPMediaPickerControllerDelegate'>
-<method selector='mediaPicker:didPickMediaItems:' type='v16@0:4@8@12' type64='v32@0:8@16@24'/>
-<method selector='mediaPickerDidCancel:' type='v12@0:4@8' type64='v24@0:8@16'/>
-</informal_protocol>
-<informal_protocol name='MPMediaPlayback'>
-<method selector='beginSeekingBackward' type='v8@0:4' type64='v16@0:8'/>
-<method selector='beginSeekingForward' type='v8@0:4' type64='v16@0:8'/>
-<method selector='currentPlaybackRate' type='f8@0:4' type64='f16@0:8'/>
-<method selector='currentPlaybackTime' type='d8@0:4' type64='d16@0:8'/>
-<method selector='endSeeking' type='v8@0:4' type64='v16@0:8'/>
-<method selector='isPreparedToPlay' type='B8@0:4' type64='B16@0:8'/>
-<method selector='pause' type='v8@0:4' type64='v16@0:8'/>
-<method selector='play' type='v8@0:4' type64='v16@0:8'/>
-<method selector='prepareToPlay' type='v8@0:4' type64='v16@0:8'/>
-<method selector='setCurrentPlaybackRate:' type='v12@0:4f8' type64='v20@0:8f16'/>
-<method selector='setCurrentPlaybackTime:' type='v16@0:4d8' type64='v24@0:8d16'/>
-<method selector='stop' type='v8@0:4' type64='v16@0:8'/>
-</informal_protocol>
 </signatures>

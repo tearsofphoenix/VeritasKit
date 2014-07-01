@@ -1514,19 +1514,4 @@
 <arg type='i'/>
 <arg type='^v'/>
 </function>
-<class name='EAGLContext'>
-<method selector='presentRenderbuffer:'>
-<retval type='B'/>
-</method>
-<method selector='renderbufferStorage:fromDrawable:'>
-<retval type='B'/>
-</method>
-<method class_method='true' selector='setCurrentContext:'>
-<retval type='B'/>
-</method>
-</class>
-<informal_protocol name='EAGLDrawable'>
-<method type='@8@0:4' selector='drawableProperties' type64='@16@0:8'/>
-<method type='v12@0:4@8' selector='setDrawableProperties:' type64='v24@0:8@16'/>
-</informal_protocol>
 </signatures>

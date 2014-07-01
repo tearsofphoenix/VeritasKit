@@ -96,27 +96,4 @@
 <constant name='kCIUISetBasic' type='@'/>
 <constant name='kCIUISetDevelopment' type='@'/>
 <constant name='kCIUISetIntermediate' type='@'/>
-<class name='CIFaceFeature'>
-<method selector='hasLeftEyePosition'>
-<retval type='B'/>
-</method>
-<method selector='hasMouthPosition'>
-<retval type='B'/>
-</method>
-<method selector='hasRightEyePosition'>
-<retval type='B'/>
-</method>
-</class>
-<class name='CIFilter'>
-<method selector='apply:' variadic='true' sentinel='0'/>
-<method selector='filterWithName:keysAndValues:' variadic='true' sentinel='0' class_method='true'/>
-</class>
-<class name='CIImage'>
-<method selector='imageWithTexture:size:flipped:colorSpace:' class_method='true'>
-<arg index='2' type='B'/>
-</method>
-<method selector='initWithTexture:size:flipped:colorSpace:'>
-<arg index='2' type='B'/>
-</method>
-</class>
 </signatures>

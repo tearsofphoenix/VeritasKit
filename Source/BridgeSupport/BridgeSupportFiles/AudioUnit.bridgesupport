@@ -1146,8 +1146,4 @@
 <arg type64='I' type='L'/>
 <retval type64='i' type='l'/>
 </function>
-<informal_protocol name='AUCocoaUIBase'>
-<method type64='I16@0:8' selector='interfaceVersion' type='I8@0:4'/>
-<method type64='@40@0:8^{ComponentInstanceRecord=[1q]}16{CGSize=dd}24' selector='uiViewForAudioUnit:withSize:' type='@20@0:4^{ComponentInstanceRecord=[1l]}8{_NSSize=ff}12'/>
-</informal_protocol>
 </signatures>

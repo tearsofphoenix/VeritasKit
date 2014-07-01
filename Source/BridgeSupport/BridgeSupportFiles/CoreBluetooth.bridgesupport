@@ -58,41 +58,4 @@
 <enum value='0' name='CBCharacteristicWriteWithResponse'/>
 <enum value='1' name='CBCharacteristicWriteWithoutResponse'/>
 <enum value='0' name='CBErrorUnknown'/>
-<class name='CBCharacteristic'>
-<method selector='isBroadcasted'>
-<retval type='B'/>
-</method>
-<method selector='isNotifying'>
-<retval type='B'/>
-</method>
-</class>
-<class name='CBPeripheral'>
-<method selector='isConnected'>
-<retval type='B'/>
-</method>
-<method selector='setNotifyValue:forCharacteristic:'>
-<arg type='B' index='0'/>
-</method>
-</class>
-<informal_protocol name='CBCentralManagerDelegate'>
-<method type64='v32@0:8@16@24' type='v16@0:4@8@12' selector='centralManager:didConnectPeripheral:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='centralManager:didDisconnectPeripheral:error:'/>
-<method type64='v48@0:8@16@24@32@40' type='v24@0:4@8@12@16@20' selector='centralManager:didDiscoverPeripheral:advertisementData:RSSI:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='centralManager:didFailToConnectPeripheral:error:'/>
-<method type64='v32@0:8@16@24' type='v16@0:4@8@12' selector='centralManager:didRetrieveConnectedPeripherals:'/>
-<method type64='v32@0:8@16@24' type='v16@0:4@8@12' selector='centralManager:didRetrievePeripherals:'/>
-<method type64='v24@0:8@16' type='v12@0:4@8' selector='centralManagerDidUpdateState:'/>
-</informal_protocol>
-<informal_protocol name='CBPeripheralDelegate'>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didDiscoverCharacteristicsForService:error:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didDiscoverDescriptorsForCharacteristic:error:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didDiscoverIncludedServicesForService:error:'/>
-<method type64='v32@0:8@16@24' type='v16@0:4@8@12' selector='peripheral:didDiscoverServices:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didUpdateNotificationStateForCharacteristic:error:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didUpdateValueForCharacteristic:error:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didUpdateValueForDescriptor:error:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didWriteValueForCharacteristic:error:'/>
-<method type64='v40@0:8@16@24@32' type='v20@0:4@8@12@16' selector='peripheral:didWriteValueForDescriptor:error:'/>
-<method type64='v32@0:8@16@24' type='v16@0:4@8@12' selector='peripheralDidUpdateRSSI:error:'/>
-</informal_protocol>
 </signatures>

@@ -10,7 +10,9 @@
 #include "VMKFrameworkFunctions.h"
 #include "VMKInternal.h"
 
+#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
 @import UIKit;
+#endif
 
 int VMKPushCGPoint(lua_State *L, CGPoint p)
 {
