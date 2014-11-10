@@ -24,9 +24,9 @@
 		<key>1F32D1AD3A03EA89C2A7A160CD3D389F151C3896</key>
 		<string>../../..</string>
 		<key>59BCCFF68011542A051983972F0A0E4EA5C0D708</key>
-		<string>../../..VeritasParser/Library/pegkit/</string>
+		<string>../../..VeritasParser/Library/pegkit</string>
 		<key>948C6829607794C9C905880E4DE9DD942A04092A</key>
-		<string>../../..VeritasParser/Library/pegkit/lib/TDTemplateEngine/</string>
+		<string>../../..VeritasParser/Library/pegkit/lib/TDTemplateEngine</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/tearsofphoenix/VeritasKit</string>

@@ -8,12 +8,33 @@
 
 #import <PEGKit/PEGKit.h>
 
-//typedef enum : NSUInteger
-//{
-//    VPTokenTypeString = 14,
-//    VPTokenType,
-//    VPTokenType,
-//} VPTokenType;
+typedef enum : NSUInteger
+{
+    VPTokenTypeOpenParen = 14, //(
+    VPTokenTypeCloseParen, // )
+    VPTokenTypeOpenBracket, //[
+    VPTokenTypeCloseBracket, //]
+    VPTokenTypeOpenBrace,    //{
+    VPTokenTypeCloseBrace,   //}
+    VPTokenTypeSemicolon,    //;
+    VPTokenTypeComma,        //,
+    VPTokenTypeMinus,   // -
+    VPTokenTypePlus,    // +
+    VPTokenTypeStar,    // *
+    VPTokenTypeDivide,  // /
+    VPTokenTypeCaret,   // ^
+    VPTokenTypePercent, // %
+    VPTokenTypeConcat,  // ..
+    VPTokenTypeLessThan, // <
+    VPTokenTypeLessEqual,// <=
+    VPTokenTypeGreater,  // >
+    VPTokenTypeGreaterThan, // >=
+    VPTokenTypeEqual,    // ==
+    VPTokenTypeNotEqual, // ~=
+    VPTokenTypeAnd,      // and
+    VPTokenTypeOr,       // or
+    VPTokenTypeNot,      // not
+} VPTokenType;
 
 @interface VeritasParser : PKParser
 
