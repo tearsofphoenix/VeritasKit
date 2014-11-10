@@ -40,7 +40,9 @@
 		9226674F19594EE000DD5B48 /* XMLDocument.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400101643993300F8AE92 /* XMLDocument.c */; };
 		9226675019594EE000DD5B48 /* XMLNode.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400121643993300F8AE92 /* XMLNode.c */; };
 		9226675119594EE000DD5B48 /* XMLPathProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = E1A400141643993300F8AE92 /* XMLPathProcessor.c */; };
-		92512ABC1A108D1C00BD409E /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92512ABB1A108D1C00BD409E /* libffi.a */; };
+		92512ADD1A10934000BD409E /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92512ADA1A10934000BD409E /* libffi.a */; };
+		92512ADE1A10934100BD409E /* ffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 92512ADC1A10934000BD409E /* ffi.dylib */; };
+		92512AE11A1094D300BD409E /* MacMain.v in Resources */ = {isa = PBXBuildFile; fileRef = 92512AE01A1094D300BD409E /* MacMain.v */; };
 		9296CE4D195A5BF2004D6C6F /* libVeritasKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 922666F919594E5E00DD5B48 /* libVeritasKit.a */; };
 		9296CE50195A5D84004D6C6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E01643A77F00B8EB6E /* UIKit.framework */; };
 		9296CE51195A5D8B004D6C6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A34E41643A77F00B8EB6E /* CoreGraphics.framework */; };
@@ -252,23 +254,25 @@
 		922666F919594E5E00DD5B48 /* libVeritasKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		922666FD19594E5E00DD5B48 /* VeritasKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeritasKit-Prefix.pch"; sourceTree = "<group>"; };
 		922666FE19594E5E00DD5B48 /* VeritasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasKit.h; sourceTree = "<group>"; };
-		92512AAF1A108D1C00BD409E /* ffi_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_arm64.h; sourceTree = "<group>"; };
-		92512AB01A108D1C00BD409E /* ffi_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_armv7.h; sourceTree = "<group>"; };
-		92512AB11A108D1C00BD409E /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
-		92512AB21A108D1C00BD409E /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
-		92512AB31A108D1C00BD409E /* fficonfig_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_arm64.h; sourceTree = "<group>"; };
-		92512AB41A108D1C00BD409E /* fficonfig_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_armv7.h; sourceTree = "<group>"; };
-		92512AB51A108D1C00BD409E /* fficonfig_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_i386.h; sourceTree = "<group>"; };
-		92512AB61A108D1C00BD409E /* fficonfig_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_x86_64.h; sourceTree = "<group>"; };
-		92512AB71A108D1C00BD409E /* ffitarget_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm64.h; sourceTree = "<group>"; };
-		92512AB81A108D1C00BD409E /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
-		92512AB91A108D1C00BD409E /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
-		92512ABA1A108D1C00BD409E /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
-		92512ABB1A108D1C00BD409E /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi.a; sourceTree = "<group>"; };
-		92512ABD1A108D5000BD409E /* ffi_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_common.h; sourceTree = "<group>"; };
-		92512ABE1A108D5000BD409E /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
-		92512ABF1A108D5000BD409E /* fficonfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig.h; sourceTree = "<group>"; };
-		92512AC01A108D5000BD409E /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		92512ACA1A10934000BD409E /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		92512ACB1A10934000BD409E /* ffi_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_arm64.h; sourceTree = "<group>"; };
+		92512ACC1A10934000BD409E /* ffi_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_armv7.h; sourceTree = "<group>"; };
+		92512ACD1A10934000BD409E /* ffi_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_common.h; sourceTree = "<group>"; };
+		92512ACE1A10934000BD409E /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		92512ACF1A10934000BD409E /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
+		92512AD01A10934000BD409E /* fficonfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig.h; sourceTree = "<group>"; };
+		92512AD11A10934000BD409E /* fficonfig_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_arm64.h; sourceTree = "<group>"; };
+		92512AD21A10934000BD409E /* fficonfig_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_armv7.h; sourceTree = "<group>"; };
+		92512AD31A10934000BD409E /* fficonfig_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_i386.h; sourceTree = "<group>"; };
+		92512AD41A10934000BD409E /* fficonfig_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_x86_64.h; sourceTree = "<group>"; };
+		92512AD51A10934000BD409E /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		92512AD61A10934000BD409E /* ffitarget_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm64.h; sourceTree = "<group>"; };
+		92512AD71A10934000BD409E /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
+		92512AD81A10934000BD409E /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		92512AD91A10934000BD409E /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
+		92512ADA1A10934000BD409E /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi.a; sourceTree = "<group>"; };
+		92512ADC1A10934000BD409E /* ffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = ffi.dylib; sourceTree = "<group>"; };
+		92512AE01A1094D300BD409E /* MacMain.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacMain.v; sourceTree = "<group>"; };
 		927D863318A4DE320094ED86 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9296CE58195A6041004D6C6F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		92AC4C1019624874000A0F48 /* VeritasMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -433,10 +437,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92512ADE1A10934100BD409E /* ffi.dylib in Frameworks */,
 				9296CE52195A5D95004D6C6F /* QuartzCore.framework in Frameworks */,
 				9296CE51195A5D8B004D6C6F /* CoreGraphics.framework in Frameworks */,
 				9296CE50195A5D84004D6C6F /* UIKit.framework in Frameworks */,
-				92512ABC1A108D1C00BD409E /* libffi.a in Frameworks */,
+				92512ADD1A10934000BD409E /* libffi.a in Frameworks */,
 				922666FA19594E5E00DD5B48 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,36 +521,53 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		92512AAD1A108D1C00BD409E /* libffi */ = {
+		92512AC71A10934000BD409E /* libffi */ = {
 			isa = PBXGroup;
 			children = (
-				92512AAE1A108D1C00BD409E /* include */,
-				92512ABB1A108D1C00BD409E /* libffi.a */,
+				92512AC81A10934000BD409E /* iOS */,
+				92512ADB1A10934000BD409E /* MacOSX */,
 			);
 			path = libffi;
 			sourceTree = "<group>";
 		};
-		92512AAE1A108D1C00BD409E /* include */ = {
+		92512AC81A10934000BD409E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				92512ABD1A108D5000BD409E /* ffi_common.h */,
-				92512ABE1A108D5000BD409E /* ffi.h */,
-				92512ABF1A108D5000BD409E /* fficonfig.h */,
-				92512AC01A108D5000BD409E /* ffitarget.h */,
-				92512AAF1A108D1C00BD409E /* ffi_arm64.h */,
-				92512AB01A108D1C00BD409E /* ffi_armv7.h */,
-				92512AB11A108D1C00BD409E /* ffi_i386.h */,
-				92512AB21A108D1C00BD409E /* ffi_x86_64.h */,
-				92512AB31A108D1C00BD409E /* fficonfig_arm64.h */,
-				92512AB41A108D1C00BD409E /* fficonfig_armv7.h */,
-				92512AB51A108D1C00BD409E /* fficonfig_i386.h */,
-				92512AB61A108D1C00BD409E /* fficonfig_x86_64.h */,
-				92512AB71A108D1C00BD409E /* ffitarget_arm64.h */,
-				92512AB81A108D1C00BD409E /* ffitarget_armv7.h */,
-				92512AB91A108D1C00BD409E /* ffitarget_i386.h */,
-				92512ABA1A108D1C00BD409E /* ffitarget_x86_64.h */,
+				92512AC91A10934000BD409E /* include */,
+				92512ADA1A10934000BD409E /* libffi.a */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		92512AC91A10934000BD409E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				92512ACA1A10934000BD409E /* ffi.h */,
+				92512ACB1A10934000BD409E /* ffi_arm64.h */,
+				92512ACC1A10934000BD409E /* ffi_armv7.h */,
+				92512ACD1A10934000BD409E /* ffi_common.h */,
+				92512ACE1A10934000BD409E /* ffi_i386.h */,
+				92512ACF1A10934000BD409E /* ffi_x86_64.h */,
+				92512AD01A10934000BD409E /* fficonfig.h */,
+				92512AD11A10934000BD409E /* fficonfig_arm64.h */,
+				92512AD21A10934000BD409E /* fficonfig_armv7.h */,
+				92512AD31A10934000BD409E /* fficonfig_i386.h */,
+				92512AD41A10934000BD409E /* fficonfig_x86_64.h */,
+				92512AD51A10934000BD409E /* ffitarget.h */,
+				92512AD61A10934000BD409E /* ffitarget_arm64.h */,
+				92512AD71A10934000BD409E /* ffitarget_armv7.h */,
+				92512AD81A10934000BD409E /* ffitarget_i386.h */,
+				92512AD91A10934000BD409E /* ffitarget_x86_64.h */,
 			);
 			path = include;
+			sourceTree = "<group>";
+		};
+		92512ADB1A10934000BD409E /* MacOSX */ = {
+			isa = PBXGroup;
+			children = (
+				92512ADC1A10934000BD409E /* ffi.dylib */,
+			);
+			path = MacOSX;
 			sourceTree = "<group>";
 		};
 		92AC4C1219624875000A0F48 /* Other Frameworks */ = {
@@ -575,6 +597,7 @@
 				92AC4C1C19624875000A0F48 /* main.m */,
 				92AC4C1E19624875000A0F48 /* VeritasMacDemo-Prefix.pch */,
 				92AC4C1F19624875000A0F48 /* Credits.rtf */,
+				92512AE01A1094D300BD409E /* MacMain.v */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -914,7 +937,7 @@
 		E1A4FFF51643993300F8AE92 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				92512AAD1A108D1C00BD409E /* libffi */,
+				92512AC71A10934000BD409E /* libffi */,
 				E1A4000B1643993300F8AE92 /* Objective-Lua */,
 				E1A4000E1643993300F8AE92 /* XML */,
 			);
@@ -1095,6 +1118,7 @@
 				92AC4C1B19624875000A0F48 /* InfoPlist.strings in Resources */,
 				92AC4C2919624875000A0F48 /* Images.xcassets in Resources */,
 				92AC4C2119624875000A0F48 /* Credits.rtf in Resources */,
+				92512AE11A1094D300BD409E /* MacMain.v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,13 +1437,14 @@
 					"$(inherited)",
 					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
 					/usr/include/libxml2/,
-					"$(SRCROOT)/Source/Library/libffi/include",
+					"$(SRCROOT)/Source/Library/libffi/iOS/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Source/Library/libffi",
+					"$(PROJECT_DIR)/Source/Library/libffi/iOS",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1445,13 +1470,14 @@
 					"$(inherited)",
 					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
 					/usr/include/libxml2/,
-					"$(SRCROOT)/Source/Library/libffi/include",
+					"$(SRCROOT)/Source/Library/libffi/iOS/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Source/Library/libffi",
+					"$(PROJECT_DIR)/Source/Library/libffi/iOS",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1469,10 +1495,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VeritasMacDemo/VeritasMacDemo-Prefix.pch";
@@ -1503,10 +1526,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VeritasMacDemo/VeritasMacDemo-Prefix.pch";
@@ -1597,9 +1617,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "VeritasMachineKit/VeritasMachineKit-Info.plist";
+				INFOPLIST_FILE = "VeritasMachineKit/VeritasKit-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks/";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = VeritasKit;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1629,8 +1649,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "VeritasMachineKit/VeritasMachineKit-Info.plist";
+				INFOPLIST_FILE = "VeritasMachineKit/VeritasKit-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks/";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = VeritasKit;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
