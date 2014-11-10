@@ -182,6 +182,20 @@
 			remoteGlobalIDString = 927D865618A4DE880094ED86;
 			remoteInfo = LuaKitiOS;
 		};
+		92512B111A10A21F00BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B0A1A10A21E00BD409E /* VeritasParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92512AF01A10A21D00BD409E;
+			remoteInfo = VeritasParser;
+		};
+		92512B131A10A21F00BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B0A1A10A21E00BD409E /* VeritasParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92512AFB1A10A21E00BD409E;
+			remoteInfo = VeritasParserTests;
+		};
 		9296CE4E195A5C29004D6C6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 34E8A16714D24C82000F9EB1 /* Project object */;
@@ -273,6 +287,7 @@
 		92512ADA1A10934000BD409E /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libffi.a; sourceTree = "<group>"; };
 		92512ADC1A10934000BD409E /* ffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = ffi.dylib; sourceTree = "<group>"; };
 		92512AE01A1094D300BD409E /* MacMain.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacMain.v; sourceTree = "<group>"; };
+		92512B0A1A10A21E00BD409E /* VeritasParser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasParser.xcodeproj; path = VeritasParser/VeritasParser.xcodeproj; sourceTree = "<group>"; };
 		927D863318A4DE320094ED86 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9296CE58195A6041004D6C6F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		92AC4C1019624874000A0F48 /* VeritasMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -489,6 +504,7 @@
 		34E8A16514D24C82000F9EB1 = {
 			isa = PBXGroup;
 			children = (
+				92512B0A1A10A21E00BD409E /* VeritasParser.xcodeproj */,
 				E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */,
 				E1A4FF891643993300F8AE92 /* Source */,
 				E1A4003F1643996C00F8AE92 /* VeritasMachineKit */,
@@ -568,6 +584,15 @@
 				92512ADC1A10934000BD409E /* ffi.dylib */,
 			);
 			path = MacOSX;
+			sourceTree = "<group>";
+		};
+		92512B0B1A10A21E00BD409E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92512B121A10A21F00BD409E /* libVeritasParser.a */,
+				92512B141A10A21F00BD409E /* VeritasParserTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		92AC4C1219624875000A0F48 /* Other Frameworks */ = {
@@ -1075,6 +1100,10 @@
 					ProductGroup = E1D62E6316AE20A800DE39BF /* Products */;
 					ProjectRef = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 				},
+				{
+					ProductGroup = 92512B0B1A10A21E00BD409E /* Products */;
+					ProjectRef = 92512B0A1A10A21E00BD409E /* VeritasParser.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1099,6 +1128,20 @@
 			fileType = wrapper.cfbundle;
 			path = LuaKitiOSTests.xctest;
 			remoteRef = 922666F019594C0D00DD5B48 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92512B121A10A21F00BD409E /* libVeritasParser.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVeritasParser.a;
+			remoteRef = 92512B111A10A21F00BD409E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92512B141A10A21F00BD409E /* VeritasParserTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VeritasParserTests.xctest;
+			remoteRef = 92512B131A10A21F00BD409E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E1D62E6B16AE20A900DE39BF /* LuaKit.framework */ = {

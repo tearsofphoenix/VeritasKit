@@ -1,0 +1,3 @@
+[submodule "VeritasParser/Library/pegkit"]
+	path = VeritasParser/Library/pegkit
+	url = https://github.com/itod/pegkit.git

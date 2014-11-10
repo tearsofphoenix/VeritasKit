@@ -1,0 +1,511 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		92512AF41A10A21D00BD409E /* VeritasParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92512AF31A10A21D00BD409E /* VeritasParser.h */; };
+		92512AF61A10A21D00BD409E /* VeritasParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92512AF51A10A21D00BD409E /* VeritasParser.m */; };
+		92512AFC1A10A21E00BD409E /* libVeritasParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92512AF01A10A21D00BD409E /* libVeritasParser.a */; };
+		92512B291A10A47C00BD409E /* libPEGKitIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92512B221A10A46600BD409E /* libPEGKitIOS.a */; };
+		92512B2B1A10A55A00BD409E /* VeritasParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92512B2A1A10A55A00BD409E /* VeritasParserTest.m */; };
+		92512B2D1A10A78000BD409E /* Test.v in Resources */ = {isa = PBXBuildFile; fileRef = 92512B2C1A10A78000BD409E /* Test.v */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		92512AFD1A10A21E00BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512AE81A10A21D00BD409E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92512AEF1A10A21D00BD409E;
+			remoteInfo = VeritasParser;
+		};
+		92512B1D1A10A46600BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B151A10A46600BD409E /* PEGKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D3F8A48D175817DF00056188;
+			remoteInfo = PEGKit;
+		};
+		92512B1F1A10A46600BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B151A10A46600BD409E /* PEGKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D366C55418D1F29D00AF3EFB;
+			remoteInfo = libPEGKitOSX;
+		};
+		92512B211A10A46600BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B151A10A46600BD409E /* PEGKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D317C12B18D1F5EB0036BE75;
+			remoteInfo = libPEGKitIOS;
+		};
+		92512B231A10A46600BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B151A10A46600BD409E /* PEGKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D37D8DC61571A4F700CDB822;
+			remoteInfo = PEGKitTests;
+		};
+		92512B251A10A46600BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B151A10A46600BD409E /* PEGKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D338302F171C923700CCE513;
+			remoteInfo = ParserGenApp;
+		};
+		92512B271A10A47200BD409E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92512B151A10A46600BD409E /* PEGKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D317C12A18D1F5EB0036BE75;
+			remoteInfo = libPEGKitIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92512AEE1A10A21D00BD409E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				92512AF41A10A21D00BD409E /* VeritasParser.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		92512AF01A10A21D00BD409E /* libVeritasParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		92512AF31A10A21D00BD409E /* VeritasParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasParser.h; sourceTree = "<group>"; };
+		92512AF51A10A21D00BD409E /* VeritasParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeritasParser.m; sourceTree = "<group>"; };
+		92512AFB1A10A21E00BD409E /* VeritasParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VeritasParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92512B011A10A21E00BD409E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92512B151A10A46600BD409E /* PEGKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEGKit.xcodeproj; path = Library/pegkit/PEGKit.xcodeproj; sourceTree = "<group>"; };
+		92512B2A1A10A55A00BD409E /* VeritasParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VeritasParserTest.m; sourceTree = "<group>"; };
+		92512B2C1A10A78000BD409E /* Test.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.v; sourceTree = "<group>"; };
+		9265AF561A10B56900B4A073 /* Lua.syntax */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lua.syntax; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		92512AED1A10A21D00BD409E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92512B291A10A47C00BD409E /* libPEGKitIOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92512AF81A10A21E00BD409E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92512AFC1A10A21E00BD409E /* libVeritasParser.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		92512AE71A10A21D00BD409E = {
+			isa = PBXGroup;
+			children = (
+				92512B151A10A46600BD409E /* PEGKit.xcodeproj */,
+				92512AF21A10A21D00BD409E /* VeritasParser */,
+				92512AFF1A10A21E00BD409E /* VeritasParserTests */,
+				92512AF11A10A21D00BD409E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		92512AF11A10A21D00BD409E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92512AF01A10A21D00BD409E /* libVeritasParser.a */,
+				92512AFB1A10A21E00BD409E /* VeritasParserTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92512AF21A10A21D00BD409E /* VeritasParser */ = {
+			isa = PBXGroup;
+			children = (
+				92512AF31A10A21D00BD409E /* VeritasParser.h */,
+				92512AF51A10A21D00BD409E /* VeritasParser.m */,
+				9265AF561A10B56900B4A073 /* Lua.syntax */,
+			);
+			path = VeritasParser;
+			sourceTree = "<group>";
+		};
+		92512AFF1A10A21E00BD409E /* VeritasParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				92512B001A10A21E00BD409E /* Supporting Files */,
+				92512B2A1A10A55A00BD409E /* VeritasParserTest.m */,
+				92512B2C1A10A78000BD409E /* Test.v */,
+			);
+			path = VeritasParserTests;
+			sourceTree = "<group>";
+		};
+		92512B001A10A21E00BD409E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				92512B011A10A21E00BD409E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92512B161A10A46600BD409E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92512B1E1A10A46600BD409E /* PEGKit.framework */,
+				92512B201A10A46600BD409E /* libPEGKitOSX.a */,
+				92512B221A10A46600BD409E /* libPEGKitIOS.a */,
+				92512B241A10A46600BD409E /* PEGKitTests.xctest */,
+				92512B261A10A46600BD409E /* ParserGenApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92512AEF1A10A21D00BD409E /* VeritasParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92512B041A10A21E00BD409E /* Build configuration list for PBXNativeTarget "VeritasParser" */;
+			buildPhases = (
+				92512AEC1A10A21D00BD409E /* Sources */,
+				92512AED1A10A21D00BD409E /* Frameworks */,
+				92512AEE1A10A21D00BD409E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92512B281A10A47200BD409E /* PBXTargetDependency */,
+			);
+			name = VeritasParser;
+			productName = VeritasParser;
+			productReference = 92512AF01A10A21D00BD409E /* libVeritasParser.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		92512AFA1A10A21E00BD409E /* VeritasParserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92512B071A10A21E00BD409E /* Build configuration list for PBXNativeTarget "VeritasParserTests" */;
+			buildPhases = (
+				92512AF71A10A21E00BD409E /* Sources */,
+				92512AF81A10A21E00BD409E /* Frameworks */,
+				92512AF91A10A21E00BD409E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92512AFE1A10A21E00BD409E /* PBXTargetDependency */,
+			);
+			name = VeritasParserTests;
+			productName = VeritasParserTests;
+			productReference = 92512AFB1A10A21E00BD409E /* VeritasParserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92512AE81A10A21D00BD409E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Mac003;
+				TargetAttributes = {
+					92512AEF1A10A21D00BD409E = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					92512AFA1A10A21E00BD409E = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 92512AEB1A10A21D00BD409E /* Build configuration list for PBXProject "VeritasParser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 92512AE71A10A21D00BD409E;
+			productRefGroup = 92512AF11A10A21D00BD409E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 92512B161A10A46600BD409E /* Products */;
+					ProjectRef = 92512B151A10A46600BD409E /* PEGKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				92512AEF1A10A21D00BD409E /* VeritasParser */,
+				92512AFA1A10A21E00BD409E /* VeritasParserTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		92512B1E1A10A46600BD409E /* PEGKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PEGKit.framework;
+			remoteRef = 92512B1D1A10A46600BD409E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92512B201A10A46600BD409E /* libPEGKitOSX.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEGKitOSX.a;
+			remoteRef = 92512B1F1A10A46600BD409E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92512B221A10A46600BD409E /* libPEGKitIOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEGKitIOS.a;
+			remoteRef = 92512B211A10A46600BD409E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92512B241A10A46600BD409E /* PEGKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PEGKitTests.xctest;
+			remoteRef = 92512B231A10A46600BD409E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92512B261A10A46600BD409E /* ParserGenApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ParserGenApp.app;
+			remoteRef = 92512B251A10A46600BD409E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		92512AF91A10A21E00BD409E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92512B2D1A10A78000BD409E /* Test.v in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92512AEC1A10A21D00BD409E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92512AF61A10A21D00BD409E /* VeritasParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92512AF71A10A21E00BD409E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92512B2B1A10A55A00BD409E /* VeritasParserTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		92512AFE1A10A21E00BD409E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92512AEF1A10A21D00BD409E /* VeritasParser */;
+			targetProxy = 92512AFD1A10A21E00BD409E /* PBXContainerItemProxy */;
+		};
+		92512B281A10A47200BD409E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libPEGKitIOS;
+			targetProxy = 92512B271A10A47200BD409E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		92512B021A10A21E00BD409E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		92512B031A10A21E00BD409E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		92512B051A10A21E00BD409E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/Library/pegkit/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		92512B061A10A21E00BD409E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/Library/pegkit/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		92512B081A10A21E00BD409E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/Library/pegkit/include",
+				);
+				INFOPLIST_FILE = VeritasParserTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		92512B091A10A21E00BD409E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/Library/pegkit/include",
+				);
+				INFOPLIST_FILE = VeritasParserTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92512AEB1A10A21D00BD409E /* Build configuration list for PBXProject "VeritasParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92512B021A10A21E00BD409E /* Debug */,
+				92512B031A10A21E00BD409E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92512B041A10A21E00BD409E /* Build configuration list for PBXNativeTarget "VeritasParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92512B051A10A21E00BD409E /* Debug */,
+				92512B061A10A21E00BD409E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92512B071A10A21E00BD409E /* Build configuration list for PBXNativeTarget "VeritasParserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92512B081A10A21E00BD409E /* Debug */,
+				92512B091A10A21E00BD409E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 92512AE81A10A21D00BD409E /* Project object */;
+}
