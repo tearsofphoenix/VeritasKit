@@ -514,9 +514,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		927D865618A4DE880094ED86 /* LuaKitiOS */ = {
+		927D865618A4DE880094ED86 /* LuaKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 927D867318A4DE880094ED86 /* Build configuration list for PBXNativeTarget "LuaKitiOS" */;
+			buildConfigurationList = 927D867318A4DE880094ED86 /* Build configuration list for PBXNativeTarget "LuaKit" */;
 			buildPhases = (
 				927D865318A4DE880094ED86 /* Sources */,
 				927D865418A4DE880094ED86 /* Frameworks */,
@@ -526,7 +526,7 @@
 			);
 			dependencies = (
 			);
-			name = LuaKitiOS;
+			name = LuaKit;
 			productName = LuaKitiOS;
 			productReference = 927D865718A4DE880094ED86 /* libLuaKit.a */;
 			productType = "com.apple.product-type.library.static";
@@ -594,7 +594,7 @@
 			projectRoot = "";
 			targets = (
 				E1A4FE891643959600F8AE92 /* LuaKit-Mac */,
-				927D865618A4DE880094ED86 /* LuaKitiOS */,
+				927D865618A4DE880094ED86 /* LuaKit */,
 				927D866318A4DE880094ED86 /* LuaKitiOSTests */,
 				9296370618A5C10B00E84853 /* LuaKitUniversal */,
 			);
@@ -631,7 +631,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\nTARGET_NAME=LuaKitiOS\n# Step 1. Build Device and Simulator versions\nxcodebuild -target ${TARGET_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target ${TARGET_NAME} -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${TARGET_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${TARGET_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${TARGET_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"";
+			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\nTARGET_NAME=LuaKit\n# Step 1. Build Device and Simulator versions\nxcodebuild -target ${TARGET_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target ${TARGET_NAME} -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${TARGET_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${TARGET_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${TARGET_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/LuaKit\" \"${UNIVERSAL_OUTPUTFOLDER}/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -731,12 +731,12 @@
 /* Begin PBXTargetDependency section */
 		927D866918A4DE880094ED86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 927D865618A4DE880094ED86 /* LuaKitiOS */;
+			target = 927D865618A4DE880094ED86 /* LuaKit */;
 			targetProxy = 927D866818A4DE880094ED86 /* PBXContainerItemProxy */;
 		};
 		9296370B18A5C11200E84853 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 927D865618A4DE880094ED86 /* LuaKitiOS */;
+			target = 927D865618A4DE880094ED86 /* LuaKit */;
 			targetProxy = 9296370A18A5C11200E84853 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -985,7 +985,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		927D867318A4DE880094ED86 /* Build configuration list for PBXNativeTarget "LuaKitiOS" */ = {
+		927D867318A4DE880094ED86 /* Build configuration list for PBXNativeTarget "LuaKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				927D867418A4DE880094ED86 /* Debug */,

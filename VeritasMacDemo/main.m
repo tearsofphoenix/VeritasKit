@@ -6,7 +6,7 @@
 //
 //
 
-#import <VeritasKit/VeritasMachineKit.h>
+#import <VeritasKit/VeritasKit.h>
 
 int main(int argc, char *argv[])
 {

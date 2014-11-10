@@ -6,6 +6,6 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import <VeritasMachineKit/VMKMachineService.h>
-#import <VeritasMachineKit/VMKMessage.h>
-#import <VeritasMachineKit/VMKAuxiliary.h>
+#import <VeritasKit/VMKMachineService.h>
+#import <VeritasKit/VMKMessage.h>
+#import <VeritasKit/VMKAuxiliary.h>

@@ -192,7 +192,7 @@ typedef struct Capture {
 
 
 /* size (in elements) for an instruction plus extra l bytes */
-#define instsize(l)  (((l) + sizeof(Instruction) - 1)/sizeof(Instruction) + 1)
+#define instsize(l)  (int)(((l) + sizeof(Instruction) - 1)/sizeof(Instruction) + 1)
 
 
 /* size (in elements) for a ISet instruction */
@@ -985,7 +985,7 @@ static int jointable (lua_State *L, int p1) {
 
 #define copypatt(p1,p2,sz)	memcpy(p1, p2, (sz) * sizeof(Instruction));
 
-#define pattsize(L,idx)		(lua_objlen(L, idx)/sizeof(Instruction) - 1)
+#define pattsize(L,idx)		(int)(lua_objlen(L, idx)/sizeof(Instruction) - 1)
 
 
 static int addpatt (lua_State *L, Instruction *p, int p1idx) {

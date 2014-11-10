@@ -10,29 +10,29 @@
 	<string>VeritasMachineKit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>AC6C7329-752E-4151-83A1-F8AC39AA3EF0</key>
-		<string>https://github.com/tearsofphoenix/VeritasKit.git</string>
+		<key>1F32D1AD3A03EA89C2A7A160CD3D389F151C3896</key>
+		<string>https://github.com/tearsofphoenix/VeritasKit</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>VeritasMachineKit.xcodeproj/project.xcworkspace</string>
+	<string>VeritasMachineKit.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AC6C7329-752E-4151-83A1-F8AC39AA3EF0</key>
+		<key>1F32D1AD3A03EA89C2A7A160CD3D389F151C3896</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/tearsofphoenix/VeritasKit.git</string>
+	<string>https://github.com/tearsofphoenix/VeritasKit</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>AC6C7329-752E-4151-83A1-F8AC39AA3EF0</string>
+	<string>1F32D1AD3A03EA89C2A7A160CD3D389F151C3896</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AC6C7329-752E-4151-83A1-F8AC39AA3EF0</string>
+			<string>1F32D1AD3A03EA89C2A7A160CD3D389F151C3896</string>
 			<key>IDESourceControlWCCName</key>
 			<string>VeritasKit</string>
 		</dict>

@@ -1,6 +1,6 @@
 //
-//  VeritasMachineKit.h
-//  VeritasMachineKit
+//  VeritasKit.h
+//  VeritasKit
 //
 //  Created by tearsofphoenix on 12-11-2.
 //

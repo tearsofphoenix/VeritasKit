@@ -1,7 +1,7 @@
-#ifdef __arm__
+#ifdef __arm64__
 
 /* -----------------------------------------------------------------*-C-*-
-   libffi 3.0.11 - Copyright (c) 2011 Anthony Green
+   libffi 3.2 - Copyright (c) 2011, 2014 Anthony Green
                     - Copyright (c) 1996-2003, 2007, 2008 Red Hat, Inc.
 
    Permission is hereby granted, free of charge, to any person
@@ -60,17 +60,17 @@ extern "C" {
 #endif
 
 /* Specify which architecture libffi is configured for. */
-#ifndef ARM
-#define ARM
+#ifndef AARCH64
+#define AARCH64
 #endif
 
 /* ---- System configuration information --------------------------------- */
 
-#include "ffitarget.h"
+#include <ffitarget.h>
 
 #ifndef LIBFFI_ASM
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) && !defined(__clang__)
 #define __attribute__(X)
 #endif
 
@@ -201,6 +201,16 @@ FFI_EXTERN ffi_type ffi_type_longdouble;
 #else
 #define ffi_type_longdouble ffi_type_double
 #endif
+
+#ifdef FFI_TARGET_HAS_COMPLEX_TYPE
+FFI_EXTERN ffi_type ffi_type_complex_float;
+FFI_EXTERN ffi_type ffi_type_complex_double;
+#if 0
+FFI_EXTERN ffi_type ffi_type_complex_longdouble;
+#else
+#define ffi_type_complex_longdouble ffi_type_complex_double
+#endif
+#endif
 #endif /* LIBFFI_HIDE_BASIC_TYPES */
 
 typedef enum {
@@ -222,6 +232,11 @@ typedef struct {
   FFI_EXTRA_CIF_FIELDS;
 #endif
 } ffi_cif;
+
+#if 0
+/* Used to adjust size/alignment of ffi types.  */
+void ffi_prep_types (ffi_abi abi);
+#endif
 
 /* Used internally, but overridden by some architectures */
 ffi_status ffi_prep_cif_core(ffi_cif *cif,
@@ -299,7 +314,7 @@ size_t ffi_java_raw_size (ffi_cif *cif);
 __declspec(align(8))
 #endif
 typedef struct {
-#if 1
+#if 0
   void *trampoline_table;
   void *trampoline_table_entry;
 #else
@@ -320,7 +335,11 @@ typedef struct {
 void *ffi_closure_alloc (size_t size, void **code);
 void ffi_closure_free (void *);
 
-
+ffi_status
+ffi_prep_closure (ffi_closure*,
+		  ffi_cif *,
+		  void (*fun)(ffi_cif*,void*,void**,void*),
+		  void *user_data);
 
 ffi_status
 ffi_prep_closure_loc (ffi_closure*,
@@ -333,7 +352,7 @@ ffi_prep_closure_loc (ffi_closure*,
 # pragma pack 8
 #endif
 typedef struct {
-#if 1
+#if 0
   void *trampoline_table;
   void *trampoline_table_entry;
 #else
@@ -358,7 +377,7 @@ typedef struct {
 } ffi_raw_closure;
 
 typedef struct {
-#if 1
+#if 0
   void *trampoline_table;
   void *trampoline_table_entry;
 #else
@@ -458,9 +477,10 @@ void ffi_call(ffi_cif *cif,
 #define FFI_TYPE_SINT64     12
 #define FFI_TYPE_STRUCT     13
 #define FFI_TYPE_POINTER    14
+#define FFI_TYPE_COMPLEX    15
 
 /* This should always refer to the last type code (for sanity checks) */
-#define FFI_TYPE_LAST       FFI_TYPE_POINTER
+#define FFI_TYPE_LAST       FFI_TYPE_COMPLEX
 
 #ifdef __cplusplus
 }
