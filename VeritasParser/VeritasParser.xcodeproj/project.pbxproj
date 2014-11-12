@@ -13,6 +13,8 @@
 		92512B291A10A47C00BD409E /* libPEGKitIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92512B221A10A46600BD409E /* libPEGKitIOS.a */; };
 		92512B2B1A10A55A00BD409E /* VeritasParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92512B2A1A10A55A00BD409E /* VeritasParserTest.m */; };
 		92512B2D1A10A78000BD409E /* Test.v in Resources */ = {isa = PBXBuildFile; fileRef = 92512B2C1A10A78000BD409E /* Test.v */; };
+		92E5FF961A1314F600D7C5D1 /* LuaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E5FF951A1314F600D7C5D1 /* LuaParser.m */; };
+		92E5FF9C1A1316B000D7C5D1 /* Test.lua in Resources */ = {isa = PBXBuildFile; fileRef = 92E5FF9B1A1316B000D7C5D1 /* Test.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,10 @@
 		92512B2A1A10A55A00BD409E /* VeritasParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VeritasParserTest.m; sourceTree = "<group>"; };
 		92512B2C1A10A78000BD409E /* Test.v */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.v; sourceTree = "<group>"; };
 		9265AF561A10B56900B4A073 /* Lua.syntax */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lua.syntax; sourceTree = "<group>"; };
+		92E5FF931A1314F600D7C5D1 /* Lua.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lua.grammar; sourceTree = "<group>"; };
+		92E5FF941A1314F600D7C5D1 /* LuaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaParser.h; sourceTree = "<group>"; };
+		92E5FF951A1314F600D7C5D1 /* LuaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaParser.m; sourceTree = "<group>"; };
+		92E5FF9B1A1316B000D7C5D1 /* Test.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +140,9 @@
 		92512AF21A10A21D00BD409E /* VeritasParser */ = {
 			isa = PBXGroup;
 			children = (
+				92E5FF931A1314F600D7C5D1 /* Lua.grammar */,
+				92E5FF941A1314F600D7C5D1 /* LuaParser.h */,
+				92E5FF951A1314F600D7C5D1 /* LuaParser.m */,
 				92512AF31A10A21D00BD409E /* VeritasParser.h */,
 				92512AF51A10A21D00BD409E /* VeritasParser.m */,
 				9265AF561A10B56900B4A073 /* Lua.syntax */,
@@ -147,6 +156,7 @@
 				92512B001A10A21E00BD409E /* Supporting Files */,
 				92512B2A1A10A55A00BD409E /* VeritasParserTest.m */,
 				92512B2C1A10A78000BD409E /* Test.v */,
+				92E5FF9B1A1316B000D7C5D1 /* Test.lua */,
 			);
 			path = VeritasParserTests;
 			sourceTree = "<group>";
@@ -294,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E5FF9C1A1316B000D7C5D1 /* Test.lua in Resources */,
 				92512B2D1A10A78000BD409E /* Test.v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92512AF61A10A21D00BD409E /* VeritasParser.m in Sources */,
+				92E5FF961A1314F600D7C5D1 /* LuaParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
