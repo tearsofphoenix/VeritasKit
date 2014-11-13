@@ -1,3 +1,6 @@
 [submodule "VeritasParser/Library/pegkit"]
 	path = VeritasParser/Library/pegkit
 	url = https://github.com/itod/pegkit.git
+[submodule "Lua/Library/freetype-gl"]
+	path = Lua/Library/freetype-gl
+	url = https://github.com/veritas-shine/freetype-gl.git
