@@ -1,6 +1,6 @@
-local VA = require("VA")
-local class = require("class")
-local NS = require("NS")
+local VA = require("VA.Base")
+local NS = require("NS.framework")
+local class = NS.Class
 
 local DisplayLink = class:inherit(NS.object, "VA.DisplayLink")
 

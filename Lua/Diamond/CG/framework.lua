@@ -1,4 +1,5 @@
-local CG = {}
+local CG = require("CG.Base")
+require("CG.AffineTransform")
 
 -- Point
 

@@ -1,25 +1,36 @@
-local class = { __globalClasses = {} }
+local NS = require("NS.Base")
 
-function class:create(name)
+local Class = { __globalClasses = {} }
+
+function Class:create(name)
 	local newClass = {name = name, _loaded = false}
-	class.__globalClasses[name] = newClass
+    Class.__globalClasses[name] = newClass
 
 	return newClass
 end
 
-function class:getClassByName(name)
-	return class.__globalClasses[name]
+function Class:getClassByName(name)
+	return Class.__globalClasses[name]
 end
 
-function class:inherit(baseClass, name)
+function Class:inherit(baseClass, name)
 
     local new_class = {name = name}
     local class_mt = { __index = new_class }
 
-    function new_class:new()
+    function new_class:alloc()
+        print("new of class", name, "\n")
         local newinst = {}
         setmetatable( newinst, class_mt )
         return newinst
+    end
+
+    function new_class:init()
+        return self
+    end
+
+    function new_class:new()
+        return self:alloc():init()
     end
 
     if nil ~= baseClass then
@@ -59,4 +70,6 @@ function class:inherit(baseClass, name)
     return new_class
 end
 
-return class
+NS.Class = Class
+
+return Class

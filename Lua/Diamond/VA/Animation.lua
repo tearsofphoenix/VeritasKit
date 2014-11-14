@@ -1,6 +1,6 @@
-local class   = require("class")
-local NS = require("NS")
-local VA = require("VA")
+local NS = require("NS.framework")
+local class = NS.Class
+local VA = require("VA.Base")
 
 local Animation = class:inherit(NS.Object, "VA.Animation")
 
