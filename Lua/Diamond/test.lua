@@ -1,4 +1,4 @@
-
+require("VALayer")
 local CG = require("CG")
 local Rect = CG.Rect
 
