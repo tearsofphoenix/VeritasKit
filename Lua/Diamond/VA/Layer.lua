@@ -1,9 +1,20 @@
-local class = require("class")
-local NS = require("NS")
-local VA = require("VA")
-local CG = require("CG")
+
+local NS = require("NS.framework")
+local VA = require("VA.Base")
+local CG = require("CG.framework")
+local class = NS.Class
 
 local Layer = class:inherit(NS.Object, "VA.Layer")
+
+---[[
+function Layer:init()
+    self._sublayers = {}
+    self._animationKeys = {}
+    self._animations = {}
+    self._needsLayout = false
+    return self
+end
+--]]
 
 function Layer:layer()
    return self:new() 
@@ -154,30 +165,76 @@ function Layer:superlayer()
 end
 
 function Layer:removeFromSuperlayer()
-    --TODO
+    if self._superlayer then
+        local idx = -1
+        for k, v in pairs(self._superlayer._sublayers) do
+            if v == self then
+                idx = k
+                break
+            end
+        end
+
+        if idx ~= -1 then
+            self._superlayer._sublayers[idx] = nil
+            self._superlayer:setNeedsLayout()
+            self._superlayer = nil
+        end
+    end
 end
 
+function Layer:setSublayers(s)
+    if self._sublayers ~= s then
+        self._sublayers = s
+
+        self:setNeedsLayout()
+    end
+end
 function Layer:sublayers()
-    --TODO
+    return self._sublayers
 end
 
 function Layer:addSublayer(l)
 
+    l:removeFromSuperlayer()
+
+    self._sublayers[#self._sublayers + 1] = l
+    l._superlayer = self
+    self:setNeedsLayout()
 end
 
 function Layer:insertSublayerAtIndex(l, idx)
 
+    l:removeFromSuperlayer()
+
+    NS.insertObjectAtIndex(self._sublayers, l, idx)
+
+    self:setNeedsLayout()
 end
 
 function Layer:insertSublayerBelow(l, sibling)
-
+    local idx = NS.indexOfObject(self._sublayers, sibling)
+    if idx >= 1 then
+        self:insertSublayerAtIndex(l, idx)
+    end
 end
 
 function Layer:insertSublayerAbove(l, sibling)
-
+    local idx = NS.indexOfObject(self._sublayers, sibling)
+    if idx ~= -1 then
+        self:insertSublayerAtIndex(l, idx + 1)
+    end
 end
 
 function Layer:replaceSublayerWith(l, l2)
+    l:removeFromSuperlayer()
+    l2:removeFromSuperlayer()
+
+    local idx = NS.indexOfObject(self._sublayers, l)
+    if idx ~= NS.NotFound then
+        self._sublayers[idx] = l2
+        l2._superlayer = self
+        self:setNeedsLayout()
+    end
 
 end
 
@@ -381,7 +438,9 @@ function Layer:drawInContext(ctx) end
 * WARNING: currently this method does not implement the full
 * CoreAnimation composition model, use with caution. --]]
 
-function Layer:renderInContext(ctx) end
+function Layer:renderInContext(ctx)
+
+end
 
 --[[ Defines how the edges of the layer are rasterized. For each of the
 * four edges (left, right, bottom, top) if the corresponding bit is
@@ -405,8 +464,14 @@ function Layer:allowsEdgeAntialiasing() end
 
 --[[ The background color of the layer. Default value is nil. Colors
 * created from tiled patterns are supported. Animatable. --]]
-function Layer:setBackgroundColor(c) end
-function Layer:backgroundColor() end
+function Layer:setBackgroundColor(c)
+    if self._backgroundColor ~= c then
+        self._backgroundColor = c
+    end
+end
+function Layer:backgroundColor()
+    return self._backgroundColor
+end
 -- CGColorRef backgroundColor;
 
 --[[ When positive, the background of the layer will be drawn with
@@ -467,14 +532,27 @@ function Layer:compositingFilter() end
 
 --[[ An array of filters that will be applied to the contents of the
 * layer and its sublayers. Defaults to nil. Animatable. --]]
-function Layer:setFilters(fs) end
-function Layer:filters() end
+function Layer:setFilters(fs)
+    if self._filters ~= fs then
+        self._filters = fs
+    end
+end
+function Layer:filters()
+    return self._filters
+end
 --(copy) NSArray *filters;
 
 --[[ An array of filters that are applied to the background of the layer.
 * The root layer ignores this property. Animatable. --]]
-function Layer:setBackgroundFilters(bs) end
-function Layer:backgroundFilters() end
+function Layer:setBackgroundFilters(bs)
+    if self._backgroundFilters ~= bs then
+        self._backgroundFilters = bs
+    end
+end
+
+function Layer:backgroundFilters()
+    return self._backgroundFilters
+end
 --(copy) NSArray *backgroundFilters;
 
 --[[ When true, the layer is rendered as a bitmap in its local coordinate
@@ -523,8 +601,14 @@ function Layer:shadowOffset() end
 -- CGSize shadowOffset;
 
 --[[ The blur radius used to create the shadow. Defaults to 3. Animatable. --]]
-function Layer:setShadowRadius(r) end
-function Layer:shadowRadius() end
+function Layer:setShadowRadius(r)
+    if self._shadowRadius ~= r then
+        self._shadowRadius = r
+    end
+end
+function Layer:shadowRadius()
+    return self._shadowRadius
+end
 -- CGFloat shadowRadius;
 
 --[[ When non-null this path defines the outline used to construct the
@@ -533,8 +617,14 @@ function Layer:shadowRadius() end
 * Specifying the path explicitly using this property will usually
 * improve rendering performance, as will sharing the same path
 * reference across multiple layers. Defaults to null. Animatable. --]]
-function Layer:setShadowPath(p) end
-function Layer:shadowPath() end
+function Layer:setShadowPath(p)
+    if self._shadowPath ~= p then
+        self._shadowPath = p
+    end
+end
+function Layer:shadowPath()
+    return self._shadowPath
+end
 -- CGPathRef shadowPath;
 
 --[[* Layout methods. *--]]
@@ -558,15 +648,25 @@ function Layer:preferredFrameSize() end
 * skipped if the layer is currently executing its -layoutSublayers
 * method. --]]
 
-function Layer:setNeedsLayout() end
+function Layer:setNeedsLayout()
+   if not self._layoutingSublayers then
+      self._needsLayout = true
+   end
+end
 
 --[[ Returns true when the receiver is marked as needing layout. --]]
-function Layer:needsLayout() end
+function Layer:needsLayout()
+    return self._needsLayout
+end
 
 --[[ Traverse upwards from the layer while the superlayer requires layout.
 * Then layout the entire tree beneath that ancestor. --]]
 
-function Layer:layoutIfNeeded() end
+function Layer:layoutIfNeeded()
+    if self._needsLayout then
+        self:layoutSublayers()
+    end
+end
 
 --[[ Called when the layer requires layout. The default implementation
 * calls the layout manager if one exists and it implements the
@@ -574,7 +674,9 @@ function Layer:layoutIfNeeded() end
 * provide their own layout algorithm, which should set the frame of
 * each sublayer. --]]
 
-function Layer:layoutSublayers() end
+function Layer:layoutSublayers()
+
+end
 
 --[[* Action methods. *--]]
 
@@ -612,7 +714,9 @@ function Layer:layoutSublayers() end
 * animation object for events posted by animatable properties, nil
 * otherwise. --]]
 
-Layer.defaultActionForKey = function(event) end
+Layer.defaultActionForKey = function(event)
+
+end
 
 --[[ Returns the action object associated with the event named by the
 * string 'event'. The default implementation searches for an action
@@ -627,12 +731,36 @@ Layer.defaultActionForKey = function(event) end
 * following steps are ignored. If the final result is an instance of
 * NSNull, it is converted to `nil'. --]]
 
-function Layer:actionForKey(event) end;
+function Layer:actionForKey(event)
+    local action
+    if self._delegate then
+        action = self._delegate.actionForLayerForKey(self, event)
+    end
+    if action then
+        return action
+    end
+
+    action = self._actions[event]
+
+    if action then
+        return action
+    end
+
+    action = self:class().defaultActionForKey(event)
+
+    return action
+end
 
 --[[ A dictionary mapping keys to objects implementing the CAAction
 * protocol. Default value is nil. --]]
-function Layer:setActions(actions) end
-function Layer:actions() end
+function Layer:setActions(actions)
+    if self._actions ~= actions then
+        self._actions = actions
+    end
+end
+function Layer:actions()
+    return self._actions
+end
 --(copy) NSDictionary *actions;
 
 --[[* Animation methods. *--]]
@@ -652,38 +780,72 @@ function Layer:actions() end
 * subsequent modifications to `anim' will have no affect unless it is
 * added to another layer. --]]
 
-function Layer:addAnimationForKey(anim , key) end;
+function Layer:addAnimationForKey(anim , key)
+
+    if anim then
+
+        if anim:isKindOfClass(VA.TransitionAnimation) then
+            key = "transition"
+        end
+
+        if key then
+            self._animations[key] = anim:copy()
+        else
+            self._nilKeyAnimation = anim:copy()
+        end
+    end
+end;
 
 --[[ Remove all animations attached to the layer. --]]
 
-function Layer:removeAllAnimations() end
+function Layer:removeAllAnimations()
+    self._animations = {}
+end
 
 --[[ Remove any animation attached to the layer for 'key'. --]]
 
-function Layer:removeAnimationForKey(key) end;
+function Layer:removeAnimationForKey(key)
+    self._animations[key] = nil
+end
 
 --[[ Returns an array containing the keys of all animations currently
 * attached to the receiver. The order of the array matches the order
 * in which animations will be applied. --]]
-function Layer:animationKeys() end
+function Layer:animationKeys()
+    return self._animationKeys
+end
 
 --[[ Returns the animation added to the layer with identifier 'key', or nil
 * if no such animation exists. Attempting to modify any properties of
 * the returned object will result in undefined behavior. --]]
-function Layer:animationForKey(key) end
+function Layer:animationForKey(key)
+    return self._animations[key]
+end
 
 --[[* Miscellaneous properties. *--]]
 
 --[[ The name of the layer. Used by some layout managers. Defaults to nil. --]]
-function Layer:setName(n) end
-function Layer:name() end
+function Layer:setName(n)
+    if self._name ~= n then
+        self._name = n
+    end
+end
+function Layer:name()
+    return self._name
+end
 --(copy) NSString *name;
 
 --[[ An object that will receive the CALayer delegate methods defined
 * below (for those that it implements). The value of this property is
 * not retained. Default value is nil. --]]
-function Layer:setDelegate(d) end
-function Layer:delegate() end
+function Layer:setDelegate(d)
+    if self._delegate ~= d then
+        self._delegate = d
+    end
+end
+function Layer:delegate()
+    return self._delegate
+end
 --(weak) id delegate;
 
 --[[ When non-nil, a dictionary dereferenced to find property values that

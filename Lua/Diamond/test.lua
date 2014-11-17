@@ -1,20 +1,53 @@
-require("VALayer")
-local CG = require("CG")
-local Rect = CG.Rect
 
-local r1 = Rect.make(1, 1, 2, 2)
-local r2 = Rect.make(1, 1, 2, 2)
+--[[ VA Test
 
-print(r1.origin.x, r1.origin.y)
+local VA = require("VA.framework")
+local NS = require("NS.framework")
 
----[[
-if r1 == r2 then
-    print("Equal!", r1)
-else
-    assert("Error")
+local VALayer = VA.Layer
+local l = VALayer:new()
+print(l)
+
+local dump = function(t)
+
+    print("table: len:", #t)
+
+    for k, v in pairs(t) do
+        print(k, v)
+    end
+
+    print("--------------------\n")
 end
+local var = {1, 3, 5, 7, 9 }
 
-local r3 = Rect:make(1, 2, 2, 3)
+dump(var)
 
-assert(r1 ~= r3)
+NS.insertObjectAtIndex(var, "a", 2)
+
+dump(var)
+
+
+--]]
+
+---[[ CG Test
+local CG = require("CG.framework")
+
+local m = CG.AffineTransform.make(1, 2, 3, 4, 5, 6)
+print(m)
+
+local i = CG.AffineTransform.Identity
+print(i)
+
+local c = m * i
+print("c:", c)
+c = i * m
+print("c:", c)
+
+assert(c == m)
+
+c = m * m
+print(c)
+c = CG.AffineTransform.makeRotation(math.pi)
+print(c)
+
 --]]
