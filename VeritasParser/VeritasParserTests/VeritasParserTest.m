@@ -21,12 +21,24 @@
 - (void)setUp
 {
     [super setUp];
+    CGAffineTransform t = CGAffineTransformMake(1, 2, 3, 4, 5, 6);
+    NSLog(@"%@", NSStringFromCGAffineTransform(t));
+    CGAffineTransform c = CGAffineTransformConcat(t, t);
+    NSLog(@"%@", NSStringFromCGAffineTransform(c));
+    c = CGAffineTransformMakeRotation(M_PI);
+    NSLog(@"%@", NSStringFromCGAffineTransform(c));
+
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+- (void)testNothing
+{
+    
 }
 
 //- (void)testExample {

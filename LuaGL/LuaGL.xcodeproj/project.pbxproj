@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9265738E1A19CE1F00EDD3B7 /* luagl_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9265738C1A19CE1F00EDD3B7 /* luagl_util.c */; };
+		92AF41791A1981B9008A72B9 /* LuaGL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92AF41781A1981B9008A72B9 /* LuaGL.h */; };
+		92AF417B1A1981B9008A72B9 /* LuaGL.c in Sources */ = {isa = PBXBuildFile; fileRef = 92AF417A1A1981B9008A72B9 /* LuaGL.c */; };
+		92AF41811A1981B9008A72B9 /* libLuaGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF41751A1981B9008A72B9 /* libLuaGL.a */; };
+		92AF41A81A1981E7008A72B9 /* LuaGLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AF41A71A1981E7008A72B9 /* LuaGLTest.m */; };
+		92AF41B11A1983F3008A72B9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF41B01A1983F3008A72B9 /* OpenGLES.framework */; };
+		92AF41BA1A199A54008A72B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AF41B91A199A54008A72B9 /* main.m */; };
+		92AF41BF1A199E9D008A72B9 /* gl.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92AF41BE1A199B09008A72B9 /* gl.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		92AF41821A1981B9008A72B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF416D1A1981B9008A72B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92AF41741A1981B9008A72B9;
+			remoteInfo = LuaGL;
+		};
+		92AF41A11A1981CC008A72B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E1A4FE8A1643959600F8AE92;
+			remoteInfo = "LuaKit-Mac";
+		};
+		92AF41A31A1981CC008A72B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 927D865718A4DE880094ED86;
+			remoteInfo = LuaKit;
+		};
+		92AF41A51A1981CC008A72B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 927D866418A4DE880094ED86;
+			remoteInfo = LuaKitiOSTests;
+		};
+		92AF41A91A198222008A72B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 927D865618A4DE880094ED86;
+			remoteInfo = LuaKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92AF41731A1981B9008A72B9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				92AF41791A1981B9008A72B9 /* LuaGL.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92AF41B51A199A54008A72B9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				92AF41BF1A199E9D008A72B9 /* gl.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9265738C1A19CE1F00EDD3B7 /* luagl_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luagl_util.c; sourceTree = "<group>"; };
+		9265738D1A19CE1F00EDD3B7 /* luagl_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luagl_util.h; sourceTree = "<group>"; };
+		92AF41751A1981B9008A72B9 /* libLuaGL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLuaGL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		92AF41781A1981B9008A72B9 /* LuaGL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaGL.h; sourceTree = "<group>"; };
+		92AF417A1A1981B9008A72B9 /* LuaGL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = LuaGL.c; sourceTree = "<group>"; };
+		92AF41801A1981B9008A72B9 /* LuaGLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuaGLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92AF41861A1981B9008A72B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
+		92AF41A71A1981E7008A72B9 /* LuaGLTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaGLTest.m; sourceTree = "<group>"; };
+		92AF41B01A1983F3008A72B9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		92AF41B71A199A54008A72B9 /* Generator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Generator; sourceTree = BUILT_PRODUCTS_DIR; };
+		92AF41B91A199A54008A72B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		92AF41BE1A199B09008A72B9 /* gl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gl.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		92AF41721A1981B9008A72B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92AF41B11A1983F3008A72B9 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92AF417D1A1981B9008A72B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92AF41811A1981B9008A72B9 /* libLuaGL.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92AF41B41A199A54008A72B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		92AF416C1A1981B9008A72B9 = {
+			isa = PBXGroup;
+			children = (
+				92AF41B01A1983F3008A72B9 /* OpenGLES.framework */,
+				92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */,
+				92AF41771A1981B9008A72B9 /* LuaGL */,
+				92AF41841A1981B9008A72B9 /* LuaGLTests */,
+				92AF41B81A199A54008A72B9 /* Generator */,
+				92AF41761A1981B9008A72B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		92AF41761A1981B9008A72B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92AF41751A1981B9008A72B9 /* libLuaGL.a */,
+				92AF41801A1981B9008A72B9 /* LuaGLTests.xctest */,
+				92AF41B71A199A54008A72B9 /* Generator */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92AF41771A1981B9008A72B9 /* LuaGL */ = {
+			isa = PBXGroup;
+			children = (
+				9265738C1A19CE1F00EDD3B7 /* luagl_util.c */,
+				9265738D1A19CE1F00EDD3B7 /* luagl_util.h */,
+				92AF41781A1981B9008A72B9 /* LuaGL.h */,
+				92AF417A1A1981B9008A72B9 /* LuaGL.c */,
+			);
+			path = LuaGL;
+			sourceTree = "<group>";
+		};
+		92AF41841A1981B9008A72B9 /* LuaGLTests */ = {
+			isa = PBXGroup;
+			children = (
+				92AF41851A1981B9008A72B9 /* Supporting Files */,
+				92AF41A71A1981E7008A72B9 /* LuaGLTest.m */,
+			);
+			path = LuaGLTests;
+			sourceTree = "<group>";
+		};
+		92AF41851A1981B9008A72B9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				92AF41861A1981B9008A72B9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92AF419B1A1981CC008A72B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92AF41A21A1981CC008A72B9 /* LuaKit.framework */,
+				92AF41A41A1981CC008A72B9 /* libLuaKit.a */,
+				92AF41A61A1981CC008A72B9 /* LuaKitiOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92AF41B81A199A54008A72B9 /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				92AF41B91A199A54008A72B9 /* main.m */,
+				92AF41BE1A199B09008A72B9 /* gl.txt */,
+			);
+			path = Generator;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92AF41741A1981B9008A72B9 /* LuaGL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92AF41891A1981B9008A72B9 /* Build configuration list for PBXNativeTarget "LuaGL" */;
+			buildPhases = (
+				92AF41711A1981B9008A72B9 /* Sources */,
+				92AF41721A1981B9008A72B9 /* Frameworks */,
+				92AF41731A1981B9008A72B9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92AF41AA1A198222008A72B9 /* PBXTargetDependency */,
+			);
+			name = LuaGL;
+			productName = LuaGL;
+			productReference = 92AF41751A1981B9008A72B9 /* libLuaGL.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		92AF417F1A1981B9008A72B9 /* LuaGLTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92AF418C1A1981B9008A72B9 /* Build configuration list for PBXNativeTarget "LuaGLTests" */;
+			buildPhases = (
+				92AF417C1A1981B9008A72B9 /* Sources */,
+				92AF417D1A1981B9008A72B9 /* Frameworks */,
+				92AF417E1A1981B9008A72B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92AF41831A1981B9008A72B9 /* PBXTargetDependency */,
+			);
+			name = LuaGLTests;
+			productName = LuaGLTests;
+			productReference = 92AF41801A1981B9008A72B9 /* LuaGLTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		92AF41B61A199A54008A72B9 /* Generator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92AF41BB1A199A54008A72B9 /* Build configuration list for PBXNativeTarget "Generator" */;
+			buildPhases = (
+				92AF41B31A199A54008A72B9 /* Sources */,
+				92AF41B41A199A54008A72B9 /* Frameworks */,
+				92AF41B51A199A54008A72B9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Generator;
+			productName = Generator;
+			productReference = 92AF41B71A199A54008A72B9 /* Generator */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92AF416D1A1981B9008A72B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Mac003;
+				TargetAttributes = {
+					92AF41741A1981B9008A72B9 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					92AF417F1A1981B9008A72B9 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					92AF41B61A199A54008A72B9 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 92AF41701A1981B9008A72B9 /* Build configuration list for PBXProject "LuaGL" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 92AF416C1A1981B9008A72B9;
+			productRefGroup = 92AF41761A1981B9008A72B9 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 92AF419B1A1981CC008A72B9 /* Products */;
+					ProjectRef = 92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				92AF41741A1981B9008A72B9 /* LuaGL */,
+				92AF417F1A1981B9008A72B9 /* LuaGLTests */,
+				92AF41B61A199A54008A72B9 /* Generator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		92AF41A21A1981CC008A72B9 /* LuaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LuaKit.framework;
+			remoteRef = 92AF41A11A1981CC008A72B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92AF41A41A1981CC008A72B9 /* libLuaKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLuaKit.a;
+			remoteRef = 92AF41A31A1981CC008A72B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92AF41A61A1981CC008A72B9 /* LuaKitiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LuaKitiOSTests.xctest;
+			remoteRef = 92AF41A51A1981CC008A72B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		92AF417E1A1981B9008A72B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92AF41711A1981B9008A72B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92AF417B1A1981B9008A72B9 /* LuaGL.c in Sources */,
+				9265738E1A19CE1F00EDD3B7 /* luagl_util.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92AF417C1A1981B9008A72B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92AF41A81A1981E7008A72B9 /* LuaGLTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92AF41B31A199A54008A72B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92AF41BA1A199A54008A72B9 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		92AF41831A1981B9008A72B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92AF41741A1981B9008A72B9 /* LuaGL */;
+			targetProxy = 92AF41821A1981B9008A72B9 /* PBXContainerItemProxy */;
+		};
+		92AF41AA1A198222008A72B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LuaKit;
+			targetProxy = 92AF41A91A198222008A72B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		92AF41871A1981B9008A72B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		92AF41881A1981B9008A72B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		92AF418A1A1981B9008A72B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		92AF418B1A1981B9008A72B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		92AF418D1A1981B9008A72B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LuaGLTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		92AF418E1A1981B9008A72B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LuaGLTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		92AF41BC1A199A54008A72B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		92AF41BD1A199A54008A72B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92AF41701A1981B9008A72B9 /* Build configuration list for PBXProject "LuaGL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92AF41871A1981B9008A72B9 /* Debug */,
+				92AF41881A1981B9008A72B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92AF41891A1981B9008A72B9 /* Build configuration list for PBXNativeTarget "LuaGL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92AF418A1A1981B9008A72B9 /* Debug */,
+				92AF418B1A1981B9008A72B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92AF418C1A1981B9008A72B9 /* Build configuration list for PBXNativeTarget "LuaGLTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92AF418D1A1981B9008A72B9 /* Debug */,
+				92AF418E1A1981B9008A72B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92AF41BB1A199A54008A72B9 /* Build configuration list for PBXNativeTarget "Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92AF41BC1A199A54008A72B9 /* Debug */,
+				92AF41BD1A199A54008A72B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 92AF416D1A1981B9008A72B9 /* Project object */;
+}
