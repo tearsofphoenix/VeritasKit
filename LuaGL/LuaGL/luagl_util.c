@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <lua.h>
-#include <lauxlib.h>
+#include <LuaKit/lua.h>
+#include <LuaKit/lauxlib.h>
 
 #include "luagl_util.h"
 
