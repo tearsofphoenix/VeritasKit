@@ -210,6 +210,20 @@
 			remoteGlobalIDString = E1A4FE891643959600F8AE92;
 			remoteInfo = "LuaKit-Mac";
 		};
+		92DA5B891A4D350B0039599D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92DA5B821A4D350A0039599D /* LuaSDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92DA5B681A4D350A0039599D;
+			remoteInfo = LuaSDL;
+		};
+		92DA5B8B1A4D350B0039599D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92DA5B821A4D350A0039599D /* LuaSDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92DA5B731A4D350A0039599D;
+			remoteInfo = LuaSDLTests;
+		};
 		E1D62E6A16AE20A900DE39BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
@@ -285,6 +299,7 @@
 		92AC4C1E19624875000A0F48 /* VeritasMacDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeritasMacDemo-Prefix.pch"; sourceTree = "<group>"; };
 		92AC4C2019624875000A0F48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		92AC4C2819624875000A0F48 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		92DA5B821A4D350A0039599D /* LuaSDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaSDL.xcodeproj; path = Library/LuaSDL/LuaSDL.xcodeproj; sourceTree = "<group>"; };
 		E14A34C31643A64F00B8EB6E /* libffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libffi.dylib; sourceTree = DEVELOPER_DIR; };
 		E14A34DE1643A77F00B8EB6E /* VeritasMahineIOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasMahineIOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14A34E01643A77F00B8EB6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -489,6 +504,7 @@
 		34E8A16514D24C82000F9EB1 = {
 			isa = PBXGroup;
 			children = (
+				92DA5B821A4D350A0039599D /* LuaSDL.xcodeproj */,
 				E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */,
 				E1A4FF891643993300F8AE92 /* Source */,
 				E1A4003F1643996C00F8AE92 /* VeritasMachineKit */,
@@ -600,6 +616,15 @@
 				92512AE01A1094D300BD409E /* MacMain.v */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92DA5B831A4D350A0039599D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92DA5B8A1A4D350B0039599D /* libLuaSDL.a */,
+				92DA5B8C1A4D350B0039599D /* LuaSDLTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E14A34E61643A77F00B8EB6E /* VeritasMahineIOSDemo */ = {
@@ -1075,6 +1100,10 @@
 					ProductGroup = E1D62E6316AE20A800DE39BF /* Products */;
 					ProjectRef = E1D62E6216AE20A800DE39BF /* LuaKit.xcodeproj */;
 				},
+				{
+					ProductGroup = 92DA5B831A4D350A0039599D /* Products */;
+					ProjectRef = 92DA5B821A4D350A0039599D /* LuaSDL.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1099,6 +1128,20 @@
 			fileType = wrapper.cfbundle;
 			path = LuaKitiOSTests.xctest;
 			remoteRef = 922666F019594C0D00DD5B48 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92DA5B8A1A4D350B0039599D /* libLuaSDL.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLuaSDL.a;
+			remoteRef = 92DA5B891A4D350B0039599D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92DA5B8C1A4D350B0039599D /* LuaSDLTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LuaSDLTests.xctest;
+			remoteRef = 92DA5B8B1A4D350B0039599D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E1D62E6B16AE20A900DE39BF /* LuaKit.framework */ = {

@@ -13,3 +13,5 @@ Lua/Diamond/.idea/
 Lua/build/
 DerivedData/
 LuaGL/LuaGL.xcodeproj/xcuserdata/
+build
+xcuserdata
