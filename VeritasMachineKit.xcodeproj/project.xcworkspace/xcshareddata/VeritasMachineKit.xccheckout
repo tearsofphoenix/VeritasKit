@@ -12,8 +12,12 @@
 	<dict>
 		<key>1F32D1AD3A03EA89C2A7A160CD3D389F151C3896</key>
 		<string>https://github.com/tearsofphoenix/VeritasKit</string>
+		<key>52A48B60B20C16BF17C218B40EC7BD81DB998CDB</key>
+		<string>https://github.com/veritas-shine/sdl-mirror.git</string>
 		<key>59BCCFF68011542A051983972F0A0E4EA5C0D708</key>
 		<string>https://github.com/itod/pegkit.git</string>
+		<key>7A9428317F5BEFFBDAE2F9C8327C5CA0BD2BE2D8</key>
+		<string>https://github.com/veritas-shine/luasdl2.git</string>
 		<key>948C6829607794C9C905880E4DE9DD942A04092A</key>
 		<string>https://github.com/itod/tdtemplateengine.git</string>
 	</dict>
@@ -23,8 +27,12 @@
 	<dict>
 		<key>1F32D1AD3A03EA89C2A7A160CD3D389F151C3896</key>
 		<string>../..</string>
+		<key>52A48B60B20C16BF17C218B40EC7BD81DB998CDB</key>
+		<string>../../Vendor/SDL/</string>
 		<key>59BCCFF68011542A051983972F0A0E4EA5C0D708</key>
 		<string>../../VeritasParser/Library/pegkit</string>
+		<key>7A9428317F5BEFFBDAE2F9C8327C5CA0BD2BE2D8</key>
+		<string>../../Vendor/LuaSDL/</string>
 		<key>948C6829607794C9C905880E4DE9DD942A04092A</key>
 		<string>../../VeritasParser/Library/pegkit/lib/TDTemplateEngine</string>
 	</dict>
@@ -40,9 +48,25 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7A9428317F5BEFFBDAE2F9C8327C5CA0BD2BE2D8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LuaSDL</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>59BCCFF68011542A051983972F0A0E4EA5C0D708</string>
 			<key>IDESourceControlWCCName</key>
 			<string>pegkit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>52A48B60B20C16BF17C218B40EC7BD81DB998CDB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SDL</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

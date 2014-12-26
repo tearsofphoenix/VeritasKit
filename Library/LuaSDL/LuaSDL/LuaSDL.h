@@ -6,5 +6,6 @@
 //  Copyright (c) 2014年 Mac003. All rights reserved.
 //
 
+#include <lua.h>
 
-int EXPORT luaopen_SDL(lua_State *L);
+extern int luaopen_SDL(lua_State *L);

@@ -15,6 +15,29 @@
 		9201FAD51A4D3EE00072BEB9 /* variant.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FACC1A4D3EE00072BEB9 /* variant.c */; };
 		9201FAD61A4D3EE00072BEB9 /* video.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FACE1A4D3EE00072BEB9 /* video.c */; };
 		9201FAD71A4D3F180072BEB9 /* common.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9201FAC51A4D3EE00072BEB9 /* common.h */; };
+		9201FBF01A4D4E320072BEB9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9201FBEF1A4D4E320072BEB9 /* main.m */; };
+		9201FBFB1A4D4E320072BEB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9201FBFA1A4D4E320072BEB9 /* Images.xcassets */; };
+		9201FBFE1A4D4E320072BEB9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9201FBFC1A4D4E320072BEB9 /* LaunchScreen.xib */; };
+		9201FC271A4D4E810072BEB9 /* libLuaSDL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DA5B681A4D350A0039599D /* libLuaSDL.a */; };
+		9201FC281A4D4E810072BEB9 /* libLuaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FA511A4D399E0072BEB9 /* libLuaKit.a */; };
+		9201FC4A1A4D4F1F0072BEB9 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC301A4D4F1F0072BEB9 /* CMakeLists.txt */; };
+		9201FC4B1A4D4F1F0072BEB9 /* DejaVuSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC321A4D4F1F0072BEB9 /* DejaVuSans.ttf */; };
+		9201FC4C1A4D4F1F0072BEB9 /* font.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC331A4D4F1F0072BEB9 /* font.lua */; };
+		9201FC4D1A4D4F1F0072BEB9 /* image.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC351A4D4F1F0072BEB9 /* image.lua */; };
+		9201FC4E1A4D4F1F0072BEB9 /* Lua-SDL2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC361A4D4F1F0072BEB9 /* Lua-SDL2.png */; };
+		9201FC4F1A4D4F1F0072BEB9 /* joystick.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC381A4D4F1F0072BEB9 /* joystick.lua */; };
+		9201FC501A4D4F1F0072BEB9 /* keyboard.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC3A1A4D4F1F0072BEB9 /* keyboard.lua */; };
+		9201FC511A4D4F1F0072BEB9 /* paths.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC3C1A4D4F1F0072BEB9 /* paths.lua */; };
+		9201FC521A4D4F1F0072BEB9 /* rwops.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC3E1A4D4F1F0072BEB9 /* rwops.lua */; };
+		9201FC531A4D4F1F0072BEB9 /* client.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC401A4D4F1F0072BEB9 /* client.lua */; };
+		9201FC541A4D4F1F0072BEB9 /* server.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC411A4D4F1F0072BEB9 /* server.lua */; };
+		9201FC551A4D4F1F0072BEB9 /* channel.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC431A4D4F1F0072BEB9 /* channel.lua */; };
+		9201FC561A4D4F1F0072BEB9 /* udp_client.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC451A4D4F1F0072BEB9 /* udp_client.lua */; };
+		9201FC571A4D4F1F0072BEB9 /* udp_server.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC461A4D4F1F0072BEB9 /* udp_server.lua */; };
+		9201FC591A4D512C0072BEB9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FC581A4D512C0072BEB9 /* CoreMedia.framework */; };
+		9201FC5C1A4D514F0072BEB9 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FC5B1A4D514F0072BEB9 /* CoreMotion.framework */; };
+		9201FC601A4D51E30072BEB9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FC5F1A4D51E30072BEB9 /* AudioToolbox.framework */; };
+		9201FC761A4D5E0A0072BEB9 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC751A4D5E0A0072BEB9 /* audio */; };
 		92DA5B6C1A4D350A0039599D /* LuaSDL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92DA5B6B1A4D350A0039599D /* LuaSDL.h */; };
 		92DA5BEA1A4D35820039599D /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BB21A4D35820039599D /* audio.c */; };
 		92DA5BEB1A4D35820039599D /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BB41A4D35820039599D /* channel.c */; };
@@ -106,6 +129,13 @@
 			remoteGlobalIDString = FDB6520C0E43D1F300F688B5;
 			remoteInfo = Keyboard;
 		};
+		9201FC251A4D4E710072BEB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92DA5B601A4D350A0039599D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92DA5B671A4D350A0039599D;
+			remoteInfo = LuaSDL;
+		};
 		92DA5C071A4D35AC0039599D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92DA5C021A4D35AC0039599D /* SDL.xcodeproj */;
@@ -154,6 +184,29 @@
 		9201FACE1A4D3EE00072BEB9 /* video.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = video.c; sourceTree = "<group>"; };
 		9201FACF1A4D3EE00072BEB9 /* video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video.h; sourceTree = "<group>"; };
 		9201FAD81A4D3F5D0072BEB9 /* Demos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Demos.xcodeproj; path = "../../Vendor/SDL/Xcode-iOS/Demos/Demos.xcodeproj"; sourceTree = "<group>"; };
+		9201FBEB1A4D4E320072BEB9 /* Demos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9201FBEE1A4D4E320072BEB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9201FBEF1A4D4E320072BEB9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9201FBFA1A4D4E320072BEB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9201FBFD1A4D4E320072BEB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9201FC301A4D4F1F0072BEB9 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		9201FC321A4D4F1F0072BEB9 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
+		9201FC331A4D4F1F0072BEB9 /* font.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = font.lua; sourceTree = "<group>"; };
+		9201FC351A4D4F1F0072BEB9 /* image.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = image.lua; sourceTree = "<group>"; };
+		9201FC361A4D4F1F0072BEB9 /* Lua-SDL2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lua-SDL2.png"; sourceTree = "<group>"; };
+		9201FC381A4D4F1F0072BEB9 /* joystick.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = joystick.lua; sourceTree = "<group>"; };
+		9201FC3A1A4D4F1F0072BEB9 /* keyboard.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = keyboard.lua; sourceTree = "<group>"; };
+		9201FC3C1A4D4F1F0072BEB9 /* paths.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paths.lua; sourceTree = "<group>"; };
+		9201FC3E1A4D4F1F0072BEB9 /* rwops.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rwops.lua; sourceTree = "<group>"; };
+		9201FC401A4D4F1F0072BEB9 /* client.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = client.lua; sourceTree = "<group>"; };
+		9201FC411A4D4F1F0072BEB9 /* server.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.lua; sourceTree = "<group>"; };
+		9201FC431A4D4F1F0072BEB9 /* channel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = channel.lua; sourceTree = "<group>"; };
+		9201FC451A4D4F1F0072BEB9 /* udp_client.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = udp_client.lua; sourceTree = "<group>"; };
+		9201FC461A4D4F1F0072BEB9 /* udp_server.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = udp_server.lua; sourceTree = "<group>"; };
+		9201FC581A4D512C0072BEB9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		9201FC5B1A4D514F0072BEB9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		9201FC5F1A4D51E30072BEB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9201FC751A4D5E0A0072BEB9 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		92DA5B681A4D350A0039599D /* libLuaSDL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLuaSDL.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DA5B6B1A4D350A0039599D /* LuaSDL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaSDL.h; sourceTree = "<group>"; };
 		92DA5BA01A4D35820039599D /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
@@ -210,6 +263,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9201FBE81A4D4E320072BEB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9201FC601A4D51E30072BEB9 /* AudioToolbox.framework in Frameworks */,
+				9201FC5C1A4D514F0072BEB9 /* CoreMotion.framework in Frameworks */,
+				9201FC591A4D512C0072BEB9 /* CoreMedia.framework in Frameworks */,
+				9201FC271A4D4E810072BEB9 /* libLuaSDL.a in Frameworks */,
+				9201FC281A4D4E810072BEB9 /* libLuaKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92DA5B651A4D350A0039599D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,6 +331,132 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9201FBEC1A4D4E320072BEB9 /* Demos */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC2B1A4D4F1F0072BEB9 /* examples */,
+				9201FBFA1A4D4E320072BEB9 /* Images.xcassets */,
+				9201FBFC1A4D4E320072BEB9 /* LaunchScreen.xib */,
+				9201FC5A1A4D51370072BEB9 /* Frameworks */,
+				9201FBED1A4D4E320072BEB9 /* Supporting Files */,
+			);
+			path = Demos;
+			sourceTree = "<group>";
+		};
+		9201FBED1A4D4E320072BEB9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9201FBEE1A4D4E320072BEB9 /* Info.plist */,
+				9201FBEF1A4D4E320072BEB9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9201FC2B1A4D4F1F0072BEB9 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC751A4D5E0A0072BEB9 /* audio */,
+				9201FC301A4D4F1F0072BEB9 /* CMakeLists.txt */,
+				9201FC311A4D4F1F0072BEB9 /* font */,
+				9201FC341A4D4F1F0072BEB9 /* image */,
+				9201FC371A4D4F1F0072BEB9 /* joystick */,
+				9201FC391A4D4F1F0072BEB9 /* keyboard */,
+				9201FC3B1A4D4F1F0072BEB9 /* paths */,
+				9201FC3D1A4D4F1F0072BEB9 /* rwops */,
+				9201FC3F1A4D4F1F0072BEB9 /* tcp */,
+				9201FC421A4D4F1F0072BEB9 /* threads */,
+				9201FC441A4D4F1F0072BEB9 /* udp */,
+			);
+			name = examples;
+			path = ../../../Vendor/LuaSDL/examples;
+			sourceTree = "<group>";
+		};
+		9201FC311A4D4F1F0072BEB9 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC321A4D4F1F0072BEB9 /* DejaVuSans.ttf */,
+				9201FC331A4D4F1F0072BEB9 /* font.lua */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		9201FC341A4D4F1F0072BEB9 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC351A4D4F1F0072BEB9 /* image.lua */,
+				9201FC361A4D4F1F0072BEB9 /* Lua-SDL2.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		9201FC371A4D4F1F0072BEB9 /* joystick */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC381A4D4F1F0072BEB9 /* joystick.lua */,
+			);
+			path = joystick;
+			sourceTree = "<group>";
+		};
+		9201FC391A4D4F1F0072BEB9 /* keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC3A1A4D4F1F0072BEB9 /* keyboard.lua */,
+			);
+			path = keyboard;
+			sourceTree = "<group>";
+		};
+		9201FC3B1A4D4F1F0072BEB9 /* paths */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC3C1A4D4F1F0072BEB9 /* paths.lua */,
+			);
+			path = paths;
+			sourceTree = "<group>";
+		};
+		9201FC3D1A4D4F1F0072BEB9 /* rwops */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC3E1A4D4F1F0072BEB9 /* rwops.lua */,
+			);
+			path = rwops;
+			sourceTree = "<group>";
+		};
+		9201FC3F1A4D4F1F0072BEB9 /* tcp */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC401A4D4F1F0072BEB9 /* client.lua */,
+				9201FC411A4D4F1F0072BEB9 /* server.lua */,
+			);
+			path = tcp;
+			sourceTree = "<group>";
+		};
+		9201FC421A4D4F1F0072BEB9 /* threads */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC431A4D4F1F0072BEB9 /* channel.lua */,
+			);
+			path = threads;
+			sourceTree = "<group>";
+		};
+		9201FC441A4D4F1F0072BEB9 /* udp */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC451A4D4F1F0072BEB9 /* udp_client.lua */,
+				9201FC461A4D4F1F0072BEB9 /* udp_server.lua */,
+			);
+			path = udp;
+			sourceTree = "<group>";
+		};
+		9201FC5A1A4D51370072BEB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9201FC5F1A4D51E30072BEB9 /* AudioToolbox.framework */,
+				9201FC5B1A4D514F0072BEB9 /* CoreMotion.framework */,
+				9201FC581A4D512C0072BEB9 /* CoreMedia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		92DA5B5F1A4D350A0039599D = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +465,7 @@
 				92DA5C021A4D35AC0039599D /* SDL.xcodeproj */,
 				92DA5C011A4D35880039599D /* Source */,
 				92DA5B6A1A4D350A0039599D /* LuaSDL */,
+				9201FBEC1A4D4E320072BEB9 /* Demos */,
 				92DA5B691A4D350A0039599D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -282,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				92DA5B681A4D350A0039599D /* libLuaSDL.a */,
+				9201FBEB1A4D4E320072BEB9 /* Demos.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -465,6 +658,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9201FBEA1A4D4E320072BEB9 /* Demos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9201FC171A4D4E320072BEB9 /* Build configuration list for PBXNativeTarget "Demos" */;
+			buildPhases = (
+				9201FBE71A4D4E320072BEB9 /* Sources */,
+				9201FBE81A4D4E320072BEB9 /* Frameworks */,
+				9201FBE91A4D4E320072BEB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9201FC261A4D4E710072BEB9 /* PBXTargetDependency */,
+			);
+			name = Demos;
+			productName = Demos;
+			productReference = 9201FBEB1A4D4E320072BEB9 /* Demos.app */;
+			productType = "com.apple.product-type.application";
+		};
 		92DA5B671A4D350A0039599D /* LuaSDL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92DA5B7C1A4D350A0039599D /* Build configuration list for PBXNativeTarget "LuaSDL" */;
@@ -493,6 +704,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Mac003;
 				TargetAttributes = {
+					9201FBEA1A4D4E320072BEB9 = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					92DA5B671A4D350A0039599D = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -504,6 +718,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 92DA5B5F1A4D350A0039599D;
 			productRefGroup = 92DA5B691A4D350A0039599D /* Products */;
@@ -525,6 +740,7 @@
 			projectRoot = "";
 			targets = (
 				92DA5B671A4D350A0039599D /* LuaSDL */,
+				9201FBEA1A4D4E320072BEB9 /* Demos */,
 			);
 		};
 /* End PBXProject section */
@@ -595,7 +811,42 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXResourcesBuildPhase section */
+		9201FBE91A4D4E320072BEB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9201FC551A4D4F1F0072BEB9 /* channel.lua in Resources */,
+				9201FC4D1A4D4F1F0072BEB9 /* image.lua in Resources */,
+				9201FC561A4D4F1F0072BEB9 /* udp_client.lua in Resources */,
+				9201FC541A4D4F1F0072BEB9 /* server.lua in Resources */,
+				9201FC521A4D4F1F0072BEB9 /* rwops.lua in Resources */,
+				9201FBFE1A4D4E320072BEB9 /* LaunchScreen.xib in Resources */,
+				9201FC4A1A4D4F1F0072BEB9 /* CMakeLists.txt in Resources */,
+				9201FC761A4D5E0A0072BEB9 /* audio in Resources */,
+				9201FC4B1A4D4F1F0072BEB9 /* DejaVuSans.ttf in Resources */,
+				9201FC531A4D4F1F0072BEB9 /* client.lua in Resources */,
+				9201FC571A4D4F1F0072BEB9 /* udp_server.lua in Resources */,
+				9201FC4F1A4D4F1F0072BEB9 /* joystick.lua in Resources */,
+				9201FC4C1A4D4F1F0072BEB9 /* font.lua in Resources */,
+				9201FC4E1A4D4F1F0072BEB9 /* Lua-SDL2.png in Resources */,
+				9201FC501A4D4F1F0072BEB9 /* keyboard.lua in Resources */,
+				9201FBFB1A4D4E320072BEB9 /* Images.xcassets in Resources */,
+				9201FC511A4D4F1F0072BEB9 /* paths.lua in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		9201FBE71A4D4E320072BEB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9201FBF01A4D4E320072BEB9 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92DA5B641A4D350A0039599D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -641,6 +892,11 @@
 			name = LuaKit;
 			targetProxy = 9201FAB61A4D39C20072BEB9 /* PBXContainerItemProxy */;
 		};
+		9201FC261A4D4E710072BEB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92DA5B671A4D350A0039599D /* LuaSDL */;
+			targetProxy = 9201FC251A4D4E710072BEB9 /* PBXContainerItemProxy */;
+		};
 		92DA5C0A1A4D35B70039599D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libSDL;
@@ -648,7 +904,54 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		9201FBFC1A4D4E320072BEB9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9201FBFD1A4D4E320072BEB9 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		9201FC0B1A4D4E320072BEB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				INFOPLIST_FILE = Demos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9201FC0C1A4D4E320072BEB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				INFOPLIST_FILE = Demos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		92DA5B7A1A4D350A0039599D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -762,6 +1065,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9201FC171A4D4E320072BEB9 /* Build configuration list for PBXNativeTarget "Demos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9201FC0B1A4D4E320072BEB9 /* Debug */,
+				9201FC0C1A4D4E320072BEB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		92DA5B631A4D350A0039599D /* Build configuration list for PBXProject "LuaSDL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
