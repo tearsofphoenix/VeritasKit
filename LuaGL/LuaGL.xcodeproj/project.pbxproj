@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		923780CC1A1C2F3D0006DD42 /* libLuaGLMac.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 923780C11A1C2F3D0006DD42 /* libLuaGLMac.dylib */; };
+		923780D81A1C2F5A0006DD42 /* luagl_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9265738C1A19CE1F00EDD3B7 /* luagl_util.c */; };
+		923780D91A1C2F5A0006DD42 /* LuaGL.c in Sources */ = {isa = PBXBuildFile; fileRef = 92AF417A1A1981B9008A72B9 /* LuaGL.c */; };
+		923780DC1A1C2F700006DD42 /* LuaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF41A21A1981CC008A72B9 /* LuaKit.framework */; };
+		923780DE1A1C317C0006DD42 /* LuaGLMacTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 923780DD1A1C317C0006DD42 /* LuaGLMacTest.m */; };
+		923780E81A1C33150006DD42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 923780E71A1C33150006DD42 /* main.m */; };
+		923780EB1A1C33150006DD42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 923780EA1A1C33150006DD42 /* AppDelegate.m */; };
+		923780ED1A1C33150006DD42 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 923780EC1A1C33150006DD42 /* art.scnassets */; };
+		923780F01A1C33150006DD42 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923780EF1A1C33150006DD42 /* GameViewController.m */; };
+		923780F51A1C33150006DD42 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 923780F41A1C33150006DD42 /* Images.xcassets */; };
+		923780F81A1C33150006DD42 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923780F61A1C33150006DD42 /* LaunchScreen.xib */; };
+		9237810D1A1C35070006DD42 /* libLuaGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF41751A1981B9008A72B9 /* libLuaGL.a */; };
+		923781101A1C35100006DD42 /* libLuaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AF41A41A1981CC008A72B9 /* libLuaKit.a */; };
 		9265738E1A19CE1F00EDD3B7 /* luagl_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9265738C1A19CE1F00EDD3B7 /* luagl_util.c */; };
 		92AF41791A1981B9008A72B9 /* LuaGL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92AF41781A1981B9008A72B9 /* LuaGL.h */; };
 		92AF417B1A1981B9008A72B9 /* LuaGL.c in Sources */ = {isa = PBXBuildFile; fileRef = 92AF417A1A1981B9008A72B9 /* LuaGL.c */; };
@@ -18,6 +31,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		923780CD1A1C2F3D0006DD42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF416D1A1981B9008A72B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 923780C01A1C2F3D0006DD42;
+			remoteInfo = LuaGLMac;
+		};
+		923780DA1A1C2F670006DD42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E1A4FE891643959600F8AE92;
+			remoteInfo = "LuaKit-Mac";
+		};
+		9237810B1A1C35000006DD42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF416D1A1981B9008A72B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92AF41741A1981B9008A72B9;
+			remoteInfo = LuaGL;
+		};
+		9237810E1A1C350C0006DD42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92AF419A1A1981CC008A72B9 /* LuaKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 927D865618A4DE880094ED86;
+			remoteInfo = LuaKit;
+		};
 		92AF41821A1981B9008A72B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92AF416D1A1981B9008A72B9 /* Project object */;
@@ -59,7 +100,7 @@
 		92AF41731A1981B9008A72B9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
+			dstPath = "$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
 				92AF41791A1981B9008A72B9 /* LuaGL.h in CopyFiles */,
@@ -79,6 +120,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		923780C11A1C2F3D0006DD42 /* libLuaGLMac.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libLuaGLMac.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		923780CB1A1C2F3D0006DD42 /* LuaGLMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuaGLMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		923780D11A1C2F3D0006DD42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		923780DD1A1C317C0006DD42 /* LuaGLMacTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaGLMacTest.m; sourceTree = "<group>"; };
+		923780E31A1C33150006DD42 /* iOSLuaGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSLuaGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		923780E61A1C33150006DD42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		923780E71A1C33150006DD42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		923780E91A1C33150006DD42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		923780EA1A1C33150006DD42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		923780EC1A1C33150006DD42 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		923780EE1A1C33150006DD42 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		923780EF1A1C33150006DD42 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		923780F41A1C33150006DD42 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		923780F71A1C33150006DD42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9265738C1A19CE1F00EDD3B7 /* luagl_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luagl_util.c; sourceTree = "<group>"; };
 		9265738D1A19CE1F00EDD3B7 /* luagl_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luagl_util.h; sourceTree = "<group>"; };
 		92AF41751A1981B9008A72B9 /* libLuaGL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLuaGL.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +150,31 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		923780BE1A1C2F3D0006DD42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923780DC1A1C2F700006DD42 /* LuaKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		923780C81A1C2F3D0006DD42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923780CC1A1C2F3D0006DD42 /* libLuaGLMac.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		923780E01A1C33150006DD42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923781101A1C35100006DD42 /* libLuaKit.a in Frameworks */,
+				9237810D1A1C35070006DD42 /* libLuaGL.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92AF41721A1981B9008A72B9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,6 +201,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		923780C21A1C2F3D0006DD42 /* LuaGLMac */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LuaGLMac;
+			sourceTree = "<group>";
+		};
+		923780CF1A1C2F3D0006DD42 /* LuaGLMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				923780D01A1C2F3D0006DD42 /* Supporting Files */,
+			);
+			path = LuaGLMacTests;
+			sourceTree = "<group>";
+		};
+		923780D01A1C2F3D0006DD42 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				923780D11A1C2F3D0006DD42 /* Info.plist */,
+				923780DD1A1C317C0006DD42 /* LuaGLMacTest.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		923780E41A1C33150006DD42 /* iOSLuaGL */ = {
+			isa = PBXGroup;
+			children = (
+				923780E91A1C33150006DD42 /* AppDelegate.h */,
+				923780EA1A1C33150006DD42 /* AppDelegate.m */,
+				923780EC1A1C33150006DD42 /* art.scnassets */,
+				923780EE1A1C33150006DD42 /* GameViewController.h */,
+				923780EF1A1C33150006DD42 /* GameViewController.m */,
+				923780F41A1C33150006DD42 /* Images.xcassets */,
+				923780F61A1C33150006DD42 /* LaunchScreen.xib */,
+				923780E51A1C33150006DD42 /* Supporting Files */,
+			);
+			path = iOSLuaGL;
+			sourceTree = "<group>";
+		};
+		923780E51A1C33150006DD42 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				923780E61A1C33150006DD42 /* Info.plist */,
+				923780E71A1C33150006DD42 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		92AF416C1A1981B9008A72B9 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +257,9 @@
 				92AF41771A1981B9008A72B9 /* LuaGL */,
 				92AF41841A1981B9008A72B9 /* LuaGLTests */,
 				92AF41B81A199A54008A72B9 /* Generator */,
+				923780C21A1C2F3D0006DD42 /* LuaGLMac */,
+				923780CF1A1C2F3D0006DD42 /* LuaGLMacTests */,
+				923780E41A1C33150006DD42 /* iOSLuaGL */,
 				92AF41761A1981B9008A72B9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,6 +270,9 @@
 				92AF41751A1981B9008A72B9 /* libLuaGL.a */,
 				92AF41801A1981B9008A72B9 /* LuaGLTests.xctest */,
 				92AF41B71A199A54008A72B9 /* Generator */,
+				923780C11A1C2F3D0006DD42 /* libLuaGLMac.dylib */,
+				923780CB1A1C2F3D0006DD42 /* LuaGLMacTests.xctest */,
+				923780E31A1C33150006DD42 /* iOSLuaGL.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,7 +326,72 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		923780BF1A1C2F3D0006DD42 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		923780C01A1C2F3D0006DD42 /* LuaGLMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 923780D21A1C2F3D0006DD42 /* Build configuration list for PBXNativeTarget "LuaGLMac" */;
+			buildPhases = (
+				923780BD1A1C2F3D0006DD42 /* Sources */,
+				923780BE1A1C2F3D0006DD42 /* Frameworks */,
+				923780BF1A1C2F3D0006DD42 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				923780DB1A1C2F670006DD42 /* PBXTargetDependency */,
+			);
+			name = LuaGLMac;
+			productName = LuaGLMac;
+			productReference = 923780C11A1C2F3D0006DD42 /* libLuaGLMac.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		923780CA1A1C2F3D0006DD42 /* LuaGLMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 923780D51A1C2F3D0006DD42 /* Build configuration list for PBXNativeTarget "LuaGLMacTests" */;
+			buildPhases = (
+				923780C71A1C2F3D0006DD42 /* Sources */,
+				923780C81A1C2F3D0006DD42 /* Frameworks */,
+				923780C91A1C2F3D0006DD42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				923780CE1A1C2F3D0006DD42 /* PBXTargetDependency */,
+			);
+			name = LuaGLMacTests;
+			productName = LuaGLMacTests;
+			productReference = 923780CB1A1C2F3D0006DD42 /* LuaGLMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		923780E21A1C33150006DD42 /* iOSLuaGL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 923781051A1C33150006DD42 /* Build configuration list for PBXNativeTarget "iOSLuaGL" */;
+			buildPhases = (
+				923780DF1A1C33150006DD42 /* Sources */,
+				923780E01A1C33150006DD42 /* Frameworks */,
+				923780E11A1C33150006DD42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9237810F1A1C350C0006DD42 /* PBXTargetDependency */,
+				9237810C1A1C35000006DD42 /* PBXTargetDependency */,
+			);
+			name = iOSLuaGL;
+			productName = iOSLuaGL;
+			productReference = 923780E31A1C33150006DD42 /* iOSLuaGL.app */;
+			productType = "com.apple.product-type.application";
+		};
 		92AF41741A1981B9008A72B9 /* LuaGL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92AF41891A1981B9008A72B9 /* Build configuration list for PBXNativeTarget "LuaGL" */;
@@ -255,6 +454,15 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Mac003;
 				TargetAttributes = {
+					923780C01A1C2F3D0006DD42 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					923780CA1A1C2F3D0006DD42 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					923780E21A1C33150006DD42 = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					92AF41741A1981B9008A72B9 = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -272,6 +480,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 92AF416C1A1981B9008A72B9;
 			productRefGroup = 92AF41761A1981B9008A72B9 /* Products */;
@@ -287,6 +496,9 @@
 				92AF41741A1981B9008A72B9 /* LuaGL */,
 				92AF417F1A1981B9008A72B9 /* LuaGLTests */,
 				92AF41B61A199A54008A72B9 /* Generator */,
+				923780C01A1C2F3D0006DD42 /* LuaGLMac */,
+				923780CA1A1C2F3D0006DD42 /* LuaGLMacTests */,
+				923780E21A1C33150006DD42 /* iOSLuaGL */,
 			);
 		};
 /* End PBXProject section */
@@ -316,6 +528,23 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		923780C91A1C2F3D0006DD42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		923780E11A1C33150006DD42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923780F81A1C33150006DD42 /* LaunchScreen.xib in Resources */,
+				923780F51A1C33150006DD42 /* Images.xcassets in Resources */,
+				923780ED1A1C33150006DD42 /* art.scnassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92AF417E1A1981B9008A72B9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -326,6 +555,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		923780BD1A1C2F3D0006DD42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923780D81A1C2F5A0006DD42 /* luagl_util.c in Sources */,
+				923780D91A1C2F5A0006DD42 /* LuaGL.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		923780C71A1C2F3D0006DD42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923780DE1A1C317C0006DD42 /* LuaGLMacTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		923780DF1A1C33150006DD42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923780EB1A1C33150006DD42 /* AppDelegate.m in Sources */,
+				923780F01A1C33150006DD42 /* GameViewController.m in Sources */,
+				923780E81A1C33150006DD42 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92AF41711A1981B9008A72B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,6 +610,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		923780CE1A1C2F3D0006DD42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 923780C01A1C2F3D0006DD42 /* LuaGLMac */;
+			targetProxy = 923780CD1A1C2F3D0006DD42 /* PBXContainerItemProxy */;
+		};
+		923780DB1A1C2F670006DD42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "LuaKit-Mac";
+			targetProxy = 923780DA1A1C2F670006DD42 /* PBXContainerItemProxy */;
+		};
+		9237810C1A1C35000006DD42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92AF41741A1981B9008A72B9 /* LuaGL */;
+			targetProxy = 9237810B1A1C35000006DD42 /* PBXContainerItemProxy */;
+		};
+		9237810F1A1C350C0006DD42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LuaKit;
+			targetProxy = 9237810E1A1C350C0006DD42 /* PBXContainerItemProxy */;
+		};
 		92AF41831A1981B9008A72B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 92AF41741A1981B9008A72B9 /* LuaGL */;
@@ -366,7 +642,120 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		923780F61A1C33150006DD42 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				923780F71A1C33150006DD42 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		923780D31A1C2F3D0006DD42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		923780D41A1C2F3D0006DD42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		923780D61A1C2F3D0006DD42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LuaGLMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		923780D71A1C2F3D0006DD42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LuaGLMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		923781061A1C33150006DD42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
+				);
+				INFOPLIST_FILE = iOSLuaGL/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		923781071A1C33150006DD42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${BUILD_DIR}/${CONFIGURATION}$(EFFECTIVE_PLATFORM_NAME)/",
+				);
+				INFOPLIST_FILE = iOSLuaGL/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		92AF41871A1981B9008A72B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -535,6 +924,30 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		923780D21A1C2F3D0006DD42 /* Build configuration list for PBXNativeTarget "LuaGLMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				923780D31A1C2F3D0006DD42 /* Debug */,
+				923780D41A1C2F3D0006DD42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		923780D51A1C2F3D0006DD42 /* Build configuration list for PBXNativeTarget "LuaGLMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				923780D61A1C2F3D0006DD42 /* Debug */,
+				923780D71A1C2F3D0006DD42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		923781051A1C33150006DD42 /* Build configuration list for PBXNativeTarget "iOSLuaGL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				923781061A1C33150006DD42 /* Debug */,
+				923781071A1C33150006DD42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		92AF41701A1981B9008A72B9 /* Build configuration list for PBXProject "LuaGL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

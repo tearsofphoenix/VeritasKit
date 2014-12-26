@@ -10,7 +10,14 @@
 #include "luagl_util.h"
 #include <string.h>
 #include <stdlib.h>
+
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #include <OpenGLES/ES3/gl.h>
+#else
+#include <OpenGL/gl.h>
+#include <OpenGL/gl3.h>
+
+#endif
 
 
 static int lua_glActiveTexture(lua_State *L)
@@ -158,12 +165,14 @@ static int lua_glClearColor(lua_State *L)
     return 0;
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
 static int lua_glClearDepthf(lua_State *L)
 {
     GLclampf depth = lua_tonumber(L, 1);
     glClearDepthf(depth);
     return 0;
 }
+#endif
 
 static int lua_glClearStencil(lua_State *L)
 {
@@ -339,6 +348,7 @@ static int lua_glDepthMask(lua_State *L)
     return 0;
 }
 
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 static int lua_glDepthRangef(lua_State *L)
 {
     GLclampf zNear = lua_tonumber(L, 1);
@@ -346,6 +356,7 @@ static int lua_glDepthRangef(lua_State *L)
     glDepthRangef(zNear, zFar);
     return 0;
 }
+#endif
 
 static int lua_glDetachShader(lua_State *L)
 {
@@ -758,6 +769,7 @@ static int lua_glGetShaderInfoLog(lua_State *L)
     return 1;
 }
 
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 static int lua_glGetShaderPrecisionFormat(lua_State *L)
 {
     GLenum shadertype = (int)lua_tointeger(L, 1);
@@ -769,6 +781,7 @@ static int lua_glGetShaderPrecisionFormat(lua_State *L)
     lua_pushinteger(L, precision);
     return 2;
 }
+#endif
 
 static int lua_glGetShaderSource(lua_State *L)
 {
@@ -1365,7 +1378,9 @@ static const luaL_Reg luagl_func[] = {
     {"CheckFramebufferStatus", lua_glCheckFramebufferStatus},
     {"Clear", lua_glClear},
     {"ClearColor", lua_glClearColor},
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
     {"ClearDepthf", lua_glClearDepthf},
+#endif
     {"ClearStencil", lua_glClearStencil},
     {"ColorMask", lua_glColorMask},
     {"CompileShader", lua_glCompileShader},
@@ -1384,7 +1399,9 @@ static const luaL_Reg luagl_func[] = {
     {"DeleteTextures", lua_glDeleteTextures},
     {"DepthFunc", lua_glDepthFunc},
     {"DepthMask", lua_glDepthMask},
-    {"DepthRangef", lua_glDepthRangef},
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+    {"DepthRange", lua_glDepthRangef},
+#endif
     {"DetachShader", lua_glDetachShader},
     {"Disable", lua_glDisable},
     {"DisableVertexAttribArray", lua_glDisableVertexAttribArray},
@@ -1407,17 +1424,19 @@ static const luaL_Reg luagl_func[] = {
     {"GetAttachedShaders", lua_glGetAttachedShaders},
     {"GetAttribLocation", lua_glGetAttribLocation},
     {"GetBooleanv", lua_glGetBooleanv},
-    {"GetBufferParameteriv", lua_glGetBufferParameteriv},
+    {"GetBufferParameter", lua_glGetBufferParameteriv},
     {"GetError", lua_glGetError},
     {"GetFloatv", lua_glGetFloatv},
-    {"GetFramebufferAttachmentParameteriv", lua_glGetFramebufferAttachmentParameteriv},
+    {"GetFramebufferAttachmentParameter", lua_glGetFramebufferAttachmentParameteriv},
     {"GetIntegerv", lua_glGetIntegerv},
-    {"GetProgramiv", lua_glGetProgramiv},
+    {"GetProgram", lua_glGetProgramiv},
     {"GetProgramInfoLog", lua_glGetProgramInfoLog},
     {"GetRenderbufferParameteriv", lua_glGetRenderbufferParameteriv},
     {"GetShaderiv", lua_glGetShaderiv},
     {"GetShaderInfoLog", lua_glGetShaderInfoLog},
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
     {"GetShaderPrecisionFormat", lua_glGetShaderPrecisionFormat},
+#endif
     {"GetShaderSource", lua_glGetShaderSource},
     {"GetString", lua_glGetString},
     {"GetTexParameter", lua_glGetTexParameter},
