@@ -4,6 +4,3 @@
 [submodule "Lua/Library/freetype-gl"]
 	path = Lua/Library/freetype-gl
 	url = https://github.com/veritas-shine/freetype-gl.git
-[submodule "Vendor"]
-	path = Vendor
-	url = https://github.com/veritas-shine/luasdl2.git
