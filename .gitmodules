@@ -13,3 +13,6 @@
 [submodule "Vendor/SDL_ttf"]
 	path = Vendor/SDL_ttf
 	url = https://github.com/veritas-shine/SDL2_ttf.git
+[submodule "Vendor/SDL_image"]
+	path = Vendor/SDL_image
+	url = https://github.com/veritas-shine/SDL2_image.git

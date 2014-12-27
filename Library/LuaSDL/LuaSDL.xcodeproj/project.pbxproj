@@ -12,6 +12,12 @@
 		60B05CEB1A4DB45B004EFBC5 /* gun.wav in Resources */ = {isa = PBXBuildFile; fileRef = 60B05CE81A4DB45B004EFBC5 /* gun.wav */; };
 		60B05CF41A4E2EF6004EFBC5 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05CF11A4E2E21004EFBC5 /* libSDL2_ttf.a */; };
 		60B05CF51A4E2F25004EFBC5 /* ttf.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BB01A4D35820039599D /* ttf.c */; };
+		60B05D381A4EF822004EFBC5 /* libSDL2_image.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D351A4EF7DC004EFBC5 /* libSDL2_image.a */; };
+		60B05D391A4EF895004EFBC5 /* image.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BA41A4D35820039599D /* image.c */; };
+		60B05D3D1A4EF9A0004EFBC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D3C1A4EF9A0004EFBC5 /* CoreGraphics.framework */; };
+		60B05D3F1A4EF9F3004EFBC5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D3E1A4EF9F3004EFBC5 /* ImageIO.framework */; };
+		60B05D411A4EFA19004EFBC5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D401A4EFA19004EFBC5 /* MobileCoreServices.framework */; };
+		60B05D431A4EFAF0004EFBC5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */; };
 		9201FAD01A4D3EE00072BEB9 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC11A4D3EE00072BEB9 /* array.c */; };
 		9201FAD11A4D3EE00072BEB9 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC41A4D3EE00072BEB9 /* common.c */; };
 		9201FAD21A4D3EE00072BEB9 /* rwops.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC61A4D3EE00072BEB9 /* rwops.c */; };
@@ -82,6 +88,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = BE48FD6807AFA17000BB41DA;
 			remoteInfo = SDL2_ttf;
+		};
+		60B05D341A4EF7DC004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA74107AF4C45004B6283;
+			remoteInfo = libSDL_image;
+		};
+		60B05D361A4EF814004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BE1FA72F07AF4C45004B6283;
+			remoteInfo = libSDL_image;
 		};
 		9201FA501A4D399E0072BEB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -188,6 +208,11 @@
 		60B05CE71A4DB45B004EFBC5 /* audio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = audio.lua; sourceTree = "<group>"; };
 		60B05CE81A4DB45B004EFBC5 /* gun.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gun.wav; sourceTree = "<group>"; };
 		60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_ttf.xcodeproj; path = "../../Vendor/SDL_ttf/Xcode-iOS/SDL_ttf.xcodeproj"; sourceTree = "<group>"; };
+		60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_image.xcodeproj; path = "../../Vendor/SDL_image/Xcode-iOS/SDL_image.xcodeproj"; sourceTree = "<group>"; };
+		60B05D3C1A4EF9A0004EFBC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		60B05D3E1A4EF9F3004EFBC5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		60B05D401A4EFA19004EFBC5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 		9201FAC11A4D3EE00072BEB9 /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
 		9201FAC21A4D3EE00072BEB9 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -286,6 +311,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B05D411A4EFA19004EFBC5 /* MobileCoreServices.framework in Frameworks */,
+				60B05D3F1A4EF9F3004EFBC5 /* ImageIO.framework in Frameworks */,
+				60B05D3D1A4EF9A0004EFBC5 /* CoreGraphics.framework in Frameworks */,
 				9201FC601A4D51E30072BEB9 /* AudioToolbox.framework in Frameworks */,
 				9201FC5C1A4D514F0072BEB9 /* CoreMotion.framework in Frameworks */,
 				9201FC591A4D512C0072BEB9 /* CoreMedia.framework in Frameworks */,
@@ -298,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B05D381A4EF822004EFBC5 /* libSDL2_image.a in Frameworks */,
 				60B05CF41A4E2EF6004EFBC5 /* libSDL2_ttf.a in Frameworks */,
 				92DA5C0B1A4D35BC0039599D /* libSDL2.a in Frameworks */,
 			);
@@ -320,6 +349,14 @@
 			isa = PBXGroup;
 			children = (
 				60B05CF11A4E2E21004EFBC5 /* libSDL2_ttf.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60B05D311A4EF7DC004EFBC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60B05D351A4EF7DC004EFBC5 /* libSDL2_image.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -487,6 +524,9 @@
 		9201FC5A1A4D51370072BEB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60B05D401A4EFA19004EFBC5 /* MobileCoreServices.framework */,
+				60B05D3E1A4EF9F3004EFBC5 /* ImageIO.framework */,
+				60B05D3C1A4EF9A0004EFBC5 /* CoreGraphics.framework */,
 				9201FC5F1A4D51E30072BEB9 /* AudioToolbox.framework */,
 				9201FC5B1A4D514F0072BEB9 /* CoreMotion.framework */,
 				9201FC581A4D512C0072BEB9 /* CoreMedia.framework */,
@@ -497,6 +537,8 @@
 		92DA5B5F1A4D350A0039599D = {
 			isa = PBXGroup;
 			children = (
+				60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */,
+				60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */,
 				60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */,
 				9201FAD81A4D3F5D0072BEB9 /* Demos.xcodeproj */,
 				9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */,
@@ -725,6 +767,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				60B05D371A4EF814004EFBC5 /* PBXTargetDependency */,
 				60B05CF31A4E2EED004EFBC5 /* PBXTargetDependency */,
 				9201FAB71A4D39C20072BEB9 /* PBXTargetDependency */,
 				92DA5C0A1A4D35B70039599D /* PBXTargetDependency */,
@@ -777,6 +820,10 @@
 					ProjectRef = 92DA5C021A4D35AC0039599D /* SDL.xcodeproj */;
 				},
 				{
+					ProductGroup = 60B05D311A4EF7DC004EFBC5 /* Products */;
+					ProjectRef = 60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */;
+				},
+				{
 					ProductGroup = 60B05CED1A4E2E21004EFBC5 /* Products */;
 					ProjectRef = 60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */;
 				},
@@ -795,6 +842,13 @@
 			fileType = archive.ar;
 			path = libSDL2_ttf.a;
 			remoteRef = 60B05CF01A4E2E21004EFBC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60B05D351A4EF7DC004EFBC5 /* libSDL2_image.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_image.a;
+			remoteRef = 60B05D341A4EF7DC004EFBC5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9201FA511A4D399E0072BEB9 /* libLuaKit.a */ = {
@@ -879,6 +933,7 @@
 				9201FC571A4D4F1F0072BEB9 /* udp_server.lua in Resources */,
 				9201FC4F1A4D4F1F0072BEB9 /* joystick.lua in Resources */,
 				60B05CE91A4DB45B004EFBC5 /* audio-processor.lua in Resources */,
+				60B05D431A4EFAF0004EFBC5 /* Default-568h@2x.png in Resources */,
 				9201FC4C1A4D4F1F0072BEB9 /* font.lua in Resources */,
 				60B05CEA1A4DB45B004EFBC5 /* audio.lua in Resources */,
 				9201FC4E1A4D4F1F0072BEB9 /* Lua-SDL2.png in Resources */,
@@ -903,6 +958,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B05D391A4EF895004EFBC5 /* image.c in Sources */,
 				60B05CF51A4E2F25004EFBC5 /* ttf.c in Sources */,
 				92DA5BF91A4D35820039599D /* power.c in Sources */,
 				92DA5BF81A4D35820039599D /* platform.c in Sources */,
@@ -944,6 +1000,11 @@
 			isa = PBXTargetDependency;
 			name = SDL2_ttf;
 			targetProxy = 60B05CF21A4E2EED004EFBC5 /* PBXContainerItemProxy */;
+		};
+		60B05D371A4EF814004EFBC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libSDL_image;
+			targetProxy = 60B05D361A4EF814004EFBC5 /* PBXContainerItemProxy */;
 		};
 		9201FAB71A4D39C20072BEB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

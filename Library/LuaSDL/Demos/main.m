@@ -28,29 +28,56 @@ int setLuaPath(lua_State *L, NSString* path )
     return 0; // all done!
 }
 
+
+void testTTF(lua_State *L)
+{
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSString *path = [mainBundle pathForResource: @"font"
+                                          ofType: @"lua"];
+    NSError *error = nil;
+    NSString *content = [[NSString alloc] initWithContentsOfFile: path
+                                                        encoding: NSUTF8StringEncoding
+                                                           error: &error];
+    luaL_requiref(L, "SDL", luaopen_SDL, 1);
+    luaL_requiref(L, "SDL.ttf", luaopen_SDL_ttf, 1);
+    
+    if (luaL_dostring(L, [content UTF8String]) != LUA_OK)
+    {
+        lua_error(L);
+    }
+}
+
+void testImage(lua_State *L)
+{
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSString *path = [mainBundle pathForResource: @"image"
+                                          ofType: @"lua"];
+    NSError *error = nil;
+    NSString *content = [[NSString alloc] initWithContentsOfFile: path
+                                                        encoding: NSUTF8StringEncoding
+                                                           error: &error];
+    luaL_requiref(L, "SDL", luaopen_SDL, 1);
+    luaL_requiref(L, "SDL.image", luaopen_SDL_image, 1);
+    
+    if (luaL_dostring(L, [content UTF8String]) != LUA_OK)
+    {
+        lua_error(L);
+    }
+}
+
 int main(int argc, char * argv[])
 {
     @autoreleasepool
     {
-        NSBundle *mainBundle = [NSBundle mainBundle];
-        NSString *path = [mainBundle pathForResource: @"font"
-                                              ofType: @"lua"];
-        NSError *error = nil;
-        NSString *content = [[NSString alloc] initWithContentsOfFile: path
-                                                            encoding: NSUTF8StringEncoding
-                                                               error: &error];
         lua_State *L = luaL_newstate();
         
         luaL_openlibs(L);
+        NSBundle *mainBundle = [NSBundle mainBundle];
 
-        setLuaPath(L, [path stringByDeletingLastPathComponent]);
-        luaL_requiref(L, "SDL", luaopen_SDL, 1);
-        luaL_requiref(L, "SDL.ttf", luaopen_SDL_ttf, 1);
+        setLuaPath(L, [mainBundle resourcePath]);
+        
+        testImage(L);
 
-        if (luaL_dostring(L, [content UTF8String]) != LUA_OK)
-        {
-            lua_error(L);
-        }
     }
     
     return 0;
