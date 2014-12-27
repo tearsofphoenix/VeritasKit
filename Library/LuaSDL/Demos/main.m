@@ -11,7 +11,7 @@
 #import <lualib.h>
 #import <lauxlib.h>
 #import <LuaSDL/LuaSDL.h>
-
+#import <SDL_main.h>
 
 int setLuaPath(lua_State *L, NSString* path )
 {
@@ -33,9 +33,8 @@ int main(int argc, char * argv[])
     @autoreleasepool
     {
         NSBundle *mainBundle = [NSBundle mainBundle];
-        NSString *path = [mainBundle pathForResource: @"audio"
-                                              ofType: @"lua"
-                                         inDirectory: @"audio"];
+        NSString *path = [mainBundle pathForResource: @"font"
+                                              ofType: @"lua"];
         NSError *error = nil;
         NSString *content = [[NSString alloc] initWithContentsOfFile: path
                                                             encoding: NSUTF8StringEncoding
@@ -45,12 +44,14 @@ int main(int argc, char * argv[])
         luaL_openlibs(L);
 
         setLuaPath(L, [path stringByDeletingLastPathComponent]);
-        
         luaL_requiref(L, "SDL", luaopen_SDL, 1);
+        luaL_requiref(L, "SDL.ttf", luaopen_SDL_ttf, 1);
 
         if (luaL_dostring(L, [content UTF8String]) != LUA_OK)
         {
             lua_error(L);
         }
     }
+    
+    return 0;
 }

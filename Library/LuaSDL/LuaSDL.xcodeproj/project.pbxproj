@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60B05CE91A4DB45B004EFBC5 /* audio-processor.lua in Resources */ = {isa = PBXBuildFile; fileRef = 60B05CE61A4DB45B004EFBC5 /* audio-processor.lua */; };
+		60B05CEA1A4DB45B004EFBC5 /* audio.lua in Resources */ = {isa = PBXBuildFile; fileRef = 60B05CE71A4DB45B004EFBC5 /* audio.lua */; };
+		60B05CEB1A4DB45B004EFBC5 /* gun.wav in Resources */ = {isa = PBXBuildFile; fileRef = 60B05CE81A4DB45B004EFBC5 /* gun.wav */; };
+		60B05CF41A4E2EF6004EFBC5 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05CF11A4E2E21004EFBC5 /* libSDL2_ttf.a */; };
+		60B05CF51A4E2F25004EFBC5 /* ttf.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BB01A4D35820039599D /* ttf.c */; };
 		9201FAD01A4D3EE00072BEB9 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC11A4D3EE00072BEB9 /* array.c */; };
 		9201FAD11A4D3EE00072BEB9 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC41A4D3EE00072BEB9 /* common.c */; };
 		9201FAD21A4D3EE00072BEB9 /* rwops.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC61A4D3EE00072BEB9 /* rwops.c */; };
@@ -17,7 +22,6 @@
 		9201FAD71A4D3F180072BEB9 /* common.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9201FAC51A4D3EE00072BEB9 /* common.h */; };
 		9201FBF01A4D4E320072BEB9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9201FBEF1A4D4E320072BEB9 /* main.m */; };
 		9201FBFB1A4D4E320072BEB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9201FBFA1A4D4E320072BEB9 /* Images.xcassets */; };
-		9201FBFE1A4D4E320072BEB9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9201FBFC1A4D4E320072BEB9 /* LaunchScreen.xib */; };
 		9201FC271A4D4E810072BEB9 /* libLuaSDL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DA5B681A4D350A0039599D /* libLuaSDL.a */; };
 		9201FC281A4D4E810072BEB9 /* libLuaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FA511A4D399E0072BEB9 /* libLuaKit.a */; };
 		9201FC4A1A4D4F1F0072BEB9 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC301A4D4F1F0072BEB9 /* CMakeLists.txt */; };
@@ -37,7 +41,6 @@
 		9201FC591A4D512C0072BEB9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FC581A4D512C0072BEB9 /* CoreMedia.framework */; };
 		9201FC5C1A4D514F0072BEB9 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FC5B1A4D514F0072BEB9 /* CoreMotion.framework */; };
 		9201FC601A4D51E30072BEB9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9201FC5F1A4D51E30072BEB9 /* AudioToolbox.framework */; };
-		9201FC761A4D5E0A0072BEB9 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 9201FC751A4D5E0A0072BEB9 /* audio */; };
 		92DA5B6C1A4D350A0039599D /* LuaSDL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92DA5B6B1A4D350A0039599D /* LuaSDL.h */; };
 		92DA5BEA1A4D35820039599D /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BB21A4D35820039599D /* audio.c */; };
 		92DA5BEB1A4D35820039599D /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BB41A4D35820039599D /* channel.c */; };
@@ -66,6 +69,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		60B05CF01A4E2E21004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE48FD6E07AFA17000BB41DA;
+			remoteInfo = "Static Library";
+		};
+		60B05CF21A4E2EED004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BE48FD6807AFA17000BB41DA;
+			remoteInfo = SDL2_ttf;
+		};
 		9201FA501A4D399E0072BEB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */;
@@ -167,6 +184,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		60B05CE61A4DB45B004EFBC5 /* audio-processor.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "audio-processor.lua"; sourceTree = "<group>"; };
+		60B05CE71A4DB45B004EFBC5 /* audio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = audio.lua; sourceTree = "<group>"; };
+		60B05CE81A4DB45B004EFBC5 /* gun.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gun.wav; sourceTree = "<group>"; };
+		60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_ttf.xcodeproj; path = "../../Vendor/SDL_ttf/Xcode-iOS/SDL_ttf.xcodeproj"; sourceTree = "<group>"; };
 		9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 		9201FAC11A4D3EE00072BEB9 /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
 		9201FAC21A4D3EE00072BEB9 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -188,7 +209,6 @@
 		9201FBEE1A4D4E320072BEB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9201FBEF1A4D4E320072BEB9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9201FBFA1A4D4E320072BEB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9201FBFD1A4D4E320072BEB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9201FC301A4D4F1F0072BEB9 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		9201FC321A4D4F1F0072BEB9 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
 		9201FC331A4D4F1F0072BEB9 /* font.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = font.lua; sourceTree = "<group>"; };
@@ -206,7 +226,6 @@
 		9201FC581A4D512C0072BEB9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9201FC5B1A4D514F0072BEB9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9201FC5F1A4D51E30072BEB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		9201FC751A4D5E0A0072BEB9 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		92DA5B681A4D350A0039599D /* libLuaSDL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLuaSDL.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DA5B6B1A4D350A0039599D /* LuaSDL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaSDL.h; sourceTree = "<group>"; };
 		92DA5BA01A4D35820039599D /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
@@ -279,6 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B05CF41A4E2EF6004EFBC5 /* libSDL2_ttf.a in Frameworks */,
 				92DA5C0B1A4D35BC0039599D /* libSDL2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +306,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60B05CE51A4DB45B004EFBC5 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				60B05CE61A4DB45B004EFBC5 /* audio-processor.lua */,
+				60B05CE71A4DB45B004EFBC5 /* audio.lua */,
+				60B05CE81A4DB45B004EFBC5 /* gun.wav */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
+		60B05CED1A4E2E21004EFBC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60B05CF11A4E2E21004EFBC5 /* libSDL2_ttf.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9201FA4C1A4D399D0072BEB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,7 +374,6 @@
 			children = (
 				9201FC2B1A4D4F1F0072BEB9 /* examples */,
 				9201FBFA1A4D4E320072BEB9 /* Images.xcassets */,
-				9201FBFC1A4D4E320072BEB9 /* LaunchScreen.xib */,
 				9201FC5A1A4D51370072BEB9 /* Frameworks */,
 				9201FBED1A4D4E320072BEB9 /* Supporting Files */,
 			);
@@ -355,7 +392,7 @@
 		9201FC2B1A4D4F1F0072BEB9 /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				9201FC751A4D5E0A0072BEB9 /* audio */,
+				60B05CE51A4DB45B004EFBC5 /* audio */,
 				9201FC301A4D4F1F0072BEB9 /* CMakeLists.txt */,
 				9201FC311A4D4F1F0072BEB9 /* font */,
 				9201FC341A4D4F1F0072BEB9 /* image */,
@@ -460,6 +497,7 @@
 		92DA5B5F1A4D350A0039599D = {
 			isa = PBXGroup;
 			children = (
+				60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */,
 				9201FAD81A4D3F5D0072BEB9 /* Demos.xcodeproj */,
 				9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */,
 				92DA5C021A4D35AC0039599D /* SDL.xcodeproj */,
@@ -687,6 +725,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				60B05CF31A4E2EED004EFBC5 /* PBXTargetDependency */,
 				9201FAB71A4D39C20072BEB9 /* PBXTargetDependency */,
 				92DA5C0A1A4D35B70039599D /* PBXTargetDependency */,
 			);
@@ -706,6 +745,7 @@
 				TargetAttributes = {
 					9201FBEA1A4D4E320072BEB9 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = UFT75NKJF6;
 					};
 					92DA5B671A4D350A0039599D = {
 						CreatedOnToolsVersion = 6.1;
@@ -736,6 +776,10 @@
 					ProductGroup = 92DA5C031A4D35AC0039599D /* Products */;
 					ProjectRef = 92DA5C021A4D35AC0039599D /* SDL.xcodeproj */;
 				},
+				{
+					ProductGroup = 60B05CED1A4E2E21004EFBC5 /* Products */;
+					ProjectRef = 60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -746,6 +790,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		60B05CF11A4E2E21004EFBC5 /* libSDL2_ttf.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_ttf.a;
+			remoteRef = 60B05CF01A4E2E21004EFBC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9201FA511A4D399E0072BEB9 /* libLuaKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -818,17 +869,18 @@
 			files = (
 				9201FC551A4D4F1F0072BEB9 /* channel.lua in Resources */,
 				9201FC4D1A4D4F1F0072BEB9 /* image.lua in Resources */,
+				60B05CEB1A4DB45B004EFBC5 /* gun.wav in Resources */,
 				9201FC561A4D4F1F0072BEB9 /* udp_client.lua in Resources */,
 				9201FC541A4D4F1F0072BEB9 /* server.lua in Resources */,
 				9201FC521A4D4F1F0072BEB9 /* rwops.lua in Resources */,
-				9201FBFE1A4D4E320072BEB9 /* LaunchScreen.xib in Resources */,
 				9201FC4A1A4D4F1F0072BEB9 /* CMakeLists.txt in Resources */,
-				9201FC761A4D5E0A0072BEB9 /* audio in Resources */,
 				9201FC4B1A4D4F1F0072BEB9 /* DejaVuSans.ttf in Resources */,
 				9201FC531A4D4F1F0072BEB9 /* client.lua in Resources */,
 				9201FC571A4D4F1F0072BEB9 /* udp_server.lua in Resources */,
 				9201FC4F1A4D4F1F0072BEB9 /* joystick.lua in Resources */,
+				60B05CE91A4DB45B004EFBC5 /* audio-processor.lua in Resources */,
 				9201FC4C1A4D4F1F0072BEB9 /* font.lua in Resources */,
+				60B05CEA1A4DB45B004EFBC5 /* audio.lua in Resources */,
 				9201FC4E1A4D4F1F0072BEB9 /* Lua-SDL2.png in Resources */,
 				9201FC501A4D4F1F0072BEB9 /* keyboard.lua in Resources */,
 				9201FBFB1A4D4E320072BEB9 /* Images.xcassets in Resources */,
@@ -851,6 +903,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B05CF51A4E2F25004EFBC5 /* ttf.c in Sources */,
 				92DA5BF91A4D35820039599D /* power.c in Sources */,
 				92DA5BF81A4D35820039599D /* platform.c in Sources */,
 				92DA5BFD1A4D35820039599D /* texture.c in Sources */,
@@ -887,6 +940,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		60B05CF31A4E2EED004EFBC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SDL2_ttf;
+			targetProxy = 60B05CF21A4E2EED004EFBC5 /* PBXContainerItemProxy */;
+		};
 		9201FAB71A4D39C20072BEB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LuaKit;
@@ -903,17 +961,6 @@
 			targetProxy = 92DA5C091A4D35B70039599D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9201FBFC1A4D4E320072BEB9 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9201FBFD1A4D4E320072BEB9 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9201FC0B1A4D4E320072BEB9 /* Debug */ = {

@@ -10,3 +10,6 @@
 [submodule "Vendor/SDL"]
 	path = Vendor/SDL
 	url = https://github.com/veritas-shine/sdl-mirror.git
+[submodule "Vendor/SDL_ttf"]
+	path = Vendor/SDL_ttf
+	url = https://github.com/veritas-shine/SDL2_ttf.git
