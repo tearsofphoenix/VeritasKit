@@ -16,3 +16,9 @@
 [submodule "Vendor/SDL_image"]
 	path = Vendor/SDL_image
 	url = https://github.com/veritas-shine/SDL2_image.git
+[submodule "Vendor/SDL_mixer"]
+	path = Vendor/SDL_mixer
+	url = https://github.com/veritas-shine/SDL2_mixer.git
+[submodule "Vendor/SDL_net"]
+	path = Vendor/SDL_net
+	url = https://github.com/veritas-shine/SDL2_net.git

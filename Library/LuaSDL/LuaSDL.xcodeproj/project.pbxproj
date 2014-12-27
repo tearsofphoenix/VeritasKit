@@ -18,6 +18,10 @@
 		60B05D3F1A4EF9F3004EFBC5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D3E1A4EF9F3004EFBC5 /* ImageIO.framework */; };
 		60B05D411A4EFA19004EFBC5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D401A4EFA19004EFBC5 /* MobileCoreServices.framework */; };
 		60B05D431A4EFAF0004EFBC5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */; };
+		60B05D4C1A4F021E004EFBC5 /* libSDL2_mixer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D491A4F0204004EFBC5 /* libSDL2_mixer.a */; };
+		60B05D4D1A4F0251004EFBC5 /* mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BA81A4D35820039599D /* mixer.c */; };
+		60B05D581A4F0787004EFBC5 /* libSDL2_net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B05D551A4F0704004EFBC5 /* libSDL2_net.a */; };
+		60B05D5B1A4F07C2004EFBC5 /* net.c in Sources */ = {isa = PBXBuildFile; fileRef = 92DA5BAC1A4D35820039599D /* net.c */; };
 		9201FAD01A4D3EE00072BEB9 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC11A4D3EE00072BEB9 /* array.c */; };
 		9201FAD11A4D3EE00072BEB9 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC41A4D3EE00072BEB9 /* common.c */; };
 		9201FAD21A4D3EE00072BEB9 /* rwops.c in Sources */ = {isa = PBXBuildFile; fileRef = 9201FAC61A4D3EE00072BEB9 /* rwops.c */; };
@@ -102,6 +106,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = BE1FA72F07AF4C45004B6283;
 			remoteInfo = libSDL_image;
+		};
+		60B05D481A4F0204004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE1FA95407AF96B2004B6283;
+			remoteInfo = "Static Library";
+		};
+		60B05D4A1A4F0214004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BE1FA90707AF96B2004B6283;
+			remoteInfo = "Static Library";
+		};
+		60B05D541A4F0704004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BE48FF6F07AFA9A900BB41DA;
+			remoteInfo = "Static Library";
+		};
+		60B05D561A4F077C004EFBC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BE48FF6507AFA9A800BB41DA;
+			remoteInfo = SDL2_net;
 		};
 		9201FA501A4D399E0072BEB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -212,7 +244,9 @@
 		60B05D3C1A4EF9A0004EFBC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		60B05D3E1A4EF9F3004EFBC5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		60B05D401A4EFA19004EFBC5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_mixer.xcodeproj; path = "../../Vendor/SDL_mixer/Xcode-iOS/SDL_mixer.xcodeproj"; sourceTree = "<group>"; };
+		60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_net.xcodeproj; path = "../../Vendor/SDL_net/Xcode-iOS/SDL_net.xcodeproj"; sourceTree = "<group>"; };
 		9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 		9201FAC11A4D3EE00072BEB9 /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
 		9201FAC21A4D3EE00072BEB9 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -326,6 +360,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B05D581A4F0787004EFBC5 /* libSDL2_net.a in Frameworks */,
+				60B05D4C1A4F021E004EFBC5 /* libSDL2_mixer.a in Frameworks */,
 				60B05D381A4EF822004EFBC5 /* libSDL2_image.a in Frameworks */,
 				60B05CF41A4E2EF6004EFBC5 /* libSDL2_ttf.a in Frameworks */,
 				92DA5C0B1A4D35BC0039599D /* libSDL2.a in Frameworks */,
@@ -357,6 +393,22 @@
 			isa = PBXGroup;
 			children = (
 				60B05D351A4EF7DC004EFBC5 /* libSDL2_image.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60B05D451A4F0203004EFBC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60B05D491A4F0204004EFBC5 /* libSDL2_mixer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60B05D511A4F0704004EFBC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60B05D551A4F0704004EFBC5 /* libSDL2_net.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -409,6 +461,7 @@
 		9201FBEC1A4D4E320072BEB9 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */,
 				9201FC2B1A4D4F1F0072BEB9 /* examples */,
 				9201FBFA1A4D4E320072BEB9 /* Images.xcassets */,
 				9201FC5A1A4D51370072BEB9 /* Frameworks */,
@@ -537,7 +590,8 @@
 		92DA5B5F1A4D350A0039599D = {
 			isa = PBXGroup;
 			children = (
-				60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */,
+				60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */,
+				60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */,
 				60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */,
 				60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */,
 				9201FAD81A4D3F5D0072BEB9 /* Demos.xcodeproj */,
@@ -767,6 +821,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				60B05D571A4F077C004EFBC5 /* PBXTargetDependency */,
+				60B05D4B1A4F0214004EFBC5 /* PBXTargetDependency */,
 				60B05D371A4EF814004EFBC5 /* PBXTargetDependency */,
 				60B05CF31A4E2EED004EFBC5 /* PBXTargetDependency */,
 				9201FAB71A4D39C20072BEB9 /* PBXTargetDependency */,
@@ -824,6 +880,14 @@
 					ProjectRef = 60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */;
 				},
 				{
+					ProductGroup = 60B05D451A4F0203004EFBC5 /* Products */;
+					ProjectRef = 60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */;
+				},
+				{
+					ProductGroup = 60B05D511A4F0704004EFBC5 /* Products */;
+					ProjectRef = 60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */;
+				},
+				{
 					ProductGroup = 60B05CED1A4E2E21004EFBC5 /* Products */;
 					ProjectRef = 60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */;
 				},
@@ -849,6 +913,20 @@
 			fileType = archive.ar;
 			path = libSDL2_image.a;
 			remoteRef = 60B05D341A4EF7DC004EFBC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60B05D491A4F0204004EFBC5 /* libSDL2_mixer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_mixer.a;
+			remoteRef = 60B05D481A4F0204004EFBC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60B05D551A4F0704004EFBC5 /* libSDL2_net.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2_net.a;
+			remoteRef = 60B05D541A4F0704004EFBC5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9201FA511A4D399E0072BEB9 /* libLuaKit.a */ = {
@@ -958,6 +1036,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B05D5B1A4F07C2004EFBC5 /* net.c in Sources */,
+				60B05D4D1A4F0251004EFBC5 /* mixer.c in Sources */,
 				60B05D391A4EF895004EFBC5 /* image.c in Sources */,
 				60B05CF51A4E2F25004EFBC5 /* ttf.c in Sources */,
 				92DA5BF91A4D35820039599D /* power.c in Sources */,
@@ -1005,6 +1085,16 @@
 			isa = PBXTargetDependency;
 			name = libSDL_image;
 			targetProxy = 60B05D361A4EF814004EFBC5 /* PBXContainerItemProxy */;
+		};
+		60B05D4B1A4F0214004EFBC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Static Library";
+			targetProxy = 60B05D4A1A4F0214004EFBC5 /* PBXContainerItemProxy */;
+		};
+		60B05D571A4F077C004EFBC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SDL2_net;
+			targetProxy = 60B05D561A4F077C004EFBC5 /* PBXContainerItemProxy */;
 		};
 		9201FAB71A4D39C20072BEB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
