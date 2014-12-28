@@ -135,6 +135,20 @@
 			remoteGlobalIDString = BE48FF6507AFA9A800BB41DA;
 			remoteInfo = SDL2_net;
 		};
+		60D0E6631A50440100D001DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60D0E65E1A50440000D001DE /* VeritasGraphics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 60D0E6441A50440000D001DE;
+			remoteInfo = VeritasGraphics;
+		};
+		60D0E69D1A504B1F00D001DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60D0E65E1A50440000D001DE /* VeritasGraphics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 60D0E6431A50440000D001DE;
+			remoteInfo = VeritasGraphics;
+		};
 		9201FA501A4D399E0072BEB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */;
@@ -247,6 +261,7 @@
 		60B05D421A4EFAF0004EFBC5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_mixer.xcodeproj; path = "../../Vendor/SDL_mixer/Xcode-iOS/SDL_mixer.xcodeproj"; sourceTree = "<group>"; };
 		60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL_net.xcodeproj; path = "../../Vendor/SDL_net/Xcode-iOS/SDL_net.xcodeproj"; sourceTree = "<group>"; };
+		60D0E65E1A50440000D001DE /* VeritasGraphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasGraphics.xcodeproj; path = ../VeritasGraphics/VeritasGraphics.xcodeproj; sourceTree = "<group>"; };
 		9201FA4B1A4D399D0072BEB9 /* LuaKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LuaKit.xcodeproj; path = ../LuaKit/LuaKit.xcodeproj; sourceTree = "<group>"; };
 		9201FAC11A4D3EE00072BEB9 /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
 		9201FAC21A4D3EE00072BEB9 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -409,6 +424,14 @@
 			isa = PBXGroup;
 			children = (
 				60B05D551A4F0704004EFBC5 /* libSDL2_net.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60D0E65F1A50440000D001DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60D0E6641A50440100D001DE /* libVeritasGraphics.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -590,6 +613,7 @@
 		92DA5B5F1A4D350A0039599D = {
 			isa = PBXGroup;
 			children = (
+				60D0E65E1A50440000D001DE /* VeritasGraphics.xcodeproj */,
 				60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */,
 				60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */,
 				60B05D301A4EF7DC004EFBC5 /* SDL_image.xcodeproj */,
@@ -821,6 +845,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				60D0E69E1A504B1F00D001DE /* PBXTargetDependency */,
 				60B05D571A4F077C004EFBC5 /* PBXTargetDependency */,
 				60B05D4B1A4F0214004EFBC5 /* PBXTargetDependency */,
 				60B05D371A4EF814004EFBC5 /* PBXTargetDependency */,
@@ -891,6 +916,10 @@
 					ProductGroup = 60B05CED1A4E2E21004EFBC5 /* Products */;
 					ProjectRef = 60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */;
 				},
+				{
+					ProductGroup = 60D0E65F1A50440000D001DE /* Products */;
+					ProjectRef = 60D0E65E1A50440000D001DE /* VeritasGraphics.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -927,6 +956,13 @@
 			fileType = archive.ar;
 			path = libSDL2_net.a;
 			remoteRef = 60B05D541A4F0704004EFBC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60D0E6641A50440100D001DE /* libVeritasGraphics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVeritasGraphics.a;
+			remoteRef = 60D0E6631A50440100D001DE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9201FA511A4D399E0072BEB9 /* libLuaKit.a */ = {
@@ -1095,6 +1131,11 @@
 			isa = PBXTargetDependency;
 			name = SDL2_net;
 			targetProxy = 60B05D561A4F077C004EFBC5 /* PBXContainerItemProxy */;
+		};
+		60D0E69E1A504B1F00D001DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VeritasGraphics;
+			targetProxy = 60D0E69D1A504B1F00D001DE /* PBXContainerItemProxy */;
 		};
 		9201FAB71A4D39C20072BEB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

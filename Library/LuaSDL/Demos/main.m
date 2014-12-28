@@ -76,7 +76,7 @@ int main(int argc, char * argv[])
 
         setLuaPath(L, [mainBundle resourcePath]);
         
-        testImage(L);
+        testTTF(L);
 
     }
     
