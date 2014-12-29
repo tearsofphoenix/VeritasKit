@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		928701F91A51511A00ED7948 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 928701F41A512C2800ED7948 /* libSDL2.a */; };
+		928702031A51511A00ED7948 /* libSDL2_image.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 928701FC1A51511A00ED7948 /* libSDL2_image.a */; };
+		928702041A51511A00ED7948 /* libSDL2_mixer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 928701FD1A51511A00ED7948 /* libSDL2_mixer.a */; };
+		928702051A51511A00ED7948 /* libSDL2_net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 928701FE1A51511A00ED7948 /* libSDL2_net.a */; };
+		928702061A51511A00ED7948 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 928701FF1A51511A00ED7948 /* libSDL2_ttf.a */; };
+		928702071A51511A00ED7948 /* libVeritasFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 928702001A51511A00ED7948 /* libVeritasFoundation.a */; };
+		928702091A51513C00ED7948 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928702081A51513C00ED7948 /* AudioToolbox.framework */; };
+		9287020B1A51514600ED7948 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287020A1A51514600ED7948 /* UIKit.framework */; };
+		9287020D1A51514E00ED7948 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287020C1A51514E00ED7948 /* CoreGraphics.framework */; };
+		9287020F1A51515500ED7948 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287020E1A51515500ED7948 /* Foundation.framework */; };
+		928702111A51516200ED7948 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928702101A51516200ED7948 /* QuartzCore.framework */; };
+		928702131A51516D00ED7948 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928702121A51516D00ED7948 /* CoreMotion.framework */; };
+		928702151A51517400ED7948 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928702141A51517400ED7948 /* OpenGLES.framework */; };
+		928702181A51520E00ED7948 /* icon.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 928702171A51520E00ED7948 /* icon.bmp */; };
 		9287FF771A50F4E900ED7948 /* VeritasAnimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF761A50F4E900ED7948 /* VeritasAnimation.h */; };
 		9287FF791A50F4E900ED7948 /* VeritasAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FF781A50F4E900ED7948 /* VeritasAnimation.m */; };
 		9287FFB51A50F60F00ED7948 /* VALayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFB11A50F60F00ED7948 /* VALayer.c */; };
@@ -14,10 +28,7 @@
 		9287FFB71A50F64700ED7948 /* VABase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFAF1A50F60F00ED7948 /* VABase.h */; };
 		9287FFB81A50F64700ED7948 /* VATransform3D.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFB01A50F60F00ED7948 /* VATransform3D.h */; };
 		9287FFB91A50F64700ED7948 /* VALayer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFB21A50F60F00ED7948 /* VALayer.h */; };
-		9287FFC51A50F94600ED7948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFC41A50F94600ED7948 /* main.m */; };
-		9287FFC81A50F94600ED7948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFC71A50F94600ED7948 /* AppDelegate.m */; };
-		9287FFCB1A50F94600ED7948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFCA1A50F94600ED7948 /* ViewController.m */; };
-		9287FFCE1A50F94600ED7948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9287FFCC1A50F94600ED7948 /* Main.storyboard */; };
+		9287FFC51A50F94600ED7948 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFC41A50F94600ED7948 /* main.c */; };
 		9287FFD01A50F94600ED7948 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9287FFCF1A50F94600ED7948 /* Images.xcassets */; };
 		9287FFD31A50F94600ED7948 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9287FFD11A50F94600ED7948 /* LaunchScreen.xib */; };
 		9287FFE81A50FA9500ED7948 /* libVeritasAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */; };
@@ -25,6 +36,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		928701F31A512C2800ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 928701EE1A512C2800ED7948 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FD6526630DE8FCCB002AD96B;
+			remoteInfo = libSDL;
+		};
+		928701F51A512C3100ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 928701EE1A512C2800ED7948 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FD6526620DE8FCCB002AD96B;
+			remoteInfo = libSDL;
+		};
 		9287FFA91A50F52600ED7948 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */;
@@ -65,6 +90,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		928701EE1A512C2800ED7948 /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../../Vendor/SDL/Xcode-iOS/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
+		928701FC1A51511A00ED7948 /* libSDL2_image.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_image.a; path = "../../Vendor/SDL_image/Xcode-iOS/build/Debug-iphoneos/libSDL2_image.a"; sourceTree = "<group>"; };
+		928701FD1A51511A00ED7948 /* libSDL2_mixer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_mixer.a; path = "../../Vendor/SDL_mixer/Xcode-iOS/build/Debug-iphoneos/libSDL2_mixer.a"; sourceTree = "<group>"; };
+		928701FE1A51511A00ED7948 /* libSDL2_net.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_net.a; path = "../../Vendor/SDL_net/Xcode-iOS/build/Debug-iphoneos/libSDL2_net.a"; sourceTree = "<group>"; };
+		928701FF1A51511A00ED7948 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = "../../Vendor/SDL_ttf/Xcode-iOS/build/Debug-iphoneos/libSDL2_ttf.a"; sourceTree = "<group>"; };
+		928702001A51511A00ED7948 /* libVeritasFoundation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libVeritasFoundation.a; path = "../VeritasFoundation/build/Debug-iphoneos/libVeritasFoundation.a"; sourceTree = "<group>"; };
+		928702081A51513C00ED7948 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9287020A1A51514600ED7948 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9287020C1A51514E00ED7948 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9287020E1A51515500ED7948 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		928702101A51516200ED7948 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		928702121A51516D00ED7948 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		928702141A51517400ED7948 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		928702171A51520E00ED7948 /* icon.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = icon.bmp; sourceTree = "<group>"; };
 		9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasAnimation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9287FF761A50F4E900ED7948 /* VeritasAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasAnimation.h; sourceTree = "<group>"; };
 		9287FF781A50F4E900ED7948 /* VeritasAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeritasAnimation.m; sourceTree = "<group>"; };
@@ -77,12 +116,7 @@
 		9287FFB41A50F60F00ED7948 /* VALayerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VALayerImpl.h; sourceTree = "<group>"; };
 		9287FFC01A50F94600ED7948 /* VeritasAnimationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasAnimationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9287FFC31A50F94600ED7948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9287FFC41A50F94600ED7948 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9287FFC61A50F94600ED7948 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9287FFC71A50F94600ED7948 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9287FFC91A50F94600ED7948 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9287FFCA1A50F94600ED7948 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9287FFCD1A50F94600ED7948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9287FFC41A50F94600ED7948 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		9287FFCF1A50F94600ED7948 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9287FFD21A50F94600ED7948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +133,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928702151A51517400ED7948 /* OpenGLES.framework in Frameworks */,
+				928702131A51516D00ED7948 /* CoreMotion.framework in Frameworks */,
+				928702111A51516200ED7948 /* QuartzCore.framework in Frameworks */,
+				9287020F1A51515500ED7948 /* Foundation.framework in Frameworks */,
+				9287020D1A51514E00ED7948 /* CoreGraphics.framework in Frameworks */,
+				9287020B1A51514600ED7948 /* UIKit.framework in Frameworks */,
+				928702091A51513C00ED7948 /* AudioToolbox.framework in Frameworks */,
+				928702031A51511A00ED7948 /* libSDL2_image.a in Frameworks */,
+				928702041A51511A00ED7948 /* libSDL2_mixer.a in Frameworks */,
+				928702051A51511A00ED7948 /* libSDL2_net.a in Frameworks */,
+				928702061A51511A00ED7948 /* libSDL2_ttf.a in Frameworks */,
+				928702071A51511A00ED7948 /* libVeritasFoundation.a in Frameworks */,
+				928701F91A51511A00ED7948 /* libSDL2.a in Frameworks */,
 				9287FFE81A50FA9500ED7948 /* libVeritasAnimation.a in Frameworks */,
 				9287FFE91A50FA9500ED7948 /* libVeritasGraphics.a in Frameworks */,
 			);
@@ -107,9 +154,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		928701EF1A512C2800ED7948 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				928701F41A512C2800ED7948 /* libSDL2.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		928702161A5151DB00ED7948 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				928702141A51517400ED7948 /* OpenGLES.framework */,
+				928702121A51516D00ED7948 /* CoreMotion.framework */,
+				928702101A51516200ED7948 /* QuartzCore.framework */,
+				9287020E1A51515500ED7948 /* Foundation.framework */,
+				9287020C1A51514E00ED7948 /* CoreGraphics.framework */,
+				9287020A1A51514600ED7948 /* UIKit.framework */,
+				928702081A51513C00ED7948 /* AudioToolbox.framework */,
+				928701FC1A51511A00ED7948 /* libSDL2_image.a */,
+				928701FD1A51511A00ED7948 /* libSDL2_mixer.a */,
+				928701FE1A51511A00ED7948 /* libSDL2_net.a */,
+				928701FF1A51511A00ED7948 /* libSDL2_ttf.a */,
+				928702001A51511A00ED7948 /* libVeritasFoundation.a */,
+			);
+			name = Frameworks;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		9287FF6A1A50F4E900ED7948 = {
 			isa = PBXGroup;
 			children = (
+				928701EE1A512C2800ED7948 /* SDL.xcodeproj */,
 				9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */,
 				9287FF751A50F4E900ED7948 /* VeritasAnimation */,
 				9287FFC11A50F94600ED7948 /* VeritasAnimationApp */,
@@ -152,11 +228,7 @@
 		9287FFC11A50F94600ED7948 /* VeritasAnimationApp */ = {
 			isa = PBXGroup;
 			children = (
-				9287FFC61A50F94600ED7948 /* AppDelegate.h */,
-				9287FFC71A50F94600ED7948 /* AppDelegate.m */,
-				9287FFC91A50F94600ED7948 /* ViewController.h */,
-				9287FFCA1A50F94600ED7948 /* ViewController.m */,
-				9287FFCC1A50F94600ED7948 /* Main.storyboard */,
+				928702161A5151DB00ED7948 /* Frameworks */,
 				9287FFCF1A50F94600ED7948 /* Images.xcassets */,
 				9287FFD11A50F94600ED7948 /* LaunchScreen.xib */,
 				9287FFC21A50F94600ED7948 /* Supporting Files */,
@@ -167,8 +239,9 @@
 		9287FFC21A50F94600ED7948 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				928702171A51520E00ED7948 /* icon.bmp */,
 				9287FFC31A50F94600ED7948 /* Info.plist */,
-				9287FFC41A50F94600ED7948 /* main.m */,
+				9287FFC41A50F94600ED7948 /* main.c */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -187,6 +260,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				928701F61A512C3100ED7948 /* PBXTargetDependency */,
 				9287FFAE1A50F52F00ED7948 /* PBXTargetDependency */,
 			);
 			name = VeritasAnimation;
@@ -242,6 +316,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 928701EF1A512C2800ED7948 /* Products */;
+					ProjectRef = 928701EE1A512C2800ED7948 /* SDL.xcodeproj */;
+				},
+				{
 					ProductGroup = 9287FFA41A50F52600ED7948 /* Products */;
 					ProjectRef = 9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */;
 				},
@@ -255,6 +333,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		928701F41A512C2800ED7948 /* libSDL2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2.a;
+			remoteRef = 928701F31A512C2800ED7948 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9287FFAA1A50F52600ED7948 /* libVeritasGraphics.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -269,7 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9287FFCE1A50F94600ED7948 /* Main.storyboard in Resources */,
+				928702181A51520E00ED7948 /* icon.bmp in Resources */,
 				9287FFD31A50F94600ED7948 /* LaunchScreen.xib in Resources */,
 				9287FFD01A50F94600ED7948 /* Images.xcassets in Resources */,
 			);
@@ -292,15 +377,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9287FFCB1A50F94600ED7948 /* ViewController.m in Sources */,
-				9287FFC81A50F94600ED7948 /* AppDelegate.m in Sources */,
-				9287FFC51A50F94600ED7948 /* main.m in Sources */,
+				9287FFC51A50F94600ED7948 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		928701F61A512C3100ED7948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libSDL;
+			targetProxy = 928701F51A512C3100ED7948 /* PBXContainerItemProxy */;
+		};
 		9287FFAE1A50F52F00ED7948 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = VeritasGraphics;
@@ -314,14 +402,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9287FFCC1A50F94600ED7948 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9287FFCD1A50F94600ED7948 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9287FFD11A50F94600ED7948 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,6 +446,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -400,6 +485,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -448,7 +538,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Mac003/Sites/VeritasKit/Library/VeritasFoundation/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LuaSDL-bpvgbugpniqbtcajluojhvanazat/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -463,7 +553,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Mac003/Sites/VeritasKit/Library/VeritasFoundation/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LuaSDL-bpvgbugpniqbtcajluojhvanazat/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -497,6 +587,7 @@
 				9287FFE21A50F94600ED7948 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

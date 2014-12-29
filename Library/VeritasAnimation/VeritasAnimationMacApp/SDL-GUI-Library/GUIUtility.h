@@ -37,26 +37,29 @@ struct GUIProgramming_Error {
 //}
 
 class Coord;
-struct DispPoint {
+struct VGPoint {
 	
-	DispPoint() : x(0), y(0) { }
-	DispPoint(int x_, int y_) : x(x_), y(y_) { }
+	VGPoint() : x(0), y(0) { }
+	VGPoint(int x_, int y_) : x(x_), y(y_) { }
 
 	
-    bool operator== (DispPoint b) {
+    bool operator== (VGPoint b) {
         return (x == b.x && y == b.y); 
     }
-    DispPoint operator+ (DispPoint b) {
-        return DispPoint (x + b.x, y + b.y); 
+    VGPoint operator+ (VGPoint b) {
+        return VGPoint(x + b.x, y + b.y);
     }
-    DispPoint operator- (DispPoint b) {
-        return DispPoint (x - b.x, y - b.y); 
+    VGPoint operator- (VGPoint b) {
+        return VGPoint(x - b.x, y - b.y);
     }
 
-	DispPoint(const Coord& coord);
+	VGPoint(const Coord& coord);
 	int x,y;
 };
 
+    static inline bool VGPointEqual(VGPoint p1, VGPoint p2) {
+        return p1.x == p2.x && p1.y == p2.y;
+    }
 
 void initSDL(unsigned int flags);
 // initializes the SDL with the given flags. Returns -1 if fails and prints error. 0 otherwise.

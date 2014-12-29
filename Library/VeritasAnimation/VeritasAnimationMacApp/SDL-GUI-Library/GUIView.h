@@ -10,10 +10,12 @@
 #define Deep_GUIView_h
 
 #include <list>
+#include <vector>
 
 #include "GUIUtility.h"
 #include "GUIController.h"
 #include "GUIColors.h"
+#include "VALayerImpl.h"
 
 struct SDL_Surface;
 class GUIImage;
@@ -26,7 +28,7 @@ namespace GUI {
 class Window;
 class App;
 
-class View : public GUI::Controller {
+class View : public GUI::VIResponder {
 public:
     
     View(int w_, int h_);
@@ -38,33 +40,28 @@ public:
     
     // Renders an image onto this screen. Also marks all ancestors as modified.
     // Should this be a view or an image, you think?
-    void draw_onto_self(const GUIImage &image, DispPoint pos);
+    void draw_onto_self(const GUIImage &image, VGPoint pos);
 
     void fill_with_color(SDL_Color color);
     
     // NOTE: once attached, a subview "belongs" to this view. If this view is
     //   deleted, all subviews are deleted as well.
     // NOTE: Currently it is okay to attach a view completely out of bounds.
-    void attach_subview(View* view, DispPoint pos);
-    // NOTE: Does not delete the view, only remove it from list!
-    void remove_subview(View* view);
-    View* remove_last_subview(); // Remove subview last added
+    void attach_subview(View* view, VGPoint pos);
 
-    bool is_subview(View* view) const;
-
-    void move_subview(View* view, DispPoint pos);
+    void move_subview(View* view, VGPoint pos);
         
     // Will be true if a subview has been changed.
-    bool need_to_refresh() const { return changed; }
+    bool need_to_refresh() const { return _layer->changed; }
     
     // Mouse Events: Template Methods
     // Either handle event or pass up to parent.
     // Override handle_mouse_down() to change behavior.
-    void mouse_down(DispPoint coord);
+    void mouse_down(VGPoint coord);
     // Override handle_mouse_up() to change behavior.
-    void mouse_up(DispPoint coord);
+    void mouse_up(VGPoint coord);
     // Override handle_mouse_motion() to change behavior.
-    void mouse_motion(DispPoint coord, DispPoint rel_motion);
+    void mouse_motion(VGPoint coord, VGPoint rel_motion);
     // Override handle_mouse_scroll_start() to change behavior.
     void mouse_scroll_start(bool up_down); // up == true, down == false
     // Override handle_mouse_scroll_stop() to change behavior.
@@ -79,18 +76,18 @@ public:
 
 
     // Returns the deepest subview (could be this) on which coord lies.
-    View* get_view_from_point(DispPoint coord) const;
+    View* get_view_from_point(VGPoint coord) const;
 
-    DispPoint get_abs_pos() const; // Pos on screen
-    DispPoint get_rel_pos() const; // Pos on parent
+    VGPoint get_abs_pos() const; // Pos on screen
+    VGPoint get_rel_pos() const; // Pos on parent
     
     // returns true if coord is within this view's rectangle.
-    bool rel_point_is_on_me(DispPoint coord) const;
-    bool abs_point_is_on_me(DispPoint coord) const;
+    bool rel_point_is_on_me(VGPoint coord) const;
+    bool abs_point_is_on_me(VGPoint coord) const;
     
 
-    int get_w() const { return w; }
-    int get_h() const { return h; }
+    int get_w() const { return _layer->w; }
+    int get_h() const { return _layer->h; }
     
     
     void resize(int w, int h);
@@ -98,13 +95,13 @@ public:
     void set_clear_color(SDL_Color clear_color);
     void clear_alpha();
 
-    bool has_alpha_color() const { return is_alpha; }
+    bool has_alpha_color() const { return _layer->is_alpha; }
     // Only valid if has_alpha_color.
-    SDL_Color get_clear_color() const { return clear_color; }
+    SDL_Color get_clear_color() const { return _layer->clear_color; }
 
     // returns true if pixel at coord is of clear color.
     // If coord is not on view, or alhpa not set, will return false.
-    bool point_is_clear(DispPoint coord) const;
+    bool point_is_clear(VGPoint coord) const;
     
     
 //    // *** The following two functions will call got_focus() and lost_focus(). 
@@ -130,9 +127,9 @@ protected:
     //  Returns true if the mouse-event is finished being handled.
     //  If returns false, handling will continue up the chain.
     //  May optionally call capture_focus() to become the target for keypresses.
-    virtual bool handle_mouse_down(DispPoint coord) { return false; }
-    virtual bool handle_mouse_up(DispPoint coord) { return false; }
-    virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion) { return false; }
+    virtual bool handle_mouse_down(VGPoint coord) { return false; }
+    virtual bool handle_mouse_up(VGPoint coord) { return false; }
+    virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion) { return false; }
 
     virtual bool handle_mouse_scroll(bool up_down) { return false; }
 
@@ -150,44 +147,35 @@ protected:
 //    virtual void lost_focus() { }
 
     // Hierarchy
-    typedef std::list<View*> Subview_list_t;
-    Subview_list_t get_children() { return children; }
-    View* get_parent() { return parent; }
-//    void move_to_rel_pos(DispPoint pos_) { pos = pos_; parent->mark_changed(); }
+    typedef std::vector<View*> *Subview_list_t;
+    Subview_list_t get_children() { return _subviews; }
+    View* get_parent() { return _superView; }
+//    void move_to_rel_pos(VGPoint pos_) { pos = pos_; parent->mark_changed(); }
 
     // Convert a point to abs, or coordinates relative to this view or parent view.
-    DispPoint abs_from_rel(DispPoint coord) const;
-    DispPoint adjust_to_parent(DispPoint coord) const;    
-    DispPoint adjust_to_rel(DispPoint coord) const;    
+    VGPoint abs_from_rel(VGPoint coord) const;
+    VGPoint adjust_to_parent(VGPoint coord) const;
+    VGPoint adjust_to_rel(VGPoint coord) const;
 
-    const SDL_Surface* get_image_ptr() const { return image; }
-    
+    SDL_Surface* get_image_ptr() const { return _layer->image; }
+    SDL_Surface *get_display() const { return _layer->display; }
 private:
-    bool changed;
-    int w,h;
-    DispPoint pos;
-            
-    SDL_Surface* image;
-    SDL_Surface* display;   // includes children drawn on.
-    
-    bool is_alpha;     
-    SDL_Color clear_color; // only valid if is_alpha == true
-    
-    // Draws image onto display.
-    void render_image(SDL_Surface* source, int w, int h, DispPoint pos);
-    
+    VALayerImpl *_layer;
+    View *_superView;
+        vector<View *> *_subviews;
 
-    // Hierarchy
-    View* parent;
-    Subview_list_t children;
-                
+    // Draws image onto display.
+    void render_image(SDL_Surface* source, int w, int h, VGPoint pos);
     
     // returns the deepest view that lies under coord, and its depth.
     // (0 is THIS, 1 is a child, 2 is grandchild, etc.)
     typedef std::pair<View*, int> View_Depth_t;
-    View_Depth_t deepest_view_from_point(DispPoint coord, int depth);
+    View_Depth_t deepest_view_from_point(VGPoint coord, int depth);
     
     friend bool x_then_y_view_less_than(const View* a, const View* b);
+
+    public:
+        void removeFromSuperView(void);
 };
 
 } // namespace GUI

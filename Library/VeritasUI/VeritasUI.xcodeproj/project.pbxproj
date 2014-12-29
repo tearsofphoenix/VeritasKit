@@ -1,0 +1,350 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		928702261A5169D700ED7948 /* VeritasUI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 928702251A5169D700ED7948 /* VeritasUI.h */; };
+		928702281A5169D700ED7948 /* VeritasUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 928702271A5169D700ED7948 /* VeritasUI.m */; };
+		928702521A5169FA00ED7948 /* VIDevice.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702501A5169FA00ED7948 /* VIDevice.c */; };
+		928702551A516A0600ED7948 /* VIView.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702531A516A0600ED7948 /* VIView.c */; };
+		928702581A516A1100ED7948 /* VIScreen.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702561A516A1100ED7948 /* VIScreen.c */; };
+		9287025B1A51702000ED7948 /* VIApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702591A51702000ED7948 /* VIApplication.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		928702621A51716300ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9287FF731A50F4E900ED7948;
+			remoteInfo = VeritasAnimation;
+		};
+		928702641A51716300ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9287FFC01A50F94600ED7948;
+			remoteInfo = VeritasAnimationApp;
+		};
+		928702661A51716C00ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9287FF721A50F4E900ED7948;
+			remoteInfo = VeritasAnimation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		928702201A5169D700ED7948 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				928702261A5169D700ED7948 /* VeritasUI.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		928702221A5169D700ED7948 /* libVeritasUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		928702251A5169D700ED7948 /* VeritasUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasUI.h; sourceTree = "<group>"; };
+		928702271A5169D700ED7948 /* VeritasUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeritasUI.m; sourceTree = "<group>"; };
+		928702501A5169FA00ED7948 /* VIDevice.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VIDevice.c; sourceTree = "<group>"; };
+		928702511A5169FA00ED7948 /* VIDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIDevice.h; sourceTree = "<group>"; };
+		928702531A516A0600ED7948 /* VIView.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VIView.c; sourceTree = "<group>"; };
+		928702541A516A0600ED7948 /* VIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIView.h; sourceTree = "<group>"; };
+		928702561A516A1100ED7948 /* VIScreen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VIScreen.c; sourceTree = "<group>"; };
+		928702571A516A1100ED7948 /* VIScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIScreen.h; sourceTree = "<group>"; };
+		928702591A51702000ED7948 /* VIApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VIApplication.c; sourceTree = "<group>"; };
+		9287025A1A51702000ED7948 /* VIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIApplication.h; sourceTree = "<group>"; };
+		9287025C1A51708400ED7948 /* VIBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIBase.h; sourceTree = "<group>"; };
+		9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasAnimation.xcodeproj; path = ../VeritasAnimation/VeritasAnimation.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9287021F1A5169D700ED7948 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		928702191A5169D700ED7948 = {
+			isa = PBXGroup;
+			children = (
+				9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */,
+				928702241A5169D700ED7948 /* VeritasUI */,
+				928702231A5169D700ED7948 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		928702231A5169D700ED7948 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				928702221A5169D700ED7948 /* libVeritasUI.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		928702241A5169D700ED7948 /* VeritasUI */ = {
+			isa = PBXGroup;
+			children = (
+				928702251A5169D700ED7948 /* VeritasUI.h */,
+				928702271A5169D700ED7948 /* VeritasUI.m */,
+				928702501A5169FA00ED7948 /* VIDevice.c */,
+				928702511A5169FA00ED7948 /* VIDevice.h */,
+				928702531A516A0600ED7948 /* VIView.c */,
+				928702541A516A0600ED7948 /* VIView.h */,
+				928702561A516A1100ED7948 /* VIScreen.c */,
+				928702571A516A1100ED7948 /* VIScreen.h */,
+				928702591A51702000ED7948 /* VIApplication.c */,
+				9287025A1A51702000ED7948 /* VIApplication.h */,
+				9287025C1A51708400ED7948 /* VIBase.h */,
+			);
+			path = VeritasUI;
+			sourceTree = "<group>";
+		};
+		9287025E1A51716300ED7948 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				928702631A51716300ED7948 /* libVeritasAnimation.a */,
+				928702651A51716300ED7948 /* VeritasAnimationApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		928702211A5169D700ED7948 /* VeritasUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 928702361A5169D700ED7948 /* Build configuration list for PBXNativeTarget "VeritasUI" */;
+			buildPhases = (
+				9287021E1A5169D700ED7948 /* Sources */,
+				9287021F1A5169D700ED7948 /* Frameworks */,
+				928702201A5169D700ED7948 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				928702671A51716C00ED7948 /* PBXTargetDependency */,
+			);
+			name = VeritasUI;
+			productName = VeritasUI;
+			productReference = 928702221A5169D700ED7948 /* libVeritasUI.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9287021A1A5169D700ED7948 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = NewGrace;
+				TargetAttributes = {
+					928702211A5169D700ED7948 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 9287021D1A5169D700ED7948 /* Build configuration list for PBXProject "VeritasUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 928702191A5169D700ED7948;
+			productRefGroup = 928702231A5169D700ED7948 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9287025E1A51716300ED7948 /* Products */;
+					ProjectRef = 9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				928702211A5169D700ED7948 /* VeritasUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		928702631A51716300ED7948 /* libVeritasAnimation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVeritasAnimation.a;
+			remoteRef = 928702621A51716300ED7948 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		928702651A51716300ED7948 /* VeritasAnimationApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = VeritasAnimationApp.app;
+			remoteRef = 928702641A51716300ED7948 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9287021E1A5169D700ED7948 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				928702551A516A0600ED7948 /* VIView.c in Sources */,
+				9287025B1A51702000ED7948 /* VIApplication.c in Sources */,
+				928702521A5169FA00ED7948 /* VIDevice.c in Sources */,
+				928702581A516A1100ED7948 /* VIScreen.c in Sources */,
+				928702281A5169D700ED7948 /* VeritasUI.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		928702671A51716C00ED7948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VeritasAnimation;
+			targetProxy = 928702661A51716C00ED7948 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		928702341A5169D700ED7948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		928702351A5169D700ED7948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		928702371A5169D700ED7948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		928702381A5169D700ED7948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9287021D1A5169D700ED7948 /* Build configuration list for PBXProject "VeritasUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				928702341A5169D700ED7948 /* Debug */,
+				928702351A5169D700ED7948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		928702361A5169D700ED7948 /* Build configuration list for PBXNativeTarget "VeritasUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				928702371A5169D700ED7948 /* Debug */,
+				928702381A5169D700ED7948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9287021A1A5169D700ED7948 /* Project object */;
+}

@@ -42,7 +42,7 @@ private:
         
         void display();
         
-        virtual bool handle_mouse_down(DispPoint coord);
+        virtual bool handle_mouse_down(VGPoint coord);
         
     private:
         ScrollView *view;
@@ -54,30 +54,30 @@ private:
         
         void display();
         
-        virtual bool handle_mouse_down(DispPoint coord);
-        virtual bool handle_mouse_up(DispPoint coord);
-        virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion);
+        virtual bool handle_mouse_down(VGPoint coord);
+        virtual bool handle_mouse_up(VGPoint coord);
+        virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion);
         
     private:
         ScrollView *view;
         bool clicked;
-        DispPoint click;
+        VGPoint click;
     };
     class ScrollArrow : public ImageView {
     public:
         ScrollArrow(bool up_down_, const GUIImage& image)
         : ImageView(image), up_down(up_down_) { }
         
-        virtual bool handle_mouse_down(DispPoint coord);
-        virtual bool handle_mouse_up(DispPoint coord);
+        virtual bool handle_mouse_down(VGPoint coord);
+        virtual bool handle_mouse_up(VGPoint coord);
         
     private:
         bool up_down;
     };
     
     
-    void move_display_to(DispPoint pos);
-    void move_scroll_bar_to(DispPoint pos);
+    void move_display_to(VGPoint pos);
+    void move_scroll_bar_to(VGPoint pos);
     
     ScrollBar scroll_bar;
     ScrollBarBg scroll_bar_bg;

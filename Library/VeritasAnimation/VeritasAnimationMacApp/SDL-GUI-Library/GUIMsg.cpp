@@ -22,7 +22,7 @@ Msg::Msg(int w_, int h_, const std::string& msg_, int num_buttons,
 :View(w_,h_)
 {
 //    GUIImage bg = GUIImage::create_filled(w_, h_, color);
-////    draw_onto_view(bg, DispPoint());
+////    draw_onto_view(bg, VGPoint());
 //
 //    set_bg(bg);
 //    
@@ -36,7 +36,7 @@ void Msg::set_msg(const std::string msg_) {
 
 //    draw_bg();
 //
-//    draw_onto_view(msg_text, DispPoint(get_w()/2 - msg_text.getw()/2, 
+//    draw_onto_view(msg_text, VGPoint(get_w()/2 - msg_text.getw()/2,
 //                                       get_h()/2 - msg_text.geth()/2));
 }
 

@@ -41,7 +41,7 @@ struct GUITimer_command {
 
 
 class Window;
-class Controller;
+class VIResponder;
 
 class App {
 public:
@@ -68,18 +68,18 @@ public:
     template <typename Exception_t, typename Handler_t>
     void register_exception_handler(const Handler_t &handler);
 
-    // Provides a Controller with the ability to receive mouse/keyboard input.
+    // Provides a VIResponder with the ability to receive mouse/keyboard input.
     //  (Views receive mouse input by defualt when hovered over.)
-    void give_focus(Controller* view) { captured_focus.insert(view); }
-    bool has_focus(Controller* view) { return captured_focus.count(view) != 0; }
-    void release_focus(Controller* view) { captured_focus.erase(view); }
+    void give_focus(VIResponder * view) { captured_focus.insert(view); }
+    bool has_focus(VIResponder * view) { return captured_focus.count(view) != 0; }
+    void release_focus(VIResponder * view) { captured_focus.erase(view); }
     
     
     // Equivalent to a user clicking the "x" or pressing cmd-q.
     void quit();
     
 
-    DispPoint get_screen_size();    
+    VGPoint get_screen_size();
     Window* get_window() { return window; }  
 
 private:
@@ -90,7 +90,7 @@ private:
     bool cap_frame_rate;
     bool running;
     
-    typedef std::set<Controller*> view_list_t;
+    typedef std::set<VIResponder *> view_list_t;
     view_list_t captured_focus;
 
     

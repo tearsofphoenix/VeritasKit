@@ -70,7 +70,7 @@ App::App()
 
 
 
-DispPoint App::get_screen_size() { return window->get_dim(); }
+VGPoint App::get_screen_size() { return window->get_dim(); }
 
 
 void App::quit() {
@@ -114,19 +114,19 @@ void App::run(Window* window_) {
                         
                         // Send mouse event to correct view.
 
-                        DispPoint click_pos(event.button.x, event.button.y);
-                        DispPoint rel_pos(event.motion.xrel, event.motion.yrel);
+                        VGPoint click_pos(event.button.x, event.button.y);
+                        VGPoint rel_pos(event.motion.xrel, event.motion.yrel);
                         
-                        list<Controller*> focus_copy(captured_focus.begin(), captured_focus.end());
+                        list<VIResponder *> focus_copy(captured_focus.begin(), captured_focus.end());
                         
-                        for (list<Controller*>::iterator it = focus_copy.begin();
+                        for (list<VIResponder *>::iterator it = focus_copy.begin();
                                             it != focus_copy.end(); ++it) {
                             
-                            Controller *captured = *it;
+                            VIResponder *captured = *it;
                             
-                            DispPoint new_pos(click_pos);
+                            VGPoint new_pos(click_pos);
 
-                            // If the Controller is a view, adjust pos for view.
+                            // If the VIResponder is a view, adjust pos for view.
                             if (View *view = dynamic_cast<View*>(captured)) {
                                 new_pos.x -= view->get_abs_pos().x; 
                                 new_pos.y -= view->get_abs_pos().y; 
@@ -174,7 +174,7 @@ void App::run(Window* window_) {
                         
 
                         if (hovered_view) {
-                            DispPoint new_pos(click_pos);
+                            VGPoint new_pos(click_pos);
 
                             new_pos.x -= hovered_view->get_abs_pos().x; 
                             new_pos.y -= hovered_view->get_abs_pos().y; 
@@ -218,7 +218,7 @@ void App::run(Window* window_) {
                         for (view_list_t::iterator it = captured_focus.begin();
                              it != captured_focus.end(); ++it) {
                             
-                            Controller *captured = *it;
+                            VIResponder *captured = *it;
                             
                             bool handled = captured->handle_key_down(event.key.keysym);
                             if (!handled) {}
@@ -251,7 +251,7 @@ void App::run(Window* window_) {
                         for (view_list_t::iterator it = captured_focus.begin();
                              it != captured_focus.end(); ++it) {
                             
-                            Controller *captured = *it;
+                            VIResponder *captured = *it;
                         
                             bool handled = captured->handle_key_up(event.key.keysym);
                             if (!handled) {}

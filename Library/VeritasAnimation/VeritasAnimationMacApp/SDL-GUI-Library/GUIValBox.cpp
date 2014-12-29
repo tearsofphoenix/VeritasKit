@@ -39,9 +39,9 @@ text_box(w_ - 5, h_ - 5)
     GUIImage bg = GUIImage::create_blank(500,500);
     SDL_FillRect(bg, 0, SDL_MapRGB(bg->format, 210, 210, 210));
     
-    draw_onto_self(bg, DispPoint());
+    draw_onto_self(bg, VGPoint());
     
-    attach_subview(&text_box, DispPoint(5,5));
+    attach_subview(&text_box, VGPoint(5,5));
 }
 
 double Value_Text_Box::get_value() const {
@@ -67,14 +67,14 @@ double Value_Slider::get_percent() const {
     return value;
 }
 
-const DispPoint HORIZ_SLIDER_DIM (1,5);
-const DispPoint HORIZ_SLIDER_CAP_DIM (3,5);
+const VGPoint HORIZ_SLIDER_DIM (1,5);
+const VGPoint HORIZ_SLIDER_CAP_DIM (3,5);
 
 void Value_Horiz_Slider::display() {
 
     fill_with_color(default_color_key_c);
 
-	DispPoint loc;
+	VGPoint loc;
 	loc.x = 0;
 	loc.y = get_h()/2 - HORIZ_SLIDER_DIM.y/2;
 	
@@ -96,13 +96,13 @@ void Value_Horiz_Slider::display() {
 
     //Dipslay Bubble
     static GUIImage bubble("GUIImages/slider_bubble.bmp", true);
-    DispPoint position(get_percent() * get_w(), get_h()/2);
+    VGPoint position(get_percent() * get_w(), get_h()/2);
     
-    draw_onto_self(bubble, DispPoint(position.x - bubble.getw()/2,
+    draw_onto_self(bubble, VGPoint(position.x - bubble.getw()/2,
                                      position.y - bubble.geth()/2));
 }
 
-bool Value_Horiz_Slider::handle_mouse_down(DispPoint coord) {
+bool Value_Horiz_Slider::handle_mouse_down(VGPoint coord) {
     
     Value_Slider::handle_mouse_down(coord);
     
@@ -111,7 +111,7 @@ bool Value_Horiz_Slider::handle_mouse_down(DispPoint coord) {
     return true;
 }
 
-bool Value_Horiz_Slider::handle_mouse_motion(DispPoint coord, DispPoint rel_motion) {
+bool Value_Horiz_Slider::handle_mouse_motion(VGPoint coord, VGPoint rel_motion) {
     
     if (!get_clicked()) return false;
     if (coord.x < left_edge && get_percent() == 0) return false;
@@ -135,14 +135,14 @@ void Value_Vert_Slider::display() {
     
     static GUIImage bubble("GUIImages/slider_bubble.bmp", true);
     
-    DispPoint position(get_w()/2, get_percent() * get_h());
+    VGPoint position(get_w()/2, get_percent() * get_h());
     
-    draw_onto_self(bubble, DispPoint(position.x - bubble.getw()/2,
+    draw_onto_self(bubble, VGPoint(position.x - bubble.getw()/2,
                                      position.y - bubble.geth()/2));
 }
 
 
-bool Value_Vert_Slider::handle_mouse_down(DispPoint coord) {
+bool Value_Vert_Slider::handle_mouse_down(VGPoint coord) {
     
     Value_Slider::handle_mouse_down(coord);
     
@@ -153,7 +153,7 @@ bool Value_Vert_Slider::handle_mouse_down(DispPoint coord) {
     return true;
 }
 
-bool Value_Vert_Slider::handle_mouse_motion(DispPoint coord, DispPoint rel_motion) {
+bool Value_Vert_Slider::handle_mouse_motion(VGPoint coord, VGPoint rel_motion) {
     
     if (!get_clicked()) return false;
     if (coord.y < bottom_edge && get_percent() == 0) return false;
@@ -177,16 +177,16 @@ void Value_Joystick_Slider::display() {
     
     fill_with_color(default_color_key_c);
 
-    DispPoint center(get_w()/2, get_h()/2);
+    VGPoint center(get_w()/2, get_h()/2);
 
     //Display left cap:
     static GUIImage left_cap("GUIImages/slider_horiz_L.bmp", true);
-	draw_onto_self(left_cap, DispPoint(get_w()/2 - left_cap.getw(), 
+	draw_onto_self(left_cap, VGPoint(get_w()/2 - left_cap.getw(),
                                        get_h()/2 - left_cap.geth()/2));
 	
 	//Display right cap:
     static GUIImage right_cap("GUIImages/slider_horiz_R.bmp", true);
-	draw_onto_self(right_cap, DispPoint(get_w()/2, 
+	draw_onto_self(right_cap, VGPoint(get_w()/2,
                                        get_h()/2 - right_cap.geth()/2));
     
 
@@ -204,19 +204,19 @@ void Value_Joystick_Slider::display() {
     cout << x << endl;
     cout << y << endl;
     
-    DispPoint position = center + DispPoint(x, y);
+    VGPoint position = center + VGPoint(x, y);
     
-    draw_onto_self(bubble, DispPoint(position.x - bubble.getw()/2,
+    draw_onto_self(bubble, VGPoint(position.x - bubble.getw()/2,
                                      position.y - bubble.geth()/2));
 }
 
 
-bool Value_Joystick_Slider::handle_mouse_down(DispPoint coord) {
+bool Value_Joystick_Slider::handle_mouse_down(VGPoint coord) {
     
     Value_Slider::handle_mouse_down(coord);
     
-    DispPoint center(get_w()/2, get_h()/2);
-    DispPoint offset = coord - center;
+    VGPoint center(get_w()/2, get_h()/2);
+    VGPoint offset = coord - center;
     
     double radians = atan2(-offset.y, offset.x);
     if (radians < 0) { radians += 2*M_PI; }   // get into range (0, 2*Pi]
@@ -226,7 +226,7 @@ bool Value_Joystick_Slider::handle_mouse_down(DispPoint coord) {
     return true;
 }
 
-bool Value_Joystick_Slider::handle_mouse_up(DispPoint coord) {
+bool Value_Joystick_Slider::handle_mouse_up(VGPoint coord) {
     
     Value_Slider::handle_mouse_up(coord);
     
@@ -235,12 +235,12 @@ bool Value_Joystick_Slider::handle_mouse_up(DispPoint coord) {
     return true;
 }
 
-bool Value_Joystick_Slider::handle_mouse_motion(DispPoint coord, DispPoint rel_motion) {
+bool Value_Joystick_Slider::handle_mouse_motion(VGPoint coord, VGPoint rel_motion) {
     
     if (!get_clicked()) return false;
     
-    DispPoint center(get_w()/2, get_h()/2);
-    DispPoint offset = coord - center;
+    VGPoint center(get_w()/2, get_h()/2);
+    VGPoint offset = coord - center;
     
     double radians = atan2(-offset.y, offset.x);
     if (radians < 0) { radians += 2*M_PI; }   // get into range (0, 2*Pi]
@@ -289,7 +289,7 @@ void Value_Display::display() {
     SDL_Surface *text_surf = createText(text);
     if (text_surf == 0) return;
     
-    draw_onto_self(GUIImage(text_surf), DispPoint(2, 2));
+    draw_onto_self(GUIImage(text_surf), VGPoint(2, 2));
 }
 
     

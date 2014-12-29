@@ -91,8 +91,8 @@ public:
     // Return a value between 0 and 1.
     virtual double get_percent() const;
 
-	virtual bool handle_mouse_down(DispPoint coord) { clicked = true; capture_focus(); return true; }
-    virtual bool handle_mouse_up(DispPoint coord) { clicked = false; lose_focus(); return true; }
+	virtual bool handle_mouse_down(VGPoint coord) { clicked = true; capture_focus(); return true; }
+    virtual bool handle_mouse_up(VGPoint coord) { clicked = false; lose_focus(); return true; }
 
 protected:
     bool get_clicked() const { return clicked; }
@@ -114,8 +114,8 @@ public:
         
     virtual void display();
     
-	virtual bool handle_mouse_down(DispPoint coord);
-	virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion);
+	virtual bool handle_mouse_down(VGPoint coord);
+	virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion);
     
 private:
     int left_edge, right_edge;    
@@ -130,8 +130,8 @@ public:
     
     virtual void display();
     
-	virtual bool handle_mouse_down(DispPoint coord);
-	virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion);
+	virtual bool handle_mouse_down(VGPoint coord);
+	virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion);
     
 private:
     int bottom_edge, top_edge;    
@@ -149,9 +149,9 @@ public:
     
     virtual void display();
     
-	virtual bool handle_mouse_down(DispPoint coord);
-	virtual bool handle_mouse_up(DispPoint coord);
-	virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion);
+	virtual bool handle_mouse_down(VGPoint coord);
+	virtual bool handle_mouse_up(VGPoint coord);
+	virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion);
     
 private:
     double angle;

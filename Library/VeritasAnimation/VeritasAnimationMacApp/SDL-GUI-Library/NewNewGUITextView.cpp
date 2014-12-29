@@ -37,13 +37,13 @@ const SDL_Color clear_color_c = {0xFF, 0, 0xFF};
 NewTextView::NewTextView(int w, int h, int size, SDL_Color color)
 :View(w,h), prev('a', size, color)
 {
-    draw_onto_self(GUIImage::create_filled(w, h, clear_color_c), DispPoint());
+    draw_onto_self(GUIImage::create_filled(w, h, clear_color_c), VGPoint());
     set_clear_color(clear_color_c);    
 }
 
 void NewTextView::draw() {
     
-    DispPoint pos(0,0);
+    VGPoint pos(0,0);
 
     letter_ctr_t::iterator it;
     for (it = text.begin(); it != text.end(); ++it) {

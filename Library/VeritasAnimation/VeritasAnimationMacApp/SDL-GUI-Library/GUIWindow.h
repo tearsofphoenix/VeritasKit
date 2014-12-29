@@ -25,8 +25,8 @@ namespace GUI {
 
 struct Unhandled_Click {
     
-    Unhandled_Click(DispPoint coord_) : coord(coord_) { }
-    DispPoint coord;
+    Unhandled_Click(VGPoint coord_) : coord(coord_) { }
+    VGPoint coord;
 };
 struct Unhandled_Key {
     
@@ -53,13 +53,10 @@ public:
     
     View* get_main_view() { return main_view; }
 
-    DispPoint get_dim();
+    VGPoint get_dim();
         
     // Handle subviews to main_view:
-    void attach_subview(View* view, DispPoint pos);
-    void move_subview(View* view, DispPoint pos);
-    void remove_subview(View* view);
-    View* remove_last_subview(); // Remove subview last added
+    void attach_subview(View* view, VGPoint pos);
 
     
     // If main_view has changed at all, re-display it.

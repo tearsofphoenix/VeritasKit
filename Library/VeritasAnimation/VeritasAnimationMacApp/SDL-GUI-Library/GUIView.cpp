@@ -30,223 +30,101 @@ namespace GUI {
 static SDL_Surface* prepare_SDL_surface(int w, int h);
 
 View::View(int w_, int h_) 
-:changed(false), w(w_), h(h_), image(prepare_SDL_surface(w_, h_)),
-display(prepare_SDL_surface(w_, h_)), is_alpha(false),
-parent(0)
-{ 
-    
-}
+: _layer(new VALayerImpl(w_, h_))
+{
 
-SDL_Surface* prepare_SDL_surface(int w, int h) {
-    
-    Uint32 rmask, gmask, bmask, amask;
-	
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-    rmask = 0xff000000;
-    gmask = 0x00ff0000;
-    bmask = 0x0000ff00;
-    amask = 0x000000ff;
-#else
-    rmask = 0x000000ff;
-    gmask = 0x0000ff00;
-    bmask = 0x00ff0000;
-    amask = 0xff000000;
-#endif
-	
-    SDL_Surface *temp = SDL_CreateRGBSurface(SDL_HWSURFACE, w, h, 32,
-                                             rmask, gmask, bmask, amask);
-    if(temp == NULL) {
-		throw Error("CreateRGBSurface failed: \n" + string(SDL_GetError()));
-    }
-	SDL_Surface* image = SDL_DisplayFormat(temp);
-	if(!image) {
-        throw Error("updateimage in CreateRGBSurface failed: \n" + string(SDL_GetError()));
-    }
-	SDL_FreeSurface(temp);
-    
-    return image;
 }
 
 
 View::~View() {
-    
-    while (!children.empty()) {
-        
-        delete children.front();
-        children.pop_front();
+
+    delete _layer;
+}
+
+void View::draw_onto_self(const GUIImage &image_, VGPoint pos) {
+    _layer->draw_onto_self(image_, pos);
     }
-    
-    SDL_FreeSurface(image);
-    SDL_FreeSurface(display);
-}
 
-void View::draw_onto_self(const GUIImage &image_, DispPoint pos) {
-    
-    mark_changed();
-    
-    // Using SDL, perform a blit from view to self.
-	SDL_Rect dest_rect = {static_cast<Sint16>(pos.x), static_cast<Sint16>(pos.y), static_cast<Uint16>(image_->w), static_cast<Uint16>(image_->h)};
-	SDL_BlitSurface(image_, 0, image, &dest_rect);
-
-}
 void View::fill_with_color(SDL_Color color) {
-   
-    draw_onto_self(GUIImage::create_filled(w, h, color), DispPoint());
+
+    _layer->fill_with_color(color);
 }
 
 
 // Draws image onto display.
-void View::render_image(SDL_Surface* source, int w, int h, DispPoint pos) {
-    
-    // Using SDL, perform a blit from view to self.
-	SDL_Rect dest_rect = {static_cast<Sint16>(pos.x), static_cast<Sint16>(pos.y), static_cast<Uint16>(w), static_cast<Uint16>(h)};
-	SDL_BlitSurface(source, 0, display, &dest_rect);
+void View::render_image(SDL_Surface* source, int w, int h, VGPoint pos) {
+
+        _layer->render_image(source, w, h, pos);
 }
 
 void View::set_clear_color(SDL_Color clear_color_) {
-    
-    is_alpha = true;
-    clear_color = clear_color_;
-    Uint32 colorkey = SDL_MapRGBA(image->format, clear_color.r, clear_color.g, clear_color.b, clear_color.unused);
-    SDL_SetColorKey(display, SDL_SRCCOLORKEY, colorkey); // reset alpha
+    _layer->set_clear_color(clear_color_);
 }
 void View::clear_alpha() {
-    
-    is_alpha = false;
-    SDL_SetColorKey(display, 0, 0); // reset alpha
+    _layer->clear_alpha();
 }
 
-bool View::point_is_clear(DispPoint coord) const {
-    
-    if (!rel_point_is_on_me(coord) || !has_alpha_color()) {
-        return true;
-    }
-    Uint32 pixel = getpixel(image, coord.x, coord.y);
-    if (pixel == SDL_MapRGB(image->format, clear_color.r, clear_color.g, clear_color.b)) {
-        return true;
-    }
-    return false;
+bool View::point_is_clear(VGPoint coord) const {
+    return _layer->point_is_clear(coord);
 }
 
 
-bool x_then_y_view_less_than(const View* a, const View* b) {
-    if (a->pos.x < b->pos.x) return true;
-    else if (a->pos.x == b->pos.x) return (a->pos.y < b->pos.y);
-    else /*(a->pos.x > b->pos.x)*/ return false;
-}
+//bool x_then_y_view_less_than(const View* a, const View* b) {
+//    if (a->pos.x < b->pos.x) return true;
+//    else if (a->pos.x == b->pos.x) return (a->pos.y < b->pos.y);
+//    else /*(a->pos.x > b->pos.x)*/ return false;
+//}
 
 void View::mark_changed() {
-    
-    changed = true;
-    
-    if (parent) parent->mark_changed();
-    
-    if (children.size() > 1) {
-        
-        /// @todo Perhaps the sorting method should be optional?
-        ///  Either by x,y or by order attached?
-        
-//        children.sort(x_then_y_view_less_than);
-    }
+    _layer->mark_changed();
 }
 
 
 void View::refresh() {
-    
-    if (!need_to_refresh()) return;
-    
-    // Refresh self. (First display image, then each child.)
-    
-    render_image(image, w, h, DispPoint(0,0));
-    
-    Subview_list_t::iterator child;
-    for(child = children.begin(); child != children.end(); child++) {
-        
-        (*child)->refresh();
-                
-        render_image((*child)->display, (*child)->w, (*child)->h, (*child)->pos);
+    _layer->refresh();
     }
-    
-    changed = false;
+
+    void View::removeFromSuperView(void)
+    {
+        _layer->removeFromSuperLayer();
+        vector<View *> *views = _superView->_subviews;
+        auto idx = find(views->begin(), views->end(), this);
+        _subviews->erase(idx, idx);
+    }
+
+void View::attach_subview(View* view, VGPoint pos) {
+
+    _layer->addSubLayer(view->_layer, pos);
+    view->_superView = view;
+    _subviews->push_back(view);
 }
 
-void View::attach_subview(View* view, DispPoint pos) {
-    if (view->parent)
-        throw Error("Candidate vew is already a subview of another view.");
-    
-    if (view == this) 
-        throw Error("Cannot attach a view to itself!");
+void View::move_subview(View* view, VGPoint pos) {
 
-    /// @todo Check if out of bounds? Or maybe not..?
-    
-    view->pos = pos;
-    children.push_back(view);
-    view->parent = this;
-    
-    mark_changed();
-}
-// NOTE: Does not delete the view, only removes it from list!
-void View::remove_subview(View* view) {
-    
-    if (!is_subview(view))
-        throw Error("view is not a subview of this!");
-    
-    children.remove(view);
-    view->parent = 0;
-    
-    mark_changed();
-}
-View* View::remove_last_subview() {
-    
-    if (children.empty())
-        throw Error("view has not subviews!");
-    
-    View *view = children.back();
-    children.pop_back();
-    view->parent = 0;
-    
-    mark_changed();
-    
-    return view;
-}
-bool View::is_subview(View* view) const {
-    
-    return (find(children.begin(), children.end(), view) != children.end());
+    view->_layer->setPos(pos);
 }
 
-void View::move_subview(View* view, DispPoint pos) {
-    
-    if (!is_subview(view))
-        throw Error("view is not a subview of this!");
-    
-    if (view->pos == pos) return; // no need to mark change if already there!
-    
-    view->pos = pos;
-    
-    mark_changed();
-}
-
-void View::mouse_down(DispPoint coord) {
+void View::mouse_down(VGPoint coord) {
     cout << "mouse down!: " << coord.x <<", "<< coord.y << endl;
     
     if (!handle_mouse_down(coord)) {
-        if (parent) parent->mouse_down(coord + pos);
+        if (_superView) _superView->mouse_down(coord + _layer->pos);
 //        else throw Unhandled_Click(coord);
     }
 }
-void View::mouse_up(DispPoint coord) {
+void View::mouse_up(VGPoint coord) {
     cout << "mouse up!: " << coord.x <<", "<< coord.y << endl;
     
     if (!handle_mouse_up(coord)) {
-        if (parent) parent->mouse_up(coord + pos);
+        if (_superView) _superView->mouse_up(coord + _layer->pos);
 //        else throw Unhandled_Click(coord);
     }
 }
-void View::mouse_motion(DispPoint coord, DispPoint rel_motion) {
+void View::mouse_motion(VGPoint coord, VGPoint rel_motion) {
 //    cout << "mouse motion!: " << rel_motion.x <<", "<< rel_motion.y << endl;
     
     if (!handle_mouse_motion(coord, rel_motion)) {
-        if (parent) parent->mouse_motion(coord + pos, rel_motion);
+        if (_superView) _superView->mouse_motion(coord + _layer->pos, rel_motion);
 //        else throw Unhandled_Click(coord);
     }
 }
@@ -254,14 +132,14 @@ void View::mouse_scroll_start(bool up_down) {
     cout << "mouse scroll!: " << (up_down ? "up" : "down") << endl;
     
     if (!handle_mouse_scroll_start(up_down)) {
-        if (parent) parent->mouse_scroll_start(up_down);
+        if (_superView) _superView->mouse_scroll_start(up_down);
         //        else throw Unhandled_Click(coord);
     }
 }void View::mouse_scroll_stop(bool up_down) {
     cout << "mouse scroll!: " << (up_down ? "up" : "down") << endl;
     
     if (!handle_mouse_scroll_stop(up_down)) {
-        if (parent) parent->mouse_scroll_stop(up_down);
+        if (_superView) _superView->mouse_scroll_stop(up_down);
         //        else throw Unhandled_Click(coord);
     }
 }
@@ -283,7 +161,7 @@ void View::key_up(SDL_keysym key) {
 }
 
 
-View* View::get_view_from_point(DispPoint coord) const {
+View* View::get_view_from_point(VGPoint coord) const {
     
     // Can we cache this? Would that be faster?
     
@@ -294,8 +172,8 @@ View* View::get_view_from_point(DispPoint coord) const {
     const View* result = this;
     
     // Check if any children have a deeper subview:
-    Subview_list_t::const_iterator child;
-    for (child = children.begin(); child != children.end(); ++child) {
+
+    for (auto child = _subviews->begin(); child != _subviews->end(); ++child) {
         
         // Can assume that Views are sorted, so any new best will be above old best.
         View* new_best = (*child)->get_view_from_point(coord);
@@ -307,76 +185,45 @@ View* View::get_view_from_point(DispPoint coord) const {
     return const_cast<View*>(result);
 }
 
-bool View::rel_point_is_on_me(DispPoint coord) const {
-    
-    return (coord.x >= 0 && coord.y >= 0
-            && coord.x < w && coord.y < h);
+bool View::rel_point_is_on_me(VGPoint coord) const {
+    return _layer->rel_point_is_on_me(coord);
 }
-//bool View::rel_point_is_on_me(DispPoint coord) {
+//bool View::rel_point_is_on_me(VGPoint coord) {
 //    
 //    return (coord.x >= pos.x && coord.y >= pos.y
 //            && coord.x < pos.x + w && coord.y < pos.y + h);
 //}
-bool View::abs_point_is_on_me(DispPoint coord) const {
-    
-    DispPoint abs_pos = get_abs_pos();
-    return (coord.x >= abs_pos.x && coord.y >= abs_pos.y
-            && coord.x < abs_pos.x + w && coord.y < abs_pos.y + h);
+bool View::abs_point_is_on_me(VGPoint coord) const {
+        return  _layer->abs_point_is_on_me(coord);
 }
 
 
-DispPoint View::abs_from_rel(DispPoint coord) const {
+VGPoint View::abs_from_rel(VGPoint coord) const {
     
-    DispPoint abs_pos = get_abs_pos();
-        return DispPoint(abs_pos.x + coord.x,
+    VGPoint abs_pos = get_abs_pos();
+        return VGPoint(abs_pos.x + coord.x,
                          abs_pos.y + coord.y);
 }
-DispPoint View::adjust_to_parent(DispPoint coord) const {
-    return DispPoint(coord.x + pos.x, coord.y + pos.y);
+VGPoint View::adjust_to_parent(VGPoint coord) const {
+    return _layer->adjust_to_parent(coord);
 }
-DispPoint View::adjust_to_rel(DispPoint coord) const {
-    return DispPoint(coord.x - pos.x, coord.y - pos.y);
+VGPoint View::adjust_to_rel(VGPoint coord) const {
+    return _layer->adjust_to_rel(coord);
 }
 
 
-DispPoint View::get_abs_pos() const {
-    if (parent == 0) return pos;
-    else {
-        DispPoint parent_abs_pos = parent->get_abs_pos();
-        return DispPoint(parent_abs_pos.x + pos.x,
-                         parent_abs_pos.y + pos.y);
-    }
+VGPoint View::get_abs_pos() const {
+    return _layer->get_abs_pos();
+
 }
-DispPoint View::get_rel_pos() const {
-    return pos;
+VGPoint View::get_rel_pos() const {
+    return _layer->get_rel_pos();
 }
 
 
 void View::resize(int w_, int h_) {
-    
-    if (w == w_ && h == h_) {
-        
-        did_resize(w_,h_);
-        return;
+    _layer->resize(w_, h_);
     }
-    
-    w = w_; h = h_;
-    View temp(w,h);
-
-    std::swap(image, temp.image);
-    std::swap(display, temp.display);
-    
-    if (is_alpha) {
-        set_clear_color(clear_color);
-        fill_with_color(clear_color);
-    }
-    
-    SDL_Rect dest_rect = {0, 0, static_cast<Uint16>(w), static_cast<Uint16>(h)};
-	SDL_BlitSurface(temp.image, 0, image, &dest_rect);
-
-    mark_changed();
-    did_resize(w_,h_);
-}
 
 
 

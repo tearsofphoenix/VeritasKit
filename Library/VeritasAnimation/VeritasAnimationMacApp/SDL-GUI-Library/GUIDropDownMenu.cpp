@@ -34,7 +34,7 @@ public:
     }
     
     // overridden to return false so Menu can receive click
-    virtual bool handle_mouse_down(DispPoint coord) {
+    virtual bool handle_mouse_down(VGPoint coord) {
         // run parent mouse up to call operation();
         TextButton::handle_mouse_down(coord);
         
@@ -43,7 +43,7 @@ public:
     }
 
     // overridden to return false so Menu can receive click
-    virtual bool handle_mouse_up(DispPoint coord) {
+    virtual bool handle_mouse_up(VGPoint coord) {
         // run parent mouse up to call operation();
         TextButton::handle_mouse_up(coord);
         
@@ -52,7 +52,7 @@ public:
     }
 
     // overridden to not highlight if menu isn't open.
-    virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion) {
+    virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion) {
         
         if (!menu.clicked) {
             return false;
@@ -99,30 +99,30 @@ void DropDownMenu::init_menu_view(int text_size_) {
     menu = new View(get_w(), (int)(entries.size() ? entries.size() : 1) * row_size);
     
     // always display at least one entry
-    menu->draw_onto_self(GUIImage("GUIImages/dropdown_row.bmp"), DispPoint());
+    menu->draw_onto_self(GUIImage("GUIImages/dropdown_row.bmp"), VGPoint());
 
     // display full menu
     int i = 0;
     for (list<string>::iterator it = entries.begin(); it != entries.end(); ++it, ++i) {
         
 //        menu->attach_subview(new MenuEntry(*it, text_size, *this, i),
-//                                                    DispPoint(0, i * row_size));
+//                                                    VGPoint(0, i * row_size));
         
         menu->draw_onto_self(GUIImage("GUIImages/dropdown_row.bmp"),
-                             DispPoint(0, i * row_size));
+                             VGPoint(0, i * row_size));
 
         menu->attach_subview(createTextView(*it, text_size),
-                                                    DispPoint(0, i * row_size));
+                                                    VGPoint(0, i * row_size));
 
     }
     
-    attach_subview(menu, DispPoint());
+    attach_subview(menu, VGPoint());
     
 }
 void DropDownMenu::update_menu_view() {
     
     // always display at least one entry
-    menu->draw_onto_self(GUIImage("GUIImages/dropdown_row.bmp"), DispPoint());
+    menu->draw_onto_self(GUIImage("GUIImages/dropdown_row.bmp"), VGPoint());
 
     // display full menu
     int row_size = (text_size + vertical_padding*2);
@@ -130,7 +130,7 @@ void DropDownMenu::update_menu_view() {
     for (int i = 0; i < entries.size(); ++i) {
         
         menu->draw_onto_self(GUIImage("GUIImages/dropdown_row.bmp"),
-                             DispPoint(0, i * row_size));
+                             VGPoint(0, i * row_size));
     }
     
 }
@@ -140,7 +140,7 @@ void DropDownMenu::update_menu_view() {
 //  Returns true if the mouse-event is finished being handled.
 //  If returns false, handling will continue up the chain.
 //  May optionally call capture_focus() to become the target for keypresses.
-bool DropDownMenu::handle_mouse_down(DispPoint coord) {
+bool DropDownMenu::handle_mouse_down(VGPoint coord) {
     
     capture_focus();
     
@@ -155,12 +155,12 @@ bool DropDownMenu::handle_mouse_down(DispPoint coord) {
     fill_with_color(get_clear_color());
 
     int vert_adj = -selected_entry_idx * (text_size + vertical_padding*2); // (up)
-    move_subview(menu, DispPoint()); // reset menu subview
-    get_parent()->move_subview(this, get_rel_pos() + DispPoint(0,vert_adj));
+    move_subview(menu, VGPoint()); // reset menu subview
+    get_parent()->move_subview(this, get_rel_pos() + VGPoint(0,vert_adj));
     
     return true;
 }
-bool DropDownMenu::handle_mouse_up(DispPoint coord) {
+bool DropDownMenu::handle_mouse_up(VGPoint coord) {
 
     if (!clicked) {
         return false;
@@ -182,14 +182,14 @@ bool DropDownMenu::handle_mouse_up(DispPoint coord) {
     resize(get_w(), row_size);
     
     int vert_adj = -selected_entry_idx * row_size; // (move subview up)
-    move_subview(menu, DispPoint(0, vert_adj)); // move correct entry to visible
+    move_subview(menu, VGPoint(0, vert_adj)); // move correct entry to visible
     get_parent()->move_subview(this, pre_click_pos);
 
     lose_focus();
     
     return true;
 }
-bool DropDownMenu::handle_mouse_motion(DispPoint coord, DispPoint rel_motion) {
+bool DropDownMenu::handle_mouse_motion(VGPoint coord, VGPoint rel_motion) {
     
     if (!clicked) {
         return false;
@@ -201,7 +201,7 @@ bool DropDownMenu::handle_mouse_motion(DispPoint coord, DispPoint rel_motion) {
     
     update_menu_view();
     menu->draw_onto_self(GUIImage("GUIImages/dropdown_row_hl.bmp"),
-                         DispPoint(0, row_to_hl * row_size));
+                         VGPoint(0, row_to_hl * row_size));
 
     
     return true;

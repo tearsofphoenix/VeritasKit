@@ -61,8 +61,8 @@ protected:
     void add_letter_no_redraw(char ltr, int index);
 	void remove_letter_no_redraw(int index);
 
-    DispPoint pos_at_index(size_t i);
-	int index_at_pos(DispPoint pos_);
+    VGPoint pos_at_index(size_t i);
+	int index_at_pos(VGPoint pos_);
 
     virtual void update();
 
@@ -98,7 +98,7 @@ private:
     
     bool resizeable_down, resizeable_right;
 
-	virtual bool handle_mouse_down(DispPoint pos_);
+	virtual bool handle_mouse_down(VGPoint pos_);
     virtual bool handle_key_down(SDL_keysym key);
     virtual bool handle_key_up(SDL_keysym key);
 	
@@ -129,12 +129,12 @@ private:
 		
 		int get_index() const
 		{ return index; }
-		DispPoint get_pos() const
+		VGPoint get_pos() const
 		{ return position; }
 		
 		
 	private:
-		DispPoint position;
+		VGPoint position;
 		int index; 
 		TextField* text_box_ptr;
 		
@@ -170,13 +170,13 @@ private:
 // Implements the Flyweight pattern.
 class NewLetter_Disp_Obj{
 public:
-	NewLetter_Disp_Obj(char ltr, int size, DispPoint pos, SDL_Color color);
+	NewLetter_Disp_Obj(char ltr, int size, VGPoint pos, SDL_Color color);
 	
 	void drawself(GUI::View *dest) const;
 	int get_width() const;
-	DispPoint get_pos() const
+	VGPoint get_pos() const
     { return position; }
-	void set_pos(DispPoint point)
+	void set_pos(VGPoint point)
     { position = point; }
 	
 	static int get_line_height() {
@@ -185,7 +185,7 @@ public:
 	
 	char get_ltr() const { return ltr; }
 private:
-	DispPoint position;
+	VGPoint position;
 	GUILetter* letter;
 	char ltr;
     int height;

@@ -24,7 +24,7 @@ namespace GUI {
 MsgNew::MsgNew(int w_, int h_, const std::string& msg_, Button_ctrs_t buttons_)
 :View(w_,h_), msg_text(new TextView(w_-10, h_-10)), buttons(buttons_)
 {    
-    attach_subview(msg_text, DispPoint(get_w()/2 - msg_text->get_w()/2, 5));
+    attach_subview(msg_text, VGPoint(get_w()/2 - msg_text->get_w()/2, 5));
    
     fill_with_color(color);
     set_msg(msg_);
@@ -43,7 +43,7 @@ void MsgNew::set_msg(const std::string msg_) {
 }
 void MsgNew::add_button(Button* button) {
     
-    attach_subview(button, DispPoint(get_w() - 180 - (int)buttons.size()*180, get_h()- 30));
+    attach_subview(button, VGPoint(get_w() - 180 - (int)buttons.size()*180, get_h()- 30));
     buttons.push_back(button);
 }
 

@@ -50,9 +50,9 @@ Window::Window(int w, int h, const string& name_,
     main_view = new View(w,h);
     main_view->mark_changed();
     
-   	Uint32 color = SDL_MapRGB(main_view->image->format, bg_color.r, 
+   	Uint32 color = SDL_MapRGB(main_view->get_image_ptr()->format, bg_color.r,
                               bg_color.g, bg_color.b);
-    SDL_FillRect(main_view->image, 0, color);
+    SDL_FillRect(main_view->get_image_ptr(), 0, color);
     
     refresh();
     
@@ -60,7 +60,7 @@ Window::Window(int w, int h, const string& name_,
     
 }
 
-DispPoint Window::get_dim() { return DispPoint(window->w, window->h); }
+VGPoint Window::get_dim() { return VGPoint(window->w, window->h); }
 
 
 void Window::resize(int w, int h) {
@@ -89,8 +89,8 @@ void Window::refresh() {
         main_view->refresh();
 
         // Using SDL, perform a blit from main_view to self.
-        SDL_Rect dest_rect = {0,0, static_cast<Uint16>(main_view->w), static_cast<Uint16>(main_view->h)};
-        SDL_BlitSurface(main_view->display, 0, window, &dest_rect);
+        SDL_Rect dest_rect = {0,0, static_cast<Uint16>(main_view->get_w()), static_cast<Uint16>(main_view->get_h())};
+        SDL_BlitSurface(main_view->get_display(), 0, window, &dest_rect);
 
         updateScreen(window);
         
@@ -126,17 +126,8 @@ void Window::refresh() {
 }
 
 
-void Window::attach_subview(View* view, DispPoint pos) {
+void Window::attach_subview(View* view, VGPoint pos) {
     main_view->attach_subview(view, pos);
 }
-void Window::move_subview(View* view, DispPoint pos) {
-    main_view->move_subview(view, pos);
-}
-void Window::remove_subview(View* view) {
-    main_view->remove_subview(view); 
-}
-View* Window::remove_last_subview() {
-    return main_view->remove_last_subview();
-}
-
+ 
 } // namespace GUI

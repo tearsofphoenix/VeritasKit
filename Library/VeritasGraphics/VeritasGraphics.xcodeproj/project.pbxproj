@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60D0E6481A50440000D001DE /* VeritasGraphics.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60D0E6471A50440000D001DE /* VeritasGraphics.h */; };
+		928701F81A5150B900ED7948 /* VGAffineTransform.c in Sources */ = {isa = PBXBuildFile; fileRef = 928701F71A5150B900ED7948 /* VGAffineTransform.c */; };
 		9287FF571A50E79A00ED7948 /* VGGeometry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF551A50E71800ED7948 /* VGGeometry.h */; };
 		9287FF581A50E79A00ED7948 /* VGBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF561A50E75100ED7948 /* VGBase.h */; };
 		9287FFBB1A50F86400ED7948 /* VGAffineTransform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */; };
@@ -50,6 +51,7 @@
 		60D0E6441A50440000D001DE /* libVeritasGraphics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasGraphics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		60D0E6471A50440000D001DE /* VeritasGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasGraphics.h; sourceTree = "<group>"; };
 		60D0E68A1A50441400D001DE /* VeritasFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasFoundation.xcodeproj; path = ../VeritasFoundation/VeritasFoundation.xcodeproj; sourceTree = "<group>"; };
+		928701F71A5150B900ED7948 /* VGAffineTransform.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGAffineTransform.c; sourceTree = "<group>"; };
 		9287FF551A50E71800ED7948 /* VGGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGGeometry.h; sourceTree = "<group>"; };
 		9287FF561A50E75100ED7948 /* VGBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGBase.h; sourceTree = "<group>"; };
 		9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VGAffineTransform.h; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				60D0E6471A50440000D001DE /* VeritasGraphics.h */,
 				9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */,
+				928701F71A5150B900ED7948 /* VGAffineTransform.c */,
 				9287FF551A50E71800ED7948 /* VGGeometry.h */,
 				9287FF561A50E75100ED7948 /* VGBase.h */,
 			);
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928701F81A5150B900ED7948 /* VGAffineTransform.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

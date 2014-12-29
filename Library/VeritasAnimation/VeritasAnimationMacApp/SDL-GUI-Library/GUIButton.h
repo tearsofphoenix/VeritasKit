@@ -47,34 +47,34 @@ protected:
     
     virtual void set_image(const GUIImage& image_) {
         image = image_;
-        if (!is_pressed && !is_hovered) draw_onto_self(image, DispPoint());
+        if (!is_pressed && !is_hovered) draw_onto_self(image, VGPoint());
     }
     virtual void set_hovered_image(const GUIImage& image_) {
         hovered_image = image_;
-        if (!is_pressed && is_hovered) draw_onto_self(hovered_image, DispPoint());
+        if (!is_pressed && is_hovered) draw_onto_self(hovered_image, VGPoint());
     }
     virtual void set_clicked_image(const GUIImage& image_) {
         clicked_image = image_;
-        if (is_pressed && is_hovered) draw_onto_self(clicked_image, DispPoint());
+        if (is_pressed && is_hovered) draw_onto_self(clicked_image, VGPoint());
     }
                                                         
     // Returns true if the mouse_down is finished being handled.
     // If returns false, handling will continue up the chain.
-    virtual bool handle_mouse_down(DispPoint coord) { 
+    virtual bool handle_mouse_down(VGPoint coord) {
         is_pressed = true;
-        draw_onto_self(clicked_image, DispPoint());
+        draw_onto_self(clicked_image, VGPoint());
         is_hovered = true;
         
         capture_focus();
         return true;
     }
-    virtual bool handle_mouse_up(DispPoint coord) { 
+    virtual bool handle_mouse_up(VGPoint coord) {
         // Only perform event on mouse release.
         lose_focus();
 
         if (is_pressed) {
             is_pressed = false;
-            draw_onto_self(image, DispPoint());
+            draw_onto_self(image, VGPoint());
             if (is_hovered) {
                 operation(); // Do what you were born to do!
             }
@@ -87,20 +87,20 @@ protected:
         else return false;
 
     }
-    virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion) { 
+    virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion) {
         // Only perform event on mouse release.
 
         if (is_pressed && !is_hovered && rel_point_is_on_me(coord)) {
-            draw_onto_self(clicked_image, DispPoint());
+            draw_onto_self(clicked_image, VGPoint());
             is_hovered = true;
         }
         else if (!is_pressed && !is_hovered && rel_point_is_on_me(coord)) {
-            draw_onto_self(hovered_image, DispPoint());
+            draw_onto_self(hovered_image, VGPoint());
             is_hovered = true;
             capture_focus();
         }
         else if (is_hovered && !rel_point_is_on_me(coord)) {
-            draw_onto_self(image, DispPoint());
+            draw_onto_self(image, VGPoint());
             is_hovered = false;
             if (!is_pressed)
                 lose_focus();
@@ -123,7 +123,7 @@ public:
         button_text = new TextView(get_w()-30, get_h());
         button_text->set_text(button_text_);
         button_text->set_text_size(16);
-        attach_subview(button_text, DispPoint(get_w()-button_text->get_w(), 0));
+        attach_subview(button_text, VGPoint(get_w()-button_text->get_w(), 0));
     }
     
     TextView* get_text_view() { return button_text; }

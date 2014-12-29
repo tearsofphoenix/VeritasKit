@@ -17,7 +17,7 @@ using std::string;
 using std::map; using std::pair;
 using std::cout; using std::endl;
 
-using GUI::Error; using GUI::DispPoint;
+using GUI::Error; using GUI::VGPoint;
 
 const char* const letters_file_path = "fonts/black/";
 
@@ -33,7 +33,7 @@ void GUILetter::drawself(SDL_Surface *dest, int x, int y) const{
 }
 void GUILetter::drawself(View *dest, int x, int y) const{
 	
-    dest->draw_onto_self((GUIImage&)image, DispPoint(x,y));
+    dest->draw_onto_self((GUIImage&)image, VGPoint(x,y));
 }
 int GUILetter::get_height() const {
 	return image->h;

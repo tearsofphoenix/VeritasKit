@@ -6,8 +6,5 @@
 //  Copyright (c) 2014 Lei. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface VeritasFoundation : NSObject
-
-@end
+#include <VeritasFoundation/VFBase.h>
+#include <VeritasFoundation/VFException.h>

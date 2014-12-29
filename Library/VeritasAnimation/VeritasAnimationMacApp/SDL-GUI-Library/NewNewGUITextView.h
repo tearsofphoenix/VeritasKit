@@ -61,8 +61,8 @@ private:
     
     LetterData prev;
     
-//    DispPoint pos_at_index(size_t i);
-	int index_at_pos(DispPoint pos_);
+//    VGPoint pos_at_index(size_t i);
+	int index_at_pos(VGPoint pos_);
 
 };
 

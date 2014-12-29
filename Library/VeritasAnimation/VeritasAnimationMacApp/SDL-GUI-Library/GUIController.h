@@ -16,16 +16,16 @@ namespace GUI {
     
 // This class is seperated out from GUI::View to allow creation of a class to 
 // receive mouse/key events without having to associate it with a displayed view.
-class Controller {
+class VIResponder {
 	
 public:	
-	virtual ~Controller() {}
+	virtual ~VIResponder() {}
 
     // Mouse Events. Following three functions all work the same:
     //  Return true if the mouse-event is finished being handled, false otherwise.
-    virtual bool handle_mouse_down(DispPoint coord) { return false; }
-    virtual bool handle_mouse_up(DispPoint coord) { return false; }
-    virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion) { return false; }
+    virtual bool handle_mouse_down(VGPoint coord) { return false; }
+    virtual bool handle_mouse_up(VGPoint coord) { return false; }
+    virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion) { return false; }
 
     //  up == true, down == false.
     virtual bool handle_mouse_scroll_start(bool up_down) { return false; }

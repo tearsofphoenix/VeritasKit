@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88E9C7192557B633322AAB2E /* VALayerImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 88E9CD21D0D0A54F49FCC98B /* VALayerImpl.cpp */; };
 		9287015A1A51022C00ED7948 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 928701591A51022C00ED7948 /* Images.xcassets */; };
 		9287015D1A51022C00ED7948 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9287015B1A51022C00ED7948 /* MainMenu.xib */; };
 		928701701A51024D00ED7948 /* Compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928700C21A50FE7D00ED7948 /* Compatibility.cpp */; };
@@ -42,9 +43,15 @@
 		928701B41A51038500ED7948 /* GUIImages in Resources */ = {isa = PBXBuildFile; fileRef = 928701B21A51038500ED7948 /* GUIImages */; };
 		928701B81A51040500ED7948 /* fake_lib1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928701B51A51040500ED7948 /* fake_lib1.cpp */; };
 		928701B91A51040500ED7948 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928701B71A51040500ED7948 /* main.cpp */; };
+		928701C41A51293900ED7948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 928701C31A51293900ED7948 /* AppDelegate.m */; };
+		928701C61A51293900ED7948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 928701C51A51293900ED7948 /* main.m */; };
+		928701C81A51293900ED7948 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 928701C71A51293900ED7948 /* Images.xcassets */; };
+		928701CB1A51293900ED7948 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 928701C91A51293900ED7948 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		88E9C0ABB76C6B2C608BABE7 /* VALayerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VALayerImpl.h; sourceTree = "<group>"; };
+		88E9CD21D0D0A54F49FCC98B /* VALayerImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VALayerImpl.cpp; sourceTree = "<group>"; };
 		928700C21A50FE7D00ED7948 /* Compatibility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Compatibility.cpp; sourceTree = "<group>"; };
 		928700C31A50FE7D00ED7948 /* Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Compatibility.h; sourceTree = "<group>"; };
 		928700C41A50FE7D00ED7948 /* GameDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameDisplay.cpp; sourceTree = "<group>"; };
@@ -115,6 +122,13 @@
 		928701B51A51040500ED7948 /* fake_lib1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fake_lib1.cpp; sourceTree = "<group>"; };
 		928701B61A51040500ED7948 /* fake_lib1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fake_lib1.h; sourceTree = "<group>"; };
 		928701B71A51040500ED7948 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		928701BE1A51293900ED7948 /* Mine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		928701C11A51293900ED7948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		928701C21A51293900ED7948 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		928701C31A51293900ED7948 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		928701C51A51293900ED7948 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		928701C71A51293900ED7948 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		928701CA1A51293900ED7948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +145,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		928701BB1A51293900ED7948 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -140,6 +161,7 @@
 				928701951A5102B200ED7948 /* Cocoa.framework */,
 				928700C01A50FE7D00ED7948 /* SDL-GUI-Library */,
 				928701511A51022C00ED7948 /* MacApp */,
+				928701BF1A51293900ED7948 /* Mine */,
 				928700B71A50FE5600ED7948 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -148,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				928701501A51022C00ED7948 /* MacApp.app */,
+				928701BE1A51293900ED7948 /* Mine.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,6 +236,8 @@
 				928701161A50FE7D00ED7948 /* README.md */,
 				9287011B1A50FE7D00ED7948 /* SDLMain.h */,
 				9287011C1A50FE7D00ED7948 /* SDLMain.m */,
+				88E9CD21D0D0A54F49FCC98B /* VALayerImpl.cpp */,
+				88E9C0ABB76C6B2C608BABE7 /* VALayerImpl.h */,
 			);
 			path = "SDL-GUI-Library";
 			sourceTree = "<group>";
@@ -250,6 +275,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		928701BF1A51293900ED7948 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				928701C21A51293900ED7948 /* AppDelegate.h */,
+				928701C31A51293900ED7948 /* AppDelegate.m */,
+				928701C71A51293900ED7948 /* Images.xcassets */,
+				928701C91A51293900ED7948 /* MainMenu.xib */,
+				928701C01A51293900ED7948 /* Supporting Files */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		928701C01A51293900ED7948 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				928701C11A51293900ED7948 /* Info.plist */,
+				928701C51A51293900ED7948 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -270,6 +316,23 @@
 			productReference = 928701501A51022C00ED7948 /* MacApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		928701BD1A51293900ED7948 /* Mine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 928701DC1A51293900ED7948 /* Build configuration list for PBXNativeTarget "Mine" */;
+			buildPhases = (
+				928701BA1A51293900ED7948 /* Sources */,
+				928701BB1A51293900ED7948 /* Frameworks */,
+				928701BC1A51293900ED7948 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mine;
+			productName = Mine;
+			productReference = 928701BE1A51293900ED7948 /* Mine.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -280,6 +343,9 @@
 				ORGANIZATIONNAME = NewGrace;
 				TargetAttributes = {
 					9287014F1A51022C00ED7948 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					928701BD1A51293900ED7948 = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
@@ -298,6 +364,7 @@
 			projectRoot = "";
 			targets = (
 				9287014F1A51022C00ED7948 /* MacApp */,
+				928701BD1A51293900ED7948 /* Mine */,
 			);
 		};
 /* End PBXProject section */
@@ -311,6 +378,15 @@
 				9287015A1A51022C00ED7948 /* Images.xcassets in Resources */,
 				928701B31A51038500ED7948 /* GUIFonts in Resources */,
 				9287015D1A51022C00ED7948 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		928701BC1A51293900ED7948 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				928701C81A51293900ED7948 /* Images.xcassets in Resources */,
+				928701CB1A51293900ED7948 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +422,16 @@
 				928701831A51024D00ED7948 /* GUIWindow.cpp in Sources */,
 				928701841A51024D00ED7948 /* Letter.cpp in Sources */,
 				928701851A51024D00ED7948 /* NewNewGUITextView.cpp in Sources */,
+				88E9C7192557B633322AAB2E /* VALayerImpl.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		928701BA1A51293900ED7948 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				928701C61A51293900ED7948 /* main.m in Sources */,
+				928701C41A51293900ED7948 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +442,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				9287015C1A51022C00ED7948 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		928701C91A51293900ED7948 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				928701CA1A51293900ED7948 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -483,6 +577,34 @@
 			};
 			name = Release;
 		};
+		928701D81A51293900ED7948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Mine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		928701D91A51293900ED7948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Mine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -500,6 +622,15 @@
 			buildConfigurations = (
 				9287016B1A51022C00ED7948 /* Debug */,
 				9287016C1A51022C00ED7948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		928701DC1A51293900ED7948 /* Build configuration list for PBXNativeTarget "Mine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				928701D81A51293900ED7948 /* Debug */,
+				928701D91A51293900ED7948 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

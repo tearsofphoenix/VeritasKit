@@ -169,18 +169,18 @@ void TextView::remove_letter_no_redraw(int index){
 
 
 
-DispPoint TextView::pos_at_index(size_t i){
+VGPoint TextView::pos_at_index(size_t i){
 	
-	DispPoint position;
+	VGPoint position;
 	if (i == 0){
-		position = DispPoint(3,0);
+		position = VGPoint(3,0);
 	}
 	else {
 //        if (i >= letters.size()) throw Error("TextView: Couldn't get position -- index out of range");
         
 		const NewLetter_Disp_Obj& letter = letters[i-1];
 		int width = letter.get_width();
-		position = DispPoint(letter.get_pos().x + width + 1, 
+		position = VGPoint(letter.get_pos().x + width + 1,
 							 letter.get_pos().y);
 		
         if (!resizeable_right && position.x + width >= get_w()){
@@ -191,7 +191,7 @@ DispPoint TextView::pos_at_index(size_t i){
 	}
 	return position;
 }
-int TextView::index_at_pos(DispPoint pos_){
+int TextView::index_at_pos(VGPoint pos_){
 	if (letters.empty()){
 		return 0;
 	}
@@ -239,7 +239,7 @@ TextField::TextField(int w_, int h_,
 :TextView(w_,h_, resizeable_down_, resizeable_right_),
 key_is_held(false), modifiers_held(KMOD_NONE), cursor(new Cursor(this)), flicker(false)
 {        
-    attach_subview(cursor, DispPoint(-1,0)); // start it out off screen.
+    attach_subview(cursor, VGPoint(-1,0)); // start it out off screen.
     
     App::get()->repeat_on_timer(bind(&TextField::handle_key_held, this), 0.05);
 //    App::get()->repeat_on_timer(bind(&TextField::blink_cursor, this), 0.5);
@@ -252,7 +252,7 @@ void TextField::blink_cursor() {
         attach_subview(cursor, cursor->get_rel_pos());
     }
     else {
-        remove_subview(cursor);
+        cursor->removeFromSuperView();
     }
     flicker = !flicker;
 }
@@ -350,7 +350,7 @@ void TextField::handle_modifier(SDLMod mod){
 }
 
 
-bool TextField::handle_mouse_down(DispPoint pos_){
+bool TextField::handle_mouse_down(VGPoint pos_){
 	
     if (!rel_point_is_on_me(pos_)) {
         lose_focus();
@@ -377,7 +377,7 @@ static char SDL_to_a(SDLKey key){
 
 void TextField::lost_focus() {
     cout << "LOSTTTTT FOCUSSSSS" << endl;
-    move_subview(cursor, DispPoint(-100,-100));
+    move_subview(cursor, VGPoint(-100,-100));
     update();
 }
 
@@ -406,7 +406,7 @@ void TextField::Cursor::move_left(){
 }
 void TextField::Cursor::move_up(){
 	
-	DispPoint new_pos = position;
+	VGPoint new_pos = position;
 	new_pos.y -= NewLetter_Disp_Obj::get_line_height();
 	
 	int new_index = text_box_ptr->index_at_pos(new_pos);
@@ -414,7 +414,7 @@ void TextField::Cursor::move_up(){
 	move_to(new_index);
 }
 void TextField::Cursor::move_down(){
-	DispPoint new_pos = position;
+	VGPoint new_pos = position;
 	new_pos.y += NewLetter_Disp_Obj::get_line_height();
 	
 	int new_index = text_box_ptr->index_at_pos(new_pos);
@@ -468,12 +468,12 @@ TextBox::TextBox(int w_, int h_)
 
     fill_with_color(field_bg_color);
 
-//    attach_subview(field, DispPoint(2,2));
+//    attach_subview(field, VGPoint(2,2));
    
-//    draw_onto_self(GUIImage("GUIImages/corner0.bmp"), DispPoint(0,    0));
-//    draw_onto_self(GUIImage("GUIImages/corner1.bmp"), DispPoint(w_-5, 0));
-//    draw_onto_self(GUIImage("GUIImages/corner2.bmp"), DispPoint(w_-5, h_-5));
-//    draw_onto_self(GUIImage("GUIImages/corner3.bmp"), DispPoint(0,    h_-5));
+//    draw_onto_self(GUIImage("GUIImages/corner0.bmp"), VGPoint(0,    0));
+//    draw_onto_self(GUIImage("GUIImages/corner1.bmp"), VGPoint(w_-5, 0));
+//    draw_onto_self(GUIImage("GUIImages/corner2.bmp"), VGPoint(w_-5, h_-5));
+//    draw_onto_self(GUIImage("GUIImages/corner3.bmp"), VGPoint(0,    h_-5));
 
     // *** OUT OF DATE: Mask works, just need to save it and expose color changing! :)
     // Should ideally use a mask layer instead so that bg color could be changed,
@@ -484,16 +484,16 @@ TextBox::TextBox(int w_, int h_)
     mask->fill_with_color(mask_clear);
     mask->set_clear_color(mask_clear);
     
-    mask->draw_onto_self(GUIImage("GUIImages/corner0.bmp"), DispPoint(0,    0));
-    mask->draw_onto_self(GUIImage("GUIImages/corner1.bmp"), DispPoint(w_-5, 0));
-    mask->draw_onto_self(GUIImage("GUIImages/corner2.bmp"), DispPoint(w_-5, h_-5));
-    mask->draw_onto_self(GUIImage("GUIImages/corner3.bmp"), DispPoint(0,    h_-5));
+    mask->draw_onto_self(GUIImage("GUIImages/corner0.bmp"), VGPoint(0,    0));
+    mask->draw_onto_self(GUIImage("GUIImages/corner1.bmp"), VGPoint(w_-5, 0));
+    mask->draw_onto_self(GUIImage("GUIImages/corner2.bmp"), VGPoint(w_-5, h_-5));
+    mask->draw_onto_self(GUIImage("GUIImages/corner3.bmp"), VGPoint(0,    h_-5));
  
-    attach_subview(mask, DispPoint(0,0));
+    attach_subview(mask, VGPoint(0,0));
 
     
     // .. jokes.
-    attach_subview(field, DispPoint(2,2));
+    attach_subview(field, VGPoint(2,2));
 
 }
 
@@ -505,7 +505,7 @@ TextBox::TextBox(int w_, int h_)
 int NewLetter_Disp_Obj::line_height = 0;
 
 
-NewLetter_Disp_Obj::NewLetter_Disp_Obj(char ltr, int size, DispPoint pos, SDL_Color color)
+NewLetter_Disp_Obj::NewLetter_Disp_Obj(char ltr, int size, VGPoint pos, SDL_Color color)
 :position(pos), ltr(ltr), height(size)
 {
 	letter = GUILetter::get_letter(ltr, size, color);

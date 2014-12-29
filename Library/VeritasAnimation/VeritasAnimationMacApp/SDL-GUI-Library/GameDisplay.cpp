@@ -12,7 +12,7 @@ using std::string;
 using std::cout; using std::endl;
 
 using GUI::Error;
-using GUI::DispPoint;
+using GUI::VGPoint;
 
 
 const int c_char_image_length = 17;
@@ -117,7 +117,7 @@ void ShowBMP(string file, SDL_Surface *screen, SDL_Rect rect, bool update)
 
 
 
-void display_image (const SDL_Surface *src, SDL_Surface *dest, DispPoint pos, bool update, SDL_Rect rect){
+void display_image (const SDL_Surface *src, SDL_Surface *dest, VGPoint pos, bool update, SDL_Rect rect){
 	
 	display_image (src, dest, pos.x, pos.y, update, rect);
 }

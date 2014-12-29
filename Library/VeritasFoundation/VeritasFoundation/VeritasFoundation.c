@@ -6,8 +6,4 @@
 //  Copyright (c) 2014 Lei. All rights reserved.
 //
 
-#import "VeritasFoundation.h"
-
-@implementation VeritasFoundation
-
-@end
+#include "VeritasFoundation.h"

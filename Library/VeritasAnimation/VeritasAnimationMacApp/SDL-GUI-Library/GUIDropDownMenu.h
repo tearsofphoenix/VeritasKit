@@ -41,15 +41,15 @@ private:
     View *menu;
     
     bool clicked;
-    DispPoint pre_click_pos;
+    VGPoint pre_click_pos;
     
     // Mouse Events. Following three functions all work the same:
     //  Returns true if the mouse-event is finished being handled.
     //  If returns false, handling will continue up the chain.
     //  May optionally call capture_focus() to become the target for keypresses.
-    virtual bool handle_mouse_down(DispPoint coord);
-    virtual bool handle_mouse_up(DispPoint coord);
-    virtual bool handle_mouse_motion(DispPoint coord, DispPoint rel_motion);
+    virtual bool handle_mouse_down(VGPoint coord);
+    virtual bool handle_mouse_up(VGPoint coord);
+    virtual bool handle_mouse_motion(VGPoint coord, VGPoint rel_motion);
 
     friend class MenuEntry;
     

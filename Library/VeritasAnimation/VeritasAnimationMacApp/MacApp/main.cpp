@@ -91,19 +91,20 @@ public:
         fill_with_color(bg);
         
         GUI::TextView *msg = new GUI::TextView(425, 50);
-        attach_subview(msg, GUI::DispPoint(12,20));
+        attach_subview(msg, GUI::VGPoint(12,20));
         msg->set_text(get_msg(e));
         msg->set_text_size(18);
         
         GUI::TextView *dismiss_text = new GUI::TextView(425, 25);
-        attach_subview(dismiss_text, GUI::DispPoint(140,50));
+        attach_subview(dismiss_text, GUI::VGPoint(140,50));
         dismiss_text->set_text("(Click this box to dismiss)");
         dismiss_text->set_text_size(10);
     }
 private:
     
-    virtual bool handle_mouse_down(GUI::DispPoint coord) {
-        get_parent()->remove_subview(this);
+    virtual bool handle_mouse_down(GUI::VGPoint coord) {
+        this->removeFromSuperView();
+
         delete this;    // Self deletion! :D
         return true;
     }
@@ -130,7 +131,7 @@ struct Display_Error {
         
         GUI::View *error_msg = new ErrorMsg(e);
         
-        GUI::DispPoint center(view->get_w()/2 - error_msg->get_w()/2,
+        GUI::VGPoint center(view->get_w()/2 - error_msg->get_w()/2,
                          view->get_h()/2 - error_msg->get_h()/2);
         
         view->attach_subview(error_msg, center);
@@ -158,20 +159,20 @@ int main(int argc, char **argv) {
     GUI::View *view = new GUI::View(800,600);
     view->fill_with_color(bg);
     
-    window.attach_subview(view, GUI::DispPoint(0,0));
+    window.attach_subview(view, GUI::VGPoint(0,0));
     
     
     // Create the Questions
     view->attach_subview(new EntryForm("Please enter your name: ", "Your name is: "),
-                         GUI::DispPoint(15, 50));
+                         GUI::VGPoint(15, 50));
     
     view->attach_subview(new EntryForm("Date of birth (\"Mmm dd yyyy\"): ",
                                        "Your age is: ", get_age),
-                         GUI::DispPoint(15, 200));
+                         GUI::VGPoint(15, 200));
     
     view->attach_subview(new EntryForm("Please enter your age: ",
                                        "Your date of birth is: ", get_birthdate),
-                         GUI::DispPoint(15, 350));
+                         GUI::VGPoint(15, 350));
     
     // Register Error Handlers
     // In this case, both types of errors use the same Error Handler,
@@ -250,14 +251,14 @@ void EntryForm::initialize(const string &prompt_text, const string &answer_text,
     prompt->set_text(prompt_text);
     prompt->set_text_size(text_size);
     
-    attach_subview(prompt, GUI::DispPoint(50,25));
+    attach_subview(prompt, GUI::VGPoint(50,25));
     
     
     // Add a Text Box to enter a string
     GUI::TextBox *text_box = new GUI::TextBox(field_w,field_h);
     text_box->set_text_size(text_size);
     
-    attach_subview(text_box, GUI::DispPoint(50,50));
+    attach_subview(text_box, GUI::VGPoint(50,50));
     
     
     // Add a Text View to show answer_text.
@@ -265,14 +266,14 @@ void EntryForm::initialize(const string &prompt_text, const string &answer_text,
     name_display1->set_text(answer_text);
     name_display1->set_text_size(text_size);
     
-    attach_subview(name_display1, GUI::DispPoint(150,100));
+    attach_subview(name_display1, GUI::VGPoint(150,100));
     
     
     // Add a Text View to display result.
     GUI::TextView *name_display2 = new GUI::TextView(field_w, field_h);
     name_display2->set_text_size(text_size);
     
-    attach_subview(name_display2, GUI::DispPoint(100 + name_display1->get_w(), 100));
+    attach_subview(name_display2, GUI::VGPoint(100 + name_display1->get_w(), 100));
     
     
     // Add a Button to accept input and display it in result.
@@ -281,7 +282,7 @@ void EntryForm::initialize(const string &prompt_text, const string &answer_text,
                                          bind(&GUI::TextBox::get_text, text_box))));
     accept->set_text("Go");
     
-    attach_subview(accept, GUI::DispPoint(100 + text_box->get_w(),
+    attach_subview(accept, GUI::VGPoint(100 + text_box->get_w(),
                                      50 + text_box->get_h()/2 - accept->get_h()/2));
     
 }
