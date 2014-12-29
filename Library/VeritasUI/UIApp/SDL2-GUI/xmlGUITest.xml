@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<window>
+	<layout id="testLayout" x="10" y="20" width="10" height="4" >
+			<button id="secondButton" x="400" y="100" width="100" height="50" texture="buttonTest.jpg">
+			</button>
+	</layout>
+	<button id="secondButtontwo" x="250" y="50" width="100" texture="testButton.bmp">
+	</button>
+	<button id="thirdButton" x="300" y="50" width="100" height="50" texture="testButton.bmp">
+	</button>
+	<button id="fourthButton" x="400" y="50" width="60" texture="render.bmp">
+	</button>
+	<button id="fifthButton" x="500" y="50" width="60" height="30" texture="render.bmp">
+	</button>
+	<text_box id="secondButton" x="0" y="100" width="1200" height="100">Here is some text. I am going to write a 
+		whole bunch of goddamn text to prove that this works really well and that I can use this to write tons of multine text
+		that no matter what I do I have a ton of text that is available to me and that I can print what ever I want to the screen
+		and that it will be rendered properly without any bullshit. I need more text to render so that I can prove the performance of this text is going to be appropriate for the type of rendering that I want to support. kjdhfksldjhfkalsjdkasl dskfhslkafj dkfjshlfkjahsdfkjhdfkjhsdkfjhakjdh dskfjhskfh skdjfhskljfh skdfhskfh skldjhfskljfh skldjfhskdjfh skdjfhskfhslkjd fsdkjhf sdfkhsfdlkshfklshdfkshdfks dfksdhfksd fkshdfjsdhfkshfdks fhsdf sd fshd fhskfhskdf sf sd fksdhfkshfs fs fkskd fks dfshdfkjsdhf</text_box>
+</window>

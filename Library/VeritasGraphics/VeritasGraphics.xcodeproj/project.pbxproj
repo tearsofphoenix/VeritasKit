@@ -9,9 +9,32 @@
 /* Begin PBXBuildFile section */
 		60D0E6481A50440000D001DE /* VeritasGraphics.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60D0E6471A50440000D001DE /* VeritasGraphics.h */; };
 		928701F81A5150B900ED7948 /* VGAffineTransform.c in Sources */ = {isa = PBXBuildFile; fileRef = 928701F71A5150B900ED7948 /* VGAffineTransform.c */; };
+		928702701A51859F00ED7948 /* VGColor.c in Sources */ = {isa = PBXBuildFile; fileRef = 9287026E1A51859F00ED7948 /* VGColor.c */; };
 		9287FF571A50E79A00ED7948 /* VGGeometry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF551A50E71800ED7948 /* VGGeometry.h */; };
 		9287FF581A50E79A00ED7948 /* VGBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF561A50E75100ED7948 /* VGBase.h */; };
 		9287FFBB1A50F86400ED7948 /* VGAffineTransform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */; };
+		9297412D1A51994400A2A378 /* VGContext.c in Sources */ = {isa = PBXBuildFile; fileRef = 9297412B1A51994400A2A378 /* VGContext.c */; };
+		9297412E1A51995F00A2A378 /* VGContext.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9297412C1A51994400A2A378 /* VGContext.h */; };
+		9297412F1A51996200A2A378 /* VGColor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287026F1A51859F00ED7948 /* VGColor.h */; };
+		929741311A519ADF00A2A378 /* VGGeometry.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741301A519ADF00A2A378 /* VGGeometry.c */; };
+		929741361A519F4F00A2A378 /* VGColorSpace.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741341A519F4F00A2A378 /* VGColorSpace.c */; };
+		929741371A519F6D00A2A378 /* VGColorSpace.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741351A519F4F00A2A378 /* VGColorSpace.h */; };
+		9297413A1A519F9300A2A378 /* VGFont.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741381A519F9300A2A378 /* VGFont.c */; };
+		9297413B1A519F9E00A2A378 /* VGFont.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741391A519F9300A2A378 /* VGFont.h */; };
+		9297413E1A519FBD00A2A378 /* VGGradient.c in Sources */ = {isa = PBXBuildFile; fileRef = 9297413C1A519FBD00A2A378 /* VGGradient.c */; };
+		929741411A519FD200A2A378 /* VGImage.c in Sources */ = {isa = PBXBuildFile; fileRef = 9297413F1A519FD200A2A378 /* VGImage.c */; };
+		929741441A519FE200A2A378 /* VGPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741421A519FE200A2A378 /* VGPath.c */; };
+		929741471A519FFB00A2A378 /* VGPattern.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741451A519FFB00A2A378 /* VGPattern.c */; };
+		9297414A1A51A00800A2A378 /* VGShading.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741481A51A00800A2A378 /* VGShading.c */; };
+		9297414B1A51A02200A2A378 /* VGGradient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9297413D1A519FBD00A2A378 /* VGGradient.h */; };
+		9297414C1A51A02200A2A378 /* VGImage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741401A519FD200A2A378 /* VGImage.h */; };
+		9297414D1A51A02200A2A378 /* VGPath.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741431A519FE200A2A378 /* VGPath.h */; };
+		9297414E1A51A02200A2A378 /* VGPattern.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741461A519FFB00A2A378 /* VGPattern.h */; };
+		9297414F1A51A02200A2A378 /* VGShading.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741491A51A00800A2A378 /* VGShading.h */; };
+		929741521A51A2FE00A2A378 /* VGDataProvider.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741501A51A2FE00A2A378 /* VGDataProvider.c */; };
+		929741531A51A37100A2A378 /* VGDataProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741511A51A2FE00A2A378 /* VGDataProvider.h */; };
+		929741561A51A63400A2A378 /* VGFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741541A51A63300A2A378 /* VGFunction.c */; };
+		929741571A51A66900A2A378 /* VGFunction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741551A51A63400A2A378 /* VGFunction.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +61,17 @@
 			dstPath = VeritasGraphics;
 			dstSubfolderSpec = 16;
 			files = (
+				929741571A51A66900A2A378 /* VGFunction.h in CopyFiles */,
+				929741531A51A37100A2A378 /* VGDataProvider.h in CopyFiles */,
+				9297414B1A51A02200A2A378 /* VGGradient.h in CopyFiles */,
+				9297414C1A51A02200A2A378 /* VGImage.h in CopyFiles */,
+				9297414D1A51A02200A2A378 /* VGPath.h in CopyFiles */,
+				9297414E1A51A02200A2A378 /* VGPattern.h in CopyFiles */,
+				9297414F1A51A02200A2A378 /* VGShading.h in CopyFiles */,
+				9297413B1A519F9E00A2A378 /* VGFont.h in CopyFiles */,
+				929741371A519F6D00A2A378 /* VGColorSpace.h in CopyFiles */,
+				9297412F1A51996200A2A378 /* VGColor.h in CopyFiles */,
+				9297412E1A51995F00A2A378 /* VGContext.h in CopyFiles */,
 				9287FFBB1A50F86400ED7948 /* VGAffineTransform.h in CopyFiles */,
 				9287FF571A50E79A00ED7948 /* VGGeometry.h in CopyFiles */,
 				9287FF581A50E79A00ED7948 /* VGBase.h in CopyFiles */,
@@ -52,9 +86,32 @@
 		60D0E6471A50440000D001DE /* VeritasGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasGraphics.h; sourceTree = "<group>"; };
 		60D0E68A1A50441400D001DE /* VeritasFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasFoundation.xcodeproj; path = ../VeritasFoundation/VeritasFoundation.xcodeproj; sourceTree = "<group>"; };
 		928701F71A5150B900ED7948 /* VGAffineTransform.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGAffineTransform.c; sourceTree = "<group>"; };
+		9287026E1A51859F00ED7948 /* VGColor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGColor.c; sourceTree = "<group>"; };
+		9287026F1A51859F00ED7948 /* VGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGColor.h; sourceTree = "<group>"; };
 		9287FF551A50E71800ED7948 /* VGGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGGeometry.h; sourceTree = "<group>"; };
 		9287FF561A50E75100ED7948 /* VGBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGBase.h; sourceTree = "<group>"; };
 		9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VGAffineTransform.h; sourceTree = "<group>"; };
+		9297412B1A51994400A2A378 /* VGContext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGContext.c; sourceTree = "<group>"; };
+		9297412C1A51994400A2A378 /* VGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGContext.h; sourceTree = "<group>"; };
+		929741301A519ADF00A2A378 /* VGGeometry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGGeometry.c; sourceTree = "<group>"; };
+		929741341A519F4F00A2A378 /* VGColorSpace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGColorSpace.c; sourceTree = "<group>"; };
+		929741351A519F4F00A2A378 /* VGColorSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGColorSpace.h; sourceTree = "<group>"; };
+		929741381A519F9300A2A378 /* VGFont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGFont.c; sourceTree = "<group>"; };
+		929741391A519F9300A2A378 /* VGFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGFont.h; sourceTree = "<group>"; };
+		9297413C1A519FBD00A2A378 /* VGGradient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGGradient.c; sourceTree = "<group>"; };
+		9297413D1A519FBD00A2A378 /* VGGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGGradient.h; sourceTree = "<group>"; };
+		9297413F1A519FD200A2A378 /* VGImage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGImage.c; sourceTree = "<group>"; };
+		929741401A519FD200A2A378 /* VGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGImage.h; sourceTree = "<group>"; };
+		929741421A519FE200A2A378 /* VGPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGPath.c; sourceTree = "<group>"; };
+		929741431A519FE200A2A378 /* VGPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGPath.h; sourceTree = "<group>"; };
+		929741451A519FFB00A2A378 /* VGPattern.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGPattern.c; sourceTree = "<group>"; };
+		929741461A519FFB00A2A378 /* VGPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGPattern.h; sourceTree = "<group>"; };
+		929741481A51A00800A2A378 /* VGShading.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGShading.c; sourceTree = "<group>"; };
+		929741491A51A00800A2A378 /* VGShading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGShading.h; sourceTree = "<group>"; };
+		929741501A51A2FE00A2A378 /* VGDataProvider.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGDataProvider.c; sourceTree = "<group>"; };
+		929741511A51A2FE00A2A378 /* VGDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGDataProvider.h; sourceTree = "<group>"; };
+		929741541A51A63300A2A378 /* VGFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGFunction.c; sourceTree = "<group>"; };
+		929741551A51A63400A2A378 /* VGFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGFunction.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,10 +146,33 @@
 			isa = PBXGroup;
 			children = (
 				60D0E6471A50440000D001DE /* VeritasGraphics.h */,
-				9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */,
 				928701F71A5150B900ED7948 /* VGAffineTransform.c */,
-				9287FF551A50E71800ED7948 /* VGGeometry.h */,
+				9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */,
 				9287FF561A50E75100ED7948 /* VGBase.h */,
+				9287026E1A51859F00ED7948 /* VGColor.c */,
+				9287026F1A51859F00ED7948 /* VGColor.h */,
+				929741341A519F4F00A2A378 /* VGColorSpace.c */,
+				929741351A519F4F00A2A378 /* VGColorSpace.h */,
+				9297412B1A51994400A2A378 /* VGContext.c */,
+				9297412C1A51994400A2A378 /* VGContext.h */,
+				929741501A51A2FE00A2A378 /* VGDataProvider.c */,
+				929741511A51A2FE00A2A378 /* VGDataProvider.h */,
+				929741381A519F9300A2A378 /* VGFont.c */,
+				929741391A519F9300A2A378 /* VGFont.h */,
+				929741301A519ADF00A2A378 /* VGGeometry.c */,
+				9287FF551A50E71800ED7948 /* VGGeometry.h */,
+				9297413C1A519FBD00A2A378 /* VGGradient.c */,
+				9297413D1A519FBD00A2A378 /* VGGradient.h */,
+				9297413F1A519FD200A2A378 /* VGImage.c */,
+				929741401A519FD200A2A378 /* VGImage.h */,
+				929741421A519FE200A2A378 /* VGPath.c */,
+				929741431A519FE200A2A378 /* VGPath.h */,
+				929741451A519FFB00A2A378 /* VGPattern.c */,
+				929741461A519FFB00A2A378 /* VGPattern.h */,
+				929741481A51A00800A2A378 /* VGShading.c */,
+				929741491A51A00800A2A378 /* VGShading.h */,
+				929741541A51A63300A2A378 /* VGFunction.c */,
+				929741551A51A63400A2A378 /* VGFunction.h */,
 			);
 			path = VeritasGraphics;
 			sourceTree = "<group>";
@@ -179,7 +259,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929741441A519FE200A2A378 /* VGPath.c in Sources */,
+				928702701A51859F00ED7948 /* VGColor.c in Sources */,
 				928701F81A5150B900ED7948 /* VGAffineTransform.c in Sources */,
+				929741521A51A2FE00A2A378 /* VGDataProvider.c in Sources */,
+				929741411A519FD200A2A378 /* VGImage.c in Sources */,
+				929741311A519ADF00A2A378 /* VGGeometry.c in Sources */,
+				929741471A519FFB00A2A378 /* VGPattern.c in Sources */,
+				9297413E1A519FBD00A2A378 /* VGGradient.c in Sources */,
+				9297414A1A51A00800A2A378 /* VGShading.c in Sources */,
+				9297413A1A519F9300A2A378 /* VGFont.c in Sources */,
+				9297412D1A51994400A2A378 /* VGContext.c in Sources */,
+				929741561A51A63400A2A378 /* VGFunction.c in Sources */,
+				929741361A519F4F00A2A378 /* VGColorSpace.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

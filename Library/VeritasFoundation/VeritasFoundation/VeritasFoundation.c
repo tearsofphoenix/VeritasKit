@@ -7,3 +7,19 @@
 //
 
 #include "VeritasFoundation.h"
+#include <stdio.h>
+
+void VFLog(const char*format, ...)
+{
+    va_list ap;
+    va_start(ap, format);
+    
+    VFLogv(format, ap);
+    
+    va_end(ap);
+}
+
+void VFLogv(const char* format, va_list args)
+{
+    vprintf(format, args);
+}

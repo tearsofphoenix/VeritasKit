@@ -9,17 +9,19 @@
 #include "VALayer.h"
 #include "VALayerImpl.h"
 
-// ---- implementation ----
 
 #include <CoreFoundation/CFBase.h>
 #include <CoreFoundation/CFString.h>
 #include <VeritasFoundation/CFRuntime.h>
 
+typedef struct __VALayer * VAMutableLayerRef;
+
 struct __VALayer {
     CFRuntimeBase _base;
     struct _VALayerIvars {
         int32_t refcount;
-        uint32_t magic;
+        unsigned int needDisplay: 1;
+        unsigned int reserved: 31;
         VALayerImplRef layer;
         VALayerRef superlayer;
         CFMutableArrayRef sublayers;
@@ -320,3 +322,53 @@ void VALayerReplaceSublayer(VALayerRef self, VALayerRef layer, VALayerRef layer2
         VALayerSetSuperlayer(layer2, self);
     }
 }
+
+void VALayerDisplay(VALayerRef layer)
+{
+    VALayerDrawInContext(layer, NULL);
+}
+
+void VALayerSetNeedsDisplay(VALayerRef layer)
+{
+    VALayerSetNeedsDisplayInRect(layer, VALayerGetBounds(layer));
+}
+
+void VALayerSetNeedsDisplayInRect(VALayerRef layer, VGRect r)
+{
+    ((VAMutableLayerRef)layer)->_attr.needDisplay = true;
+}
+
+/* Returns true when the layer is marked as needing redrawing. */
+
+Boolean VALayerNeedsDisplay(VALayerRef layer)
+{
+    return layer->_attr.needDisplay;
+}
+
+/* Call -display if receiver is marked as needing redrawing. */
+
+void VALayerDisplayIfNeeded(VALayerRef layer)
+{
+    if (VALayerNeedsDisplay(layer))
+    {
+        VALayerDisplay(layer);
+    }
+}
+
+void VALayerDrawInContext(VALayerRef layer, VGContextRef ctx)
+{
+    
+}
+
+void VALayerRenderInContext(VALayerRef layer, VGContextRef ctx)
+{
+    CFArrayRef sublayers = layer->_attr.sublayers;
+    CFIndex count = CFArrayGetCount(sublayers);
+    
+    for (CFIndex i = 0; i < count; ++i)
+    {
+        VALayerRef l = CFArrayGetValueAtIndex(sublayers, i);
+        VALayerRenderInContext(l, ctx);
+    }
+}
+

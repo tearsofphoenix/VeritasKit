@@ -11,9 +11,9 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <VeritasAnimation/VATransform3D.h>
+#include <VeritasGraphics/VGContext.h>
 
 typedef const struct __VALayer * VALayerRef;
-typedef struct __VALayer * VAMutableLayerRef;
 
 VA_EXTERN CFTypeID VALayerGetTypeID(void);
 
@@ -98,5 +98,45 @@ VA_EXTERN void VALayerInsertSublayerAbove(VALayerRef layer, VALayerRef insertLay
  * 'layer2' if non-nil in its position. If the superlayer of 'layer'
  * is not the receiver, the behavior is undefined. */
 VA_EXTERN void VALayerReplaceSublayer(VALayerRef layer, VALayerRef l1, VALayerRef l2);
+
+/* Reload the content of this layer. Calls the -drawInContext: method
+ * then updates the `contents' property of the layer. Typically this is
+ * not called directly. */
+
+VA_EXTERN void VALayerDisplay(VALayerRef layer);
+
+/* Marks that -display needs to be called before the layer is next
+ * committed. If a region is specified, only that region of the layer
+ * is invalidated. */
+
+VA_EXTERN void VALayerSetNeedsDisplay(VALayerRef layer);
+VA_EXTERN void VALayerSetNeedsDisplayInRect(VALayerRef layer, VGRect r);
+
+/* Returns true when the layer is marked as needing redrawing. */
+
+VA_EXTERN Boolean VALayerNeedsDisplay(VALayerRef layer);
+
+/* Call -display if receiver is marked as needing redrawing. */
+
+VA_EXTERN void VALayerDisplayIfNeeded(VALayerRef layer);
+
+
+/* Called via the -display method when the `contents' property is being
+ * updated. Default implementation does nothing. The context may be
+ * clipped to protect valid layer content. Subclasses that wish to find
+ * the actual region to draw can call CGContextGetClipBoundingBox(). */
+
+VA_EXTERN void VALayerDrawInContext(VALayerRef layer, VGContextRef ctx);
+
+/** Rendering properties and methods. **/
+
+/* Renders the receiver and its sublayers into 'ctx'. This method
+ * renders directly from the layer tree. Renders in the coordinate space
+ * of the layer.
+ *
+ * WARNING: currently this method does not implement the full
+ * CoreAnimation composition model, use with caution. */
+
+VA_EXTERN void VALayerRenderInContext(VALayerRef layer, VGContextRef ctx);
 
 #endif /* defined(__VeritasGraphics__VALayer__) */

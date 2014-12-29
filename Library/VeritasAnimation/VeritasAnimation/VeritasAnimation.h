@@ -6,8 +6,6 @@
 //  Copyright (c) 2014年 NewGrace. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface VeritasAnimation : NSObject
-
-@end
+#include <VeritasAnimation/VABase.h>
+#include <VeritasAnimation/VALayer.h>
+#include <VeritasAnimation/VATransform3D.h>

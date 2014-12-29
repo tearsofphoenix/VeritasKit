@@ -7,6 +7,7 @@
 //
 
 #include <SDL.h>
+#include <VeritasAnimation/VeritasAnimation.h>
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 480
@@ -64,7 +65,7 @@ initializeHappyFaces()
 }
 
 void
-render(SDL_Renderer *renderer)
+render2(SDL_Renderer *renderer)
 {
     
     int i;
@@ -119,6 +120,13 @@ render(SDL_Renderer *renderer)
     /* update screen */
     SDL_RenderPresent(renderer);
     
+}
+
+void
+render(SDL_Renderer *renderer)
+{
+    VALayerRef layer = VALayerCreate(NULL);
+    VALayerDisplay(layer);
 }
 
 /*

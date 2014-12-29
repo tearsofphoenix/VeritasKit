@@ -6,8 +6,4 @@
 //  Copyright (c) 2014年 NewGrace. All rights reserved.
 //
 
-#import "VeritasAnimation.h"
-
-@implementation VeritasAnimation
-
-@end
+#include "VeritasAnimation.h"

@@ -13,6 +13,23 @@
 		928702551A516A0600ED7948 /* VIView.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702531A516A0600ED7948 /* VIView.c */; };
 		928702581A516A1100ED7948 /* VIScreen.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702561A516A1100ED7948 /* VIScreen.c */; };
 		9287025B1A51702000ED7948 /* VIApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702591A51702000ED7948 /* VIApplication.c */; };
+		928702781A51901B00ED7948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 928702771A51901B00ED7948 /* main.m */; };
+		928702D91A51903600ED7948 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702911A51903600ED7948 /* Element.cpp */; };
+		928702DA1A51903600ED7948 /* GLSLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702961A51903600ED7948 /* GLSLShader.cpp */; };
+		928702DB1A51903600ED7948 /* GUIBoxBound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702991A51903600ED7948 /* GUIBoxBound.cpp */; };
+		928702DC1A51903600ED7948 /* GUIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9287029B1A51903600ED7948 /* GUIButton.cpp */; };
+		928702DD1A51903600ED7948 /* GUIFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9287029E1A51903600ED7948 /* GUIFactory.cpp */; };
+		928702DE1A51903600ED7948 /* GUIFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702A01A51903600ED7948 /* GUIFont.cpp */; };
+		928702DF1A51903600ED7948 /* GUIForm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702A21A51903600ED7948 /* GUIForm.cpp */; };
+		928702E01A51903600ED7948 /* GUILayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702A51A51903600ED7948 /* GUILayout.cpp */; };
+		928702E11A51903600ED7948 /* GUIManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702A81A51903600ED7948 /* GUIManager.cpp */; };
+		928702E21A51903600ED7948 /* GUIRadioButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702AA1A51903600ED7948 /* GUIRadioButton.cpp */; };
+		928702E31A51903600ED7948 /* GUITextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702AC1A51903600ED7948 /* GUITextBox.cpp */; };
+		928702E41A51903600ED7948 /* GUITextInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702AE1A51903600ED7948 /* GUITextInput.cpp */; };
+		928702E51A51903600ED7948 /* GUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702B11A51903600ED7948 /* GUIView.cpp */; };
+		928702E61A51903600ED7948 /* mainSDLtest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702BE1A51903600ED7948 /* mainSDLtest.cpp */; };
+		928702E71A51903600ED7948 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702CB1A51903600ED7948 /* StringUtils.cpp */; };
+		928702E81A51903600ED7948 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928702D21A51903600ED7948 /* tinyxml2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +54,20 @@
 			remoteGlobalIDString = 9287FF721A50F4E900ED7948;
 			remoteInfo = VeritasAnimation;
 		};
+		928702E91A51907300ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287021A1A5169D700ED7948 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 928702211A5169D700ED7948;
+			remoteInfo = VeritasUI;
+		};
+		928702EB1A51907600ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9287FF721A50F4E900ED7948;
+			remoteInfo = VeritasAnimation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +80,15 @@
 				928702261A5169D700ED7948 /* VeritasUI.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+		};
+		928702731A51901B00ED7948 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -66,10 +106,108 @@
 		9287025A1A51702000ED7948 /* VIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIApplication.h; sourceTree = "<group>"; };
 		9287025C1A51708400ED7948 /* VIBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIBase.h; sourceTree = "<group>"; };
 		9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasAnimation.xcodeproj; path = ../VeritasAnimation/VeritasAnimation.xcodeproj; sourceTree = "<group>"; };
+		928702751A51901B00ED7948 /* UIApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UIApp; sourceTree = BUILT_PRODUCTS_DIR; };
+		928702771A51901B00ED7948 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9287027D1A51903600ED7948 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
+		9287027E1A51903600ED7948 /* button.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = button.bmp; sourceTree = "<group>"; };
+		9287027F1A51903600ED7948 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		928702801A51903600ED7948 /* buttonTest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = buttonTest.jpg; sourceTree = "<group>"; };
+		928702811A51903600ED7948 /* closet.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = closet.bmp; sourceTree = "<group>"; };
+		928702831A51903600ED7948 /* ButtonSDFTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonSDFTemplate.png; sourceTree = "<group>"; };
+		928702841A51903600ED7948 /* ButtonSDFTemplate.png_sdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonSDFTemplate.png_sdf.png; sourceTree = "<group>"; };
+		928702861A51903600ED7948 /* testBitmapFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testBitmapFont.fnt; sourceTree = "<group>"; };
+		928702871A51903600ED7948 /* testBitmapFont.png_sdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testBitmapFont.png_sdf.png; sourceTree = "<group>"; };
+		928702881A51903600ED7948 /* VeraMoBI.ttf_sdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VeraMoBI.ttf_sdf.png; sourceTree = "<group>"; };
+		928702891A51903600ED7948 /* VeraMoBI.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VeraMoBI.txt; sourceTree = "<group>"; };
+		9287028A1A51903600ED7948 /* VeraMoBI_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VeraMoBI_test.png; sourceTree = "<group>"; };
+		9287028B1A51903600ED7948 /* HTMLElementTemplates.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = HTMLElementTemplates.xml; sourceTree = "<group>"; };
+		9287028C1A51903600ED7948 /* RadioButtonSDFTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RadioButtonSDFTemplate.png; sourceTree = "<group>"; };
+		9287028D1A51903600ED7948 /* RadioButtonSDFTemplate.png_sdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RadioButtonSDFTemplate.png_sdf.png; sourceTree = "<group>"; };
+		9287028E1A51903600ED7948 /* Dense-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dense-Regular.otf"; sourceTree = "<group>"; };
+		9287028F1A51903600ED7948 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		928702901A51903600ED7948 /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
+		928702911A51903600ED7948 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
+		928702921A51903600ED7948 /* Element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Element.h; sourceTree = "<group>"; };
+		928702931A51903600ED7948 /* error.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = error.bmp; sourceTree = "<group>"; };
+		928702941A51903600ED7948 /* GL_Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_Camera.h; sourceTree = "<group>"; };
+		928702951A51903600ED7948 /* GL_Stencil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_Stencil.h; sourceTree = "<group>"; };
+		928702961A51903600ED7948 /* GLSLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLShader.cpp; sourceTree = "<group>"; };
+		928702971A51903600ED7948 /* GLSLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSLShader.h; sourceTree = "<group>"; };
+		928702981A51903600ED7948 /* GUIBound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIBound.h; sourceTree = "<group>"; };
+		928702991A51903600ED7948 /* GUIBoxBound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIBoxBound.cpp; sourceTree = "<group>"; };
+		9287029A1A51903600ED7948 /* GUIBoxBound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIBoxBound.h; sourceTree = "<group>"; };
+		9287029B1A51903600ED7948 /* GUIButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIButton.cpp; sourceTree = "<group>"; };
+		9287029C1A51903600ED7948 /* GUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIButton.h; sourceTree = "<group>"; };
+		9287029D1A51903600ED7948 /* GUIEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIEvent.h; sourceTree = "<group>"; };
+		9287029E1A51903600ED7948 /* GUIFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIFactory.cpp; sourceTree = "<group>"; };
+		9287029F1A51903600ED7948 /* GUIFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIFactory.h; sourceTree = "<group>"; };
+		928702A01A51903600ED7948 /* GUIFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIFont.cpp; sourceTree = "<group>"; };
+		928702A11A51903600ED7948 /* GUIFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIFont.h; sourceTree = "<group>"; };
+		928702A21A51903600ED7948 /* GUIForm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIForm.cpp; sourceTree = "<group>"; };
+		928702A31A51903600ED7948 /* GUIForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIForm.h; sourceTree = "<group>"; };
+		928702A41A51903600ED7948 /* GUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIImage.h; sourceTree = "<group>"; };
+		928702A51A51903600ED7948 /* GUILayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUILayout.cpp; sourceTree = "<group>"; };
+		928702A61A51903600ED7948 /* GUILayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUILayout.h; sourceTree = "<group>"; };
+		928702A71A51903600ED7948 /* GUIListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIListItem.h; sourceTree = "<group>"; };
+		928702A81A51903600ED7948 /* GUIManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIManager.cpp; sourceTree = "<group>"; };
+		928702A91A51903600ED7948 /* GUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIManager.h; sourceTree = "<group>"; };
+		928702AA1A51903600ED7948 /* GUIRadioButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIRadioButton.cpp; sourceTree = "<group>"; };
+		928702AB1A51903600ED7948 /* GUIRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIRadioButton.h; sourceTree = "<group>"; };
+		928702AC1A51903600ED7948 /* GUITextBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUITextBox.cpp; sourceTree = "<group>"; };
+		928702AD1A51903600ED7948 /* GUITextBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUITextBox.h; sourceTree = "<group>"; };
+		928702AE1A51903600ED7948 /* GUITextInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUITextInput.cpp; sourceTree = "<group>"; };
+		928702AF1A51903600ED7948 /* GUITextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUITextInput.h; sourceTree = "<group>"; };
+		928702B01A51903600ED7948 /* GUIUnorderedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIUnorderedList.h; sourceTree = "<group>"; };
+		928702B11A51903600ED7948 /* GUIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIView.cpp; sourceTree = "<group>"; };
+		928702B21A51903600ED7948 /* GUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIView.h; sourceTree = "<group>"; };
+		928702B31A51903600ED7948 /* jansson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jansson.h; sourceTree = "<group>"; };
+		928702B51A51903600ED7948 /* assertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assertions.h; sourceTree = "<group>"; };
+		928702B61A51903600ED7948 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		928702B71A51903600ED7948 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		928702B81A51903600ED7948 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		928702B91A51903600ED7948 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
+		928702BA1A51903600ED7948 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		928702BB1A51903600ED7948 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		928702BC1A51903600ED7948 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
+		928702BD1A51903600ED7948 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		928702BE1A51903600ED7948 /* mainSDLtest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainSDLtest.cpp; sourceTree = "<group>"; };
+		928702BF1A51903600ED7948 /* monkey.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = monkey.dae; sourceTree = "<group>"; };
+		928702C01A51903600ED7948 /* panel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = panel.frag; sourceTree = "<group>"; };
+		928702C11A51903600ED7948 /* panel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = panel.vert; sourceTree = "<group>"; };
+		928702C21A51903600ED7948 /* Prototype.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Prototype.ttf; sourceTree = "<group>"; };
+		928702C31A51903600ED7948 /* render.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = render.bmp; sourceTree = "<group>"; };
+		928702C41A51903600ED7948 /* SDL2-GUI.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SDL2-GUI.vcxproj"; sourceTree = "<group>"; };
+		928702C51A51903600ED7948 /* SDL2-GUI.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SDL2-GUI.vcxproj.filters"; sourceTree = "<group>"; };
+		928702C61A51903600ED7948 /* SimpleMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMesh.h; sourceTree = "<group>"; };
+		928702C71A51903600ED7948 /* smoothMonkey.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = smoothMonkey.dae; sourceTree = "<group>"; };
+		928702C81A51903600ED7948 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		928702C91A51903600ED7948 /* stb_image_write.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
+		928702CA1A51903600ED7948 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
+		928702CB1A51903600ED7948 /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
+		928702CC1A51903600ED7948 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
+		928702CD1A51903600ED7948 /* testButton.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = testButton.bmp; sourceTree = "<group>"; };
+		928702CE1A51903600ED7948 /* testGUI.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testGUI.json; sourceTree = "<group>"; };
+		928702CF1A51903600ED7948 /* testTexture.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = testTexture.bmp; sourceTree = "<group>"; };
+		928702D01A51903600ED7948 /* text.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = text.frag; sourceTree = "<group>"; };
+		928702D11A51903600ED7948 /* text.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = text.vert; sourceTree = "<group>"; };
+		928702D21A51903600ED7948 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
+		928702D31A51903600ED7948 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
+		928702D41A51903600ED7948 /* tri.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tri.frag; sourceTree = "<group>"; };
+		928702D51A51903600ED7948 /* tri.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tri.vert; sourceTree = "<group>"; };
+		928702D61A51903600ED7948 /* tut1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tut1.h; sourceTree = "<group>"; };
+		928702D71A51903600ED7948 /* UtilityFuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityFuncs.h; sourceTree = "<group>"; };
+		928702D81A51903600ED7948 /* xmlGUITest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = xmlGUITest.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9287021F1A5169D700ED7948 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		928702721A51901B00ED7948 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -84,6 +222,7 @@
 			children = (
 				9287025D1A51716300ED7948 /* VeritasAnimation.xcodeproj */,
 				928702241A5169D700ED7948 /* VeritasUI */,
+				928702761A51901B00ED7948 /* UIApp */,
 				928702231A5169D700ED7948 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				928702221A5169D700ED7948 /* libVeritasUI.a */,
+				928702751A51901B00ED7948 /* UIApp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +263,135 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		928702761A51901B00ED7948 /* UIApp */ = {
+			isa = PBXGroup;
+			children = (
+				9287027C1A51903600ED7948 /* SDL2-GUI */,
+				928702771A51901B00ED7948 /* main.m */,
+			);
+			path = UIApp;
+			sourceTree = "<group>";
+		};
+		9287027C1A51903600ED7948 /* SDL2-GUI */ = {
+			isa = PBXGroup;
+			children = (
+				9287027D1A51903600ED7948 /* atlas.png */,
+				9287027E1A51903600ED7948 /* button.bmp */,
+				9287027F1A51903600ED7948 /* button.png */,
+				928702801A51903600ED7948 /* buttonTest.jpg */,
+				928702811A51903600ED7948 /* closet.bmp */,
+				928702821A51903600ED7948 /* content */,
+				9287028E1A51903600ED7948 /* Dense-Regular.otf */,
+				9287028F1A51903600ED7948 /* Doxyfile */,
+				928702901A51903600ED7948 /* DroidSerif-Regular.ttf */,
+				928702911A51903600ED7948 /* Element.cpp */,
+				928702921A51903600ED7948 /* Element.h */,
+				928702931A51903600ED7948 /* error.bmp */,
+				928702941A51903600ED7948 /* GL_Camera.h */,
+				928702951A51903600ED7948 /* GL_Stencil.h */,
+				928702961A51903600ED7948 /* GLSLShader.cpp */,
+				928702971A51903600ED7948 /* GLSLShader.h */,
+				928702981A51903600ED7948 /* GUIBound.h */,
+				928702991A51903600ED7948 /* GUIBoxBound.cpp */,
+				9287029A1A51903600ED7948 /* GUIBoxBound.h */,
+				9287029B1A51903600ED7948 /* GUIButton.cpp */,
+				9287029C1A51903600ED7948 /* GUIButton.h */,
+				9287029D1A51903600ED7948 /* GUIEvent.h */,
+				9287029E1A51903600ED7948 /* GUIFactory.cpp */,
+				9287029F1A51903600ED7948 /* GUIFactory.h */,
+				928702A01A51903600ED7948 /* GUIFont.cpp */,
+				928702A11A51903600ED7948 /* GUIFont.h */,
+				928702A21A51903600ED7948 /* GUIForm.cpp */,
+				928702A31A51903600ED7948 /* GUIForm.h */,
+				928702A41A51903600ED7948 /* GUIImage.h */,
+				928702A51A51903600ED7948 /* GUILayout.cpp */,
+				928702A61A51903600ED7948 /* GUILayout.h */,
+				928702A71A51903600ED7948 /* GUIListItem.h */,
+				928702A81A51903600ED7948 /* GUIManager.cpp */,
+				928702A91A51903600ED7948 /* GUIManager.h */,
+				928702AA1A51903600ED7948 /* GUIRadioButton.cpp */,
+				928702AB1A51903600ED7948 /* GUIRadioButton.h */,
+				928702AC1A51903600ED7948 /* GUITextBox.cpp */,
+				928702AD1A51903600ED7948 /* GUITextBox.h */,
+				928702AE1A51903600ED7948 /* GUITextInput.cpp */,
+				928702AF1A51903600ED7948 /* GUITextInput.h */,
+				928702B01A51903600ED7948 /* GUIUnorderedList.h */,
+				928702B11A51903600ED7948 /* GUIView.cpp */,
+				928702B21A51903600ED7948 /* GUIView.h */,
+				928702B31A51903600ED7948 /* jansson.h */,
+				928702B41A51903600ED7948 /* json */,
+				928702BE1A51903600ED7948 /* mainSDLtest.cpp */,
+				928702BF1A51903600ED7948 /* monkey.dae */,
+				928702C01A51903600ED7948 /* panel.frag */,
+				928702C11A51903600ED7948 /* panel.vert */,
+				928702C21A51903600ED7948 /* Prototype.ttf */,
+				928702C31A51903600ED7948 /* render.bmp */,
+				928702C41A51903600ED7948 /* SDL2-GUI.vcxproj */,
+				928702C51A51903600ED7948 /* SDL2-GUI.vcxproj.filters */,
+				928702C61A51903600ED7948 /* SimpleMesh.h */,
+				928702C71A51903600ED7948 /* smoothMonkey.dae */,
+				928702C81A51903600ED7948 /* stb_image.h */,
+				928702C91A51903600ED7948 /* stb_image_write.h */,
+				928702CA1A51903600ED7948 /* stb_truetype.h */,
+				928702CB1A51903600ED7948 /* StringUtils.cpp */,
+				928702CC1A51903600ED7948 /* StringUtils.h */,
+				928702CD1A51903600ED7948 /* testButton.bmp */,
+				928702CE1A51903600ED7948 /* testGUI.json */,
+				928702CF1A51903600ED7948 /* testTexture.bmp */,
+				928702D01A51903600ED7948 /* text.frag */,
+				928702D11A51903600ED7948 /* text.vert */,
+				928702D21A51903600ED7948 /* tinyxml2.cpp */,
+				928702D31A51903600ED7948 /* tinyxml2.h */,
+				928702D41A51903600ED7948 /* tri.frag */,
+				928702D51A51903600ED7948 /* tri.vert */,
+				928702D61A51903600ED7948 /* tut1.h */,
+				928702D71A51903600ED7948 /* UtilityFuncs.h */,
+				928702D81A51903600ED7948 /* xmlGUITest.xml */,
+			);
+			path = "SDL2-GUI";
+			sourceTree = "<group>";
+		};
+		928702821A51903600ED7948 /* content */ = {
+			isa = PBXGroup;
+			children = (
+				928702831A51903600ED7948 /* ButtonSDFTemplate.png */,
+				928702841A51903600ED7948 /* ButtonSDFTemplate.png_sdf.png */,
+				928702851A51903600ED7948 /* Fonts */,
+				9287028B1A51903600ED7948 /* HTMLElementTemplates.xml */,
+				9287028C1A51903600ED7948 /* RadioButtonSDFTemplate.png */,
+				9287028D1A51903600ED7948 /* RadioButtonSDFTemplate.png_sdf.png */,
+			);
+			path = content;
+			sourceTree = "<group>";
+		};
+		928702851A51903600ED7948 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				928702861A51903600ED7948 /* testBitmapFont.fnt */,
+				928702871A51903600ED7948 /* testBitmapFont.png_sdf.png */,
+				928702881A51903600ED7948 /* VeraMoBI.ttf_sdf.png */,
+				928702891A51903600ED7948 /* VeraMoBI.txt */,
+				9287028A1A51903600ED7948 /* VeraMoBI_test.png */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		928702B41A51903600ED7948 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				928702B51A51903600ED7948 /* assertions.h */,
+				928702B61A51903600ED7948 /* autolink.h */,
+				928702B71A51903600ED7948 /* config.h */,
+				928702B81A51903600ED7948 /* features.h */,
+				928702B91A51903600ED7948 /* forwards.h */,
+				928702BA1A51903600ED7948 /* json.h */,
+				928702BB1A51903600ED7948 /* reader.h */,
+				928702BC1A51903600ED7948 /* value.h */,
+				928702BD1A51903600ED7948 /* writer.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +413,25 @@
 			productReference = 928702221A5169D700ED7948 /* libVeritasUI.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		928702741A51901B00ED7948 /* UIApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 928702791A51901B00ED7948 /* Build configuration list for PBXNativeTarget "UIApp" */;
+			buildPhases = (
+				928702711A51901B00ED7948 /* Sources */,
+				928702721A51901B00ED7948 /* Frameworks */,
+				928702731A51901B00ED7948 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				928702EC1A51907600ED7948 /* PBXTargetDependency */,
+				928702EA1A51907300ED7948 /* PBXTargetDependency */,
+			);
+			name = UIApp;
+			productName = UIApp;
+			productReference = 928702751A51901B00ED7948 /* UIApp */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -154,6 +442,9 @@
 				ORGANIZATIONNAME = NewGrace;
 				TargetAttributes = {
 					928702211A5169D700ED7948 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					928702741A51901B00ED7948 = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
@@ -177,6 +468,7 @@
 			projectRoot = "";
 			targets = (
 				928702211A5169D700ED7948 /* VeritasUI */,
+				928702741A51901B00ED7948 /* UIApp */,
 			);
 		};
 /* End PBXProject section */
@@ -211,6 +503,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		928702711A51901B00ED7948 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				928702DA1A51903600ED7948 /* GLSLShader.cpp in Sources */,
+				928702E11A51903600ED7948 /* GUIManager.cpp in Sources */,
+				928702E61A51903600ED7948 /* mainSDLtest.cpp in Sources */,
+				928702DC1A51903600ED7948 /* GUIButton.cpp in Sources */,
+				928702E81A51903600ED7948 /* tinyxml2.cpp in Sources */,
+				928702E01A51903600ED7948 /* GUILayout.cpp in Sources */,
+				928702D91A51903600ED7948 /* Element.cpp in Sources */,
+				928702DB1A51903600ED7948 /* GUIBoxBound.cpp in Sources */,
+				928702DD1A51903600ED7948 /* GUIFactory.cpp in Sources */,
+				928702E71A51903600ED7948 /* StringUtils.cpp in Sources */,
+				928702DF1A51903600ED7948 /* GUIForm.cpp in Sources */,
+				928702DE1A51903600ED7948 /* GUIFont.cpp in Sources */,
+				928702E21A51903600ED7948 /* GUIRadioButton.cpp in Sources */,
+				928702E31A51903600ED7948 /* GUITextBox.cpp in Sources */,
+				928702E41A51903600ED7948 /* GUITextInput.cpp in Sources */,
+				928702E51A51903600ED7948 /* GUIView.cpp in Sources */,
+				928702781A51901B00ED7948 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -218,6 +534,16 @@
 			isa = PBXTargetDependency;
 			name = VeritasAnimation;
 			targetProxy = 928702661A51716C00ED7948 /* PBXContainerItemProxy */;
+		};
+		928702EA1A51907300ED7948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 928702211A5169D700ED7948 /* VeritasUI */;
+			targetProxy = 928702E91A51907300ED7948 /* PBXContainerItemProxy */;
+		};
+		928702EC1A51907600ED7948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VeritasAnimation;
+			targetProxy = 928702EB1A51907600ED7948 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -324,6 +650,29 @@
 			};
 			name = Release;
 		};
+		9287027A1A51901B00ED7948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9287027B1A51901B00ED7948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -341,6 +690,14 @@
 			buildConfigurations = (
 				928702371A5169D700ED7948 /* Debug */,
 				928702381A5169D700ED7948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		928702791A51901B00ED7948 /* Build configuration list for PBXNativeTarget "UIApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9287027A1A51901B00ED7948 /* Debug */,
+				9287027B1A51901B00ED7948 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

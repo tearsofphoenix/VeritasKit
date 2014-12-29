@@ -9,6 +9,8 @@
 #ifndef VeritasFoundation_VFBase_h
 #define VeritasFoundation_VFBase_h
 
+#include <stdarg.h>
+#include <limits.h>
 
 #if defined(__cplusplus)
 #define FOUNDATION_EXTERN extern "C"
@@ -254,16 +256,29 @@ typedef unsigned long VFUInteger;
 #define VFINTEGER_DEFINED 1
 #endif
 
-#if __LP64__ || TARGET_OS_EMBEDDED || TARGET_OS_IPHONE || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
-typedef long NSInteger;
-typedef unsigned long NSUInteger;
+#if __LP64__ || TARGET_OS_EMBEDDED || TARGET_OS_IPHONE || TARGET_OS_WIN32 || VF_BUILD_32_LIKE_64
+typedef long VFInteger;
+typedef unsigned long VFUInteger;
+#define VFIntegerMax    LONG_MAX
+#define VFIntegerMin    LONG_MIN
+#define VFUIntegerMax   ULONG_MAX
+
+#define VFINTEGER_DEFINED 1
+
 #else
-typedef int NSInteger;
-typedef unsigned int NSUInteger;
+typedef int VFInteger;
+typedef unsigned int VFUInteger;
+
+#define VFIntegerMax    INT_MAX
+#define VFIntegerMin    INT_MIN
+#define VFUIntegerMax   UINT_MAX
+
+#define VFINTEGER_DEFINED 1
+
 #endif
 
-FOUNDATION_EXPORT void VFLog(VFString *format, ...) VF_FORMAT_FUNCTION(1,2);
-FOUNDATION_EXPORT void VFLogv(VFString *format, va_list args) VF_FORMAT_FUNCTION(1,0);
+FOUNDATION_EXPORT void VFLog(const char* format, ...) VF_FORMAT_FUNCTION(1,2);
+FOUNDATION_EXPORT void VFLogv(const char* format, va_list args) VF_FORMAT_FUNCTION(1,0);
 
 enum
 {
