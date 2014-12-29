@@ -1,0 +1,504 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9287FF771A50F4E900ED7948 /* VeritasAnimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF761A50F4E900ED7948 /* VeritasAnimation.h */; };
+		9287FF791A50F4E900ED7948 /* VeritasAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FF781A50F4E900ED7948 /* VeritasAnimation.m */; };
+		9287FFB51A50F60F00ED7948 /* VALayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFB11A50F60F00ED7948 /* VALayer.c */; };
+		9287FFB61A50F60F00ED7948 /* VALayerImpl.c in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFB31A50F60F00ED7948 /* VALayerImpl.c */; };
+		9287FFB71A50F64700ED7948 /* VABase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFAF1A50F60F00ED7948 /* VABase.h */; };
+		9287FFB81A50F64700ED7948 /* VATransform3D.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFB01A50F60F00ED7948 /* VATransform3D.h */; };
+		9287FFB91A50F64700ED7948 /* VALayer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFB21A50F60F00ED7948 /* VALayer.h */; };
+		9287FFC51A50F94600ED7948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFC41A50F94600ED7948 /* main.m */; };
+		9287FFC81A50F94600ED7948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFC71A50F94600ED7948 /* AppDelegate.m */; };
+		9287FFCB1A50F94600ED7948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287FFCA1A50F94600ED7948 /* ViewController.m */; };
+		9287FFCE1A50F94600ED7948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9287FFCC1A50F94600ED7948 /* Main.storyboard */; };
+		9287FFD01A50F94600ED7948 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9287FFCF1A50F94600ED7948 /* Images.xcassets */; };
+		9287FFD31A50F94600ED7948 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9287FFD11A50F94600ED7948 /* LaunchScreen.xib */; };
+		9287FFE81A50FA9500ED7948 /* libVeritasAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */; };
+		9287FFE91A50FA9500ED7948 /* libVeritasGraphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287FFAA1A50F52600ED7948 /* libVeritasGraphics.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9287FFA91A50F52600ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 60D0E6441A50440000D001DE;
+			remoteInfo = VeritasGraphics;
+		};
+		9287FFAD1A50F52F00ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 60D0E6431A50440000D001DE;
+			remoteInfo = VeritasGraphics;
+		};
+		9287FFE61A50FA8F00ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287FF6B1A50F4E900ED7948 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9287FF721A50F4E900ED7948;
+			remoteInfo = VeritasAnimation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9287FF711A50F4E900ED7948 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = VeritasAnimation;
+			dstSubfolderSpec = 16;
+			files = (
+				9287FFB71A50F64700ED7948 /* VABase.h in CopyFiles */,
+				9287FFB81A50F64700ED7948 /* VATransform3D.h in CopyFiles */,
+				9287FFB91A50F64700ED7948 /* VALayer.h in CopyFiles */,
+				9287FF771A50F4E900ED7948 /* VeritasAnimation.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasAnimation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9287FF761A50F4E900ED7948 /* VeritasAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasAnimation.h; sourceTree = "<group>"; };
+		9287FF781A50F4E900ED7948 /* VeritasAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeritasAnimation.m; sourceTree = "<group>"; };
+		9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasGraphics.xcodeproj; path = ../VeritasGraphics/VeritasGraphics.xcodeproj; sourceTree = "<group>"; };
+		9287FFAF1A50F60F00ED7948 /* VABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VABase.h; sourceTree = "<group>"; };
+		9287FFB01A50F60F00ED7948 /* VATransform3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VATransform3D.h; sourceTree = "<group>"; };
+		9287FFB11A50F60F00ED7948 /* VALayer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VALayer.c; sourceTree = "<group>"; };
+		9287FFB21A50F60F00ED7948 /* VALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VALayer.h; sourceTree = "<group>"; };
+		9287FFB31A50F60F00ED7948 /* VALayerImpl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VALayerImpl.c; sourceTree = "<group>"; };
+		9287FFB41A50F60F00ED7948 /* VALayerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VALayerImpl.h; sourceTree = "<group>"; };
+		9287FFC01A50F94600ED7948 /* VeritasAnimationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasAnimationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9287FFC31A50F94600ED7948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9287FFC41A50F94600ED7948 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9287FFC61A50F94600ED7948 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9287FFC71A50F94600ED7948 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9287FFC91A50F94600ED7948 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9287FFCA1A50F94600ED7948 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9287FFCD1A50F94600ED7948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9287FFCF1A50F94600ED7948 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9287FFD21A50F94600ED7948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9287FF701A50F4E900ED7948 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9287FFBD1A50F94600ED7948 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9287FFE81A50FA9500ED7948 /* libVeritasAnimation.a in Frameworks */,
+				9287FFE91A50FA9500ED7948 /* libVeritasGraphics.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9287FF6A1A50F4E900ED7948 = {
+			isa = PBXGroup;
+			children = (
+				9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */,
+				9287FF751A50F4E900ED7948 /* VeritasAnimation */,
+				9287FFC11A50F94600ED7948 /* VeritasAnimationApp */,
+				9287FF741A50F4E900ED7948 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9287FF741A50F4E900ED7948 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */,
+				9287FFC01A50F94600ED7948 /* VeritasAnimationApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9287FF751A50F4E900ED7948 /* VeritasAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				9287FFAF1A50F60F00ED7948 /* VABase.h */,
+				9287FFB01A50F60F00ED7948 /* VATransform3D.h */,
+				9287FFB11A50F60F00ED7948 /* VALayer.c */,
+				9287FFB21A50F60F00ED7948 /* VALayer.h */,
+				9287FFB31A50F60F00ED7948 /* VALayerImpl.c */,
+				9287FFB41A50F60F00ED7948 /* VALayerImpl.h */,
+				9287FF761A50F4E900ED7948 /* VeritasAnimation.h */,
+				9287FF781A50F4E900ED7948 /* VeritasAnimation.m */,
+			);
+			path = VeritasAnimation;
+			sourceTree = "<group>";
+		};
+		9287FFA41A50F52600ED7948 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9287FFAA1A50F52600ED7948 /* libVeritasGraphics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9287FFC11A50F94600ED7948 /* VeritasAnimationApp */ = {
+			isa = PBXGroup;
+			children = (
+				9287FFC61A50F94600ED7948 /* AppDelegate.h */,
+				9287FFC71A50F94600ED7948 /* AppDelegate.m */,
+				9287FFC91A50F94600ED7948 /* ViewController.h */,
+				9287FFCA1A50F94600ED7948 /* ViewController.m */,
+				9287FFCC1A50F94600ED7948 /* Main.storyboard */,
+				9287FFCF1A50F94600ED7948 /* Images.xcassets */,
+				9287FFD11A50F94600ED7948 /* LaunchScreen.xib */,
+				9287FFC21A50F94600ED7948 /* Supporting Files */,
+			);
+			path = VeritasAnimationApp;
+			sourceTree = "<group>";
+		};
+		9287FFC21A50F94600ED7948 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9287FFC31A50F94600ED7948 /* Info.plist */,
+				9287FFC41A50F94600ED7948 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9287FF721A50F4E900ED7948 /* VeritasAnimation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9287FF871A50F4EA00ED7948 /* Build configuration list for PBXNativeTarget "VeritasAnimation" */;
+			buildPhases = (
+				9287FF711A50F4E900ED7948 /* CopyFiles */,
+				9287FF6F1A50F4E900ED7948 /* Sources */,
+				9287FF701A50F4E900ED7948 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9287FFAE1A50F52F00ED7948 /* PBXTargetDependency */,
+			);
+			name = VeritasAnimation;
+			productName = VeritasAnimation;
+			productReference = 9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9287FFBF1A50F94600ED7948 /* VeritasAnimationApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9287FFE01A50F94600ED7948 /* Build configuration list for PBXNativeTarget "VeritasAnimationApp" */;
+			buildPhases = (
+				9287FFBC1A50F94600ED7948 /* Sources */,
+				9287FFBD1A50F94600ED7948 /* Frameworks */,
+				9287FFBE1A50F94600ED7948 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9287FFE71A50FA8F00ED7948 /* PBXTargetDependency */,
+			);
+			name = VeritasAnimationApp;
+			productName = VeritasAnimationApp;
+			productReference = 9287FFC01A50F94600ED7948 /* VeritasAnimationApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9287FF6B1A50F4E900ED7948 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = NewGrace;
+				TargetAttributes = {
+					9287FF721A50F4E900ED7948 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					9287FFBF1A50F94600ED7948 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 9287FF6E1A50F4E900ED7948 /* Build configuration list for PBXProject "VeritasAnimation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9287FF6A1A50F4E900ED7948;
+			productRefGroup = 9287FF741A50F4E900ED7948 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9287FFA41A50F52600ED7948 /* Products */;
+					ProjectRef = 9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				9287FF721A50F4E900ED7948 /* VeritasAnimation */,
+				9287FFBF1A50F94600ED7948 /* VeritasAnimationApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9287FFAA1A50F52600ED7948 /* libVeritasGraphics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVeritasGraphics.a;
+			remoteRef = 9287FFA91A50F52600ED7948 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9287FFBE1A50F94600ED7948 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9287FFCE1A50F94600ED7948 /* Main.storyboard in Resources */,
+				9287FFD31A50F94600ED7948 /* LaunchScreen.xib in Resources */,
+				9287FFD01A50F94600ED7948 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9287FF6F1A50F4E900ED7948 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9287FFB51A50F60F00ED7948 /* VALayer.c in Sources */,
+				9287FF791A50F4E900ED7948 /* VeritasAnimation.m in Sources */,
+				9287FFB61A50F60F00ED7948 /* VALayerImpl.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9287FFBC1A50F94600ED7948 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9287FFCB1A50F94600ED7948 /* ViewController.m in Sources */,
+				9287FFC81A50F94600ED7948 /* AppDelegate.m in Sources */,
+				9287FFC51A50F94600ED7948 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9287FFAE1A50F52F00ED7948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VeritasGraphics;
+			targetProxy = 9287FFAD1A50F52F00ED7948 /* PBXContainerItemProxy */;
+		};
+		9287FFE71A50FA8F00ED7948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9287FF721A50F4E900ED7948 /* VeritasAnimation */;
+			targetProxy = 9287FFE61A50FA8F00ED7948 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9287FFCC1A50F94600ED7948 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9287FFCD1A50F94600ED7948 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9287FFD11A50F94600ED7948 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9287FFD21A50F94600ED7948 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9287FF851A50F4EA00ED7948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9287FF861A50F4EA00ED7948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9287FF881A50F4EA00ED7948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9287FF891A50F4EA00ED7948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		9287FFE11A50F94600ED7948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VeritasAnimationApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Mac003/Sites/VeritasKit/Library/VeritasFoundation/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9287FFE21A50F94600ED7948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = VeritasAnimationApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Mac003/Sites/VeritasKit/Library/VeritasFoundation/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9287FF6E1A50F4E900ED7948 /* Build configuration list for PBXProject "VeritasAnimation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9287FF851A50F4EA00ED7948 /* Debug */,
+				9287FF861A50F4EA00ED7948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9287FF871A50F4EA00ED7948 /* Build configuration list for PBXNativeTarget "VeritasAnimation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9287FF881A50F4EA00ED7948 /* Debug */,
+				9287FF891A50F4EA00ED7948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9287FFE01A50F94600ED7948 /* Build configuration list for PBXNativeTarget "VeritasAnimationApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9287FFE11A50F94600ED7948 /* Debug */,
+				9287FFE21A50F94600ED7948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9287FF6B1A50F4E900ED7948 /* Project object */;
+}

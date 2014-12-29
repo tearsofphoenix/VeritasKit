@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Lei. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface VeritasGraphics : NSObject
-
-@end
+#include <VeritasGraphics/VGBase.h>
+#include <VeritasGraphics/VGGeometry.h>
+#include <VeritasGraphics/VGAffineTransform.h>

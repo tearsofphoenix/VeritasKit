@@ -219,6 +219,27 @@
 			remoteGlobalIDString = 92DA5B671A4D350A0039599D;
 			remoteInfo = LuaSDL;
 		};
+		9287FF9A1A50F4EB00ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287FF8D1A50F4EA00ED7948 /* VeritasAnimation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9287FF731A50F4E900ED7948;
+			remoteInfo = VeritasAnimation;
+		};
+		9287FF9F1A50F4EB00ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60D0E65E1A50440000D001DE /* VeritasGraphics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 60D0E6A31A504B4700D001DE;
+			remoteInfo = VeritasGraphicsTest;
+		};
+		9287FFA11A50F4FD00ED7948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9287FF8D1A50F4EA00ED7948 /* VeritasAnimation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9287FF721A50F4E900ED7948;
+			remoteInfo = VeritasAnimation;
+		};
 		92DA5C071A4D35AC0039599D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92DA5C021A4D35AC0039599D /* SDL.xcodeproj */;
@@ -300,6 +321,7 @@
 		9201FC581A4D512C0072BEB9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9201FC5B1A4D514F0072BEB9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9201FC5F1A4D51E30072BEB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9287FF8D1A50F4EA00ED7948 /* VeritasAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasAnimation.xcodeproj; path = ../VeritasAnimation/VeritasAnimation.xcodeproj; sourceTree = "<group>"; };
 		92DA5B681A4D350A0039599D /* libLuaSDL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLuaSDL.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DA5B6B1A4D350A0039599D /* LuaSDL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaSDL.h; sourceTree = "<group>"; };
 		92DA5BA01A4D35820039599D /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
@@ -432,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				60D0E6641A50440100D001DE /* libVeritasGraphics.a */,
+				9287FFA01A50F4EB00ED7948 /* VeritasGraphicsTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -610,9 +633,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9287FF8E1A50F4EA00ED7948 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9287FF9B1A50F4EB00ED7948 /* libVeritasAnimation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		92DA5B5F1A4D350A0039599D = {
 			isa = PBXGroup;
 			children = (
+				9287FF8D1A50F4EA00ED7948 /* VeritasAnimation.xcodeproj */,
 				60D0E65E1A50440000D001DE /* VeritasGraphics.xcodeproj */,
 				60B05D501A4F0704004EFBC5 /* SDL_net.xcodeproj */,
 				60B05D441A4F0203004EFBC5 /* SDL_mixer.xcodeproj */,
@@ -845,6 +877,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9287FFA21A50F4FD00ED7948 /* PBXTargetDependency */,
 				60D0E69E1A504B1F00D001DE /* PBXTargetDependency */,
 				60B05D571A4F077C004EFBC5 /* PBXTargetDependency */,
 				60B05D4B1A4F0214004EFBC5 /* PBXTargetDependency */,
@@ -915,6 +948,10 @@
 				{
 					ProductGroup = 60B05CED1A4E2E21004EFBC5 /* Products */;
 					ProjectRef = 60B05CEC1A4E2E21004EFBC5 /* SDL_ttf.xcodeproj */;
+				},
+				{
+					ProductGroup = 9287FF8E1A50F4EA00ED7948 /* Products */;
+					ProjectRef = 9287FF8D1A50F4EA00ED7948 /* VeritasAnimation.xcodeproj */;
 				},
 				{
 					ProductGroup = 60D0E65F1A50440000D001DE /* Products */;
@@ -1019,6 +1056,20 @@
 			fileType = wrapper.application;
 			path = Keyboard.app;
 			remoteRef = 9201FAEF1A4D3F5E0072BEB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9287FF9B1A50F4EB00ED7948 /* libVeritasAnimation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVeritasAnimation.a;
+			remoteRef = 9287FF9A1A50F4EB00ED7948 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9287FFA01A50F4EB00ED7948 /* VeritasGraphicsTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = VeritasGraphicsTest.app;
+			remoteRef = 9287FF9F1A50F4EB00ED7948 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		92DA5C081A4D35AC0039599D /* libSDL2.a */ = {
@@ -1146,6 +1197,11 @@
 			isa = PBXTargetDependency;
 			target = 92DA5B671A4D350A0039599D /* LuaSDL */;
 			targetProxy = 9201FC251A4D4E710072BEB9 /* PBXContainerItemProxy */;
+		};
+		9287FFA21A50F4FD00ED7948 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VeritasAnimation;
+			targetProxy = 9287FFA11A50F4FD00ED7948 /* PBXContainerItemProxy */;
 		};
 		92DA5C0A1A4D35B70039599D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

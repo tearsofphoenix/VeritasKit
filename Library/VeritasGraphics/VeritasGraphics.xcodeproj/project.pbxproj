@@ -8,16 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		60D0E6481A50440000D001DE /* VeritasGraphics.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60D0E6471A50440000D001DE /* VeritasGraphics.h */; };
-		60D0E64A1A50440000D001DE /* VeritasGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D0E6491A50440000D001DE /* VeritasGraphics.m */; };
-		60D0E69B1A504A3A00D001DE /* VGLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60D0E6991A504A3A00D001DE /* VGLayer.cpp */; };
-		60D0E69C1A504B0C00D001DE /* VGLayer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60D0E69A1A504A3A00D001DE /* VGLayer.h */; };
-		60D0E6A81A504B4700D001DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D0E6A71A504B4700D001DE /* main.m */; };
-		60D0E6AB1A504B4700D001DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D0E6AA1A504B4700D001DE /* AppDelegate.m */; };
-		60D0E6AE1A504B4700D001DE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D0E6AD1A504B4700D001DE /* ViewController.m */; };
-		60D0E6B11A504B4700D001DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60D0E6AF1A504B4700D001DE /* Main.storyboard */; };
-		60D0E6B31A504B4700D001DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60D0E6B21A504B4700D001DE /* Images.xcassets */; };
-		60D0E6B61A504B4700D001DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60D0E6B41A504B4700D001DE /* LaunchScreen.xib */; };
-		60D0E6CB1A504B6400D001DE /* libVeritasGraphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D0E6441A50440000D001DE /* libVeritasGraphics.a */; };
+		9287FF571A50E79A00ED7948 /* VGGeometry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF551A50E71800ED7948 /* VGGeometry.h */; };
+		9287FF581A50E79A00ED7948 /* VGBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FF561A50E75100ED7948 /* VGBase.h */; };
+		9287FFBB1A50F86400ED7948 /* VGAffineTransform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,23 +28,18 @@
 			remoteGlobalIDString = 60D0E66F1A50441300D001DE;
 			remoteInfo = VeritasFoundation;
 		};
-		60D0E6C91A504B6000D001DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 60D0E63C1A50440000D001DE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 60D0E6431A50440000D001DE;
-			remoteInfo = VeritasGraphics;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		60D0E6421A50440000D001DE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
+			dstPath = VeritasGraphics;
 			dstSubfolderSpec = 16;
 			files = (
-				60D0E69C1A504B0C00D001DE /* VGLayer.h in CopyFiles */,
+				9287FFBB1A50F86400ED7948 /* VGAffineTransform.h in CopyFiles */,
+				9287FF571A50E79A00ED7948 /* VGGeometry.h in CopyFiles */,
+				9287FF581A50E79A00ED7948 /* VGBase.h in CopyFiles */,
 				60D0E6481A50440000D001DE /* VeritasGraphics.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,20 +49,10 @@
 /* Begin PBXFileReference section */
 		60D0E6441A50440000D001DE /* libVeritasGraphics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVeritasGraphics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		60D0E6471A50440000D001DE /* VeritasGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeritasGraphics.h; sourceTree = "<group>"; };
-		60D0E6491A50440000D001DE /* VeritasGraphics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeritasGraphics.m; sourceTree = "<group>"; };
 		60D0E68A1A50441400D001DE /* VeritasFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeritasFoundation.xcodeproj; path = ../VeritasFoundation/VeritasFoundation.xcodeproj; sourceTree = "<group>"; };
-		60D0E6991A504A3A00D001DE /* VGLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VGLayer.cpp; sourceTree = "<group>"; };
-		60D0E69A1A504A3A00D001DE /* VGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGLayer.h; sourceTree = "<group>"; };
-		60D0E6A31A504B4700D001DE /* VeritasGraphicsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeritasGraphicsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		60D0E6A61A504B4700D001DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		60D0E6A71A504B4700D001DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		60D0E6A91A504B4700D001DE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		60D0E6AA1A504B4700D001DE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		60D0E6AC1A504B4700D001DE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		60D0E6AD1A504B4700D001DE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		60D0E6B01A504B4700D001DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		60D0E6B21A504B4700D001DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		60D0E6B51A504B4700D001DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9287FF551A50E71800ED7948 /* VGGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGGeometry.h; sourceTree = "<group>"; };
+		9287FF561A50E75100ED7948 /* VGBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGBase.h; sourceTree = "<group>"; };
+		9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VGAffineTransform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,14 +60,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		60D0E6A01A504B4700D001DE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60D0E6CB1A504B6400D001DE /* libVeritasGraphics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +71,6 @@
 			children = (
 				60D0E68A1A50441400D001DE /* VeritasFoundation.xcodeproj */,
 				60D0E6461A50440000D001DE /* VeritasGraphics */,
-				60D0E6A41A504B4700D001DE /* VeritasGraphicsTest */,
 				60D0E6451A50440000D001DE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				60D0E6441A50440000D001DE /* libVeritasGraphics.a */,
-				60D0E6A31A504B4700D001DE /* VeritasGraphicsTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,9 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				60D0E6471A50440000D001DE /* VeritasGraphics.h */,
-				60D0E6491A50440000D001DE /* VeritasGraphics.m */,
-				60D0E6991A504A3A00D001DE /* VGLayer.cpp */,
-				60D0E69A1A504A3A00D001DE /* VGLayer.h */,
+				9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */,
+				9287FF551A50E71800ED7948 /* VGGeometry.h */,
+				9287FF561A50E75100ED7948 /* VGBase.h */,
 			);
 			path = VeritasGraphics;
 			sourceTree = "<group>";
@@ -134,30 +102,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		60D0E6A41A504B4700D001DE /* VeritasGraphicsTest */ = {
-			isa = PBXGroup;
-			children = (
-				60D0E6A91A504B4700D001DE /* AppDelegate.h */,
-				60D0E6AA1A504B4700D001DE /* AppDelegate.m */,
-				60D0E6AC1A504B4700D001DE /* ViewController.h */,
-				60D0E6AD1A504B4700D001DE /* ViewController.m */,
-				60D0E6AF1A504B4700D001DE /* Main.storyboard */,
-				60D0E6B21A504B4700D001DE /* Images.xcassets */,
-				60D0E6B41A504B4700D001DE /* LaunchScreen.xib */,
-				60D0E6A51A504B4700D001DE /* Supporting Files */,
-			);
-			path = VeritasGraphicsTest;
-			sourceTree = "<group>";
-		};
-		60D0E6A51A504B4700D001DE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				60D0E6A61A504B4700D001DE /* Info.plist */,
-				60D0E6A71A504B4700D001DE /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,9 +109,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60D0E6581A50440000D001DE /* Build configuration list for PBXNativeTarget "VeritasGraphics" */;
 			buildPhases = (
+				60D0E6421A50440000D001DE /* CopyFiles */,
 				60D0E6401A50440000D001DE /* Sources */,
 				60D0E6411A50440000D001DE /* Frameworks */,
-				60D0E6421A50440000D001DE /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -179,24 +123,6 @@
 			productReference = 60D0E6441A50440000D001DE /* libVeritasGraphics.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		60D0E6A21A504B4700D001DE /* VeritasGraphicsTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 60D0E6C31A504B4700D001DE /* Build configuration list for PBXNativeTarget "VeritasGraphicsTest" */;
-			buildPhases = (
-				60D0E69F1A504B4700D001DE /* Sources */,
-				60D0E6A01A504B4700D001DE /* Frameworks */,
-				60D0E6A11A504B4700D001DE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				60D0E6CA1A504B6000D001DE /* PBXTargetDependency */,
-			);
-			name = VeritasGraphicsTest;
-			productName = VeritasGraphicsTest;
-			productReference = 60D0E6A31A504B4700D001DE /* VeritasGraphicsTest.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,9 +133,6 @@
 				ORGANIZATIONNAME = Lei;
 				TargetAttributes = {
 					60D0E6431A50440000D001DE = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					60D0E6A21A504B4700D001DE = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
@@ -234,7 +157,6 @@
 			projectRoot = "";
 			targets = (
 				60D0E6431A50440000D001DE /* VeritasGraphics */,
-				60D0E6A21A504B4700D001DE /* VeritasGraphicsTest */,
 			);
 		};
 /* End PBXProject section */
@@ -249,36 +171,11 @@
 		};
 /* End PBXReferenceProxy section */
 
-/* Begin PBXResourcesBuildPhase section */
-		60D0E6A11A504B4700D001DE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60D0E6B11A504B4700D001DE /* Main.storyboard in Resources */,
-				60D0E6B61A504B4700D001DE /* LaunchScreen.xib in Resources */,
-				60D0E6B31A504B4700D001DE /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		60D0E6401A50440000D001DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60D0E69B1A504A3A00D001DE /* VGLayer.cpp in Sources */,
-				60D0E64A1A50440000D001DE /* VeritasGraphics.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		60D0E69F1A504B4700D001DE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60D0E6AE1A504B4700D001DE /* ViewController.m in Sources */,
-				60D0E6AB1A504B4700D001DE /* AppDelegate.m in Sources */,
-				60D0E6A81A504B4700D001DE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,31 +187,7 @@
 			name = VeritasFoundation;
 			targetProxy = 60D0E6971A504A0000D001DE /* PBXContainerItemProxy */;
 		};
-		60D0E6CA1A504B6000D001DE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 60D0E6431A50440000D001DE /* VeritasGraphics */;
-			targetProxy = 60D0E6C91A504B6000D001DE /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		60D0E6AF1A504B4700D001DE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				60D0E6B01A504B4700D001DE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		60D0E6B41A504B4700D001DE /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				60D0E6B51A504B4700D001DE /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		60D0E6561A50440000D001DE /* Debug */ = {
@@ -420,35 +293,6 @@
 			};
 			name = Release;
 		};
-		60D0E6C41A504B4700D001DE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = VeritasGraphicsTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		60D0E6C51A504B4700D001DE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = VeritasGraphicsTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -468,14 +312,7 @@
 				60D0E65A1A50440000D001DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		60D0E6C31A504B4700D001DE /* Build configuration list for PBXNativeTarget "VeritasGraphicsTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				60D0E6C41A504B4700D001DE /* Debug */,
-				60D0E6C51A504B4700D001DE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

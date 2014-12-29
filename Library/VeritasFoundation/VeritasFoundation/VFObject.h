@@ -9,13 +9,5 @@
 #ifndef __VeritasFoundation__VFObject__
 #define __VeritasFoundation__VFObject__
 
-#include <stdio.h>
-
-class VFObject
-{
-    
-public:
-    
-};
 
 #endif /* defined(__VeritasFoundation__VFObject__) */
