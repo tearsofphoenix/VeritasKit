@@ -34,6 +34,12 @@
 		9287FFE81A50FA9500ED7948 /* libVeritasAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */; };
 		9287FFE91A50FA9500ED7948 /* libVeritasGraphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9287FFAA1A50F52600ED7948 /* libVeritasGraphics.a */; };
 		929741331A519B1C00A2A378 /* VATransform3D.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741321A519B1C00A2A378 /* VATransform3D.c */; };
+		929741611A5242D400A2A378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 929741601A5242D400A2A378 /* main.m */; };
+		929741641A5242D400A2A378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 929741631A5242D400A2A378 /* AppDelegate.m */; };
+		929741671A5242D400A2A378 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929741661A5242D400A2A378 /* ViewController.m */; };
+		9297416A1A5242D400A2A378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929741681A5242D400A2A378 /* Main.storyboard */; };
+		9297416C1A5242D400A2A378 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9297416B1A5242D400A2A378 /* Images.xcassets */; };
+		9297416F1A5242D400A2A378 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9297416D1A5242D400A2A378 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +127,16 @@
 		9287FFCF1A50F94600ED7948 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9287FFD21A50F94600ED7948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		929741321A519B1C00A2A378 /* VATransform3D.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VATransform3D.c; sourceTree = "<group>"; };
+		9297415C1A5242D300A2A378 /* OriginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OriginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9297415F1A5242D400A2A378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		929741601A5242D400A2A378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		929741621A5242D400A2A378 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		929741631A5242D400A2A378 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		929741651A5242D400A2A378 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		929741661A5242D400A2A378 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		929741691A5242D400A2A378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9297416B1A5242D400A2A378 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9297416E1A5242D400A2A378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +166,13 @@
 				928701F91A51511A00ED7948 /* libSDL2.a in Frameworks */,
 				9287FFE81A50FA9500ED7948 /* libVeritasAnimation.a in Frameworks */,
 				9287FFE91A50FA9500ED7948 /* libVeritasGraphics.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		929741591A5242D300A2A378 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +214,7 @@
 				9287FFA31A50F52600ED7948 /* VeritasGraphics.xcodeproj */,
 				9287FF751A50F4E900ED7948 /* VeritasAnimation */,
 				9287FFC11A50F94600ED7948 /* VeritasAnimationApp */,
+				9297415D1A5242D400A2A378 /* OriginApp */,
 				9287FF741A50F4E900ED7948 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -200,6 +224,7 @@
 			children = (
 				9287FF731A50F4E900ED7948 /* libVeritasAnimation.a */,
 				9287FFC01A50F94600ED7948 /* VeritasAnimationApp.app */,
+				9297415C1A5242D300A2A378 /* OriginApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +274,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9297415D1A5242D400A2A378 /* OriginApp */ = {
+			isa = PBXGroup;
+			children = (
+				929741621A5242D400A2A378 /* AppDelegate.h */,
+				929741631A5242D400A2A378 /* AppDelegate.m */,
+				929741651A5242D400A2A378 /* ViewController.h */,
+				929741661A5242D400A2A378 /* ViewController.m */,
+				929741681A5242D400A2A378 /* Main.storyboard */,
+				9297416B1A5242D400A2A378 /* Images.xcassets */,
+				9297416D1A5242D400A2A378 /* LaunchScreen.xib */,
+				9297415E1A5242D400A2A378 /* Supporting Files */,
+			);
+			path = OriginApp;
+			sourceTree = "<group>";
+		};
+		9297415E1A5242D400A2A378 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9297415F1A5242D400A2A378 /* Info.plist */,
+				929741601A5242D400A2A378 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -289,6 +338,23 @@
 			productReference = 9287FFC01A50F94600ED7948 /* VeritasAnimationApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9297415B1A5242D300A2A378 /* OriginApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9297417C1A5242D400A2A378 /* Build configuration list for PBXNativeTarget "OriginApp" */;
+			buildPhases = (
+				929741581A5242D300A2A378 /* Sources */,
+				929741591A5242D300A2A378 /* Frameworks */,
+				9297415A1A5242D300A2A378 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OriginApp;
+			productName = OriginApp;
+			productReference = 9297415C1A5242D300A2A378 /* OriginApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -302,6 +368,9 @@
 						CreatedOnToolsVersion = 6.1;
 					};
 					9287FFBF1A50F94600ED7948 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					9297415B1A5242D300A2A378 = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
@@ -331,6 +400,7 @@
 			targets = (
 				9287FF721A50F4E900ED7948 /* VeritasAnimation */,
 				9287FFBF1A50F94600ED7948 /* VeritasAnimationApp */,
+				9297415B1A5242D300A2A378 /* OriginApp */,
 			);
 		};
 /* End PBXProject section */
@@ -363,6 +433,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9297415A1A5242D300A2A378 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9297416A1A5242D400A2A378 /* Main.storyboard in Resources */,
+				9297416F1A5242D400A2A378 /* LaunchScreen.xib in Resources */,
+				9297416C1A5242D400A2A378 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -382,6 +462,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9287FFC51A50F94600ED7948 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		929741581A5242D300A2A378 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				929741671A5242D400A2A378 /* ViewController.m in Sources */,
+				929741641A5242D400A2A378 /* AppDelegate.m in Sources */,
+				929741611A5242D400A2A378 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +500,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				9287FFD21A50F94600ED7948 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		929741681A5242D400A2A378 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				929741691A5242D400A2A378 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9297416D1A5242D400A2A378 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9297416E1A5242D400A2A378 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -557,6 +663,32 @@
 			};
 			name = Release;
 		};
+		9297417D1A5242D400A2A378 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OriginApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9297417E1A5242D400A2A378 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = OriginApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -586,6 +718,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9297417C1A5242D400A2A378 /* Build configuration list for PBXNativeTarget "OriginApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9297417D1A5242D400A2A378 /* Debug */,
+				9297417E1A5242D400A2A378 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

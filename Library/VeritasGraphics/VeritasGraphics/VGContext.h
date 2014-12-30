@@ -9,7 +9,7 @@
 #ifndef __VeritasGraphics__VGContext__
 #define __VeritasGraphics__VGContext__
 
-typedef const struct __VGContext * VGContextRef;
+typedef struct VGContext * VGContextRef;
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <VeritasGraphics/VGBase.h>

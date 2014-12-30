@@ -14,6 +14,7 @@ struct VGColor
     CFRuntimeBase _base;
     VGFloat *components;
     VGColorSpaceRef space;
+    VGPatternRef pattern;
 };
 
 
@@ -31,7 +32,7 @@ static CFTypeRef _VGColorCreateCopy(CFAllocatorRef allocator, CFTypeRef cf)
  */
 void __VGColorClassInitialize(void) {
     _kVGColorClass.version = 0;
-    _kVGColorClass.className = "VGColorSpace";
+    _kVGColorClass.className = "VGColor";
     _kVGColorClass.init = NULL;
     _kVGColorClass.copy = _VGColorCreateCopy;
     _kVGColorClass.finalize = NULL;
@@ -53,7 +54,7 @@ VGColorRef VGColorCreate(VGColorSpaceRef space,
         return NULL;
     }
     
-    color->space = space;
+    color->space = VGColorSpaceRetain(space);
     size_t num = VGColorSpaceGetNumberOfComponents(space);
     CFIndex size = sizeof(VGFloat) * num;
     
@@ -68,6 +69,7 @@ VGColorRef VGColorCreate(VGColorSpaceRef space,
 VGColorRef VGColorCreateGenericGray(VGFloat gray, VGFloat alpha)
 {
     VGFloat components[] = {gray, alpha};
+
     return VGColorCreate(VGColorSpaceCreateDeviceGray(), components);
 }
 
@@ -192,7 +194,7 @@ VGColorSpaceRef VGColorGetColorSpace(VGColorRef color)
 
 VGPatternRef VGColorGetPattern(VGColorRef color)
 {
-    return NULL;
+    return color->pattern;
 }
 
 /* Return the CFTypeID for VGColors. */

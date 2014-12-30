@@ -57,8 +57,7 @@ struct VGDataProviderSequentialCallbacks {
     VGDataProviderRewindCallback rewind;
     VGDataProviderReleaseInfoCallback releaseInfo;
 };
-typedef struct VGDataProviderSequentialCallbacks
-VGDataProviderSequentialCallbacks;
+typedef struct VGDataProviderSequentialCallbacks VGDataProviderSequentialCallbacks;
 
 /* This callback is called to get a pointer to the entire block of data. */
 
@@ -67,8 +66,7 @@ typedef const void *(*VGDataProviderGetBytePointerCallback)(void *info);
 /* This callback is called to release the pointer to entire block of
  data. */
 
-typedef void (*VGDataProviderReleaseBytePointerCallback)(void *info,
-const void *pointer);
+typedef void (*VGDataProviderReleaseBytePointerCallback)(void *info, const void *pointer);
 
 /* This callback is called to copy `count' bytes at byte offset `position'
  into `buffer'. */
@@ -139,8 +137,7 @@ VG_EXTERN VGDataProviderRef VGDataProviderCreateWithURL(CFURLRef url);
 
 /* Create a data provider reading from `filename'. */
 
-VG_EXTERN VGDataProviderRef
-VGDataProviderCreateWithFilename(const char *filename);
+VG_EXTERN VGDataProviderRef VGDataProviderCreateWithFilename(const char *filename);
 
 /* Equivalent to `CFRetain(provider)', but doesn't crash (as CFRetain does)
  if `provider' is NULL. */

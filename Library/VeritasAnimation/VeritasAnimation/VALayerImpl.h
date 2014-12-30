@@ -12,6 +12,7 @@
 #include <VeritasGraphics/VGGeometry.h>
 #include <VeritasGraphics/VGAffineTransform.h>
 #include <VeritasAnimation/VATransform3D.h>
+#include <VeritasGraphics/VGColor.h>
 #include <SDL.h>
 
 struct VALayerImpl
@@ -22,6 +23,11 @@ struct VALayerImpl
     VGAffineTransform affineTransform;
     VGRect frame;
     bool hidden;
+    VGColorRef backgroundColor;
+    VGFloat cornerRadius;
+    VGFloat borderWidth;
+    VGColorRef borderColor;
+    float opacity;
     
     SDL_Surface *impl;
 };

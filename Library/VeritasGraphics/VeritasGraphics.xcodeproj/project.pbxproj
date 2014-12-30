@@ -35,6 +35,7 @@
 		929741531A51A37100A2A378 /* VGDataProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741511A51A2FE00A2A378 /* VGDataProvider.h */; };
 		929741561A51A63400A2A378 /* VGFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741541A51A63300A2A378 /* VGFunction.c */; };
 		929741571A51A66900A2A378 /* VGFunction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 929741551A51A63400A2A378 /* VGFunction.h */; };
+		929741871A52701900A2A378 /* VGContextDelegate.c in Sources */ = {isa = PBXBuildFile; fileRef = 929741851A52701900A2A378 /* VGContextDelegate.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,10 @@
 		929741511A51A2FE00A2A378 /* VGDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGDataProvider.h; sourceTree = "<group>"; };
 		929741541A51A63300A2A378 /* VGFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGFunction.c; sourceTree = "<group>"; };
 		929741551A51A63400A2A378 /* VGFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGFunction.h; sourceTree = "<group>"; };
+		929741841A526F3C00A2A378 /* VGContextPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGContextPrivate.h; sourceTree = "<group>"; };
+		929741851A52701900A2A378 /* VGContextDelegate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VGContextDelegate.c; sourceTree = "<group>"; };
+		929741861A52701900A2A378 /* VGContextDelegatePriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGContextDelegatePriv.h; sourceTree = "<group>"; };
+		929741881A5270FE00A2A378 /* VGError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VGError.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +150,8 @@
 		60D0E6461A50440000D001DE /* VeritasGraphics */ = {
 			isa = PBXGroup;
 			children = (
+				929741851A52701900A2A378 /* VGContextDelegate.c */,
+				929741861A52701900A2A378 /* VGContextDelegatePriv.h */,
 				60D0E6471A50440000D001DE /* VeritasGraphics.h */,
 				928701F71A5150B900ED7948 /* VGAffineTransform.c */,
 				9287FFBA1A50F80E00ED7948 /* VGAffineTransform.h */,
@@ -155,6 +162,7 @@
 				929741351A519F4F00A2A378 /* VGColorSpace.h */,
 				9297412B1A51994400A2A378 /* VGContext.c */,
 				9297412C1A51994400A2A378 /* VGContext.h */,
+				929741841A526F3C00A2A378 /* VGContextPrivate.h */,
 				929741501A51A2FE00A2A378 /* VGDataProvider.c */,
 				929741511A51A2FE00A2A378 /* VGDataProvider.h */,
 				929741381A519F9300A2A378 /* VGFont.c */,
@@ -173,6 +181,7 @@
 				929741491A51A00800A2A378 /* VGShading.h */,
 				929741541A51A63300A2A378 /* VGFunction.c */,
 				929741551A51A63400A2A378 /* VGFunction.h */,
+				929741881A5270FE00A2A378 /* VGError.h */,
 			);
 			path = VeritasGraphics;
 			sourceTree = "<group>";
@@ -265,6 +274,7 @@
 				929741521A51A2FE00A2A378 /* VGDataProvider.c in Sources */,
 				929741411A519FD200A2A378 /* VGImage.c in Sources */,
 				929741311A519ADF00A2A378 /* VGGeometry.c in Sources */,
+				929741871A52701900A2A378 /* VGContextDelegate.c in Sources */,
 				929741471A519FFB00A2A378 /* VGPattern.c in Sources */,
 				9297413E1A519FBD00A2A378 /* VGGradient.c in Sources */,
 				9297414A1A51A00800A2A378 /* VGShading.c in Sources */,
