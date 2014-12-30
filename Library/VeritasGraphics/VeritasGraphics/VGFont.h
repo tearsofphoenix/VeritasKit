@@ -43,13 +43,13 @@ typedef enum VGFontPostScriptFormat VGFontPostScriptFormat;
 
 enum {
     /* The maximum allowed value of a VGFontIndex. Always <= USHRT_MAX - 1. */
-    kCGFontIndexMax = ((1 << 16) - 2),
+    kVGFontIndexMax = ((1 << 16) - 2),
     
     /* A value representing an invalid VGFontIndex. Always <= USHRT_MAX. */
-    kCGFontIndexInvalid = ((1 << 16) - 1),
+    kVGFontIndexInvalid = ((1 << 16) - 1),
     
     /* The maximum allowed value of a VGGlyph. */
-    kCGGlyphMax = kCGFontIndexMax
+    kVGGlyphMax = kVGFontIndexMax
 };
 
 /* Return the CFTypeID for VGFontRefs. */

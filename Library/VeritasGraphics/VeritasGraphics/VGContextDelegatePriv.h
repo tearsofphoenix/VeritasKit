@@ -17,6 +17,9 @@
 
 #include <VeritasFoundation/CFRuntime.h>
 #include "VGError.h"
+#include "VGRenderingStatePriv.h"
+#include "VGGStatePriv.h"
+#include "VGColorTransformPriv.h"
 
 // Forward declaration
 typedef struct VGContextDelegate *VGContextDelegateRef;

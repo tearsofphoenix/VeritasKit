@@ -233,18 +233,18 @@ VGRectMake(VGFloat x, VGFloat y, VGFloat width, VGFloat height)
 }
 
 VG_INLINE bool
-__CGPointEqualToPoint(VGPoint point1, VGPoint point2)
+__VGPointEqualToPoint(VGPoint point1, VGPoint point2)
 {
     return point1.x == point2.x && point1.y == point2.y;
 }
-#define VGPointEqualToPoint __CGPointEqualToPoint
+#define VGPointEqualToPoint __VGPointEqualToPoint
 
 VG_INLINE bool
-__CGSizeEqualToSize(VGSize size1, VGSize size2)
+__VGSizeEqualToSize(VGSize size1, VGSize size2)
 {
     return size1.width == size2.width && size1.height == size2.height;
 }
-#define VGSizeEqualToSize __CGSizeEqualToSize
+#define VGSizeEqualToSize __VGSizeEqualToSize
 
 
 #endif

@@ -10,18 +10,19 @@
 #define VeritasGraphics_VGContextPrivate_h
 
 #include <VeritasFoundation/CFRuntime.h>
-#include <VeritasGraphics/VGColor.h>
-
+#include "VGColor.h"
+#include "VGGStatePriv.h"
+#include "VGContextDelegatePriv.h"
 
 typedef enum {
-    kCGContextTypeGeneric		= 0,
-    kCGContextTypePDF			= 1,
-    kCGContextTypeBitmap		= 4,
-    kCGContextTypeDisplayList	= 6
+    kVGContextTypeGeneric		= 0,
+    kVGContextTypePDF			= 1,
+    kVGContextTypeBitmap		= 4,
+    kVGContextTypeDisplayList	= 6
     
-} CGContextType;
+} VGContextType;
 
-//sizeof(struct CGBitmapContextInfo) = 0x4C;
+//sizeof(struct VGBitmapContextInfo) = 0x4C;
 struct VGBitmapContextInfo {
     
     int32_t refcount;							//0x00 - +0
@@ -56,7 +57,7 @@ struct VGContext
     VGContextType contextType;						//0x0C
     VGBitmapContextInfoRef bitmapContextInfo;		//0x10
     void* finalize;									//0x14
-    void* reserved_18;								//0x18 ??? create a CGImageRef
+    void* reserved_18;								//0x18 ??? create a VGImageRef
     //0x24
     VGGStackRef stack;								//0x2C
     VGRenderingStateRef rendering;					//0x30
