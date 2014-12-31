@@ -15,7 +15,8 @@ typedef struct VGImage *VGImageRef;
 #include <VeritasGraphics/VGDataProvider.h>
 #include <VeritasGraphics/VGGeometry.h>
 
-typedef CF_ENUM(uint32_t, VGImageAlphaInfo) {
+enum
+{
     kVGImageAlphaNone,               /* For example, RGB. */
     kVGImageAlphaPremultipliedLast,  /* For example, premultiplied RGBA */
     kVGImageAlphaPremultipliedFirst, /* For example, premultiplied ARGB */
@@ -25,6 +26,8 @@ typedef CF_ENUM(uint32_t, VGImageAlphaInfo) {
     kVGImageAlphaNoneSkipFirst,      /* For example, XRGB. */
     kVGImageAlphaOnly                /* No color data, alpha data only */
 };
+
+typedef uint32_t VGImageAlphaInfo;
 
 typedef CF_OPTIONS(uint32_t, VGBitmapInfo) {
     kVGBitmapAlphaInfoMask = 0x1F,
@@ -36,7 +39,7 @@ typedef CF_OPTIONS(uint32_t, VGBitmapInfo) {
     kVGBitmapByteOrder32Little = (2 << 12),
     kVGBitmapByteOrder16Big = (3 << 12),
     kVGBitmapByteOrder32Big = (4 << 12)
-} CF_ENUM_AVAILABLE(10_4, 2_0);
+};
 
 #ifdef __BIG_ENDIAN__
 # define kVGBitmapByteOrder16Host kVGBitmapByteOrder16Big

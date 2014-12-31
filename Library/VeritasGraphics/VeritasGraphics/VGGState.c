@@ -734,7 +734,7 @@ VGClipRef VGClipStrokeCreateWithGState(VGGStateRef state, VGPathRef path)
 
 void VGClipRelease(VGClipRef clip)
 {
-
+ 
 }
 
 VGClipStackRef VGClipStackCreateMutable()
