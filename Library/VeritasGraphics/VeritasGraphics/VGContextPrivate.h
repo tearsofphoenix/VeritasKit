@@ -13,6 +13,27 @@
 #include "VGColor.h"
 #include "VGGStatePriv.h"
 #include "VGContextDelegatePriv.h"
+#include "VGContext.h"
+
+VG_EXTERN const CFStringRef kVGContextDisplayList;
+VG_EXTERN const CFStringRef kVGContextLog;
+VG_EXTERN const CFStringRef kVGContextBackgroundColor;
+VG_EXTERN const CFStringRef kVGContextBoundingBox;
+VG_EXTERN const CFStringRef kVGContextColorSpace;
+VG_EXTERN const CFStringRef kVGContextGroup;
+VG_EXTERN const CFStringRef kVGContextResolution;
+VG_EXTERN const CFStringRef kVGContextFilterInfo;
+VG_EXTERN const CFStringRef kVGContextFilterOptionsData;
+VG_EXTERN const CFStringRef kVGContextFilterOptionsURL;
+VG_EXTERN const CFStringRef kVGContextFilterInfo;
+VG_EXTERN const CFStringRef kVGContextFilterOptionsData;
+VG_EXTERN const CFStringRef kVGContextFilterOptionsURL;
+VG_EXTERN const CFStringRef kVGTransparencyLayerContentBounds;
+VG_EXTERN const CFStringRef kVGContextErase;
+VG_EXTERN const CFStringRef kVGContextClear;
+VG_EXTERN const CFStringRef kVGContextWait;
+VG_EXTERN const CFStringRef kVGContextSynchronize;
+VG_EXTERN const CFStringRef kVGContextFlush;
 
 typedef enum {
     kVGContextTypeGeneric		= 0,
@@ -67,5 +88,28 @@ struct VGContext
     VGContextDelegateRef ctxDelegate;				//0x54	(x86 -> + 21)
     void* unknown58;								//0x58
 };
+
+
+
+VG_EXTERN void VGContextCreatePaths(VGContextRef c);
+
+VG_EXTERN VGContextRef VGContextCreate();
+
+VG_EXTERN VGContextRef VGContextCreateWithDelegate(VGContextDelegateRef ctxDelegate,
+                                                   VGRenderingStateRef renderState,
+                                                   VGGStateRef gState);
+
+VG_EXTERN void VGContextSetDelegate(VGContextRef c,
+                                    VGContextDelegateRef ctxDelegate);
+
+VG_EXTERN VGContextRef VGContextAddFilter(VGContextRef c, void* unknown1, void* unknown2);
+
+VG_EXTERN void		VGContextDestroy(CFTypeRef c);
+VG_EXTERN void		VGContextResetState(VGContextRef c);
+VG_EXTERN void		VGContextSetRenderingResolution(VGContextRef c);
+VG_EXTERN void		VGContextSetStrokeAdjust(VGContextRef c, VGFloat strokeAdjust);
+VG_EXTERN void		VGContextSetBlackGeneration(VGContextRef c, VGFunctionRef blackGeneration);
+VG_EXTERN void		VGContextSetUndercolorRemoval(VGContextRef c, VGFunctionRef underColorRemoval);
+
 
 #endif

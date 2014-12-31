@@ -15,7 +15,7 @@
 #ifndef VGGSTATE_H_
 #define VGGSTATE_H_
 
-#include <CoreFoundation/CFRuntime.h>
+#include <VeritasFoundation/CFRuntime.h>
 
 #include "VGDashPriv.h"
 #include "VGColorSpace.h"

@@ -92,6 +92,14 @@ CFTypeID CFCalendarGetTypeID(void) {
     return __kCFCalendarTypeID;
 }
 
+#ifndef	UCAL_DEFAULT
+/*
+ * Older versions of ICU used UCAL_TRADITIONAL rather than UCAL_DEFAULT
+ * so if one is not available we use the other.
+ */
+#define	UCAL_DEFAULT UCAL_TRADITIONAL
+#endif
+
 CF_PRIVATE UCalendar *__CFCalendarCreateUCalendar(CFStringRef calendarID, CFStringRef localeID, CFTimeZoneRef tz) {
     if (calendarID) {
 	CFDictionaryRef components = CFLocaleCreateComponentsFromLocaleIdentifier(kCFAllocatorSystemDefault, localeID);

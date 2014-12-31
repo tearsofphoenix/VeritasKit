@@ -17,8 +17,8 @@
 #include <pthread.h>
 #include <VeritasFoundation/CFRuntime.h>
 
-static pthread_mutex_t cacheMutex	= PTHREAD_MUTEX_INITIALIZER;
-static CFArrayRef baseCache	= NULL;
+//static pthread_mutex_t cacheMutex	= PTHREAD_MUTEX_INITIALIZER;
+//static CFArrayRef baseCache	= NULL;
 
 
 /* CoreFoundation runtime class for VGPath.  */

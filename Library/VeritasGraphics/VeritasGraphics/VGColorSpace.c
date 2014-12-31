@@ -6,19 +6,11 @@
 //  Copyright (c) 2014年 Lei. All rights reserved.
 //
 
-#include "VGColorSpace.h"
+#include "VGColorSpacePriv.h"
 
 #include <VeritasFoundation/CFRuntime.h>
-
-struct VGColorSpace
-{
-    CFRuntimeBase base;
-    size_t numComponents;
-    VGColorSpaceModel model;
-    VGColorSpaceRef baseColorSpace;
-    size_t colorTableCount;
-};
-
+#include <VeritasFoundation/VFInternal.h>
+#include <CoreFoundation/CoreFoundation.h>
 
 static CFTypeID _kVGColorSpaceID = _kCFRuntimeNotATypeID;
 
@@ -40,208 +32,776 @@ void __VGColorSpaceClassInitialize(void) {
     _kVGColorSpaceID = _CFRuntimeRegisterClass((const CFRuntimeClass * const)&_kVGColorSpaceClass);
 }
 
-/* Create a DeviceGray color space. */
+static pthread_once_t			__space_create_once = PTHREAD_ONCE_INIT;
+static CFMutableDictionaryRef	__name_to_index_map = NULL;
 
-VGColorSpaceRef VGColorSpaceCreateDeviceGray(void)
+static pthread_once_t			__csNotifCenter_create_once = PTHREAD_ONCE_INIT;
+
+static VGColorSpaceRef			named_color_spaces[17] = {0};
+
+
+
+/* color space constants */
+VF_CONST_STRING_DECL(kVGColorSpaceDisplayGray,				"kVGColorSpaceDisplayGray");
+VF_CONST_STRING_DECL(kVGColorSpaceDisplayRGB,				"kVGColorSpaceDisplayRGB");
+VF_CONST_STRING_DECL(kVGColorSpaceDeviceGray,				"kVGColorSpaceDeviceGray");
+VF_CONST_STRING_DECL(kVGColorSpaceDeviceRGB,				"kVGColorSpaceDeviceRGB");
+VF_CONST_STRING_DECL(kVGColorSpaceDeviceCMYK,				"kVGColorSpaceDeviceCMYK");
+VF_CONST_STRING_DECL(kVGColorSpaceSystemDefaultGray,		"kVGColorSpaceSystemDefaultGray");
+VF_CONST_STRING_DECL(kVGColorSpaceSystemDefaultRGB,			"kVGColorSpaceSystemDefaultRGB");
+VF_CONST_STRING_DECL(kVGColorSpaceSystemDefaultCMYK,		"kVGColorSpaceSystemDefaultCMYK");
+VF_CONST_STRING_DECL(kVGColorSpaceCalibratedGray,			"kVGColorSpaceCalibratedGray");
+VF_CONST_STRING_DECL(kVGColorSpaceCalibratedRGB,			"kVGColorSpaceCalibratedRGB");
+VF_CONST_STRING_DECL(kVGColorSpaceUncalibratedGray,			"kVGColorSpaceUncalibratedGray");
+VF_CONST_STRING_DECL(kVGColorSpaceUncalibratedRGB,			"kVGColorSpaceUncalibratedRGB");
+VF_CONST_STRING_DECL(kVGColorSpaceUncalibratedCMYK,			"kVGColorSpaceUncalibratedCMYK");
+VF_CONST_STRING_DECL(kVGColorSpaceGenericHDR,				"kVGColorSpaceGenericHDR");
+VF_CONST_STRING_DECL(kVGColorSpaceGenericRGBHDR,			"kVGColorSpaceGenericRGBHDR");
+VF_CONST_STRING_DECL(kVGColorSpaceUndo601,					"kVGColorSpaceUndo601");
+VF_CONST_STRING_DECL(kVGColorSpaceColoredPattern,			"kVGColorSpaceColoredPattern");
+VF_CONST_STRING_DECL(kVGColorSpaceGenericGray,				"kVGColorSpaceGenericGray");
+VF_CONST_STRING_DECL(kVGColorSpaceLAB,						"kVGColorSpaceLAB");
+VF_CONST_STRING_DECL(kVGColorSpaceIndexed,					"kVGColorSpaceIndexed");
+VF_CONST_STRING_DECL(kVGColorSpaceDeviceN,					"kVGColorSpaceDeviceN");
+
+
+
+/* color space notifications */
+VF_CONST_STRING_DECL(kVGColorSpaceWillDeallocate,			"kVGColorSpaceWillDeallocate");
+
+
+
+
+/* CoreFoundation runtime class for VGPath.  */
+static CFRuntimeClass VGColorSpaceClass =  {
+    0,							/* version */
+    "VGColorSpace",				/* Name of class.  */
+    0,							/* init */
+    0,							/* copy  */
+    cs_finalize,				/* finalize  */
+    cs_equal,					/* equal  */
+    0,							/* hash  */
+    0,							/* copyFormattingDesc */
+    cs_copy_debug_description	/* copyDebugDesc */
+};
+CFTypeID __kVGColorSpaceID = _kCFRuntimeNotATypeID;
+
+
+#if 0
+static VGColorSpaceCallbacks indexed_vtable =  {
+    0,
+    indexed_equal,
+    indexed_finalize,
+    indexed_get_md5,
+    indexed_get_default_color_components,
+    0,
+    indexed_create_resolved,
+};
+
+static VGColorSpaceCallbacks pattern_vtable =  {
+    0,
+    pattern_equal,
+    pattern_finalize,
+    pattern_get_md5,
+    pattern_get_default_color_components,
+    pattern_create_default_color,
+    pattern_create_resolved,
+};
+#endif
+
+static unsigned char device_gray_md5[16] = {
+    0x32, 0x53, 0xAB, 0x07, 0xA5, 0xC6, 0xC9, 0x79,
+    0x65, 0x67, 0x94, 0x70, 0x4C, 0x2F, 0x58, 0x82
+};
+static VGColorSpaceCallbacks device_gray_vtable =  {
+    0,
+    0,
+    0,
+    device_gray_get_md5,
+    device_get_default_color_components,
+    0,
+    device_create_resolved,
+};
+
+
+static unsigned char device_rgb_md5[16] = {
+    0x1B, 0x84, 0x38, 0x33, 0xBC, 0xA1, 0xF9, 0xF8,
+    0x75, 0x60, 0xC5, 0xBA, 0x33, 0x90, 0xDB, 0x62
+};
+
+static VGColorSpaceCallbacks device_rgb_vtable =  {
+    0,
+    0,
+    0,
+    device_rgb_get_md5,
+    device_get_default_color_components,
+    0,
+    device_create_resolved,
+};
+
+#if 0
+static VGColorSpaceCallbacks device_cmyk_vtable =  {
+    0,
+    0,
+    0,
+    device_cmyk_get_md5,
+    device_get_default_color_components,
+    0,
+    device_create_resolved,
+};
+#endif
+
+CFTypeID VGColorSpaceGetTypeID(void)
+{
+    return VGTypeRegisterWithCallbacks(&__kVGColorSpaceID, &VGColorSpaceClass );
+}
+
+
+void device_gray_get_md5(unsigned char* md5)
+{
+    memcpy(md5, device_gray_md5, 16);
+}
+
+void device_rgb_get_md5(unsigned char* md5)
+{
+    memcpy(md5, device_rgb_md5, 16);
+}
+
+VGFloat* device_get_default_color_components(VGColorSpaceRef cs)
+{
+    // IMPLEMENT HERE
+    return NULL;
+}
+
+VGColorSpaceRef device_create_resolved(VGColorSpaceRef cs)
+{
+    // IMPLEMENT HERE
+    return NULL;
+}
+
+
+void cs_finalize(CFTypeRef ctf)
+{
+    /*VGColorSpaceRef cs;
+     bool isSingleton;
+     VGNotificationCenterRef csNotifCenter;
+     
+     cs = (VGColorSpaceRef)ctf;
+     isSingleton = cs->isSingleton;
+     assert( isSingleton == FALSE );
+     
+     csNotifCenter = getNotificationCenter(FALSE);
+     if (csNotifCenter) {
+     
+     VGNotificationCenterPostNotification(csNotifCenter, kVGColorSpaceWillDeallocate, ctf, isSingleton);
+     }*/
+    //.....
+}
+
+Boolean cs_equal(CFTypeRef cf1, CFTypeRef cf2)
+{
+    return VGColorSpaceEqualToColorSpace((VGColorSpaceRef)cf1, (VGColorSpaceRef)cf2);
+}
+
+CFHashCode cs_hash(CFTypeRef cf)
+{
+    CFHashCode hash;
+    VGColorSpaceRef cs;
+    
+    cs = (VGColorSpaceRef)cf;
+    if (!cs | !cs->state)
+        return 0;
+    
+    /*if (cs->state->callbacks)
+     hash = cs->state->callbacks->getMD5(*/
+    
+    return hash;
+}
+
+
+CFStringRef cs_copy_debug_description(CFTypeRef cf)
+{
+    VGColorSpaceRef cs;
+    CFMutableStringRef msg;
+    CFStringRef csTypeString = NULL;
+    
+    cs = (VGColorSpaceRef)cf;
+    if (cs)
+    {
+        msg = CFStringCreateMutable(CFGetAllocator(cf), 0);
+        switch(cs->state->spaceType)
+        {
+            case kVGColorSpaceTypeDeviceGray: { csTypeString = kVGColorSpaceDeviceGray; break; }
+            case kVGColorSpaceTypeDeviceRGB: { csTypeString = kVGColorSpaceDeviceRGB; break; }
+            case kVGColorSpaceTypeDeviceCMYK: { csTypeString = kVGColorSpaceDeviceCMYK; break; }
+            case kVGColorSpaceTypeCalibratedGray: { csTypeString = kVGColorSpaceCalibratedGray; break; }
+            case kVGColorSpaceTypeCalibratedRGB: { csTypeString = kVGColorSpaceCalibratedRGB; break; }
+            case kVGColorSpaceTypeLab: { csTypeString = kVGColorSpaceLAB; break; }
+            case kVGColorSpaceTypeIndexed: { csTypeString = kVGColorSpaceIndexed; break; }
+            case kVGColorSpaceTypeDeviceN: { csTypeString = kVGColorSpaceDeviceN; break; }
+            default: {break;}
+        }
+        
+        //CFStringAppendFormat(CF
+    }
+    
+    return csTypeString;
+}
+
+
+void create_name_to_index_map(void)
+{
+    
+}
+
+CFIndex VGColorSpaceGetIndexForName(CFStringRef name)
+{
+    CFIndex ret;
+    
+    if (__name_to_index_map == NULL) {
+        pthread_once(&__space_create_once, create_name_to_index_map);
+    }
+    if (name)
+        ret = (CFIndex)CFDictionaryGetValue(__name_to_index_map, (const void*)name);
+    else
+        ret = 0;
+    
+    return ret;
+}
+
+
+
+bool VGColorSpaceEqualToColorSpace(VGColorSpaceRef cs1, VGColorSpaceRef cs2)
+{
+    if (cs1 == cs2)
+        return TRUE;
+    
+    return color_space_state_equal(cs1->state, cs2->state);
+}
+
+bool color_space_state_equal(VGColorSpaceStateRef state1, VGColorSpaceStateRef state2)
+{
+    // IMPLEMENT HERE
+    return false;
+}
+
+
+unsigned char* VGColorSpaceGetMD5Digest(VGColorSpaceRef space)
+{
+    unsigned char* digest;
+    
+    if (!space || !space->state)
+        return NULL;
+    
+    if (space->state->md5)
+    {
+        digest = space->state->md5;
+    }
+    else
+    {
+        space->state->md5 = (unsigned char*) malloc(0x16);
+        space->state->callbacks->getMD5(space->state->md5);
+    }
+    
+    return digest;
+}
+
+VGColorSpaceType VGColorSpaceGetType(VGColorSpaceRef space)
+{
+    if (!space)
+        return kVGColorSpaceTypeDeviceUnknown;
+    
+    return space->state->spaceType;
+}
+
+VGFloat* VGColorSpaceGetDefaultColorComponents(VGColorSpaceRef cs)
 {
     return NULL;
 }
 
-/* Create a DeviceRGB color space. */
-
-VGColorSpaceRef VGColorSpaceCreateDeviceRGB(void)
+VGColorRef VGColorSpaceCopyDefaultColor(VGColorSpaceRef space)
 {
-    VGColorSpaceRef colorSpace;
-    uint32_t extra = sizeof(*colorSpace) - sizeof(CFRuntimeBase);
-    colorSpace = (VGColorSpaceRef)_CFRuntimeCreateInstance(NULL, _kVGColorSpaceID, extra, NULL);
-    if (NULL == colorSpace) {
+    VGColorRef color = NULL;
+    /*float* components;
+     
+     if (!space)
+     return NULL;
+     
+     components = VGColorSpaceGetDefaultColorComponents(space);
+     if (!components || VGColorSpaceGetType(space) == kVGColorSpaceTypeDeviceUnknown)
+     return space->defaultColor;
+     
+     color = VGColorCreate(space, components);*/
+    
+    return color;
+}
+
+
+VGColorSpaceRef VGColorSpaceCreateDisplayGray()			{ return VGColorSpaceCreateWithIndex((int) 1); }
+VGColorSpaceRef VGColorSpaceCreateDisplayRGB()			{ return VGColorSpaceCreateWithIndex((int) 2); }
+VGColorSpaceRef VGColorSpaceCreateDeviceGray()			{ return VGColorSpaceCreateWithIndex((int) 3); }
+VGColorSpaceRef VGColorSpaceCreateDeviceRGB()			{ return VGColorSpaceCreateWithIndex((int) 4); }
+VGColorSpaceRef VGColorSpaceCreateDeviceCMYK()			{ return VGColorSpaceCreateWithIndex((int) 5); }
+VGColorSpaceRef VGColorSpaceCreateSystemDefaultGray()	{ return VGColorSpaceCreateWithIndex((int) 6); }
+VGColorSpaceRef VGColorSpaceCreateSystemDefaultRGB()	{ return VGColorSpaceCreateWithIndex((int) 7); }
+VGColorSpaceRef VGColorSpaceCreateSystemDefaultCMYK()	{ return VGColorSpaceCreateWithIndex((int) 8); }
+
+
+VGColorSpaceRef VGColorSpaceCreateWithName(CFStringRef name)
+{
+    CFIndex index;
+    
+    index = VGColorSpaceGetIndexForName(name);
+    return VGColorSpaceCreateWithIndex((int)index);
+}
+
+
+
+VGColorSpaceRef VGColorSpaceCreateWithIndex(int index)
+{
+    VGColorSpaceRef cs;
+    //VGColorSpaceModel colorModel;
+    //CFStringRef profilePath;
+    
+    if (index > 17)
         return NULL;
+    
+    if (named_color_spaces[index] != 0)
+    {
+        cs = named_color_spaces[index];
+    }
+    else
+    {
+        switch(index)
+        {
+                /* display space type */
+            case 1: { cs = create_display_color_space(1); break; } //VGColorSpaceCreateDisplayGray
+            case 2: { cs = create_display_color_space(3); break; } //VGColorSpaceCreateDisplayRGB
+                /* device space type */
+            case 3: { cs = create_device_color_space(1); break; } // VGColorSpaceCreateDeviceGray
+            case 4: { cs = create_device_color_space(3); break; } // VGColorSpaceCreateDeviceRGB
+            case 5: { cs = create_device_color_space(4); break; } // VGColorSpaceCreateDeviceCMYK
+                /* system default space type */
+            case 6: { cs = create_generic_color_space(1); break; } //VGColorSpaceCreateSystemDefaultGray
+            case 7: { cs = create_generic_color_space(3); break; } //VGColorSpaceCreateSystemDefaultGray
+            case 8: { cs = create_generic_color_space(4); break; } //VGColorSpaceCreateSystemDefaultGray
+                /* uncalibrated space type */
+            case 9:  { cs = create_uncalibrated_color_space(1); break; }
+            case 10: { cs = create_uncalibrated_color_space(3); break; }
+            case 11: { cs = create_uncalibrated_color_space(4); break; }
+                /* pattern */
+            case 14: { cs = VGColorSpaceCreate(kVGColorSpaceTypePattern, 0); cs->state->isSingleton = TRUE; break; }
+                /* ICC profile */
+            case 15: { cs = create_color_space_with_path(CFSTR("ColorSync/Profiles/AdobeRGB1998.icc")); break; }
+            case 16: { cs = create_color_space_with_path(CFSTR("ColorSync/Profiles/sRGB Profile.icc")); break; }
+            case 17: { cs = create_color_space_with_path(CFSTR("ColorSync/Profiles/Generic Gray Gamma 2.2 Profile.icc")); break; }
+            default: { cs = NULL; break; }
+        }
+        
+        if (cs == NULL)
+        {
+            // Add some semphare/memory barrier/spin lock here -
+            cs = named_color_spaces[index];
+        }
+        else
+        {
+            // DISCREPANCY HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // Sometimes it's index and sometimes a float *
+            //cs->state->index = index;
+        }
     }
     
-    colorSpace->numComponents = 4;
-    colorSpace->model = kVGColorSpaceModelRGB;
-    colorSpace->baseColorSpace = NULL;
-    colorSpace->colorTableCount = 0;
+    
+    
+    
+    
+    VGColorSpaceRetain(cs);
+    
+    return cs;
+}
+
+VGColorSpaceRef create_display_color_space(size_t numComponents)
+{
+    VGColorSpaceRef colorSpace;
+    
+    if (numComponents == 1)
+    {
+        colorSpace = VGColorSpaceCreateDisplayGrayWithID(0);
+    }
+    else if (numComponents == 3)
+    {
+        colorSpace = VGColorSpaceCreateDisplayRGBWithID(0);
+    }
+    
+    return NULL;
+}
+
+VGColorSpaceRef VGColorSpaceCreateWithICCData()
+{
+    VGColorSpaceRef colorSpace = NULL;
+    
     
     return colorSpace;
 }
 
-/* Create a DeviceCMYK color space. */
 
-VGColorSpaceRef VGColorSpaceCreateDeviceCMYK(void)
+VGColorSpaceRef VGColorSpaceCreateDisplayGrayWithID(int id)
 {
-    return NULL;
+    return create_display_space_with_id(1, id);
 }
 
-/* Create a calibrated gray color space. `whitePoint' is an array of 3
- numbers specifying the tristimulus value, in the CIE 1931 XYZ-space, of
- the diffuse white point. `blackPoint' is an array of 3 numbers specifying
- the tristimulus value, in CIE 1931 XYZ-space, of the diffuse black point.
- `gamma' defines the gamma for the gray component. */
-
-VGColorSpaceRef VGColorSpaceCreateCalibratedGray(const VGFloat whitePoint[3],
-                                                 const VGFloat blackPoint[3],
-                                                 VGFloat gamma)
+VGColorSpaceRef VGColorSpaceCreateDisplayRGBWithID(int id)
 {
-    return NULL;
+    return create_display_space_with_id(3, id);
 }
 
-/* Create a calibrated RGB color space. `whitePoint' is an array of 3
- numbers specifying the tristimulus value, in the CIE 1931 XYZ-space, of
- the diffuse white point. `blackPoint' is an array of 3 numbers specifying
- the tristimulus value, in CIE 1931 XYZ-space, of the diffuse black point.
- `gamma' is an array of 3 numbers specifying the gamma for the red, green,
- and blue components of the color space. `matrix' is an array of 9 numbers
- specifying the linear interpretation of the gamma-modified RGB values of
- the color space with respect to the final XYZ representation. */
-
-VGColorSpaceRef VGColorSpaceCreateCalibratedRGB(const VGFloat whitePoint[3],
-                                                const VGFloat blackPoint[3],
-                                                const VGFloat gamma[3],
-                                                const VGFloat matrix[9])
+VGColorSpaceRef create_display_space_with_id(size_t numComponents, int id)
 {
-    return NULL;
+    VGColorSpaceRef colorSpace;
+    VGColorSpaceRef csGray;
+    VGColorSpaceStateICCRef csStateICC;
+    
+    colorSpace = VGColorSpaceCreate(kVGColorSpaceTypeICC, numComponents);
+    if (colorSpace)
+    {
+        csStateICC = ((VGColorSpaceStateICCRef)(colorSpace->state));
+        csStateICC->id = id;
+        if (numComponents == 1)
+        {
+            csStateICC->state.spaceModel = kVGColorSpaceModelMonochrome;
+            csStateICC->state.processColorModel = kVGColorSpaceModelMonochrome;
+            csGray = VGColorSpaceCreateDeviceGray();
+            if (csGray != NULL)
+            {
+                colorSpace->state->unknown07 = TRUE;
+            }
+            else
+            {
+                VGColorSpaceRelease(colorSpace);
+                colorSpace = NULL;
+            }
+            
+        }
+    }
+    
+    return colorSpace;
 }
 
-/* Create an L*a*b* color space. `whitePoint' is an array of 3 numbers
- specifying the tristimulus value, in the CIE 1931 XYZ-space, of the
- diffuse white point. `blackPoint' is an array of 3 numbers specifying the
- tristimulus value, in CIE 1931 XYZ-space, of the diffuse black point.
- `range' is an array of four numbers specifying the range of valid values
- for the a* and b* components of the color space. */
 
-VGColorSpaceRef VGColorSpaceCreateLab(const VGFloat whitePoint[3],
-                                      const VGFloat blackPoint[3],
-                                      const VGFloat range[4])
+VGColorSpaceRef create_device_color_space(size_t numComponents)
 {
-    return NULL;
+    VGColorSpaceRef colorSpace;
+    
+    if (numComponents == 1)
+    {
+        colorSpace = VGColorSpaceCreate(kVGColorSpaceTypeDeviceGray, numComponents);
+    }
+    else if (numComponents == 3)
+    {
+        colorSpace = VGColorSpaceCreate(kVGColorSpaceTypeDeviceRGB, numComponents);
+    }
+    else if (numComponents == 4)
+    {
+        colorSpace = VGColorSpaceCreate(kVGColorSpaceTypeDeviceCMYK, numComponents);
+    }
+    else
+    {
+        abort();
+    }
+    
+    return colorSpace;
 }
 
-/* Create an ICC-based color space using the ICC profile specified by
- `data'. */
 
-VGColorSpaceRef VGColorSpaceCreateWithICCProfile(CFDataRef data)
+VGColorSpaceRef create_color_space_with_path(CFStringRef path)
 {
-    return NULL;
+    VGColorSpaceRef colorSpace = NULL;
+    CFArrayRef paths;
+    VGDataProviderRef provider;
+    CFURLRef url, urlCopy;
+    
+    paths = CFCopySearchPathForDirectoriesInDomains(kCFLibraryDirectory, kCFSystemDomainMask, TRUE);
+    if (paths)
+    {
+        for (int i=0; i < CFArrayGetCount(paths); i++)
+        {
+            url = (CFURLRef)CFArrayGetValueAtIndex(paths, i);
+            urlCopy = CFURLCreateCopyAppendingPathComponent(NULL, url, path, FALSE);
+            provider = VGDataProviderCreateWithURL(urlCopy);
+            
+            //IMPLEMENT HERE
+        }
+        
+        //CFRelease(paths);
+        //colorSpace = VGColorSpaceCreateWithICCData();
+        //VGDataProviderRelease
+    }
+    
+    
+    return colorSpace;
 }
 
-/* Create an ICC-based color space. `nComponents' specifies the number of
- color components in the color space defined by the ICC profile data. This
- must match the number of components actually in the ICC profile, and must
- be 1, 3, or 4. `range' is an array of 2*nComponents numbers specifying
- the minimum and maximum valid values of the corresponding color
- components, so that for color component k, range[2*k] <= c[k] <=
- range[2*k+1], where c[k] is the k'th color component. `profile' is a data
- provider specifying the ICC profile. `alternate' specifies an alternate
- color space to be used in case the ICC profile is not supported. It must
- have `nComponents' color components. If `alternate' is NULL, then the
- color space used will be DeviceGray, DeviceRGB, or DeviceCMYK, depending
- on whether `nComponents' is 1, 3, or 4, respectively. */
-
-VGColorSpaceRef VGColorSpaceCreateICCBased(size_t nComponents,
-                                                     const VGFloat *range, VGDataProviderRef profile, VGColorSpaceRef alternate)
+VGColorSpaceRef create_generic_color_space(size_t numComponents)
 {
-    return NULL;
+    VGColorSpaceRef colorSpace;
+    
+    if (numComponents == 1)
+        colorSpace = VGColorSpaceCreateDeviceGray();
+    else if (numComponents == 3)
+        colorSpace = VGColorSpaceCreateDeviceRGB();
+    else if (numComponents == 4)
+        colorSpace = VGColorSpaceCreateDeviceCMYK();
+    else
+        colorSpace = NULL;
+    
+    return colorSpace;
 }
 
-/* Create an indexed color space. A sample value in an indexed color space
- is treated as an index into the color table of the color space. `base'
- specifies the base color space in which the values in the color table are
- to be interpreted. `lastIndex' is an integer which specifies the maximum
- valid index value; it must be less than or equal to 255. `colorTable' is
- an array of m * (lastIndex + 1) bytes, where m is the number of color
- components in the base color space. Each byte is an unsigned integer in
- the range 0 to 255 that is scaled to the range of the corresponding color
- component in the base color space. */
-
-VGColorSpaceRef VGColorSpaceCreateIndexed(VGColorSpaceRef baseSpace,
-                                                    size_t lastIndex, const unsigned char *colorTable)
+VGColorSpaceRef create_uncalibrated_color_space(size_t numComponents)
 {
-    return NULL;
+    VGColorSpaceRef colorSpace;
+    
+    colorSpace = create_device_color_space(numComponents);
+    colorSpace->state->isUncalibrated = TRUE;
+    
+    return colorSpace;
 }
 
-/* Create a pattern color space. `baseSpace' is the underlying color space
- of the pattern color space. For colored patterns, `baseSpace' should be
- NULL; for uncolored patterns, `baseSpace' specifies the color space of
- colors which will be painted through the pattern. */
 
-VGColorSpaceRef VGColorSpaceCreatePattern(VGColorSpaceRef baseSpace)
+VGColorSpaceRef VGColorSpaceCreate(VGColorSpaceType type, size_t numberOfComponents)
 {
-    return NULL;
+    VGColorSpaceRef colorSpace;
+    VGColorSpaceStateRef csState;
+    VGColorSpaceModel spaceModel;
+    VGColorSpaceModel processColorModel;
+    VGColorSpaceCallbacks *callbacks;
+    int size;
+    
+    switch(type)
+    {
+        case kVGColorSpaceTypeDeviceGray:
+            size = 0x34;
+            spaceModel = kVGColorSpaceModelMonochrome;
+            callbacks = &device_gray_vtable;
+            processColorModel = kVGColorSpaceModelMonochrome;
+            break;
+        case kVGColorSpaceTypeDeviceRGB:
+            size = 0x34;
+            spaceModel = kVGColorSpaceModelRGB;
+            callbacks = &device_rgb_vtable;
+            processColorModel = kVGColorSpaceModelRGB;
+            break;
+        case kVGColorSpaceTypeDeviceCMYK:
+            size = 0x34;
+            spaceModel = kVGColorSpaceModelCMYK;
+            processColorModel = kVGColorSpaceModelCMYK;
+            //callbacks = &device_cmyk_vtable;
+            break;
+        case kVGColorSpaceTypeCalibratedGray:
+            size = 0x50;
+            spaceModel = kVGColorSpaceModelMonochrome;
+            processColorModel = kVGColorSpaceModelMonochrome;
+            //callbacks = &calibrated_gray_vtable;
+            break;
+        case kVGColorSpaceTypeCalibratedRGB:
+            size = 0x7C;
+            spaceModel = kVGColorSpaceModelRGB;
+            processColorModel = kVGColorSpaceModelRGB;
+            //callbacks = &calibrated_rgb_vtable;
+            break;
+        case kVGColorSpaceTypeLab:
+            size = 0x5C;
+            spaceModel = kVGColorSpaceModelLab;
+            processColorModel = kVGColorSpaceModelLab;
+            //callbacks = &lab_vtable;
+            break;
+        case kVGColorSpaceTypeICC:
+            size = 0x60;
+            spaceModel = kVGColorSpaceModelUnknown;
+            processColorModel = kVGColorSpaceModelUnknown;
+            //callbacks = &icc_vtable;
+            break;
+        case kVGColorSpaceTypeIndexed:
+            size = 0x40;
+            spaceModel = kVGColorSpaceModelIndexed;
+            processColorModel = kVGColorSpaceModelUnknown;
+            //callbacks = &indexed_vtable;
+            
+            break;
+        case kVGColorSpaceTypeDeviceN:
+            size = 0x44;
+            spaceModel = kVGColorSpaceModelDeviceN;
+            processColorModel = kVGColorSpaceModelDeviceN;
+            //callbacks = &deviceN_vtable;
+            
+        case kVGColorSpaceTypePattern:
+            size = 0x38;
+            spaceModel = kVGColorSpaceModelPattern;
+            processColorModel = kVGColorSpaceModelUnknown;
+            //callbacks = &pattern_vtable;
+            break;
+        default:
+            break;
+    }
+    
+    csState = (VGColorSpaceStateRef) calloc(1, size);
+    csState->isSingleton = FALSE;
+    csState->isUncalibrated = FALSE;
+    csState->supportsOuput = TRUE;
+    csState->unknown07 = FALSE;
+    csState->unknown08 = FALSE;
+    csState->spaceType = type;
+    csState->spaceModel = spaceModel;
+    csState->processColorModel= processColorModel;
+    csState->numberOfComponents = numberOfComponents;
+    csState->components = NULL; //STR     R6, [R0,#0x28]
+    csState->callbacks = callbacks;
+    
+    if (csState->spaceType == kVGColorSpaceTypeICC)
+    {
+        csState->components = (float *)malloc(numberOfComponents * sizeof(float));
+        for (size_t i; i < numberOfComponents; i++)
+        {
+            //IMPLEMENT HERE
+        }
+    }
+    else
+    {
+        if (csState->spaceType == kVGColorSpaceTypePattern)
+        {
+            ((VGColorSpaceStatePatternRef)csState)->baseColorSpace = NULL;
+            csState->supportsOuput = FALSE;
+        }
+    }
+    
+    colorSpace = VGColorSpaceCreateWithState(csState);
+    
+    return colorSpace;
 }
 
-/* Create a color space using `name' as the identifier for the color
- space. */
 
-VGColorSpaceRef VGColorSpaceCreateWithName(CFStringRef name)
+VGColorSpaceRef VGColorSpaceCreateWithState(VGColorSpaceStateRef colorSpaceState)
 {
-    return NULL;
+    VGColorSpaceRef colorSpace;
+    
+    colorSpace = (VGColorSpaceRef)_CFRuntimeCreateInstance(NULL, VGColorSpaceGetTypeID(), sizeof(VGColorSpace) - sizeof(CFRuntimeBase), NULL);
+    colorSpace->state = color_space_state_retain(colorSpaceState);
+    
+    return colorSpace;
 }
 
-VGColorSpaceRef VGColorSpaceRetain(VGColorSpaceRef space)
+
+VGColorSpaceStateRef color_space_state_retain(VGColorSpaceStateRef colorSpaceState)
 {
-    if (space) { CFRetain(space); }
-    return space;
+    if (!colorSpaceState) { return NULL; }
+    
+    _CFAtomicIncrement32(&colorSpaceState->refcount);
+    
+    return colorSpaceState;
+}
+
+void color_space_state_release(VGColorSpaceStateRef colorSpaceState)
+{
+    if (!colorSpaceState) { return; }
+    
+    _CFAtomicDecrement32(&colorSpaceState->refcount);
+    if (colorSpaceState->refcount == 0)
+    {
+        color_space_state_dealloc(colorSpaceState);
+    }
+}
+
+void color_space_state_dealloc(VGColorSpaceStateRef csState)
+{
+    if (!csState) { return; }
+    
+    if (csState->isSingleton == FALSE)
+    {
+        if (csState->associate)
+            CFRelease((CFTypeRef)csState->associate);
+        if (csState->callbacks->finalize)
+            csState->callbacks->finalize((CFTypeRef)csState);
+        
+        VGColorRelease(csState->color1C);
+        free(csState->field20);
+        free(csState->md5);
+    }
+    
 }
 
 void VGColorSpaceRelease(VGColorSpaceRef space)
 {
-    if (space) { CFRelease(space); }
+    if (!space) { return; }
+    CFRelease((CFTypeRef) space);
 }
 
-/* Return the CFTypeID for VGColorSpaces. */
-
-CFTypeID VGColorSpaceGetTypeID(void)
+VGColorSpaceRef VGColorSpaceRetain(VGColorSpaceRef space)
 {
-    return _kVGColorSpaceID;
+    if (!space) { return 0; }
+    
+    CFRetain((CFTypeRef) space);
+    
+    return space;
+}
+
+bool VGColorSpaceSupportsOutput(VGColorSpaceRef space)
+{
+    if (!space) { return 0; }
+    
+    return space->state->supportsOuput;
+}
+
+VGColorSpaceModel VGColorSpaceGetModel(VGColorSpaceRef space)
+{
+    if (!space || !space->state) { return kVGColorSpaceModelUnknown; }
+    return space->state->spaceModel;
 }
 
 size_t VGColorSpaceGetNumberOfComponents(VGColorSpaceRef space)
 {
-    return space->numComponents;
+    if (!space || !space->state) { return 0; }
+    return space->state->numberOfComponents;
 }
 
-/* Return the color space model of `space'. */
-
-VGColorSpaceModel VGColorSpaceGetModel(VGColorSpaceRef space)
+VGColorSpaceRef VGColorSpaceGetBaseColorSpace(VGColorSpaceRef cs)
 {
-    return space->model;
+    VGColorSpaceRef baseColorSpace;
+    
+    if (cs->state->spaceModel == kVGColorSpaceModelIndexed ||
+        cs->state->spaceModel == kVGColorSpaceModelPattern)
+    {
+        baseColorSpace = ((VGColorSpaceStatePatternRef)cs->state)->baseColorSpace;
+    }
+    else
+    {
+        baseColorSpace = NULL;
+    }
+    
+    return baseColorSpace;
 }
 
-/* Return the base color space of `space' if `space' is a pattern or indexed
- color space; otherwise, return NULL. To determine whether a color space
- is an indexed or pattern color space, use `VGColorSpaceGetModel'. */
-
-VGColorSpaceRef VGColorSpaceGetBaseColorSpace(VGColorSpaceRef space)
+size_t VGColorSpaceGetColorTableCount(VGColorSpaceRef cs)
 {
-    return space->baseColorSpace;
+    size_t count;
+    
+    if (cs && cs->state->spaceModel == kVGColorSpaceModelIndexed) 
+        count = ((VGColorSpaceStateIndexedRef)cs->state)->lastIndex + 1;
+    else
+        count = 0;
+    
+    return count;
 }
-
-/* Return the number of entries in the color table of `space' if `space' is
- an indexed color space; otherwise, return 0. To determine whether a color
- space is an indexed color space, use `VGColorSpaceGetModel'. */
-
-size_t VGColorSpaceGetColorTableCount(VGColorSpaceRef space)
-{
-    return space->colorTableCount;
-}
-
-/* Copy the entries in the color table of `space' to `table' if `space' is
- an indexed color space; otherwise, do nothing. The array pointed to by
- `table' should be at least as large as the number of entries in the color
- table; the returned data is in the same format as that passed to
- `VGColorSpaceCreateIndexed'. To determine whether a color space is an
- indexed color space, use `VGColorSpaceGetModel'. */
 
 void VGColorSpaceGetColorTable(VGColorSpaceRef space, uint8_t *table)
 {
+    size_t numComponents, count;
+    VGColorSpaceStateIndexedRef csStateIndexed;
     
-}
-
-/* Return a copy of the ICC profile of `space', or NULL if the color space
- doesn't have an ICC profile. */
-
-CFDataRef VGColorSpaceCopyICCProfile(VGColorSpaceRef space)
-{
-    return NULL;
+    if (space && space->state->spaceModel == kVGColorSpaceModelIndexed && table)
+    {
+        csStateIndexed = (VGColorSpaceStateIndexedRef)space->state;
+        numComponents = VGColorSpaceGetNumberOfComponents(csStateIndexed->baseColorSpace);
+        count = csStateIndexed->lastIndex + 1;
+        memmove(table, csStateIndexed->indexes, numComponents * count);
+    }
 }

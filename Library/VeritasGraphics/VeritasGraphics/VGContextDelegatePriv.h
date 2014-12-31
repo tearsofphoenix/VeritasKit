@@ -164,7 +164,6 @@ VG_EXTERN void VGContextSetDelegate(VGContextRef c, VGContextDelegateRef ctxDele
 
 VG_EXTERN void VGContextDelegateSetCallbacks(VGContextDelegateRef ctxDelegate, const VGCallback* dlArray, int count);
 VG_EXTERN void VGContextDelegateSetCallback(VGContextDelegateRef ctxDelegate, VGContextDelegateType type, void* callback);
-//VG_EXTERN void VGContextDelegateSetCallbacks(VGContextDelegateRef ctxDelegate, const VGCallback* dlArray, int count);
 
 
 VG_EXTERN VGContextDelegateInfoRef VGContextDelegateGetInfo(VGContextDelegateRef ctxDelegate);

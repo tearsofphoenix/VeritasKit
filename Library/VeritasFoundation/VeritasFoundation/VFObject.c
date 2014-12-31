@@ -7,4 +7,3 @@
 //
 
 #include "VFObject.h"
- 

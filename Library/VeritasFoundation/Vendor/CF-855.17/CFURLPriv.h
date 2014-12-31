@@ -37,7 +37,7 @@
 #if TARGET_OS_MAC
 #include <sys/param.h>
 #include <sys/mount.h>
-#include <CoreFoundation/CFFileSecurity.h>
+//#include <CoreFoundation/CFFileSecurity.h>
 #include <CoreFoundation/CFURLEnumerator.h>
 #include <CoreFoundation/CFDate.h>
 #endif
@@ -345,7 +345,7 @@ struct _CFURLFilePropertyValues {
     uint64_t		fileSizeOfResourceFork;
     uint64_t		fileAllocatedSizeOfResourceFork;
     uint8_t		finderInfo[32];
-    CFFileSecurityRef	fileSecurity;	/* you are responsible for releasing this if you ask for it and get it */
+    //CFFileSecurityRef	fileSecurity;	/* you are responsible for releasing this if you ask for it and get it */
 };
 typedef struct _CFURLFilePropertyValues _CFURLFilePropertyValues;
 

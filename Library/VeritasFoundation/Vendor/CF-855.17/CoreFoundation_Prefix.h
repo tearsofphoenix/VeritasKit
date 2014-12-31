@@ -48,9 +48,15 @@ extern "C" {
 typedef signed char	BOOL; 
 typedef void * id;
 typedef char * Class;
+#ifndef YES
 #define YES (BOOL)1
+#endif
+#ifndef NO
 #define NO (BOOL)0
+#endif
+#ifndef nil
 #define nil NULL
+#endif
 #endif
 
 #define CRSetCrashLogMessage(A) do {} while (0)

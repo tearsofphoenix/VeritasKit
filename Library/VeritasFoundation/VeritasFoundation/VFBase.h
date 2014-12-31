@@ -237,7 +237,6 @@
 #endif
 
 #if TARGET_OS_WIN32
-#import <objc/objc.h>
 #include <stdarg.h>
 #include <stdint.h>
 #include <limits.h>
@@ -277,8 +276,8 @@ typedef unsigned int VFUInteger;
 
 #endif
 
-FOUNDATION_EXPORT void VFLog(const char* format, ...) VF_FORMAT_FUNCTION(1,2);
-FOUNDATION_EXPORT void VFLogv(const char* format, va_list args) VF_FORMAT_FUNCTION(1,0);
+FOUNDATION_EXPORT void VFLog(const char* format, ...);
+FOUNDATION_EXPORT void VFLogv(const char* format, va_list args);
 
 enum
 {
@@ -351,6 +350,47 @@ enum {VFNotFound = VFIntegerMax};
 
 #endif
 
+#endif
+
+
+
+
+
+
+#ifdef __CONSTANT_CFSTRINGS__
+#define VF_CONST_STRING_DECL(S, V) const CFStringRef S = (const CFStringRef)__builtin___CFStringMakeConstantString("" V "");
+#else
+#if __CF_BIG_ENDIAN__
+#define VF_CONST_STRING_DECL(S, V)			\
+static struct CF_CONST_STRING __ ## S ## __ = {{(uintptr_t)&__CFConstantStringClassReference, {0x00, 0x00, 0x07, 0xc8}}, (uint8_t *)V, sizeof(V) - 1}; \
+const CFStringRef S = (CFStringRef) & __ ## S ## __;
+#elif !DEPLOYMENT_TARGET_WINDOWS || (DEPLOYMENT_TARGET_WINDOWS && defined(__GNUC__) &&!defined(__MINGW32__))
+#define VF_CONST_STRING_DECL(S, V)			\
+static struct CF_CONST_STRING __ ## S ## __ = {{(uintptr_t)&__CFConstantStringClassReference, {0xc8, 0x07, 0x00, 0x00}}, (uint8_t *)V, sizeof(V) - 1}; \
+const CFStringRef S = (CFStringRef) & __ ## S ## __;
+#elif DEPLOYMENT_TARGET_WINDOWS
+#define VF_CONST_STRING_DECL(S, V)			\
+static struct CF_CONST_STRING __ ## S ## __ = {{(uintptr_t)&__CFConstantStringClassReference, {0xc8, 0x07, 0x00, 0x00}},(uint8_t *) V, sizeof(V) - 1}; \
+FOUNDATION_EXTERN const CFStringRef S = (CFStringRef) & __ ## S ## __;
+
+#define VF_CONST_STRING_DECL_EXPORT(S, V)			\
+struct CF_CONST_STRING __ ## S ## __ = {{___WindowsConstantStringClassReference, {0xc8, 0x07, 0x00, 0x00}}, (uint8_t *)V, sizeof(V) - 1}; \
+FOUNDATION_EXTERN const CFStringRef S = (CFStringRef) & __ ## S ## __;
+#else
+#define VF_CONST_STRING_DECL(S, V)			\
+static struct CF_CONST_STRING __ ## S ## __ = {{(uintptr_t)NULL, {0xc8, 0x07, 0x00, 0x00}},(uint8_t *) V, sizeof(V) - 1}; \
+const CFStringRef S = (CFStringRef) & __ ## S ## __;
+
+#define VF_CONST_STRING_DECL_EXPORT(S, V)			\
+struct CF_CONST_STRING __ ## S ## __ = {{(uintptr_t)NULL, {0xc8, 0x07, 0x00, 0x00}}, (uint8_t *)V, sizeof(V) - 1}; \
+FOUNDATION_EXTERN const CFStringRef S = (CFStringRef) & __ ## S ## __;
+
+#endif /* __BIG_ENDIAN__ */
+#endif /* __CONSTANT_CFSTRINGS__ */
+
+
+#ifndef MAX_PATH
+#define MAX_PATH 260
 #endif
 
 #endif

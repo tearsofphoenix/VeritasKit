@@ -15,7 +15,7 @@
 #ifndef VGSOFTMASKPRIV_H_
 #define VGSOFTMASKPRIV_H_
 
-#include <CoreFoundation/CFRuntime.h>
+#include <VeritasFoundation/CFRuntime.h>
 #include "VGImage.h"
 
 

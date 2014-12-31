@@ -15,7 +15,7 @@
 #ifndef VGDASHPRIV_H_
 #define VGDASHPRIV_H_
 
-#include <CoreFoundation/CFRuntime.h>
+#include <VeritasFoundation/CFRuntime.h>
 #include "VGBase.h"
 
 typedef  struct VGDash {

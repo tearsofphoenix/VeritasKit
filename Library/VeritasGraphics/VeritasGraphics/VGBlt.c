@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 #include "VGBase.h"
-#include "CGBltPriv.h"
+#include "VGBltPriv.h"
 #include <string.h>
 
 // Not sure yet how to decode this
@@ -31,7 +31,7 @@
 
 
 void* 
-CGBlt_depth(const char *format)
+VGBlt_depth(const char *format)
 {
 	if (!format || !strlen(format))
 		return NULL;

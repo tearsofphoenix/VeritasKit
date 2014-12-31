@@ -12,6 +12,7 @@
 		60D0E6951A5049C800D001DE /* VFObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 60D0E6931A5049C800D001DE /* VFObject.c */; };
 		60D0E6961A5049F400D001DE /* VFObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60D0E6941A5049C800D001DE /* VFObject.h */; };
 		60D0E8D21A50542400D001DE /* CFRuntime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60D0E8101A50538F00D001DE /* CFRuntime.h */; };
+		923FB6331A5397BB00BA96EF /* VFInternal.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 923FB6321A5397AD00BA96EF /* VFInternal.h */; };
 		9287026A1A51720200ED7948 /* VFException.c in Sources */ = {isa = PBXBuildFile; fileRef = 928702681A51720200ED7948 /* VFException.c */; };
 		9287026C1A51722E00ED7948 /* VFException.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 928702691A51720200ED7948 /* VFException.h */; };
 		9287026D1A51722E00ED7948 /* VFBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9287026B1A51721300ED7948 /* VFBase.h */; };
@@ -24,6 +25,7 @@
 			dstPath = VeritasFoundation;
 			dstSubfolderSpec = 16;
 			files = (
+				923FB6331A5397BB00BA96EF /* VFInternal.h in CopyFiles */,
 				9287026C1A51722E00ED7948 /* VFException.h in CopyFiles */,
 				9287026D1A51722E00ED7948 /* VFBase.h in CopyFiles */,
 				60D0E8D21A50542400D001DE /* CFRuntime.h in CopyFiles */,
@@ -41,6 +43,7 @@
 		60D0E6931A5049C800D001DE /* VFObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VFObject.c; sourceTree = "<group>"; };
 		60D0E6941A5049C800D001DE /* VFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFObject.h; sourceTree = "<group>"; };
 		60D0E8101A50538F00D001DE /* CFRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFRuntime.h; sourceTree = "<group>"; };
+		923FB6321A5397AD00BA96EF /* VFInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFInternal.h; sourceTree = "<group>"; };
 		928702681A51720200ED7948 /* VFException.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VFException.c; sourceTree = "<group>"; };
 		928702691A51720200ED7948 /* VFException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFException.h; sourceTree = "<group>"; };
 		9287026B1A51721300ED7948 /* VFBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VFBase.h; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 				60D0E6931A5049C800D001DE /* VFObject.c */,
 				60D0E6941A5049C800D001DE /* VFObject.h */,
 				9287026B1A51721300ED7948 /* VFBase.h */,
+				923FB6321A5397AD00BA96EF /* VFInternal.h */,
 			);
 			path = VeritasFoundation;
 			sourceTree = "<group>";

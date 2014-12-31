@@ -15,7 +15,7 @@
 #ifndef VGCOLORTRANSFORMBASEPRIV_H_
 #define VGCOLORTRANSFORMBASEPRIV_H_
 
-#include <CoreFoundation/CFRuntime.h>
+#include <VeritasFoundation/CFRuntime.h>
 #include "VGColorSpace.h"
 #include "VGPattern.h"
 
